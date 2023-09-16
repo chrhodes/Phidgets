@@ -26,7 +26,8 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        ph22.DigitalOutput digitalOutput;
+        ph22.DigitalOutput digitalOutput0;
+        ph22.DigitalOutput digitalOutput2;
 
         private void InitializeViewModel()
         {
@@ -38,8 +39,11 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
             Button2Command = new DelegateCommand(Button2Execute);
             Button3Command = new DelegateCommand(Button3Execute);
 
-            digitalOutput = new ph22.DigitalOutput();
-            digitalOutput.Open(5000);
+            digitalOutput0 = new ph22.DigitalOutput();
+            digitalOutput0.Open(5000);
+
+            //digitalOutput2 = new ph22.DigitalOutput();
+            //digitalOutput2.Open(5000);
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -158,10 +162,14 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
 
             for (int i = 0; i < 10; i++)
             {
-                digitalOutput.DutyCycle = 1;
+                digitalOutput0.DutyCycle = 1;
                 Thread.Sleep(500);
-                digitalOutput.DutyCycle = 0;
+                digitalOutput0.DutyCycle = 0;
                 Thread.Sleep(500);
+                digitalOutput0.DutyCycle = 1;
+                Thread.Sleep(250);
+                digitalOutput0.DutyCycle = 0;
+                Thread.Sleep(250);
             }
 
             //ph22.DigitalOutput digitalOutput = new ph22.DigitalOutput();
@@ -182,9 +190,13 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
 
             for (int i = 0; i < 10; i++)
             {
-                digitalOutput.DutyCycle = 1;
+                digitalOutput0.DutyCycle = 1;
+                Thread.Sleep(125);
+                digitalOutput0.DutyCycle = 0;
+                Thread.Sleep(125);
+                digitalOutput0.DutyCycle = 1;
                 Thread.Sleep(250);
-                digitalOutput.DutyCycle = 0;
+                digitalOutput0.DutyCycle = 0;
                 Thread.Sleep(250);
             }
             //ph22.DigitalOutput digitalOutput = new ph22.DigitalOutput();

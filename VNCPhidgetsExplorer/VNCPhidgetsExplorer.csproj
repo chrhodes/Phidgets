@@ -7,6 +7,8 @@
     <!--<GenerateAssemblyInfo>false</GenerateAssemblyInfo>-->
     <Nullable>enable</Nullable>
     <FileVersion>2023.09.14A</FileVersion>
+    <PackageIcon></PackageIcon>
+    <ApplicationIcon>ApplicationIcon-Right-Red.ico</ApplicationIcon>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -16,6 +18,10 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="ApplicationIcon-Right-Red.ico" />
+  </ItemGroup>
   
     <ItemGroup>
         <PackageReference Include="DevExpress.Wpf.Core" Version="23.1.5" />
@@ -48,6 +54,13 @@
   <ItemGroup>
     <!-- Workaround for https://github.com/dotnet/wpf/issues/2648#issuecomment-635674683 -->
     <Reference Include="System.Web" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Update="ApplicationIcon-Right-Red.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
