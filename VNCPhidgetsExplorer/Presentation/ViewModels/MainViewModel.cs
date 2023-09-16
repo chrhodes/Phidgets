@@ -42,10 +42,12 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
             try
             {
                 digitalOutput0 = new ph22.DigitalOutput();
+                digitalOutput0.Channel = 0;
                 digitalOutput0.Open(5000);
 
-                //digitalOutput2 = new ph22.DigitalOutput();
-                //digitalOutput2.Open(5000);
+                digitalOutput2 = new ph22.DigitalOutput();
+                digitalOutput2.Channel = 2;
+                digitalOutput2.Open(5000);
             }
             catch (Exception ex)
             {
@@ -159,7 +161,7 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
 
         #endregion
 
-        #region Private Methods (none)
+        #region Private Methods
 
         private void Button1Execute()
         {
@@ -173,9 +175,9 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
                 Thread.Sleep(500);
                 digitalOutput0.DutyCycle = 0;
                 Thread.Sleep(500);
-                digitalOutput0.DutyCycle = 1;
+                digitalOutput2.DutyCycle = 1;
                 Thread.Sleep(250);
-                digitalOutput0.DutyCycle = 0;
+                digitalOutput2.DutyCycle = 0;
                 Thread.Sleep(250);
             }
 
@@ -201,9 +203,9 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
                 Thread.Sleep(125);
                 digitalOutput0.DutyCycle = 0;
                 Thread.Sleep(125);
-                digitalOutput0.DutyCycle = 1;
+                digitalOutput2.DutyCycle = 1;
                 Thread.Sleep(250);
-                digitalOutput0.DutyCycle = 0;
+                digitalOutput2.DutyCycle = 0;
                 Thread.Sleep(250);
             }
             //ph22.DigitalOutput digitalOutput = new ph22.DigitalOutput();
