@@ -37,7 +37,7 @@
     </ItemGroup>
     <ItemGroup>      
         <PackageReference Include="VNC.Logging.TraceListeners.SignalRCoreListeners" Version="1.0.0" />
-        <PackageReference Include="VNC.Core" Version="2.1.1" />
+        <!--<PackageReference Include="VNC.Core" Version="2.1.1" />-->
     </ItemGroup>
 
     <!--<ItemGroup>
@@ -45,8 +45,11 @@
         <ProjectReference Include="..\VNCPhidgetsExplorer.Domain\VNCPhidgetsExplorer.Domain.csproj" />
     </ItemGroup>-->
 
+    <ItemGroup>
+        <ProjectReference Include="..\..\vnc\VNC.Core\VNC.Core.csproj" />
+    </ItemGroup>
+    
   <!--<ItemGroup>
-    <ProjectReference Include="..\..\vnc\VNC.Core\VNC.Core.csproj" />
     <ProjectReference Include="..\..\vnc\VNC.Logging\VNC.Logging\VNC.Logging.csproj" />
   </ItemGroup>-->
   

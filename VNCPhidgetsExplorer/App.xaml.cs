@@ -8,10 +8,13 @@ using Prism.Regions;
 using Prism.Unity;
 
 using VNC;
+using VNC.Logging;
 using VNC.Core.Presentation.ViewModels;
 using VNC.Core.Presentation.Views;
 
 using VNCPhidgetsExplorer.Presentation.Views;
+using DevExpress.CodeParser;
+using System.Reflection;
 
 namespace VNCPhidgetsExplorer
 {
@@ -32,7 +35,15 @@ namespace VNCPhidgetsExplorer
 
             Log.APPLICATION_START("App()", Common.LOG_CATEGORY, startTicks);
 
-            Common.SetAppVersionInfo();
+            // TODO(crhodes)
+            // Can also get the version of VNC.Core if we don't pass in ourselves
+
+            Common.SetVersionInfoVNCCore();
+
+            var runtimeVersion = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(int).Assembly.Location);
+            var appVersion = System.Diagnostics.FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
+
+            Common.SetVersionInfoApplication(runtimeVersion, appVersion);
 
             Log.APPLICATION_START(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
