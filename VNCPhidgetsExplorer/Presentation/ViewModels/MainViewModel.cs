@@ -150,6 +150,12 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
 
             Message = "Button1 Clicked";
 
+            ph22.DigitalOutput digitalOutput = new ph22.DigitalOutput();
+            digitalOutput.Open(5000);
+            digitalOutput.DutyCycle = 0;
+            Console.ReadLine();
+            digitalOutput.Close();
+
             Log.Info("End", "WHOISTHIS", startTicks);
         }
 
@@ -159,7 +165,11 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
 
             Message = "Button2 Clicked";
 
-
+            ph22.DigitalOutput digitalOutput = new ph22.DigitalOutput();
+            digitalOutput.Open(5000);
+            digitalOutput.DutyCycle = 1;
+            Console.ReadLine();
+            digitalOutput.Close();
 
             Log.Debug("End", Common.LOG_CATEGORY, startTicks);
         }
@@ -169,6 +179,12 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
             Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
 
             Message = "Button3 Clicked";
+
+            ph22.DigitalOutput digitalOutput = new ph22.DigitalOutput();
+            digitalOutput.Open(5000);
+            digitalOutput.DutyCycle = .5;
+            Console.ReadLine();
+            digitalOutput.Close();
 
             try
             {
