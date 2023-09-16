@@ -39,11 +39,18 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
             Button2Command = new DelegateCommand(Button2Execute);
             Button3Command = new DelegateCommand(Button3Execute);
 
-            digitalOutput0 = new ph22.DigitalOutput();
-            digitalOutput0.Open(5000);
+            try
+            {
+                digitalOutput0 = new ph22.DigitalOutput();
+                digitalOutput0.Open(5000);
 
-            //digitalOutput2 = new ph22.DigitalOutput();
-            //digitalOutput2.Open(5000);
+                //digitalOutput2 = new ph22.DigitalOutput();
+                //digitalOutput2.Open(5000);
+            }
+            catch (Exception ex)
+            {
+                
+            }
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }

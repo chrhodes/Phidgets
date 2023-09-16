@@ -6,9 +6,8 @@
     <UseWPF>true</UseWPF>
     <!--<GenerateAssemblyInfo>false</GenerateAssemblyInfo>-->
     <Nullable>enable</Nullable>
-    <FileVersion>2023.09.14A</FileVersion>
-    <PackageIcon></PackageIcon>
-    <ApplicationIcon>ApplicationIcon-Right-Red.ico</ApplicationIcon>
+    <FileVersion>2023.09.16A</FileVersion>
+    <ApplicationIcon>Resources\Icons\ApplicationIcon-Right-Red.ico</ApplicationIcon>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -20,7 +19,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="ApplicationIcon-Right-Red.ico" />
+    <Content Include="Resources\Icons\ApplicationIcon-Right-Red.ico" />
   </ItemGroup>
   
     <ItemGroup>
@@ -38,7 +37,7 @@
     </ItemGroup>
     <ItemGroup>      
         <PackageReference Include="VNC.Logging.TraceListeners.SignalRCoreListeners" Version="1.0.0" />
-        <PackageReference Include="VNC.Core" Version="2.1.0" />
+        <PackageReference Include="VNC.Core" Version="2.1.1" />
     </ItemGroup>
 
     <!--<ItemGroup>

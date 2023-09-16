@@ -24,7 +24,6 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
             InstanceCountVM++;
-            RuntimeVersion = Common.RuntimeVersion;
 
             // TODO(crhodes)
             //
@@ -44,21 +43,8 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
 
         #endregion
 
-        #region Fields and Properties (none)
+        #region Fields and Properties
 
-        private string _runtimeVersion = ".NET Runtime Version";
-
-        public string RuntimeVersion
-        {
-            get => _runtimeVersion;
-            set
-            {
-                if (_runtimeVersion == value)
-                    return;
-                _runtimeVersion = value;
-                OnPropertyChanged();
-            }
-        }
         private string _title = "VNCPhidgetsExplorer - RibbonShell";
 
         public string Title
@@ -94,7 +80,6 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
 
 
         #endregion
-
 
         #region IInstanceCount
 
