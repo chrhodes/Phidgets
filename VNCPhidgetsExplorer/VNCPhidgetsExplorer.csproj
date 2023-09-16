@@ -18,14 +18,14 @@
   </PropertyGroup>
   
     <ItemGroup>
-        <PackageReference Include="DevExpress.Wpf.Core" Version="21.2.7" />
-        <PackageReference Include="DevExpress.Wpf.Core.Extensions" Version="21.2.7" />
-        <PackageReference Include="DevExpress.Wpf.Docking" Version="21.2.7" />
-        <PackageReference Include="DevExpress.Wpf.Grid" Version="21.2.7" />
+        <PackageReference Include="DevExpress.Wpf.Core" Version="23.1.5" />
+        <PackageReference Include="DevExpress.Wpf.Core.Extensions" Version="23.1.5" />
+        <PackageReference Include="DevExpress.Wpf.Docking" Version="23.1.5" />
+        <PackageReference Include="DevExpress.Wpf.Grid" Version="23.1.5" />
         <!--<PackageReference Include="DevExpress.Wpf.Layout" Version="21.2.7" />
         <PackageReference Include="DevExpress.Wpf.Navigation" Version="21.2.7" />-->
-        <PackageReference Include="DevExpress.Wpf.NavBar" Version="21.2.7" />
-        <PackageReference Include="DevExpress.Wpf.Ribbon" Version="21.2.7" />
+        <PackageReference Include="DevExpress.Wpf.NavBar" Version="23.1.5" />
+        <PackageReference Include="DevExpress.Wpf.Ribbon" Version="23.1.5" />
         <PackageReference Include="EntityFramework" Version="6.4.4" />
         <PackageReference Include="Phidget22.NET" Version="1.17.20230824" />
         <PackageReference Include="Prism.Unity" Version="8.1.97" />

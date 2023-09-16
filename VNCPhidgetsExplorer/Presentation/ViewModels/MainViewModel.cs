@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Windows.Input;
 
+using ph22 = Phidget22;
+using ph22E = Phidget22.Events;
+
 using Prism.Commands;
 
 using VNC;
@@ -155,6 +158,8 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
             Int64 startTicks = Log.Debug("Enter", Common.LOG_CATEGORY);
 
             Message = "Button2 Clicked";
+
+
 
             Log.Debug("End", Common.LOG_CATEGORY, startTicks);
         }
