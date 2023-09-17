@@ -6,7 +6,7 @@
     <UseWPF>true</UseWPF>
     <!--<GenerateAssemblyInfo>false</GenerateAssemblyInfo>-->
     <Nullable>enable</Nullable>
-    <FileVersion>2023.09.16A</FileVersion>
+    <FileVersion>2023.09.16B</FileVersion>
     <ApplicationIcon>Resources\Icons\ApplicationIcon-Right-Red.ico</ApplicationIcon>
   </PropertyGroup>
   
