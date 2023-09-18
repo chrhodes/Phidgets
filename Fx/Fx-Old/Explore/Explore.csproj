@@ -193,10 +193,6 @@
       <Project>{BA6CCA1D-EDF5-4549-BE87-E6F9DB89ABE9}</Project>
       <Name>DebugWindow</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fx\Fx.csproj">
-      <Project>{862B3960-F754-4D74-9FA8-DB3E9909C1DD}</Project>
-      <Name>Fx</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

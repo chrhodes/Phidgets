@@ -305,12 +305,6 @@
     <Resource Include="Resources\VNCDeveloper.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PhidgetHelper\PhidgetHelper.csproj">
-      <Project>{9215b10c-e7fe-47ce-9cc2-ae8e1088853c}</Project>
-      <Name>PhidgetHelper</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Resources\SensorList.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
