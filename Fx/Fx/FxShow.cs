@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Collections.ObjectModel;
-using System.Xml;
 using System.Xml.Linq;
 
 using Fx.Lights;
+
 using Phidgets;
 //Needed for the event handling classes 
-using Phidgets.Events;  
-
-using PacificLife.Life;
+using Phidgets.Events;
 
 namespace Fx
 {
