@@ -9,6 +9,7 @@ using Prism.Commands;
 using VNC;
 using VNC.Core.Mvvm;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace VNCPhidgetsExplorer.Presentation.ViewModels
 {
@@ -169,17 +170,7 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
 
             Message = "Button1 Clicked";
 
-            for (int i = 0; i < 10; i++)
-            {
-                digitalOutput0.DutyCycle = 1;
-                Thread.Sleep(500);
-                digitalOutput0.DutyCycle = 0;
-                Thread.Sleep(500);
-                digitalOutput2.DutyCycle = 1;
-                Thread.Sleep(250);
-                digitalOutput2.DutyCycle = 0;
-                Thread.Sleep(250);
-            }
+            LightAction1();
 
             //ph22.DigitalOutput digitalOutput = new ph22.DigitalOutput();
             //digitalOutput.Open(5000);
@@ -190,6 +181,40 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
 
             Log.Info("End", "WHOISTHIS", startTicks);
         }
+
+        private void LightAction1()
+        {
+            //for (int i = 0; i < 10; i++)
+            //{
+                Parallel.Invoke(() => LightAction1A(), () => LightAction1B());
+                //await LightAction1A();
+                //await LightAction1B();
+            //}
+        }
+
+        private void LightAction1A()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                digitalOutput0.DutyCycle = 1;
+                Thread.Sleep(500);
+                digitalOutput0.DutyCycle = 0;
+                Thread.Sleep(500);
+            }
+        }
+
+        private void LightAction1B()
+        {
+            for (int i = 0; i < 50; i++)
+            {
+                digitalOutput2.DutyCycle = 1;
+                Thread.Sleep(100);
+                digitalOutput2.DutyCycle = 0;
+                Thread.Sleep(100);
+            }
+        }
+
+
 
         private void Button2Execute()
         {

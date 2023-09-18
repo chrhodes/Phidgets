@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Threading;
+﻿using System.Diagnostics;
 
-using Phidgets;
 using PE = Phidgets.Events;
 
 namespace PhidgetHelper.InterfaceKits
 {
-    public class InterfaceKit : Phidgets.InterfaceKit
+    public class InterfaceKit //: Phidgets22.InterfaceKit
     {
         // Fields...
         private int _FxSerialNumber;
