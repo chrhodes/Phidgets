@@ -30,6 +30,11 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
         ph22.DigitalOutput digitalOutput0;
         ph22.DigitalOutput digitalOutput2;
 
+        const Int32 sbc11SerialNumber = 46049;
+        const Int32 sbc21SerialNumber = 48284;
+        const Int32 sbc22SerialNumber = 48301;
+        const Int32 sbc23SerialNumber = 251831;
+
         private void InitializeViewModel()
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
@@ -40,20 +45,22 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
             Button2Command = new DelegateCommand(Button2Execute);
             Button3Command = new DelegateCommand(Button3Execute);
 
-            try
-            {
-                digitalOutput0 = new ph22.DigitalOutput();
-                digitalOutput0.Channel = 0;
-                digitalOutput0.Open(5000);
+            //try
+            //{
+            //    digitalOutput0 = new ph22.DigitalOutput();
+            //    digitalOutput0.Channel = 0;
+            //    digitalOutput0.DeviceSerialNumber = sbc22SerialNumber;
+            //    digitalOutput0.Open(5000);
 
-                digitalOutput2 = new ph22.DigitalOutput();
-                digitalOutput2.Channel = 2;
-                digitalOutput2.Open(5000);
-            }
-            catch (Exception ex)
-            {
-                
-            }
+            //    digitalOutput2 = new ph22.DigitalOutput();
+            //    digitalOutput2.Channel = 2;
+            //    digitalOutput0.DeviceSerialNumber = sbc22SerialNumber;
+            //    digitalOutput2.Open(5000);
+            //}
+            //catch (Exception ex)
+            //{
+
+            //}
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -164,13 +171,37 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
 
         #region Private Methods
 
+        private void OpenPhidgetManager()
+        {
+            ph22.Manager phidgetManager = new ph22.Manager();
+
+            phidgetManager.Attach += PhidgetManager_Attach;
+            phidgetManager.Detach += PhidgetManager_Detach;
+
+            phidgetManager.Open();
+
+        }
+
+        private void PhidgetManager_Detach(object sender, ph22E.ManagerDetachEventArgs e)
+        {
+            var a = e;
+            var b = e.GetType();
+        }
+
+        private void PhidgetManager_Attach(object sender, ph22E.ManagerAttachEventArgs e)
+        {
+            var a = e;
+            var b = e.GetType();
+        }
+
         private void Button1Execute()
         {
             Int64 startTicks = Log.Info("Enter", "WHOISTHIS");
 
             Message = "Button1 Clicked";
 
-            LightAction1();
+            OpenPhidgetManager();
+            //LightAction1();
 
             //ph22.DigitalOutput digitalOutput = new ph22.DigitalOutput();
             //digitalOutput.Open(5000);
