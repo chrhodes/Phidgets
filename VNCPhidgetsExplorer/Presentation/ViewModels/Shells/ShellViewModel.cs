@@ -24,7 +24,6 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
             InstanceCountVM++;
-            RuntimeVersion = Common.RuntimeVersion;
 
             // TODO(crhodes)
             //
@@ -46,20 +45,6 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
 
         #region Fields and Properties (none)
 
-        private string _runtimeVersion = ".NET Runtime Version";
-
-        public string RuntimeVersion
-        {
-            get => _runtimeVersion;
-            set
-            {
-                if (_runtimeVersion == value)
-                    return;
-                _runtimeVersion = value;
-                OnPropertyChanged();
-            }
-        }
-
         private string _title = "VNCPhidgetsExplorer - Shell";
 
         public string Title
@@ -73,6 +58,11 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        //public string RuntimeVersion { get => Common.RuntimeVersion; }
+        //public string FileVersion { get => Common.FileVersion; }
+        //public string ProductVersion { get => Common.ProductVersion; }
+        //public string ProductName { get => Common.ProductName; }
 
         #endregion
 

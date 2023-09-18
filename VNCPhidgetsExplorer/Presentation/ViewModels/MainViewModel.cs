@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Windows.Input;
 
+using ph22 = Phidget22;
+using ph22E = Phidget22.Events;
+
 using Prism.Commands;
 
 using VNC;
 using VNC.Core.Mvvm;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace VNCPhidgetsExplorer.Presentation.ViewModels
 {
@@ -22,6 +27,9 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        ph22.DigitalOutput digitalOutput0;
+        ph22.DigitalOutput digitalOutput2;
+
         private void InitializeViewModel()
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
@@ -31,6 +39,21 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
             Button1Command = new DelegateCommand(Button1Execute);
             Button2Command = new DelegateCommand(Button2Execute);
             Button3Command = new DelegateCommand(Button3Execute);
+
+            try
+            {
+                digitalOutput0 = new ph22.DigitalOutput();
+                digitalOutput0.Channel = 0;
+                digitalOutput0.Open(5000);
+
+                digitalOutput2 = new ph22.DigitalOutput();
+                digitalOutput2.Channel = 2;
+                digitalOutput2.Open(5000);
+            }
+            catch (Exception ex)
+            {
+                
+            }
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -139,7 +162,7 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
 
         #endregion
 
-        #region Private Methods (none)
+        #region Private Methods
 
         private void Button1Execute()
         {
@@ -147,14 +170,75 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
 
             Message = "Button1 Clicked";
 
+            LightAction1();
+
+            //ph22.DigitalOutput digitalOutput = new ph22.DigitalOutput();
+            //digitalOutput.Open(5000);
+            //digitalOutput.DutyCycle = 0;
+            //Console.ReadLine();
+            //digitalOutput.Close();
+            //digitalOutput.Dispose();
+
             Log.Info("End", "WHOISTHIS", startTicks);
         }
+
+        private void LightAction1()
+        {
+            //for (int i = 0; i < 10; i++)
+            //{
+                Parallel.Invoke(() => LightAction1A(), () => LightAction1B());
+                //await LightAction1A();
+                //await LightAction1B();
+            //}
+        }
+
+        private void LightAction1A()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                digitalOutput0.DutyCycle = 1;
+                Thread.Sleep(500);
+                digitalOutput0.DutyCycle = 0;
+                Thread.Sleep(500);
+            }
+        }
+
+        private void LightAction1B()
+        {
+            for (int i = 0; i < 50; i++)
+            {
+                digitalOutput2.DutyCycle = 1;
+                Thread.Sleep(100);
+                digitalOutput2.DutyCycle = 0;
+                Thread.Sleep(100);
+            }
+        }
+
+
 
         private void Button2Execute()
         {
             Int64 startTicks = Log.Debug("Enter", Common.LOG_CATEGORY);
 
             Message = "Button2 Clicked";
+
+            for (int i = 0; i < 10; i++)
+            {
+                digitalOutput0.DutyCycle = 1;
+                Thread.Sleep(125);
+                digitalOutput0.DutyCycle = 0;
+                Thread.Sleep(125);
+                digitalOutput2.DutyCycle = 1;
+                Thread.Sleep(250);
+                digitalOutput2.DutyCycle = 0;
+                Thread.Sleep(250);
+            }
+            //ph22.DigitalOutput digitalOutput = new ph22.DigitalOutput();
+            //digitalOutput.Open(5000);
+            //digitalOutput.DutyCycle = 1;
+            //Console.ReadLine();
+            //digitalOutput.Close();
+            //digitalOutput.Dispose();
 
             Log.Debug("End", Common.LOG_CATEGORY, startTicks);
         }

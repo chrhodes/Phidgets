@@ -40,7 +40,11 @@
     <SolidColorBrush x:Key="ShellBackground" Color="#C0C0C0" />
     <SolidColorBrush x:Key="RibbonBackground" Color="#A0A0A0" />    
     <SolidColorBrush x:Key="MainBackground" Color="#E0E0E0" />
-    
+
+    <SolidColorBrush x:Key="AppVersionInfoBackground" Color="#A0A0A0" />
+
+    <SolidColorBrush x:Key="RedText" Color="#c70000" />
+
     <SolidColorBrush x:Key="ViewABackground" Color="#FFC0C0" />
     <SolidColorBrush x:Key="ViewBBackground" Color="#C0FFC0" />
     <SolidColorBrush x:Key="ViewCBackground" Color="#C0C0FF" />

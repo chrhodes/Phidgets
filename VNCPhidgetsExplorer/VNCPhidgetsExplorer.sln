@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VNCPhidgetsExplorer", "VNCPhidgetsExplorer.csproj", "{C805BE2B-38A7-46E4-8D7A-7736BA1F4CB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNCPhidgetsExplorer", "VNCPhidgetsExplorer.csproj", "{C805BE2B-38A7-46E4-8D7A-7736BA1F4CB3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNCLogViewer", "..\..\VNCLogViewer\VNCLogViewer\VNCLogViewer.csproj", "{6555A587-37E9-40C2-8DB6-8D3AC21E3B80}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.Core", "..\..\VNC\VNC.Core\VNC.Core.csproj", "{B7E78855-073D-476E-8BA7-5D02C99C03B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{C805BE2B-38A7-46E4-8D7A-7736BA1F4CB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C805BE2B-38A7-46E4-8D7A-7736BA1F4CB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C805BE2B-38A7-46E4-8D7A-7736BA1F4CB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6555A587-37E9-40C2-8DB6-8D3AC21E3B80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6555A587-37E9-40C2-8DB6-8D3AC21E3B80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6555A587-37E9-40C2-8DB6-8D3AC21E3B80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6555A587-37E9-40C2-8DB6-8D3AC21E3B80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7E78855-073D-476E-8BA7-5D02C99C03B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7E78855-073D-476E-8BA7-5D02C99C03B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7E78855-073D-476E-8BA7-5D02C99C03B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7E78855-073D-476E-8BA7-5D02C99C03B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
