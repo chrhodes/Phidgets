@@ -171,6 +171,33 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
 
         #region Private Methods
 
+        private void OpenPhidget()
+        {
+            ph22.Phidget phidget = new ph22.Phidget();
+
+            phidget.Attach += Phidget_Attach;
+            phidget.Detach += Phidget_Detach;
+
+            //phidget.IsHubPortDevice = true;
+
+            //phidget.Channel = 0;
+            //phidget.DeviceSerialNumber = sbc21SerialNumber;
+
+            //phidget.Open();
+        }
+
+        private void Phidget_Detach(object sender, ph22E.DetachEventArgs e)
+        {
+            var a = e;
+            var b = e.GetType();
+        }
+
+        private void Phidget_Attach(object sender, ph22E.AttachEventArgs e)
+        {
+            var a = e;
+            var b = e.GetType();
+        }
+
         private void OpenPhidgetManager()
         {
             ph22.Manager phidgetManager = new ph22.Manager();
@@ -200,7 +227,8 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
 
             Message = "Button1 Clicked";
 
-            OpenPhidgetManager();
+            //OpenPhidgetManager();
+            OpenPhidget();
             //LightAction1();
 
             //ph22.DigitalOutput digitalOutput = new ph22.DigitalOutput();
