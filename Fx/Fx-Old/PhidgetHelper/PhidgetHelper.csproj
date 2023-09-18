@@ -35,9 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Phidget21.NET, Version=2.1.8.64, Culture=neutral, PublicKeyToken=c2b1f2a3594bce52, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\Phidgets\Phidget21.NET.dll</HintPath>
+    <Reference Include="Phidget21.NET1.1">
+      <HintPath>..\..\..\LIbraries\Phidget21-windevel_2.1.8.20110615\phidget21-windevel\Phidget21.NET1.1.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />

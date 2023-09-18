@@ -18,7 +18,7 @@ namespace PhidgetHelper.Sensors
         /// 
         public DistanceSensor(Phidgets.InterfaceKitAnalogSensor sensor, DistanceSensorType sensorType)
         {
-            AnalogSensor = sensor;
+            analogSensor = sensor;
             SensorType = sensorType;
 
             DataRate = PhidgetHelper.Constants.DATA_RATE_DEFAULT;
@@ -45,7 +45,7 @@ namespace PhidgetHelper.Sensors
 
         public DistanceSensor(Phidgets.InterfaceKitAnalogSensor sensor, DistanceSensorType sensorType, int dataRate, int sensitivity, int minRange, int maxRange)
         {
-            AnalogSensor = sensor;
+            analogSensor = sensor;
             SensorType = sensorType;
 
             DataRate = dataRate;
@@ -131,8 +131,11 @@ namespace PhidgetHelper.Sensors
             return value;
         }
 
+        //public static readonly DependencyProperty SensorTypeProperty = DependencyProperty.Register(
+        //    "SensorType", typeof(DistanceSensorType), typeof(DistanceSensorY), new UIPropertyMetadata(null));
+
         public static readonly DependencyProperty SensorTypeProperty = DependencyProperty.Register(
-            "SensorType", typeof(DistanceSensorType), typeof(DistanceSensorY), new UIPropertyMetadata(null));
+            "SensorType", typeof(DistanceSensorType), typeof(DistanceSensor), new UIPropertyMetadata(null));
 
         public DistanceSensorType SensorType
         {

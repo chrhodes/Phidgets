@@ -3,27 +3,19 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Diagnostics;
-using System.Text;
 using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Windows.Threading;
-using System.Xml;
 using System.Xml.Linq;
 
 using DevExpress.Xpf.Core;
-using dxe=DevExpress.Xpf.Editors;
-using PacificLife.Life;
+using dxe = DevExpress.Xpf.Editors;
+//using PacificLife.Life;
 
 //Needed for the event handling classes 
-using PE = Phidgets.Events;  
+using PE = Phidgets.Events;
 using System.Collections.ObjectModel;
 
 namespace FxShow.User_Interface.Windows
@@ -46,7 +38,7 @@ namespace FxShow.User_Interface.Windows
         public wndDX_MainWindow()
         {
 #if TRACE
-            PLLog.Trace5("Start", PLLOG_APPNAME);
+            //PLLog.Trace5("Start", PLLOG_APPNAME);
             System.Diagnostics.Debug.WriteLine("wndDX_MainWindow()");
 #endif
             InitializeComponent();
@@ -55,7 +47,7 @@ namespace FxShow.User_Interface.Windows
         private void OnWindowLoaded(object sender, RoutedEventArgs e)
         {
 #if TRACE
-            PLLog.Trace5("Start", PLLOG_APPNAME);
+            //PLLog.Trace5("Start", PLLOG_APPNAME);
             System.Diagnostics.Debug.WriteLine("OnWindowLoaded");
 #endif
             //cbe_ShowNames.Clear();
@@ -79,80 +71,84 @@ namespace FxShow.User_Interface.Windows
 
         #region AdvancedServos
 
-        public PhidgetHelper.MotorControllers.AdvancedServo _AS;
-        public PhidgetHelper.MotorControllers.AdvancedServo AS
-        {
-            get { return _AS; }
-            set { _AS = value; }
-        }
+        // NOTE(crhodes)
+        // Not sure what/where MotorControlers are.
+        // For now just commenting out so can get this to compile
 
-        private Collection<string> _AdvancedServosA;
-        public Collection<string> AdvancedServosA
-        {
-            get
-            {
-                if (null == _AdvancedServosA)
-                {
-                    _AdvancedServosA = new Collection<string>();
-                }
-                return _AdvancedServosA;
-            }
-            set
-            {
-                _AdvancedServosA = value;
-            }
-        }
+        //public PhidgetHelper.MotorControllers.AdvancedServo _AS;
+        //public PhidgetHelper.MotorControllers.AdvancedServo AS
+        //{
+        //    get { return _AS; }
+        //    set { _AS = value; }
+        //}
 
-        private Dictionary<string, PhidgetHelper.MotorControllers.AdvancedServo> _AdvancedServosD;
-        public Dictionary<string, PhidgetHelper.MotorControllers.AdvancedServo> AdvancedServosD
-        {
-            get
-            {
-                if (_AdvancedServosD == null)
-                {
-                    _AdvancedServosD = new Dictionary<string, PhidgetHelper.MotorControllers.AdvancedServo>();
-                }
-                return _AdvancedServosD;
-            }
-            set
-            {
-                _AdvancedServosD = value;
-            }
-        }
+        //private Collection<string> _AdvancedServosA;
+        //public Collection<string> AdvancedServosA
+        //{
+        //    get
+        //    {
+        //        if (null == _AdvancedServosA)
+        //        {
+        //            _AdvancedServosA = new Collection<string>();
+        //        }
+        //        return _AdvancedServosA;
+        //    }
+        //    set
+        //    {
+        //        _AdvancedServosA = value;
+        //    }
+        //}
 
-        private IEnumerable<PhidgetHelper.MotorControllers.AdvancedServo> _AdvancedServos;
-        public IEnumerable<PhidgetHelper.MotorControllers.AdvancedServo> AdvancedServos
-        {
-            get
-            {
-                if (null == _AdvancedServos)
-                {
-                    try
-                    {
-                        _AdvancedServos =
-                            from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("Hosts").Descendants("Host").Elements("AdvancedServo")
-                            select new PhidgetHelper.MotorControllers.AdvancedServo(
-                                item.Parent.Attribute("IPAddress").Value,
-                                int.Parse(item.Parent.Attribute("Port").Value),
-                                int.Parse(item.Attribute("SerialNumber").Value),
-                                bool.Parse(item.Attribute("Enable").Value)
-                                );
-                    }
-                    catch (Exception ex)
-                    {
-                        Trace.WriteLine("Unable to Find AdvancedServos in XML");
-                        // TODO(crhodes): Check for various things, null _RawXML, etc.
-                    }
-                }
+        //private Dictionary<string, PhidgetHelper.MotorControllers.AdvancedServo> _AdvancedServosD;
+        //public Dictionary<string, PhidgetHelper.MotorControllers.AdvancedServo> AdvancedServosD
+        //{
+        //    get
+        //    {
+        //        if (_AdvancedServosD == null)
+        //        {
+        //            _AdvancedServosD = new Dictionary<string, PhidgetHelper.MotorControllers.AdvancedServo>();
+        //        }
+        //        return _AdvancedServosD;
+        //    }
+        //    set
+        //    {
+        //        _AdvancedServosD = value;
+        //    }
+        //}
 
-                return _AdvancedServos;
-            }
+        //private IEnumerable<PhidgetHelper.MotorControllers.AdvancedServo> _AdvancedServos;
+        //public IEnumerable<PhidgetHelper.MotorControllers.AdvancedServo> AdvancedServos
+        //{
+        //    get
+        //    {
+        //        if (null == _AdvancedServos)
+        //        {
+        //            try
+        //            {
+        //                _AdvancedServos =
+        //                    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("Hosts").Descendants("Host").Elements("AdvancedServo")
+        //                    select new PhidgetHelper.MotorControllers.AdvancedServo(
+        //                        item.Parent.Attribute("IPAddress").Value,
+        //                        int.Parse(item.Parent.Attribute("Port").Value),
+        //                        int.Parse(item.Attribute("SerialNumber").Value),
+        //                        bool.Parse(item.Attribute("Enable").Value)
+        //                        );
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                Trace.WriteLine("Unable to Find AdvancedServos in XML");
+        //                // TODO(crhodes): Check for various things, null _RawXML, etc.
+        //            }
+        //        }
 
-            set
-            {
-                _AdvancedServos = value;
-            }
-        }
+        //        return _AdvancedServos;
+        //    }
+
+        //    set
+        //    {
+        //        _AdvancedServos = value;
+        //    }
+        //}
 
         #endregion
 
@@ -291,9 +287,9 @@ namespace FxShow.User_Interface.Windows
         {
             string serialNumber = ((dxe.ComboBoxEdit)sender).SelectedItem.ToString();
 
-            AS = AdvancedServosD[serialNumber];
-            teNbrServos.EditValue = AS.servos.Count;
-            lgAdvancedServos.DataContext = AS;
+            //AS = AdvancedServosD[serialNumber];
+            //teNbrServos.EditValue = AS.servos.Count;
+            //lgAdvancedServos.DataContext = AS;
             cbeAdvancedServos.SelectedIndex = 0;
         }
 
@@ -318,7 +314,7 @@ namespace FxShow.User_Interface.Windows
 
         private void cbeServos_SelectedIndexChanged(object sender, RoutedEventArgs e)
         {
-            InitializeServos(AS);
+            //InitializeServos(AS);
         }
 
         private void cbeServoTypes_SelectedIndexChanged(object sender, RoutedEventArgs e)
@@ -374,11 +370,11 @@ namespace FxShow.User_Interface.Windows
         {
             if (bool.Parse(((dxe.CheckEdit)sender).IsChecked.ToString()))
             {
-                AS.CurrentChange += advancedServo_CurrentChange;            	
+                //AS.CurrentChange += advancedServo_CurrentChange;            	
             }
             else
             {
-                AS.CurrentChange -= advancedServo_CurrentChange;
+                //AS.CurrentChange -= advancedServo_CurrentChange
             }
         }
 
@@ -386,11 +382,11 @@ namespace FxShow.User_Interface.Windows
         {
             if (bool.Parse(((dxe.CheckEdit)sender).IsChecked.ToString()))
             {
-                AS.PositionChange += advancedServo_PositionChange;
+                //AS.PositionChange += advancedServo_PositionChange;
             }
             else
             {
-                AS.PositionChange -= advancedServo_PositionChange;
+                //AS.PositionChange -= advancedServo_PositionChange;
             }
         }
 
@@ -398,11 +394,11 @@ namespace FxShow.User_Interface.Windows
         {
             if (bool.Parse(((dxe.CheckEdit)sender).IsChecked.ToString()))
             {
-                AS.VelocityChange += advancedServo_VelocityChange;
+                //AS.VelocityChange += advancedServo_VelocityChange;
             }
             else
             {
-                AS.VelocityChange -= advancedServo_VelocityChange;
+                //AS.VelocityChange -= advancedServo_VelocityChange;
             }
         }
 
@@ -411,7 +407,7 @@ namespace FxShow.User_Interface.Windows
             int index = int.Parse(((dxe.CheckEdit)sender).Tag.ToString());
             Trace.WriteLine("Engaging: " + index.ToString());
 
-            AS.servos[index].Engaged = bool.Parse(((dxe.CheckEdit)sender).IsChecked.ToString());
+            //AS.servos[index].Engaged = bool.Parse(((dxe.CheckEdit)sender).IsChecked.ToString());
 
             //foreach (dxe.ComboBoxEditItem item in cbeServos.SelectedItems)
             //{
@@ -426,7 +422,7 @@ namespace FxShow.User_Interface.Windows
             int index = int.Parse(((dxe.CheckEdit)sender).Tag.ToString());
             Trace.WriteLine("DisEngaging: " + index.ToString());
 
-            AS.servos[index].Engaged = bool.Parse(((dxe.CheckEdit)sender).IsChecked.ToString());
+            //AS.servos[index].Engaged = bool.Parse(((dxe.CheckEdit)sender).IsChecked.ToString());
 
         }
 
@@ -435,7 +431,7 @@ namespace FxShow.User_Interface.Windows
             int index = int.Parse(((dxe.CheckEdit)sender).Tag.ToString());
             Trace.WriteLine("Enable SpeedRamping: " + index.ToString());
 
-            AS.servos[index].SpeedRamping = bool.Parse(((dxe.CheckEdit)sender).IsChecked.ToString());
+            //AS.servos[index].SpeedRamping = bool.Parse(((dxe.CheckEdit)sender).IsChecked.ToString());
         }
 
         private void ceSpeedRamping_Unchecked(object sender, RoutedEventArgs e)
@@ -443,13 +439,13 @@ namespace FxShow.User_Interface.Windows
             int index = int.Parse(((dxe.CheckEdit)sender).Tag.ToString());
             Trace.WriteLine("Disable SpeedRamping: " + index.ToString());
 
-            AS.servos[index].SpeedRamping = bool.Parse(((dxe.CheckEdit)sender).IsChecked.ToString());
+            //AS.servos[index].SpeedRamping = bool.Parse(((dxe.CheckEdit)sender).IsChecked.ToString());
         }
 
         private void DXWindow_Closing_1(object sender, System.ComponentModel.CancelEventArgs e)
         {
 #if TRACE
-            PLLog.Trace5("Start", PLLOG_APPNAME);
+            //PLLog.Trace5("Start", PLLOG_APPNAME);
             System.Diagnostics.Debug.WriteLine("DXWindow_Closing_1");
 #endif
             UnInitializeAdvancedServos();
@@ -525,93 +521,93 @@ namespace FxShow.User_Interface.Windows
 
         private void tbeSetAcceleration_EditValueChanged(object sender, dxe.EditValueChangedEventArgs e)
         {
-            try
-            {
-                foreach (dxe.ComboBoxEditItem item in cbeServos.SelectedItems)
-                {
-                    int index = int.Parse(item.Content.ToString());
-                    Trace.WriteLine("Setting Acceleration:" + index.ToString());
-                    double acceleration = double.Parse(e.NewValue.ToString());
-                    AS.servos[index].Acceleration = acceleration;
-                }
-            }
-            catch (Exception ex)
-            {
-                Trace.WriteLine(ex.ToString());
-            }
+            //try
+            //{
+            //    foreach (dxe.ComboBoxEditItem item in cbeServos.SelectedItems)
+            //    {
+            //        int index = int.Parse(item.Content.ToString());
+            //        Trace.WriteLine("Setting Acceleration:" + index.ToString());
+            //        double acceleration = double.Parse(e.NewValue.ToString());
+            //        AS.servos[index].Acceleration = acceleration;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Trace.WriteLine(ex.ToString());
+            //}
         }
 
         private void tbeSetVelocity_EditValueChanged(object sender, dxe.EditValueChangedEventArgs e)
         {
-            try
-            {
-                foreach (dxe.ComboBoxEditItem item in cbeServos.SelectedItems)
-                {
-                    int index = int.Parse(item.Content.ToString());
-                    Trace.WriteLine("Setting Velocity:" + index.ToString());
-                    double velocity = double.Parse(e.NewValue.ToString());
-                    AS.servos[index].VelocityLimit = velocity;
-                }
-            }
-            catch (Exception ex)
-            {
-                Trace.WriteLine(ex.ToString());
-            }
+            //try
+            //{
+            //    foreach (dxe.ComboBoxEditItem item in cbeServos.SelectedItems)
+            //    {
+            //        int index = int.Parse(item.Content.ToString());
+            //        Trace.WriteLine("Setting Velocity:" + index.ToString());
+            //        double velocity = double.Parse(e.NewValue.ToString());
+            //        AS.servos[index].VelocityLimit = velocity;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Trace.WriteLine(ex.ToString());
+            //}
         }
 
         private void tbeTargetPosition_EditValueChanged(object sender, dxe.EditValueChangedEventArgs e)
         {
-            // TODO(crhodes): Decide if want to disenage briefly then reengage.
-            try
-            {
-                foreach (dxe.ComboBoxEditItem item in cbeServos.SelectedItems)
-                {
-                    int index = int.Parse(item.Content.ToString());
-                    Trace.WriteLine("Positioning:" + index.ToString());
-                    double position = double.Parse(e.NewValue.ToString());
+            //// TODO(crhodes): Decide if want to disenage briefly then reengage.
+            //try
+            //{
+            //    foreach (dxe.ComboBoxEditItem item in cbeServos.SelectedItems)
+            //    {
+            //        int index = int.Parse(item.Content.ToString());
+            //        Trace.WriteLine("Positioning:" + index.ToString());
+            //        double position = double.Parse(e.NewValue.ToString());
 
-                    switch (index)
-                    {
-                        case 0:
-                            position += (double)sePositionAdjustmentS0.Value;
-                            break;
+            //        switch (index)
+            //        {
+            //            case 0:
+            //                position += (double)sePositionAdjustmentS0.Value;
+            //                break;
 
-                        case 1:
-                            position += (double)sePositionAdjustmentS1.Value;
-                            break;
+            //            case 1:
+            //                position += (double)sePositionAdjustmentS1.Value;
+            //                break;
 
-                        case 2:
-                            position += (double)sePositionAdjustmentS2.Value;
-                            break;
+            //            case 2:
+            //                position += (double)sePositionAdjustmentS2.Value;
+            //                break;
 
-                        case 3:
-                            position += (double)sePositionAdjustmentS3.Value;
-                            break;
+            //            case 3:
+            //                position += (double)sePositionAdjustmentS3.Value;
+            //                break;
 
-                        case 4:
-                            position += (double)sePositionAdjustmentS4.Value;
-                            break;
+            //            case 4:
+            //                position += (double)sePositionAdjustmentS4.Value;
+            //                break;
 
-                        case 5:
-                            position += (double)sePositionAdjustmentS5.Value;
-                            break;
+            //            case 5:
+            //                position += (double)sePositionAdjustmentS5.Value;
+            //                break;
 
-                        case 6:
-                            position += (double)sePositionAdjustmentS6.Value;
-                            break;
+            //            case 6:
+            //                position += (double)sePositionAdjustmentS6.Value;
+            //                break;
 
-                        case 7:
-                            position += (double)sePositionAdjustmentS7.Value;
-                            break;
-                    }
+            //            case 7:
+            //                position += (double)sePositionAdjustmentS7.Value;
+            //                break;
+            //        }
 
-                    AS.servos[index].Position = position;
-                }
-            }
-            catch (Exception ex)
-            {
-                Trace.WriteLine(ex.ToString());
-            }
+            //        AS.servos[index].Position = position;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Trace.WriteLine(ex.ToString());
+            //}
         }
 
         #endregion
@@ -622,39 +618,39 @@ namespace FxShow.User_Interface.Windows
 
         private void advancedServo_Attach(object sender, PE.AttachEventArgs e)
         {
-            Trace.WriteLine(string.Format("AdvancedServo {0} attached!",
-                                e.Device.SerialNumber.ToString()));
+            //Trace.WriteLine(string.Format("AdvancedServo {0} attached!",
+            //                    e.Device.SerialNumber.ToString()));
 
-            Phidgets.AdvancedServo aSrv = (Phidgets.AdvancedServo)e.Device;
+            //Phidgets.AdvancedServo aSrv = (Phidgets.AdvancedServo)e.Device;
 
-            AdvancedServosA.Add(aSrv.SerialNumber.ToString());
+            //AdvancedServosA.Add(aSrv.SerialNumber.ToString());
 
-            // Set the default servo type to the one Phidgets sells.
-            foreach (Phidgets.AdvancedServoServo motor in aSrv.servos)
-            {
-                motor.Engaged = false;
-                motor.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
-                motor.Acceleration = motor.AccelerationMin;
-                //motor.VelocityLimit = motor.VelocityMax;
-                motor.VelocityLimit = motor.VelocityMin;
-                motor.SpeedRamping = true;
-                motor.Position = (motor.PositionMax - motor.PositionMin) / 2;
-            }
+            //// Set the default servo type to the one Phidgets sells.
+            //foreach (Phidgets.AdvancedServoServo motor in aSrv.servos)
+            //{
+            //    motor.Engaged = false;
+            //    motor.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
+            //    motor.Acceleration = motor.AccelerationMin;
+            //    //motor.VelocityLimit = motor.VelocityMax;
+            //    motor.VelocityLimit = motor.VelocityMin;
+            //    motor.SpeedRamping = true;
+            //    motor.Position = (motor.PositionMax - motor.PositionMin) / 2;
+            //}
 
-            // may want to add all the other types from the ServoServo.ServoType enumeration
+            //// may want to add all the other types from the ServoServo.ServoType enumeration
 
-            foreach (string servoType in System.Enum.GetNames(typeof(Phidgets.ServoServo.ServoType)))
-            {
-                if (servoType.Equals(Phidgets.ServoServo.ServoType.USER_DEFINED.ToString()))
-                {
-                	break;
-                }
-                // TODO(crhodes):
-                //cbeServoTypes.Items.Add(servoType);
-            }
+            //foreach (string servoType in System.Enum.GetNames(typeof(Phidgets.ServoServo.ServoType)))
+            //{
+            //    if (servoType.Equals(Phidgets.ServoServo.ServoType.USER_DEFINED.ToString()))
+            //    {
+            //    	break;
+            //    }
+            //    // TODO(crhodes):
+            //    //cbeServoTypes.Items.Add(servoType);
+            //}
 
-            //cbeServos.EditValue = 0;
-            //cbeServos.SelectedIndex = 0;
+            ////cbeServos.EditValue = 0;
+            ////cbeServos.SelectedIndex = 0;
         }
 
         private void advancedServo_CurrentChange(object sender, PE.CurrentChangeEventArgs e)
@@ -725,120 +721,120 @@ namespace FxShow.User_Interface.Windows
 
         private void advancedServo_PositionChange(object sender, Phidgets.Events.PositionChangeEventArgs e)
         {
-            int index = e.Index;
-            bool isStopped = AS.servos[index].Stopped;
-            string position = int.Parse(e.Position.Round().ToString()).ToString();
+            //int index = e.Index;
+            //bool isStopped = AS.servos[index].Stopped;
+            //string position = int.Parse(e.Position.Round().ToString()).ToString();
 
-            //Trace.WriteLine("PositionChange: " + index);
+            ////Trace.WriteLine("PositionChange: " + index);
 
-            this.Dispatcher.Invoke(new Action(delegate()
-            {
-                try
-                {
-                    switch (index)
-                    {
-                        case 0:
-                            tePositionS0.Text = position;
-                            ceStoppedS0.IsChecked = isStopped;
-                            break;
+            //this.Dispatcher.Invoke(new Action(delegate()
+            //{
+            //    try
+            //    {
+            //        switch (index)
+            //        {
+            //            case 0:
+            //                tePositionS0.Text = position;
+            //                ceStoppedS0.IsChecked = isStopped;
+            //                break;
 
-                        case 1:
-                            tePositionS1.Text = position;
-                            ceStoppedS1.IsChecked = isStopped;
-                            break;
+            //            case 1:
+            //                tePositionS1.Text = position;
+            //                ceStoppedS1.IsChecked = isStopped;
+            //                break;
 
-                        case 2:
-                            tePositionS2.Text = position;
-                            ceStoppedS2.IsChecked = isStopped;
-                            break;
+            //            case 2:
+            //                tePositionS2.Text = position;
+            //                ceStoppedS2.IsChecked = isStopped;
+            //                break;
 
-                        case 3:
-                            tePositionS3.Text = position;
-                            ceStoppedS3.IsChecked = isStopped;
-                            break;
+            //            case 3:
+            //                tePositionS3.Text = position;
+            //                ceStoppedS3.IsChecked = isStopped;
+            //                break;
 
-                        case 4:
-                            tePositionS4.Text = position;
-                            ceStoppedS4.IsChecked = isStopped;
-                            break;
+            //            case 4:
+            //                tePositionS4.Text = position;
+            //                ceStoppedS4.IsChecked = isStopped;
+            //                break;
 
-                        case 5:
-                            tePositionS5.Text = position;
-                            ceStoppedS5.IsChecked = isStopped;
-                            break;
+            //            case 5:
+            //                tePositionS5.Text = position;
+            //                ceStoppedS5.IsChecked = isStopped;
+            //                break;
 
-                        case 6:
-                            tePositionS6.Text = position;
-                            ceStoppedS6.IsChecked = isStopped;
-                            break;
+            //            case 6:
+            //                tePositionS6.Text = position;
+            //                ceStoppedS6.IsChecked = isStopped;
+            //                break;
 
-                        case 7:
-                            tePositionS7.Text = position;
-                            ceStoppedS7.IsChecked = isStopped;
-                            break;
-                    }   
-                }
-                catch (Exception ex)
-                {
-                    //Trace.WriteLine(ex.ToString());
-                }
-            }
-            ));
+            //            case 7:
+            //                tePositionS7.Text = position;
+            //                ceStoppedS7.IsChecked = isStopped;
+            //                break;
+            //        }   
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        //Trace.WriteLine(ex.ToString());
+            //    }
+            //}
+            //));
         }
 
         private void advancedServo_VelocityChange(object sender, PE.VelocityChangeEventArgs e)
         {
-            int index = e.Index;
-            string velocity = int.Parse(e.Velocity.Round().ToString()).ToString();
+            //int index = e.Index;
+            //string velocity = int.Parse(e.Velocity.Round().ToString()).ToString();
 
-            Trace.WriteLine("VelocityChange: " + index);
+            //Trace.WriteLine("VelocityChange: " + index);
 
-            this.Dispatcher.Invoke(new Action(delegate()
-            {
-                try
-                {
-                    switch (index)
-                    {
-                        case 0:
-                            teVelocityS0.Text = velocity;
-                            break;
+            //this.Dispatcher.Invoke(new Action(delegate()
+            //{
+            //    try
+            //    {
+            //        switch (index)
+            //        {
+            //            case 0:
+            //                teVelocityS0.Text = velocity;
+            //                break;
 
-                        case 1:
-                            teVelocityS1.Text = velocity;
-                            break;
+            //            case 1:
+            //                teVelocityS1.Text = velocity;
+            //                break;
 
-                        case 2:
-                            teVelocityS2.Text = velocity;
-                            break;
+            //            case 2:
+            //                teVelocityS2.Text = velocity;
+            //                break;
 
-                        case 3:
-                            teVelocityS3.Text = velocity;
-                            break;
+            //            case 3:
+            //                teVelocityS3.Text = velocity;
+            //                break;
 
-                        case 4:
-                            teVelocityS4.Text = velocity;
-                            break;
+            //            case 4:
+            //                teVelocityS4.Text = velocity;
+            //                break;
 
-                        case 5:
-                            teVelocityS5.Text = velocity;
-                            break;
+            //            case 5:
+            //                teVelocityS5.Text = velocity;
+            //                break;
 
-                        case 6:
-                            teVelocityS6.Text = velocity;
-                            break;
+            //            case 6:
+            //                teVelocityS6.Text = velocity;
+            //                break;
 
-                        case 7:
-                            teVelocityS7.Text = velocity;
-                            break;
-                    } 
-                }
-                catch (Exception ex)
-                {
-                    //Trace.WriteLine(ex.ToString());
-                }
+            //            case 7:
+            //                teVelocityS7.Text = velocity;
+            //                break;
+            //        } 
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        //Trace.WriteLine(ex.ToString());
+            //    }
 
-            }
-            ));
+            //}
+            //));
         }
         #endregion
 
@@ -934,8 +930,8 @@ namespace FxShow.User_Interface.Windows
             try
             {
 #if TRACE
-                PLLog.Trace5(String.Format("Closing Phidget: {0}-{1}-{2}", 
-                    phidget.Type, phidget.SerialNumber, phidget.Name), PLLOG_APPNAME);
+                //PLLog.Trace5(String.Format("Closing Phidget: {0}-{1}-{2}", 
+                //    phidget.Type, phidget.SerialNumber, phidget.Name), PLLOG_APPNAME);
                 System.Diagnostics.Debug.WriteLine(String.Format("Closing Phidget: {0}-{1}-{2}",
                     phidget.Type, phidget.SerialNumber, phidget.Name));
 #endif
@@ -945,7 +941,7 @@ namespace FxShow.User_Interface.Windows
             }
             catch (Exception ex)
             {
-                PLLog.Error(ex, PLLOG_APPNAME);
+                //PLLog.Error(ex, PLLOG_APPNAME);
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
                 //throw;
             }
@@ -966,57 +962,57 @@ namespace FxShow.User_Interface.Windows
 
         private void InitializeAdvancedServos()
         {
-            foreach (var item in AdvancedServos)
-            {
-#if TRACE
-                PLLog.Trace5("Procesing AdvancedServo Phidget: " + item.FxSerialNumber, PLLOG_APPNAME);
-                System.Diagnostics.Debug.WriteLine("Procesing AdvancedServo Phidget: " + item.FxSerialNumber);
-#endif
+//            foreach (var item in AdvancedServos)
+//            {
+//#if TRACE
+//                //PLLog.Trace5("Procesing AdvancedServo Phidget: " + item.FxSerialNumber, PLLOG_APPNAME);
+//                System.Diagnostics.Debug.WriteLine("Procesing AdvancedServo Phidget: " + item.FxSerialNumber);
+//#endif
 
-                try
-                {
-                    if (item.Enable)
-                    {
-                        item.Attach += advancedServo_Attach;
-                        item.Detach += advancedServo_Detach;
-                        item.Error += advancedServo_Error;
+//                try
+//                {
+//                    if (item.Enable)
+//                    {
+//                        item.Attach += advancedServo_Attach;
+//                        item.Detach += advancedServo_Detach;
+//                        item.Error += advancedServo_Error;
 
-                        // TODO(crhodes): Doesn't make sense to do current change unless have array of display items
-                        //item.CurrentChange += advancedServo_CurrentChange;
-                        //item.PositionChange += advancedServo_PositionChange;
-                        //item.VelocityChange += advancedServo_VelocityChange;
+//                        // TODO(crhodes): Doesn't make sense to do current change unless have array of display items
+//                        //item.CurrentChange += advancedServo_CurrentChange;
+//                        //item.PositionChange += advancedServo_PositionChange;
+//                        //item.VelocityChange += advancedServo_VelocityChange;
 
-                        item.open(item.FxSerialNumber, item.IPAddress, item.Port);
+//                        item.open(item.FxSerialNumber, item.IPAddress, item.Port);
 
-                        AdvancedServosD.Add(item.FxSerialNumber.ToString(), item);
-                    }
-                }
-                catch (Phidgets.PhidgetException pe)
-                {
-                    switch (pe.Type)
-                    {
-                        case Phidgets.PhidgetException.ErrorType.PHIDGET_ERR_TIMEOUT:
-                            System.Diagnostics.Debug.WriteLine(
-                                string.Format("TimeOut Error.  InterfaceKit {0} not attached.  Disable in ConfigFile or attach",
-                                    item.FxSerialNumber));
-                            break;
+//                        AdvancedServosD.Add(item.FxSerialNumber.ToString(), item);
+//                    }
+//                }
+//                catch (Phidgets.PhidgetException pe)
+//                {
+//                    switch (pe.Type)
+//                    {
+//                        case Phidgets.PhidgetException.ErrorType.PHIDGET_ERR_TIMEOUT:
+//                            System.Diagnostics.Debug.WriteLine(
+//                                string.Format("TimeOut Error.  InterfaceKit {0} not attached.  Disable in ConfigFile or attach",
+//                                    item.FxSerialNumber));
+//                            break;
 
-                        default:
-                            System.Diagnostics.Debug.WriteLine(
-                                string.Format("{0}\nInterface Kit {0}",
-                                    pe.ToString(),
-                                    item.FxSerialNumber));
-                            break;
-                    }
+//                        default:
+//                            System.Diagnostics.Debug.WriteLine(
+//                                string.Format("{0}\nInterface Kit {0}",
+//                                    pe.ToString(),
+//                                    item.FxSerialNumber));
+//                            break;
+//                    }
 
-                }
-                catch (Exception ex)
-                {
-                    throw;
-                }
-            }
+//                }
+//                catch (Exception ex)
+//                {
+//                    throw;
+//                }
+//            }
 
-            cbeAdvancedServos.ItemsSource = AdvancedServosA;            
+//            cbeAdvancedServos.ItemsSource = AdvancedServosA;            
         }
 
         private void InitializeHosts()
@@ -1053,7 +1049,7 @@ namespace FxShow.User_Interface.Windows
             foreach (var item in interfaceKits)
             {
 #if TRACE
-                PLLog.Trace5("Procesing Phidget: " + item.FxSerialNumber, PLLOG_APPNAME);
+                //PLLog.Trace5("Procesing Phidget: " + item.FxSerialNumber, PLLOG_APPNAME);
                 System.Diagnostics.Debug.WriteLine(String.Format("T({0}) - Procesing Phidget: {1}",
                     System.Threading.Thread.CurrentThread.ManagedThreadId,
                     item.FxSerialNumber));
@@ -1203,7 +1199,7 @@ namespace FxShow.User_Interface.Windows
             {
                 int index = int.Parse(item.Content.ToString());
                 Trace.WriteLine("InitializingServo:" + index.ToString());
-                InitializeServo(AS.servos[index]);  
+                //InitializeServo(AS.servos[index]);  
             }
         }
 
@@ -1260,60 +1256,60 @@ namespace FxShow.User_Interface.Windows
 
         private void UnInitializeAdvancedServos()
         {
-            if (null == AdvancedServos)
-            {
-            	return;
-            }
-            foreach (var item in AdvancedServos)
-            {
-#if TRACE
-                PLLog.Trace5("UnInitialize AdvancedServo Phidget: " + item.FxSerialNumber, PLLOG_APPNAME);
-                System.Diagnostics.Debug.WriteLine("UnInitialize AdvancedServo Phidget: " + item.FxSerialNumber);
-#endif
+//            if (null == AdvancedServos)
+//            {
+//            	return;
+//            }
+//            foreach (var item in AdvancedServos)
+//            {
+//#if TRACE
+//                //PLLog.Trace5("UnInitialize AdvancedServo Phidget: " + item.FxSerialNumber, PLLOG_APPNAME);
+//                System.Diagnostics.Debug.WriteLine("UnInitialize AdvancedServo Phidget: " + item.FxSerialNumber);
+//#endif
 
-                try
-                {
-                    if (item.Enable)
-                    {
-                        item.Attach -= advancedServo_Attach;
-                        item.Detach -= advancedServo_Detach;
-                        item.Error -= advancedServo_Error;
+//                try
+//                {
+//                    if (item.Enable)
+//                    {
+//                        item.Attach -= advancedServo_Attach;
+//                        item.Detach -= advancedServo_Detach;
+//                        item.Error -= advancedServo_Error;
 
-                        item.CurrentChange -= advancedServo_CurrentChange;
-                        item.PositionChange -= advancedServo_PositionChange;
-                        item.VelocityChange -= advancedServo_VelocityChange;
+//                        item.CurrentChange -= advancedServo_CurrentChange;
+//                        item.PositionChange -= advancedServo_PositionChange;
+//                        item.VelocityChange -= advancedServo_VelocityChange;
 
-                        // Cannot close Phidget if outstanding commands.
+//                        // Cannot close Phidget if outstanding commands.
 
-                        DoEvents();
+//                        DoEvents();
 
-                        ClosePhidget(item);
-                    }
-                }
-                catch (Phidgets.PhidgetException pe)
-                {
-                    switch (pe.Type)
-                    {
-                        case Phidgets.PhidgetException.ErrorType.PHIDGET_ERR_TIMEOUT:
-                            System.Diagnostics.Debug.WriteLine(
-                                string.Format("TimeOut Error.  AdvancedServos {0} not attached.  Disable in ConfigFile or attach",
-                                    item.FxSerialNumber));
-                            break;
+//                        ClosePhidget(item);
+//                    }
+//                }
+//                catch (Phidgets.PhidgetException pe)
+//                {
+//                    switch (pe.Type)
+//                    {
+//                        case Phidgets.PhidgetException.ErrorType.PHIDGET_ERR_TIMEOUT:
+//                            System.Diagnostics.Debug.WriteLine(
+//                                string.Format("TimeOut Error.  AdvancedServos {0} not attached.  Disable in ConfigFile or attach",
+//                                    item.FxSerialNumber));
+//                            break;
 
-                        default:
-                            System.Diagnostics.Debug.WriteLine(
-                                string.Format("{0}\nAdvancedServos {0}",
-                                    pe.ToString(),
-                                    item.FxSerialNumber));
-                            break;
-                    }
+//                        default:
+//                            System.Diagnostics.Debug.WriteLine(
+//                                string.Format("{0}\nAdvancedServos {0}",
+//                                    pe.ToString(),
+//                                    item.FxSerialNumber));
+//                            break;
+//                    }
 
-                }
-                catch (Exception ex)
-                {
-                    throw;
-                }
-            }
+//                }
+//                catch (Exception ex)
+//                {
+//                    throw;
+//                }
+//            }
         }
 
         #endregion
