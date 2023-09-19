@@ -10,6 +10,7 @@ using VNC;
 using VNC.Core.Mvvm;
 using System.Threading;
 using System.Threading.Tasks;
+using DevExpress.XtraRichEdit.API.Native;
 
 namespace VNCPhidgetsExplorer.Presentation.ViewModels
 {
@@ -182,6 +183,14 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
             ph22.Net.AddServer("phsbc22", "192.168.150.22", 5001, "", 0);
             ph22.Net.AddServer("phsbc23", "192.168.150.23", 5001, "", 0);
 
+            // NOTE(crhodes)
+            // Passing null throws exception
+
+            //ph22.Net.AddServer("phsbc11", "192.168.150.11", 5001, null, 0);
+            //ph22.Net.AddServer("phsbc21", "192.168.150.21", 5001, null, 0);
+            //ph22.Net.AddServer("phsbc22", "192.168.150.22", 5001, null, 0);
+            //ph22.Net.AddServer("phsbc23", "192.168.150.23", 5001, null, 0);
+
             ph22.Phidget phidget = new ph22.Phidget();
 
             phidget.Attach += Phidget_Attach;
@@ -195,6 +204,9 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
             digitalOutput0.DeviceSerialNumber = sbc22SerialNumber;
             digitalOutput0.Open(5000);
 
+            digitalOutput0.DutyCycle = 1;
+            digitalOutput0.DutyCycle = 0;
+
             //phidget.IsHubPortDevice = true;
 
             //phidget.Channel = 0;
@@ -207,6 +219,7 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
         {
             var a = e;
             var b = e.GetType();
+
         }
 
         private void DigitalOutput0_Attach(object sender, ph22E.AttachEventArgs e)
