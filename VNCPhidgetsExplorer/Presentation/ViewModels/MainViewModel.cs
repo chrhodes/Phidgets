@@ -173,10 +173,27 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
 
         private void OpenPhidget()
         {
+            ph22.Net.ServerAdded += Net_ServerAdded;
+            ph22.Net.ServerRemoved += Net_ServerRemoved;
+
+            //ph22.Net.EnableServerDiscovery(ph22.ServerType.SBC);
+            ph22.Net.AddServer("phsbc11", "192.168.150.11", 5001, "", 0);
+            ph22.Net.AddServer("phsbc21", "192.168.150.21", 5001, "", 0);
+            ph22.Net.AddServer("phsbc22", "192.168.150.22", 5001, "", 0);
+            ph22.Net.AddServer("phsbc23", "192.168.150.23", 5001, "", 0);
+
             ph22.Phidget phidget = new ph22.Phidget();
 
             phidget.Attach += Phidget_Attach;
             phidget.Detach += Phidget_Detach;
+
+            digitalOutput0 = new ph22.DigitalOutput();
+
+            digitalOutput0.Attach += DigitalOutput0_Attach;
+            digitalOutput0.Detach += DigitalOutput0_Detach;
+            digitalOutput0.Channel = 0;
+            digitalOutput0.DeviceSerialNumber = sbc22SerialNumber;
+            digitalOutput0.Open(5000);
 
             //phidget.IsHubPortDevice = true;
 
@@ -184,6 +201,31 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
             //phidget.DeviceSerialNumber = sbc21SerialNumber;
 
             //phidget.Open();
+        }
+
+        private void DigitalOutput0_Detach(object sender, ph22E.DetachEventArgs e)
+        {
+            var a = e;
+            var b = e.GetType();
+        }
+
+        private void DigitalOutput0_Attach(object sender, ph22E.AttachEventArgs e)
+        {
+            var a = e;
+            var b = e.GetType();
+        }
+
+        private void Net_ServerRemoved(ph22E.NetServerRemovedEventArgs e)
+        {
+            var a = e;
+            var b = e.GetType();
+        }
+
+        private void Net_ServerAdded(ph22E.NetServerAddedEventArgs e)
+        {
+            var a = e;
+            var server = e.Server;
+            var b = e.GetType();
         }
 
         private void Phidget_Detach(object sender, ph22E.DetachEventArgs e)
