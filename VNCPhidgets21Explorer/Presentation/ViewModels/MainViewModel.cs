@@ -12,6 +12,9 @@ using VNC.Core.Mvvm;
 using System.Threading;
 using System.Threading.Tasks;
 using DevExpress.XtraRichEdit.API.Native;
+using DevExpress.Xpf.Printing.PreviewControl.Bars;
+using DevExpress.Xpf.Grid.Hierarchy;
+using DevExpress.Xpf.Office.Themes;
 
 namespace VNCPhidgetsExplorer.Presentation.ViewModels
 {
@@ -33,9 +36,10 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
         //ph22.DigitalOutput digitalOutput2;
 
         const Int32 sbc11SerialNumber = 46049;
-        const Int32 sbc21SerialNumber = 48284;
-        const Int32 sbc22SerialNumber = 48301;
-        const Int32 sbc23SerialNumber = 251831;
+
+        const Int32 sbc21SerialNumber = 48301;
+        const Int32 sbc22SerialNumber = 251831;
+        const Int32 sbc23SerialNumber = 48284;
 
         private void InitializeViewModel()
         {
@@ -175,42 +179,42 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
 
         private void OpenPhidget()
         {
-            ph22.Net.ServerAdded += Net_ServerAdded;
-            ph22.Net.ServerRemoved += Net_ServerRemoved;
+            //Net.ServerAdded += Net_ServerAdded;
+            //ph22.Net.ServerRemoved += Net_ServerRemoved;
 
-            //ph22.Net.EnableServerDiscovery(ph22.ServerType.SBC);
-            ph22.Net.AddServer("phsbc11", "192.168.150.11", 5001, "", 0);
-            ph22.Net.AddServer("phsbc21", "192.168.150.21", 5001, "", 0);
-            ph22.Net.AddServer("phsbc22", "192.168.150.22", 5001, "", 0);
-            ph22.Net.AddServer("phsbc23", "192.168.150.23", 5001, "", 0);
+            ////ph22.Net.EnableServerDiscovery(ph22.ServerType.SBC);
+            //ph22.Net.AddServer("phsbc11", "192.168.150.11", 5001, "", 0);
+            //ph22.Net.AddServer("phsbc21", "192.168.150.21", 5001, "", 0);
+            //ph22.Net.AddServer("phsbc22", "192.168.150.22", 5001, "", 0);
+            //ph22.Net.AddServer("phsbc23", "192.168.150.23", 5001, "", 0);
 
-            // NOTE(crhodes)
-            // Passing null throws exception
+            //// NOTE(crhodes)
+            //// Passing null throws exception
 
-            //ph22.Net.AddServer("phsbc11", "192.168.150.11", 5001, null, 0);
-            //ph22.Net.AddServer("phsbc21", "192.168.150.21", 5001, null, 0);
-            //ph22.Net.AddServer("phsbc22", "192.168.150.22", 5001, null, 0);
-            //ph22.Net.AddServer("phsbc23", "192.168.150.23", 5001, null, 0);
+            ////ph22.Net.AddServer("phsbc11", "192.168.150.11", 5001, null, 0);
+            ////ph22.Net.AddServer("phsbc21", "192.168.150.21", 5001, null, 0);
+            ////ph22.Net.AddServer("phsbc22", "192.168.150.22", 5001, null, 0);
+            ////ph22.Net.AddServer("phsbc23", "192.168.150.23", 5001, null, 0);
 
-            ph22.Phidget phidget = new ph22.Phidget();
+            //ph22.Phidget phidget = new ph22.Phidget();
 
-            phidget.Attach += Phidget_Attach;
-            phidget.Detach += Phidget_Detach;
+            //phidget.Attach += Phidget_Attach;
+            //phidget.Detach += Phidget_Detach;
 
-            ph22.DigitalOutput digitalOutput;
+            //ph22.DigitalOutput digitalOutput;
 
-            digitalOutput = new ph22.DigitalOutput();
+            //digitalOutput = new ph22.DigitalOutput();
 
-            digitalOutput.Attach += DigitalOutput_Attach;
-            digitalOutput.Detach += DigitalOutput_Detach;
+            //digitalOutput.Attach += DigitalOutput_Attach;
+            //digitalOutput.Detach += DigitalOutput_Detach;
 
-            digitalOutput.Channel = 0;
-            digitalOutput.IsRemote = true;
-            digitalOutput.DeviceSerialNumber = sbc22SerialNumber;
-            digitalOutput.Open(5000);
+            //digitalOutput.Channel = 0;
+            //digitalOutput.IsRemote = true;
+            //digitalOutput.DeviceSerialNumber = sbc22SerialNumber;
+            //digitalOutput.Open(5000);
 
-            digitalOutput.DutyCycle = 1;
-            digitalOutput.DutyCycle = 0;
+            //digitalOutput.DutyCycle = 1;
+            //digitalOutput.DutyCycle = 0;
 
             //phidget.IsHubPortDevice = true;
 
@@ -220,65 +224,196 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
             //phidget.Open();
         }
 
-        private void DigitalOutput_Detach(object sender, ph22E.DetachEventArgs e)
-        {
-            var a = e;
-            var b = e.GetType();
+        //private void DigitalOutput_Detach(object sender, ph22E.DetachEventArgs e)
+        //{
+        //    var a = e;
+        //    var b = e.GetType();
 
-        }
+        //}
 
-        private void DigitalOutput_Attach(object sender, ph22E.AttachEventArgs e)
-        {
-            var a = e;
-            var b = e.GetType();
-        }
+        //private void DigitalOutput_Attach(object sender, ph22E.AttachEventArgs e)
+        //{
+        //    var a = e;
+        //    var b = e.GetType();
+        //}
 
-        private void Net_ServerRemoved(ph22E.NetServerRemovedEventArgs e)
-        {
-            var a = e;
-            var b = e.GetType();
-        }
+        //private void Net_ServerRemoved(ph22E.NetServerRemovedEventArgs e)
+        //{
+        //    var a = e;
+        //    var b = e.GetType();
+        //}
 
-        private void Net_ServerAdded(ph22E.NetServerAddedEventArgs e)
-        {
-            var a = e;
-            var server = e.Server;
-            var b = e.GetType();
-        }
+        //private void Net_ServerAdded(ph22E.NetServerAddedEventArgs e)
+        //{
+        //    var a = e;
+        //    var server = e.Server;
+        //    var b = e.GetType();
+        //}
 
-        private void Phidget_Detach(object sender, ph22E.DetachEventArgs e)
-        {
-            var a = e;
-            var b = e.GetType();
-        }
+        //private void Phidget_Detach(object sender, ph22E.DetachEventArgs e)
+        //{
+        //    var a = e;
+        //    var b = e.GetType();
+        //}
 
-        private void Phidget_Attach(object sender, ph22E.AttachEventArgs e)
-        {
-            var a = e;
-            var b = e.GetType();
-        }
+        //private void Phidget_Attach(object sender, ph22E.AttachEventArgs e)
+        //{
+        //    var a = e;
+        //    var b = e.GetType();
+        //}
 
         private void OpenPhidgetManager()
         {
-            ph22.Manager phidgetManager = new ph22.Manager();
+            Manager phidgetManager = new Manager();
 
             phidgetManager.Attach += PhidgetManager_Attach;
             phidgetManager.Detach += PhidgetManager_Detach;
 
-            phidgetManager.Open();
+            phidgetManager.open();
 
         }
 
-        private void PhidgetManager_Detach(object sender, ph22E.ManagerDetachEventArgs e)
+        private void OpenSBCInterfaceKit()
         {
-            var a = e;
-            var b = e.GetType();
+            InterfaceKit ifk0 = new InterfaceKit();
+            InterfaceKit ifk1 = new InterfaceKit();
+            InterfaceKit ifk2 = new InterfaceKit();
+
+            try
+            {
+                Parallel.Invoke(
+                    () => InterfaceKitParty(ifk0, sbc21SerialNumber, "192.168.150.21", 5001, 250),
+                    () => InterfaceKitParty(ifk1, sbc22SerialNumber, "192.168.150.22", 5001, 125),
+                    () => InterfaceKitParty(ifk2, sbc23SerialNumber, "192.168.150.23", 5001, 333)
+                );
+                //InterfaceKitParty(ifk0, sbc21SerialNumber, "192.168.150.21", 5001, 250);
+                //InterfaceKitParty(ifk1, sbc22SerialNumber, "192.168.150.22", 5001, 125);
+                //InterfaceKitParty(ifk2, sbc23SerialNumber, "192.168.150.23", 5001, 333);
+                //InterfaceKitParty(ifk1);
+                //InterfaceKitParty(ifk2);
+            }
+            catch (PhidgetException pe)
+            {
+                switch (pe.Type)
+                {
+                    case Phidgets.PhidgetException.ErrorType.PHIDGET_ERR_TIMEOUT:
+                        //System.Diagnostics.Debug.WriteLine(
+                        //    string.Format("TimeOut Error.  InterfaceKit {0} not attached.  Disable in ConfigFile or attach",
+                        //        ifk.SerialNumber));
+                        break;
+
+                    default:
+                        //System.Diagnostics.Debug.WriteLine(
+                        //    string.Format("{0}\nInterface Kit {0}",
+                        //pe.ToString(),
+                        //        ifk.SerialNumber));
+                        break;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                var message = ex.Message;
+            }
+
+
         }
 
-        private void PhidgetManager_Attach(object sender, ph22E.ManagerAttachEventArgs e)
+        private void InterfaceKitParty(InterfaceKit ifk, Int32 serialNumber, string hostName, Int32 port, Int32 sleep)
+        {
+            ifk.Attach += Ifk_Attach;
+            ifk.Detach += Ifk_Detach;
+            ifk.Error += Ifk_Error;
+            ifk.InputChange += Ifk_InputChange;
+            ifk.OutputChange += Ifk_OutputChange;
+            ifk.SensorChange += Ifk_SensorChange;
+            ifk.ServerConnect += Ifk_ServerConnect;
+            ifk.ServerDisconnect += Ifk_ServerDisconnect;
+
+            ifk.open(serialNumber, hostName, port);
+            ifk.waitForAttachment();
+
+            InterfaceKitDigitalOutputCollection ifkdoc = ifk.outputs;
+
+            for (int i = 0; i < 10; i++)
+            {
+                ifkdoc[0] = true;
+                Thread.Sleep(sleep);
+                ifkdoc[0] = false;
+                Thread.Sleep(sleep);
+            }
+
+            ifk.close();
+        }
+
+        private void Ifk_ServerDisconnect(object sender, Phidgets.Events.ServerDisconnectEventArgs e)
         {
             var a = e;
             var b = e.GetType();
+            Log.Trace("Ifk_ServerDisconnect", Common.LOG_CATEGORY);
+        }
+
+        private void Ifk_ServerConnect(object sender, Phidgets.Events.ServerConnectEventArgs e)
+        {
+            var a = e;
+            var b = e.GetType();
+            Log.Trace("Ifk_ServerConnect", Common.LOG_CATEGORY);
+        }
+
+        private void Ifk_SensorChange(object sender, Phidgets.Events.SensorChangeEventArgs e)
+        {
+            var a = e;
+            var b = e.GetType();
+            Log.Trace("Ifk_SensorChange", Common.LOG_CATEGORY);
+        }
+
+        private void Ifk_OutputChange(object sender, Phidgets.Events.OutputChangeEventArgs e)
+        {
+            var a = e;
+            var b = e.GetType();
+            Log.Trace("Ifk_OutputChange", Common.LOG_CATEGORY);
+        }
+
+        private void Ifk_InputChange(object sender, Phidgets.Events.InputChangeEventArgs e)
+        {
+            var a = e;
+            var b = e.GetType();
+            Log.Trace("Ifk_InputChange", Common.LOG_CATEGORY);
+        }
+
+        private void Ifk_Error(object sender, Phidgets.Events.ErrorEventArgs e)
+        {
+            var a = e;
+            var b = e.GetType();
+            Log.Trace("Ifk_Error", Common.LOG_CATEGORY);
+        }
+
+        private void Ifk_Detach(object sender, Phidgets.Events.DetachEventArgs e)
+        {
+            var a = e;
+            var b = e.GetType();
+            Log.Trace("Ifk_Detach", Common.LOG_CATEGORY);
+        }
+
+        private void Ifk_Attach(object sender, Phidgets.Events.AttachEventArgs e)
+        {
+            var a = e;
+            var b = e.GetType();
+            Log.Trace("Ifk_Attach", Common.LOG_CATEGORY);
+        }
+
+        private void PhidgetManager_Detach(object sender, Phidgets.Events.DetachEventArgs e)
+        {
+            var a = e;
+            var b = e.GetType();
+            Log.Trace("PhidgetManager_Detach", Common.LOG_CATEGORY);
+        }
+
+        private void PhidgetManager_Attach(object sender, Phidgets.Events.AttachEventArgs e)
+        {
+            var a = e;
+            var b = e.GetType();
+            Log.Trace("PhidgetManager_Attach", Common.LOG_CATEGORY);
         }
 
         private void Button1Execute()
@@ -288,7 +423,8 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
             Message = "Button1 Clicked";
 
             //OpenPhidgetManager();
-            OpenPhidget();
+            OpenSBCInterfaceKit();
+            //OpenPhidget();
             //LightAction1();
 
             //ph22.DigitalOutput digitalOutput = new ph22.DigitalOutput();
@@ -313,24 +449,24 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
 
         private void LightAction1A()
         {
-            for (int i = 0; i < 10; i++)
-            {
-                digitalOutput0.DutyCycle = 1;
-                Thread.Sleep(500);
-                digitalOutput0.DutyCycle = 0;
-                Thread.Sleep(500);
-            }
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    digitalOutput0.DutyCycle = 1;
+            //    Thread.Sleep(500);
+            //    digitalOutput0.DutyCycle = 0;
+            //    Thread.Sleep(500);
+            //}
         }
 
         private void LightAction1B()
         {
-            for (int i = 0; i < 50; i++)
-            {
-                digitalOutput2.DutyCycle = 1;
-                Thread.Sleep(100);
-                digitalOutput2.DutyCycle = 0;
-                Thread.Sleep(100);
-            }
+            //for (int i = 0; i < 50; i++)
+            //{
+            //    digitalOutput2.DutyCycle = 1;
+            //    Thread.Sleep(100);
+            //    digitalOutput2.DutyCycle = 0;
+            //    Thread.Sleep(100);
+            //}
         }
 
 
@@ -341,17 +477,17 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
 
             Message = "Button2 Clicked";
 
-            for (int i = 0; i < 10; i++)
-            {
-                digitalOutput0.DutyCycle = 1;
-                Thread.Sleep(125);
-                digitalOutput0.DutyCycle = 0;
-                Thread.Sleep(125);
-                digitalOutput2.DutyCycle = 1;
-                Thread.Sleep(250);
-                digitalOutput2.DutyCycle = 0;
-                Thread.Sleep(250);
-            }
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    digitalOutput0.DutyCycle = 1;
+            //    Thread.Sleep(125);
+            //    digitalOutput0.DutyCycle = 0;
+            //    Thread.Sleep(125);
+            //    digitalOutput2.DutyCycle = 1;
+            //    Thread.Sleep(250);
+            //    digitalOutput2.DutyCycle = 0;
+            //    Thread.Sleep(250);
+            //}
             //ph22.DigitalOutput digitalOutput = new ph22.DigitalOutput();
             //digitalOutput.Open(5000);
             //digitalOutput.DutyCycle = 1;

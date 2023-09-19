@@ -1076,7 +1076,7 @@
                                                   DisplayMember="ShowLocation" 
                                                   ValueMember="ShowLocation" 
                                                   SelectedIndexChanged="cbe_ShowLocations_SelectedIndexChanged" >
-                                    <dxe:ComboBoxEditItem Content="C:\TFS\VNC\Embedded Systems\Fx\Shows\"/>
+                                    <dxe:ComboBoxEditItem Content="D:\VNC\git\chrhodes\Phidgets\Fx\Fx-Old\Shows\"/>
                                     <dxe:ComboBoxEditItem Content="U:\TFS\VNC\Embedded Systems\Fx\Shows\"/>
                                 </dxe:ComboBoxEdit>
                             </dxlc:LayoutItem>
@@ -1133,65 +1133,11 @@
         <dxd:DockLayoutManager.AutoHideGroups>
             
             <dxd:AutoHideGroup >
-                
+
                 <dxd:LayoutPanel Caption="Navigation" ItemWidth="400" Padding="1">
                     <TextBox BorderThickness="0" />
                 </dxd:LayoutPanel>
-                
-                <!--<dxd:LayoutPanel Caption="Tools" ItemWidth="*" ShowPinButton="True" ShowControlBox="True" ShowCloseButton="True" AllowSizing="True" >-->
-                    
-                    <!--<dxlc:LayoutControl Name="layoutControl_Tools" 
-                                        Orientation="Vertical"
-                                        VerticalAlignment="Stretch">
-                        
-                        <dxlc:LayoutGroup Orientation="Vertical" >
-                            
-                            <dxlc:LayoutItem Label="Show Locations">
-                                <dxe:ComboBoxEdit Name="cbe_ShowLocations" 
-                                                  DisplayMember="ShowLocation" 
-                                                  ValueMember="ShowLocation" 
-                                                  SelectedIndexChanged="cbe_ShowLocations_SelectedIndexChanged" >
-                                    <dxe:ComboBoxEditItem Content="C:\TFS\VNC\Embedded Systems\Fx\Shows\"/>
-                                    <dxe:ComboBoxEditItem Content="U:\TFS\VNC\Embedded Systems\Fx\Shows\"/>
-                                </dxe:ComboBoxEdit>
-                            </dxlc:LayoutItem>
 
-                            <dxlc:LayoutItem Label="Show Names">
-                                <dxe:ComboBoxEdit Name="cbe_ShowNames" 
-                                                  DisplayMember="ShowName" 
-                                                  ValueMember="ShowName" 
-                                                  SelectedIndexChanged="cbe_ShowName_SelectedIndexChanged" >
-                                    <dxe:ComboBoxEditItem Content="Show1.xml"/>
-                                    <dxe:ComboBoxEditItem Content="Show2.xml"/>                                    
-                                </dxe:ComboBoxEdit>
-                            </dxlc:LayoutItem>
-                            
-                            <dxlc:LayoutItem Label="Show Name">
-                                <dxe:TextEdit Name="te_ShowName" EditValue="Show1.xml"/>
-                            </dxlc:LayoutItem>
-
-                            <Button Name="btn_LoadShow" Content="Load Show" HorizontalAlignment="Left" Click="btn_LoadShow_Click" />
-                        </dxlc:LayoutGroup>
-
-                        <dxlc:LayoutGroup Header="LayoutGroup" View="Group" VerticalAlignment="Bottom" >
-                            <Button Name="btn_InitializePhidgets" Content="Initialize Phidgets" HorizontalAlignment="Left" Click="btn_InitializePhidgets_Click" />
-                        </dxlc:LayoutGroup>
-                        
-                    </dxlc:LayoutControl>-->
-                    
-                    <!--<dxd:LayoutGroup Orientation="Vertical">
-                        <dxd:LayoutControlItem>
-                            
-                        </dxd:LayoutControlItem>
-                        <dxd:LayoutControlItem>
-
-                        </dxd:LayoutControlItem>
-                        <dxd:LayoutControlItem>
-                            <Button Content="Initialize Phidgets" />
-                        </dxd:LayoutControlItem>
-                    </dxd:LayoutGroup>-->
-                <!--</dxd:LayoutPanel>-->
-                
             </dxd:AutoHideGroup>
             
         </dxd:DockLayoutManager.AutoHideGroups>
