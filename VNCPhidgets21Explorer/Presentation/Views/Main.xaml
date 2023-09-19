@@ -9,6 +9,14 @@
     
     xmlns:local="clr-namespace:VNCPhidgetsExplorer.Presentation.Views"    
     
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxdb="http://schemas.devexpress.com/winfx/2008/xaml/demobase"
+    xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
+    
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
     xmlns:views="clr-namespace:VNCPhidgetsExplorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCPhidgetsExplorer.Presentation.ViewModels"
@@ -47,8 +55,32 @@
         <TextBlock Text="{Binding Message}"
                    HorizontalAlignment="Center" VerticalAlignment="Center"
                    FontSize="24" />
-        
-        <Button Grid.Row="1" Content="Button1" Command="{Binding Button1Command}" Width="400" Margin="10" />
+
+        <Grid Grid.Row="1" >
+            <StackPanel Orientation="Vertical">
+                <Button Content="Button1" Command="{Binding Button1Command}" Width="400" Margin="10" />
+                <dxlc:LayoutItem HorizontalAlignment="Right"
+                    Label="Repeats"
+                    LabelPosition="Left">
+                    <dxe:SpinEdit x:Name="sbRepeats"
+                        HorizontalAlignment="Right"
+                        Value="{Binding Repeats, Mode=TwoWay}"
+                        MinValue="1" />
+                </dxlc:LayoutItem>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <dxe:CheckEdit x:Name="ceInputChangedEvents"
+                    Content="DisplayInputChangeEvents"
+                    IsChecked="{Binding DisplayInputChangeEvents, Mode=TwoWay}" />
+                    <dxe:CheckEdit x:Name="ceOutputChangedEvents"
+                    Content="DisplayOutputChangeEvents"
+                    IsChecked="{Binding DisplayOutputChangeEvents, Mode=TwoWay}" />
+                    <dxe:CheckEdit x:Name="ceSensorChangedEvents"
+                    Content="DisplaySensorChangeEvents"
+                    IsChecked="{Binding DisplaySensorChangeEvents, Mode=TwoWay}" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
 
         <Button Grid.Row="2" Content="Button2" Command="{Binding Button2Command}" Width="400" Margin="10" />
 

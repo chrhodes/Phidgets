@@ -15,6 +15,8 @@ using DevExpress.XtraRichEdit.API.Native;
 using DevExpress.Xpf.Printing.PreviewControl.Bars;
 using DevExpress.Xpf.Grid.Hierarchy;
 using DevExpress.Xpf.Office.Themes;
+using DevExpress.CodeParser;
+using DevExpress.Data.Browsing;
 
 namespace VNCPhidgetsExplorer.Presentation.ViewModels
 {
@@ -34,6 +36,9 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
 
         //DigitalOutput digitalOutput0;
         //ph22.DigitalOutput digitalOutput2;
+
+
+
 
         const Int32 sbc11SerialNumber = 46049;
 
@@ -158,6 +163,63 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
             }
         }
 
+
+        private bool _displayInputChangeEvents = false;
+
+        public bool DisplayInputChangeEvents
+        {
+            get => _displayInputChangeEvents;
+            set
+            {
+                if (_displayInputChangeEvents == value)
+                    return;
+                _displayInputChangeEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _displayOutputChangeEvents = false;
+
+        public bool DisplayOutputChangeEvents
+        {
+            get => _displayOutputChangeEvents;
+            set
+            {
+                if (_displayOutputChangeEvents == value)
+                    return;
+                _displayOutputChangeEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _sensorChangeEvents = false;
+
+        public bool DisplaySensorChangeEvents
+        {
+            get => _sensorChangeEvents;
+            set
+            {
+                if (_sensorChangeEvents == value)
+                    return;
+                _sensorChangeEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int _repeats = 1;
+        public int Repeats
+        {
+            get => _repeats;
+            set
+            {
+                if (_repeats == value)
+                    return;
+                _repeats = value;
+                OnPropertyChanged();
+            }
+        }   
+
+
         #endregion
 
         #region Event Handlers (none)
@@ -273,24 +335,31 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
 
         }
 
-        private void OpenSBCInterfaceKit()
+        private async Task OpenSBCInterfaceKit()
         {
-            InterfaceKit ifk0 = new InterfaceKit();
-            InterfaceKit ifk1 = new InterfaceKit();
-            InterfaceKit ifk2 = new InterfaceKit();
+            InterfaceKit ifk11 = new InterfaceKit();
+
+            InterfaceKit ifk21 = new InterfaceKit();
+            InterfaceKit ifk22 = new InterfaceKit();
+            InterfaceKit ifk23 = new InterfaceKit();
 
             try
             {
-                Parallel.Invoke(
-                    () => InterfaceKitParty(ifk0, sbc21SerialNumber, "192.168.150.21", 5001, 250),
-                    () => InterfaceKitParty(ifk1, sbc22SerialNumber, "192.168.150.22", 5001, 125),
-                    () => InterfaceKitParty(ifk2, sbc23SerialNumber, "192.168.150.23", 5001, 333)
-                );
+                await Task.Run(() =>
+                {
+                    Parallel.Invoke(
+                         () => InterfaceKitParty(ifk11, sbc11SerialNumber, "192.168.150.11", 5001, 500, 5 * Repeats),
+                         () => InterfaceKitParty(ifk21, sbc21SerialNumber, "192.168.150.21", 5001, 250, 10 * Repeats),
+                         () => InterfaceKitParty(ifk22, sbc22SerialNumber, "192.168.150.22", 5001, 125, 20 * Repeats),
+                         () => InterfaceKitParty(ifk23, sbc23SerialNumber, "192.168.150.23", 5001, 333, 8 * Repeats)
+                     );
+                });
                 //InterfaceKitParty(ifk0, sbc21SerialNumber, "192.168.150.21", 5001, 250);
                 //InterfaceKitParty(ifk1, sbc22SerialNumber, "192.168.150.22", 5001, 125);
                 //InterfaceKitParty(ifk2, sbc23SerialNumber, "192.168.150.23", 5001, 333);
                 //InterfaceKitParty(ifk1);
                 //InterfaceKitParty(ifk2);
+
             }
             catch (PhidgetException pe)
             {
@@ -313,93 +382,171 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
             }
             catch (Exception ex)
             {
-                var message = ex.Message;
+                Log.Error(ex, Common.LOG_CATEGORY);
             }
-
-
         }
 
-        private void InterfaceKitParty(InterfaceKit ifk, Int32 serialNumber, string hostName, Int32 port, Int32 sleep)
+        private async void InterfaceKitParty(InterfaceKit ifk, Int32 serialNumber, string hostName, Int32 port, Int32 sleep, Int32 loops)
         {
-            ifk.Attach += Ifk_Attach;
-            ifk.Detach += Ifk_Detach;
-            ifk.Error += Ifk_Error;
-            ifk.InputChange += Ifk_InputChange;
-            ifk.OutputChange += Ifk_OutputChange;
-            ifk.SensorChange += Ifk_SensorChange;
-            ifk.ServerConnect += Ifk_ServerConnect;
-            ifk.ServerDisconnect += Ifk_ServerDisconnect;
-
-            ifk.open(serialNumber, hostName, port);
-            ifk.waitForAttachment();
-
-            InterfaceKitDigitalOutputCollection ifkdoc = ifk.outputs;
-
-            for (int i = 0; i < 10; i++)
+            try
             {
-                ifkdoc[0] = true;
-                Thread.Sleep(sleep);
-                ifkdoc[0] = false;
-                Thread.Sleep(sleep);
-            }
+                Log.Debug($"InterfaceKitParty {hostName},{port} {serialNumber} sleep:{sleep} loops:{loops}", Common.LOG_CATEGORY);
+                ifk.Attach += Ifk_Attach;
+                ifk.Detach += Ifk_Detach;
+                ifk.Error += Ifk_Error;
+                ifk.InputChange += Ifk_InputChange;
+                ifk.OutputChange += Ifk_OutputChange;
+                ifk.SensorChange += Ifk_SensorChange;
+                ifk.ServerConnect += Ifk_ServerConnect;
+                ifk.ServerDisconnect += Ifk_ServerDisconnect;
 
-            ifk.close();
+                ifk.open(serialNumber, hostName, port);
+                ifk.waitForAttachment();
+
+                InterfaceKitDigitalOutputCollection ifkdoc = ifk.outputs;
+
+                for (int i = 0; i < loops; i++)
+                {
+                    ifkdoc[0] = true;
+                    Thread.Sleep(sleep);
+                    ifkdoc[0] = false;
+                    Thread.Sleep(sleep);
+                }
+
+                ifk.close();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
         }
 
         private void Ifk_ServerDisconnect(object sender, Phidgets.Events.ServerDisconnectEventArgs e)
         {
-            var a = e;
-            var b = e.GetType();
-            Log.Trace("Ifk_ServerDisconnect", Common.LOG_CATEGORY);
+            try
+            {
+                var a = e;
+                var b = e.GetType();
+                Log.Trace("Ifk_ServerDisconnect", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
         }
 
         private void Ifk_ServerConnect(object sender, Phidgets.Events.ServerConnectEventArgs e)
         {
-            var a = e;
-            var b = e.GetType();
-            Log.Trace("Ifk_ServerConnect", Common.LOG_CATEGORY);
+            try
+            {
+                Phidget device = (Phidget)e.Device;
+                //var b = e.GetType();
+                //Log.Trace($"Ifk_ServerConnect {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
+                Log.Trace($"Ifk_ServerConnect {device.Address},{device.Port}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
         }
 
         private void Ifk_SensorChange(object sender, Phidgets.Events.SensorChangeEventArgs e)
         {
-            var a = e;
-            var b = e.GetType();
-            Log.Trace("Ifk_SensorChange", Common.LOG_CATEGORY);
+            if (DisplaySensorChangeEvents)
+            {
+                try
+                {
+                    InterfaceKit ifk = (InterfaceKit)sender;
+                    var a = e;
+                    var b = e.GetType();
+                    Log.Trace($"Ifk_SensorChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
         }
 
         private void Ifk_OutputChange(object sender, Phidgets.Events.OutputChangeEventArgs e)
         {
-            var a = e;
-            var b = e.GetType();
-            Log.Trace("Ifk_OutputChange", Common.LOG_CATEGORY);
+            if (DisplayOutputChangeEvents)
+            {
+                try
+                {
+                    InterfaceKit ifk = (InterfaceKit)sender;
+                    var a = e;
+                    var b = e.GetType();
+                    Log.Trace($"Ifk_OutputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
         }
 
         private void Ifk_InputChange(object sender, Phidgets.Events.InputChangeEventArgs e)
         {
-            var a = e;
-            var b = e.GetType();
-            Log.Trace("Ifk_InputChange", Common.LOG_CATEGORY);
+            if (DisplayInputChangeEvents)
+            {
+                try
+                {
+                    InterfaceKit ifk = (InterfaceKit)sender;
+                    var a = e;
+                    var b = e.GetType();
+                    Log.Trace($"Ifk_InputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
         }
 
         private void Ifk_Error(object sender, Phidgets.Events.ErrorEventArgs e)
         {
-            var a = e;
-            var b = e.GetType();
-            Log.Trace("Ifk_Error", Common.LOG_CATEGORY);
+            try
+            {
+                InterfaceKit ifk = (InterfaceKit)sender;
+                var a = e;
+                var b = e.GetType();
+                Log.Trace($"Ifk_Error {ifk.Address},{ifk.Attached} - {e.Type} {e.Code} {e.Description}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
         }
 
         private void Ifk_Detach(object sender, Phidgets.Events.DetachEventArgs e)
         {
-            var a = e;
-            var b = e.GetType();
-            Log.Trace("Ifk_Detach", Common.LOG_CATEGORY);
+            try
+            {
+                InterfaceKit ifk = (InterfaceKit)sender;
+                var a = e;
+                var b = e.GetType();
+                Log.Trace($"Ifk_Detach {ifk.Address},{ifk.SerialNumber}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
         }
 
         private void Ifk_Attach(object sender, Phidgets.Events.AttachEventArgs e)
         {
-            var a = e;
-            var b = e.GetType();
-            Log.Trace("Ifk_Attach", Common.LOG_CATEGORY);
+            try
+            {
+                InterfaceKit ifk = (InterfaceKit)sender;
+                //Phidget device = (Phidget)e.Device;
+                //var b = e.GetType();
+                Log.Trace($"Ifk_Attach {ifk.Address},{ifk.Port} S#:{ifk.SerialNumber}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
         }
 
         private void PhidgetManager_Detach(object sender, Phidgets.Events.DetachEventArgs e)
