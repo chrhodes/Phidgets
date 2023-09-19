@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Windows.Input;
 
-using ph22 = Phidget22;
-using ph22E = Phidget22.Events;
+//using ph22 = Phidget22;
+//using ph22E = Phidget22.Events;
+using Phidgets;
 
 using Prism.Commands;
 
@@ -28,8 +29,8 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        ph22.DigitalOutput digitalOutput0;
-        ph22.DigitalOutput digitalOutput2;
+        //DigitalOutput digitalOutput0;
+        //ph22.DigitalOutput digitalOutput2;
 
         const Int32 sbc11SerialNumber = 46049;
         const Int32 sbc21SerialNumber = 48284;
