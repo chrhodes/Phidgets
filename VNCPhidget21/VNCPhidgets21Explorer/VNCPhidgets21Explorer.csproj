@@ -7,7 +7,7 @@
     <UseWPF>true</UseWPF>
     <!--<GenerateAssemblyInfo>false</GenerateAssemblyInfo>-->
     <!--<Nullable>enable</Nullable>-->
-    <FileVersion>2023.09.19A</FileVersion>
+    <FileVersion>2023.09.20A</FileVersion>
   </PropertyGroup>
 
     <PropertyGroup Condition="'$(TargetFramework)' == 'net6.0-windows'">
@@ -73,7 +73,7 @@
   
   <ItemGroup>
     <Reference Include="Phidget21.NET">
-      <HintPath>..\Libraries\Phidget21-windevel_2.1.8.20110615\phidget21-windevel\Phidget21.NET.dll</HintPath>
+      <HintPath>..\..\Libraries\Phidget21-windevel_2.1.8.20110615\phidget21-windevel\Phidget21.NET.dll</HintPath>
     </Reference>
   </ItemGroup>
 
