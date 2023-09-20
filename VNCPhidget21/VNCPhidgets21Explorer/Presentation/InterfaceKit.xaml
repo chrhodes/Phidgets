@@ -33,10 +33,11 @@
 >
 
     <vncmvvm:ViewBase.Resources>
-        <!--<XmlDataProvider x:Key="SensorList" Source="Resources\SensorList.xml" XPath="Sensors/Sensor" />
-        <XmlDataProvider x:Key="HostList" Source="Resources\HostList.xml" XPath="Hosts/Host" />-->
-        <XmlDataProvider x:Key="SensorList" Source="SensorList.xml" XPath="Sensors/Sensor" />
-        <XmlDataProvider x:Key="HostList" Source="HostList.xml" XPath="Hosts/Host" />        
+        <XmlDataProvider x:Key="SensorList" Source="/Resources/SensorList.xml" XPath="Sensors/Sensor" />
+        <XmlDataProvider x:Key="HostList" Source="/Resources/HostList.xml" XPath="Hosts/Host" />
+        <XmlDataProvider x:Key="InterfaceKitList" Source="/Resources/InterfaceKitList.xml" XPath="InterfaceKits/InterfaceKit" />
+        <!--<XmlDataProvider x:Key="SensorList" Source="SensorList.xml" XPath="Sensors/Sensor" />
+        <XmlDataProvider x:Key="HostList" Source="HostList.xml" XPath="Hosts/Host" />-->        
     </vncmvvm:ViewBase.Resources>
     
     <!-- TODO:(crhodes)
@@ -124,11 +125,13 @@
             </dxlc:LayoutItem>
             
             <dxlc:LayoutGroup Name="lgInterfaceKits" Orientation="Vertical" DataContext="{Binding Path=IK}" Padding="0"  >
-
-                <dxlc:LayoutItem Label="InterfaceKits" LabelPosition="Left" >
+                <dxlc:LayoutItem Label="InterfaceKits" LabelPosition="Left">
+                    <dxe:ComboBoxEdit DataContext="{StaticResource InterfaceKitList}" ItemsSource="{Binding }" DisplayMember="@Name" />
+                </dxlc:LayoutItem>
+                <!--<dxlc:LayoutItem Label="InterfaceKits" LabelPosition="Left" >
                     <dxe:ComboBoxEdit Name="cbeInterfaceKits" ItemsSource="{Binding Path=InterfaceKits}" 
                                       SelectedIndexChanged="cbeInterfaceKits_SelectedIndexChanged" />
-                </dxlc:LayoutItem>
+                </dxlc:LayoutItem>-->
 
                 <dxlc:LayoutGroup Orientation="Horizontal" >
                     <dxlc:LayoutItem Label="Name" >
