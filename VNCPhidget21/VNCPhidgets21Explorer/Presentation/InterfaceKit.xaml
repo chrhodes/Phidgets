@@ -34,7 +34,9 @@
 
     <vncmvvm:ViewBase.Resources>
         <XmlDataProvider x:Key="SensorList" Source="/Resources/SensorList.xml" XPath="Sensors/Sensor" />
+        <XmlDataProvider x:Key="HostList" Source="/Resources/HostList.xml" XPath="Hosts/Host" />
     </vncmvvm:ViewBase.Resources>
+    
     <!-- TODO:(crhodes)
         Cut Add this to Xaml Resources, likely Display_StylesandTemplates.xaml -->
     <!-- <SolidColorBrush x:Key="InterfaceKitBackground" Color="#A0A0A0" /> -->
@@ -113,9 +115,13 @@
             </StackPanel>
         </StackPanel>
 
-        <dxlc:LayoutControl>
+        <dxlc:LayoutControl Orientation="Vertical">
 
-            <dxlc:LayoutGroup Name="lgInterfaceKits" Orientation="Vertical" DataContext="{Binding Path=IK}" Padding="0" >
+            <dxlc:LayoutItem Label="Hosts" LabelPosition="Left">
+                <dxe:ComboBoxEdit DataContext="{StaticResource HostList}" ItemsSource="{Binding }" DisplayMember="@Name" />
+            </dxlc:LayoutItem>
+            
+            <dxlc:LayoutGroup Name="lgInterfaceKits" Orientation="Vertical" DataContext="{Binding Path=IK}" Padding="0"  >
 
                 <dxlc:LayoutItem Label="InterfaceKits" LabelPosition="Left" >
                     <dxe:ComboBoxEdit Name="cbeInterfaceKits" ItemsSource="{Binding Path=InterfaceKits}" 
@@ -140,7 +146,16 @@
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Orientation="Horizontal" View="GroupBox" Header="Digital Inputs"  >
+                <dxlc:LayoutGroup Orientation="Horizontal" View="GroupBox" Header="Digital Inputs" IsCollapsible="True"  >
+                    <!--<dxlc:LayoutGroup.GroupBoxStyle>
+                        <Style TargetType="dxlc:GroupBox">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                            <Setter Property="BorderThickness" Value="0" />
+                            <Setter Property="Padding" Value="0" />
+                            <Setter Property="TitleVisibility" Value="Collapsed" />
+                        </Style>
+                    </dxlc:LayoutGroup.GroupBoxStyle>-->
                     <dxlc:LayoutItem Label="D0" LabelPosition="Top">
                         <dxe:CheckEdit Name="ceDI_0" Tag="0" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />
                     </dxlc:LayoutItem>
@@ -191,7 +206,8 @@
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Orientation="Horizontal" View="GroupBox" Header="Digital Outputs"  >
+                <dxlc:LayoutGroup Orientation="Horizontal" View="GroupBox" Header="Digital Outputs"
+                                  IsCollapsible="True" IsCollapsed="False" >
                     <dxlc:LayoutItem Label="D0" LabelPosition="Top">
                         <dxe:CheckEdit Name="ceDO_0" Tag="0" Checked="ceDO_Checked" Unchecked="ceDO_UnChecked" />
                     </dxlc:LayoutItem>
@@ -244,9 +260,11 @@
 
                 <dxlc:LayoutGroup Name="lgAnalogInputs" Header="Analog Inputs" 
                     Orientation="Horizontal" 
+                                  IsCollapsible="True" IsCollapsed="False" 
                     View="GroupBox" >
 
-                    <dxlc:LayoutGroup Name="lgAnalogInputs_A0" Orientation="Vertical" DataContext="{Binding Source=sensors[0]}" >
+                    <dxlc:LayoutGroup Name="lgAnalogInputs_A0" Orientation="Vertical"
+                                      DataContext="{Binding Source=sensors[0]}" >
                         <dxlc:LayoutItem Label="Sensor Type" LabelPosition="Top">
                             <dxe:ComboBoxEdit DataContext="{StaticResource SensorList}" ItemsSource="{Binding }" DisplayMember="@Name" />
                         </dxlc:LayoutItem>

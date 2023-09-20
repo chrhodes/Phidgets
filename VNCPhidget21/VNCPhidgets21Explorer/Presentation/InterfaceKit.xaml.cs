@@ -5,6 +5,7 @@ using System.Windows.Input;
 
 using VNC;
 using VNC.Core.Mvvm;
+using VNC.Phidget;
 
 using VNCPhidgets21Explorer.Presentation.ViewModels;
 
@@ -113,17 +114,17 @@ namespace VNCPhidgets21Explorer.Presentation.Views
         #endregion
 
 
-        private void btn_LoadShow_Click(object sender, RoutedEventArgs e)
-        {
-            // TODO(crhodes): Parse XML file and build Dictionary of Hosts and Interface Kits
-            string filePath = ((dxe.ComboBoxEditItem)cbe_ShowLocations.SelectedItem).Content.ToString();
+        //private void btn_LoadShow_Click(object sender, RoutedEventArgs e)
+        //{
+        //    // TODO(crhodes): Parse XML file and build Dictionary of Hosts and Interface Kits
+        //    string filePath = ((dxe.ComboBoxEditItem)cbe_ShowLocations.SelectedItem).Content.ToString();
 
-            string filePath2 = cbe_ShowLocations.SelectedItem.ToString();
-            //string fileName = cbe_ShowNames.SelectedItem.ToString();
+        //    string filePath2 = cbe_ShowLocations.SelectedItem.ToString();
+        //    //string fileName = cbe_ShowNames.SelectedItem.ToString();
 
-            //LoadShowFromFile(string.Format("{0}\\{1}", filePath, fileName));
-            LoadShowFromFile(filePath);
-        }
+        //    //LoadShowFromFile(string.Format("{0}\\{1}", filePath, fileName));
+        //    LoadShowFromFile(filePath);
+        //}
 
         private void cbe_ShowLocations_SelectedIndexChanged(object sender, RoutedEventArgs e)
         {
@@ -141,15 +142,15 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             // TODO(crhodes): Not sure we need this
         }
 
-        private void cbeAdvancedServos_SelectedIndexChanged(object sender, RoutedEventArgs e)
-        {
-            string serialNumber = ((dxe.ComboBoxEdit)sender).SelectedItem.ToString();
+        //private void cbeAdvancedServos_SelectedIndexChanged(object sender, RoutedEventArgs e)
+        //{
+        //    string serialNumber = ((dxe.ComboBoxEdit)sender).SelectedItem.ToString();
 
-            //AS = AdvancedServosD[serialNumber];
-            //teNbrServos.EditValue = AS.servos.Count;
-            //lgAdvancedServos.DataContext = AS;
-            cbeAdvancedServos.SelectedIndex = 0;
-        }
+        //    //AS = AdvancedServosD[serialNumber];
+        //    //teNbrServos.EditValue = AS.servos.Count;
+        //    //lgAdvancedServos.DataContext = AS;
+        //    cbeAdvancedServos.SelectedIndex = 0;
+        //}
 
         private void cbeInterfaceKits_SelectedIndexChanged(object sender, RoutedEventArgs e)
         {
@@ -158,16 +159,16 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 
             string serialNumber = ((dxe.ComboBoxEdit)sender).SelectedItem.ToString();
 
-            IK = InterfaceKitsD[serialNumber];
-            lgInterfaceKits.DataContext = IK;
-            lgAnalogInputs_A0.DataContext = IK.Sensors[0];
-            lgAnalogInputs_A1.DataContext = IK.Sensors[1];
-            lgAnalogInputs_A2.DataContext = IK.Sensors[2];
-            lgAnalogInputs_A3.DataContext = IK.Sensors[3];
-            lgAnalogInputs_A4.DataContext = IK.Sensors[4];
-            lgAnalogInputs_A5.DataContext = IK.Sensors[5];
-            lgAnalogInputs_A6.DataContext = IK.Sensors[6];
-            lgAnalogInputs_A7.DataContext = IK.Sensors[7];
+            //IK = InterfaceKitsD[serialNumber];
+            //lgInterfaceKits.DataContext = IK;
+            //lgAnalogInputs_A0.DataContext = IK.Sensors[0];
+            //lgAnalogInputs_A1.DataContext = IK.Sensors[1];
+            //lgAnalogInputs_A2.DataContext = IK.Sensors[2];
+            //lgAnalogInputs_A3.DataContext = IK.Sensors[3];
+            //lgAnalogInputs_A4.DataContext = IK.Sensors[4];
+            //lgAnalogInputs_A5.DataContext = IK.Sensors[5];
+            //lgAnalogInputs_A6.DataContext = IK.Sensors[6];
+            //lgAnalogInputs_A7.DataContext = IK.Sensors[7];
         }
 
         private void cbeServos_SelectedIndexChanged(object sender, RoutedEventArgs e)
@@ -184,22 +185,22 @@ namespace VNCPhidgets21Explorer.Presentation.Views
         {
             int index = int.Parse(((dxe.CheckEdit)sender).Tag.ToString());
 
-            foreach (var item in InterfaceKits)
-            {
-                string ikName = item.ToString();
-                InterfaceKitsD[ikName].outputs[index] = true;
-            }
+            //foreach (var item in InterfaceKits)
+            //{
+            //    string ikName = item.ToString();
+            //    InterfaceKitsD[ikName].outputs[index] = true;
+            //}
         }
 
         private void ceD0A_UnChecked(object sender, RoutedEventArgs e)
         {
             int index = int.Parse(((dxe.CheckEdit)sender).Tag.ToString());
 
-            foreach (var item in InterfaceKits)
-            {
-                string ikName = item.ToString();
-                InterfaceKitsD[ikName].outputs[index] = false;
-            }
+            //foreach (var item in InterfaceKit)
+            //{
+            //    string ikName = item.ToString();
+            //    InterfaceKitsD[ikName].outputs[index] = false;
+            //}
         }
 
         private void ceDI_Checked(object sender, RoutedEventArgs e)
@@ -215,13 +216,13 @@ namespace VNCPhidgets21Explorer.Presentation.Views
         private void ceDO_Checked(object sender, RoutedEventArgs e)
         {
             int index = int.Parse(((dxe.CheckEdit)sender).Tag.ToString());
-            InterfaceKitsD[cbeInterfaceKits.Text].outputs[index] = true;
+            //InterfaceKitsD[cbeInterfaceKits.Text].outputs[index] = true;
         }
 
         private void ceDO_UnChecked(object sender, RoutedEventArgs e)
         {
             int index = int.Parse(((dxe.CheckEdit)sender).Tag.ToString());
-            InterfaceKitsD[cbeInterfaceKits.Text].outputs[index] = false;
+            //InterfaceKitsD[cbeInterfaceKits.Text].outputs[index] = false;
         }
 
         private void ceEnableCurrentEvents_Changed(object sender, RoutedEventArgs e)
@@ -300,21 +301,21 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             //AS.servos[index].SpeedRamping = bool.Parse(((dxe.CheckEdit)sender).IsChecked.ToString());
         }
 
-        private void DXWindow_Closing_1(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-#if TRACE
-            //PLLog.Trace5("Start", PLLOG_APPNAME);
-            System.Diagnostics.Debug.WriteLine("DXWindow_Closing_1");
-#endif
-            UnInitializeAdvancedServos();
+//        private void DXWindow_Closing_1(object sender, System.ComponentModel.CancelEventArgs e)
+//        {
+//#if TRACE
+//            //PLLog.Trace5("Start", PLLOG_APPNAME);
+//            System.Diagnostics.Debug.WriteLine("DXWindow_Closing_1");
+//#endif
+//            //UnInitializeAdvancedServos();
 
-            // Close all Phidgets we might have opened
+//            //// Close all Phidgets we might have opened
 
-            foreach (var item in InterfaceKitsD)
-            {
-                ClosePhidget(item.Value);
-            }
-        }
+//            //foreach (var item in InterfaceKitsD)
+//            //{
+//            //    ClosePhidget(item.Value);
+//            //}
+//        }
 
         private void SpinEdit_DataRate_Spin(object sender, dxe.SpinEventArgs e)
         {

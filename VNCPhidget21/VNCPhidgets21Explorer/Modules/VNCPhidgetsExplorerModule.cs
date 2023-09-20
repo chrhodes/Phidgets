@@ -47,9 +47,15 @@ namespace VNCPhidgets21Explorer
             // Pick one of these for the MainRegion
             // Use Main to see the AutoWireViewModel in action.
 
-            containerRegistry.Register<IMain, Main>();
+            //containerRegistry.Register<IMain, Main>();
             //containerRegistry.Register<IMain, MainDxLayout>();
-            //containerRegistry.Register<IMain, MainDxDockLayoutManager>();            
+            containerRegistry.Register<IMain, MainDxDockLayoutManager>();
+
+            containerRegistry.Register<IInterfaceKit, InterfaceKit>();
+            containerRegistry.Register<InterfaceKitViewModel, InterfaceKitViewModel>();
+
+            containerRegistry.Register<HackAround>();
+            containerRegistry.Register<HackAroundViewModel>();
 
             // containerRegistry.Register<ICombinedMainViewModel, CombinedMainViewModel>();
             // containerRegistry.RegisterSingleton<ICombinedMain, CombinedMain>();
@@ -90,6 +96,9 @@ namespace VNCPhidgets21Explorer
 
             _regionManager.RegisterViewWithRegion(RegionNames.RibbonRegion, typeof(IRibbon));
             _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(IMain));
+
+            _regionManager.RegisterViewWithRegion(RegionNames.InterfaceKitRegion, typeof(InterfaceKit));
+            _regionManager.RegisterViewWithRegion(RegionNames.HackAroundRegion, typeof(HackAround));
 
             // //This loads CombinedMain into the Shell loaded in App.Xaml.cs
 

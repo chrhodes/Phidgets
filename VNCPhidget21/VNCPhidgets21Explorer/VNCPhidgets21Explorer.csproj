@@ -59,6 +59,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\VNC.Phidget\VNC.Phidget.csproj" />
       <ProjectReference Include="..\VNCPhidgets21Explorer.Core\VNCPhidgets21Explorer.Core.csproj" />
     </ItemGroup>
 
@@ -80,6 +81,15 @@
     <ItemGroup>
         <!-- Workaround for https://github.com/dotnet/wpf/issues/2648#issuecomment-635674683 -->
         <Reference Include="System.Web" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="Resources\HostList.xml">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\SensorList.xml">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>    
   
   <!--<ItemGroup>
