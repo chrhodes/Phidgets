@@ -4,9 +4,9 @@ using System.Windows;
 using VNC;
 using VNC.Core.Mvvm;
 
-using VNCPhidgetsExplorer.Presentation.ViewModels;
+using VNCPhidgets21Explorer.Presentation.ViewModels;
 
-namespace VNCPhidgetsExplorer.Presentation.Views
+namespace VNCPhidgets21Explorer.Presentation.Views
 {
     public partial class Shell : Window, IInstanceCountV
     {

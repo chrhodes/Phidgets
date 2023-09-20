@@ -13,7 +13,7 @@ using VNC.Core.Events;
 using VNC.Core.Mvvm;
 using VNC.Core.Services;
 
-namespace VNCPhidgetsExplorer.Presentation.ViewModels
+namespace VNCPhidgets21Explorer.Presentation.ViewModels
 {
     public class RibbonViewModel : EventViewModelBase, IRibbonViewModel, IInstanceCountVM
     {

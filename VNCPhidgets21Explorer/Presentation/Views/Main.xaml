@@ -1,5 +1,5 @@
 ﻿<vncmvvm:ViewBase
-    x:Class="VNCPhidgetsExplorer.Presentation.Views.Main"
+    x:Class="VNCPhidgets21Explorer.Presentation.Views.Main"
     x:Name="thisMain"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -7,7 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     mc:Ignorable="d" 
     
-    xmlns:local="clr-namespace:VNCPhidgetsExplorer.Presentation.Views"    
+    xmlns:local="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"    
     
     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
     xmlns:dxdb="http://schemas.devexpress.com/winfx/2008/xaml/demobase"
@@ -18,10 +18,10 @@
     xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
     
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
-    xmlns:views="clr-namespace:VNCPhidgetsExplorer.Presentation.Views"
-    xmlns:viewModels="clr-namespace:VNCPhidgetsExplorer.Presentation.ViewModels"
+    xmlns:views="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
+    xmlns:viewModels="clr-namespace:VNCPhidgets21Explorer.Presentation.ViewModels"
 
-    xmlns:core="clr-namespace:VNCPhidgetsExplorer.Core;assembly=VNCPhidgetsExplorer.Core"  
+    xmlns:core="clr-namespace:VNCPhidgets21Explorer.Core;assembly=VNCPhidgets21Explorer.Core"  
 
     xmlns:prism="http://prismlibrary.com/"
     prism:ViewModelLocator.AutoWireViewModel="False"

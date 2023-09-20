@@ -1,4 +1,4 @@
-﻿VNCPhidgetsExplorer\Domain\
-VNCPhidgetsExplorer\Domain\Lookups\
+﻿VNCPhidgets21Explorer\Domain\
+VNCPhidgets21Explorer\Domain\Lookups\
 
 Notes for using this template

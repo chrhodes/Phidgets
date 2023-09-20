@@ -3,7 +3,7 @@
 using VNC;
 using VNC.Core.Mvvm;
 
-namespace VNCPhidgetsExplorer.Presentation.ViewModels
+namespace VNCPhidgets21Explorer.Presentation.ViewModels
 {
     public class RibbonShellViewModel : ViewModelBase, IInstanceCountVM
     {
@@ -45,7 +45,7 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        private string _title = "VNCPhidgetsExplorer - RibbonShell";
+        private string _title = "VNCPhidgets21Explorer - RibbonShell";
 
         public string Title
         {

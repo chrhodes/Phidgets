@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNCPhidgets21Explorer", "VN
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.Core", "..\..\VNC\VNC.Core\VNC.Core.csproj", "{DEE7606C-0203-471F-BEA1-A49E35F40136}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VNC.Phidget", "..\VNC.Phidget\VNC.Phidget.csproj", "{5E54B3D8-627A-4BCB-8958-F3A074FCF421}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VNCPhidgets21Explorer.Core", "..\VNCPhidgets21Explorer.Core\VNCPhidgets21Explorer.Core.csproj", "{74AD31AE-1F5D-4DC4-BE36-0154066113C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{DEE7606C-0203-471F-BEA1-A49E35F40136}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DEE7606C-0203-471F-BEA1-A49E35F40136}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DEE7606C-0203-471F-BEA1-A49E35F40136}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E54B3D8-627A-4BCB-8958-F3A074FCF421}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E54B3D8-627A-4BCB-8958-F3A074FCF421}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E54B3D8-627A-4BCB-8958-F3A074FCF421}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E54B3D8-627A-4BCB-8958-F3A074FCF421}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74AD31AE-1F5D-4DC4-BE36-0154066113C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74AD31AE-1F5D-4DC4-BE36-0154066113C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74AD31AE-1F5D-4DC4-BE36-0154066113C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74AD31AE-1F5D-4DC4-BE36-0154066113C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

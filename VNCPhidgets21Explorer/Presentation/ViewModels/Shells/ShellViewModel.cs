@@ -3,7 +3,7 @@
 using VNC;
 using VNC.Core.Mvvm;
 
-namespace VNCPhidgetsExplorer.Presentation.ViewModels
+namespace VNCPhidgets21Explorer.Presentation.ViewModels
 {
     public class ShellViewModel : ViewModelBase, IInstanceCountVM
     {
@@ -45,7 +45,7 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
 
         #region Fields and Properties (none)
 
-        private string _title = "VNCPhidgetsExplorer - Shell";
+        private string _title = "VNCPhidgets21Explorer - Shell";
 
         public string Title
         {

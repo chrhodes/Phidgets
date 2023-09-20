@@ -7,7 +7,7 @@
     xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
 
-    xmlns:local="clr-namespace:VNCPhidgetsExplorer"
+    xmlns:local="clr-namespace:VNCPhidgets21Explorer"
 
     xmlns:d="http://schemas.microsoft.com/expression/interactivedesigner/2006"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -45,6 +45,8 @@
 
     <SolidColorBrush x:Key="RedText" Color="#c70000" />
 
+    <SolidColorBrush x:Key="InterfaceKitBackground" Color="#A0A0A0" />
+    
     <SolidColorBrush x:Key="ViewABackground" Color="#FFC0C0" />
     <SolidColorBrush x:Key="ViewBBackground" Color="#C0FFC0" />
     <SolidColorBrush x:Key="ViewCBackground" Color="#C0C0FF" />

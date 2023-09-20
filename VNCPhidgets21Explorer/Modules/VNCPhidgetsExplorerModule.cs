@@ -8,20 +8,20 @@ using Unity;
 
 using VNC;
 
-using VNCPhidgetsExplorer.Core;
-//using VNCPhidgetsExplorer.DomainServices;
-using VNCPhidgetsExplorer.Presentation.ViewModels;
-using VNCPhidgetsExplorer.Presentation.Views;
+using VNCPhidgets21Explorer.Core;
+//using VNCPhidgets21Explorer.DomainServices;
+using VNCPhidgets21Explorer.Presentation.ViewModels;
+using VNCPhidgets21Explorer.Presentation.Views;
 
-namespace VNCPhidgetsExplorer
+namespace VNCPhidgets21Explorer
 {
-    public class VNCPhidgetsExplorerModule : IModule
+    public class VNCPhidgets21ExplorerModule : IModule
     {
         private readonly IRegionManager _regionManager;
 
         // 01
 
-        public VNCPhidgetsExplorerModule(IRegionManager regionManager)
+        public VNCPhidgets21ExplorerModule(IRegionManager regionManager)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

@@ -11,7 +11,7 @@ using DevExpress.Xpf.Ribbon;
 using VNC;
 using VNC.Core.Mvvm;
 
-namespace VNCPhidgetsExplorer.Presentation.Views
+namespace VNCPhidgets21Explorer.Presentation.Views
 {
     public partial class Ribbon : VNC.Core.Mvvm.ViewBase, IRibbon, IInstanceCountV
     {

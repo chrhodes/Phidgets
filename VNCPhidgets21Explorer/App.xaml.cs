@@ -12,11 +12,11 @@ using VNC.Logging;
 using VNC.Core.Presentation.ViewModels;
 using VNC.Core.Presentation.Views;
 
-using VNCPhidgetsExplorer.Presentation.Views;
+using VNCPhidgets21Explorer.Presentation.Views;
 using DevExpress.CodeParser;
 using System.Reflection;
 
-namespace VNCPhidgetsExplorer
+namespace VNCPhidgets21Explorer
 {
     public partial class App : PrismApplication
     {
@@ -144,7 +144,7 @@ namespace VNCPhidgetsExplorer
             //NOTE(crhodes)
             // Order matters here.  Application depends on types in Cat
             //moduleCatalog.AddModule(typeof(CatModule));
-            moduleCatalog.AddModule(typeof(VNCPhidgetsExplorerModule));
+            moduleCatalog.AddModule(typeof(VNCPhidgets21ExplorerModule));
 
             Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -197,7 +197,7 @@ namespace VNCPhidgetsExplorer
             // return Container.Resolve<RibbonShell>();
 
             // NOTE(crhodes)
-            // The type of view to load into the shell is handled in VNCPhidgetsExplorerModule.cs
+            // The type of view to load into the shell is handled in VNCPhidgets21ExplorerModule.cs
         }
 
         // 12

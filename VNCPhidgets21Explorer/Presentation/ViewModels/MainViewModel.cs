@@ -1,24 +1,16 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
-//using ph22 = Phidget22;
-//using ph22E = Phidget22.Events;
 using Phidgets;
 
 using Prism.Commands;
 
 using VNC;
 using VNC.Core.Mvvm;
-using System.Threading;
-using System.Threading.Tasks;
-using DevExpress.XtraRichEdit.API.Native;
-using DevExpress.Xpf.Printing.PreviewControl.Bars;
-using DevExpress.Xpf.Grid.Hierarchy;
-using DevExpress.Xpf.Office.Themes;
-using DevExpress.CodeParser;
-using DevExpress.Data.Browsing;
 
-namespace VNCPhidgetsExplorer.Presentation.ViewModels
+namespace VNCPhidgets21Explorer.Presentation.ViewModels
 {
     public class MainViewModel : ViewModelBase, IMainViewModel, IInstanceCountVM
     {
@@ -95,7 +87,7 @@ namespace VNCPhidgetsExplorer.Presentation.ViewModels
         public ICommand Button2Command { get; private set; }
         public ICommand Button3Command { get; private set; }
 
-        private string _title = "VNCPhidgetsExplorer - Main - " + Common.ProductVersion;
+        private string _title = "VNCPhidgets21Explorer - Main - " + Common.ProductVersion;
 
         public string Title
         {

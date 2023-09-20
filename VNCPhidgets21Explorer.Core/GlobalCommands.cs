@@ -1,6 +1,6 @@
 using Prism.Commands;
 
-namespace VNCPhidgetsExplorer.Core
+namespace VNCPhidgets21Explorer.Core
 {
     public static class GlobalCommands
     {

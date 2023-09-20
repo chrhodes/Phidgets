@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Windows;
 
-using VNCPhidgetsExplorer.Presentation.ViewModels;
+using VNCPhidgets21Explorer.Presentation.ViewModels;
 
 using VNC;
 using VNC.Core.Mvvm;
 
-namespace VNCPhidgetsExplorer.Presentation.Views
+namespace VNCPhidgets21Explorer.Presentation.Views
 {
     public partial class AppVersionInfo
     {

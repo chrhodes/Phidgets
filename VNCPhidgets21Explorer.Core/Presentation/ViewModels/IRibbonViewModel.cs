@@ -2,7 +2,7 @@
 
 using VNC.Core.Mvvm;
 
-namespace VNCPhidgetsExplorer.Presentation.ViewModels
+namespace VNCPhidgets21Explorer.Presentation.ViewModels
 {
     public interface IRibbonViewModel : IViewModel
     {

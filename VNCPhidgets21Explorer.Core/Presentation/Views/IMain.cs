@@ -1,6 +1,6 @@
 ﻿using VNC.Core.Mvvm;
 
-namespace VNCPhidgetsExplorer.Presentation.Views
+namespace VNCPhidgets21Explorer.Presentation.Views
 {
     public interface IMain : IView
     {

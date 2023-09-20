@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace VNCPhidgetsExplorer
+namespace VNCPhidgets21Explorer
 {
     public class Common : VNC.Core.Common
     {
@@ -10,10 +10,10 @@ namespace VNCPhidgetsExplorer
         private static string _productVersion;
         private static string _runtimeVersion;
 
-        public const string APPLICATION_NAME = "VNCPhidgetsExplorer";
-        public new const string LOG_CATEGORY = "VNCPhidgetsExplorer";
+        public const string APPLICATION_NAME = "VNCPhidgets21Explorer";
+        public new const string LOG_CATEGORY = "VNCPhidgets21Explorer";
 
-        public const string cCONFIG_FILE = @"C:\temp\VNCPhidgetsExplorer_Config.xml";
+        public const string cCONFIG_FILE = @"C:\temp\VNCPhidgets21Explorer_Config.xml";
 
         public static event EventHandler AutoHideGroupSpeedChanged;
 
