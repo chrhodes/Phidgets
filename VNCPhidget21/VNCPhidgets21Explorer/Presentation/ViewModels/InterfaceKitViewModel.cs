@@ -1,21 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Xml.Linq;
-
-using DevExpress.XtraRichEdit.Commands;
 
 using Prism.Commands;
 using Prism.Events;
 using Prism.Services.Dialogs;
 
 using VNC;
-using VNC.Core.Events;
 using VNC.Core.Mvvm;
-using VNC.Core.Services;
 using VNC.Phidget;
 
 namespace VNCPhidgets21Explorer.Presentation.ViewModels
@@ -47,7 +40,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             // TODO(crhodes)
             //
-            
+
+            OpenInterfaceKitCommand = new DelegateCommand(OpenInterfaceKit, OpenInterfaceKitCanExecute);
+            CloseInterfaceKitCommand = new DelegateCommand(CloseInterfaceKit, CloseInterfaceKitCanExecute);
+
             SayHelloCommand = new DelegateCommand(
                 SayHello, SayHelloCanExecute);
                 
@@ -193,7 +189,128 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Event Handlers
 
+        #region Commands
 
+        #region OpenInterfaceKit Command
+
+        public DelegateCommand OpenInterfaceKitCommand { get; set; }
+        public string OpenInterfaceKitContent { get; set; } = "OpenInterfaceKit";
+        public string OpenInterfaceKitToolTip { get; set; } = "OpenInterfaceKit ToolTip";
+
+        // Can get fancy and use Resources
+        //public string OpenInterfaceKitContent { get; set; } = "ViewName_OpenInterfaceKitContent";
+        //public string OpenInterfaceKitToolTip { get; set; } = "ViewName_OpenInterfaceKitContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_OpenInterfaceKitContent">OpenInterfaceKit</system:String>
+        //    <system:String x:Key="ViewName_OpenInterfaceKitContentToolTip">OpenInterfaceKit ToolTip</system:String>  
+
+        public void OpenInterfaceKit()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = "Cool, you called OpenInterfaceKit";
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<OpenInterfaceKitEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<OpenInterfaceKitEvent>().Publish(
+            //      new OpenInterfaceKitEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class OpenInterfaceKitEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<OpenInterfaceKitEvent>().Subscribe(OpenInterfaceKit);
+
+            // End Cut Four
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool OpenInterfaceKitCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            return true;
+        }
+
+        #endregion
+
+        #region CloseInterfaceKit Command
+
+        public DelegateCommand CloseInterfaceKitCommand { get; set; }
+        public string CloseInterfaceKitContent { get; set; } = "CloseInterfaceKit";
+        public string CloseInterfaceKitToolTip { get; set; } = "CloseInterfaceKit ToolTip";
+
+        // Can get fancy and use Resources
+        //public string CloseInterfaceKitContent { get; set; } = "ViewName_CloseInterfaceKitContent";
+        //public string CloseInterfaceKitToolTip { get; set; } = "ViewName_CloseInterfaceKitContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_CloseInterfaceKitContent">CloseInterfaceKit</system:String>
+        //    <system:String x:Key="ViewName_CloseInterfaceKitContentToolTip">CloseInterfaceKit ToolTip</system:String>  
+
+        public void CloseInterfaceKit()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = "Cool, you called CloseInterfaceKit";
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<CloseInterfaceKitEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<CloseInterfaceKitEvent>().Publish(
+            //      new CloseInterfaceKitEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class CloseInterfaceKitEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<CloseInterfaceKitEvent>().Subscribe(CloseInterfaceKit);
+
+            // End Cut Four
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool CloseInterfaceKitCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            return true;
+        }
+
+        #endregion
+
+        // End Cut One
+
+
+        #endregion
 
         #endregion
 

@@ -52,7 +52,7 @@ namespace VNCPhidgets21Explorer
             containerRegistry.Register<IMain, MainDxDockLayoutManager>();
 
             containerRegistry.Register<IInterfaceKit, InterfaceKit>();
-            containerRegistry.Register<InterfaceKitViewModel, InterfaceKitViewModel>();
+            containerRegistry.Register<IInterfaceKitViewModel, InterfaceKitViewModel>();
 
             containerRegistry.Register<HackAround>();
             containerRegistry.Register<HackAroundViewModel>();

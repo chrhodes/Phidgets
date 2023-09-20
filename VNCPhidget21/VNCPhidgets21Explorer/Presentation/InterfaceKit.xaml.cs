@@ -23,12 +23,12 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 
             InstanceCountV++;
             InitializeComponent();
-            
-			// Expose ViewModel
-						
+
+            // Expose ViewModel
+
             // If View First with ViewModel in Xaml
 
-            // ViewModel = (IInterfaceKitViewModel)DataContext;
+            //ViewModel = (IInterfaceKitViewModel)DataContext;
 
             // Can create directly
             // ViewModel = InterfaceKitViewModel();

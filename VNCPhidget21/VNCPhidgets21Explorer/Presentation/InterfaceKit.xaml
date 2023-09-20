@@ -26,8 +26,7 @@
     xmlns:prism="http://prismlibrary.com/"   
     prism:ViewModelLocator.AutoWireViewModel="False"
 
-    Background="{StaticResource InterfaceKitBackground}"
-    
+    Background="{StaticResource InterfaceKitBackground}"    
  
     d:DesignStyle="{StaticResource vncDesignStyleUC}" 
 >
@@ -107,31 +106,59 @@
 
         <!-- This is useful for debugging V VM constructor issues -->
 
-        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" >
-            <StackPanel Orientation="Horizontal" Margin="5">
+        <DockPanel DockPanel.Dock="Bottom" >
+            
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" Margin="5">
+                <Label Content="Message:" />
+                <Label Content="{Binding Message}" />
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" Margin="5">
                 <Label Content="V:" />
                 <Label Content="{Binding ElementName=thisInterfaceKit, Path=InstanceCountV}" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="5">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" Margin="5">
                 <Label Content="VM:" />
                 <Label Content="{Binding InstanceCountVM}" />
             </StackPanel>
-        </StackPanel>
+
+        </DockPanel>
 
         <dxlc:LayoutControl Orientation="Vertical">
 
             <dxlc:LayoutItem Label="Hosts" LabelPosition="Left">
                 <dxe:ComboBoxEdit DataContext="{StaticResource HostList}" ItemsSource="{Binding }" DisplayMember="@Name" />
             </dxlc:LayoutItem>
-            
-            <dxlc:LayoutGroup Name="lgInterfaceKits" Orientation="Vertical" DataContext="{Binding Path=IK}" Padding="0"  >
-                <dxlc:LayoutItem Label="InterfaceKits" LabelPosition="Left">
-                    <dxe:ComboBoxEdit DataContext="{StaticResource InterfaceKitList}" ItemsSource="{Binding }" DisplayMember="@Name" />
-                </dxlc:LayoutItem>
-                <!--<dxlc:LayoutItem Label="InterfaceKits" LabelPosition="Left" >
+            <!--<dxlc:LayoutGroup Name="lgInterfaceKits" Orientation="Vertical" DataContext="{Binding Path=IK}" Padding="0"  >-->
+                <dxlc:LayoutGroup Name="lgInterfaceKits" Orientation="Vertical" Padding="0"  >
+                <dxlc:LayoutGroup 
+                	View="Group" Orientation="Horizontal" >
+                    <dxlc:LayoutItem Label="InterfaceKits" LabelPosition="Left">
+                        <dxe:ComboBoxEdit DataContext="{StaticResource InterfaceKitList}" ItemsSource="{Binding }" DisplayMember="@Name" />
+                    </dxlc:LayoutItem>
+
+                    <!--<dxlc:LayoutItem Label="InterfaceKits" LabelPosition="Left" >
                     <dxe:ComboBoxEdit Name="cbeInterfaceKits" ItemsSource="{Binding Path=InterfaceKits}" 
                                       SelectedIndexChanged="cbeInterfaceKits_SelectedIndexChanged" />
                 </dxlc:LayoutItem>-->
+                    <dxlc:LayoutItem HorizontalAlignment="Right">
+                        <Button 
+		                    Command="{Binding OpenInterfaceKitCommand }"
+		                    Content="{Binding OpenInterfaceKitContent, FallbackValue='OpenIK' }"
+		                    ToolTip="{Binding OpenInterfaceKitToolTip, FallbackValue='OpenIK ToolTip' }" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem HorizontalAlignment="Right">
+                        <Button 
+                		Command="{Binding CloseInterfaceKitCommand }"
+                		Content="{Binding CloseInterfaceKitContent, FallbackValue='CloseIK' }"
+                		ToolTip="{Binding CloseInterfaceKitToolTip, FallbackValue='CloseIK ToolTip' }" />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+                
+ 
+
 
                 <dxlc:LayoutGroup Orientation="Horizontal" >
                     <dxlc:LayoutItem Label="Name" >
