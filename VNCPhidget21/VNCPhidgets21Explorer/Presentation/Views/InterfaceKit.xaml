@@ -151,48 +151,45 @@
             </dxlc:LayoutItem>
             
             <dxlc:LayoutGroup View="Group" Orientation="Horizontal" HorizontalAlignment="Left" >
+                
                 <dxlc:LayoutItem Label="Hosts" LabelPosition="Left" >
-                    <dxe:ComboBoxEdit Width="100" ItemsSource="{Binding Hosts2}" DisplayMember="Name" SelectedItem="{Binding SelectedHost}"
+                    <dxe:ComboBoxEdit Width="100" ItemsSource="{Binding Hosts2}" DisplayMember="Name" 
+                                      SelectedItem="{Binding SelectedHost}"
                                       SelectedIndex="0"/>
                 </dxlc:LayoutItem>
-                <!--<dxlc:LayoutItem Label="HostName" >
-                    <dxe:TextEdit Text="{Binding SelectedHost.Name }"/>
-                </dxlc:LayoutItem>-->
+
                 <dxlc:LayoutItem Label="IPAddress" >
                     <dxe:TextEdit Text="{Binding SelectedHost.IPAddress }"/>
                 </dxlc:LayoutItem>
+                
                 <dxlc:LayoutItem Label="Port" >
                     <dxe:TextEdit Text="{Binding SelectedHost.Port }"/>
                 </dxlc:LayoutItem>
+                
                 <dxlc:LayoutItem Label="Enable" >
                     <dxe:TextEdit Text="{Binding SelectedHost.Enable }"/>
                 </dxlc:LayoutItem>
+                
             </dxlc:LayoutGroup>
 
             <dxlc:LayoutGroup Name="lgInterfaceKits" Orientation="Vertical" Padding="0"  >
 
                 <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Left">
                     <dxlc:LayoutItem Label="InterfaceKits" LabelPosition="Left">
-                        <!--<dxe:ComboBoxEdit x:Name="cbeInterfaceKits" 
-                                          DataContext="{StaticResource InterfaceKitList}" ItemsSource="{Binding }" DisplayMember="@Name" />-->
-                        <dxe:ComboBoxEdit x:Name="cbeInterfaceKits" Width="100"
-                                          ItemsSource="{Binding InterfaceKits2}" DisplayMember="Name" SelectedItem="{Binding SelectedInterfaceKit}"/>
+                        <dxe:ComboBoxEdit Width="100"
+                                          ItemsSource="{Binding InterfaceKits2}" DisplayMember="Name" 
+                                          SelectedItem="{Binding SelectedInterfaceKit}"
+                                          SelectedIndex="0"/>
                     </dxlc:LayoutItem>
-                    <!--<dxlc:LayoutItem Label="Name" >
-                        <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Name}" />
-                    </dxlc:LayoutItem>-->
-                    <!--<dxlc:LayoutItem Label="Label" >
-                        <dxe:TextEdit EditValue="{Binding Label}" />
-                    </dxlc:LayoutItem>-->
-                    <!--<dxlc:LayoutItem Label="ID" >
-                        <dxe:TextEdit EditValue="{Binding ID, Mode=OneWay}" />
-                    </dxlc:LayoutItem>-->
+
                     <dxlc:LayoutItem Label="Serial #" >
                         <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.SerialNumber}" />
                     </dxlc:LayoutItem>
+                    
                     <dxlc:LayoutItem Label="Embedded" >
                         <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Embedded}" />
                     </dxlc:LayoutItem>
+                    
                     <dxlc:LayoutItem Label="Enable"  >
                         <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" />
                     </dxlc:LayoutItem>
@@ -210,6 +207,7 @@
                 		    Content="{Binding CloseInterfaceKitContent, FallbackValue='CloseIK' }"
                 		    ToolTip="{Binding CloseInterfaceKitToolTip, FallbackValue='CloseIK ToolTip' }" />
                     </dxlc:LayoutItem>
+                    
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Orientation="Horizontal" View="GroupBox" Header="Digital Inputs" IsCollapsible="True"  >
@@ -366,7 +364,7 @@
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
 
-                    <!--<dxlc:LayoutGroup Name="lgAnalogInputs_A1" Orientation="Vertical" DataContext="{Binding Source=sensors[1]}" >
+                    <dxlc:LayoutGroup Name="lgAnalogInputs_A1" Orientation="Vertical" DataContext="{Binding Source=sensors[1]}" >
                         <dxlc:LayoutItem Label="Sensor Type" LabelPosition="Top">
                             <dxe:ComboBoxEdit DataContext="{StaticResource SensorList}" ItemsSource="{Binding }" DisplayMember="@Name" />
                         </dxlc:LayoutItem>
@@ -602,7 +600,7 @@
                         <dxlc:LayoutItem Label="A7-Max" LabelPosition="Top">
                             <dxe:SpinEdit MinValue="0" MaxValue="1000" Value="{Binding MaxRange, Mode=TwoWay}"/>
                         </dxlc:LayoutItem>
-                    </dxlc:LayoutGroup>-->
+                    </dxlc:LayoutGroup>
 
                 </dxlc:LayoutGroup>
 
