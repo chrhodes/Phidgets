@@ -140,7 +140,7 @@
                  	MouseDoubleClick="teConfigFIleName_MouseDoubleClick" />
             -->
                 <dxe:TextEdit
-            		Text="{Binding ConfigFileNameText }"
+            		Text="{Binding ConfigFileName }"
                 	ToolTip="{Binding ConfigFileNameToolTip }">
                     <i1:Interaction.Triggers>
                         <i1:EventTrigger EventName="MouseDoubleClick">
@@ -150,25 +150,53 @@
                 </dxe:TextEdit>
             </dxlc:LayoutItem>
             
- 
-            <dxlc:LayoutItem Label="Hosts" LabelPosition="Left">
-                <dxe:ComboBoxEdit ItemsSource="{Binding Hosts2 }" DisplayMember="Name" />
-            </dxlc:LayoutItem>
-            <!--<dxlc:LayoutGroup Name="lgInterfaceKits" Orientation="Vertical" DataContext="{Binding Path=IK}" Padding="0"  >-->
-                <dxlc:LayoutGroup Name="lgInterfaceKits" Orientation="Vertical" Padding="0"  >
-                <dxlc:LayoutGroup 
-                	View="Group" Orientation="Horizontal" >
+            <dxlc:LayoutGroup View="Group" Orientation="Horizontal" HorizontalAlignment="Left" >
+                <dxlc:LayoutItem Label="Hosts" LabelPosition="Left" >
+                    <dxe:ComboBoxEdit Width="100" ItemsSource="{Binding Hosts2}" DisplayMember="Name" SelectedItem="{Binding SelectedHost}"
+                                      SelectedIndex="0"/>
+                </dxlc:LayoutItem>
+                <!--<dxlc:LayoutItem Label="HostName" >
+                    <dxe:TextEdit Text="{Binding SelectedHost.Name }"/>
+                </dxlc:LayoutItem>-->
+                <dxlc:LayoutItem Label="IPAddress" >
+                    <dxe:TextEdit Text="{Binding SelectedHost.IPAddress }"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Port" >
+                    <dxe:TextEdit Text="{Binding SelectedHost.Port }"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Enable" >
+                    <dxe:TextEdit Text="{Binding SelectedHost.Enable }"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Name="lgInterfaceKits" Orientation="Vertical" Padding="0"  >
+
+                <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Left">
                     <dxlc:LayoutItem Label="InterfaceKits" LabelPosition="Left">
                         <!--<dxe:ComboBoxEdit x:Name="cbeInterfaceKits" 
                                           DataContext="{StaticResource InterfaceKitList}" ItemsSource="{Binding }" DisplayMember="@Name" />-->
-                        <dxe:ComboBoxEdit x:Name="cbeInterfaceKits" 
-                                          ItemsSource="{Binding Hosts[0].InterfaceKits}" DisplayMember="Name" />
+                        <dxe:ComboBoxEdit x:Name="cbeInterfaceKits" Width="100"
+                                          ItemsSource="{Binding InterfaceKits2}" DisplayMember="Name" SelectedItem="{Binding SelectedInterfaceKit}"/>
+                    </dxlc:LayoutItem>
+                    <!--<dxlc:LayoutItem Label="Name" >
+                        <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Name}" />
+                    </dxlc:LayoutItem>-->
+                    <!--<dxlc:LayoutItem Label="Label" >
+                        <dxe:TextEdit EditValue="{Binding Label}" />
+                    </dxlc:LayoutItem>-->
+                    <!--<dxlc:LayoutItem Label="ID" >
+                        <dxe:TextEdit EditValue="{Binding ID, Mode=OneWay}" />
+                    </dxlc:LayoutItem>-->
+                    <dxlc:LayoutItem Label="Serial #" >
+                        <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.SerialNumber}" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Embedded" >
+                        <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Embedded}" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Enable"  >
+                        <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" />
                     </dxlc:LayoutItem>
 
-                    <!--<dxlc:LayoutItem Label="InterfaceKits" LabelPosition="Left" >
-                    <dxe:ComboBoxEdit Name="cbeInterfaceKits" ItemsSource="{Binding Path=InterfaceKits}" 
-                                      SelectedIndexChanged="cbeInterfaceKits_SelectedIndexChanged" />
-                </dxlc:LayoutItem>-->
                     <dxlc:LayoutItem HorizontalAlignment="Right">
                         <Button 
 		                    Command="{Binding OpenInterfaceKitCommand }"
@@ -181,24 +209,6 @@
                 		    Command="{Binding CloseInterfaceKitCommand }"
                 		    Content="{Binding CloseInterfaceKitContent, FallbackValue='CloseIK' }"
                 		    ToolTip="{Binding CloseInterfaceKitToolTip, FallbackValue='CloseIK ToolTip' }" />
-                    </dxlc:LayoutItem>
-                </dxlc:LayoutGroup>
-
-                <dxlc:LayoutGroup Orientation="Horizontal" >
-                    <dxlc:LayoutItem Label="Name" >
-                        <dxe:TextEdit EditValue="{Binding Name, Mode=OneWay}" />
-                    </dxlc:LayoutItem>
-                    <!--<dxlc:LayoutItem Label="Label" >
-                        <dxe:TextEdit EditValue="{Binding Label}" />
-                    </dxlc:LayoutItem>-->
-                    <dxlc:LayoutItem Label="ID" >
-                        <dxe:TextEdit EditValue="{Binding ID, Mode=OneWay}" />
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="Serial #" Width="120" >
-                        <dxe:TextEdit EditValue="{Binding SerialNumber, Mode=OneWay}" />
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="Version" Width="100" >
-                        <dxe:TextEdit EditValue="{Binding Version, Mode=OneWay}" Width="200" />
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
 

@@ -50,7 +50,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // For now just hard code this.  Can have UI let us choose later.
 
-            LoggingUIConfigFileName = "phidgetconfig.json";
+            ConfigFileName = "phidgetconfig.json";
             LoadUIConfig();
 
             //SayHelloCommand = new DelegateCommand(
@@ -64,7 +64,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
-            string jsonString = File.ReadAllText(LoggingUIConfigFileName);
+            string jsonString = File.ReadAllText(ConfigFileName);
 
             Resources.PhidgetConfig? phidgetConfig = JsonSerializer.Deserialize<Resources.PhidgetConfig>(jsonString);
             this.Hosts2 = phidgetConfig.Hosts.ToList<Resources.Host>();
@@ -89,18 +89,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        private string _loggingUIConfigFileName;
-        public string LoggingUIConfigFileName
-        {
-            get => _loggingUIConfigFileName;
-            set
-            {
-                if (_loggingUIConfigFileName == value)
-                    return;
-                _loggingUIConfigFileName = value;
-                OnPropertyChanged();
-            }
-        }
 
         private Resources.PhidgetConfig _phidgetConfig;
         public Resources.PhidgetConfig PhidgetConfig
@@ -156,6 +144,65 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private Resources.Host _selectedHost;
+        public Resources.Host SelectedHost
+        {
+            get => _selectedHost;
+            set
+            {
+                if (_selectedHost == value)
+                    return;
+                _selectedHost = value;
+                InterfaceKits2 = _selectedHost.InterfaceKits.ToList<Resources.InterfaceKit>();
+                OnPropertyChanged();
+            }
+        }
+
+        private IEnumerable<Resources.InterfaceKit> _InterfaceKits2;
+        public IEnumerable<Resources.InterfaceKit> InterfaceKits2
+        {
+            get
+            {
+                if (null == _InterfaceKits2)
+                {
+                    // TODO(crhodes)
+                    // Load this like the sensors.xml for now
+
+                    //_InterfaceKits =
+                    //    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("InterfaceKits").Elements("InterfaceKit")
+                    //    select new InterfaceKit(
+                    //        item.Attribute("Name").Value,
+                    //        item.Attribute("IPAddress").Value,
+                    //        item.Attribute("Port").Value,
+                    //        bool.Parse(item.Attribute("Enable").Value)
+                    //        );
+                }
+
+                return _InterfaceKits2;
+            }
+
+            set
+            {
+                _InterfaceKits2 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Resources.InterfaceKit _selectedInterfaceKit;
+        public Resources.InterfaceKit SelectedInterfaceKit
+        {
+            get => _selectedInterfaceKit;
+            set
+            {
+                if (_selectedInterfaceKit == value)
+                    return;
+                _selectedInterfaceKit = value;
+
+                OnPropertyChanged();
+            }
+        }
+        
 
         private IEnumerable<Resources.Sensor> _Sensors2;
         public IEnumerable<Resources.Sensor> Sensors2
@@ -357,7 +404,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         #region OpenInterfaceKit Command
 
         public DelegateCommand OpenInterfaceKitCommand { get; set; }
-        public string OpenInterfaceKitContent { get; set; } = "OpenInterfaceKit";
+        public string OpenInterfaceKitContent { get; set; } = "Open";
         public string OpenInterfaceKitToolTip { get; set; } = "OpenInterfaceKit ToolTip";
 
         // Can get fancy and use Resources
@@ -415,7 +462,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         #region CloseInterfaceKit Command
 
         public DelegateCommand CloseInterfaceKitCommand { get; set; }
-        public string CloseInterfaceKitContent { get; set; } = "CloseInterfaceKit";
+        public string CloseInterfaceKitContent { get; set; } = "Close";
         public string CloseInterfaceKitToolTip { get; set; } = "CloseInterfaceKit ToolTip";
 
         // Can get fancy and use Resources
