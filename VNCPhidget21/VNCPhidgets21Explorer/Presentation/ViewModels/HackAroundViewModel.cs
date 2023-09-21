@@ -332,17 +332,42 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //InterfaceKit ifk22 = new InterfaceKit();
             //InterfaceKit ifk23 = new InterfaceKit();
 
+            VNC.Phidget.InterfaceKitEx ifkEx11 = new VNC.Phidget.InterfaceKitEx("192.168.150.11", 5001, sbc11SerialNumber, enable: true, embedded: true);
+            VNC.Phidget.InterfaceKitEx ifkEx21 = new VNC.Phidget.InterfaceKitEx("192.168.150.21", 5001, sbc21SerialNumber, enable: true, embedded: true);
+            VNC.Phidget.InterfaceKitEx ifkEx22 = new VNC.Phidget.InterfaceKitEx("192.168.150.22", 5001, sbc22SerialNumber, enable: true, embedded: true);
+            VNC.Phidget.InterfaceKitEx ifkEx23 = new VNC.Phidget.InterfaceKitEx("192.168.150.23", 5001, sbc23SerialNumber, enable: true, embedded: true);
+
             try
             {
+                //await Task.Run(() =>
+                //{
+                //    Parallel.Invoke(
+                //         () => InterfaceKitParty(sbc11SerialNumber, "192.168.150.11", 5001, 500, 5 * Repeats),
+                //         () => InterfaceKitParty(sbc21SerialNumber, "192.168.150.21", 5001, 250, 10 * Repeats),
+                //         () => InterfaceKitParty(sbc22SerialNumber, "192.168.150.22", 5001, 125, 20 * Repeats),
+                //         () => InterfaceKitParty(sbc23SerialNumber, "192.168.150.23", 5001, 333, 8 * Repeats)
+                //     );
+                //});
+
+                ifkEx11.Open();
+                ifkEx21.Open();
+                ifkEx22.Open();
+                ifkEx23.Open();
+
                 await Task.Run(() =>
                 {
                     Parallel.Invoke(
-                         () => InterfaceKitParty(sbc11SerialNumber, "192.168.150.11", 5001, 500, 5 * Repeats),
-                         () => InterfaceKitParty(sbc21SerialNumber, "192.168.150.21", 5001, 250, 10 * Repeats),
-                         () => InterfaceKitParty(sbc22SerialNumber, "192.168.150.22", 5001, 125, 20 * Repeats),
-                         () => InterfaceKitParty(sbc23SerialNumber, "192.168.150.23", 5001, 333, 8 * Repeats)
+                         () => InterfaceKitParty2(ifkEx11, 500, 5 * Repeats),
+                         () => InterfaceKitParty2(ifkEx21, 250, 10 * Repeats),
+                         () => InterfaceKitParty2(ifkEx22, 125, 20 * Repeats),
+                         () => InterfaceKitParty2(ifkEx23, 333, 8 * Repeats)
                      );
                 });
+
+                ifkEx11.Close();
+                ifkEx21.Close();
+                ifkEx22.Close();
+                ifkEx23.Close();
 
                 //InterfaceKitParty(sbc21SerialNumber, "192.168.150.21", 5001, 250, 10);
                 //InterfaceKitParty(ifk0, sbc21SerialNumber, "192.168.150.21", 5001, 250);
@@ -417,6 +442,45 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        private void InterfaceKitParty2(VNC.Phidget.InterfaceKitEx ifkEx, Int32 sleep, Int32 loops)
+        {
+            try
+            {
+                Log.Debug($"InterfaceKitParty2 {ifkEx.HostIPAddress},{ifkEx.Port} {ifkEx.SerialNumber} sleep:{sleep} loops:{loops}", Common.LOG_CATEGORY);
+
+                //VNC.Phidget.InterfaceKitEx ifkEx = new VNC.Phidget.InterfaceKitEx(hostName, port, serialNumber, enable: true, embedded: true);
+
+                //ifkEx.Open();
+
+                //ifk.Attach += Ifk_Attach;
+                //ifk.Detach += Ifk_Detach;
+                //ifk.Error += Ifk_Error;
+                //ifk.InputChange += Ifk_InputChange;
+                ifkEx.OutputChange += Ifk_OutputChange;
+                //ifk.SensorChange += Ifk_SensorChange;
+                //ifk.ServerConnect += Ifk_ServerConnect;
+                //ifk.ServerDisconnect += Ifk_ServerDisconnect;
+
+                //ifk.open(serialNumber, hostName, port);
+                //ifk.waitForAttachment();
+
+                InterfaceKitDigitalOutputCollection ifkdoc = ifkEx.outputs;
+
+                for (int i = 0; i < loops; i++)
+                {
+                    ifkdoc[0] = true;
+                    Thread.Sleep(sleep);
+                    ifkdoc[0] = false;
+                    Thread.Sleep(sleep);
+                }
+
+                ifkEx.Close();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
         private void Ifk_ServerDisconnect(object sender, Phidgets.Events.ServerDisconnectEventArgs e)
         {
             try

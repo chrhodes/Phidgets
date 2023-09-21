@@ -134,7 +134,8 @@
                 <dxlc:LayoutGroup 
                 	View="Group" Orientation="Horizontal" >
                     <dxlc:LayoutItem Label="InterfaceKits" LabelPosition="Left">
-                        <dxe:ComboBoxEdit DataContext="{StaticResource InterfaceKitList}" ItemsSource="{Binding }" DisplayMember="@Name" />
+                        <dxe:ComboBoxEdit x:Name="cbeInterfaceKits" 
+                                          DataContext="{StaticResource InterfaceKitList}" ItemsSource="{Binding }" DisplayMember="@Name" />
                     </dxlc:LayoutItem>
 
                     <!--<dxlc:LayoutItem Label="InterfaceKits" LabelPosition="Left" >
@@ -150,23 +151,19 @@
 
                     <dxlc:LayoutItem HorizontalAlignment="Right">
                         <Button 
-                		Command="{Binding CloseInterfaceKitCommand }"
-                		Content="{Binding CloseInterfaceKitContent, FallbackValue='CloseIK' }"
-                		ToolTip="{Binding CloseInterfaceKitToolTip, FallbackValue='CloseIK ToolTip' }" />
+                		    Command="{Binding CloseInterfaceKitCommand }"
+                		    Content="{Binding CloseInterfaceKitContent, FallbackValue='CloseIK' }"
+                		    ToolTip="{Binding CloseInterfaceKitToolTip, FallbackValue='CloseIK ToolTip' }" />
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
-
-                
- 
-
 
                 <dxlc:LayoutGroup Orientation="Horizontal" >
                     <dxlc:LayoutItem Label="Name" >
                         <dxe:TextEdit EditValue="{Binding Name, Mode=OneWay}" />
                     </dxlc:LayoutItem>
                     <!--<dxlc:LayoutItem Label="Label" >
-            <dxe:TextEdit EditValue="{Binding Label}" />
-        </dxlc:LayoutItem>-->
+                        <dxe:TextEdit EditValue="{Binding Label}" />
+                    </dxlc:LayoutItem>-->
                     <dxlc:LayoutItem Label="ID" >
                         <dxe:TextEdit EditValue="{Binding ID, Mode=OneWay}" />
                     </dxlc:LayoutItem>

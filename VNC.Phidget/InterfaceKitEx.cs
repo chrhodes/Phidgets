@@ -276,19 +276,34 @@ namespace VNC.Phidget
 
         public void Open()
         {
-            //interfaceKit.open(_hostSerialNumber, _hostIPAddress, _hostPort);
+            try
+            {
+                //interfaceKit.open(_hostSerialNumber, _hostIPAddress, _hostPort);
 
-            //interfaceKit.waitForAttachment();
-            this.open(_hostSerialNumber, _hostIPAddress, _hostPort);
+                //interfaceKit.waitForAttachment();
+                this.open(_hostSerialNumber, _hostIPAddress, _hostPort);
 
-            this.waitForAttachment();
+                this.waitForAttachment();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
         }
 
         public void Close()
         {
             //interfaceKit.close();
 
-            this.close();
+            try
+            {
+                this.close();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+           
         }
 
         #endregion
