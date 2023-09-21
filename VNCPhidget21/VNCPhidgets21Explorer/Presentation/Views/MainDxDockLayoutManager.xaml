@@ -96,14 +96,6 @@
                     <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.HackAroundRegion}" />
                 </dxdo:LayoutPanel>
 
-                <!--<dxdo:LayoutPanel Caption="MINSK" AutoHidden="False" ShowCloseButton="False">
-                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerMINSKMainRegion}" />
-                </dxdo:LayoutPanel>-->
-
-                <!--<dxdo:LayoutPanel Caption="EASE" AutoHidden="False" ShowCloseButton="False">
-                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerEASEMainRegion}" />
-                </dxdo:LayoutPanel>-->
-
             </dxdo:LayoutGroup>
 
             <dxdo:LayoutGroup VerticalAlignment="Bottom" Name="lg_Footer" >

@@ -29,9 +29,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         //DigitalOutput digitalOutput0;
         //ph22.DigitalOutput digitalOutput2;
 
-
-
-
         const Int32 sbc11SerialNumber = 46049;
 
         const Int32 sbc21SerialNumber = 48301;
@@ -329,23 +326,25 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private async Task OpenSBCInterfaceKit()
         {
-            InterfaceKit ifk11 = new InterfaceKit();
+            //InterfaceKit ifk11 = new InterfaceKit();
 
-            InterfaceKit ifk21 = new InterfaceKit();
-            InterfaceKit ifk22 = new InterfaceKit();
-            InterfaceKit ifk23 = new InterfaceKit();
+            //InterfaceKit ifk21 = new InterfaceKit();
+            //InterfaceKit ifk22 = new InterfaceKit();
+            //InterfaceKit ifk23 = new InterfaceKit();
 
             try
             {
                 await Task.Run(() =>
                 {
                     Parallel.Invoke(
-                         () => InterfaceKitParty(ifk11, sbc11SerialNumber, "192.168.150.11", 5001, 500, 5 * Repeats),
-                         () => InterfaceKitParty(ifk21, sbc21SerialNumber, "192.168.150.21", 5001, 250, 10 * Repeats),
-                         () => InterfaceKitParty(ifk22, sbc22SerialNumber, "192.168.150.22", 5001, 125, 20 * Repeats),
-                         () => InterfaceKitParty(ifk23, sbc23SerialNumber, "192.168.150.23", 5001, 333, 8 * Repeats)
+                         () => InterfaceKitParty(sbc11SerialNumber, "192.168.150.11", 5001, 500, 5 * Repeats),
+                         () => InterfaceKitParty(sbc21SerialNumber, "192.168.150.21", 5001, 250, 10 * Repeats),
+                         () => InterfaceKitParty(sbc22SerialNumber, "192.168.150.22", 5001, 125, 20 * Repeats),
+                         () => InterfaceKitParty(sbc23SerialNumber, "192.168.150.23", 5001, 333, 8 * Repeats)
                      );
                 });
+
+                //InterfaceKitParty(sbc21SerialNumber, "192.168.150.21", 5001, 250, 10);
                 //InterfaceKitParty(ifk0, sbc21SerialNumber, "192.168.150.21", 5001, 250);
                 //InterfaceKitParty(ifk1, sbc22SerialNumber, "192.168.150.22", 5001, 125);
                 //InterfaceKitParty(ifk2, sbc23SerialNumber, "192.168.150.23", 5001, 333);
@@ -378,24 +377,29 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private async void InterfaceKitParty(InterfaceKit ifk, Int32 serialNumber, string hostName, Int32 port, Int32 sleep, Int32 loops)
+        private void InterfaceKitParty(Int32 serialNumber, string hostName, Int32 port, Int32 sleep, Int32 loops)
         {
             try
             {
                 Log.Debug($"InterfaceKitParty {hostName},{port} {serialNumber} sleep:{sleep} loops:{loops}", Common.LOG_CATEGORY);
-                ifk.Attach += Ifk_Attach;
-                ifk.Detach += Ifk_Detach;
-                ifk.Error += Ifk_Error;
-                ifk.InputChange += Ifk_InputChange;
-                ifk.OutputChange += Ifk_OutputChange;
-                ifk.SensorChange += Ifk_SensorChange;
-                ifk.ServerConnect += Ifk_ServerConnect;
-                ifk.ServerDisconnect += Ifk_ServerDisconnect;
 
-                ifk.open(serialNumber, hostName, port);
-                ifk.waitForAttachment();
+                VNC.Phidget.InterfaceKitEx ifkEx = new VNC.Phidget.InterfaceKitEx(hostName, port, serialNumber, enable: true, embedded: true);
 
-                InterfaceKitDigitalOutputCollection ifkdoc = ifk.outputs;
+                ifkEx.Open();
+
+                //ifk.Attach += Ifk_Attach;
+                //ifk.Detach += Ifk_Detach;
+                //ifk.Error += Ifk_Error;
+                //ifk.InputChange += Ifk_InputChange;
+                ifkEx.OutputChange += Ifk_OutputChange;
+                //ifk.SensorChange += Ifk_SensorChange;
+                //ifk.ServerConnect += Ifk_ServerConnect;
+                //ifk.ServerDisconnect += Ifk_ServerDisconnect;
+
+                //ifk.open(serialNumber, hostName, port);
+                //ifk.waitForAttachment();
+
+                InterfaceKitDigitalOutputCollection ifkdoc = ifkEx.outputs;
 
                 for (int i = 0; i < loops; i++)
                 {
@@ -405,7 +409,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     Thread.Sleep(sleep);
                 }
 
-                ifk.close();
+                ifkEx.Close();
             }
             catch (Exception ex)
             {

@@ -44,8 +44,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             OpenInterfaceKitCommand = new DelegateCommand(OpenInterfaceKit, OpenInterfaceKitCanExecute);
             CloseInterfaceKitCommand = new DelegateCommand(CloseInterfaceKit, CloseInterfaceKitCanExecute);
 
-            SayHelloCommand = new DelegateCommand(
-                SayHello, SayHelloCanExecute);
+            //SayHelloCommand = new DelegateCommand(
+            //    SayHello, SayHelloCanExecute);
                 
             Message = "InterfaceKitViewModel says hello";           
 
@@ -66,7 +66,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public ICommand SayHelloCommand { get; private set; }
+        //public ICommand SayHelloCommand { get; private set; }
         
         private string _message;
 
@@ -142,21 +142,21 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region InterfaceKits
 
-        private InterfaceKit _IK;
-        public InterfaceKit IK
+        private InterfaceKitEx _IK;
+        public InterfaceKitEx IK
         {
             get { return _IK; }
             set { _IK = value; }
         }
 
-        private Dictionary<string, InterfaceKit> _InterfaceKitsD;
-        public Dictionary<string, InterfaceKit> InterfaceKitsD
+        private Dictionary<string, InterfaceKitEx> _InterfaceKitsD;
+        public Dictionary<string, InterfaceKitEx> InterfaceKitsD
         {
             get
             {
                 if (null == _InterfaceKitsD)
                 {
-                    _InterfaceKitsD = new Dictionary<string, InterfaceKit>();
+                    _InterfaceKitsD = new Dictionary<string, InterfaceKitEx>();
                 }
                 return _InterfaceKitsD;
             }
