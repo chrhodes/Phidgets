@@ -7,7 +7,7 @@
     <UseWPF>true</UseWPF>
     <!--<GenerateAssemblyInfo>false</GenerateAssemblyInfo>-->
     <!--<Nullable>enable</Nullable>-->
-    <FileVersion>2023.09.20B</FileVersion>
+    <FileVersion>2023.09.21A</FileVersion>
   </PropertyGroup>
 
     <PropertyGroup Condition="'$(TargetFramework)' == 'net6.0-windows'">
@@ -30,6 +30,10 @@
   <ItemGroup>
     <None Remove="Resources\HostList.xml" />
     <None Remove="Resources\InterfaceKitList.xml" />
+    <None Remove="Resources\json\host.json" />
+    <None Remove="Resources\json\interfacekit.json" />
+    <None Remove="Resources\json\phidgetconfig.json" />
+    <None Remove="Resources\json\sensor.json" />
     <None Remove="Resources\SensorList.xml" />
   </ItemGroup>
 
@@ -41,6 +45,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\ApplicationIcon-Right-Red.ico" />
+    <Content Include="Resources\json\host.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\interfacekit.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\phidgetconfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\sensor.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\SensorList.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -56,6 +72,7 @@
         <PackageReference Include="DevExpress.Wpf.NavBar" Version="23.1.5" />
         <PackageReference Include="DevExpress.Wpf.Ribbon" Version="23.1.5" />
         <PackageReference Include="EntityFramework" Version="6.4.4" />
+        <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
         <PackageReference Include="Prism.Unity" Version="8.1.97" />
     </ItemGroup>
         

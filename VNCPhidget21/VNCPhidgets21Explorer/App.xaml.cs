@@ -15,6 +15,7 @@ using VNC.Core.Presentation.Views;
 using VNCPhidgets21Explorer.Presentation.Views;
 using DevExpress.CodeParser;
 using System.Reflection;
+using System.IO;
 
 namespace VNCPhidgets21Explorer
 {
@@ -44,6 +45,8 @@ namespace VNCPhidgets21Explorer
             var appVersion = System.Diagnostics.FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
 
             Common.SetVersionInfoApplication(runtimeVersion, appVersion);
+
+            Directory.SetCurrentDirectory("Resources/json");
 
             Log.APPLICATION_START(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
