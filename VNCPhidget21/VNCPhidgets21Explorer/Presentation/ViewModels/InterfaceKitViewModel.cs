@@ -672,7 +672,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 IkAttached = ActiveInterfaceKit.Attached;
                 IkAttachedToServer = ActiveInterfaceKit.AttachedToServer;
                 IkClass = ActiveInterfaceKit.Class.ToString();
-                IkID = ActiveInterfaceKit.ID.ToString();
+                //IkID = ActiveInterfaceKit.ID.ToString();
+                IkID = Enum.GetName(typeof(Phidget.PhidgetID), ActiveInterfaceKit.ID);
                 IkLabel = ActiveInterfaceKit.Label;
                 //IkLibraryVersion = ActiveInterfaceKit.Li
                 IkName = ActiveInterfaceKit.Name;
