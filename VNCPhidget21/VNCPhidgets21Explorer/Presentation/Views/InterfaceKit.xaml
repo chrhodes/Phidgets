@@ -153,23 +153,23 @@
             <dxlc:LayoutGroup View="Group" Orientation="Horizontal" HorizontalAlignment="Left" >
                 
                 <dxlc:LayoutItem Label="Hosts" LabelPosition="Left" >
-                    <dxe:ComboBoxEdit Width="100" ItemsSource="{Binding Hosts2}" DisplayMember="Name" 
+                    <dxe:ComboBoxEdit Width="150" ItemsSource="{Binding Hosts2}" DisplayMember="Name" 
                                       SelectedItem="{Binding SelectedHost}"
                                       SelectedIndex="0"/>
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem Label="IPAddress" >
-                    <Label Content="{Binding SelectedHost.IPAddress }" />
-                    <!--<dxe:TextEdit Text="{Binding SelectedHost.IPAddress }"/>-->
+                    <!--<Label Content="{Binding SelectedHost.IPAddress}"  />-->
+                    <dxe:TextEdit Text="{Binding SelectedHost.IPAddress }" IsReadOnly="True" Foreground="Red" />
                 </dxlc:LayoutItem>
                 
                 <dxlc:LayoutItem Label="Port" >
-                    <Label Content="{Binding SelectedHost.Port }" />
-                    <!--<dxe:TextEdit Text="{Binding SelectedHost.Port }"/>-->
+                    <!--<Label Content="{Binding SelectedHost.Port }" />-->
+                    <dxe:TextEdit Text="{Binding SelectedHost.Port }" IsReadOnly="True" Foreground="Red" />
                 </dxlc:LayoutItem>
                 
                 <dxlc:LayoutItem Label="Enable" >
-                    <dxe:TextEdit Text="{Binding SelectedHost.Enable }"/>
+                    <dxe:TextEdit Text="{Binding SelectedHost.Enable }" IsReadOnly="True" Foreground="Red" />
                 </dxlc:LayoutItem>
                 
             </dxlc:LayoutGroup>
@@ -179,25 +179,25 @@
                 <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Left">
                     
                     <dxlc:LayoutItem Label="InterfaceKits" LabelPosition="Left">
-                        <dxe:ComboBoxEdit Width="100"
+                        <dxe:ComboBoxEdit Width="150"
                                           ItemsSource="{Binding InterfaceKits2}" DisplayMember="Name" 
                                           SelectedItem="{Binding SelectedInterfaceKit}"
                                           SelectedIndex="0"/>
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="Serial #" >
-                        <Label Content="{Binding SelectedInterfaceKit.SerialNumber}" />
-                        <!--<dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.SerialNumber}" />-->
+                        <!--<Label Content="{Binding SelectedInterfaceKit.SerialNumber}" />-->
+                        <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.SerialNumber}" IsReadOnly="True" Foreground="Red"/>
                     </dxlc:LayoutItem>
                     
                     <dxlc:LayoutItem Label="Embedded" >
-                        <Label Content="{Binding SelectedInterfaceKit.Embedded }" />
-                        <!--<dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Embedded}" />-->
+                        <!--<Label Content="{Binding SelectedInterfaceKit.Embedded }" />-->
+                        <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Embedded}" IsReadOnly="True" Foreground="Red"/>
                     </dxlc:LayoutItem>
                     
                     <dxlc:LayoutItem Label="Enable"  >
-                        <Label Content="{Binding SelectedInterfaceKit.Enable }" />
-                        <!--<dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" />-->
+                        <!--<Label Content="{Binding SelectedInterfaceKit.Enable }" />-->
+                        <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" IsReadOnly="True" Foreground="Red"/>
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem HorizontalAlignment="Right">
@@ -222,64 +222,57 @@
                     <!--<dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Left" >-->
 
                     <dxlc:LayoutItem Label="Address" >
-                        <Label Content="{Binding ActiveInterfaceKit.Address}" />
+                        <!--<Label Content="{Binding ActiveInterfaceKit.Address}" />-->
+                        <!--<dxe:TextEdit EditValue="{Binding ActiveInterfaceKit.Address, Mode=OneWay}" IsReadOnly="True" Foreground="Red"/>-->
+                        <dxe:TextEdit EditValue="{Binding IkAddress, Mode=OneWay}" IsReadOnly="True" Foreground="Red"/>
                     </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Attached" >
-                            <Label Content="{Binding ActiveInterfaceKit.Attached }" />
-                        </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Attached" >
+                        <dxe:TextEdit EditValue="{Binding IkAttached, Mode=OneWay}" IsReadOnly="True" Foreground="Red"/>
+                    </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="AttachedToServer" >
-                            <Label Content="{Binding ActiveInterfaceKit.AttachedToServer }" />
-                        </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="AttachedToServer" >
+                        <dxe:TextEdit EditValue="{Binding IkAttachedToServer, Mode=OneWay}" IsReadOnly="True" Foreground="Red"/>
+                    </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="Class" >
-                        <Label Content="{Binding ActiveInterfaceKit.Class }" />
-                        <!--<dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Embedded}" />-->
+                        <dxe:TextEdit EditValue="{Binding IkClass, Mode=OneWay}" IsReadOnly="True" Foreground="Red"/>
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="ID"  >
-                        <Label Content="{Binding ActiveInterfaceKit.ID }" />
-                        <!--<dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" />-->
+                        <dxe:TextEdit EditValue="{Binding IkID, Mode=OneWay}" IsReadOnly="True" Foreground="Red"/>
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="Label"  >
-                            <Label Content="{Binding ActiveInterfaceKit.Label }" />
+                        <dxe:TextEdit EditValue="{Binding IkLabel, Mode=OneWay}" IsReadOnly="True" Foreground="Red"/>
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="LibraryVersion"  >
-                        <Label Content="{Binding ActiveInterfaceKit.LibraryVersion}" />
-                        <!--<dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" />-->
+                        <dxe:TextEdit EditValue="{Binding IkLibraryVersion, Mode=OneWay}" IsReadOnly="True" Foreground="Red"/>
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="Name"  >
-                        <Label Content="{Binding ActiveInterfaceKit.Name }" />
-                        <!--<dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" />-->
+                        <dxe:TextEdit EditValue="{Binding IkName, Mode=OneWay}" IsReadOnly="True" Foreground="Red"/>
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="Port"  >
-                        <Label Content="{Binding ActiveInterfaceKit.Port}" />
-                        <!--<dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" />-->
+                        <dxe:TextEdit EditValue="{Binding IkPort, Mode=OneWay}" IsReadOnly="True" Foreground="Red"/>
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="SerialNumber"  >
-                        <Label Content="{Binding ActiveInterfaceKit.SerialNumber }" />
-                        <!--<dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" />-->
+                        <dxe:TextEdit EditValue="{Binding IkSerialNumber, Mode=OneWay}" IsReadOnly="True" Foreground="Red"/>
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="ServerID"  >
-                        <Label Content="{Binding ActiveInterfaceKit.ServerID}" />
-                        <!--<dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" />-->
+                        <dxe:TextEdit EditValue="{Binding IkServerID, Mode=OneWay}" IsReadOnly="True" Foreground="Red"/>
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="Type"  >
-                        <Label Content="{Binding ActiveInterfaceKit.Type }" />
-                        <!--<dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" />-->
+                        <dxe:TextEdit EditValue="{Binding IkType, Mode=OneWay}" IsReadOnly="True" Foreground="Red"/>
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="Version"  >
-                        <Label Content="{Binding ActiveInterfaceKit.Version }" />
-                        <!--<dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" />-->
+                        <dxe:TextEdit EditValue="{Binding IkVersion, Mode=OneWay}" IsReadOnly="True" Foreground="Red"/>
                     </dxlc:LayoutItem>
 
                     <!--</dxlc:LayoutGroup>-->

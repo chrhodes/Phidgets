@@ -35,17 +35,6 @@ namespace VNC.Phidget
 
         private void IntitalizePhidgetInterfaceKit()
         {
-            //interfaceKit = new InterfaceKit();
-
-            //interfaceKit.Attach += Ifk_Attach;
-            //interfaceKit.Detach += Ifk_Detach;
-            //interfaceKit.Error += Ifk_Error;
-            //interfaceKit.InputChange += Ifk_InputChange;
-            //interfaceKit.OutputChange += Ifk_OutputChange;
-            //interfaceKit.SensorChange += Ifk_SensorChange;
-            //interfaceKit.ServerConnect += Ifk_ServerConnect;
-            //interfaceKit.ServerDisconnect += Ifk_ServerDisconnect;
-
             this.Attach += Ifk_Attach;
             this.Detach += Ifk_Detach;
             this.Error += Ifk_Error;
@@ -70,7 +59,7 @@ namespace VNC.Phidget
 
         #endregion
 
-        #region Fields and Properties (None)
+        #region Fields and Properties
 
         Phidgets.InterfaceKit interfaceKit = null;
             
@@ -136,7 +125,7 @@ namespace VNC.Phidget
 
         #endregion
 
-        #region Event Handlers (None)
+        #region Event Handlers
 
 
         private void Ifk_ServerDisconnect(object sender, Phidgets.Events.ServerDisconnectEventArgs e)

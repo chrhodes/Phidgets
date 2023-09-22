@@ -5,6 +5,8 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 
+using Phidgets;
+
 using Prism.Commands;
 using Prism.Events;
 using Prism.Services.Dialogs;
@@ -77,12 +79,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region Enums
+        #region Enums (none)
 
 
         #endregion
 
-        #region Structures
+        #region Structures (none)
 
 
         #endregion
@@ -216,6 +218,188 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        #region InterfaceKit Phidget Properties
+
+        private string _iKAddress;
+        public string IkAddress
+        {
+            get => _iKAddress;
+            set
+            {
+                if (_iKAddress == value)
+                    return;
+                _iKAddress = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _iKAttached;
+        public bool IkAttached
+        {
+            get => _iKAttached;
+            set
+            {
+                if (_iKAttached == value)
+                    return;
+                _iKAttached = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _ikAttachedToServer;
+        public bool IkAttachedToServer
+        {
+            get => _ikAttachedToServer;
+            set
+            {
+                if (_ikAttachedToServer == value)
+                    return;
+                _ikAttachedToServer = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _ikClass;
+
+        public string IkClass
+        {
+            get => _ikClass;
+            set
+            {
+                if (_ikClass == value)
+                    return;
+                _ikClass = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _ikID;
+        public string IkID
+        {
+            get => _ikID;
+            set
+            {
+                if (_ikID == value)
+                    return;
+                _ikID = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private string _ikLabel;
+        public string IkLabel
+        {
+            get => _ikLabel;
+            set
+            {
+                if (_ikLabel == value)
+                    return;
+                _ikLabel = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private string _ikLibraryVersion;
+        public string IkLibraryVersion
+        {
+            get => _ikLibraryVersion;
+            set
+            {
+                if (_ikLibraryVersion == value)
+                    return;
+                _ikLibraryVersion = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _ikName;
+        public string IkName
+        {
+            get => _ikName;
+            set
+            {
+                if (_ikName == value)
+                    return;
+                _ikName = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int _ikPort;
+        public int IkPort
+        {
+            get => _ikPort;
+            set
+            {
+                if (_ikPort == value)
+                    return;
+                _ikPort = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private int _ikSerialNumber;
+
+        public int IkSerialNumber
+        {
+            get => _ikSerialNumber;
+            set
+            {
+                if (_ikSerialNumber == value)
+                    return;
+                _ikSerialNumber = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private string _ikServerID;
+        public string IkServerID
+        {
+            get => _ikServerID;
+            set
+            {
+                if (_ikServerID == value)
+                    return;
+                _ikServerID = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private string _ikType;
+        public string IkType
+        {
+            get => _ikType;
+            set
+            {
+                if (_ikType == value)
+                    return;
+                _ikType = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int _ikVersion;
+        public int IkVersion
+        {
+            get => _ikVersion;
+            set
+            {
+                if (_ikVersion == value)
+                    return;
+                _ikVersion = value;
+                OnPropertyChanged();
+            }
+        }
+        
+
+
+        #endregion
 
         private IEnumerable<Resources.Sensor> _Sensors2;
         public IEnumerable<Resources.Sensor> Sensors2
@@ -442,6 +626,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 SelectedInterfaceKit.Enable, 
                 SelectedInterfaceKit.Embedded);
 
+            ActiveInterfaceKit.Attach += ActiveInterfaceKit_Attach;
+            ActiveInterfaceKit.Detach += ActiveInterfaceKit_Detach;
             ActiveInterfaceKit.Open();
 
             // Uncomment this if you are telling someone else to handle this
@@ -470,6 +656,55 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // End Cut Four
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void ActiveInterfaceKit_Attach(object sender, Phidgets.Events.AttachEventArgs e)
+        {
+            try
+            {
+                InterfaceKit ifk = (InterfaceKit)sender;
+                //Phidget device = (Phidget)e.Device;
+                //var b = e.GetType();
+                Log.Trace($"ActiveInterfaceKit_Attach {ifk.Address},{ifk.Port} S#:{ifk.SerialNumber}", Common.LOG_CATEGORY);
+                // TODO(crhodes)
+                // This is where properties should be grabbed
+                IkAddress = ActiveInterfaceKit.Address;
+                IkAttached = ActiveInterfaceKit.Attached;
+                IkAttachedToServer = ActiveInterfaceKit.AttachedToServer;
+                IkClass = ActiveInterfaceKit.Class.ToString();
+                IkID = ActiveInterfaceKit.ID.ToString();
+                IkLabel = ActiveInterfaceKit.Label;
+                //IkLibraryVersion = ActiveInterfaceKit.Li
+                IkName = ActiveInterfaceKit.Name;
+                IkPort = ActiveInterfaceKit.Port;
+                IkSerialNumber = ActiveInterfaceKit.SerialNumber;
+                IkServerID = ActiveInterfaceKit.ServerID;
+                IkType = ActiveInterfaceKit.Type;
+                IkVersion = ActiveInterfaceKit.Version;
+
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
+
+        private void ActiveInterfaceKit_Detach(object sender, Phidgets.Events.DetachEventArgs e)
+        {
+            try
+            {
+                InterfaceKit ifk = (InterfaceKit)sender;
+                var a = e;
+                var b = e.GetType();
+                Log.Trace($"ActiveInterfaceKit_Detach {ifk.Address},{ifk.SerialNumber}", Common.LOG_CATEGORY);
+
+                // TODO(crhodes)
+                // What kind of cleanup?  Maybe set ActiveInterfaceKit to null.  Clear UI
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
         }
 
         public bool OpenInterfaceKitCanExecute()
@@ -542,7 +777,24 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
-        // End Cut One
+        #region SayHello Command
+
+        private void SayHello()
+        {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            Message = $"Hello from {this.GetType()}";
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private bool SayHelloCanExecute()
+        {
+            return true;
+        }
+
+        #endregion
+
 
 
         #endregion
@@ -561,24 +813,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Private Methods
 
-        #region SayHello Command
 
-        private void SayHello()
-        {
-            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-
-            Message = $"Hello from {this.GetType()}";
-
-            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-        
-        private bool SayHelloCanExecute()
-        {
-            return true;
-        }
-        
-        #endregion
-        
         #endregion
 
         #region IInstanceCount
