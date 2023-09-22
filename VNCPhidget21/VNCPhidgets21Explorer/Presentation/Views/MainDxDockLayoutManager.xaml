@@ -88,7 +88,7 @@
             
             <dxdo:LayoutGroup Name="lg_Body" Orientation="Horizontal" ItemHeight="Auto" >
 
-                <dxdo:LayoutPanel Caption="InterfaceKit" AutoHidden="False" ShowCloseButton="False" MinWidth="620" >
+                <dxdo:LayoutPanel Caption="InterfaceKit" AutoHidden="False" ShowCloseButton="False" MinWidth="680" >
                     <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.InterfaceKitRegion}"/>
                 </dxdo:LayoutPanel>
 

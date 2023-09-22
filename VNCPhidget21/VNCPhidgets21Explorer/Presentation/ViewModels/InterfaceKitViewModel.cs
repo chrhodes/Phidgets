@@ -342,9 +342,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
 
-        private int _ikSerialNumber;
+        private int? _ikSerialNumber;
 
-        public int IkSerialNumber
+        public int? IkSerialNumber
         {
             get => _ikSerialNumber;
             set
@@ -384,8 +384,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private int _ikVersion;
-        public int IkVersion
+        private int? _ikVersion;
+        public int? IkVersion
         {
             get => _ikVersion;
             set
@@ -668,25 +668,61 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 Log.Trace($"ActiveInterfaceKit_Attach {ifk.Address},{ifk.Port} S#:{ifk.SerialNumber}", Common.LOG_CATEGORY);
                 // TODO(crhodes)
                 // This is where properties should be grabbed
+                UpdateInterfaceKitProperties();
+
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
+
+        private void UpdateInterfaceKitProperties()
+        {
+            if (ActiveInterfaceKit.Attached)
+            {
                 IkAddress = ActiveInterfaceKit.Address;
                 IkAttached = ActiveInterfaceKit.Attached;
                 IkAttachedToServer = ActiveInterfaceKit.AttachedToServer;
                 IkClass = ActiveInterfaceKit.Class.ToString();
-                //IkID = ActiveInterfaceKit.ID.ToString();
                 IkID = Enum.GetName(typeof(Phidget.PhidgetID), ActiveInterfaceKit.ID);
                 IkLabel = ActiveInterfaceKit.Label;
-                //IkLibraryVersion = ActiveInterfaceKit.Li
+                //IkLibraryVersion = ActiveInterfaceKit.LibraryVersion;
+                IkLibraryVersion = Phidget.LibraryVersion;  // THis is a static field
                 IkName = ActiveInterfaceKit.Name;
                 IkPort = ActiveInterfaceKit.Port;
                 IkSerialNumber = ActiveInterfaceKit.SerialNumber;
                 IkServerID = ActiveInterfaceKit.ServerID;
                 IkType = ActiveInterfaceKit.Type;
                 IkVersion = ActiveInterfaceKit.Version;
-
             }
-            catch (Exception ex)
+            else
             {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                // NOTE(crhodes)
+                // Commented out properties throw exceptions when Phidget not attached
+                // Just clear field
+
+                //IkAddress = ActiveInterfaceKit.Address;
+                IkAddress = "";
+                IkAttached = ActiveInterfaceKit.Attached;
+                //IkAttachedToServer = ActiveInterfaceKit.AttachedToServer;
+                IkAttachedToServer = false;
+                IkClass = ActiveInterfaceKit.Class.ToString();
+                //IkID = Enum.GetName(typeof(Phidget.PhidgetID), ActiveInterfaceKit.ID);
+                //IkLabel = ActiveInterfaceKit.Label;
+                IkLabel = "";
+                //IkLibraryVersion = ActiveInterfaceKit.LibraryVersion;
+                IkLibraryVersion = Phidget.LibraryVersion;
+                //IkName = ActiveInterfaceKit.Name;
+                IkName = "";
+                //IkSerialNumber = ActiveInterfaceKit.SerialNumber;
+                IkSerialNumber = null;
+                //IkServerID = ActiveInterfaceKit.ServerID;
+                IkServerID = "";
+                //IkType = ActiveInterfaceKit.Type;
+                IkType = "";
+                //IkVersion = ActiveInterfaceKit.Version;
+                IkVersion = null;
             }
         }
 
@@ -701,6 +737,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 // TODO(crhodes)
                 // What kind of cleanup?  Maybe set ActiveInterfaceKit to null.  Clear UI
+                UpdateInterfaceKitProperties();
             }
             catch (Exception ex)
             {
@@ -739,6 +776,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Message = "Cool, you called CloseInterfaceKit";
 
             ActiveInterfaceKit.Close();
+            UpdateInterfaceKitProperties();
             ActiveInterfaceKit = null;
 
             // Uncomment this if you are telling someone else to handle this
