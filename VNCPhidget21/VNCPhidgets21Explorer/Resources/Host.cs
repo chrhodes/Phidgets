@@ -9,8 +9,8 @@
 
         public InterfaceKit[] InterfaceKits { get; set; } = new[]
         {
-            new InterfaceKit { SerialNumber = "1234", Embedded = true, Enable = true },
-            new InterfaceKit { SerialNumber = "5678", Embedded = false, Enable = false }
+            new InterfaceKit { SerialNumber = 1234, Embedded = true, Enable = true },
+            new InterfaceKit { SerialNumber = 5678, Embedded = false, Enable = false }
         };
     }
 }

@@ -8,7 +8,7 @@
       "InterfaceKits": [
         {
           "Name": "InterfaceKit 1",
-          "SerialNumber": "46049",
+          "SerialNumber": 46049,
           "Enable": true,
           "Embedded": false
         }
@@ -22,7 +22,7 @@
       "InterfaceKits": [
         {
           "Name": "InterfaceKit psbc11",
-          "SerialNumber": "46049",
+          "SerialNumber": 46049,
           "Enable": true,
           "Embedded": true
         }
@@ -36,7 +36,7 @@
       "InterfaceKits": [
         {
           "Name": "InterfaceKit psbc21",
-          "SerialNumber": "48301",
+          "SerialNumber": 48301,
           "Enable": true,
           "Embedded": true
         }
@@ -50,7 +50,7 @@
       "InterfaceKits": [
         {
           "Name": "InterfaceKit psbc22",
-          "SerialNumber": "251831",
+          "SerialNumber": 251831,
           "Enable": true,
           "Embedded": true
         }
@@ -64,7 +64,7 @@
       "InterfaceKits": [
         {
           "Name": "InterfaceKit psbc23",
-          "SerialNumber": "48284",
+          "SerialNumber": 48284,
           "Enable": true,
           "Embedded": true
         }

@@ -6,13 +6,13 @@
   "InterfaceKits": [
     {
       "Name": "InterfaceKit 1",
-      "SerialNumber": "1234",
+      "SerialNumber": 1234,
       "Enable": true,
       "Embedded": true
     },
     {
       "Name": "InterfaceKit 2",
-      "SerialNumber": "5678",
+      "SerialNumber": 5678,
       "Enable": false,
       "Embedded": false
     }

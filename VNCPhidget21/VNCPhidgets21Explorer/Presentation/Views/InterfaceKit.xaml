@@ -159,11 +159,13 @@
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem Label="IPAddress" >
-                    <dxe:TextEdit Text="{Binding SelectedHost.IPAddress }"/>
+                    <Label Content="{Binding SelectedHost.IPAddress }" />
+                    <!--<dxe:TextEdit Text="{Binding SelectedHost.IPAddress }"/>-->
                 </dxlc:LayoutItem>
                 
                 <dxlc:LayoutItem Label="Port" >
-                    <dxe:TextEdit Text="{Binding SelectedHost.Port }"/>
+                    <Label Content="{Binding SelectedHost.Port }" />
+                    <!--<dxe:TextEdit Text="{Binding SelectedHost.Port }"/>-->
                 </dxlc:LayoutItem>
                 
                 <dxlc:LayoutItem Label="Enable" >
@@ -175,6 +177,7 @@
             <dxlc:LayoutGroup Name="lgInterfaceKits" Orientation="Vertical" Padding="0"  >
 
                 <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Left">
+                    
                     <dxlc:LayoutItem Label="InterfaceKits" LabelPosition="Left">
                         <dxe:ComboBoxEdit Width="100"
                                           ItemsSource="{Binding InterfaceKits2}" DisplayMember="Name" 
@@ -183,15 +186,18 @@
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="Serial #" >
-                        <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.SerialNumber}" />
+                        <Label Content="{Binding SelectedInterfaceKit.SerialNumber}" />
+                        <!--<dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.SerialNumber}" />-->
                     </dxlc:LayoutItem>
                     
                     <dxlc:LayoutItem Label="Embedded" >
-                        <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Embedded}" />
+                        <Label Content="{Binding SelectedInterfaceKit.Embedded }" />
+                        <!--<dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Embedded}" />-->
                     </dxlc:LayoutItem>
                     
                     <dxlc:LayoutItem Label="Enable"  >
-                        <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" />
+                        <Label Content="{Binding SelectedInterfaceKit.Enable }" />
+                        <!--<dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" />-->
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem HorizontalAlignment="Right">
@@ -209,6 +215,77 @@
                     </dxlc:LayoutItem>
                     
                 </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup 
+                	View="Group" Orientation="Vertical" >
+                    
+                    <!--<dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Left" >-->
+
+                    <dxlc:LayoutItem Label="Address" >
+                        <Label Content="{Binding ActiveInterfaceKit.Address}" />
+                    </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Attached" >
+                            <Label Content="{Binding ActiveInterfaceKit.Attached }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="AttachedToServer" >
+                            <Label Content="{Binding ActiveInterfaceKit.AttachedToServer }" />
+                        </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Class" >
+                        <Label Content="{Binding ActiveInterfaceKit.Class }" />
+                        <!--<dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Embedded}" />-->
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="ID"  >
+                        <Label Content="{Binding ActiveInterfaceKit.ID }" />
+                        <!--<dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" />-->
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Label"  >
+                            <Label Content="{Binding ActiveInterfaceKit.Label }" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="LibraryVersion"  >
+                        <Label Content="{Binding ActiveInterfaceKit.LibraryVersion}" />
+                        <!--<dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" />-->
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Name"  >
+                        <Label Content="{Binding ActiveInterfaceKit.Name }" />
+                        <!--<dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" />-->
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Port"  >
+                        <Label Content="{Binding ActiveInterfaceKit.Port}" />
+                        <!--<dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" />-->
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="SerialNumber"  >
+                        <Label Content="{Binding ActiveInterfaceKit.SerialNumber }" />
+                        <!--<dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" />-->
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="ServerID"  >
+                        <Label Content="{Binding ActiveInterfaceKit.ServerID}" />
+                        <!--<dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" />-->
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Type"  >
+                        <Label Content="{Binding ActiveInterfaceKit.Type }" />
+                        <!--<dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" />-->
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Version"  >
+                        <Label Content="{Binding ActiveInterfaceKit.Version }" />
+                        <!--<dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" />-->
+                    </dxlc:LayoutItem>
+
+                    <!--</dxlc:LayoutGroup>-->
+
+                </dxlc:LayoutGroup>
+
 
                 <dxlc:LayoutGroup Orientation="Horizontal" View="GroupBox" Header="Digital Inputs" IsCollapsible="True"  >
                     <!--<dxlc:LayoutGroup.GroupBoxStyle>

@@ -202,7 +202,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-        
+
+        private InterfaceKitEx _activeInterfaceKit;
+        public InterfaceKitEx ActiveInterfaceKit
+        {
+            get => _activeInterfaceKit;
+            set
+            {
+                if (_activeInterfaceKit == value)
+                    return;
+                _activeInterfaceKit = value;
+
+                OnPropertyChanged();
+            }
+        }
 
         private IEnumerable<Resources.Sensor> _Sensors2;
         public IEnumerable<Resources.Sensor> Sensors2
@@ -422,6 +435,15 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Do something amazing.
             Message = "Cool, you called OpenInterfaceKit";
 
+            ActiveInterfaceKit = new InterfaceKitEx(
+                SelectedHost.IPAddress, 
+                SelectedHost.Port, 
+                SelectedInterfaceKit.SerialNumber,
+                SelectedInterfaceKit.Enable, 
+                SelectedInterfaceKit.Embedded);
+
+            ActiveInterfaceKit.Open();
+
             // Uncomment this if you are telling someone else to handle this
 
             // Common.EventAggregator.GetEvent<OpenInterfaceKitEvent>().Publish();
@@ -479,6 +501,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you called CloseInterfaceKit";
+
+            ActiveInterfaceKit.Close();
+            ActiveInterfaceKit = null;
 
             // Uncomment this if you are telling someone else to handle this
 
