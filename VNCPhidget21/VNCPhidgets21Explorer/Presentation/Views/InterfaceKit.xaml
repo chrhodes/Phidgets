@@ -163,62 +163,64 @@
 
                 <dxlc:LayoutItem Label="IPAddress" >
                     <!--<Label Content="{Binding SelectedHost.IPAddress}"  />-->
-                    <dxe:TextEdit Text="{Binding SelectedHost.IPAddress }" IsReadOnly="True" 
-                                  Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                    <dxe:TextEdit Text="{Binding SelectedHost.IPAddress }" IsReadOnly="True" />
+                    <!--Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>-->
                 </dxlc:LayoutItem>
                 
                 <dxlc:LayoutItem Label="Port" >
                     <!--<Label Content="{Binding SelectedHost.Port }" />-->
-                    <dxe:TextEdit Text="{Binding SelectedHost.Port }" IsReadOnly="True" 
-                                  Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                    <dxe:TextEdit Text="{Binding SelectedHost.Port }" IsReadOnly="True" />
+                    <!--Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>-->
                 </dxlc:LayoutItem>
                 
                 <dxlc:LayoutItem Label="Enable" >
-                    <dxe:TextEdit Text="{Binding SelectedHost.Enable }" IsReadOnly="True" 
-                                  Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                    <dxe:TextEdit Text="{Binding SelectedHost.Enable }" IsReadOnly="True" />
+                    <!--Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>-->
                 </dxlc:LayoutItem>
                 
             </dxlc:LayoutGroup>
 
             <dxlc:LayoutGroup Name="lgInterfaceKits" Orientation="Vertical" Padding="0"  >
 
-                <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Left">
+                <dxlc:LayoutGroup Orientation="Horizontal" >
                     
-                    <dxlc:LayoutItem Label="InterfaceKits" LabelPosition="Left">
-                        <dxe:ComboBoxEdit Width="150"
+                    <dxlc:LayoutItem Label="InterfaceKits" LabelPosition="Left" HorizontalAlignment="Left">
+                        <dxe:ComboBoxEdit Width="150" 
                                           ItemsSource="{Binding InterfaceKits2}" DisplayMember="Name" 
                                           SelectedItem="{Binding SelectedInterfaceKit}"
                                           SelectedIndex="0"/>
                     </dxlc:LayoutItem>
 
-                    <dxlc:LayoutItem Label="Serial #" >
+                    <dxlc:LayoutItem Label="Serial #" HorizontalAlignment="Left" >
                         <!--<Label Content="{Binding SelectedInterfaceKit.SerialNumber}" />-->
-                        <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.SerialNumber}" IsReadOnly="True" 
-                                      Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.SerialNumber}" IsReadOnly="True" />
+                        <!--Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>-->
                     </dxlc:LayoutItem>
                     
-                    <dxlc:LayoutItem Label="Embedded" >
+                    <dxlc:LayoutItem Label="Embedded" HorizontalAlignment="Left" >
                         <!--<Label Content="{Binding SelectedInterfaceKit.Embedded }" />-->
-                        <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Embedded}" IsReadOnly="True" Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Embedded}" IsReadOnly="True" />
+                        <!--Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>-->
                     </dxlc:LayoutItem>
                     
-                    <dxlc:LayoutItem Label="Enable"  >
+                    <dxlc:LayoutItem Label="Enable" HorizontalAlignment="Left" >
                         <!--<Label Content="{Binding SelectedInterfaceKit.Enable }" />-->
-                        <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" IsReadOnly="True" Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" IsReadOnly="True" />
+                        <!--Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>-->
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem HorizontalAlignment="Right">
                         <Button 
-		                    Command="{Binding OpenInterfaceKitCommand }"
-		                    Content="{Binding OpenInterfaceKitContent, FallbackValue='OpenIK' }"
-		                    ToolTip="{Binding OpenInterfaceKitToolTip, FallbackValue='OpenIK ToolTip' }" />
+		                Command="{Binding OpenInterfaceKitCommand }"
+		                Content="{Binding OpenInterfaceKitContent, FallbackValue='OpenIK' }"
+		                ToolTip="{Binding OpenInterfaceKitToolTip, FallbackValue='OpenIK ToolTip' }" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem HorizontalAlignment="Right">
                         <Button 
-                		    Command="{Binding CloseInterfaceKitCommand }"
-                		    Content="{Binding CloseInterfaceKitContent, FallbackValue='CloseIK' }"
-                		    ToolTip="{Binding CloseInterfaceKitToolTip, FallbackValue='CloseIK ToolTip' }" />
+                		Command="{Binding CloseInterfaceKitCommand }"
+                		Content="{Binding CloseInterfaceKitContent, FallbackValue='CloseIK' }"
+                		ToolTip="{Binding CloseInterfaceKitToolTip, FallbackValue='CloseIK ToolTip' }" />
                     </dxlc:LayoutItem>
                     
                 </dxlc:LayoutGroup>

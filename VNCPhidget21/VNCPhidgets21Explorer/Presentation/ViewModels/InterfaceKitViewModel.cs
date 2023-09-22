@@ -234,8 +234,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private bool _iKAttached;
-        public bool IkAttached
+        private bool? _iKAttached;
+        public bool? IkAttached
         {
             get => _iKAttached;
             set
@@ -247,8 +247,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private bool _ikAttachedToServer;
-        public bool IkAttachedToServer
+        private bool? _ikAttachedToServer;
+        public bool? IkAttachedToServer
         {
             get => _ikAttachedToServer;
             set
@@ -301,7 +301,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-
         private string _ikLibraryVersion;
         public string IkLibraryVersion
         {
@@ -328,8 +327,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private int _ikPort;
-        public int IkPort
+        private int? _ikPort;
+        public int? IkPort
         {
             get => _ikPort;
             set
@@ -687,12 +686,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 IkClass = ActiveInterfaceKit.Class.ToString();
                 IkID = Enum.GetName(typeof(Phidget.PhidgetID), ActiveInterfaceKit.ID);
                 IkLabel = ActiveInterfaceKit.Label;
-                //IkLibraryVersion = ActiveInterfaceKit.LibraryVersion;
-                IkLibraryVersion = Phidget.LibraryVersion;  // THis is a static field
+                IkLibraryVersion = Phidget.LibraryVersion;  // This is a static field
                 IkName = ActiveInterfaceKit.Name;
                 IkPort = ActiveInterfaceKit.Port;
-                IkSerialNumber = ActiveInterfaceKit.SerialNumber;
-                IkServerID = ActiveInterfaceKit.ServerID;
+                IkSerialNumber = ActiveInterfaceKit.SerialNumber; // This throws exception
+                //IkServerID = ActiveInterfaceKit.ServerID;
                 IkType = ActiveInterfaceKit.Type;
                 IkVersion = ActiveInterfaceKit.Version;
             }

@@ -9,6 +9,13 @@ namespace VNCPhidgets21Explorer.Presentation.Converters
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
+            if (value is null)
+            {
+                SolidColorBrush brush = new SolidColorBrush();
+                brush.Color = Colors.Black;
+                return brush;
+            }
+
             if ((Boolean)value == true)
             {
                 SolidColorBrush brush = new SolidColorBrush();
@@ -20,7 +27,6 @@ namespace VNCPhidgets21Explorer.Presentation.Converters
                 SolidColorBrush brush = new SolidColorBrush();
                 brush.Color = Colors.Red;
                 return brush;
-
             }
         }
 
