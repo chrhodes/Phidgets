@@ -97,7 +97,9 @@ namespace VNCPhidgets21Explorer
             _regionManager.RegisterViewWithRegion(RegionNames.RibbonRegion, typeof(IRibbon));
             _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(IMain));
 
-            _regionManager.RegisterViewWithRegion(RegionNames.InterfaceKitRegion, typeof(InterfaceKit));
+            _regionManager.RegisterViewWithRegion(RegionNames.InterfaceKitRegion1, typeof(InterfaceKit));
+            _regionManager.RegisterViewWithRegion(RegionNames.InterfaceKitRegion2, typeof(InterfaceKit));
+            _regionManager.RegisterViewWithRegion(RegionNames.InterfaceKitRegion3, typeof(InterfaceKit));
             _regionManager.RegisterViewWithRegion(RegionNames.HackAroundRegion, typeof(HackAround));
 
             // //This loads CombinedMain into the Shell loaded in App.Xaml.cs
