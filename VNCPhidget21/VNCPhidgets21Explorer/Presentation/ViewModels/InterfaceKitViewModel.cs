@@ -943,6 +943,16 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_dO0 == value)
                     return;
                 _dO0 = value;
+                
+                // ActiveInterfaceKit_OutputChange may have called us
+                // No need to update if same state.
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.outputs[0])
+                {
+                    ActiveInterfaceKit.outputs[0] = (Boolean)value;                                     
+                }
+
                 OnPropertyChanged();
             }
         }
@@ -956,6 +966,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_dO1 == value)
                     return;
                 _dO1 = value;
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.outputs[1])
+                {
+                    ActiveInterfaceKit.outputs[1] = (Boolean)value;
+                }
+
                 OnPropertyChanged();
             }
         }
@@ -969,6 +986,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_dO2 == value)
                     return;
                 _dO2 = value;
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.outputs[2])
+                {
+                    ActiveInterfaceKit.outputs[2] = (Boolean)value;
+                }
+
                 OnPropertyChanged();
             }
         }
@@ -982,6 +1006,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_dO3 == value)
                     return;
                 _dO3 = value;
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.outputs[3])
+                {
+                    ActiveInterfaceKit.outputs[3] = (Boolean)value;
+                }
+
                 OnPropertyChanged();
             }
         }
@@ -995,6 +1026,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_dO4 == value)
                     return;
                 _dO4 = value;
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.outputs[4])
+                {
+                    ActiveInterfaceKit.outputs[4] = (Boolean)value;
+                }
+
                 OnPropertyChanged();
             }
         }
@@ -1008,6 +1046,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_dO5 == value)
                     return;
                 _dO5 = value;
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.outputs[5])
+                {
+                    ActiveInterfaceKit.outputs[5] = (Boolean)value;
+                }
+
                 OnPropertyChanged();
             }
         }
@@ -1021,6 +1066,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_dO6 == value)
                     return;
                 _dO6 = value;
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.outputs[6])
+                {
+                    ActiveInterfaceKit.outputs[6] = (Boolean)value;
+                }
                 OnPropertyChanged();
             }
         }
@@ -1034,6 +1085,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_dO7 == value)
                     return;
                 _dO7 = value;
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.outputs[7])
+                {
+                    ActiveInterfaceKit.outputs[7] = (Boolean)value;
+                }
+
                 OnPropertyChanged();
             }
         }
@@ -1047,6 +1105,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_dO8 == value)
                     return;
                 _dO0 = value;
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.outputs[8])
+                {
+                    ActiveInterfaceKit.outputs[8] = (Boolean)value;
+                }
+
                 OnPropertyChanged();
             }
         }
@@ -1060,6 +1125,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_dO9 == value)
                     return;
                 _dO9 = value;
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.outputs[9])
+                {
+                    ActiveInterfaceKit.outputs[9] = (Boolean)value;
+                }
+
                 OnPropertyChanged();
             }
         }
@@ -1073,6 +1145,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_dO10 == value)
                     return;
                 _dO10 = value;
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.outputs[10])
+                {
+                    ActiveInterfaceKit.outputs[10] = (Boolean)value;
+                }
+
                 OnPropertyChanged();
             }
         }
@@ -1086,6 +1165,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_dO11 == value)
                     return;
                 _dO11 = value;
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.outputs[11])
+                {
+                    ActiveInterfaceKit.outputs[11] = (Boolean)value;
+                }
+
                 OnPropertyChanged();
             }
         }
@@ -1099,6 +1185,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_dO12 == value)
                     return;
                 _dO12 = value;
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.outputs[12])
+                {
+                    ActiveInterfaceKit.outputs[12] = (Boolean)value;
+                }
+
                 OnPropertyChanged();
             }
         }
@@ -1112,6 +1205,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_dO13 == value)
                     return;
                 _dO13 = value;
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.outputs[13])
+                {
+                    ActiveInterfaceKit.outputs[13] = (Boolean)value;
+                }
+
                 OnPropertyChanged();
             }
         }
@@ -1125,6 +1225,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_dO14 == value)
                     return;
                 _dO14 = value;
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.outputs[14])
+                {
+                    ActiveInterfaceKit.outputs[14] = (Boolean)value;
+                }
+
                 OnPropertyChanged();
             }
         }
@@ -1138,6 +1245,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_dO15 == value)
                     return;
                 _dO15 = value;
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.outputs[15])
+                {
+                    ActiveInterfaceKit.outputs[15] = (Boolean)value;
+                }
+
                 OnPropertyChanged();
             }
         }
