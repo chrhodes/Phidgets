@@ -395,7 +395,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-        
+
 
 
         #endregion
@@ -619,14 +619,17 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Message = "Cool, you called OpenInterfaceKit";
 
             ActiveInterfaceKit = new InterfaceKitEx(
-                SelectedHost.IPAddress, 
-                SelectedHost.Port, 
+                SelectedHost.IPAddress,
+                SelectedHost.Port,
                 SelectedInterfaceKit.SerialNumber,
-                SelectedInterfaceKit.Enable, 
+                SelectedInterfaceKit.Enable,
                 SelectedInterfaceKit.Embedded);
 
             ActiveInterfaceKit.Attach += ActiveInterfaceKit_Attach;
             ActiveInterfaceKit.Detach += ActiveInterfaceKit_Detach;
+
+            ActiveInterfaceKit.OutputChange += ActiveInterfaceKit_OutputChange;
+            ActiveInterfaceKit.InputChange += ActiveInterfaceKit_InputChange; ;
             ActiveInterfaceKit.Open();
 
             // Uncomment this if you are telling someone else to handle this
@@ -654,7 +657,551 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             // End Cut Four
 
+            OpenInterfaceKitCommand.RaiseCanExecuteChanged();
+            CloseInterfaceKitCommand.RaiseCanExecuteChanged();
+
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void ActiveInterfaceKit_InputChange(object sender, Phidgets.Events.InputChangeEventArgs e)
+        {
+            InterfaceKit ifk = (InterfaceKit)sender;
+
+            switch (e.Index)
+            {
+                case 0:
+                    DI0 = e.Value;
+                    break;
+                case 1:
+                    DI1 = e.Value;
+                    break;
+                case 2:
+                    DI2 = e.Value;
+                    break;
+                case 3:
+                    DI3 = e.Value;
+                    break;
+                case 4:
+                    DI4 = e.Value;
+                    break;
+                case 5:
+                    DI5 = e.Value;
+                    break;
+                case 6:
+                    DI6 = e.Value;
+                    break;
+                case 7:
+                    DI7 = e.Value;
+                    break;
+                case 8:
+                    DI8 = e.Value;
+                    break;
+                case 9:
+                    DI9 = e.Value;
+                    break;
+                case 10:
+                    DI10 = e.Value;
+                    break;
+                case 11:
+                    DI11 = e.Value;
+                    break;
+                case 12:
+                    DI12 = e.Value;
+                    break;
+                case 13:
+                    DI13 = e.Value;
+                    break;
+                case 14:
+                    DI14 = e.Value;
+                    break;
+                case 15:
+                    DI15 = e.Value;
+                    break;
+            }
+        }
+
+        #region Digital Inputs
+
+        private bool? _dI0;
+        public bool? DI0
+        {
+            get => _dI0;
+            set
+            {
+                if (_dI0 == value)
+                    return;
+                _dI0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _dI1;
+        public bool? DI1
+        {
+            get => _dI1;
+            set
+            {
+                if (_dI1 == value)
+                    return;
+                _dI1 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _dI2;
+        public bool? DI2
+        {
+            get => _dI2;
+            set
+            {
+                if (_dI2 == value)
+                    return;
+                _dI2 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _dI3;
+        public bool? DI3
+        {
+            get => _dI3;
+            set
+            {
+                if (_dI3 == value)
+                    return;
+                _dI3 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _dI4;
+        public bool? DI4
+        {
+            get => _dI4;
+            set
+            {
+                if (_dI4 == value)
+                    return;
+                _dI4 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _dI5;
+        public bool? DI5
+        {
+            get => _dI5;
+            set
+            {
+                if (_dI5 == value)
+                    return;
+                _dI5 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _dI6;
+        public bool? DI6
+        {
+            get => _dI6;
+            set
+            {
+                if (_dI6 == value)
+                    return;
+                _dI6 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _dI7;
+        public bool? DI7
+        {
+            get => _dI7;
+            set
+            {
+                if (_dI7 == value)
+                    return;
+                _dI7 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _dI8;
+        public bool? DI8
+        {
+            get => _dI8;
+            set
+            {
+                if (_dI8 == value)
+                    return;
+                _dI0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _dI9;
+        public bool? DI9
+        {
+            get => _dI9;
+            set
+            {
+                if (_dI9 == value)
+                    return;
+                _dI9 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _dI10;
+        public bool? DI10
+        {
+            get => _dI10;
+            set
+            {
+                if (_dI10 == value)
+                    return;
+                _dI10 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _dI11;
+        public bool? DI11
+        {
+            get => _dI11;
+            set
+            {
+                if (_dI11 == value)
+                    return;
+                _dI11 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _dI12;
+        public bool? DI12
+        {
+            get => _dI12;
+            set
+            {
+                if (_dI12 == value)
+                    return;
+                _dI12 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _dI13;
+        public bool? DI13
+        {
+            get => _dI13;
+            set
+            {
+                if (_dI13 == value)
+                    return;
+                _dI13 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _dI14;
+        public bool? DI14
+        {
+            get => _dI14;
+            set
+            {
+                if (_dI14 == value)
+                    return;
+                _dI14 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _dI15;
+        public bool? DI15
+        {
+            get => _dI15;
+            set
+            {
+                if (_dI15 == value)
+                    return;
+                _dI15 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region Digital Outputs
+
+        private bool? _dO0;
+        public bool? DO0
+        {
+            get => _dO0;
+            set
+            {
+                if (_dO0 == value)
+                    return;
+                _dO0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _dO1;
+        public bool? DO1
+        {
+            get => _dO1;
+            set
+            {
+                if (_dO1 == value)
+                    return;
+                _dO1 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _dO2;
+        public bool? DO2
+        {
+            get => _dO2;
+            set
+            {
+                if (_dO2 == value)
+                    return;
+                _dO2 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _dO3;
+        public bool? DO3
+        {
+            get => _dO3;
+            set
+            {
+                if (_dO3 == value)
+                    return;
+                _dO3 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _dO4;
+        public bool? DO4
+        {
+            get => _dO4;
+            set
+            {
+                if (_dO4 == value)
+                    return;
+                _dO4 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _dO5;
+        public bool? DO5
+        {
+            get => _dO5;
+            set
+            {
+                if (_dO5 == value)
+                    return;
+                _dO5 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _dO6;
+        public bool? DO6
+        {
+            get => _dO6;
+            set
+            {
+                if (_dO6 == value)
+                    return;
+                _dO6 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _dO7;
+        public bool? DO7
+        {
+            get => _dO7;
+            set
+            {
+                if (_dO7 == value)
+                    return;
+                _dO7 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _dO8;
+        public bool? DO8
+        {
+            get => _dO8;
+            set
+            {
+                if (_dO8 == value)
+                    return;
+                _dO0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _dO9;
+        public bool? DO9
+        {
+            get => _dO9;
+            set
+            {
+                if (_dO9 == value)
+                    return;
+                _dO9 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _dO10;
+        public bool? DO10
+        {
+            get => _dO10;
+            set
+            {
+                if (_dO10 == value)
+                    return;
+                _dO10 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _dO11;
+        public bool? DO11
+        {
+            get => _dO11;
+            set
+            {
+                if (_dO11 == value)
+                    return;
+                _dO11 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _dO12;
+        public bool? DO12
+        {
+            get => _dO12;
+            set
+            {
+                if (_dO12 == value)
+                    return;
+                _dO12 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _dO13;
+        public bool? DO13
+        {
+            get => _dO13;
+            set
+            {
+                if (_dO13 == value)
+                    return;
+                _dO13 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _dO14;
+        public bool? DO14
+        {
+            get => _dO14;
+            set
+            {
+                if (_dO14 == value)
+                    return;
+                _dO14 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _dO15;
+        public bool? DO15
+        {
+            get => _dO15;
+            set
+            {
+                if (_dO15 == value)
+                    return;
+                _dO15 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        private void ActiveInterfaceKit_OutputChange(object sender, Phidgets.Events.OutputChangeEventArgs e)
+        {
+            InterfaceKit ifk = (InterfaceKit)sender;
+            var outputs = ifk.outputs;
+            InterfaceKitDigitalOutputCollection doc = outputs;
+
+            switch (e.Index)
+            {
+                case 0:
+                    DO0 = e.Value;
+                    break;
+                case 1:
+                    DO1 = e.Value;
+                    break;
+                case 2:
+                    DO2 = e.Value;
+                    break;
+                case 3:
+                    DO3 = e.Value;
+                    break;
+                case 4:
+                    DO4 = e.Value;
+                    break;
+                case 5:
+                    DO5 = e.Value;
+                    break;
+                case 6:
+                    DO6 = e.Value;
+                    break;
+                case 7:
+                    DO7 = e.Value;
+                    break;
+                case 8:
+                    DO8 = e.Value;
+                    break;
+                case 9:
+                    DO9 = e.Value;
+                    break;
+                case 10:
+                    DO10 = e.Value;
+                    break;
+                case 11:
+                    DO11 = e.Value;
+                    break;
+                case 12:
+                    DO12 = e.Value;
+                    break;
+                case 13:
+                    DO13 = e.Value;
+                    break;
+                case 14:
+                    DO14 = e.Value;
+                    break;
+                case 15:
+                    DO15 = e.Value;
+                    break;
+            }
+
         }
 
         private void ActiveInterfaceKit_Attach(object sender, Phidgets.Events.AttachEventArgs e)
@@ -743,11 +1290,30 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        //private bool _isEnabled = true;
+        //public bool IsEnabled
+        //{
+        //    get => _isEnabled;
+        //    set
+        //    {
+        //        if (_isEnabled == value)
+        //            return;
+        //        _isEnabled = value;
+        //        CloseInterfaceKitCommand.RaiseCanExecuteChanged();
+        //        OpenInterfaceKitCommand.RaiseCanExecuteChanged();
+        //        OnPropertyChanged();
+        //    }
+        //}
+        
         public bool OpenInterfaceKitCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
-            return true;
+            //return true;
+            if (IkAttached is not null) 
+                return !(Boolean)IkAttached;
+            else 
+                return true;
         }
 
         #endregion
@@ -766,6 +1332,25 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_CloseInterfaceKitContent">CloseInterfaceKit</system:String>
         //    <system:String x:Key="ViewName_CloseInterfaceKitContentToolTip">CloseInterfaceKit ToolTip</system:String>  
 
+        private void ClearDigitalInputsAndOutputs()
+        {
+            DI0 = DO0 = null;
+            DI1 = DO1 = null;
+            DI2 = DO2 = null;
+            DI3 = DO3 = null;
+            DI4 = DO4 = null;
+            DI5 = DO5 = null;
+            DI6 = DO6 = null;
+            DI7 = DO7 = null;
+            DI8 = DO8 = null;
+            DI9 = DO9 = null;
+            DI10 = DO10 = null;
+            DI11 = DO11 = null;
+            DI12 = DO12 = null;
+            DI13 = DO13 = null;
+            DI14 = DO14 = null;
+            DI15 = DO15 = null;
+        }
         public void CloseInterfaceKit()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
@@ -776,6 +1361,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             ActiveInterfaceKit.Close();
             UpdateInterfaceKitProperties();
             ActiveInterfaceKit = null;
+            ClearDigitalInputsAndOutputs();
+
+            OpenInterfaceKitCommand.RaiseCanExecuteChanged();
+            CloseInterfaceKitCommand.RaiseCanExecuteChanged();
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -809,7 +1398,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
-            return true;
+            //return true;
+            if (IkAttached is not null) 
+                return (Boolean)IkAttached;
+            else
+                return false;
         }
 
         #endregion
@@ -831,8 +1424,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
         #endregion
-
-
 
         #endregion
 
