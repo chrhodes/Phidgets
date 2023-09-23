@@ -357,10 +357,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 await Task.Run(() =>
                 {
                     Parallel.Invoke(
-                         () => InterfaceKitParty2(ifkEx11, 500, 5 * Repeats),
-                         () => InterfaceKitParty2(ifkEx21, 250, 10 * Repeats),
-                         () => InterfaceKitParty2(ifkEx22, 125, 20 * Repeats),
-                         () => InterfaceKitParty2(ifkEx23, 333, 8 * Repeats)
+                         () => InterfaceKitParty2(ifkEx21, 500, 5 * Repeats),
+                         () => InterfaceKitParty2(ifkEx22, 250, 10 * Repeats),
+                         () => InterfaceKitParty2(ifkEx23, 125, 20 * Repeats),
+                         () => InterfaceKitParty2(ifkEx11, 333, 8 * Repeats)
                      );
                 });
 
@@ -464,13 +464,22 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 //ifk.open(serialNumber, hostName, port);
                 //ifk.waitForAttachment();
 
-                InterfaceKitDigitalOutputCollection ifkdoc = ifkEx.outputs;
+                InterfaceKitDigitalOutputCollection ifkDigitalOut = ifkEx.outputs;
 
                 for (int i = 0; i < loops; i++)
                 {
-                    ifkdoc[0] = true;
+                    ifkDigitalOut[0] = true;
                     Thread.Sleep(sleep);
-                    ifkdoc[0] = false;
+                    ifkDigitalOut[1] = true;
+                    Thread.Sleep(sleep);
+                    ifkDigitalOut[2] = true;
+                    Thread.Sleep(sleep);
+
+                    ifkDigitalOut[0] = false;
+                    Thread.Sleep(sleep);
+                    ifkDigitalOut[1] = false;
+                    Thread.Sleep(sleep);
+                    ifkDigitalOut[2] = false;
                     Thread.Sleep(sleep);
                 }
 

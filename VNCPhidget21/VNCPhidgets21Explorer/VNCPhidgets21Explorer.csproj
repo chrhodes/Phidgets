@@ -7,7 +7,7 @@
     <UseWPF>true</UseWPF>
     <!--<GenerateAssemblyInfo>false</GenerateAssemblyInfo>-->
     <!--<Nullable>enable</Nullable>-->
-    <FileVersion>2023.09.22A</FileVersion>
+    <FileVersion>2023.09.22B</FileVersion>
   </PropertyGroup>
 
     <PropertyGroup Condition="'$(TargetFramework)' == 'net6.0-windows'">
