@@ -402,8 +402,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Sensor Input
 
-        // TODO(crhodes)
-        // Maybe the names should be SI0xxx not SIxxx0
+        #region Analog Sensors
+
+        #region Sensor S0
 
         private Int32? _sI0;
         public Int32? SI0
@@ -418,68 +419,68 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _sIRaw0;
-        public Int32? SIRaw0
+        private Int32? _sI0Raw;
+        public Int32? SI0Raw
         {
-            get => _sIRaw0;
+            get => _sI0Raw;
             set
             {
-                if (_sIRaw0 == value)
+                if (_sI0Raw == value)
                     return;
-                _sIRaw0 = value;
+                _sI0Raw = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sIDataRate0;
-        public Int32? SIDataRate0
+        private Int32? _sI0DataRate;
+        public Int32? SI0DataRate
         {
-            get => _sIDataRate0;
+            get => _sI0DataRate;
             set
             {
-                if (_sIDataRate0 == value)
+                if (_sI0DataRate == value)
                     return;
-                _sIDataRate0 = value;
+                _sI0DataRate = value;
 
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sIDataRateMax0;
-        public Int32? SIDataRateMax0
+        private Int32? _sI0DataRateMax;
+        public Int32? SI0DataRateMax
         {
-            get => _sIDataRateMax0;
+            get => _sI0DataRateMax;
             set
             {
-                if (_sIDataRateMax0 == value)
+                if (_sI0DataRateMax == value)
                     return;
-                _sIDataRateMax0 = value;
+                _sI0DataRateMax = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sIDataRateMin0;
-        public Int32? SIDataRateMin0
+        private Int32? _sI0DataRateMin;
+        public Int32? SI0DataRateMin
         {
-            get => _sIDataRateMin0;
+            get => _sI0DataRateMin;
             set
             {
-                if (_sIDataRateMin0 == value)
+                if (_sI0DataRateMin == value)
                     return;
-                _sIDataRateMin0 = value;
+                _sI0DataRateMin = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sISensitivity0;
-        public Int32? SISensitivity0
+        private Int32? _sI0Sensitivity;
+        public Int32? SI0Sensitivity
         {
-            get => _sISensitivity0;
+            get => _sI0Sensitivity;
             set
             {
-                if (_sISensitivity0 == value)
+                if (_sI0Sensitivity == value)
                     return;
-                _sISensitivity0 = value;
+                _sI0Sensitivity = value;
 
                 // ActiveInterfaceKit_OutputChange may have called us
                 // No need to update if same state.
@@ -494,7 +495,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        //var DataRate = sensor0.DataRate;
+        #endregion
+
+        #region Sensor S1
 
         private Int32? _sI1;
         public Int32? SI1
@@ -509,6 +512,86 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        private Int32? _sI1Raw;
+        public Int32? SI1Raw
+        {
+            get => _sI1Raw;
+            set
+            {
+                if (_sI1Raw == value)
+                    return;
+                _sI1Raw = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI1DataRate;
+        public Int32? SI1DataRate
+        {
+            get => _sI1DataRate;
+            set
+            {
+                if (_sI1DataRate == value)
+                    return;
+                _sI1DataRate = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI1DataRateMax;
+        public Int32? SI1DataRateMax
+        {
+            get => _sI1DataRateMax;
+            set
+            {
+                if (_sI1DataRateMax == value)
+                    return;
+                _sI1DataRateMax = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI1DataRateMin;
+        public Int32? SI1DataRateMin
+        {
+            get => _sI1DataRateMin;
+            set
+            {
+                if (_sI1DataRateMin == value)
+                    return;
+                _sI1DataRateMin = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI1Sensitivity;
+        public Int32? SI1Sensitivity
+        {
+            get => _sI1Sensitivity;
+            set
+            {
+                if (_sI1Sensitivity == value)
+                    return;
+                _sI1Sensitivity = value;
+
+                // ActiveInterfaceKit_OutputChange may have called us
+                // No need to update if same state.
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.sensors[1].Sensitivity)
+                {
+                    ActiveInterfaceKit.sensors[1].Sensitivity = (Int32)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region Sensor S2
+
         private Int32? _sI2;
         public Int32? SI2
         {
@@ -521,6 +604,86 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private Int32? _sI2Raw;
+        public Int32? SI2Raw
+        {
+            get => _sI2Raw;
+            set
+            {
+                if (_sI2Raw == value)
+                    return;
+                _sI2Raw = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI2DataRate;
+        public Int32? SI2DataRate
+        {
+            get => _sI2DataRate;
+            set
+            {
+                if (_sI2DataRate == value)
+                    return;
+                _sI2DataRate = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI2DataRateMax;
+        public Int32? SI2DataRateMax
+        {
+            get => _sI2DataRateMax;
+            set
+            {
+                if (_sI2DataRateMax == value)
+                    return;
+                _sI2DataRateMax = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI2DataRateMin;
+        public Int32? SI2DataRateMin
+        {
+            get => _sI2DataRateMin;
+            set
+            {
+                if (_sI2DataRateMin == value)
+                    return;
+                _sI2DataRateMin = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI2Sensitivity;
+        public Int32? SI2Sensitivity
+        {
+            get => _sI2Sensitivity;
+            set
+            {
+                if (_sI2Sensitivity == value)
+                    return;
+                _sI2Sensitivity = value;
+
+                // ActiveInterfaceKit_OutputChange may have called us
+                // No need to update if same state.
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.sensors[2].Sensitivity)
+                {
+                    ActiveInterfaceKit.sensors[2].Sensitivity = (Int32)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region Sensor S3
 
         private Int32? _sI3;
         public Int32? SI3
@@ -535,6 +698,86 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        private Int32? _sI3Raw;
+        public Int32? SI3Raw
+        {
+            get => _sI3Raw;
+            set
+            {
+                if (_sI3Raw == value)
+                    return;
+                _sI3Raw = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI3DataRate;
+        public Int32? SI3DataRate
+        {
+            get => _sI3DataRate;
+            set
+            {
+                if (_sI3DataRate == value)
+                    return;
+                _sI3DataRate = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI3DataRateMax;
+        public Int32? SI3DataRateMax
+        {
+            get => _sI3DataRateMax;
+            set
+            {
+                if (_sI3DataRateMax == value)
+                    return;
+                _sI3DataRateMax = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI3DataRateMin;
+        public Int32? SI3DataRateMin
+        {
+            get => _sI3DataRateMin;
+            set
+            {
+                if (_sI3DataRateMin == value)
+                    return;
+                _sI3DataRateMin = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI3Sensitivity;
+        public Int32? SI3Sensitivity
+        {
+            get => _sI3Sensitivity;
+            set
+            {
+                if (_sI3Sensitivity == value)
+                    return;
+                _sI3Sensitivity = value;
+
+                // ActiveInterfaceKit_OutputChange may have called us
+                // No need to update if same state.
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.sensors[3].Sensitivity)
+                {
+                    ActiveInterfaceKit.sensors[3].Sensitivity = (Int32)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region Sensor S4
+
         private Int32? _sI4;
         public Int32? SI4
         {
@@ -547,6 +790,86 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private Int32? _sI4Raw;
+        public Int32? SI4Raw
+        {
+            get => _sI4Raw;
+            set
+            {
+                if (_sI4Raw == value)
+                    return;
+                _sI4Raw = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI4DataRate;
+        public Int32? SI4DataRate
+        {
+            get => _sI4DataRate;
+            set
+            {
+                if (_sI4DataRate == value)
+                    return;
+                _sI4DataRate = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI4DataRateMax;
+        public Int32? SI4DataRateMax
+        {
+            get => _sI4DataRateMax;
+            set
+            {
+                if (_sI4DataRateMax == value)
+                    return;
+                _sI4DataRateMax = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI4DataRateMin;
+        public Int32? SI4DataRateMin
+        {
+            get => _sI4DataRateMin;
+            set
+            {
+                if (_sI4DataRateMin == value)
+                    return;
+                _sI4DataRateMin = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI4Sensitivity;
+        public Int32? SI4Sensitivity
+        {
+            get => _sI4Sensitivity;
+            set
+            {
+                if (_sI4Sensitivity == value)
+                    return;
+                _sI4Sensitivity = value;
+
+                // ActiveInterfaceKit_OutputChange may have called us
+                // No need to update if same state.
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.sensors[4].Sensitivity)
+                {
+                    ActiveInterfaceKit.sensors[4].Sensitivity = (Int32)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region Sensor S5
 
         private Int32? _sI5;
         public Int32? SI5
@@ -561,6 +884,86 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        private Int32? _sI5Raw;
+        public Int32? SI5Raw
+        {
+            get => _sI5Raw;
+            set
+            {
+                if (_sI5Raw == value)
+                    return;
+                _sI5Raw = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI5DataRate;
+        public Int32? SI5DataRate
+        {
+            get => _sI5DataRate;
+            set
+            {
+                if (_sI5DataRate == value)
+                    return;
+                _sI5DataRate = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI5DataRateMax;
+        public Int32? SI5DataRateMax
+        {
+            get => _sI5DataRateMax;
+            set
+            {
+                if (_sI5DataRateMax == value)
+                    return;
+                _sI5DataRateMax = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI5DataRateMin;
+        public Int32? SI5DataRateMin
+        {
+            get => _sI5DataRateMin;
+            set
+            {
+                if (_sI5DataRateMin == value)
+                    return;
+                _sI5DataRateMin = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI5Sensitivity;
+        public Int32? SI5Sensitivity
+        {
+            get => _sI5Sensitivity;
+            set
+            {
+                if (_sI5Sensitivity == value)
+                    return;
+                _sI5Sensitivity = value;
+
+                // ActiveInterfaceKit_OutputChange may have called us
+                // No need to update if same state.
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.sensors[5].Sensitivity)
+                {
+                    ActiveInterfaceKit.sensors[5].Sensitivity = (Int32)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region Sensor S6
+
         private Int32? _sI6;
         public Int32? SI6
         {
@@ -573,6 +976,86 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private Int32? _sI6Raw;
+        public Int32? SI6Raw
+        {
+            get => _sI6Raw;
+            set
+            {
+                if (_sI6Raw == value)
+                    return;
+                _sI6Raw = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI6DataRate;
+        public Int32? SI6DataRate
+        {
+            get => _sI6DataRate;
+            set
+            {
+                if (_sI6DataRate == value)
+                    return;
+                _sI6DataRate = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI6DataRateMax;
+        public Int32? SI6DataRateMax
+        {
+            get => _sI6DataRateMax;
+            set
+            {
+                if (_sI6DataRateMax == value)
+                    return;
+                _sI6DataRateMax = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI6DataRateMin;
+        public Int32? SI6DataRateMin
+        {
+            get => _sI6DataRateMin;
+            set
+            {
+                if (_sI6DataRateMin == value)
+                    return;
+                _sI6DataRateMin = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI6Sensitivity;
+        public Int32? SI6Sensitivity
+        {
+            get => _sI6Sensitivity;
+            set
+            {
+                if (_sI6Sensitivity == value)
+                    return;
+                _sI6Sensitivity = value;
+
+                // ActiveInterfaceKit_OutputChange may have called us
+                // No need to update if same state.
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.sensors[6].Sensitivity)
+                {
+                    ActiveInterfaceKit.sensors[6].Sensitivity = (Int32)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region Sensor S7
 
         private Int32? _sI7;
         public Int32? SI7
@@ -587,6 +1070,85 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        private Int32? _sI7Raw;
+        public Int32? SI7Raw
+        {
+            get => _sI7Raw;
+            set
+            {
+                if (_sI7Raw == value)
+                    return;
+                _sI7Raw = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI7DataRate;
+        public Int32? SI7DataRate
+        {
+            get => _sI7DataRate;
+            set
+            {
+                if (_sI7DataRate == value)
+                    return;
+                _sI7DataRate = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI7DataRateMax;
+        public Int32? SI7DataRateMax
+        {
+            get => _sI7DataRateMax;
+            set
+            {
+                if (_sI7DataRateMax == value)
+                    return;
+                _sI7DataRateMax = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI7DataRateMin;
+        public Int32? SI7DataRateMin
+        {
+            get => _sI7DataRateMin;
+            set
+            {
+                if (_sI7DataRateMin == value)
+                    return;
+                _sI7DataRateMin = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI7Sensitivity;
+        public Int32? SI7Sensitivity
+        {
+            get => _sI7Sensitivity;
+            set
+            {
+                if (_sI7Sensitivity == value)
+                    return;
+                _sI7Sensitivity = value;
+
+                // ActiveInterfaceKit_OutputChange may have called us
+                // No need to update if same state.
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.sensors[7].Sensitivity)
+                {
+                    ActiveInterfaceKit.sensors[7].Sensitivity = (Int32)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #endregion
 
         #endregion
 
@@ -1403,47 +1965,98 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        private void PopulateSensorValues(InterfaceKitAnalogSensor interfaceKitAnalogSensor)
+        {
+
+        }
         private void ActiveInterfaceKit_SensorChange(object sender, Phidgets.Events.SensorChangeEventArgs e)
         {
             Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
 
-            var sensor0 = ifk.sensors[0];
+            InterfaceKitAnalogSensor sensor = ifk.sensors[0];
 
-            SIRaw0 = sensor0.RawValue;
+            //SIRaw0 = sensor.RawValue;
+            //SIDataRate0 = sensor.DataRate;
+            //SIDataRateMax0 = sensor.DataRateMax;
+            //SIDataRateMin0 = sensor.DataRateMin;
+            //SISensitivity0= sensor.Sensitivity;
 
-            SIDataRate0 = sensor0.DataRate;
-            SIDataRateMax0 = sensor0.DataRateMax;
-            SIDataRateMin0 = sensor0.DataRateMin;
-            SISensitivity0= sensor0.Sensitivity;
-
-            var sValue = sensor0.Value;
-            var eValue = e.Value;
+            //var sValue = sensor0.Value;
+            //var eValue = e.Value;
 
             switch (e.Index)
             {
                 case 0:
                     SI0 = e.Value;
+                    sensor = ifk.sensors[0];
+                    SI0Raw = sensor.RawValue;
+                    SI0DataRate = sensor.DataRate;
+                    SI0DataRateMax = sensor.DataRateMax;
+                    SI0DataRateMin = sensor.DataRateMin;
+                    SI0Sensitivity = sensor.Sensitivity;
                     break;
                 case 1:
                     SI1 = e.Value;
+                    sensor = ifk.sensors[1];
+                    SI1Raw = sensor.RawValue;
+                    SI1DataRate = sensor.DataRate;
+                    SI1DataRateMax = sensor.DataRateMax;
+                    SI1DataRateMin = sensor.DataRateMin;
+                    SI0Sensitivity = sensor.Sensitivity;
                     break;
                 case 2:
                     SI2 = e.Value;
+                    sensor = ifk.sensors[2];
+                    SI2Raw = sensor.RawValue;
+                    SI2DataRate = sensor.DataRate;
+                    SI2DataRateMax = sensor.DataRateMax;
+                    SI2DataRateMin = sensor.DataRateMin;
+                    SI2Sensitivity = sensor.Sensitivity;
                     break;
                 case 3:
                     SI3 = e.Value;
+                    sensor = ifk.sensors[3];
+                    SI3Raw = sensor.RawValue;
+                    SI3DataRate = sensor.DataRate;
+                    SI3DataRateMax = sensor.DataRateMax;
+                    SI3DataRateMin = sensor.DataRateMin;
+                    SI3Sensitivity = sensor.Sensitivity;
                     break;
                 case 4:
                     SI4 = e.Value;
+                    sensor = ifk.sensors[4];
+                    SI4Raw = sensor.RawValue;
+                    SI4DataRate = sensor.DataRate;
+                    SI4DataRateMax = sensor.DataRateMax;
+                    SI4DataRateMin = sensor.DataRateMin;
+                    SI4Sensitivity = sensor.Sensitivity;
                     break;
                 case 5:
                     SI5 = e.Value;
+                    sensor = ifk.sensors[5];
+                    SI5Raw = sensor.RawValue;
+                    SI5DataRate = sensor.DataRate;
+                    SI5DataRateMax = sensor.DataRateMax;
+                    SI5DataRateMin = sensor.DataRateMin;
+                    SI5Sensitivity = sensor.Sensitivity;
                     break;
                 case 6:
                     SI6 = e.Value;
+                    sensor = ifk.sensors[6];
+                    SI0Raw = sensor.RawValue;
+                    SI0DataRate = sensor.DataRate;
+                    SI0DataRateMax = sensor.DataRateMax;
+                    SI0DataRateMin = sensor.DataRateMin;
+                    SI0Sensitivity = sensor.Sensitivity;
                     break;
                 case 7:
                     SI7 = e.Value;
+                    sensor = ifk.sensors[7];
+                    SI0Raw = sensor.RawValue;
+                    SI0DataRate = sensor.DataRate;
+                    SI0DataRateMax = sensor.DataRateMax;
+                    SI0DataRateMin = sensor.DataRateMin;
+                    SI0Sensitivity = sensor.Sensitivity;
                     break;
 
             }
