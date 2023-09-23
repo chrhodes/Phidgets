@@ -15,6 +15,8 @@ using VNC;
 using VNC.Core.Mvvm;
 using VNC.Phidget;
 
+using VNCPhidgets21Explorer.Resources;
+
 namespace VNCPhidgets21Explorer.Presentation.ViewModels
 {
     public class InterfaceKitViewModel : EventViewModelBase, IInterfaceKitViewModel, IInstanceCountVM
@@ -200,6 +202,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_selectedInterfaceKit == value)
                     return;
                 _selectedInterfaceKit = value;
+
+                OpenInterfaceKitCommand.RaiseCanExecuteChanged();
 
                 OnPropertyChanged();
             }
@@ -396,329 +400,132 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        #region Sensor Input
 
-
-        #endregion
-
-        private IEnumerable<Resources.Sensor> _Sensors2;
-        public IEnumerable<Resources.Sensor> Sensors2
+        private Int32? _sI0;
+        public Int32? SI0
         {
-            get
-            {
-                if (null == _Sensors2)
-                {
-                    // TODO(crhodes)
-                    // Load this like the sensors.xml for now
-
-                    //_Sensors =
-                    //    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("Sensors").Elements("Sensor")
-                    //    select new Sensor(
-                    //        item.Attribute("Name").Value,
-                    //        item.Attribute("IPAddress").Value,
-                    //        item.Attribute("Port").Value,
-                    //        bool.Parse(item.Attribute("Enable").Value)
-                    //        );
-                }
-
-                return _Sensors2;
-            }
-
+            get => _sI0;
             set
             {
-                _Sensors2 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        //private Resources.Sensor[] _sensors;
-
-        //public Resources.Sensor[] Sensors
-        //{
-        //    get => _sensors;
-        //    set
-        //    {
-        //        if (_sensors == value)
-        //            return;
-        //        _sensors = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //public ICommand SayHelloCommand { get; private set; }
-
-
-        private string _message;
-
-        public string Message
-        {
-            get => _message;
-            set
-            {
-                if (_message == value)
+                if (_sI0 == value)
                     return;
-                _message = value;
+                _sI0 = value;
                 OnPropertyChanged();
             }
         }
 
-        #region Hosts
-
-        private Host _HOST;
-        public Host HOST
+        private Int32? _sIRaw0;
+        public Int32? SIRaw0
         {
-            get { return _HOST; }
-            set { _HOST = value; }
-        }
-
-        private Dictionary<string, Host> _HostD;
-        public Dictionary<string, Host> HostD
-        {
-            get
-            {
-                if (_HostD == null)
-                {
-                    _HostD = new Dictionary<string, Host>();
-                }
-                return _HostD;
-            }
+            get => _sIRaw0;
             set
             {
-                _HostD = value;
-            }
-        }
-
-
-        private IEnumerable<Host> _Hosts;
-        public IEnumerable<Host> Hosts
-        {
-            get
-            {
-                if (null == _Hosts)
-                {
-                    // TODO(crhodes)
-                    // Load this like the sensors.xml for now
-
-                    //_Hosts =
-                    //    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("Hosts").Elements("Host")
-                    //    select new Host(
-                    //        item.Attribute("Name").Value,
-                    //        item.Attribute("IPAddress").Value,
-                    //        item.Attribute("Port").Value,
-                    //        bool.Parse(item.Attribute("Enable").Value)
-                    //        );
-                }
-
-                return _Hosts;
-            }
-
-            set
-            {
-                _Hosts = value;
-            }
-        }
-
-        #endregion
-
-        #region InterfaceKits
-
-        private InterfaceKitEx _IK;
-        public InterfaceKitEx IK
-        {
-            get { return _IK; }
-            set { _IK = value; }
-        }
-
-        private Dictionary<string, InterfaceKitEx> _InterfaceKitsD;
-        public Dictionary<string, InterfaceKitEx> InterfaceKitsD
-        {
-            get
-            {
-                if (null == _InterfaceKitsD)
-                {
-                    _InterfaceKitsD = new Dictionary<string, InterfaceKitEx>();
-                }
-                return _InterfaceKitsD;
-            }
-            set
-            {
-                _InterfaceKitsD = value;
-            }
-        }
-
-        private Collection<string> _InterfaceKits;
-        public Collection<string> InterfaceKits
-        {
-            get
-            {
-                if (null == _InterfaceKits)
-                {
-                    _InterfaceKits = new Collection<string>();
-                }
-                return _InterfaceKits;
-            }
-            set
-            {
-                _InterfaceKits = value;
-            }
-        }
-
-        #endregion
-
-        #endregion
-
-        #region Event Handlers
-
-        #region Commands
-
-
-        private string _ConfigFileName;
-
-        public string ConfigFileName
-        {
-            get => _ConfigFileName;
-            set
-            {
-                if (_ConfigFileName == value) return;
-                _ConfigFileName = value;
+                if (_sIRaw0 == value)
+                    return;
+                _sIRaw0 = value;
                 OnPropertyChanged();
             }
         }
 
-        public string ConfigFIleNameToolTip { get; set; }
+        //var DataRate = sensor0.DataRate;
+        //var DataRateMax = sensor0.DataRateMax;
+        //var DataRateMin = sensor0.DataRateMin;
+        //var Sensitivity = sensor0.Sensitivity;
 
-        #region Command ConfigFIleName DoubleClick
-
-        public DelegateCommand ConfigFileName_DoubleClick_Command { get; set; }
-
-        public void ConfigFileName_DoubleClick()
+        private Int32? _sI1;
+        public Int32? SI1
         {
-            Message = "ConfigFileName_DoubleClick";
-        }
-
-        #endregion
-
-        #region OpenInterfaceKit Command
-
-        public DelegateCommand OpenInterfaceKitCommand { get; set; }
-        public string OpenInterfaceKitContent { get; set; } = "Open";
-        public string OpenInterfaceKitToolTip { get; set; } = "OpenInterfaceKit ToolTip";
-
-        // Can get fancy and use Resources
-        //public string OpenInterfaceKitContent { get; set; } = "ViewName_OpenInterfaceKitContent";
-        //public string OpenInterfaceKitToolTip { get; set; } = "ViewName_OpenInterfaceKitContentToolTip";
-
-        // Put these in Resource File
-        //    <system:String x:Key="ViewName_OpenInterfaceKitContent">OpenInterfaceKit</system:String>
-        //    <system:String x:Key="ViewName_OpenInterfaceKitContentToolTip">OpenInterfaceKit ToolTip</system:String>  
-
-        public void OpenInterfaceKit()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-            // TODO(crhodes)
-            // Do something amazing.
-            Message = "Cool, you called OpenInterfaceKit";
-
-            ActiveInterfaceKit = new InterfaceKitEx(
-                SelectedHost.IPAddress,
-                SelectedHost.Port,
-                SelectedInterfaceKit.SerialNumber,
-                SelectedInterfaceKit.Enable,
-                SelectedInterfaceKit.Embedded);
-
-            ActiveInterfaceKit.Attach += ActiveInterfaceKit_Attach;
-            ActiveInterfaceKit.Detach += ActiveInterfaceKit_Detach;
-
-            ActiveInterfaceKit.OutputChange += ActiveInterfaceKit_OutputChange;
-            ActiveInterfaceKit.InputChange += ActiveInterfaceKit_InputChange; ;
-            ActiveInterfaceKit.Open();
-
-            // Uncomment this if you are telling someone else to handle this
-
-            // Common.EventAggregator.GetEvent<OpenInterfaceKitEvent>().Publish();
-
-            // May want EventArgs
-
-            //  EventAggregator.GetEvent<OpenInterfaceKitEvent>().Publish(
-            //      new OpenInterfaceKitEventArgs()
-            //      {
-            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-            //            Process = _contextMainViewModel.Context.SelectedProcess
-            //      });
-
-            // Start Cut Three - Put this in PrismEvents
-
-            // public class OpenInterfaceKitEvent : PubSubEvent { }
-
-            // End Cut Three
-
-            // Start Cut Four - Put this in places that listen for event
-
-            //Common.EventAggregator.GetEvent<OpenInterfaceKitEvent>().Subscribe(OpenInterfaceKit);
-
-            // End Cut Four
-
-            OpenInterfaceKitCommand.RaiseCanExecuteChanged();
-            CloseInterfaceKitCommand.RaiseCanExecuteChanged();
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private void ActiveInterfaceKit_InputChange(object sender, Phidgets.Events.InputChangeEventArgs e)
-        {
-            InterfaceKit ifk = (InterfaceKit)sender;
-
-            switch (e.Index)
+            get => _sI1;
+            set
             {
-                case 0:
-                    DI0 = e.Value;
-                    break;
-                case 1:
-                    DI1 = e.Value;
-                    break;
-                case 2:
-                    DI2 = e.Value;
-                    break;
-                case 3:
-                    DI3 = e.Value;
-                    break;
-                case 4:
-                    DI4 = e.Value;
-                    break;
-                case 5:
-                    DI5 = e.Value;
-                    break;
-                case 6:
-                    DI6 = e.Value;
-                    break;
-                case 7:
-                    DI7 = e.Value;
-                    break;
-                case 8:
-                    DI8 = e.Value;
-                    break;
-                case 9:
-                    DI9 = e.Value;
-                    break;
-                case 10:
-                    DI10 = e.Value;
-                    break;
-                case 11:
-                    DI11 = e.Value;
-                    break;
-                case 12:
-                    DI12 = e.Value;
-                    break;
-                case 13:
-                    DI13 = e.Value;
-                    break;
-                case 14:
-                    DI14 = e.Value;
-                    break;
-                case 15:
-                    DI15 = e.Value;
-                    break;
+                if (_sI1 == value)
+                    return;
+                _sI1 = value;
+                OnPropertyChanged();
             }
         }
+
+        private Int32? _sI2;
+        public Int32? SI2
+        {
+            get => _sI2;
+            set
+            {
+                if (_sI2 == value)
+                    return;
+                _sI2 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI3;
+        public Int32? SI3
+        {
+            get => _sI3;
+            set
+            {
+                if (_sI3 == value)
+                    return;
+                _sI3 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI4;
+        public Int32? SI4
+        {
+            get => _sI4;
+            set
+            {
+                if (_sI4 == value)
+                    return;
+                _sI4 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI5;
+        public Int32? SI5
+        {
+            get => _sI5;
+            set
+            {
+                if (_sI5 == value)
+                    return;
+                _sI5 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI6;
+        public Int32? SI6
+        {
+            get => _sI6;
+            set
+            {
+                if (_sI6 == value)
+                    return;
+                _sI6 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sI7;
+        public Int32? SI7
+        {
+            get => _sI7;
+            set
+            {
+                if (_sI7 == value)
+                    return;
+                _sI7 = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        #endregion
 
         #region Digital Inputs
 
@@ -943,14 +750,14 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_dO0 == value)
                     return;
                 _dO0 = value;
-                
+
                 // ActiveInterfaceKit_OutputChange may have called us
                 // No need to update if same state.
 
                 if (ActiveInterfaceKit is not null
                     && value != ActiveInterfaceKit.outputs[0])
                 {
-                    ActiveInterfaceKit.outputs[0] = (Boolean)value;                                     
+                    ActiveInterfaceKit.outputs[0] = (Boolean)value;
                 }
 
                 OnPropertyChanged();
@@ -1258,6 +1065,383 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
+        #endregion
+
+        private IEnumerable<Resources.Sensor> _Sensors2;
+        public IEnumerable<Resources.Sensor> Sensors2
+        {
+            get
+            {
+                if (null == _Sensors2)
+                {
+                    // TODO(crhodes)
+                    // Load this like the sensors.xml for now
+
+                    //_Sensors =
+                    //    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("Sensors").Elements("Sensor")
+                    //    select new Sensor(
+                    //        item.Attribute("Name").Value,
+                    //        item.Attribute("IPAddress").Value,
+                    //        item.Attribute("Port").Value,
+                    //        bool.Parse(item.Attribute("Enable").Value)
+                    //        );
+                }
+
+                return _Sensors2;
+            }
+
+            set
+            {
+                _Sensors2 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        //private Resources.Sensor[] _sensors;
+
+        //public Resources.Sensor[] Sensors
+        //{
+        //    get => _sensors;
+        //    set
+        //    {
+        //        if (_sensors == value)
+        //            return;
+        //        _sensors = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
+        //public ICommand SayHelloCommand { get; private set; }
+
+
+        private string _message;
+
+        public string Message
+        {
+            get => _message;
+            set
+            {
+                if (_message == value)
+                    return;
+                _message = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #region Hosts
+
+        private Host _HOST;
+        public Host HOST
+        {
+            get { return _HOST; }
+            set { _HOST = value; }
+        }
+
+        private Dictionary<string, Host> _HostD;
+        public Dictionary<string, Host> HostD
+        {
+            get
+            {
+                if (_HostD == null)
+                {
+                    _HostD = new Dictionary<string, Host>();
+                }
+                return _HostD;
+            }
+            set
+            {
+                _HostD = value;
+            }
+        }
+
+
+        private IEnumerable<Host> _Hosts;
+        public IEnumerable<Host> Hosts
+        {
+            get
+            {
+                if (null == _Hosts)
+                {
+                    // TODO(crhodes)
+                    // Load this like the sensors.xml for now
+
+                    //_Hosts =
+                    //    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("Hosts").Elements("Host")
+                    //    select new Host(
+                    //        item.Attribute("Name").Value,
+                    //        item.Attribute("IPAddress").Value,
+                    //        item.Attribute("Port").Value,
+                    //        bool.Parse(item.Attribute("Enable").Value)
+                    //        );
+                }
+
+                return _Hosts;
+            }
+
+            set
+            {
+                _Hosts = value;
+            }
+        }
+
+        #endregion
+
+        #region InterfaceKits
+
+        private InterfaceKitEx _IK;
+        public InterfaceKitEx IK
+        {
+            get { return _IK; }
+            set { _IK = value; }
+        }
+
+        private Dictionary<string, InterfaceKitEx> _InterfaceKitsD;
+        public Dictionary<string, InterfaceKitEx> InterfaceKitsD
+        {
+            get
+            {
+                if (null == _InterfaceKitsD)
+                {
+                    _InterfaceKitsD = new Dictionary<string, InterfaceKitEx>();
+                }
+                return _InterfaceKitsD;
+            }
+            set
+            {
+                _InterfaceKitsD = value;
+            }
+        }
+
+        private Collection<string> _InterfaceKits;
+        public Collection<string> InterfaceKits
+        {
+            get
+            {
+                if (null == _InterfaceKits)
+                {
+                    _InterfaceKits = new Collection<string>();
+                }
+                return _InterfaceKits;
+            }
+            set
+            {
+                _InterfaceKits = value;
+            }
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Event Handlers
+
+        #region Commands
+
+
+        private string _ConfigFileName;
+
+        public string ConfigFileName
+        {
+            get => _ConfigFileName;
+            set
+            {
+                if (_ConfigFileName == value) return;
+                _ConfigFileName = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string ConfigFIleNameToolTip { get; set; }
+
+        #region Command ConfigFIleName DoubleClick
+
+        public DelegateCommand ConfigFileName_DoubleClick_Command { get; set; }
+
+        public void ConfigFileName_DoubleClick()
+        {
+            Message = "ConfigFileName_DoubleClick";
+        }
+
+        #endregion
+
+        #region OpenInterfaceKit Command
+
+        public DelegateCommand OpenInterfaceKitCommand { get; set; }
+        public string OpenInterfaceKitContent { get; set; } = "Open";
+        public string OpenInterfaceKitToolTip { get; set; } = "OpenInterfaceKit ToolTip";
+
+        // Can get fancy and use Resources
+        //public string OpenInterfaceKitContent { get; set; } = "ViewName_OpenInterfaceKitContent";
+        //public string OpenInterfaceKitToolTip { get; set; } = "ViewName_OpenInterfaceKitContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_OpenInterfaceKitContent">OpenInterfaceKit</system:String>
+        //    <system:String x:Key="ViewName_OpenInterfaceKitContentToolTip">OpenInterfaceKit ToolTip</system:String>  
+
+        public void OpenInterfaceKit()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = "Cool, you called OpenInterfaceKit";
+
+            ActiveInterfaceKit = new InterfaceKitEx(
+                SelectedHost.IPAddress,
+                SelectedHost.Port,
+                SelectedInterfaceKit.SerialNumber,
+                SelectedInterfaceKit.Enable,
+                SelectedInterfaceKit.Embedded);
+
+            ActiveInterfaceKit.Attach += ActiveInterfaceKit_Attach;
+            ActiveInterfaceKit.Detach += ActiveInterfaceKit_Detach;
+
+            // NOTE(crhodes)
+            // Capture Digital Input and Output changes so we can update the UI
+            // The InterfaceKitEx attaches to these events also.
+            // Itlogs the changes if xxx is set to true.
+
+            ActiveInterfaceKit.OutputChange += ActiveInterfaceKit_OutputChange;
+            ActiveInterfaceKit.InputChange += ActiveInterfaceKit_InputChange;
+
+            // NOTE(crhodes)
+            // Let's do see if we can watch some analog data stream in.
+
+            ActiveInterfaceKit.SensorChange += ActiveInterfaceKit_SensorChange;
+            ActiveInterfaceKit.Open();
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<OpenInterfaceKitEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<OpenInterfaceKitEvent>().Publish(
+            //      new OpenInterfaceKitEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class OpenInterfaceKitEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<OpenInterfaceKitEvent>().Subscribe(OpenInterfaceKit);
+
+            // End Cut Four
+
+            OpenInterfaceKitCommand.RaiseCanExecuteChanged();
+            CloseInterfaceKitCommand.RaiseCanExecuteChanged();
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void ActiveInterfaceKit_SensorChange(object sender, Phidgets.Events.SensorChangeEventArgs e)
+        {
+            InterfaceKit ifk = (InterfaceKit)sender;
+
+            var sensor0 = ifk.sensors[0];
+
+            SIRaw0 = sensor0.RawValue;
+
+            var DataRate = sensor0.DataRate;
+            var DataRateMax = sensor0.DataRateMax;
+            var DataRateMin = sensor0.DataRateMin;
+            var Sensitivity = sensor0.Sensitivity;
+            var Value = sensor0.Value;
+
+            switch (e.Index)
+            {
+                case 0:
+                    SI0 = e.Value;
+                    break;
+                case 1:
+                    SI1 = e.Value;
+                    break;
+                case 2:
+                    SI2 = e.Value;
+                    break;
+                case 3:
+                    SI3 = e.Value;
+                    break;
+                case 4:
+                    SI4 = e.Value;
+                    break;
+                case 5:
+                    SI5 = e.Value;
+                    break;
+                case 6:
+                    SI6 = e.Value;
+                    break;
+                case 7:
+                    SI7 = e.Value;
+                    break;
+
+            }
+        }
+
+        private void ActiveInterfaceKit_InputChange(object sender, Phidgets.Events.InputChangeEventArgs e)
+        {
+            InterfaceKit ifk = (InterfaceKit)sender;
+
+            switch (e.Index)
+            {
+                case 0:
+                    DI0 = e.Value;
+                    break;
+                case 1:
+                    DI1 = e.Value;
+                    break;
+                case 2:
+                    DI2 = e.Value;
+                    break;
+                case 3:
+                    DI3 = e.Value;
+                    break;
+                case 4:
+                    DI4 = e.Value;
+                    break;
+                case 5:
+                    DI5 = e.Value;
+                    break;
+                case 6:
+                    DI6 = e.Value;
+                    break;
+                case 7:
+                    DI7 = e.Value;
+                    break;
+                case 8:
+                    DI8 = e.Value;
+                    break;
+                case 9:
+                    DI9 = e.Value;
+                    break;
+                case 10:
+                    DI10 = e.Value;
+                    break;
+                case 11:
+                    DI11 = e.Value;
+                    break;
+                case 12:
+                    DI12 = e.Value;
+                    break;
+                case 13:
+                    DI13 = e.Value;
+                    break;
+                case 14:
+                    DI14 = e.Value;
+                    break;
+                case 15:
+                    DI15 = e.Value;
+                    break;
+            }
+        }
+
+
         private void ActiveInterfaceKit_OutputChange(object sender, Phidgets.Events.OutputChangeEventArgs e)
         {
             InterfaceKit ifk = (InterfaceKit)sender;
@@ -1424,10 +1608,18 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Add any before button is enabled logic.
             //return true;
-            if (IkAttached is not null) 
-                return !(Boolean)IkAttached;
-            else 
-                return true;
+            if (SelectedInterfaceKit is not null)
+            {
+                if (IkAttached is not null)
+                    return !(Boolean)IkAttached;
+                else
+                    return true;
+            }
+            else
+            { 
+                return false; 
+            }
+
         }
 
         #endregion
