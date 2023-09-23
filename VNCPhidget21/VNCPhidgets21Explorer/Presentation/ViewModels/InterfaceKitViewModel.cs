@@ -15,7 +15,7 @@ using VNC;
 using VNC.Core.Mvvm;
 using VNC.Phidget;
 
-using VNCPhidgets21Explorer.Resources;
+//using VNCPhidgets21Explorer.Resources;
 
 namespace VNCPhidgets21Explorer.Presentation.ViewModels
 {
@@ -402,6 +402,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Sensor Input
 
+        // TODO(crhodes)
+        // Maybe the names should be SI0xxx not SIxxx0
+
         private Int32? _sI0;
         public Int32? SI0
         {
@@ -428,10 +431,70 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        private Int32? _sIDataRate0;
+        public Int32? SIDataRate0
+        {
+            get => _sIDataRate0;
+            set
+            {
+                if (_sIDataRate0 == value)
+                    return;
+                _sIDataRate0 = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sIDataRateMax0;
+        public Int32? SIDataRateMax0
+        {
+            get => _sIDataRateMax0;
+            set
+            {
+                if (_sIDataRateMax0 == value)
+                    return;
+                _sIDataRateMax0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sIDataRateMin0;
+        public Int32? SIDataRateMin0
+        {
+            get => _sIDataRateMin0;
+            set
+            {
+                if (_sIDataRateMin0 == value)
+                    return;
+                _sIDataRateMin0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _sISensitivity0;
+        public Int32? SISensitivity0
+        {
+            get => _sISensitivity0;
+            set
+            {
+                if (_sISensitivity0 == value)
+                    return;
+                _sISensitivity0 = value;
+
+                // ActiveInterfaceKit_OutputChange may have called us
+                // No need to update if same state.
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.sensors[0].Sensitivity)
+                {
+                    ActiveInterfaceKit.sensors[0].Sensitivity = (Int32)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
         //var DataRate = sensor0.DataRate;
-        //var DataRateMax = sensor0.DataRateMax;
-        //var DataRateMin = sensor0.DataRateMin;
-        //var Sensitivity = sensor0.Sensitivity;
 
         private Int32? _sI1;
         public Int32? SI1
@@ -1342,17 +1405,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private void ActiveInterfaceKit_SensorChange(object sender, Phidgets.Events.SensorChangeEventArgs e)
         {
-            InterfaceKit ifk = (InterfaceKit)sender;
+            Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
 
             var sensor0 = ifk.sensors[0];
 
             SIRaw0 = sensor0.RawValue;
 
-            var DataRate = sensor0.DataRate;
-            var DataRateMax = sensor0.DataRateMax;
-            var DataRateMin = sensor0.DataRateMin;
-            var Sensitivity = sensor0.Sensitivity;
-            var Value = sensor0.Value;
+            SIDataRate0 = sensor0.DataRate;
+            SIDataRateMax0 = sensor0.DataRateMax;
+            SIDataRateMin0 = sensor0.DataRateMin;
+            SISensitivity0= sensor0.Sensitivity;
+
+            var sValue = sensor0.Value;
+            var eValue = e.Value;
 
             switch (e.Index)
             {
@@ -1386,7 +1451,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private void ActiveInterfaceKit_InputChange(object sender, Phidgets.Events.InputChangeEventArgs e)
         {
-            InterfaceKit ifk = (InterfaceKit)sender;
+            Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
 
             switch (e.Index)
             {
@@ -1444,7 +1509,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private void ActiveInterfaceKit_OutputChange(object sender, Phidgets.Events.OutputChangeEventArgs e)
         {
-            InterfaceKit ifk = (InterfaceKit)sender;
+            Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
             var outputs = ifk.outputs;
             InterfaceKitDigitalOutputCollection doc = outputs;
 
@@ -1506,7 +1571,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             try
             {
-                InterfaceKit ifk = (InterfaceKit)sender;
+                Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
                 //Phidget device = (Phidget)e.Device;
                 //var b = e.GetType();
                 Log.Trace($"ActiveInterfaceKit_Attach {ifk.Address},{ifk.Port} S#:{ifk.SerialNumber}", Common.LOG_CATEGORY);
@@ -1573,7 +1638,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             try
             {
-                InterfaceKit ifk = (InterfaceKit)sender;
+                Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
                 var a = e;
                 var b = e.GetType();
                 Log.Trace($"ActiveInterfaceKit_Detach {ifk.Address},{ifk.SerialNumber}", Common.LOG_CATEGORY);

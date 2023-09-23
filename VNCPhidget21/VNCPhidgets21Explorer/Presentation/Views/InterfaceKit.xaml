@@ -483,37 +483,60 @@
                             <!--<dxe:ComboBoxEdit DataContext="{StaticResource SensorList}" ItemsSource="{Binding }" DisplayMember="@Name" />-->
                             <dxe:ComboBoxEdit ItemsSource="{Binding Sensors2}" DisplayMember="Name" />
                         </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="A0-DataRate" LabelPosition="Top">
-                            <dxe:SpinEdit MinValue="16" MaxValue="1000" Increment="0"
-                              Value="{Binding DataRate, Mode=TwoWay}" 
-                              IsFloatValue="False" Spin="SpinEdit_DataRate_Spin" />
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="A0-Sensitivity" LabelPosition="Top">
-                            <dxe:SpinEdit MinValue="0" MaxValue="1000" Increment="0"
-                              Value="{Binding Sensitivity, Mode=TwoWay}"
-                              IsFloatValue="False" Spin="SpinEdit_Sensitivity_Spin" />
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="A0-Raw" LabelPosition="Top">
-                            <dxe:TextEdit Name="teAI_A0R" Tag="0" Text="{Binding SI0, Mode=OneWay}" IsReadOnly="True" />
-                        </dxlc:LayoutItem>
+
+                        <!--<dxlc:LayoutItem Label="A0-Max" LabelPosition="Top">
+                            <dxe:SpinEdit MinValue="0" MaxValue="1000" Value="{Binding SIDataRateMax0, Mode=TwoWay}"/>
+                        </dxlc:LayoutItem>-->
                         <dxlc:LayoutItem Label="A0" LabelPosition="Top">
-                            <dxe:TextEdit Name="teAI_A0" Tag="0" Text="{Binding SensorValue, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Name="teAI_A0" Tag="0" Text="{Binding SI0, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="A0-Calc" LabelPosition="Top">
+                        
+                        <dxlc:LayoutItem Label="A0-Raw" LabelPosition="Top">
+                            <dxe:TextEdit Name="teAI_A0R" Tag="0" Text="{Binding SIRaw0, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A0-Min" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding SIDataRateMin0, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+                        
+                        <dxlc:LayoutItem Label="A0-DataRate" LabelPosition="Top">
+                            <!--<dxe:SpinEdit Value="{Binding SIDataRate0, Mode=TwoWay}" Increment="5"
+                                          MinValue="{Binding SIDataRateMin0, Mode=OneWay}" 
+                                          MaxValue="{Binding SIDataRateMax0, Mode=OneWay}" 
+                                          IsFloatValue="False" />-->
+                            <dxe:SpinEdit Value="{Binding SIDataRate0, Mode=TwoWay}" Increment="5"
+                                          MinValue="{Binding SIDataRateMax0, Mode=OneWay}" 
+                                          MaxValue="{Binding SIDataRateMin0, Mode=OneWay}" 
+                                          IsFloatValue="False" />                            
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A0-Max" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding SIDataRateMax0, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+                        
+                        <!--<dxlc:LayoutItem Label="A0-Min" LabelPosition="Top">
+                            <dxe:SpinEdit MinValue="0" MaxValue="1000" Value="{Binding SIDataRateMin0, Mode=TwoWay}"/>
+                        </dxlc:LayoutItem>-->
+                        
+                        <dxlc:LayoutItem Label="A0-Sensitivity" LabelPosition="Top">
+                            <dxe:SpinEdit MinValue="0" MaxValue="1000" Increment="1"
+                              Value="{Binding SISensitivity0, Mode=TwoWay}"
+                              IsFloatValue="False" />
+                        </dxlc:LayoutItem>
+
+                        <!-- NOTE(crhodes)
+                         Don't know what this is all about.  Go look at Fx for clues
+                        -->
+                        <!--<dxlc:LayoutItem Label="A0-Calc" LabelPosition="Top">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                 <dxe:TextEdit Name="teAI_A0C" Tag="0" Text="{Binding SensorValue, Mode=OneWay}" IsReadOnly="True" />
                                 <Label Content="cm" Margin="5,0,0,0" />
                             </StackPanel>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="A0-Min" LabelPosition="Top">
-                            <dxe:SpinEdit MinValue="0" MaxValue="1000" Value="{Binding MinRange, Mode=TwoWay}"/>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="A0-Max" LabelPosition="Top">
-                            <dxe:SpinEdit MinValue="0" MaxValue="1000" Value="{Binding MaxRange, Mode=TwoWay}"/>
-                        </dxlc:LayoutItem>
+                        </dxlc:LayoutItem>-->
+
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup Name="lgAnalogInputs_A1" Orientation="Vertical" DataContext="{Binding Source=sensors[1]}" >
+                    <!--<dxlc:LayoutGroup Name="lgAnalogInputs_A1" Orientation="Vertical" DataContext="{Binding Source=sensors[1]}" >
                         <dxlc:LayoutItem Label="Sensor Type" LabelPosition="Top">
                             <dxe:ComboBoxEdit DataContext="{StaticResource SensorList}" ItemsSource="{Binding }" DisplayMember="@Name" />
                         </dxlc:LayoutItem>
@@ -749,7 +772,7 @@
                         <dxlc:LayoutItem Label="A7-Max" LabelPosition="Top">
                             <dxe:SpinEdit MinValue="0" MaxValue="1000" Value="{Binding MaxRange, Mode=TwoWay}"/>
                         </dxlc:LayoutItem>
-                    </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>-->
 
                 </dxlc:LayoutGroup>
 
