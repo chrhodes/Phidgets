@@ -100,37 +100,35 @@
                     <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.InterfaceKitRegion3}"/>
                 </dxdo:LayoutPanel>
                 
-                <dxdo:LayoutPanel Caption="HackAround" AutoHidden="False" ShowCloseButton="False">
-                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.HackAroundRegion}" />
-                        
-            </dxdo:LayoutPanel>
+                <!--<dxdo:LayoutPanel Caption="HackAround" AutoHidden="False" ShowCloseButton="False">
+                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.HackAroundRegion}" />                        
+                </dxdo:LayoutPanel>-->
 
             </dxdo:LayoutGroup>
 
             <dxdo:LayoutGroup VerticalAlignment="Bottom" Name="lg_Footer" >
 
-                    <dxdo:LayoutPanel AutoHidden="True" ShowCloseButton="False">
-                    
-                        <dxdo:LayoutGroup>
-                            
+                    <dxdo:LayoutPanel AutoHidden="True" ShowCloseButton="False" Caption="Tools">
+
+                        <dxlc:LayoutGroup>
                             <!-- This is useful for debugging V VM constructor issues -->
-                            
-                            <dxdo:LayoutControlItem>
+
+                            <dxlc:LayoutItem Label="V:" >
                                 <TextBlock Text="{Binding ElementName=thisControl, Path=InstanceCountV}" />
-                            </dxdo:LayoutControlItem>
+                            </dxlc:LayoutItem>
 
-                            <dxdo:LayoutControlItem>
+                            <dxlc:LayoutItem Label="VM:">
                                 <TextBlock Text="{Binding InstanceCountVM}" />
-                            </dxdo:LayoutControlItem>
+                            </dxlc:LayoutItem>
 
-                            <dxdo:LayoutControlItem>
+                            <dxlc:LayoutItem>
                                 <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right">
                                     <Button Content="Save Layout" Click="SaveLayout_Click" />
                                     <Button Content="Restore Layout" Click="RestoreLayout_Click" />
                                 </StackPanel>
-                            </dxdo:LayoutControlItem>
-                            
-                        </dxdo:LayoutGroup>
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+
 
                     </dxdo:LayoutPanel>
 
@@ -165,13 +163,15 @@
 
             <dxdo:DockLayoutManager.FloatGroups>
 
-                <!--<dxdo:FloatGroup FloatLocation="100,100" FloatSize="600,1200">
-                    <dxdo:LayoutPanel Caption="VNC">
-                        <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerVNCMainRegion}" />
+                <dxdo:FloatGroup FloatLocation="100,100" FloatSize="600,600">
+
+                    <dxdo:LayoutPanel Caption="HackAround" AutoHidden="False" ShowCloseButton="False">
+                        <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.HackAroundRegion}" />
                     </dxdo:LayoutPanel>
+
                 </dxdo:FloatGroup>
 
-                <dxdo:FloatGroup FloatLocation="800,100" FloatSize="600,1200" >
+                <!--<dxdo:FloatGroup FloatLocation="800,100" FloatSize="600,1200" >
                     <dxdo:LayoutPanel Caption="VNCArch">
                         <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerVNCARCHMainRegion}" />
                     </dxdo:LayoutPanel>
