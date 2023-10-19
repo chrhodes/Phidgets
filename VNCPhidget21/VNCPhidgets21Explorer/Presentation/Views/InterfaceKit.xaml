@@ -225,7 +225,8 @@
                     
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Orientation="Vertical" View="GroupBox" Header="InterfaceKit Status" IsCollapsible="True" IsCollapsed="True"  >
+                <dxlc:LayoutGroup Orientation="Vertical" View="GroupBox" Header="InterfaceKit Status" 
+                                  IsCollapsible="True" IsCollapsed="True"  >
                     <!--<dxlc:LayoutGroup.GroupBoxStyle>
                         <Style TargetType="dxlc:GroupBox">
                             <Setter Property="Background" Value="Transparent" />
@@ -306,8 +307,8 @@
 
                 </dxlc:LayoutGroup>
 
-
-                <dxlc:LayoutGroup Orientation="Horizontal" View="GroupBox" Header="Digital Inputs" IsCollapsible="True" IsCollapsed="False" >
+                <dxlc:LayoutGroup Orientation="Horizontal" View="GroupBox" Header="Digital Inputs" 
+                                  IsCollapsible="True" IsCollapsed="False" >
                     <!--<dxlc:LayoutGroup.GroupBoxStyle>
                         <Style TargetType="dxlc:GroupBox">
                             <Setter Property="Background" Value="Transparent" />
@@ -324,37 +325,30 @@
                                        Background="{Binding DI0, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="I1" LabelPosition="Top">
-                            <!--<dxe:CheckEdit Name="ceDI_1" Tag="1" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />-->
                             <dxe:CheckEdit Name="ceDI_1" Tag="1" IsChecked="{Binding DI1}" 
                                        Background="{Binding DI1, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="I2" LabelPosition="Top">
-                            <!--<dxe:CheckEdit Name="ceDI_2" Tag="2" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />-->
                             <dxe:CheckEdit Name="ceDI_2" Tag="2" IsChecked="{Binding DI2}" 
                                        Background="{Binding DI2, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="I3" LabelPosition="Top">
-                            <!--<dxe:CheckEdit Name="ceDI_3" Tag="3" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />-->
                             <dxe:CheckEdit Name="ceDI_3" Tag="3" IsChecked="{Binding DI3}" 
                                        Background="{Binding DI3, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="I4" LabelPosition="Top">
-                            <!--<dxe:CheckEdit Name="ceDI_4" Tag="4" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />-->
                             <dxe:CheckEdit Name="ceDI_4" Tag="4" IsChecked="{Binding DI4}" 
                                        Background="{Binding DI4, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="I5" LabelPosition="Top">
-                            <!--<dxe:CheckEdit Name="ceDI_5" Tag="5" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />-->
                             <dxe:CheckEdit Name="ceDI_5" Tag="5" IsChecked="{Binding DI5}" 
                                        Background="{Binding DI5, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="I6" LabelPosition="Top">
-                            <!--<dxe:CheckEdit Name="ceDI_6" Tag="6" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />-->
                             <dxe:CheckEdit Name="ceDI_6" Tag="6" IsChecked="{Binding DI6}" 
                                        Background="{Binding DI6, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="I7" LabelPosition="Top">
-                            <!--<dxe:CheckEdit Name="ceDI_7" Tag="7" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />-->
                             <dxe:CheckEdit Name="ceDI_7" Tag="7" IsChecked="{Binding DI7}" 
                                        Background="{Binding DI7, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                         </dxlc:LayoutItem>
@@ -393,8 +387,8 @@
                         
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup Orientation="Horizontal" View="GroupBox" Header="Digital Outputs"
-                                  IsCollapsible="True" IsCollapsed="False" >
+                <dxlc:LayoutGroup Orientation="Horizontal" View="GroupBox" Header="Digital Outputs"
+                                IsCollapsible="True" IsCollapsed="False" >
                         
                     <dxlc:LayoutItem Label="O0" LabelPosition="Top">
                         <!--<dxe:CheckEdit Name="ceDO_0" Tag="0" Checked="ceDO_Checked" Unchecked="ceDO_UnChecked" />-->
@@ -402,37 +396,30 @@
                                        Background="{Binding DO0, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="O1" LabelPosition="Top">
-                        <!--<dxe:CheckEdit Name="ceDO_1" Tag="1" Checked="ceDO_Checked" Unchecked="ceDO_UnChecked" />-->
                         <dxe:CheckEdit Name="ceDO_1" Tag="1" IsChecked="{Binding DO1}" 
                                        Background="{Binding DO1, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="O2" LabelPosition="Top">
-                        <!--<dxe:CheckEdit Name="ceDO_2" Tag="2" Checked="ceDO_Checked" Unchecked="ceDO_UnChecked" />-->
                         <dxe:CheckEdit Name="ceDO_2" Tag="2" IsChecked="{Binding DO2}" 
                                        Background="{Binding DO2, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="O3" LabelPosition="Top">
-                        <!--<dxe:CheckEdit Name="ceDO_3" Tag="3" Checked="ceDO_Checked" Unchecked="ceDO_UnChecked" />-->
                         <dxe:CheckEdit Name="ceDO_3" Tag="3" IsChecked="{Binding DO3}" 
                                        Background="{Binding DO3, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="O4" LabelPosition="Top">
-                        <!--<dxe:CheckEdit Name="ceDO_4" Tag="4" Checked="ceDO_Checked" Unchecked="ceDO_UnChecked" />-->
                         <dxe:CheckEdit Name="ceDO_4" Tag="4" IsChecked="{Binding DO4}" 
                                        Background="{Binding DO4, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="O5" LabelPosition="Top">
-                        <!--<dxe:CheckEdit Name="ceDO_5" Tag="5" Checked="ceDO_Checked" Unchecked="ceDO_UnChecked" />-->
                         <dxe:CheckEdit Name="ceDO_5" Tag="5" IsChecked="{Binding DO5}" 
                                        Background="{Binding DO5, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="O6" LabelPosition="Top">
-                        <!--<dxe:CheckEdit Name="ceDO_6" Tag="6" Checked="ceDO_Checked" Unchecked="ceDO_UnChecked" />-->
                         <dxe:CheckEdit Name="ceDO_6" Tag="6" IsChecked="{Binding DO6}" 
                                        Background="{Binding DO6, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="O7" LabelPosition="Top">
-                        <!--<dxe:CheckEdit Name="ceDO_7" Tag="7" Checked="ceDO_Checked" Unchecked="ceDO_UnChecked" />-->
                         <dxe:CheckEdit Name="ceDO_7" Tag="7" IsChecked="{Binding DO7}" 
                                        Background="{Binding DO7, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
@@ -485,32 +472,32 @@
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A0" LabelPosition="Top">
-                            <dxe:TextEdit Name="teAI_A0" Tag="0" Text="{Binding SI0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Name="teAI_A0" Tag="0" Text="{Binding AI0, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
                         
                         <dxlc:LayoutItem Label="A0-Raw" LabelPosition="Top">
-                            <dxe:TextEdit Name="teAI_A0R" Tag="0" Text="{Binding SIRaw0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Name="teAI_A0R" Tag="0" Text="{Binding AIRaw0, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A0-Min" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding SIDataRateMin0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Text="{Binding AIDataRateMin0, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
                         
                         <dxlc:LayoutItem Label="A0-DataRate" LabelPosition="Top">
 
-                            <dxe:SpinEdit Value="{Binding SIDataRate0, Mode=TwoWay}" Increment="5"
-                                          MinValue="{Binding SIDataRateMax0, Mode=OneWay}" 
-                                          MaxValue="{Binding SIDataRateMin0, Mode=OneWay}" 
+                            <dxe:SpinEdit Value="{Binding AIDataRate0, Mode=TwoWay}" Increment="5"
+                                          MinValue="{Binding AIDataRateMax0, Mode=OneWay}" 
+                                          MaxValue="{Binding AIDataRateMin0, Mode=OneWay}" 
                                           IsFloatValue="False" />                            
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A0-Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding SIDataRateMax0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Text="{Binding AIDataRateMax0, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A0-Sensitivity" LabelPosition="Top">
                             <dxe:SpinEdit MinValue="0" MaxValue="1000" Increment="1"
-                              Value="{Binding SISensitivity0, Mode=TwoWay}"
+                              Value="{Binding AISensitivity0, Mode=TwoWay}"
                               IsFloatValue="False" />
                         </dxlc:LayoutItem>
 
@@ -523,32 +510,32 @@
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A1" LabelPosition="Top">
-                            <dxe:TextEdit Name="teAI_A1" Tag="0" Text="{Binding SI1, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Name="teAI_A1" Tag="0" Text="{Binding AI1, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A1-Raw" LabelPosition="Top">
-                            <dxe:TextEdit Name="teAI_A1R" Tag="0" Text="{Binding SIRaw1, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Name="teAI_A1R" Tag="0" Text="{Binding AIRaw1, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A1-Min" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding SIDataRateMin1, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Text="{Binding AIDataRateMin1, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A1-DataRate" LabelPosition="Top">
 
-                            <dxe:SpinEdit Value="{Binding SIDataRate0, Mode=TwoWay}" Increment="5"
-                                          MinValue="{Binding SIDataRateMax1, Mode=OneWay}" 
-                                          MaxValue="{Binding SIDataRateMin1, Mode=OneWay}" 
+                            <dxe:SpinEdit Value="{Binding AIDataRate1, Mode=TwoWay}" Increment="5"
+                                          MinValue="{Binding AIDataRateMax1, Mode=OneWay}" 
+                                          MaxValue="{Binding AIDataRateMin1, Mode=OneWay}" 
                                           IsFloatValue="False" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A1-Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding SIDataRateMax1, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Text="{Binding AIDataRateMax1, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A1-Sensitivity" LabelPosition="Top">
                             <dxe:SpinEdit MinValue="0" MaxValue="1000" Increment="1"
-                              Value="{Binding SISensitivity1, Mode=TwoWay}"
+                              Value="{Binding AISensitivity1, Mode=TwoWay}"
                               IsFloatValue="False" />
                         </dxlc:LayoutItem>
 
@@ -561,32 +548,32 @@
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A2" LabelPosition="Top">
-                            <dxe:TextEdit Name="teAI_A2" Tag="0" Text="{Binding SI0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Name="teAI_A2" Tag="0" Text="{Binding AI2, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A2-Raw" LabelPosition="Top">
-                            <dxe:TextEdit Name="teAI_A2R" Tag="0" Text="{Binding SIRaw0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Name="teAI_A2R" Tag="0" Text="{Binding AIRaw2, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A2-Min" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding SIDataRateMin0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Text="{Binding AIDataRateMin2, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A2-DataRate" LabelPosition="Top">
 
-                            <dxe:SpinEdit Value="{Binding SIDataRate0, Mode=TwoWay}" Increment="5"
-                                          MinValue="{Binding SIDataRateMax0, Mode=OneWay}" 
-                                          MaxValue="{Binding SIDataRateMin0, Mode=OneWay}" 
+                            <dxe:SpinEdit Value="{Binding AIDataRate2, Mode=TwoWay}" Increment="5"
+                                          MinValue="{Binding AIDataRateMax2, Mode=OneWay}" 
+                                          MaxValue="{Binding AIDataRateMin2, Mode=OneWay}" 
                                           IsFloatValue="False" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A2-Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding SIDataRateMax0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Text="{Binding AIDataRateMax2, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A2-Sensitivity" LabelPosition="Top">
                             <dxe:SpinEdit MinValue="0" MaxValue="1000" Increment="1"
-                              Value="{Binding SISensitivity0, Mode=TwoWay}"
+                              Value="{Binding AISensitivity2, Mode=TwoWay}"
                               IsFloatValue="False" />
                         </dxlc:LayoutItem>
 
@@ -599,32 +586,32 @@
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A3" LabelPosition="Top">
-                            <dxe:TextEdit Name="teAI_A3" Tag="0" Text="{Binding SI0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Name="teAI_A3" Tag="0" Text="{Binding AI3, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A3-Raw" LabelPosition="Top">
-                            <dxe:TextEdit Name="teAI_A3R" Tag="0" Text="{Binding SIRaw0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Name="teAI_A3R" Tag="0" Text="{Binding AIRaw3, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A3-Min" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding SIDataRateMin0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Text="{Binding AIDataRateMin3, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A3-DataRate" LabelPosition="Top">
 
-                            <dxe:SpinEdit Value="{Binding SIDataRate0, Mode=TwoWay}" Increment="5"
-                                          MinValue="{Binding SIDataRateMax0, Mode=OneWay}" 
-                                          MaxValue="{Binding SIDataRateMin0, Mode=OneWay}" 
+                            <dxe:SpinEdit Value="{Binding AIDataRate3, Mode=TwoWay}" Increment="5"
+                                          MinValue="{Binding AIDataRateMax3, Mode=OneWay}" 
+                                          MaxValue="{Binding AIDataRateMin3, Mode=OneWay}" 
                                           IsFloatValue="False" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A3-Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding SIDataRateMax0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Text="{Binding AIDataRateMax3, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A3-Sensitivity" LabelPosition="Top">
                             <dxe:SpinEdit MinValue="0" MaxValue="1000" Increment="1"
-                              Value="{Binding SISensitivity0, Mode=TwoWay}"
+                              Value="{Binding AISensitivity3, Mode=TwoWay}"
                               IsFloatValue="False" />
                         </dxlc:LayoutItem>
 
@@ -637,32 +624,32 @@
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A4" LabelPosition="Top">
-                            <dxe:TextEdit Name="teAI_A4" Tag="0" Text="{Binding SI0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Name="teAI_A4" Tag="0" Text="{Binding AI4, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A4-Raw" LabelPosition="Top">
-                            <dxe:TextEdit Name="teAI_A4R" Tag="0" Text="{Binding SIRaw0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Name="teAI_A4R" Tag="0" Text="{Binding AIRaw4, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A4-Min" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding SIDataRateMin0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Text="{Binding AIDataRateMin4, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A4-DataRate" LabelPosition="Top">
 
-                            <dxe:SpinEdit Value="{Binding SIDataRate0, Mode=TwoWay}" Increment="5"
-                                          MinValue="{Binding SIDataRateMax0, Mode=OneWay}" 
-                                          MaxValue="{Binding SIDataRateMin0, Mode=OneWay}" 
+                            <dxe:SpinEdit Value="{Binding AIDataRate4, Mode=TwoWay}" Increment="5"
+                                          MinValue="{Binding AIDataRateMax4, Mode=OneWay}" 
+                                          MaxValue="{Binding AIDataRateMin4, Mode=OneWay}" 
                                           IsFloatValue="False" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A4-Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding SIDataRateMax0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Text="{Binding AIDataRateMax4, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A4-Sensitivity" LabelPosition="Top">
                             <dxe:SpinEdit MinValue="0" MaxValue="1000" Increment="1"
-                              Value="{Binding SISensitivity0, Mode=TwoWay}"
+                              Value="{Binding AISensitivity4, Mode=TwoWay}"
                               IsFloatValue="False" />
                         </dxlc:LayoutItem>
 
@@ -675,32 +662,32 @@
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A5" LabelPosition="Top">
-                            <dxe:TextEdit Name="teAI_A5" Tag="0" Text="{Binding SI0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Name="teAI_A5" Tag="0" Text="{Binding AI5, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A5-Raw" LabelPosition="Top">
-                            <dxe:TextEdit Name="teAI_A5R" Tag="0" Text="{Binding SIRaw0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Name="teAI_A5R" Tag="0" Text="{Binding AIRaw5, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A5-Min" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding SIDataRateMin0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Text="{Binding AIDataRateMin5, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A5-DataRate" LabelPosition="Top">
 
-                            <dxe:SpinEdit Value="{Binding SIDataRate0, Mode=TwoWay}" Increment="5"
-                                          MinValue="{Binding SIDataRateMax0, Mode=OneWay}" 
-                                          MaxValue="{Binding SIDataRateMin0, Mode=OneWay}" 
+                            <dxe:SpinEdit Value="{Binding AIDataRate5, Mode=TwoWay}" Increment="5"
+                                          MinValue="{Binding AIDataRateMax5, Mode=OneWay}" 
+                                          MaxValue="{Binding AIDataRateMin5, Mode=OneWay}" 
                                           IsFloatValue="False" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A5-Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding SIDataRateMax0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Text="{Binding AIDataRateMax5, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A5-Sensitivity" LabelPosition="Top">
                             <dxe:SpinEdit MinValue="0" MaxValue="1000" Increment="1"
-                              Value="{Binding SISensitivity0, Mode=TwoWay}"
+                              Value="{Binding AISensitivity5, Mode=TwoWay}"
                               IsFloatValue="False" />
                         </dxlc:LayoutItem>
 
@@ -713,32 +700,32 @@
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A6" LabelPosition="Top">
-                            <dxe:TextEdit Name="teAI_A6" Tag="0" Text="{Binding SI0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Name="teAI_A6" Tag="0" Text="{Binding AI6, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A6-Raw" LabelPosition="Top">
-                            <dxe:TextEdit Name="teAI_A6R" Tag="0" Text="{Binding SIRaw0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Name="teAI_A6R" Tag="0" Text="{Binding AIRaw6, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A6-Min" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding SIDataRateMin0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Text="{Binding AIDataRateMin6, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A6-DataRate" LabelPosition="Top">
 
-                            <dxe:SpinEdit Value="{Binding SIDataRate0, Mode=TwoWay}" Increment="5"
-                                          MinValue="{Binding SIDataRateMax0, Mode=OneWay}" 
-                                          MaxValue="{Binding SIDataRateMin0, Mode=OneWay}" 
+                            <dxe:SpinEdit Value="{Binding AIDataRate6, Mode=TwoWay}" Increment="5"
+                                          MinValue="{Binding AIDataRateMax6, Mode=OneWay}" 
+                                          MaxValue="{Binding AIDataRateMin6, Mode=OneWay}" 
                                           IsFloatValue="False" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A6-Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding SIDataRateMax0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Text="{Binding AIDataRateMax6, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A6-Sensitivity" LabelPosition="Top">
                             <dxe:SpinEdit MinValue="0" MaxValue="1000" Increment="1"
-                              Value="{Binding SISensitivity0, Mode=TwoWay}"
+                              Value="{Binding AISensitivity6, Mode=TwoWay}"
                               IsFloatValue="False" />
                         </dxlc:LayoutItem>
 
@@ -751,32 +738,32 @@
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A7" LabelPosition="Top">
-                            <dxe:TextEdit Name="teAI_A7" Tag="0" Text="{Binding SI0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Name="teAI_A7" Tag="0" Text="{Binding AI7, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A7-Raw" LabelPosition="Top">
-                            <dxe:TextEdit Name="teAI_A7R" Tag="0" Text="{Binding SIRaw0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Name="teAI_A7R" Tag="0" Text="{Binding AIRaw7, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A7-Min" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding SIDataRateMin0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Text="{Binding AIDataRateMin7, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A7-DataRate" LabelPosition="Top">
 
-                            <dxe:SpinEdit Value="{Binding SIDataRate0, Mode=TwoWay}" Increment="5"
-                                          MinValue="{Binding SIDataRateMax0, Mode=OneWay}" 
-                                          MaxValue="{Binding SIDataRateMin0, Mode=OneWay}" 
+                            <dxe:SpinEdit Value="{Binding AIDataRate7, Mode=TwoWay}" Increment="5"
+                                          MinValue="{Binding AIDataRateMax7, Mode=OneWay}" 
+                                          MaxValue="{Binding AIDataRateMin7, Mode=OneWay}" 
                                           IsFloatValue="False" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A7-Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding SIDataRateMax0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Text="{Binding AIDataRateMax7, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="A7-Sensitivity" LabelPosition="Top">
                             <dxe:SpinEdit MinValue="0" MaxValue="1000" Increment="1"
-                              Value="{Binding SISensitivity0, Mode=TwoWay}"
+                              Value="{Binding AISensitivity7, Mode=TwoWay}"
                               IsFloatValue="False" />
                         </dxlc:LayoutItem>
 

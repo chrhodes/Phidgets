@@ -408,83 +408,83 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Analog Sensors
 
-        #region Sensor S0
+        #region Sensor A0
 
-        private Int32? _sI0;
-        public Int32? SI0
+        private Int32? _aI0;
+        public Int32? AI0
         {
-            get => _sI0;
+            get => _aI0;
             set
             {
-                if (_sI0 == value)
+                if (_aI0 == value)
                     return;
-                _sI0 = value;
+                _aI0 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI0Raw;
-        public Int32? SI0Raw
+        private Int32? _aIRaw0;
+        public Int32? AIRaw0
         {
-            get => _sI0Raw;
+            get => _aIRaw0;
             set
             {
-                if (_sI0Raw == value)
+                if (_aIRaw0 == value)
                     return;
-                _sI0Raw = value;
+                _aIRaw0 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI0DataRate;
-        public Int32? SI0DataRate
+        private Int32? _aIDataRate0;
+        public Int32? AIDataRate0
         {
-            get => _sI0DataRate;
+            get => _aIDataRate0;
             set
             {
-                if (_sI0DataRate == value)
+                if (_aIDataRate0 == value)
                     return;
-                _sI0DataRate = value;
+                _aIDataRate0 = value;
 
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI0DataRateMax;
-        public Int32? SI0DataRateMax
+        private Int32? _aIDataRateMax0;
+        public Int32? AIDataRateMax0
         {
-            get => _sI0DataRateMax;
+            get => _aIDataRateMax0;
             set
             {
-                if (_sI0DataRateMax == value)
+                if (_aIDataRateMax0 == value)
                     return;
-                _sI0DataRateMax = value;
+                _aIDataRateMax0 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI0DataRateMin;
-        public Int32? SI0DataRateMin
+        private Int32? _aIDataRateMin0;
+        public Int32? AIDataRateMin0
         {
-            get => _sI0DataRateMin;
+            get => _aIDataRateMin0;
             set
             {
-                if (_sI0DataRateMin == value)
+                if (_aIDataRateMin0 == value)
                     return;
-                _sI0DataRateMin = value;
+                _aIDataRateMin0 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI0Sensitivity;
-        public Int32? SI0Sensitivity
+        private Int32? _aISensitivity0;
+        public Int32? AISensitivity0
         {
-            get => _sI0Sensitivity;
+            get => _aISensitivity0;
             set
             {
-                if (_sI0Sensitivity == value)
+                if (_aISensitivity0 == value)
                     return;
-                _sI0Sensitivity = value;
+                _aISensitivity0 = value;
 
                 // ActiveInterfaceKit_OutputChange may have called us
                 // No need to update if same state.
@@ -501,83 +501,83 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region Sensor S1
+        #region Sensor A1
 
-        private Int32? _sI1;
-        public Int32? SI1
+        private Int32? _aI1;
+        public Int32? AI1
         {
-            get => _sI1;
+            get => _aI1;
             set
             {
-                if (_sI1 == value)
+                if (_aI1 == value)
                     return;
-                _sI1 = value;
+                _aI1 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI1Raw;
-        public Int32? SI1Raw
+        private Int32? _aIRaw1;
+        public Int32? AIRaw1
         {
-            get => _sI1Raw;
+            get => _aIRaw1;
             set
             {
-                if (_sI1Raw == value)
+                if (_aIRaw1 == value)
                     return;
-                _sI1Raw = value;
+                _aIRaw1 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI1DataRate;
-        public Int32? SI1DataRate
+        private Int32? _aIDataRate1;
+        public Int32? AIDataRate1
         {
-            get => _sI1DataRate;
+            get => _aIDataRate1;
             set
             {
-                if (_sI1DataRate == value)
+                if (_aIDataRate1 == value)
                     return;
-                _sI1DataRate = value;
+                _aIDataRate1 = value;
 
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI1DataRateMax;
-        public Int32? SI1DataRateMax
+        private Int32? _aIDataRateMax1;
+        public Int32? AIDataRateMax1
         {
-            get => _sI1DataRateMax;
+            get => _aIDataRateMax1;
             set
             {
-                if (_sI1DataRateMax == value)
+                if (_aIDataRateMax1 == value)
                     return;
-                _sI1DataRateMax = value;
+                _aIDataRateMax1 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI1DataRateMin;
-        public Int32? SI1DataRateMin
+        private Int32? _aIDataRateMin1;
+        public Int32? AIDataRateMin1
         {
-            get => _sI1DataRateMin;
+            get => _aIDataRateMin1;
             set
             {
-                if (_sI1DataRateMin == value)
+                if (_aIDataRateMin1 == value)
                     return;
-                _sI1DataRateMin = value;
+                _aIDataRateMin1 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI1Sensitivity;
-        public Int32? SI1Sensitivity
+        private Int32? _aISensitivity1;
+        public Int32? AISensitivity1
         {
-            get => _sI1Sensitivity;
+            get => _aISensitivity1;
             set
             {
-                if (_sI1Sensitivity == value)
+                if (_aISensitivity1 == value)
                     return;
-                _sI1Sensitivity = value;
+                _aISensitivity1 = value;
 
                 // ActiveInterfaceKit_OutputChange may have called us
                 // No need to update if same state.
@@ -594,83 +594,83 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region Sensor S2
+        #region Sensor A2
 
-        private Int32? _sI2;
-        public Int32? SI2
+        private Int32? _aI2;
+        public Int32? AI2
         {
-            get => _sI2;
+            get => _aI2;
             set
             {
-                if (_sI2 == value)
+                if (_aI2 == value)
                     return;
-                _sI2 = value;
+                _aI2 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI2Raw;
-        public Int32? SI2Raw
+        private Int32? _aIRaw2;
+        public Int32? AIRaw2
         {
-            get => _sI2Raw;
+            get => _aIRaw2;
             set
             {
-                if (_sI2Raw == value)
+                if (_aIRaw2 == value)
                     return;
-                _sI2Raw = value;
+                _aIRaw2 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI2DataRate;
-        public Int32? SI2DataRate
+        private Int32? _aIDataRate2;
+        public Int32? AIDataRate2
         {
-            get => _sI2DataRate;
+            get => _aIDataRate2;
             set
             {
-                if (_sI2DataRate == value)
+                if (_aIDataRate2 == value)
                     return;
-                _sI2DataRate = value;
+                _aIDataRate2 = value;
 
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI2DataRateMax;
-        public Int32? SI2DataRateMax
+        private Int32? _aIDataRateMax2;
+        public Int32? AIDataRateMax2
         {
-            get => _sI2DataRateMax;
+            get => _aIDataRateMax2;
             set
             {
-                if (_sI2DataRateMax == value)
+                if (_aIDataRateMax2 == value)
                     return;
-                _sI2DataRateMax = value;
+                _aIDataRateMax2 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI2DataRateMin;
-        public Int32? SI2DataRateMin
+        private Int32? _aIDataRateMin2;
+        public Int32? AIDataRateMin2
         {
-            get => _sI2DataRateMin;
+            get => _aIDataRateMin2;
             set
             {
-                if (_sI2DataRateMin == value)
+                if (_aIDataRateMin2 == value)
                     return;
-                _sI2DataRateMin = value;
+                _aIDataRateMin2 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI2Sensitivity;
-        public Int32? SI2Sensitivity
+        private Int32? _aISensitivity2;
+        public Int32? AISensitivity2
         {
-            get => _sI2Sensitivity;
+            get => _aISensitivity2;
             set
             {
-                if (_sI2Sensitivity == value)
+                if (_aISensitivity2 == value)
                     return;
-                _sI2Sensitivity = value;
+                _aISensitivity2 = value;
 
                 // ActiveInterfaceKit_OutputChange may have called us
                 // No need to update if same state.
@@ -687,83 +687,83 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region Sensor S3
+        #region Sensor A3
 
-        private Int32? _sI3;
-        public Int32? SI3
+        private Int32? _aI3;
+        public Int32? AI3
         {
-            get => _sI3;
+            get => _aI3;
             set
             {
-                if (_sI3 == value)
+                if (_aI3 == value)
                     return;
-                _sI3 = value;
+                _aI3 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI3Raw;
-        public Int32? SI3Raw
+        private Int32? _aIRaw3;
+        public Int32? AIRaw3
         {
-            get => _sI3Raw;
+            get => _aIRaw3;
             set
             {
-                if (_sI3Raw == value)
+                if (_aIRaw3 == value)
                     return;
-                _sI3Raw = value;
+                _aIRaw3 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI3DataRate;
-        public Int32? SI3DataRate
+        private Int32? _aIDataRate3;
+        public Int32? AIDataRate3
         {
-            get => _sI3DataRate;
+            get => _aIDataRate3;
             set
             {
-                if (_sI3DataRate == value)
+                if (_aIDataRate3 == value)
                     return;
-                _sI3DataRate = value;
+                _aIDataRate3 = value;
 
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI3DataRateMax;
-        public Int32? SI3DataRateMax
+        private Int32? _aIDataRateMax3;
+        public Int32? AIDataRateMax3
         {
-            get => _sI3DataRateMax;
+            get => _aIDataRateMax3;
             set
             {
-                if (_sI3DataRateMax == value)
+                if (_aIDataRateMax3 == value)
                     return;
-                _sI3DataRateMax = value;
+                _aIDataRateMax3 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI3DataRateMin;
-        public Int32? SI3DataRateMin
+        private Int32? _aIDataRateMin3;
+        public Int32? AIDataRateMin3
         {
-            get => _sI3DataRateMin;
+            get => _aIDataRateMin3;
             set
             {
-                if (_sI3DataRateMin == value)
+                if (_aIDataRateMin3 == value)
                     return;
-                _sI3DataRateMin = value;
+                _aIDataRateMin3 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI3Sensitivity;
-        public Int32? SI3Sensitivity
+        private Int32? _aISensitivity3;
+        public Int32? AISensitivity3
         {
-            get => _sI3Sensitivity;
+            get => _aISensitivity3;
             set
             {
-                if (_sI3Sensitivity == value)
+                if (_aISensitivity3 == value)
                     return;
-                _sI3Sensitivity = value;
+                _aISensitivity3 = value;
 
                 // ActiveInterfaceKit_OutputChange may have called us
                 // No need to update if same state.
@@ -780,83 +780,83 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region Sensor S4
+        #region Sensor A4
 
-        private Int32? _sI4;
-        public Int32? SI4
+        private Int32? _aI4;
+        public Int32? AI4
         {
-            get => _sI4;
+            get => _aI4;
             set
             {
-                if (_sI4 == value)
+                if (_aI4 == value)
                     return;
-                _sI4 = value;
+                _aI4 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI4Raw;
-        public Int32? SI4Raw
+        private Int32? _aIRaw4;
+        public Int32? AIRaw4
         {
-            get => _sI4Raw;
+            get => _aIRaw4;
             set
             {
-                if (_sI4Raw == value)
+                if (_aIRaw4 == value)
                     return;
-                _sI4Raw = value;
+                _aIRaw4 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI4DataRate;
-        public Int32? SI4DataRate
+        private Int32? _aIDataRate4;
+        public Int32? AIDataRate4
         {
-            get => _sI4DataRate;
+            get => _aIDataRate4;
             set
             {
-                if (_sI4DataRate == value)
+                if (_aIDataRate4 == value)
                     return;
-                _sI4DataRate = value;
+                _aIDataRate4 = value;
 
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI4DataRateMax;
-        public Int32? SI4DataRateMax
+        private Int32? _aIDataRateMax4;
+        public Int32? AIDataRateMax4
         {
-            get => _sI4DataRateMax;
+            get => _aIDataRateMax4;
             set
             {
-                if (_sI4DataRateMax == value)
+                if (_aIDataRateMax4 == value)
                     return;
-                _sI4DataRateMax = value;
+                _aIDataRateMax4 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI4DataRateMin;
-        public Int32? SI4DataRateMin
+        private Int32? _aIDataRateMin4;
+        public Int32? AIDataRateMin4
         {
-            get => _sI4DataRateMin;
+            get => _aIDataRateMin4;
             set
             {
-                if (_sI4DataRateMin == value)
+                if (_aIDataRateMin4 == value)
                     return;
-                _sI4DataRateMin = value;
+                _aIDataRateMin4 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI4Sensitivity;
-        public Int32? SI4Sensitivity
+        private Int32? _aISensitivity4;
+        public Int32? AISensitivity4
         {
-            get => _sI4Sensitivity;
+            get => _aISensitivity4;
             set
             {
-                if (_sI4Sensitivity == value)
+                if (_aISensitivity4 == value)
                     return;
-                _sI4Sensitivity = value;
+                _aISensitivity4 = value;
 
                 // ActiveInterfaceKit_OutputChange may have called us
                 // No need to update if same state.
@@ -873,83 +873,83 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region Sensor S5
+        #region Sensor A5
 
-        private Int32? _sI5;
-        public Int32? SI5
+        private Int32? _aI5;
+        public Int32? AI5
         {
-            get => _sI5;
+            get => _aI5;
             set
             {
-                if (_sI5 == value)
+                if (_aI5 == value)
                     return;
-                _sI5 = value;
+                _aI5 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI5Raw;
-        public Int32? SI5Raw
+        private Int32? _aIRaw5;
+        public Int32? AIRaw5
         {
-            get => _sI5Raw;
+            get => _aIRaw5;
             set
             {
-                if (_sI5Raw == value)
+                if (_aIRaw5 == value)
                     return;
-                _sI5Raw = value;
+                _aIRaw5 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI5DataRate;
-        public Int32? SI5DataRate
+        private Int32? _aIDataRate5;
+        public Int32? AIDataRate5
         {
-            get => _sI5DataRate;
+            get => _aIDataRate5;
             set
             {
-                if (_sI5DataRate == value)
+                if (_aIDataRate5 == value)
                     return;
-                _sI5DataRate = value;
+                _aIDataRate5 = value;
 
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI5DataRateMax;
-        public Int32? SI5DataRateMax
+        private Int32? _aIDataRateMax5;
+        public Int32? AIDataRateMax5
         {
-            get => _sI5DataRateMax;
+            get => _aIDataRateMax5;
             set
             {
-                if (_sI5DataRateMax == value)
+                if (_aIDataRateMax5 == value)
                     return;
-                _sI5DataRateMax = value;
+                _aIDataRateMax5 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI5DataRateMin;
-        public Int32? SI5DataRateMin
+        private Int32? _aIDataRateMin5;
+        public Int32? AIDataRateMin5
         {
-            get => _sI5DataRateMin;
+            get => _aIDataRateMin5;
             set
             {
-                if (_sI5DataRateMin == value)
+                if (_aIDataRateMin5 == value)
                     return;
-                _sI5DataRateMin = value;
+                _aIDataRateMin5 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI5Sensitivity;
-        public Int32? SI5Sensitivity
+        private Int32? _aISensitivity5;
+        public Int32? AISensitivity5
         {
-            get => _sI5Sensitivity;
+            get => _aISensitivity5;
             set
             {
-                if (_sI5Sensitivity == value)
+                if (_aISensitivity5 == value)
                     return;
-                _sI5Sensitivity = value;
+                _aISensitivity5 = value;
 
                 // ActiveInterfaceKit_OutputChange may have called us
                 // No need to update if same state.
@@ -966,83 +966,83 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region Sensor S6
+        #region Sensor A6
 
-        private Int32? _sI6;
-        public Int32? SI6
+        private Int32? _aI6;
+        public Int32? AI6
         {
-            get => _sI6;
+            get => _aI6;
             set
             {
-                if (_sI6 == value)
+                if (_aI6 == value)
                     return;
-                _sI6 = value;
+                _aI6 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI6Raw;
-        public Int32? SI6Raw
+        private Int32? _aIRaw6;
+        public Int32? AIRaw6
         {
-            get => _sI6Raw;
+            get => _aIRaw6;
             set
             {
-                if (_sI6Raw == value)
+                if (_aIRaw6 == value)
                     return;
-                _sI6Raw = value;
+                _aIRaw6 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI6DataRate;
-        public Int32? SI6DataRate
+        private Int32? _aIDataRate6;
+        public Int32? AIDataRate6
         {
-            get => _sI6DataRate;
+            get => _aIDataRate6;
             set
             {
-                if (_sI6DataRate == value)
+                if (_aIDataRate6 == value)
                     return;
-                _sI6DataRate = value;
+                _aIDataRate6 = value;
 
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI6DataRateMax;
-        public Int32? SI6DataRateMax
+        private Int32? _aIDataRateMax6;
+        public Int32? AIDataRateMax6
         {
-            get => _sI6DataRateMax;
+            get => _aIDataRateMax6;
             set
             {
-                if (_sI6DataRateMax == value)
+                if (_aIDataRateMax6 == value)
                     return;
-                _sI6DataRateMax = value;
+                _aIDataRateMax6 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI6DataRateMin;
-        public Int32? SI6DataRateMin
+        private Int32? _aIDataRateMin6;
+        public Int32? AIDataRateMin6
         {
-            get => _sI6DataRateMin;
+            get => _aIDataRateMin6;
             set
             {
-                if (_sI6DataRateMin == value)
+                if (_aIDataRateMin6 == value)
                     return;
-                _sI6DataRateMin = value;
+                _aIDataRateMin6 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI6Sensitivity;
-        public Int32? SI6Sensitivity
+        private Int32? _aISensitivity6;
+        public Int32? AISensitivity6
         {
-            get => _sI6Sensitivity;
+            get => _aISensitivity6;
             set
             {
-                if (_sI6Sensitivity == value)
+                if (_aISensitivity6 == value)
                     return;
-                _sI6Sensitivity = value;
+                _aISensitivity6 = value;
 
                 // ActiveInterfaceKit_OutputChange may have called us
                 // No need to update if same state.
@@ -1059,83 +1059,83 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region Sensor S7
+        #region Sensor A7
 
-        private Int32? _sI7;
-        public Int32? SI7
+        private Int32? _aI7;
+        public Int32? AI7
         {
-            get => _sI7;
+            get => _aI7;
             set
             {
-                if (_sI7 == value)
+                if (_aI7 == value)
                     return;
-                _sI7 = value;
+                _aI7 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI7Raw;
-        public Int32? SI7Raw
+        private Int32? _aIRaw7;
+        public Int32? AIRaw7
         {
-            get => _sI7Raw;
+            get => _aIRaw7;
             set
             {
-                if (_sI7Raw == value)
+                if (_aIRaw7 == value)
                     return;
-                _sI7Raw = value;
+                _aIRaw7 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI7DataRate;
-        public Int32? SI7DataRate
+        private Int32? _aIDataRate7;
+        public Int32? AIDataRate7
         {
-            get => _sI7DataRate;
+            get => _aIDataRate7;
             set
             {
-                if (_sI7DataRate == value)
+                if (_aIDataRate7 == value)
                     return;
-                _sI7DataRate = value;
+                _aIDataRate7 = value;
 
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI7DataRateMax;
-        public Int32? SI7DataRateMax
+        private Int32? _aIDataRateMax7;
+        public Int32? AIDataRateMax7
         {
-            get => _sI7DataRateMax;
+            get => _aIDataRateMax7;
             set
             {
-                if (_sI7DataRateMax == value)
+                if (_aIDataRateMax7 == value)
                     return;
-                _sI7DataRateMax = value;
+                _aIDataRateMax7 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI7DataRateMin;
-        public Int32? SI7DataRateMin
+        private Int32? _aIDataRateMin7;
+        public Int32? AIDataRateMin7
         {
-            get => _sI7DataRateMin;
+            get => _aIDataRateMin7;
             set
             {
-                if (_sI7DataRateMin == value)
+                if (_aIDataRateMin7 == value)
                     return;
-                _sI7DataRateMin = value;
+                _aIDataRateMin7 = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _sI7Sensitivity;
-        public Int32? SI7Sensitivity
+        private Int32? _aISensitivity7;
+        public Int32? AISensitivity7
         {
-            get => _sI7Sensitivity;
+            get => _aISensitivity7;
             set
             {
-                if (_sI7Sensitivity == value)
+                if (_aISensitivity7 == value)
                     return;
-                _sI7Sensitivity = value;
+                _aISensitivity7 = value;
 
                 // ActiveInterfaceKit_OutputChange may have called us
                 // No need to update if same state.
@@ -1991,76 +1991,76 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             switch (e.Index)
             {
                 case 0:
-                    SI0 = e.Value;
                     sensor = ifk.sensors[0];
-                    SI0Raw = sensor.RawValue;
-                    SI0DataRate = sensor.DataRate;
-                    SI0DataRateMax = sensor.DataRateMax;
-                    SI0DataRateMin = sensor.DataRateMin;
-                    SI0Sensitivity = sensor.Sensitivity;
+                    AI0 = sensor.Value;
+                    AIRaw0 = sensor.RawValue;
+                    AIDataRate0 = sensor.DataRate;
+                    AIDataRateMax0 = sensor.DataRateMax;
+                    AIDataRateMin0 = sensor.DataRateMin;
+                    AISensitivity0 = sensor.Sensitivity;
                     break;
                 case 1:
-                    SI1 = e.Value;
                     sensor = ifk.sensors[1];
-                    SI1Raw = sensor.RawValue;
-                    SI1DataRate = sensor.DataRate;
-                    SI1DataRateMax = sensor.DataRateMax;
-                    SI1DataRateMin = sensor.DataRateMin;
-                    SI0Sensitivity = sensor.Sensitivity;
+                    AI1 = sensor.Value;
+                    AIRaw1 = sensor.RawValue;
+                    AIDataRate1 = sensor.DataRate;
+                    AIDataRateMax1 = sensor.DataRateMax;
+                    AIDataRateMin1 = sensor.DataRateMin;
+                    AISensitivity1 = sensor.Sensitivity;
                     break;
                 case 2:
-                    SI2 = e.Value;
                     sensor = ifk.sensors[2];
-                    SI2Raw = sensor.RawValue;
-                    SI2DataRate = sensor.DataRate;
-                    SI2DataRateMax = sensor.DataRateMax;
-                    SI2DataRateMin = sensor.DataRateMin;
-                    SI2Sensitivity = sensor.Sensitivity;
+                    AI2 = sensor.Value;
+                    AIRaw2 = sensor.RawValue;
+                    AIDataRate2 = sensor.DataRate;
+                    AIDataRateMax2 = sensor.DataRateMax;
+                    AIDataRateMin2 = sensor.DataRateMin;
+                    AISensitivity2 = sensor.Sensitivity;
                     break;
                 case 3:
-                    SI3 = e.Value;
                     sensor = ifk.sensors[3];
-                    SI3Raw = sensor.RawValue;
-                    SI3DataRate = sensor.DataRate;
-                    SI3DataRateMax = sensor.DataRateMax;
-                    SI3DataRateMin = sensor.DataRateMin;
-                    SI3Sensitivity = sensor.Sensitivity;
+                    AI3 = sensor.Value;
+                    AIRaw3 = sensor.RawValue;
+                    AIDataRate3 = sensor.DataRate;
+                    AIDataRateMax3 = sensor.DataRateMax;
+                    AIDataRateMin3 = sensor.DataRateMin;
+                    AISensitivity3 = sensor.Sensitivity;
                     break;
                 case 4:
-                    SI4 = e.Value;
                     sensor = ifk.sensors[4];
-                    SI4Raw = sensor.RawValue;
-                    SI4DataRate = sensor.DataRate;
-                    SI4DataRateMax = sensor.DataRateMax;
-                    SI4DataRateMin = sensor.DataRateMin;
-                    SI4Sensitivity = sensor.Sensitivity;
+                    AI4 = sensor.Value;
+                    AIRaw4 = sensor.RawValue;
+                    AIDataRate4 = sensor.DataRate;
+                    AIDataRateMax4 = sensor.DataRateMax;
+                    AIDataRateMin4 = sensor.DataRateMin;
+                    AISensitivity4 = sensor.Sensitivity;
                     break;
                 case 5:
-                    SI5 = e.Value;
                     sensor = ifk.sensors[5];
-                    SI5Raw = sensor.RawValue;
-                    SI5DataRate = sensor.DataRate;
-                    SI5DataRateMax = sensor.DataRateMax;
-                    SI5DataRateMin = sensor.DataRateMin;
-                    SI5Sensitivity = sensor.Sensitivity;
+                    AI5 = sensor.Value;
+                    AIRaw5 = sensor.RawValue;
+                    AIDataRate5 = sensor.DataRate;
+                    AIDataRateMax5 = sensor.DataRateMax;
+                    AIDataRateMin5 = sensor.DataRateMin;
+                    AISensitivity5 = sensor.Sensitivity;
                     break;
                 case 6:
-                    SI6 = e.Value;
                     sensor = ifk.sensors[6];
-                    SI0Raw = sensor.RawValue;
-                    SI0DataRate = sensor.DataRate;
-                    SI0DataRateMax = sensor.DataRateMax;
-                    SI0DataRateMin = sensor.DataRateMin;
-                    SI0Sensitivity = sensor.Sensitivity;
+                    AI6 = sensor.Value;
+                    AIRaw6 = sensor.RawValue;
+                    AIDataRate6 = sensor.DataRate;
+                    AIDataRateMax6 = sensor.DataRateMax;
+                    AIDataRateMin6 = sensor.DataRateMin;
+                    AISensitivity6 = sensor.Sensitivity;
                     break;
                 case 7:
-                    SI7 = e.Value;
                     sensor = ifk.sensors[7];
-                    SI0Raw = sensor.RawValue;
-                    SI0DataRate = sensor.DataRate;
-                    SI0DataRateMax = sensor.DataRateMax;
-                    SI0DataRateMin = sensor.DataRateMin;
-                    SI0Sensitivity = sensor.Sensitivity;
+                    AI7 = sensor.Value;
+                    AIRaw7 = sensor.RawValue;
+                    AIDataRate7 = sensor.DataRate;
+                    AIDataRateMax7 = sensor.DataRateMax;
+                    AIDataRateMin7 = sensor.DataRateMin;
+                    AISensitivity7 = sensor.Sensitivity;
                     break;
 
             }
