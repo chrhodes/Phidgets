@@ -60,7 +60,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //SayHelloCommand = new DelegateCommand(
             //    SayHello, SayHelloCanExecute);
 
-            Message = "InterfaceKitViewModel says hello";           
+            Message = "InterfaceKitViewModel says hello";
+
+            // Turn off logging of PropertyChanged from VNC.Core
+            // We display the logging in 
+            LogOnPropertyChanged = false;
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }

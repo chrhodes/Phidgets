@@ -3,12 +3,12 @@
     <PropertyGroup>
         <TargetFrameworks>net6.0-windows</TargetFrameworks>
         <UseWPF>true</UseWPF>
-        <GenerateAssemblyInfo>trur</GenerateAssemblyInfo>
+        <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Prism.Core" Version="8.1.97" />
-        <PackageReference Include="VNC.Core" Version="2.1.1" />
+        <PackageReference Include="VNC.Core" Version="2.1.2" />
     </ItemGroup>
   
 </Project>

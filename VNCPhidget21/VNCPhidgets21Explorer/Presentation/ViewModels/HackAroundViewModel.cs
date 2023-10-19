@@ -45,6 +45,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Button2Command = new DelegateCommand(Button2Execute);
             Button3Command = new DelegateCommand(Button3Execute);
 
+            // Turn on logging of PropertyChanged from VNC.Core
+            LogOnPropertyChanged = true;
+
             //try
             //{
             //    digitalOutput0 = new ph22.DigitalOutput();

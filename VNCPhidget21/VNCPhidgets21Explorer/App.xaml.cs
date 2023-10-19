@@ -45,6 +45,7 @@ namespace VNCPhidgets21Explorer
             var appVersion = System.Diagnostics.FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
 
             Common.SetVersionInfoApplication(runtimeVersion, appVersion);
+            Common.AssemblyVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
             Directory.SetCurrentDirectory("Resources/json");
 

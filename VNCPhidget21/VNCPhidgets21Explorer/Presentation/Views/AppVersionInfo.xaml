@@ -28,7 +28,9 @@
             <StackPanel Orientation="Horizontal" >
                 <Label Content="Product Name: " />
                 <Label Content="{Binding ProductName}" Foreground="{StaticResource RedText}" />
-                <Label Content="Product Version: " Margin="10,0,0,0" />
+                <Label Content="Assembly Version: " Margin="10,0,0,0" />
+                <Label Content="{Binding AssemblyVersion}" Foreground="{StaticResource RedText}" />
+                <Label Content="Product Version: " Margin="10,0,0,0"/>
                 <Label Content="{Binding ProductVersion}" Foreground="{StaticResource RedText}" />
                 <Label Content="File Version: " Margin="10,0,0,0"/>
                 <Label Content="{Binding FileVersion}" Foreground="{StaticResource RedText}" />
@@ -38,6 +40,8 @@
             <StackPanel Orientation="Horizontal" >
                 <Label Content="Product Name: " />
                 <Label Content="{Binding ProductNameVNCCore}" Foreground="{StaticResource RedText}" />
+                <Label Content="Assembly Version: " Margin="10,0,0,0" />
+                <Label Content="{Binding AssemblyVersionVNCCore}" Foreground="{StaticResource RedText}" />
                 <Label Content="Product Version: " Margin="10,0,0,0" />
                 <Label Content="{Binding ProductVersionVNCCore}" Foreground="{StaticResource RedText}" />
                 <Label Content="File Version: " Margin="10,0,0,0"/>
@@ -46,7 +50,6 @@
                 <Label Content="{Binding RuntimeVersionVNCCore}" Foreground="{StaticResource RedText}"/>
             </StackPanel>
         </StackPanel>
-
 
     </Grid>
 
