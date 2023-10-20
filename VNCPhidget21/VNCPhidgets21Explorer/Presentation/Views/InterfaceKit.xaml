@@ -561,7 +561,7 @@
 
                         <dxlc:LayoutItem Label="A2-DataRate" LabelPosition="Top">
 
-                            <dxe:SpinEdit Value="{Binding AIDataRate2, Mode=TwoWay}" Increment="5"
+                            <dxe:SpinEdit Value="{Binding AIDataRate2, Mode=TwoWay}" Increment="8"
                                           MinValue="{Binding AIDataRateMax2, Mode=OneWay}" 
                                           MaxValue="{Binding AIDataRateMin2, Mode=OneWay}" 
                                           IsFloatValue="False" />

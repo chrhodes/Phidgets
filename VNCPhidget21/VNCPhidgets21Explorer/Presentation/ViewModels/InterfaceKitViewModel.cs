@@ -75,8 +75,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             string jsonString = File.ReadAllText(ConfigFileName);
 
             Resources.PhidgetConfig? phidgetConfig = JsonSerializer.Deserialize<Resources.PhidgetConfig>(jsonString);
-            this.Hosts2 = phidgetConfig.Hosts.ToList<Resources.Host>();
-            this.Sensors2 = phidgetConfig.Sensors.ToList<Resources.Sensor>();
+            this.Hosts2 = phidgetConfig.Hosts.ToList();
+            this.Sensors2 = phidgetConfig.Sensors.ToList();
 
             //LoggingUIConfig = jsonLoggingUIConfig.ConvertJSONToLoggingUIConfig();
 
@@ -96,7 +96,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         #endregion
 
         #region Fields and Properties
-
 
         private Resources.PhidgetConfig _phidgetConfig;
         public Resources.PhidgetConfig PhidgetConfig
@@ -445,7 +444,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_aIDataRate0 == value)
                     return;
                 _aIDataRate0 = value;
-
                 OnPropertyChanged();
             }
         }
@@ -1988,6 +1986,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //var sValue = sensor0.Value;
             //var eValue = e.Value;
 
+            // NOTE(crhodes)
+            // DataRateMin and DataRateMax do not change.
+            // Populate in Attach event
+
             switch (e.Index)
             {
                 case 0:
@@ -1995,8 +1997,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     AI0 = sensor.Value;
                     AIRaw0 = sensor.RawValue;
                     AIDataRate0 = sensor.DataRate;
-                    AIDataRateMax0 = sensor.DataRateMax;
-                    AIDataRateMin0 = sensor.DataRateMin;
+                    //AIDataRateMax0 = sensor.DataRateMax;
+                    //AIDataRateMin0 = sensor.DataRateMin;
                     AISensitivity0 = sensor.Sensitivity;
                     break;
                 case 1:
@@ -2004,8 +2006,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     AI1 = sensor.Value;
                     AIRaw1 = sensor.RawValue;
                     AIDataRate1 = sensor.DataRate;
-                    AIDataRateMax1 = sensor.DataRateMax;
-                    AIDataRateMin1 = sensor.DataRateMin;
+                    //AIDataRateMax1 = sensor.DataRateMax;
+                    //AIDataRateMin1 = sensor.DataRateMin;
                     AISensitivity1 = sensor.Sensitivity;
                     break;
                 case 2:
@@ -2013,8 +2015,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     AI2 = sensor.Value;
                     AIRaw2 = sensor.RawValue;
                     AIDataRate2 = sensor.DataRate;
-                    AIDataRateMax2 = sensor.DataRateMax;
-                    AIDataRateMin2 = sensor.DataRateMin;
+                    //AIDataRateMax2 = sensor.DataRateMax;
+                    //AIDataRateMin2 = sensor.DataRateMin;
                     AISensitivity2 = sensor.Sensitivity;
                     break;
                 case 3:
@@ -2022,8 +2024,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     AI3 = sensor.Value;
                     AIRaw3 = sensor.RawValue;
                     AIDataRate3 = sensor.DataRate;
-                    AIDataRateMax3 = sensor.DataRateMax;
-                    AIDataRateMin3 = sensor.DataRateMin;
+                    //AIDataRateMax3 = sensor.DataRateMax;
+                    //AIDataRateMin3 = sensor.DataRateMin;
                     AISensitivity3 = sensor.Sensitivity;
                     break;
                 case 4:
@@ -2031,8 +2033,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     AI4 = sensor.Value;
                     AIRaw4 = sensor.RawValue;
                     AIDataRate4 = sensor.DataRate;
-                    AIDataRateMax4 = sensor.DataRateMax;
-                    AIDataRateMin4 = sensor.DataRateMin;
+                    //AIDataRateMax4 = sensor.DataRateMax;
+                    //AIDataRateMin4 = sensor.DataRateMin;
                     AISensitivity4 = sensor.Sensitivity;
                     break;
                 case 5:
@@ -2040,8 +2042,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     AI5 = sensor.Value;
                     AIRaw5 = sensor.RawValue;
                     AIDataRate5 = sensor.DataRate;
-                    AIDataRateMax5 = sensor.DataRateMax;
-                    AIDataRateMin5 = sensor.DataRateMin;
+                    //AIDataRateMax5 = sensor.DataRateMax;
+                    //AIDataRateMin5 = sensor.DataRateMin;
                     AISensitivity5 = sensor.Sensitivity;
                     break;
                 case 6:
@@ -2049,8 +2051,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     AI6 = sensor.Value;
                     AIRaw6 = sensor.RawValue;
                     AIDataRate6 = sensor.DataRate;
-                    AIDataRateMax6 = sensor.DataRateMax;
-                    AIDataRateMin6 = sensor.DataRateMin;
+                    //AIDataRateMax6 = sensor.DataRateMax;
+                    //AIDataRateMin6 = sensor.DataRateMin;
                     AISensitivity6 = sensor.Sensitivity;
                     break;
                 case 7:
@@ -2058,11 +2060,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     AI7 = sensor.Value;
                     AIRaw7 = sensor.RawValue;
                     AIDataRate7 = sensor.DataRate;
-                    AIDataRateMax7 = sensor.DataRateMax;
-                    AIDataRateMin7 = sensor.DataRateMin;
+                    //AIDataRateMax7 = sensor.DataRateMax;
+                    //AIDataRateMin7 = sensor.DataRateMin;
                     AISensitivity7 = sensor.Sensitivity;
                     break;
-
             }
         }
 
@@ -2220,6 +2221,57 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 //IkServerID = ActiveInterfaceKit.ServerID;
                 IkType = ActiveInterfaceKit.Type;
                 IkVersion = ActiveInterfaceKit.Version;
+
+                var sensors = ActiveInterfaceKit.sensors;
+                InterfaceKitAnalogSensor sensor = null;
+
+                // NOTE(crhodes)
+                // The DataRateMin and DataRateMax do not change.
+                // Populate them here instead of SensorChange event
+
+                // TODO(crhodes)
+                // May want to grab initial values for all fields here.
+
+                for (int i = 0; i < sensors.Count; i++)
+                {
+                    sensor = sensors[i];
+
+                    switch (i)
+                    {
+                        case 0:
+                            AIDataRateMax0 = sensor.DataRateMax;
+                            AIDataRateMin0 = sensor.DataRateMin;
+                            break;
+                        case 1:
+                            AIDataRateMax1 = sensor.DataRateMax;
+                            AIDataRateMin1 = sensor.DataRateMin;
+                            break;
+                        case 2:
+                            AIDataRateMax2 = sensor.DataRateMax;
+                            AIDataRateMin2 = sensor.DataRateMin;
+                            break;
+                        case 3:
+                            AIDataRateMax3 = sensor.DataRateMax;
+                            AIDataRateMin3 = sensor.DataRateMin;
+                            break;
+                        case 4:
+                            AIDataRateMax4 = sensor.DataRateMax;
+                            AIDataRateMin4 = sensor.DataRateMin;
+                            break;
+                        case 5:
+                            AIDataRateMax5 = sensor.DataRateMax;
+                            AIDataRateMin5 = sensor.DataRateMin;
+                            break;
+                        case 6:
+                            AIDataRateMax6 = sensor.DataRateMax;
+                            AIDataRateMin6 = sensor.DataRateMin;
+                            break;
+                        case 7:
+                            AIDataRateMax7 = sensor.DataRateMax;
+                            AIDataRateMin7 = sensor.DataRateMin;
+                            break;
+                    }
+                }
             }
             else
             {
