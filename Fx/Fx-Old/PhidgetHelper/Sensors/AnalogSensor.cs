@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-
-using PhidgetHelper;
 
 namespace PhidgetHelper.Sensors
 {
     public class AnalogSensor : DependencyObject
     {
-        public Phidgets.InterfaceKitAnalogSensor AnalogSensor;
+        public Phidgets.InterfaceKitAnalogSensor analogSensor;
 
         public event EventHandler<DistanceSensorEventArgs> InRange;
         public event EventHandler OutOfRange;
@@ -35,7 +28,7 @@ namespace PhidgetHelper.Sensors
 
         public AnalogSensor(Phidgets.InterfaceKitAnalogSensor sensor, int dataRate, int sensitivity, int minRange, int maxRange)
         {
-            AnalogSensor = sensor;
+            analogSensor = sensor;
 
             DataRate = dataRate;
             Sensitivity = sensitivity;
@@ -227,9 +220,9 @@ namespace PhidgetHelper.Sensors
 
         protected virtual void OnDataRateChanged(int oldValue, int newValue)
         {
-            if (AnalogSensor != null)
+            if (analogSensor != null)
             {
-            	AnalogSensor.DataRate = newValue;
+            	analogSensor.DataRate = newValue;
             }
             
             // TODO: Add your property changed side-effects. Descendants can override as well.
@@ -353,9 +346,9 @@ namespace PhidgetHelper.Sensors
         protected virtual void OnSensitivityChanged(int oldValue, int newValue)
         {
             // TODO: Add your property changed side-effects. Descendants can override as well.
-            if (AnalogSensor != null)
+            if (analogSensor != null)
             {
-                AnalogSensor.Sensitivity = newValue;
+                analogSensor.Sensitivity = newValue;
             }
         }
 

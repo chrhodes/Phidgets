@@ -5,7 +5,6 @@ using System.Data;
 using System.Linq;
 using System.Windows;
 
-using PacificLife.Life;
 
 namespace FxShow
 {
@@ -22,7 +21,7 @@ namespace FxShow
         void ApplicationStartingUp(object sender, StartupEventArgs args)
         {
 #if TRACE
-            PLLog.Trace5("Start", PLLOG_APPNAME);
+            //PLLog.Trace5("Start", PLLOG_APPNAME);
 #endif
             // Tell other assemblies where to write output messages.
             //SMOHelper.Common.OutputWindow = Common.OutputWindow;
@@ -60,14 +59,14 @@ namespace FxShow
                 MessageBox.Show(ex.InnerException.ToString());
             }
 #if TRACE
-            PLLog.Trace5("End", PLLOG_APPNAME);
+            //PLLog.Trace5("End", PLLOG_APPNAME);
 #endif
         }
 
         private void Application_SessionEnding_1(object sender, SessionEndingCancelEventArgs e)
         {
 #if TRACE
-            PLLog.Trace5("Here", PLLOG_APPNAME);
+            //PLLog.Trace5("Here", PLLOG_APPNAME);
             System.Diagnostics.Debug.WriteLine("Application_SessionEnding_1");
 #endif
             //MessageBox.Show("Application_SessionEnding_1");
@@ -78,7 +77,7 @@ namespace FxShow
         private void Application_Exit_1(object sender, ExitEventArgs e)
         {
 #if TRACE
-            PLLog.Trace5("Here", PLLOG_APPNAME);
+            //PLLog.Trace5("Here", PLLOG_APPNAME);
             System.Diagnostics.Debug.WriteLine("Application_Exit_1");
 #endif
             //MessageBox.Show("Application_Exit_1");
@@ -89,7 +88,7 @@ namespace FxShow
         private void Application_Deactivated_1(object sender, EventArgs e)
         {
 #if TRACE
-            PLLog.Trace5("Here", PLLOG_APPNAME);
+            //PLLog.Trace5("Here", PLLOG_APPNAME);
             System.Diagnostics.Debug.WriteLine("Application_Deactivated_1");
 #endif
             //Common.OutputWindow.Close();
@@ -99,7 +98,7 @@ namespace FxShow
         private void Application_Activated_1(object sender, EventArgs e)
         {
 #if TRACE
-            PLLog.Trace5("Here", PLLOG_APPNAME);
+            //PLLog.Trace5("Here", PLLOG_APPNAME);
             System.Diagnostics.Debug.WriteLine("Application_Activated_1");
 #endif
 

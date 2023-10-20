@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 //using System.DirectoryServices;
 using System.Net.Mail;
-using System.Text;
 
-using PacificLife.Life;
 using FxShow.Data;
 
 namespace FxShow.Helpers
@@ -239,7 +236,7 @@ namespace FxShow.Helpers
                 }
                 catch(Exception ex)
                 {
-                    PLLog.Error(ex, PLLOG_APPNAME, CLASS_BASE_ERRORNUMBER + 8);
+                    //PLLog.Error(ex, PLLOG_APPNAME, CLASS_BASE_ERRORNUMBER + 8);
                     throw new ApplicationException("Cannot Send Email");
                 }
             }

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<InterfaceKits>
+	<!--These are on the SBCs-->
+	<InterfaceKit Name="SBCx IFKIT_S_46049" Embedded="true" SerialNumber="46049" Type="8/8/8"    />
+	<InterfaceKit Name="SBCx IFKIT_S_48301" Embedded="true" SerialNumber="48301" Type="8/8/8"     />
+	<InterfaceKit Name="SBCx IFKIT_S_48284" Embedded="true" SerialNumber="48284" Type="8/8/8"    />
+	<InterfaceKit Name="SBCx IFKIT_S_251831" Embedded="true" SerialNumber="251831" Type="8/8/8"  />
+
+	<InterfaceKit Name="IFKIT_S_124744" Embedded="false" SerialNumber="124744" Type="8/8/8" />
+
+	<InterfaceKit Name="IFKIT_S_136645" Embedded="false" SerialNumber="136645" Type="0/16/16" />
+	<InterfaceKit Name="IFKIT_S_136647" Embedded="false" SerialNumber="136647" Type="0/16/16" />
+
+</InterfaceKits>

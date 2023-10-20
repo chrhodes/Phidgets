@@ -69,9 +69,9 @@ namespace FxShow.User_Interface.Windows
         private void DXWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
             //AssemblyHelper.AssemblyInformation info = new AssemblyHelper.AssemblyInformation(System.Reflection.Assembly.GetCallingAssembly());
-            AssemblyHelper.AssemblyInformation info = new AssemblyHelper.AssemblyInformation(System.Reflection.Assembly.GetExecutingAssembly());
+            //AssemblyHelper.AssemblyInformation info = new AssemblyHelper.AssemblyInformation(System.Reflection.Assembly.GetExecutingAssembly());
 
-            textBlock_Version.Text = info.ToString();
+            //textBlock_Version.Text = info.ToString();
 
             //System.Windows.Data.CollectionViewSource myCollectionViewSource = (System.Windows.Data.CollectionViewSource)this.Resources["serversInstancesViewSource"];
             //// Things work if this line is present.  Testing to see if it works without 6/13/2012

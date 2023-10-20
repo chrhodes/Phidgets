@@ -4,7 +4,7 @@ using PE = Phidgets.Events;
 
 namespace PhidgetHelper.InterfaceKits
 {
-    public class InterfaceKit //: Phidgets22.InterfaceKit
+    public class InterfaceKit : Phidgets.InterfaceKit
     {
         // Fields...
         private int _FxSerialNumber;

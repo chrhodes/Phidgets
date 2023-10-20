@@ -35,8 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Phidget21.NET1.1">
-      <HintPath>D:\VNC\git\chrhodes\Phidgets\LIbraries\Phidget21-windevel_2.1.8.20110615\phidget21-windevel\Phidget21.NET1.1.dll</HintPath>
+    <Reference Include="Phidget21.NET">
+      <HintPath>..\..\..\LIbraries\Phidget21-windevel_2.1.8.20110615\phidget21-windevel\Phidget21.NET.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />

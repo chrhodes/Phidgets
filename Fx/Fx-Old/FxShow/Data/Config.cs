@@ -8,8 +8,6 @@ using System.Configuration;
 using System.Reflection;
 using System.Text;
 
-using PacificLife.Life;
-
 namespace FxShow.Data
 {
     /// <summary>
@@ -838,7 +836,7 @@ namespace FxShow.Data
                 }
                 else
                 {
-                    PLLog.Trace5(string.Format("Current Date: {0}", _CurrentDate.ToString()), PLLOG_APPNAME, CLASS_BASE_ERRORNUMBER + 0);
+                    //PLLog.Trace5(string.Format("Current Date: {0}", _CurrentDate.ToString()), PLLOG_APPNAME, CLASS_BASE_ERRORNUMBER + 0);
                     return (DateTime)_CurrentDate;
                 }
             }
@@ -848,11 +846,11 @@ namespace FxShow.Data
                 try
                 {
                     _CurrentDate = value;
-                    PLLog.Info(string.Format("Setting CurrentDate to {0}", _CurrentDate.ToString()), PLLOG_APPNAME, CLASS_BASE_ERRORNUMBER + 0);
+                    //PLLog.Info(string.Format("Setting CurrentDate to {0}", _CurrentDate.ToString()), PLLOG_APPNAME, CLASS_BASE_ERRORNUMBER + 0);
                 }
                 catch(Exception ex)
                 {
-                    PLLog.Error(ex, PLLOG_APPNAME, CLASS_BASE_ERRORNUMBER + 0);
+                    //PLLog.Error(ex, PLLOG_APPNAME, CLASS_BASE_ERRORNUMBER + 0);
                     throw ex;
                 }
             }
@@ -1837,12 +1835,12 @@ namespace FxShow.Data
 
             try
             {
-                PLLog.Info(string.Format("Using CurrentDate {0} from Config File", configValue), PLLOG_APPNAME, CLASS_BASE_ERRORNUMBER + 0);
+                //PLLog.Info(string.Format("Using CurrentDate {0} from Config File", configValue), PLLOG_APPNAME, CLASS_BASE_ERRORNUMBER + 0);
                 return Convert.ToDateTime(configValue);
             }
             catch(Exception ex)
             {
-                PLLog.Error(string.Format("Cannot convert {0} to DateTime {1}", configString, ex.ToString()), PLLOG_APPNAME, CLASS_BASE_ERRORNUMBER + 0);
+                //PLLog.Error(string.Format("Cannot convert {0} to DateTime {1}", configString, ex.ToString()), PLLOG_APPNAME, CLASS_BASE_ERRORNUMBER + 0);
                 return null;
             }
         }
@@ -1875,7 +1873,7 @@ namespace FxShow.Data
 
             if(configValue.Length <= 0)
             {
-                PLLog.Info(string.Format("Empty Config File Information: {0}", configString), PLLOG_APPNAME, CLASS_BASE_ERRORNUMBER + 5);
+                //PLLog.Info(string.Format("Empty Config File Information: {0}", configString), PLLOG_APPNAME, CLASS_BASE_ERRORNUMBER + 5);
                 //throw new ApplicationException(string.Format("Empty Config File Information: {0}", configString));
             }
 
@@ -1992,7 +1990,7 @@ namespace FxShow.Data
                             }
                             catch(Exception)
                             {
-                                PLLog.Error(string.Format("Invalid Config File Information: {0}", method.Name), PLLOG_APPNAME, CLASS_BASE_ERRORNUMBER + 1);
+                                //PLLog.Error(string.Format("Invalid Config File Information: {0}", method.Name), PLLOG_APPNAME, CLASS_BASE_ERRORNUMBER + 1);
                                 result = false;
                             }
 
@@ -2006,7 +2004,7 @@ namespace FxShow.Data
                             }
                             catch(Exception)
                             {
-                                PLLog.Error(string.Format("Invalid Config File Information: {0}", method.Name), PLLOG_APPNAME, CLASS_BASE_ERRORNUMBER + 1);
+                                //PLLog.Error(string.Format("Invalid Config File Information: {0}", method.Name), PLLOG_APPNAME, CLASS_BASE_ERRORNUMBER + 1);
                                 result = false;
                             }
 
@@ -2019,7 +2017,7 @@ namespace FxShow.Data
                             }
                             catch(Exception)
                             {
-                                PLLog.Error(string.Format("Invalid Config File Information: {0}", method.Name), PLLOG_APPNAME, CLASS_BASE_ERRORNUMBER + 1);
+                                //PLLog.Error(string.Format("Invalid Config File Information: {0}", method.Name), PLLOG_APPNAME, CLASS_BASE_ERRORNUMBER + 1);
                                 result = false;
                             }
 

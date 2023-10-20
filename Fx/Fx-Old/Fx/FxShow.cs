@@ -8,6 +8,7 @@ using Phidgets;
 //Needed for the event handling classes 
 using Phidgets.Events;
 
+
 namespace Fx
 {
     public class FxShow

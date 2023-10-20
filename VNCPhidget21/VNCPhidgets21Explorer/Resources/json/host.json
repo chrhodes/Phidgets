@@ -1,0 +1,20 @@
+{
+  "Name": "HOST NAME",
+  "IPAddress": "192.168.150.1",
+  "Port": 5001,
+  "Enable": true,
+  "InterfaceKits": [
+    {
+      "Name": "InterfaceKit 1",
+      "SerialNumber": 1234,
+      "Enable": true,
+      "Embedded": true
+    },
+    {
+      "Name": "InterfaceKit 2",
+      "SerialNumber": 5678,
+      "Enable": false,
+      "Embedded": false
+    }
+  ]
+}

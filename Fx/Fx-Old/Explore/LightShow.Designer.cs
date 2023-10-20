@@ -186,7 +186,7 @@
             // 
             this.cbShowLocations.FormattingEnabled = true;
             this.cbShowLocations.Items.AddRange(new object[] {
-            "C:\\TFS_HOME\\VNC\\Embedded Systems\\Fx\\Shows",
+            "D:\\VNC\\git\\chrhodes\\Phidgets\\Fx\\Fx-Old\\Shows",
             "C:\\TFS\\VNC\\Embedded Systems\\Fx\\Shows",
             "U:\\TFS\\VNC\\Embedded Systems\\Fx\\Shows",
             "V:\\USR\\VNC\\Fx\\Shows"});

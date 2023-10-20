@@ -1,0 +1,127 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!--<TargetFrameworks>net6.0-windows;net48</TargetFrameworks>-->
+      <TargetFrameworks>net6.0-windows</TargetFrameworks>      
+        <OutputType>WinExe</OutputType>
+    <UseWPF>true</UseWPF>
+    <!--<GenerateAssemblyInfo>false</GenerateAssemblyInfo>-->
+    <!--<Nullable>enable</Nullable>-->
+      <AssemblyVersion>1.0.0</AssemblyVersion>
+      <ProductVersion>1.0.1</ProductVersion>
+    <FileVersion>2023.10.19A</FileVersion>
+  </PropertyGroup>
+
+    <PropertyGroup Condition="'$(TargetFramework)' == 'net6.0-windows'">
+        <Nullable>enable</Nullable>
+        <ApplicationIcon>Resources\Icons\ApplicationIcon-Right-Red.ico</ApplicationIcon>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(TargetFramework)' == 'net48'">
+        <ApplicationIcon>Resources\Icons\ApplicationIcon-Left-Blue.ico</ApplicationIcon>
+    </PropertyGroup>
+    
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\HostList.xml" />
+    <None Remove="Resources\InterfaceKitList.xml" />
+    <None Remove="Resources\json\host.json" />
+    <None Remove="Resources\json\interfacekit.json" />
+    <None Remove="Resources\json\phidgetconfig.json" />
+    <None Remove="Resources\json\sensor.json" />
+    <None Remove="Resources\SensorList.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\InterfaceKitList.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\HostList.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\ApplicationIcon-Right-Red.ico" />
+    <Content Include="Resources\json\host.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\interfacekit.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\phidgetconfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\sensor.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\SensorList.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  
+    <ItemGroup>
+        <PackageReference Include="DevExpress.Wpf.Core" Version="23.1.5" />
+        <PackageReference Include="DevExpress.Wpf.Core.Extensions" Version="23.1.5" />
+        <PackageReference Include="DevExpress.Wpf.Docking" Version="23.1.5" />
+        <PackageReference Include="DevExpress.Wpf.Grid" Version="23.1.5" />
+        <!--<PackageReference Include="DevExpress.Wpf.Layout" Version="21.2.7" />
+        <PackageReference Include="DevExpress.Wpf.Navigation" Version="21.2.7" />-->
+        <PackageReference Include="DevExpress.Wpf.NavBar" Version="23.1.5" />
+        <PackageReference Include="DevExpress.Wpf.Ribbon" Version="23.1.5" />
+        <PackageReference Include="EntityFramework" Version="6.4.4" />
+        <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
+        <PackageReference Include="Prism.Unity" Version="8.1.97" />
+    </ItemGroup>
+        
+    <ItemGroup>
+        <PackageReference Include="VNC.Core" Version="2.1.2" />
+    </ItemGroup>
+    
+    <ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows'">
+        <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.10" />
+        <PackageReference Include="VNC.Logging.TraceListeners.SignalRCoreListeners" Version="1.0.0" />
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
+        <PackageReference Include="Microsoft.AspNet.SignalR.Client" Version="2.4.3" />
+        <PackageReference Include="VNC.Logging.TraceListeners.SignalRListener" Version="1.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\VNC.Phidget\VNC.Phidget.csproj" />
+      <ProjectReference Include="..\VNCPhidgets21Explorer.Core\VNCPhidgets21Explorer.Core.csproj" />
+    </ItemGroup>
+
+    <!--<ItemGroup>
+        <ProjectReference Include="..\VNCPhidgets21Explorer.Core\VNCPhidgets21Explorer.Core.csproj" />  
+        <ProjectReference Include="..\VNCPhidgets21Explorer.Domain\VNCPhidgets21Explorer.Domain.csproj" />
+    </ItemGroup>-->
+    
+  <!--<ItemGroup>
+    <ProjectReference Include="..\..\vnc\VNC.Logging\VNC.Logging\VNC.Logging.csproj" />
+  </ItemGroup>-->
+  
+  <ItemGroup>
+    <Reference Include="Phidget21.NET">
+      <HintPath>..\..\Libraries\Phidget21-windevel_2.1.8.20110615\phidget21-windevel\Phidget21.NET.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+    <ItemGroup>
+        <!-- Workaround for https://github.com/dotnet/wpf/issues/2648#issuecomment-635674683 -->
+        <Reference Include="System.Web" />
+    </ItemGroup>    
+  
+  <!--<ItemGroup>
+    <None Update="ApplicationIcon-Right-Red.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>-->
+
+</Project>
