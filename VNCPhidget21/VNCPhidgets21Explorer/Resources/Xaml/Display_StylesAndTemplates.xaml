@@ -46,7 +46,8 @@
     <SolidColorBrush x:Key="RedText" Color="#c70000" />
 
     <SolidColorBrush x:Key="InterfaceKitBackground" Color="#A0A0A0" />
-    
+     <SolidColorBrush x:Key="AdvancedServo1061Background" Color="#808080" /> 
+
     <SolidColorBrush x:Key="ViewABackground" Color="#FFC0C0" />
     <SolidColorBrush x:Key="ViewBBackground" Color="#C0FFC0" />
     <SolidColorBrush x:Key="ViewCBackground" Color="#C0C0FF" />

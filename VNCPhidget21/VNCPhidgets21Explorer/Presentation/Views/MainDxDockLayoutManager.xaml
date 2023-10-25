@@ -76,7 +76,7 @@
 
         </dxdo:LayoutGroup>-->
 
-            <dxdo:LayoutGroup Name="dlm_Root" Orientation="Vertical" >
+        <dxdo:LayoutGroup Name="dlm_Root" Orientation="Vertical" >
 
             <dxdo:LayoutGroup VerticalAlignment="Top" Name="lg_Header">
 
@@ -92,15 +92,19 @@
                     <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.InterfaceKitRegion1}"/>
                 </dxdo:LayoutPanel>
 
-                <dxdo:LayoutPanel Caption="InterfaceKit2" AutoHidden="False" ShowCloseButton="False" MinWidth="680" >
+                <dxdo:LayoutPanel Caption="InterfaceKit2" AutoHidden="True" ShowCloseButton="False" MinWidth="680" >
                     <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.InterfaceKitRegion2}"/>
                 </dxdo:LayoutPanel>
 
-                <dxdo:LayoutPanel Caption="InterfaceKit3" AutoHidden="False" ShowCloseButton="False" MinWidth="680" >
+                <dxdo:LayoutPanel Caption="InterfaceKit3" AutoHidden="True" ShowCloseButton="False" MinWidth="680" >
                     <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.InterfaceKitRegion3}"/>
                 </dxdo:LayoutPanel>
-                
-                <!--<dxdo:LayoutPanel Caption="HackAround" AutoHidden="False" ShowCloseButton="False">
+
+                <dxdo:LayoutPanel Caption="AdvancedServoKit1" AutoHidden="False" ShowCloseButton="False" MinWidth="680" >
+                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AdvancedServoRegion1}"/>
+                </dxdo:LayoutPanel>
+
+                    <!--<dxdo:LayoutPanel Caption="HackAround" AutoHidden="False" ShowCloseButton="False">
                     <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.HackAroundRegion}" />                        
                 </dxdo:LayoutPanel>-->
 
@@ -127,8 +131,8 @@
                                     <Button Content="Restore Layout" Click="RestoreLayout_Click" />
                                 </StackPanel>
                             </dxlc:LayoutItem>
+                            
                         </dxlc:LayoutGroup>
-
 
                     </dxdo:LayoutPanel>
 
@@ -170,24 +174,6 @@
                     </dxdo:LayoutPanel>
 
                 </dxdo:FloatGroup>
-
-                <!--<dxdo:FloatGroup FloatLocation="800,100" FloatSize="600,1200" >
-                    <dxdo:LayoutPanel Caption="VNCArch">
-                        <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerVNCARCHMainRegion}" />
-                    </dxdo:LayoutPanel>
-                </dxdo:FloatGroup>-->
-
-                <!--<dxdo:FloatGroup FloatLocation="1500,100" FloatSize="600,1200">
-                    <dxdo:LayoutPanel Caption="MINSK">
-                        <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerMINSKMainRegion}" />
-                    </dxdo:LayoutPanel>
-                </dxdo:FloatGroup>
-
-                <dxdo:FloatGroup FloatLocation="2200,100" FloatSize="600,1200">
-                    <dxdo:LayoutPanel Caption="EASE">
-                        <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerEASEMainRegion}" />
-                    </dxdo:LayoutPanel>
-                </dxdo:FloatGroup>-->
 
             </dxdo:DockLayoutManager.FloatGroups>
 

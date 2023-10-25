@@ -19,12 +19,12 @@ using VNC.Phidget;
 
 namespace VNCPhidgets21Explorer.Presentation.ViewModels
 {
-    public class InterfaceKitViewModel : EventViewModelBase, IInterfaceKitViewModel, IInstanceCountVM
+    public class InterfaceKit1018ViewModel : EventViewModelBase, IInterfaceKitViewModel, IInstanceCountVM
     {
 
         #region Constructors, Initialization, and Load
 
-        public InterfaceKitViewModel(
+        public InterfaceKit1018ViewModel(
             IEventAggregator eventAggregator,
             IDialogService dialogService) : base(eventAggregator, dialogService)
         {

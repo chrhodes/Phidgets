@@ -13,11 +13,11 @@ using dxe = DevExpress.Xpf.Editors;
 
 namespace VNCPhidgets21Explorer.Presentation.Views
 {
-    public partial class InterfaceKit : ViewBase, IInterfaceKit, IInstanceCountV
+    public partial class InterfaceKit1018 : ViewBase, IInterfaceKit, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
         
-        public InterfaceKit()
+        public InterfaceKit1018()
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
@@ -36,7 +36,7 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
         
-        public InterfaceKit(IInterfaceKitViewModel viewModel)
+        public InterfaceKit1018(IInterfaceKitViewModel viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
 
@@ -112,7 +112,6 @@ namespace VNCPhidgets21Explorer.Presentation.Views
         }
 
         #endregion
-
 
         //private void btn_LoadShow_Click(object sender, RoutedEventArgs e)
         //{

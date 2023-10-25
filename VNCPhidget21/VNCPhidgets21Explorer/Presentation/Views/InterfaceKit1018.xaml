@@ -1,6 +1,6 @@
 ﻿<vncmvvm:ViewBase
-    x:Class="VNCPhidgets21Explorer.Presentation.Views.InterfaceKit"
-    x:Name="thisInterfaceKit"
+    x:Class="VNCPhidgets21Explorer.Presentation.Views.InterfaceKit1018"
+    x:Name="thisControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -35,21 +35,8 @@
  
     d:DesignStyle="{StaticResource vncDesignStyleUC}" 
 >
-
-    <vncmvvm:ViewBase.Resources>
-        <localc:ForegroundColorConverter x:Key="RedGreenConverter" />
-        <XmlDataProvider x:Key="SensorList" Source="/Resources/SensorList.xml" XPath="Sensors/Sensor" />
-        <XmlDataProvider x:Key="HostList" Source="/Resources/HostList.xml" XPath="Hosts/Host" />
-        <XmlDataProvider x:Key="InterfaceKitList" Source="/Resources/InterfaceKitList.xml" XPath="InterfaceKits/InterfaceKit" />
-        <!--<XmlDataProvider x:Key="SensorList" Source="SensorList.xml" XPath="Sensors/Sensor" />
-        <XmlDataProvider x:Key="HostList" Source="HostList.xml" XPath="Hosts/Host" />-->        
-    </vncmvvm:ViewBase.Resources>
-
     <!--xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"-->
-    <!-- TODO:(crhodes)
-        Cut Add this to Xaml Resources, likely Display_StylesandTemplates.xaml -->
-    <!-- <SolidColorBrush x:Key="InterfaceKitBackground" Color="#A0A0A0" /> -->
     
     <!-- d:DesignWidth="800" d:DesignHeight="450" -->
         
@@ -58,8 +45,17 @@
             <!-- <Setter Property="Background" Value="White" /> -->
         <!-- </Style> -->
     <!-- </d:DesignerProperties.DesignStyle> -->
+
+    <vncmvvm:ViewBase.Resources>
+        <localc:ForegroundColorConverter x:Key="RedGreenConverter" />
+        <XmlDataProvider x:Key="SensorList" Source="/Resources/SensorList.xml" XPath="Sensors/Sensor" />
+        <XmlDataProvider x:Key="HostList" Source="/Resources/HostList.xml" XPath="Hosts/Host" />
+        <XmlDataProvider x:Key="InterfaceKitList" Source="/Resources/InterfaceKitList.xml" XPath="InterfaceKits/InterfaceKit" />
+        <!--<XmlDataProvider x:Key="SensorList" Source="SensorList.xml" XPath="Sensors/Sensor" />
+        <XmlDataProvider x:Key="HostList" Source="HostList.xml" XPath="Hosts/Host" />-->
+    </vncmvvm:ViewBase.Resources>
     
-     <!--<UserControl.Resources>-->
+    <!--<UserControl.Resources>-->
         
         <!-- <localc:SelectedItemsToListOfStringConverter x:Key="SelectedItemsToListOfStringConverter" /> -->
         <!-- <localc:SelectedItemsConverter x:Key="SelectedItemsConverter" /> -->
@@ -81,34 +77,6 @@
     <!-- <UserControl.DataContext> -->
         <!-- <localvm:InterfaceKitViewModel /> -->
     <!-- </UserControl.DataContext> -->
-    
-    <!--<Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
-        <StackPanel>
-            <TextBlock Text="InterfaceKit" />
-            <TextBlock Text="{Binding Message}" />
-            <Button Content="Say Hello"
-                    Command="{Binding SayHelloCommand}" />
-        </StackPanel>
-        
-        --><!-- This is useful for debugging V VM constructor issues --><!--
-
-        <StackPanel Grid.Row="1" Orientation="Horizontal" >
-            <StackPanel Orientation="Horizontal" Margin="5">
-                <Label Content="V:" />
-                <Label Content="{Binding ElementName=thisInterfaceKit, Path=InstanceCountV}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="5">
-                <Label Content="VM:" />
-                <Label Content="{Binding InstanceCountVM}" />
-            </StackPanel>
-        </StackPanel>
-
-    </Grid>-->
 
     <DockPanel Margin="5">
         <TextBlock Text="InterfaceKit" DockPanel.Dock="Top" />
@@ -124,7 +92,7 @@
             
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" Margin="5">
                 <Label Content="V:" />
-                <Label Content="{Binding ElementName=thisInterfaceKit, Path=InstanceCountV}" />
+                <Label Content="{Binding ElementName=thisControl, Path=InstanceCountV}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" Margin="5">
                 <Label Content="VM:" />

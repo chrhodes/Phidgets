@@ -51,8 +51,11 @@ namespace VNCPhidgets21Explorer
             //containerRegistry.Register<IMain, MainDxLayout>();
             containerRegistry.Register<IMain, MainDxDockLayoutManager>();
 
-            containerRegistry.Register<IInterfaceKit, InterfaceKit>();
-            containerRegistry.Register<IInterfaceKitViewModel, InterfaceKitViewModel>();
+            containerRegistry.Register<IInterfaceKit, InterfaceKit1018>();
+            containerRegistry.Register<IInterfaceKitViewModel, InterfaceKit1018ViewModel>();
+
+            containerRegistry.Register<IAdvancedServo1061, AdvancedServo1061>();
+            containerRegistry.Register<IAdvancedServo1061ViewModel, AdvancedServo1061ViewModel>();
 
             containerRegistry.Register<HackAround>();
             containerRegistry.Register<HackAroundViewModel>();
@@ -97,9 +100,12 @@ namespace VNCPhidgets21Explorer
             _regionManager.RegisterViewWithRegion(RegionNames.RibbonRegion, typeof(IRibbon));
             _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(IMain));
 
-            _regionManager.RegisterViewWithRegion(RegionNames.InterfaceKitRegion1, typeof(InterfaceKit));
-            _regionManager.RegisterViewWithRegion(RegionNames.InterfaceKitRegion2, typeof(InterfaceKit));
-            _regionManager.RegisterViewWithRegion(RegionNames.InterfaceKitRegion3, typeof(InterfaceKit));
+            _regionManager.RegisterViewWithRegion(RegionNames.InterfaceKitRegion1, typeof(InterfaceKit1018));
+            _regionManager.RegisterViewWithRegion(RegionNames.InterfaceKitRegion2, typeof(InterfaceKit1018));
+            _regionManager.RegisterViewWithRegion(RegionNames.InterfaceKitRegion3, typeof(InterfaceKit1018));
+
+            _regionManager.RegisterViewWithRegion(RegionNames.AdvancedServoRegion1, typeof(AdvancedServo1061));
+
             _regionManager.RegisterViewWithRegion(RegionNames.HackAroundRegion, typeof(HackAround));
 
             // //This loads CombinedMain into the Shell loaded in App.Xaml.cs

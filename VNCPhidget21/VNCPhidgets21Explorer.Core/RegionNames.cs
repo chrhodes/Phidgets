@@ -10,6 +10,11 @@ namespace VNCPhidgets21Explorer.Core
         public static string ToolBarRegion = "ToolBarRegion";
         public static string ChildRegion = "ChildRegion";
         public static string StatusBarRegion = "StatusBarRegion";
+
+        public static string AdvancedServoRegion1 = "AdvancedServoRegion1";
+        public static string AdvancedServoRegion2 = "AdvancedServoRegion2";
+        public static string AdvancedServoRegion3 = "AdvancedServoRegion3";
+
         public static string InterfaceKitRegion1 = "InterfaceKitRegion1";
         public static string InterfaceKitRegion2 = "InterfaceKitRegion2";
         public static string InterfaceKitRegion3 = "InterfaceKitRegion3";
