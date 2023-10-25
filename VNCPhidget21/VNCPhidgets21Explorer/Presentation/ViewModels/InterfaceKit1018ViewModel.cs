@@ -21,7 +21,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 {
     public class InterfaceKit1018ViewModel : EventViewModelBase, IInterfaceKitViewModel, IInstanceCountVM
     {
-
         #region Constructors, Initialization, and Load
 
         public InterfaceKit1018ViewModel(
@@ -44,6 +43,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             InstanceCountVM++;
 
+            // Turn off logging of PropertyChanged from VNC.Core
+            // We display the logging in 
+            LogOnPropertyChanged = false;
+
             // TODO(crhodes)
             //
 
@@ -62,12 +65,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             Message = "InterfaceKitViewModel says hello";
 
-            // Turn off logging of PropertyChanged from VNC.Core
-            // We display the logging in 
-            LogOnPropertyChanged = false;
+
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
+
         private void LoadUIConfig()
         {
             Int64 startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
@@ -77,8 +79,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Resources.PhidgetConfig? phidgetConfig = JsonSerializer.Deserialize<Resources.PhidgetConfig>(jsonString);
             this.Hosts2 = phidgetConfig.Hosts.ToList();
             this.Sensors2 = phidgetConfig.Sensors.ToList();
-
-            //LoggingUIConfig = jsonLoggingUIConfig.ConvertJSONToLoggingUIConfig();
 
             Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -96,6 +96,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         #endregion
 
         #region Fields and Properties
+
+        private string _ConfigFileName;
+
+        public string ConfigFileName
+        {
+            get => _ConfigFileName;
+            set
+            {
+                if (_ConfigFileName == value) return;
+                _ConfigFileName = value;
+                OnPropertyChanged();
+            }
+        }
 
         private Resources.PhidgetConfig _phidgetConfig;
         public Resources.PhidgetConfig PhidgetConfig
@@ -1864,21 +1877,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Commands
 
-
-        private string _ConfigFileName;
-
-        public string ConfigFileName
-        {
-            get => _ConfigFileName;
-            set
-            {
-                if (_ConfigFileName == value) return;
-                _ConfigFileName = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string ConfigFIleNameToolTip { get; set; }
+        //public string ConfigFIleNameToolTip { get; set; }
 
         #region Command ConfigFIleName DoubleClick
 

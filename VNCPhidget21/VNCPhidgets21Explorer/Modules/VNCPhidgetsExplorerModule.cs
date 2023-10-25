@@ -57,6 +57,9 @@ namespace VNCPhidgets21Explorer
             containerRegistry.Register<IAdvancedServo1061, AdvancedServo1061>();
             containerRegistry.Register<IAdvancedServo1061ViewModel, AdvancedServo1061ViewModel>();
 
+            containerRegistry.Register<IStepper1063, Stepper1063>();
+            containerRegistry.Register<IStepper1063ViewModel, Stepper1063ViewModel>();
+
             containerRegistry.Register<HackAround>();
             containerRegistry.Register<HackAroundViewModel>();
 
@@ -100,11 +103,13 @@ namespace VNCPhidgets21Explorer
             _regionManager.RegisterViewWithRegion(RegionNames.RibbonRegion, typeof(IRibbon));
             _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(IMain));
 
-            _regionManager.RegisterViewWithRegion(RegionNames.InterfaceKitRegion1, typeof(InterfaceKit1018));
-            _regionManager.RegisterViewWithRegion(RegionNames.InterfaceKitRegion2, typeof(InterfaceKit1018));
-            _regionManager.RegisterViewWithRegion(RegionNames.InterfaceKitRegion3, typeof(InterfaceKit1018));
+            _regionManager.RegisterViewWithRegion(RegionNames.InterfaceKit1018Region1, typeof(InterfaceKit1018));
+            _regionManager.RegisterViewWithRegion(RegionNames.InterfaceKit1018Region2, typeof(InterfaceKit1018));
+            _regionManager.RegisterViewWithRegion(RegionNames.InterfaceKit1018Region3, typeof(InterfaceKit1018));
 
-            _regionManager.RegisterViewWithRegion(RegionNames.AdvancedServoRegion1, typeof(AdvancedServo1061));
+            _regionManager.RegisterViewWithRegion(RegionNames.AdvancedServo1061Region1, typeof(AdvancedServo1061));
+
+            _regionManager.RegisterViewWithRegion(RegionNames.Stepper1063Region1, typeof(Stepper1063));
 
             _regionManager.RegisterViewWithRegion(RegionNames.HackAroundRegion, typeof(HackAround));
 

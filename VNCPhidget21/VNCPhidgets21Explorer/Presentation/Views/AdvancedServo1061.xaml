@@ -100,7 +100,9 @@
     </Grid>-->
 
     <DockPanel Margin="5">
-        <TextBlock Text="InterfaceKit" DockPanel.Dock="Top" />
+        <!--<TextBlock Text="InterfaceKit" DockPanel.Dock="Top" />-->
+
+        <views:HostSelector DockPanel.Dock="Top" />
 
         <!-- This is useful for debugging V VM constructor issues -->
 
@@ -124,49 +126,7 @@
 
         <dxlc:LayoutControl Orientation="Vertical">
 
-            <dxlc:LayoutItem Label="ConfigFileName">
-                <!-- Hopefully we don't use the first one anymore! 
-                <dxe:TextEdit x:Name="teConfigFIleName"
-            		Text="{Binding ConfigFIleName}"
-                	ToolTip="tooltip"
-                 	MouseDoubleClick="teConfigFIleName_MouseDoubleClick" /> -->
-                <dxe:TextEdit
-            		Text="{Binding ConfigFileName }"
-                	ToolTip="{Binding ConfigFileNameToolTip }">
-                    <i1:Interaction.Triggers>
-                        <i1:EventTrigger EventName="MouseDoubleClick">
-                            <i1:InvokeCommandAction Command="{Binding ConfigFileName_DoubleClick_Command}"/>
-                        </i1:EventTrigger>
-                    </i1:Interaction.Triggers>
-                </dxe:TextEdit>
-            </dxlc:LayoutItem>
 
-            <dxlc:LayoutGroup View="Group" Orientation="Horizontal" HorizontalAlignment="Left" >
-
-                <dxlc:LayoutItem Label="Hosts" LabelPosition="Left" >
-                    <dxe:ComboBoxEdit Width="150" ItemsSource="{Binding Hosts2}" DisplayMember="Name" 
-                                      SelectedItem="{Binding SelectedHost}"
-                                      SelectedIndex="0"/>
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Label="IPAddress" >
-                    <!--<Label Content="{Binding SelectedHost.IPAddress}"  />-->
-                    <dxe:TextEdit Text="{Binding SelectedHost.IPAddress }" IsReadOnly="True" />
-                    <!--Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>-->
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Label="Port" >
-                    <!--<Label Content="{Binding SelectedHost.Port }" />-->
-                    <dxe:TextEdit Text="{Binding SelectedHost.Port }" IsReadOnly="True" />
-                    <!--Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>-->
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Label="Enable" >
-                    <dxe:TextEdit Text="{Binding SelectedHost.Enable }" IsReadOnly="True" />
-                    <!--Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>-->
-                </dxlc:LayoutItem>
-
-            </dxlc:LayoutGroup>
 
         </dxlc:LayoutControl>
 

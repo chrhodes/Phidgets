@@ -1,0 +1,135 @@
+﻿<vncmvvm:ViewBase
+    x:Class="VNCPhidgets21Explorer.Presentation.Views.Stepper1063"
+    x:Name="thisControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    mc:Ignorable="d"    
+
+    xmlns:local="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
+    xmlns:localc="clr-namespace:VNCPhidgets21Explorer.Presentation.Converters"
+    
+    xmlns:views="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
+    xmlns:viewModels="clr-namespace:VNCPhidgets21Explorer.Presentation.ViewModels"
+    
+    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"	
+    xmlns:core="clr-namespace:VNCPhidgets21Explorer.Core;assembly=VNCPhidgets21Explorer.Core"
+    
+    xmlns:prism="http://prismlibrary.com/"   
+    prism:ViewModelLocator.AutoWireViewModel="False"
+
+    Background="{StaticResource Stepper1063Background}"
+    
+    d:DesignWidth="800" d:DesignHeight="450"
+    d:DesignStyle="{StaticResource vncDesignStyleUC}" 
+>     
+    <!-- d:DesignWidth="800" d:DesignHeight="450" -->
+        
+    <!-- <d:DesignerProperties.DesignStyle> -->
+        <!-- <Style TargetType="UserControl"> -->
+            <!-- <Setter Property="Background" Value="White" /> -->
+        <!-- </Style> -->
+    <!-- </d:DesignerProperties.DesignStyle> -->
+    
+    <!-- <vncmvvm:ViewBase.Resources> -->
+        <!-- <localc:SelectedItemsToListOfStringConverter x:Key="SelectedItemsToListOfStringConverter" /> -->
+        <!-- <localc:SelectedItemsConverter x:Key="SelectedItemsConverter" /> -->
+        <!-- <localc:SelectedItemsToWorkItemQueryWrapperConverter x:Key="SelectedItemsToStepper1063WrapperConverter" /> -->
+        <!-- <DataTemplate x:Key="dataTemplateStepper1063"> -->
+            <!-- <StackPanel> -->
+                <!-- <Label Content="{Binding XPath=@Name}" /> -->
+            <!-- </StackPanel> -->
+        <!-- </DataTemplate> -->
+
+        <!-- <DataTemplate x:Key="dataTemplateStepper1063X"> -->
+            <!-- <StackPanel> -->
+                <!-- <Label Content="{Binding Name}" /> -->
+            <!-- </StackPanel> -->
+        <!-- </DataTemplate> -->
+    <!-- </vncmvvm:ViewBase.Resources> -->
+    
+    <!-- Can declare ViewModel in Xaml -->
+    <!-- <UserControl.DataContext> -->
+        <!-- <localvm:Stepper1063ViewModel /> -->
+    <!-- </UserControl.DataContext> -->
+  
+    <!-- Simple Layout using Grid -->
+        
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <TextBlock Text="Stepper1063" />
+            <TextBlock Text="{Binding Message}" />
+            <Button Content="Say Hello"
+                    Command="{Binding SayHelloCommand}" />
+        </StackPanel>
+        
+        <!-- This is useful for debugging V VM constructor issues -->
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" >
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label Content="V:" />
+                <Label Content="{Binding ElementName=thisControl, Path=InstanceCountV}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label Content="VM:" />
+                <Label Content="{Binding InstanceCountVM}" />
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+    
+    <!-- Simple Layout using DevExpress LayoutControl
+         Need to add xmlnsDX
+    -->
+    
+    <!-- <DockPanel Margin="5"> -->
+        <!-- <TextBlock Text="InterfaceKit" DockPanel.Dock="Top" /> -->
+
+        <!-- This is useful for debugging V VM constructor issues -->
+
+        <!-- <DockPanel DockPanel.Dock="Bottom" > -->
+
+            <!-- <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" Margin="5"> -->
+                <!-- <Label Content="Message:" /> -->
+                <!-- <Label Content="{Binding Message}" /> -->
+            <!-- </StackPanel> -->
+
+            <!-- <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" Margin="5"> -->
+                <!-- <Label Content="V:" /> -->
+                <!-- <Label Content="{Binding ElementName=thisControl, Path=InstanceCountV}" /> -->
+            <!-- </StackPanel> -->
+            <!-- <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" Margin="5"> -->
+                <!-- <Label Content="VM:" /> -->
+                <!-- <Label Content="{Binding InstanceCountVM}" /> -->
+            <!-- </StackPanel> -->
+
+        <!-- </DockPanel> -->
+
+        <!-- <dxlc:LayoutControl Orientation="Vertical"> -->
+
+            <!-- <dxlc:LayoutItem Label="Item X"> -->
+
+            <!-- </dxlc:LayoutItem> -->
+
+            <!-- <dxlc:LayoutGroup View="Group" Orientation="Horizontal" HorizontalAlignment="Left" > -->
+
+                <!-- <StackPanel> -->
+                    <!-- <TextBlock Text="Stepper1063" /> -->
+                    <!-- <TextBlock Text="{Binding Message}" /> -->
+                    <!-- <Button Content="Say Hello" -->
+                            <!-- Command="{Binding SayHelloCommand}" /> -->
+                <!-- </StackPanel> -->
+                
+            <!-- </dxlc:LayoutGroup> -->
+
+        <!-- </dxlc:LayoutControl> -->
+
+    <!-- </DockPanel> -->    
+
+</vncmvvm:ViewBase>

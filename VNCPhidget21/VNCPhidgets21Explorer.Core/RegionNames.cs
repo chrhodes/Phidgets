@@ -11,13 +11,18 @@ namespace VNCPhidgets21Explorer.Core
         public static string ChildRegion = "ChildRegion";
         public static string StatusBarRegion = "StatusBarRegion";
 
-        public static string AdvancedServoRegion1 = "AdvancedServoRegion1";
-        public static string AdvancedServoRegion2 = "AdvancedServoRegion2";
-        public static string AdvancedServoRegion3 = "AdvancedServoRegion3";
+        public static string AdvancedServo1061Region1 = "AdvancedServo1061Region1";
+        public static string AdvancedServo1061Region2 = "AdvancedServo1061Region2";
+        public static string AdvancedServo1061Region3 = "AdvancedServo1061Region3";
 
-        public static string InterfaceKitRegion1 = "InterfaceKitRegion1";
-        public static string InterfaceKitRegion2 = "InterfaceKitRegion2";
-        public static string InterfaceKitRegion3 = "InterfaceKitRegion3";
+        public static string InterfaceKit1018Region1 = "InterfaceKit1018Region1";
+        public static string InterfaceKit1018Region2 = "InterfaceKit1018Region2";
+        public static string InterfaceKit1018Region3 = "InterfaceKit1018Region3";
+
+        public static string Stepper1063Region1 = "Stepper1063Region1";
+        public static string Stepper1063Region2 = "Stepper1063Region2";
+        public static string Stepper1063Region3 = "Stepper1063Region3";
+
         public static string HackAroundRegion = "HackAroundRegion";
 
         // public static string CombinedMainRegion = "CombinedMainRegion";
