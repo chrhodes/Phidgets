@@ -16,9 +16,14 @@
     Background="{StaticResource PhidgetBackground}"
 
     d:DesignStyle="{StaticResource vncDesignStyleUC}"
-    Height="375"
+    Height="350"
 >
-
+<!-- NOTE(crhodes)
+    Have to set the Height manually above to get the control to behave when embedded in another Xaml file.
+    Goal is to make scroll bars not show up.
+    See InteraceKit1018, AdvancedServo1061 for examples
+    I tried a lot of stuff :)
+-->
     <!-- TODO:(crhodes)
         Cut Add this to Xaml Resources, likely Display_StylesandTemplates.xaml -->
     <!-- <SolidColorBrush x:Key="PhidgetBackground" Color="#A0A0A0" /> -->
@@ -127,11 +132,11 @@
                               Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
             </dxlc:LayoutItem>
 
-            <dxlc:LayoutItem Label="ServerID">
+            <!--<dxlc:LayoutItem Label="ServerID">
                 <dxe:TextEdit EditValue="{Binding DeviceServerID, Mode=OneWay}" IsReadOnly="True"
                               Background="White"
                               Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
-            </dxlc:LayoutItem>
+            </dxlc:LayoutItem>-->
 
             <dxlc:LayoutItem Label="Type">
                 <dxe:TextEdit EditValue="{Binding DeviceType, Mode=OneWay}" IsReadOnly="True"

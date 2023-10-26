@@ -106,51 +106,6 @@
 
         <dxlc:LayoutControl Orientation="Vertical">
 
-            <!--<dxlc:LayoutItem Label="ConfigFileName">
-            --><!-- Hopefully we don't use the first one anymore! 
-                <dxe:TextEdit x:Name="teConfigFIleName"
-            		Text="{Binding ConfigFIleName}"
-                	ToolTip="tooltip"
-                 	MouseDoubleClick="teConfigFIleName_MouseDoubleClick" />
-            --><!--
-                <dxe:TextEdit
-            		Text="{Binding ConfigFileName }"
-                	ToolTip="{Binding ConfigFileNameToolTip }">
-                    <i1:Interaction.Triggers>
-                        <i1:EventTrigger EventName="MouseDoubleClick">
-                            <i1:InvokeCommandAction Command="{Binding ConfigFileName_DoubleClick_Command}"/>
-                         </i1:EventTrigger>
-                    </i1:Interaction.Triggers>
-                </dxe:TextEdit>
-            </dxlc:LayoutItem>
-            
-            <dxlc:LayoutGroup View="Group" Orientation="Horizontal" HorizontalAlignment="Left" >
-                
-                <dxlc:LayoutItem Label="Hosts" LabelPosition="Left" >
-                    <dxe:ComboBoxEdit Width="150" ItemsSource="{Binding Hosts2}" DisplayMember="Name" 
-                                      SelectedItem="{Binding SelectedHost}"
-                                      SelectedIndex="0"/>
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Label="IPAddress" >
-                    --><!--<Label Content="{Binding SelectedHost.IPAddress}"  />--><!--
-                    <dxe:TextEdit Text="{Binding SelectedHost.IPAddress }" IsReadOnly="True" />
-                    --><!--Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>--><!--
-                </dxlc:LayoutItem>
-                
-                <dxlc:LayoutItem Label="Port" >
-                    --><!--<Label Content="{Binding SelectedHost.Port }" />--><!--
-                    <dxe:TextEdit Text="{Binding SelectedHost.Port }" IsReadOnly="True" />
-                    --><!--Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>--><!--
-                </dxlc:LayoutItem>
-                
-                <dxlc:LayoutItem Label="Enable" >
-                    <dxe:TextEdit Text="{Binding SelectedHost.Enable }" IsReadOnly="True" />
-                    --><!--Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>--><!--
-                </dxlc:LayoutItem>
-                
-            </dxlc:LayoutGroup>-->
-
             <dxlc:LayoutGroup Name="lgInterfaceKits" Orientation="Vertical" Padding="0"  >
 
                 <dxlc:LayoutGroup Orientation="Horizontal" >
@@ -163,21 +118,21 @@
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="Serial #" HorizontalAlignment="Left" >
-                        <!--<Label Content="{Binding SelectedInterfaceKit.SerialNumber}" />-->
-                        <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.SerialNumber}" IsReadOnly="True" />
-                        <!--Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>-->
+                        <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.SerialNumber}" IsReadOnly="True" 
+                                      Background="White" 
+                                      Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
                     
                     <dxlc:LayoutItem Label="Embedded" HorizontalAlignment="Left" >
-                        <!--<Label Content="{Binding SelectedInterfaceKit.Embedded }" />-->
-                        <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Embedded}" IsReadOnly="True" />
-                        <!--Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>-->
+                        <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Embedded}" IsReadOnly="True"
+                                      Background="White"                                       
+                                      Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
                     
                     <dxlc:LayoutItem Label="Enable" HorizontalAlignment="Left" >
-                        <!--<Label Content="{Binding SelectedInterfaceKit.Enable }" />-->
-                        <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" IsReadOnly="True" />
-                        <!--Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>-->
+                        <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" IsReadOnly="True"
+                                      Background="White"                                       
+                                      Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem HorizontalAlignment="Right">
@@ -198,81 +153,10 @@
         
                 <dxlc:LayoutGroup Name="lgPhidgetStatus" Orientation="Vertical" View="GroupBox" Header="Device Status" 
                                   IsCollapsible="True" IsCollapsed="False"  >
-                    <!--<dxlc:LayoutGroup.GroupBoxStyle>
-                        <Style TargetType="dxlc:GroupBox">
-                            <Setter Property="Background" Value="Transparent" />
-                            <Setter Property="BorderBrush" Value="Transparent" />
-                            <Setter Property="BorderThickness" Value="0" />
-                            <Setter Property="Padding" Value="0" />
-                            <Setter Property="TitleVisibility" Value="Collapsed" />
-                        </Style>
-                    </dxlc:LayoutGroup.GroupBoxStyle>-->
 
-                    <views:Phidget x:Name="Phidget1" Margin="-10" />
-                    
-                    <!--<dxlc:LayoutItem Label="Address" >
-                        <dxe:TextEdit EditValue="{Binding IkAddress, Mode=OneWay}" IsReadOnly="True" 
-                                      Background="White" Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Label="Attached" >
-                        <dxe:TextEdit EditValue="{Binding IkAttached, Mode=OneWay}" IsReadOnly="True" 
-                                      Background="White" Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Label="AttachedToServer" >
-                        <dxe:TextEdit EditValue="{Binding IkAttachedToServer, Mode=OneWay}" IsReadOnly="True" 
-                                      Background="White" Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Label="Class" >
-                        <dxe:TextEdit EditValue="{Binding IkClass, Mode=OneWay}" IsReadOnly="True" 
-                                      Background="White" Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Label="ID"  >
-                        <dxe:TextEdit EditValue="{Binding IkID, Mode=OneWay}" IsReadOnly="True" 
-                                      Background="White" Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Label="Label"  >
-                        <dxe:TextEdit EditValue="{Binding IkLabel, Mode=OneWay}" IsReadOnly="True" 
-                                      Background="White" Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Label="LibraryVersion"  >
-                        <dxe:TextEdit EditValue="{Binding IkLibraryVersion, Mode=OneWay}" IsReadOnly="True" 
-                                      Background="White" Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Label="Name"  >
-                        <dxe:TextEdit EditValue="{Binding IkName, Mode=OneWay}" IsReadOnly="True" 
-                                      Background="White" Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Label="Port"  >
-                        <dxe:TextEdit EditValue="{Binding IkPort, Mode=OneWay}" IsReadOnly="True" 
-                                      Background="White" Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Label="SerialNumber"  >
-                        <dxe:TextEdit EditValue="{Binding IkSerialNumber, Mode=OneWay}" IsReadOnly="True" 
-                                      Background="White" Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Label="ServerID"  >
-                        <dxe:TextEdit EditValue="{Binding IkServerID, Mode=OneWay}" IsReadOnly="True" 
-                                      Background="White" Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Label="Type"  >
-                        <dxe:TextEdit EditValue="{Binding IkType, Mode=OneWay}" IsReadOnly="True" 
-                                      Background="White" Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Label="Version"  >
-                        <dxe:TextEdit EditValue="{Binding IkVersion, Mode=OneWay}" IsReadOnly="True"
-                                      Background="White" Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>-->
+                    <views:Phidget x:Name="Phidget1" Margin="-10" 
+                               PhidgetDevice="{Binding PhidgetDevice, Mode=TwoWay}"
+                               DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}"/>
 
                 </dxlc:LayoutGroup>
 

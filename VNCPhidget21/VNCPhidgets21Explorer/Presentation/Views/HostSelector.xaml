@@ -126,18 +126,18 @@
 
             <dxlc:LayoutItem Label="IPAddress" >
                 <!--<Label Content="{Binding SelectedHost.IPAddress}"  />-->
-                <dxe:TextEdit Text="{Binding SelectedHost.IPAddress }" IsReadOnly="True" />
+                <dxe:TextEdit Text="{Binding SelectedHost.IPAddress }" IsReadOnly="True" Background="White" />
                 <!--Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>-->
             </dxlc:LayoutItem>
 
             <dxlc:LayoutItem Label="Port" >
                 <!--<Label Content="{Binding SelectedHost.Port }" />-->
-                <dxe:TextEdit Text="{Binding SelectedHost.Port }" IsReadOnly="True" />
+                <dxe:TextEdit Text="{Binding SelectedHost.Port }" IsReadOnly="True" Background="White" />
                 <!--Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>-->
             </dxlc:LayoutItem>
 
             <dxlc:LayoutItem Label="Enable" >
-                <dxe:TextEdit Text="{Binding SelectedHost.Enable }" IsReadOnly="True" />
+                <dxe:TextEdit Text="{Binding SelectedHost.Enable }" IsReadOnly="True" Background="White" />
                 <!--Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>-->
             </dxlc:LayoutItem>
 
