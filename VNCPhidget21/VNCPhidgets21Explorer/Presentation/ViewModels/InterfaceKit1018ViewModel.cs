@@ -225,7 +225,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-
         #region InterfaceKit Phidget Properties
 
         private string _iKAddress;
@@ -268,7 +267,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
         private string _ikClass;
-
         public string IkClass
         {
             get => _ikClass;
@@ -293,7 +291,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-
 
         private string _ikLabel;
         public string IkLabel
@@ -347,9 +344,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-
         private int? _ikSerialNumber;
-
         public int? IkSerialNumber
         {
             get => _ikSerialNumber;
@@ -361,7 +356,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-
 
         private string _ikServerID;
         public string IkServerID
@@ -375,7 +369,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-
 
         private string _ikType;
         public string IkType

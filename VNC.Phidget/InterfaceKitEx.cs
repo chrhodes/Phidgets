@@ -44,8 +44,8 @@ namespace VNC.Phidget
             this.ServerConnect += Ifk_ServerConnect;
             this.ServerDisconnect += Ifk_ServerDisconnect;
         }
-        //public  PhidgetHelper.Sensors.AnalogSensor[] Sensors = new PhidgetHelper.Sensors.AnalogSensor[8];
 
+        //public  PhidgetHelper.Sensors.AnalogSensor[] Sensors = new PhidgetHelper.Sensors.AnalogSensor[8];
 
         #endregion
 
@@ -255,21 +255,19 @@ namespace VNC.Phidget
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
         }
+
         #endregion
 
         #region Commands (None)
 
         #endregion
 
-        #region Public Methods (None)
+        #region Public Methods
 
         public void Open()
         {
             try
             {
-                //interfaceKit.open(_hostSerialNumber, _hostIPAddress, _hostPort);
-
-                //interfaceKit.waitForAttachment();
                 this.open(_hostSerialNumber, _hostIPAddress, _hostPort);
 
                 this.waitForAttachment();
@@ -282,8 +280,6 @@ namespace VNC.Phidget
 
         public void Close()
         {
-            //interfaceKit.close();
-
             try
             {
                 this.close();
