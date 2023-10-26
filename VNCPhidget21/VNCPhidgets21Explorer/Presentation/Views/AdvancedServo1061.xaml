@@ -47,7 +47,7 @@
         <localc:ForegroundColorConverter x:Key="RedGreenConverter" />
         <XmlDataProvider x:Key="SensorList" Source="/Resources/SensorList.xml" XPath="Sensors/Sensor" />
         <XmlDataProvider x:Key="HostList" Source="/Resources/HostList.xml" XPath="Hosts/Host" />
-        <XmlDataProvider x:Key="InterfaceKitList" Source="/Resources/InterfaceKitList.xml" XPath="InterfaceKits/InterfaceKit" />
+        <XmlDataProvider x:Key="AdvancedServoList" Source="/Resources/AdvancedServoList.xml" XPath="AdvancedServos/AdvancedServo" />
         <!--<XmlDataProvider x:Key="SensorList" Source="SensorList.xml" XPath="Sensors/Sensor" />
         <XmlDataProvider x:Key="HostList" Source="HostList.xml" XPath="Hosts/Host" />-->
         <!-- <localc:SelectedItemsToListOfStringConverter x:Key="SelectedItemsToListOfStringConverter" /> -->
@@ -100,8 +100,7 @@
     </Grid>-->
 
     <DockPanel Margin="5">
-        <!--<TextBlock Text="InterfaceKit" DockPanel.Dock="Top" />-->
-
+        
         <views:HostSelector DockPanel.Dock="Top" />
 
         <!-- This is useful for debugging V VM constructor issues -->
@@ -124,9 +123,129 @@
 
         </DockPanel>
 
-        <dxlc:LayoutControl Orientation="Vertical">
+        <dxlc:LayoutControl Orientation="Vertical" Padding="0">
 
+            <dxlc:LayoutGroup Orientation="Horizontal" >
 
+                <dxlc:LayoutItem Label="AdvancedServos" LabelPosition="Left" HorizontalAlignment="Left">
+                    <dxe:ComboBoxEdit Width="150" 
+                                          ItemsSource="{Binding AdvancedServos}" DisplayMember="Name" 
+                                          SelectedItem="{Binding SelectedAdvancedServo}"
+                                          SelectedIndex="0"/>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="Serial #" HorizontalAlignment="Left" >
+                    <!--<Label Content="{Binding SelectedAdvancedServo.SerialNumber}" />-->
+                    <dxe:TextEdit EditValue="{Binding SelectedAdvancedServo.SerialNumber}" IsReadOnly="True" 
+                                  Background="White" Foreground="{Binding AsAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="Embedded" HorizontalAlignment="Left" >
+                    <!--<Label Content="{Binding SelectedAdvancedServo.Embedded }" />-->
+                    <dxe:TextEdit EditValue="{Binding SelectedAdvancedServo.Embedded}" IsReadOnly="True" 
+                                  Background="White" Foreground="{Binding AsAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="Enable" HorizontalAlignment="Left" >
+                    <!--<Label Content="{Binding SelectedAdvancedServo.Enable }" />-->
+                    <dxe:TextEdit EditValue="{Binding SelectedAdvancedServo.Enable}" IsReadOnly="True" 
+                                  Background="White" Foreground="{Binding AsAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem HorizontalAlignment="Right">
+                    <Button 
+		                    Command="{Binding OpenAdvancedServoCommand }"
+		                    Content="{Binding OpenAdvancedServoContent, FallbackValue='OpenIK' }"
+		                    ToolTip="{Binding OpenAdvancedServoToolTip, FallbackValue='OpenIK ToolTip' }" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem HorizontalAlignment="Right">
+                    <Button 
+                		    Command="{Binding CloseAdvancedServoCommand }"
+                		    Content="{Binding CloseAdvancedServoContent, FallbackValue='CloseIK' }"
+                		    ToolTip="{Binding CloseAdvancedServoToolTip, FallbackValue='CloseIK ToolTip' }" />
+                </dxlc:LayoutItem>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Orientation="Vertical" View="GroupBox" Header="Device Status" 
+                                  IsCollapsible="True" IsCollapsed="True"  >
+                <!--<dxlc:LayoutGroup.GroupBoxStyle>
+                        <Style TargetType="dxlc:GroupBox">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                            <Setter Property="BorderThickness" Value="0" />
+                            <Setter Property="Padding" Value="0" />
+                            <Setter Property="TitleVisibility" Value="Collapsed" />
+                        </Style>
+                    </dxlc:LayoutGroup.GroupBoxStyle>-->
+
+                <dxlc:LayoutItem Label="Address" >
+                    <dxe:TextEdit EditValue="{Binding AsAddress, Mode=OneWay}" IsReadOnly="True" 
+                                  Background="White" Foreground="{Binding AsAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="Attached" >
+                    <dxe:TextEdit EditValue="{Binding AsAttached, Mode=OneWay}" IsReadOnly="True" 
+                                  Background="White"  Foreground="{Binding AsAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="AttachedToServer" >
+                    <dxe:TextEdit EditValue="{Binding AsAttachedToServer, Mode=OneWay}" IsReadOnly="True" 
+                                  Background="White"  Foreground="{Binding AsAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="Class" >
+                    <dxe:TextEdit EditValue="{Binding AsClass, Mode=OneWay}" IsReadOnly="True" 
+                                  Background="White"  Foreground="{Binding AsAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="ID"  >
+                    <dxe:TextEdit EditValue="{Binding AsID, Mode=OneWay}" IsReadOnly="True" 
+                                  Background="White"  Foreground="{Binding AsAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="Label"  >
+                    <dxe:TextEdit EditValue="{Binding AsLabel, Mode=OneWay}" IsReadOnly="True" 
+                                  Background="White"  Foreground="{Binding AsAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="LibraryVersion"  >
+                    <dxe:TextEdit EditValue="{Binding AsLibraryVersion, Mode=OneWay}" IsReadOnly="True" 
+                                  Background="White"  Foreground="{Binding AsAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="Name"  >
+                    <dxe:TextEdit EditValue="{Binding AsName, Mode=OneWay}" IsReadOnly="True" 
+                                  Background="White"  Foreground="{Binding AsAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="Port"  >
+                    <dxe:TextEdit EditValue="{Binding AsPort, Mode=OneWay}" IsReadOnly="True" 
+                                  Background="White"  Foreground="{Binding AsAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="SerialNumber"  >
+                    <dxe:TextEdit EditValue="{Binding AsSerialNumber, Mode=OneWay}" IsReadOnly="True" 
+                                  Background="White"  Foreground="{Binding AsAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="ServerID"  >
+                    <dxe:TextEdit EditValue="{Binding AsServerID, Mode=OneWay}" IsReadOnly="True" 
+                                  Background="White"  Foreground="{Binding AsAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="Type"  >
+                    <dxe:TextEdit EditValue="{Binding AsType, Mode=OneWay}" IsReadOnly="True" 
+                                  Background="White"  Foreground="{Binding AsAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="Version"  >
+                    <dxe:TextEdit EditValue="{Binding AsVersion, Mode=OneWay}" IsReadOnly="True"
+                                  Background="White"  Foreground="{Binding AsAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                </dxlc:LayoutItem>
+
+            </dxlc:LayoutGroup>
 
         </dxlc:LayoutControl>
 

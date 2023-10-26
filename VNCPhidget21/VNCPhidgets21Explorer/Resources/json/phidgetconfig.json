@@ -4,7 +4,15 @@
       "Name": "localhost",
       "IPAddress": "127.0.0.1",
       "Port": 5001,
-      "Enable": true,
+        "Enable": true,
+      "AdvancedServos": [
+        {
+          "Name": "AdvancedServo 1",
+          "SerialNumber": 99415,
+          "Enable": true,
+          "Embedded": false
+        }
+      ],
       "InterfaceKits": [
         {
           "Name": "InterfaceKit 1",
@@ -15,60 +23,92 @@
       ]
     },
     {
-      "Name": "psbc11",
-      "IPAddress": "192.168.150.11",
-      "Port": 5001,
-      "Enable": true,
-      "InterfaceKits": [
-        {
-          "Name": "InterfaceKit psbc11",
-          "SerialNumber": 46049,
-          "Enable": true,
-          "Embedded": true
-        }
-      ]
+        "Name": "psbc11",
+        "IPAddress": "192.168.150.11",
+        "Port": 5001,
+        "Enable": true,
+        "AdvancedServos": [
+            {
+                "Name": "AdvancedServo 1",
+                "SerialNumber": 99415,
+                "Enable": true,
+                "Embedded": false
+            }
+        ],
+        "InterfaceKits": [
+            {
+                "Name": "InterfaceKit psbc11",
+                "SerialNumber": 46049,
+                "Enable": true,
+                "Embedded": true
+            }
+        ]
     },
     {
-      "Name": "psbc21",
-      "IPAddress": "192.168.150.21",
-      "Port": 5001,
-      "Enable": true,
-      "InterfaceKits": [
-        {
-          "Name": "InterfaceKit psbc21",
-          "SerialNumber": 48301,
-          "Enable": true,
-          "Embedded": true
-        }
-      ]
+        "Name": "psbc21",
+        "IPAddress": "192.168.150.21",
+        "Port": 5001,
+        "Enable": true,
+        "AdvancedServos": [
+            {
+                "Name": "AdvancedServo 1",
+                "SerialNumber": 99415,
+                "Enable": true,
+                "Embedded": false
+            }
+        ],
+        "InterfaceKits": [
+            {
+                "Name": "InterfaceKit psbc21",
+                "SerialNumber": 48301,
+                "Enable": true,
+                "Embedded": true
+            }
+        ]
     },
     {
-      "Name": "psbc22",
-      "IPAddress": "192.168.150.22",
-      "Port": 5001,
-      "Enable": true,
-      "InterfaceKits": [
-        {
-          "Name": "InterfaceKit psbc22",
-          "SerialNumber": 251831,
-          "Enable": true,
-          "Embedded": true
-        }
-      ]
+        "Name": "psbc22",
+        "IPAddress": "192.168.150.22",
+        "Port": 5001,
+        "Enable": true,
+        "AdvancedServos": [
+            {
+                "Name": "AdvancedServo 1",
+                "SerialNumber": 99415,
+                "Enable": true,
+                "Embedded": false
+            }
+        ],
+        "InterfaceKits": [
+            {
+                "Name": "InterfaceKit psbc22",
+                "SerialNumber": 251831,
+                "Enable": true,
+                "Embedded": true
+            }
+        ]
     },
     {
-      "Name": "psbc23",
-      "IPAddress": "192.168.150.23",
-      "Port": 5001,
-      "Enable": true,
-      "InterfaceKits": [
-        {
-          "Name": "InterfaceKit psbc23",
-          "SerialNumber": 48284,
-          "Enable": true,
-          "Embedded": true
-        }
-      ]
+        "Name": "psbc23",
+        "IPAddress": "192.168.150.23",
+        "Port": 5001,
+        "Enable": true,
+        "AdvancedServos": [
+            {
+                "Name": "AdvancedServo 1",
+                "SerialNumber": 99415,
+                "Enable": true,
+                "Embedded": false
+            }
+        ],
+        "InterfaceKits": [
+            {
+                "Name": "InterfaceKit psbc23",
+                "SerialNumber": 48284,
+                "Enable": true,
+                "Embedded": true
+            }
+        ]
     }
   ],
   "Sensors": [

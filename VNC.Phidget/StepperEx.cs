@@ -7,9 +7,8 @@ namespace VNC.Phidget
 {
     // TODO(crhodes)
     // Decide if this should be VNCInterfaceKit to distinguish from Phidgets.InterfaceKit
-    // For now do InterfaceKitEx
 
-    public class InterfaceKitEx : InterfaceKit
+    public class StepperEx : Stepper
     {
         #region Constructors, Initialization, and Load
 
@@ -18,7 +17,7 @@ namespace VNC.Phidget
         /// </summary>
         /// <param name="embedded"></param>
         /// <param name="enabled"></param>
-        public InterfaceKitEx(string ipAddress, int port, int serialNumber, bool enable, bool embedded)
+        public StepperEx(string ipAddress, int port, int serialNumber, bool enable, bool embedded)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
@@ -28,24 +27,22 @@ namespace VNC.Phidget
             _Embedded = embedded;
             _Enable = enable;
 
-            IntitalizePhidgetInterfaceKit();
+            IntitalizeStepperEx();
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void IntitalizePhidgetInterfaceKit()
+        private void IntitalizeStepperEx()
         {
-            this.Attach += Ifk_Attach;
-            this.Detach += Ifk_Detach;
-            this.Error += Ifk_Error;
-            this.InputChange += Ifk_InputChange;
-            this.OutputChange += Ifk_OutputChange;
-            this.SensorChange += Ifk_SensorChange;
-            this.ServerConnect += Ifk_ServerConnect;
-            this.ServerDisconnect += Ifk_ServerDisconnect;
+            this.Attach += Stepper_Attach;
+            this.Detach += Stepper_Detach;
+            this.Error += Stepper_Error;
+            //this.InputChange += Stepper_InputChange;
+            //this.OutputChange += Stepper_OutputChange;
+            //this.SensorChange += Stepper_SensorChange;
+            this.ServerConnect += Stepper_ServerConnect;
+            this.ServerDisconnect += Stepper_ServerDisconnect;
         }
-        //public  PhidgetHelper.Sensors.AnalogSensor[] Sensors = new PhidgetHelper.Sensors.AnalogSensor[8];
-
 
         #endregion
 
@@ -61,8 +58,8 @@ namespace VNC.Phidget
 
         #region Fields and Properties
 
-        Phidgets.InterfaceKit interfaceKit = null;
-            
+        //Phidgets.InterfaceKit interfaceKit = null;
+
         private bool _Embedded;
 
         public bool Embedded
@@ -107,7 +104,6 @@ namespace VNC.Phidget
             }
         }
 
-
         private int _hostPort;
 
         public int HostPort
@@ -125,16 +121,19 @@ namespace VNC.Phidget
 
         #endregion
 
+        #region Commands (None)
+
+        #endregion
+
         #region Event Handlers
 
-
-        private void Ifk_ServerDisconnect(object sender, Phidgets.Events.ServerDisconnectEventArgs e)
+        private void Stepper_ServerDisconnect(object sender, Phidgets.Events.ServerDisconnectEventArgs e)
         {
             try
             {
                 var a = e;
                 var b = e.GetType();
-                Log.Trace("Ifk_ServerDisconnect", Common.LOG_CATEGORY);
+                Log.Trace("Stepper_ServerDisconnect", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
@@ -142,14 +141,14 @@ namespace VNC.Phidget
             }
         }
 
-        private void Ifk_ServerConnect(object sender, ServerConnectEventArgs e)
+        private void Stepper_ServerConnect(object sender, ServerConnectEventArgs e)
         {
             try
             {
                 Phidgets.Phidget device = (Phidgets.Phidget)e.Device;
                 //var b = e.GetType();
-                //Log.Trace($"Ifk_ServerConnect {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
-                Log.Trace($"Ifk_ServerConnect {device.Address},{device.Port}", Common.LOG_CATEGORY);
+                //Log.Trace($"Stepper_ServerConnect {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
+                Log.Trace($"Stepper_ServerConnect {device.Address},{device.Port}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
@@ -157,68 +156,68 @@ namespace VNC.Phidget
             }
         }
 
-        private void Ifk_SensorChange(object sender, SensorChangeEventArgs e)
-        {
-            if (LogSensorChangeEvents)
-            {
-                try
-                {
-                    InterfaceKit ifk = (InterfaceKit)sender;
-                    var a = e;
-                    var b = e.GetType();
-                    Log.Trace($"Ifk_SensorChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
-                }
-            }
-        }
+        //private void Stepper_SensorChange(object sender, SensorChangeEventArgs e)
+        //{
+        //    if (LogSensorChangeEvents)
+        //    {
+        //        try
+        //        {
+        //            InterfaceKit ifk = (InterfaceKit)sender;
+        //            var a = e;
+        //            var b = e.GetType();
+        //            Log.Trace($"Stepper_SensorChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Log.Error(ex, Common.LOG_CATEGORY);
+        //        }
+        //    }
+        //}
 
-        private void Ifk_OutputChange(object sender, Phidgets.Events.OutputChangeEventArgs e)
-        {
-            if (LogOutputChangeEvents)
-            {
-                try
-                {
-                    InterfaceKit ifk = (InterfaceKit)sender;
-                    var a = e;
-                    var b = e.GetType();
-                    Log.Trace($"Ifk_OutputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
-                }
-            }
-        }
+        //private void Stepper_OutputChange(object sender, Phidgets.Events.OutputChangeEventArgs e)
+        //{
+        //    if (LogOutputChangeEvents)
+        //    {
+        //        try
+        //        {
+        //            InterfaceKit ifk = (InterfaceKit)sender;
+        //            var a = e;
+        //            var b = e.GetType();
+        //            Log.Trace($"Stepper_OutputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Log.Error(ex, Common.LOG_CATEGORY);
+        //        }
+        //    }
+        //}
 
-        private void Ifk_InputChange(object sender, Phidgets.Events.InputChangeEventArgs e)
-        {
-            if (LogInputChangeEvents)
-            {
-                try
-                {
-                    InterfaceKit ifk = (InterfaceKit)sender;
-                    var a = e;
-                    var b = e.GetType();
-                    Log.Trace($"Ifk_InputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
-                }
-            }
-        }
+        //private void Stepper_InputChange(object sender, Phidgets.Events.InputChangeEventArgs e)
+        //{
+        //    if (LogInputChangeEvents)
+        //    {
+        //        try
+        //        {
+        //            InterfaceKit ifk = (InterfaceKit)sender;
+        //            var a = e;
+        //            var b = e.GetType();
+        //            Log.Trace($"Stepper_InputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Log.Error(ex, Common.LOG_CATEGORY);
+        //        }
+        //    }
+        //}
 
-        private void Ifk_Error(object sender, Phidgets.Events.ErrorEventArgs e)
+        private void Stepper_Error(object sender, Phidgets.Events.ErrorEventArgs e)
         {
             try
             {
                 InterfaceKit ifk = (InterfaceKit)sender;
                 var a = e;
                 var b = e.GetType();
-                Log.Trace($"Ifk_Error {ifk.Address},{ifk.Attached} - {e.Type} {e.Code} {e.Description}", Common.LOG_CATEGORY);
+                Log.Trace($"Stepper_Error {ifk.Address},{ifk.Attached} - {e.Type} {e.Code} {e.Description}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
@@ -226,14 +225,14 @@ namespace VNC.Phidget
             }
         }
 
-        private void Ifk_Detach(object sender, Phidgets.Events.DetachEventArgs e)
+        private void Stepper_Detach(object sender, Phidgets.Events.DetachEventArgs e)
         {
             try
             {
                 InterfaceKit ifk = (InterfaceKit)sender;
                 var a = e;
                 var b = e.GetType();
-                Log.Trace($"Ifk_Detach {ifk.Address},{ifk.SerialNumber}", Common.LOG_CATEGORY);
+                Log.Trace($"Stepper_Detach {ifk.Address},{ifk.SerialNumber}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
@@ -241,23 +240,20 @@ namespace VNC.Phidget
             }
         }
 
-        private void Ifk_Attach(object sender, Phidgets.Events.AttachEventArgs e)
+        private void Stepper_Attach(object sender, Phidgets.Events.AttachEventArgs e)
         {
             try
             {
-                InterfaceKit device = (InterfaceKit)sender;
+                AdvancedServo device = (AdvancedServo)sender;
                 //Phidget device = (Phidget)e.Device;
                 //var b = e.GetType();
-                Log.Trace($"Ifk_Attach {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
+                Log.Trace($"Stepper_Attach {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
         }
-        #endregion
-
-        #region Commands (None)
 
         #endregion
 

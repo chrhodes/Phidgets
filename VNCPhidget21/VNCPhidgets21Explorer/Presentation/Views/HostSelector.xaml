@@ -97,9 +97,9 @@
     <!-- Simple Layout using DevExpress LayoutGroup
         May need to add dxXMLNS -->
 
-    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" HorizontalAlignment="Stretch" >
+    <dxlc:LayoutGroup View="GroupBox" Header="Hosts" Orientation="Horizontal" >
 
-        <dxlc:LayoutItem Label="ConfigFileName" HorizontalAlignment="Left">
+        <dxlc:LayoutItem Label="ConfigFileName" HorizontalAlignment="Left" Background="Wheat">
             <!-- Hopefully we don't use the first one anymore! 
                 <dxe:TextEdit x:Name="teConfigFIleName"
             		Text="{Binding ConfigFIleName}"
@@ -116,10 +116,10 @@
             </dxe:TextEdit>
         </dxlc:LayoutItem>
 
-        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" HorizontalAlignment="Right" >
+        <dxlc:LayoutGroup View="Group"  Orientation="Horizontal" HorizontalAlignment="Right" Background="Wheat" >
 
             <dxlc:LayoutItem Label="Hosts" LabelPosition="Left" >
-                <dxe:ComboBoxEdit Width="150" ItemsSource="{Binding Hosts2}" DisplayMember="Name" 
+                <dxe:ComboBoxEdit Width="150" ItemsSource="{Binding Hosts}" DisplayMember="Name" 
                                       SelectedItem="{Binding SelectedHost}"
                                       SelectedIndex="0"/>
             </dxlc:LayoutItem>
@@ -191,5 +191,5 @@
         <!-- </dxlc:LayoutControl> -->
 
     <!-- </DockPanel> -->
-    </Grid>
+
 </vncmvvm:ViewBase>

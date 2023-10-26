@@ -50,9 +50,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // TODO(crhodes)
             //
 
+            ConfigFileName_DoubleClick_Command = new DelegateCommand(ConfigFileName_DoubleClick);
             OpenInterfaceKitCommand = new DelegateCommand(OpenInterfaceKit, OpenInterfaceKitCanExecute);
             CloseInterfaceKitCommand = new DelegateCommand(CloseInterfaceKit, CloseInterfaceKitCanExecute);
-            ConfigFileName_DoubleClick_Command = new DelegateCommand(ConfigFileName_DoubleClick);
 
             // TODO(crhodes)
             // For now just hard code this.  Can have UI let us choose later.
@@ -65,8 +65,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             Message = "InterfaceKitViewModel says hello";
 
-
-
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
@@ -77,7 +75,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             string jsonString = File.ReadAllText(ConfigFileName);
 
             Resources.PhidgetConfig? phidgetConfig = JsonSerializer.Deserialize<Resources.PhidgetConfig>(jsonString);
-            this.Hosts2 = phidgetConfig.Hosts.ToList();
+            this.Hosts = phidgetConfig.Hosts.ToList();
             this.Sensors2 = phidgetConfig.Sensors.ToList();
 
             Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
@@ -123,24 +121,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        //private Resources.Host[] _hosts;
-        //public Resources.Host[] Hosts
-        //{
-        //    get => _hosts;
-        //    set
-        //    {
-        //        if (_hosts == value)
-        //            return;
-        //        _hosts = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-        private IEnumerable<Resources.Host> _Hosts2;
-        public IEnumerable<Resources.Host> Hosts2
+        private IEnumerable<Resources.Host> _Hosts;
+        public IEnumerable<Resources.Host> Hosts
         {
             get
             {
-                if (null == _Hosts2)
+                if (null == _Hosts)
                 {
                     // TODO(crhodes)
                     // Load this like the sensors.xml for now
@@ -155,12 +141,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     //        );
                 }
 
-                return _Hosts2;
+                return _Hosts;
             }
 
             set
             {
-                _Hosts2 = value;
+                _Hosts = value;
                 OnPropertyChanged();
             }
         }
@@ -174,17 +160,17 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_selectedHost == value)
                     return;
                 _selectedHost = value;
-                InterfaceKits2 = _selectedHost.InterfaceKits.ToList<Resources.InterfaceKit>();
+                InterfaceKits = _selectedHost.InterfaceKits.ToList<Resources.InterfaceKit>();
                 OnPropertyChanged();
             }
         }
 
-        private IEnumerable<Resources.InterfaceKit> _InterfaceKits2;
-        public IEnumerable<Resources.InterfaceKit> InterfaceKits2
+        private IEnumerable<Resources.InterfaceKit> _InterfaceKits;
+        public IEnumerable<Resources.InterfaceKit> InterfaceKits
         {
             get
             {
-                if (null == _InterfaceKits2)
+                if (null == _InterfaceKits)
                 {
                     // TODO(crhodes)
                     // Load this like the sensors.xml for now
@@ -199,12 +185,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     //        );
                 }
 
-                return _InterfaceKits2;
+                return _InterfaceKits;
             }
 
             set
             {
-                _InterfaceKits2 = value;
+                _InterfaceKits = value;
                 OnPropertyChanged();
             }
         }
@@ -238,6 +224,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
 
         #region InterfaceKit Phidget Properties
 
@@ -1770,110 +1757,107 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Hosts
 
-        private Host _HOST;
-        public Host HOST
-        {
-            get { return _HOST; }
-            set { _HOST = value; }
-        }
+        //private Host _HOST;
+        //public Host HOST
+        //{
+        //    get { return _HOST; }
+        //    set { _HOST = value; }
+        //}
 
-        private Dictionary<string, Host> _HostD;
-        public Dictionary<string, Host> HostD
-        {
-            get
-            {
-                if (_HostD == null)
-                {
-                    _HostD = new Dictionary<string, Host>();
-                }
-                return _HostD;
-            }
-            set
-            {
-                _HostD = value;
-            }
-        }
+        //private Dictionary<string, Host> _HostD;
+        //public Dictionary<string, Host> HostD
+        //{
+        //    get
+        //    {
+        //        if (_HostD == null)
+        //        {
+        //            _HostD = new Dictionary<string, Host>();
+        //        }
+        //        return _HostD;
+        //    }
+        //    set
+        //    {
+        //        _HostD = value;
+        //    }
+        //}
 
+        //private IEnumerable<Host> _Hosts;
+        //public IEnumerable<Host> Hosts
+        //{
+        //    get
+        //    {
+        //        if (null == _Hosts)
+        //        {
+        //            // TODO(crhodes)
+        //            // Load this like the sensors.xml for now
 
-        private IEnumerable<Host> _Hosts;
-        public IEnumerable<Host> Hosts
-        {
-            get
-            {
-                if (null == _Hosts)
-                {
-                    // TODO(crhodes)
-                    // Load this like the sensors.xml for now
+        //            //_Hosts =
+        //            //    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("Hosts").Elements("Host")
+        //            //    select new Host(
+        //            //        item.Attribute("Name").Value,
+        //            //        item.Attribute("IPAddress").Value,
+        //            //        item.Attribute("Port").Value,
+        //            //        bool.Parse(item.Attribute("Enable").Value)
+        //            //        );
+        //        }
 
-                    //_Hosts =
-                    //    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("Hosts").Elements("Host")
-                    //    select new Host(
-                    //        item.Attribute("Name").Value,
-                    //        item.Attribute("IPAddress").Value,
-                    //        item.Attribute("Port").Value,
-                    //        bool.Parse(item.Attribute("Enable").Value)
-                    //        );
-                }
+        //        return _Hosts;
+        //    }
 
-                return _Hosts;
-            }
-
-            set
-            {
-                _Hosts = value;
-            }
-        }
+        //    set
+        //    {
+        //        _Hosts = value;
+        //    }
+        //}
 
         #endregion
 
         #region InterfaceKits
 
-        private InterfaceKitEx _IK;
-        public InterfaceKitEx IK
-        {
-            get { return _IK; }
-            set { _IK = value; }
-        }
+        //private InterfaceKitEx _IK;
+        //public InterfaceKitEx IK
+        //{
+        //    get { return _IK; }
+        //    set { _IK = value; }
+        //}
 
-        private Dictionary<string, InterfaceKitEx> _InterfaceKitsD;
-        public Dictionary<string, InterfaceKitEx> InterfaceKitsD
-        {
-            get
-            {
-                if (null == _InterfaceKitsD)
-                {
-                    _InterfaceKitsD = new Dictionary<string, InterfaceKitEx>();
-                }
-                return _InterfaceKitsD;
-            }
-            set
-            {
-                _InterfaceKitsD = value;
-            }
-        }
+        //private Dictionary<string, InterfaceKitEx> _InterfaceKitsD;
+        //public Dictionary<string, InterfaceKitEx> InterfaceKitsD
+        //{
+        //    get
+        //    {
+        //        if (null == _InterfaceKitsD)
+        //        {
+        //            _InterfaceKitsD = new Dictionary<string, InterfaceKitEx>();
+        //        }
+        //        return _InterfaceKitsD;
+        //    }
+        //    set
+        //    {
+        //        _InterfaceKitsD = value;
+        //    }
+        //}
 
-        private Collection<string> _InterfaceKits;
-        public Collection<string> InterfaceKits
-        {
-            get
-            {
-                if (null == _InterfaceKits)
-                {
-                    _InterfaceKits = new Collection<string>();
-                }
-                return _InterfaceKits;
-            }
-            set
-            {
-                _InterfaceKits = value;
-            }
-        }
-
-        #endregion
+        //private Collection<string> _InterfaceKits;
+        //public Collection<string> InterfaceKits
+        //{
+        //    get
+        //    {
+        //        if (null == _InterfaceKits)
+        //        {
+        //            _InterfaceKits = new Collection<string>();
+        //        }
+        //        return _InterfaceKits;
+        //    }
+        //    set
+        //    {
+        //        _InterfaceKits = value;
+        //    }
+        //}
 
         #endregion
 
-        #region Event Handlers
+        #endregion
 
         #region Commands
 
@@ -1960,16 +1944,125 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             // End Cut Four
 
-            OpenInterfaceKitCommand.RaiseCanExecuteChanged();
-            CloseInterfaceKitCommand.RaiseCanExecuteChanged();
+            //OpenInterfaceKitCommand.RaiseCanExecuteChanged();
+            //CloseInterfaceKitCommand.RaiseCanExecuteChanged();
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void PopulateSensorValues(InterfaceKitAnalogSensor interfaceKitAnalogSensor)
+        public bool OpenInterfaceKitCanExecute()
         {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            //return true;
+            if (SelectedInterfaceKit is not null)
+            {
+                if (IkAttached is not null)
+                    return !(Boolean)IkAttached;
+                else
+                    return true;
+            }
+            else
+            {
+                return false;
+            }
 
         }
+
+        #endregion
+
+        #region CloseInterfaceKit Command
+
+        public DelegateCommand CloseInterfaceKitCommand { get; set; }
+        public string CloseInterfaceKitContent { get; set; } = "Close";
+        public string CloseInterfaceKitToolTip { get; set; } = "CloseInterfaceKit ToolTip";
+
+        // Can get fancy and use Resources
+        //public string CloseInterfaceKitContent { get; set; } = "ViewName_CloseInterfaceKitContent";
+        //public string CloseInterfaceKitToolTip { get; set; } = "ViewName_CloseInterfaceKitContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_CloseInterfaceKitContent">CloseInterfaceKit</system:String>
+        //    <system:String x:Key="ViewName_CloseInterfaceKitContentToolTip">CloseInterfaceKit ToolTip</system:String>  
+
+        public void CloseInterfaceKit()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = "Cool, you called CloseInterfaceKit";
+
+            ActiveInterfaceKit.Close();
+            UpdateInterfaceKitProperties();
+            ActiveInterfaceKit = null;
+            ClearDigitalInputsAndOutputs();
+
+            //OpenInterfaceKitCommand.RaiseCanExecuteChanged();
+            //CloseInterfaceKitCommand.RaiseCanExecuteChanged();
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<CloseInterfaceKitEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<CloseInterfaceKitEvent>().Publish(
+            //      new CloseInterfaceKitEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class CloseInterfaceKitEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<CloseInterfaceKitEvent>().Subscribe(CloseInterfaceKit);
+
+            // End Cut Four
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool CloseInterfaceKitCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            //return true;
+            if (IkAttached is not null)
+                return (Boolean)IkAttached;
+            else
+                return false;
+        }
+
+        #endregion
+
+        #region SayHello Command
+
+        private void SayHello()
+        {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            Message = $"Hello from {this.GetType()}";
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private bool SayHelloCanExecute()
+        {
+            return true;
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Event Handlers
+
         private void ActiveInterfaceKit_SensorChange(object sender, Phidgets.Events.SensorChangeEventArgs e)
         {
             Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
@@ -2123,7 +2216,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-
         private void ActiveInterfaceKit_OutputChange(object sender, Phidgets.Events.OutputChangeEventArgs e)
         {
             Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
@@ -2195,7 +2287,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 // TODO(crhodes)
                 // This is where properties should be grabbed
                 UpdateInterfaceKitProperties();
-
             }
             catch (Exception ex)
             {
@@ -2283,8 +2374,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 IkAttached = ActiveInterfaceKit.Attached;
                 //IkAttachedToServer = ActiveInterfaceKit.AttachedToServer;
                 IkAttachedToServer = false;
-                IkClass = ActiveInterfaceKit.Class.ToString();
+                // This doesn't throw exception but let's clear anyway
+                //IkClass = ActiveInterfaceKit.Class.ToString();
+                IkClass = "";
                 //IkID = Enum.GetName(typeof(Phidget.PhidgetID), ActiveInterfaceKit.ID);
+                IkID = "";
                 //IkLabel = ActiveInterfaceKit.Label;
                 IkLabel = "";
                 //IkLibraryVersion = ActiveInterfaceKit.LibraryVersion;
@@ -2300,6 +2394,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 //IkVersion = ActiveInterfaceKit.Version;
                 IkVersion = null;
             }
+
+            OpenInterfaceKitCommand.RaiseCanExecuteChanged();
+            CloseInterfaceKitCommand.RaiseCanExecuteChanged();
         }
 
         private void ActiveInterfaceKit_Detach(object sender, Phidgets.Events.DetachEventArgs e)
@@ -2314,6 +2411,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 // TODO(crhodes)
                 // What kind of cleanup?  Maybe set ActiveInterfaceKit to null.  Clear UI
                 UpdateInterfaceKitProperties();
+
+                //OpenInterfaceKitCommand.RaiseCanExecuteChanged();
+                //CloseInterfaceKitCommand.RaiseCanExecuteChanged();
             }
             catch (Exception ex)
             {
@@ -2321,55 +2421,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        //private bool _isEnabled = true;
-        //public bool IsEnabled
-        //{
-        //    get => _isEnabled;
-        //    set
-        //    {
-        //        if (_isEnabled == value)
-        //            return;
-        //        _isEnabled = value;
-        //        CloseInterfaceKitCommand.RaiseCanExecuteChanged();
-        //        OpenInterfaceKitCommand.RaiseCanExecuteChanged();
-        //        OnPropertyChanged();
-        //    }
-        //}
-        
-        public bool OpenInterfaceKitCanExecute()
-        {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-            //return true;
-            if (SelectedInterfaceKit is not null)
-            {
-                if (IkAttached is not null)
-                    return !(Boolean)IkAttached;
-                else
-                    return true;
-            }
-            else
-            { 
-                return false; 
-            }
+        #endregion
 
-        }
+        #region Publi (none)c Methods
+
 
         #endregion
 
-        #region CloseInterfaceKit Command
+        #region Protected Methods
 
-        public DelegateCommand CloseInterfaceKitCommand { get; set; }
-        public string CloseInterfaceKitContent { get; set; } = "Close";
-        public string CloseInterfaceKitToolTip { get; set; } = "CloseInterfaceKit ToolTip";
 
-        // Can get fancy and use Resources
-        //public string CloseInterfaceKitContent { get; set; } = "ViewName_CloseInterfaceKitContent";
-        //public string CloseInterfaceKitToolTip { get; set; } = "ViewName_CloseInterfaceKitContentToolTip";
+        #endregion
 
-        // Put these in Resource File
-        //    <system:String x:Key="ViewName_CloseInterfaceKitContent">CloseInterfaceKit</system:String>
-        //    <system:String x:Key="ViewName_CloseInterfaceKitContentToolTip">CloseInterfaceKit ToolTip</system:String>  
+        #region Private Methods
 
         private void ClearDigitalInputsAndOutputs()
         {
@@ -2390,96 +2454,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             DI14 = DO14 = null;
             DI15 = DO15 = null;
         }
-        public void CloseInterfaceKit()
+
+        private void PopulateSensorValues(InterfaceKitAnalogSensor interfaceKitAnalogSensor)
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-            // TODO(crhodes)
-            // Do something amazing.
-            Message = "Cool, you called CloseInterfaceKit";
 
-            ActiveInterfaceKit.Close();
-            UpdateInterfaceKitProperties();
-            ActiveInterfaceKit = null;
-            ClearDigitalInputsAndOutputs();
-
-            OpenInterfaceKitCommand.RaiseCanExecuteChanged();
-            CloseInterfaceKitCommand.RaiseCanExecuteChanged();
-
-            // Uncomment this if you are telling someone else to handle this
-
-            // Common.EventAggregator.GetEvent<CloseInterfaceKitEvent>().Publish();
-
-            // May want EventArgs
-
-            //  EventAggregator.GetEvent<CloseInterfaceKitEvent>().Publish(
-            //      new CloseInterfaceKitEventArgs()
-            //      {
-            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-            //            Process = _contextMainViewModel.Context.SelectedProcess
-            //      });
-
-            // Start Cut Three - Put this in PrismEvents
-
-            // public class CloseInterfaceKitEvent : PubSubEvent { }
-
-            // End Cut Three
-
-            // Start Cut Four - Put this in places that listen for event
-
-            //Common.EventAggregator.GetEvent<CloseInterfaceKitEvent>().Subscribe(CloseInterfaceKit);
-
-            // End Cut Four
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
-
-        public bool CloseInterfaceKitCanExecute()
-        {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-            //return true;
-            if (IkAttached is not null) 
-                return (Boolean)IkAttached;
-            else
-                return false;
-        }
-
-        #endregion
-
-        #region SayHello Command
-
-        private void SayHello()
-        {
-            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-
-            Message = $"Hello from {this.GetType()}";
-
-            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private bool SayHelloCanExecute()
-        {
-            return true;
-        }
-
-        #endregion
-
-        #endregion
-
-        #endregion
-
-        #region Public Methods
-
-
-        #endregion
-
-        #region Protected Methods
-
-
-        #endregion
-
-        #region Private Methods
-
 
         #endregion
 

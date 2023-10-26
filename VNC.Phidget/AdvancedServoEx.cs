@@ -7,9 +7,8 @@ namespace VNC.Phidget
 {
     // TODO(crhodes)
     // Decide if this should be VNCInterfaceKit to distinguish from Phidgets.InterfaceKit
-    // For now do InterfaceKitEx
 
-    public class InterfaceKitEx : InterfaceKit
+    public class AdvancedServoEx : AdvancedServo
     {
         #region Constructors, Initialization, and Load
 
@@ -18,7 +17,7 @@ namespace VNC.Phidget
         /// </summary>
         /// <param name="embedded"></param>
         /// <param name="enabled"></param>
-        public InterfaceKitEx(string ipAddress, int port, int serialNumber, bool enable, bool embedded)
+        public AdvancedServoEx(string ipAddress, int port, int serialNumber, bool enable, bool embedded)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
@@ -35,17 +34,15 @@ namespace VNC.Phidget
 
         private void IntitalizePhidgetInterfaceKit()
         {
-            this.Attach += Ifk_Attach;
-            this.Detach += Ifk_Detach;
-            this.Error += Ifk_Error;
-            this.InputChange += Ifk_InputChange;
-            this.OutputChange += Ifk_OutputChange;
-            this.SensorChange += Ifk_SensorChange;
-            this.ServerConnect += Ifk_ServerConnect;
-            this.ServerDisconnect += Ifk_ServerDisconnect;
+            this.Attach += AdvancedServo_Attach;
+            this.Detach += AdvancedServo_Detach;
+            this.Error += AdvancedServo_Error;
+            //this.InputChange += AdvancedServo_InputChange;
+            //this.OutputChange += AdvancedServo_OutputChange;
+            //this.SensorChange += AdvancedServo_SensorChange;
+            this.ServerConnect += AdvancedServo_ServerConnect;
+            this.ServerDisconnect += AdvancedServo_ServerDisconnect;
         }
-        //public  PhidgetHelper.Sensors.AnalogSensor[] Sensors = new PhidgetHelper.Sensors.AnalogSensor[8];
-
 
         #endregion
 
@@ -61,8 +58,8 @@ namespace VNC.Phidget
 
         #region Fields and Properties
 
-        Phidgets.InterfaceKit interfaceKit = null;
-            
+        //Phidgets.InterfaceKit interfaceKit = null;
+
         private bool _Embedded;
 
         public bool Embedded
@@ -107,7 +104,6 @@ namespace VNC.Phidget
             }
         }
 
-
         private int _hostPort;
 
         public int HostPort
@@ -127,14 +123,13 @@ namespace VNC.Phidget
 
         #region Event Handlers
 
-
-        private void Ifk_ServerDisconnect(object sender, Phidgets.Events.ServerDisconnectEventArgs e)
+        private void AdvancedServo_ServerDisconnect(object sender, Phidgets.Events.ServerDisconnectEventArgs e)
         {
             try
             {
                 var a = e;
                 var b = e.GetType();
-                Log.Trace("Ifk_ServerDisconnect", Common.LOG_CATEGORY);
+                Log.Trace("AdvancedServo_ServerDisconnect", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
@@ -142,14 +137,14 @@ namespace VNC.Phidget
             }
         }
 
-        private void Ifk_ServerConnect(object sender, ServerConnectEventArgs e)
+        private void AdvancedServo_ServerConnect(object sender, ServerConnectEventArgs e)
         {
             try
             {
                 Phidgets.Phidget device = (Phidgets.Phidget)e.Device;
                 //var b = e.GetType();
-                //Log.Trace($"Ifk_ServerConnect {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
-                Log.Trace($"Ifk_ServerConnect {device.Address},{device.Port}", Common.LOG_CATEGORY);
+                //Log.Trace($"AdvancedServo_ServerConnect {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
+                Log.Trace($"AdvancedServo_ServerConnect {device.Address},{device.Port}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
@@ -157,68 +152,68 @@ namespace VNC.Phidget
             }
         }
 
-        private void Ifk_SensorChange(object sender, SensorChangeEventArgs e)
-        {
-            if (LogSensorChangeEvents)
-            {
-                try
-                {
-                    InterfaceKit ifk = (InterfaceKit)sender;
-                    var a = e;
-                    var b = e.GetType();
-                    Log.Trace($"Ifk_SensorChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
-                }
-            }
-        }
+        //private void AdvancedServo_SensorChange(object sender, SensorChangeEventArgs e)
+        //{
+        //    if (LogSensorChangeEvents)
+        //    {
+        //        try
+        //        {
+        //            InterfaceKit ifk = (InterfaceKit)sender;
+        //            var a = e;
+        //            var b = e.GetType();
+        //            Log.Trace($"AdvancedServo_SensorChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Log.Error(ex, Common.LOG_CATEGORY);
+        //        }
+        //    }
+        //}
 
-        private void Ifk_OutputChange(object sender, Phidgets.Events.OutputChangeEventArgs e)
-        {
-            if (LogOutputChangeEvents)
-            {
-                try
-                {
-                    InterfaceKit ifk = (InterfaceKit)sender;
-                    var a = e;
-                    var b = e.GetType();
-                    Log.Trace($"Ifk_OutputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
-                }
-            }
-        }
+        //private void AdvancedServo_OutputChange(object sender, Phidgets.Events.OutputChangeEventArgs e)
+        //{
+        //    if (LogOutputChangeEvents)
+        //    {
+        //        try
+        //        {
+        //            InterfaceKit ifk = (InterfaceKit)sender;
+        //            var a = e;
+        //            var b = e.GetType();
+        //            Log.Trace($"AdvancedServo_OutputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Log.Error(ex, Common.LOG_CATEGORY);
+        //        }
+        //    }
+        //}
 
-        private void Ifk_InputChange(object sender, Phidgets.Events.InputChangeEventArgs e)
-        {
-            if (LogInputChangeEvents)
-            {
-                try
-                {
-                    InterfaceKit ifk = (InterfaceKit)sender;
-                    var a = e;
-                    var b = e.GetType();
-                    Log.Trace($"Ifk_InputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
-                }
-            }
-        }
+        //private void AdvancedServo_InputChange(object sender, Phidgets.Events.InputChangeEventArgs e)
+        //{
+        //    if (LogInputChangeEvents)
+        //    {
+        //        try
+        //        {
+        //            InterfaceKit ifk = (InterfaceKit)sender;
+        //            var a = e;
+        //            var b = e.GetType();
+        //            Log.Trace($"AdvancedServo_InputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Log.Error(ex, Common.LOG_CATEGORY);
+        //        }
+        //    }
+        //}
 
-        private void Ifk_Error(object sender, Phidgets.Events.ErrorEventArgs e)
+        private void AdvancedServo_Error(object sender, Phidgets.Events.ErrorEventArgs e)
         {
             try
             {
                 InterfaceKit ifk = (InterfaceKit)sender;
                 var a = e;
                 var b = e.GetType();
-                Log.Trace($"Ifk_Error {ifk.Address},{ifk.Attached} - {e.Type} {e.Code} {e.Description}", Common.LOG_CATEGORY);
+                Log.Trace($"AdvancedServo_Error {ifk.Address},{ifk.Attached} - {e.Type} {e.Code} {e.Description}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
@@ -226,14 +221,14 @@ namespace VNC.Phidget
             }
         }
 
-        private void Ifk_Detach(object sender, Phidgets.Events.DetachEventArgs e)
+        private void AdvancedServo_Detach(object sender, Phidgets.Events.DetachEventArgs e)
         {
             try
             {
                 InterfaceKit ifk = (InterfaceKit)sender;
                 var a = e;
                 var b = e.GetType();
-                Log.Trace($"Ifk_Detach {ifk.Address},{ifk.SerialNumber}", Common.LOG_CATEGORY);
+                Log.Trace($"AdvancedServo_Detach {ifk.Address},{ifk.SerialNumber}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
@@ -241,20 +236,21 @@ namespace VNC.Phidget
             }
         }
 
-        private void Ifk_Attach(object sender, Phidgets.Events.AttachEventArgs e)
+        private void AdvancedServo_Attach(object sender, Phidgets.Events.AttachEventArgs e)
         {
             try
             {
-                InterfaceKit device = (InterfaceKit)sender;
+                AdvancedServo device = (AdvancedServo)sender;
                 //Phidget device = (Phidget)e.Device;
                 //var b = e.GetType();
-                Log.Trace($"Ifk_Attach {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
+                Log.Trace($"AdvancedServo_Attach {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
         }
+
         #endregion
 
         #region Commands (None)

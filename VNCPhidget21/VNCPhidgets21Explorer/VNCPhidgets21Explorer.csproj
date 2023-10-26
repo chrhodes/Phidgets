@@ -32,6 +32,7 @@
   <ItemGroup>
     <None Remove="Resources\HostList.xml" />
     <None Remove="Resources\InterfaceKitList.xml" />
+    <None Remove="Resources\json\advancedservo.json" />
     <None Remove="Resources\json\host.json" />
     <None Remove="Resources\json\interfacekit.json" />
     <None Remove="Resources\json\phidgetconfig.json" />
@@ -48,6 +49,9 @@
     </Content>
     <Content Include="Resources\Icons\ApplicationIcon-Right-Red.ico" />
     <Content Include="Resources\json\host.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\advancedservo.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\json\interfacekit.json">
