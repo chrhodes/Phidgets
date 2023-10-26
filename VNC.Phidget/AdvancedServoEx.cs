@@ -5,10 +5,7 @@ using Phidgets.Events;
 
 namespace VNC.Phidget
 {
-    // TODO(crhodes)
-    // Decide if this should be VNCInterfaceKit to distinguish from Phidgets.InterfaceKit
-
-    public class AdvancedServoEx : AdvancedServo
+    public class AdvancedServoEx : PhidgetEx // AdvancedServo
     {
         #region Constructors, Initialization, and Load
 
@@ -18,30 +15,28 @@ namespace VNC.Phidget
         /// <param name="embedded"></param>
         /// <param name="enabled"></param>
         public AdvancedServoEx(string ipAddress, int port, int serialNumber, bool enable, bool embedded)
+            : base(ipAddress, port, serialNumber, enable, embedded)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
-            _hostIPAddress = ipAddress;
-            _hostPort = port;
-            _hostSerialNumber = serialNumber;
-            _Embedded = embedded;
-            _Enable = enable;
-
-            IntitalizePhidgetInterfaceKit();
+            InitializePhidget();
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void IntitalizePhidgetInterfaceKit()
+        private void InitializePhidget()
         {
-            this.Attach += AdvancedServo_Attach;
-            this.Detach += AdvancedServo_Detach;
-            this.Error += AdvancedServo_Error;
+            AdvancedServo = new Phidgets.AdvancedServo();
+
+            this.AdvancedServo.Attach += Phidget_Attach;
+            this.AdvancedServo.Detach += Phidget_Detach;
+            this.AdvancedServo.Error += Phidget_Error;
+            this.AdvancedServo.ServerConnect += Phidget_ServerConnect;
+            this.AdvancedServo.ServerDisconnect += Phidget_ServerDisconnect;
+
             //this.InputChange += AdvancedServo_InputChange;
             //this.OutputChange += AdvancedServo_OutputChange;
             //this.SensorChange += AdvancedServo_SensorChange;
-            this.ServerConnect += AdvancedServo_ServerConnect;
-            this.ServerDisconnect += AdvancedServo_ServerDisconnect;
         }
 
         #endregion
@@ -58,62 +53,7 @@ namespace VNC.Phidget
 
         #region Fields and Properties
 
-        //Phidgets.InterfaceKit interfaceKit = null;
-
-        private bool _Embedded;
-
-        public bool Embedded
-        {
-            get { return _Embedded; }
-            set
-            {
-                _Embedded = value;
-            }
-        }
-
-        private bool _Enable;
-
-        public bool Enable
-        {
-            get { return _Enable; }
-            set
-            {
-                _Enable = value;
-            }
-        }
-
-        private int _hostSerialNumber;
-
-        public int HostSerialNumber
-        {
-            get { return _hostSerialNumber; }
-            set
-            {
-                _hostSerialNumber = value;
-            }
-        }
-
-        private string _hostIPAddress;
-
-        public string HostIPAddress
-        {
-            get { return _hostIPAddress; }
-            set
-            {
-                _hostIPAddress = value;
-            }
-        }
-
-        private int _hostPort;
-
-        public int HostPort
-        {
-            get { return _hostPort; }
-            set
-            {
-                _hostPort = value;
-            }
-        }
+        public Phidgets.AdvancedServo AdvancedServo = null;
 
         public bool LogInputChangeEvents { get; set; }
         public bool LogOutputChangeEvents { get; set; }
@@ -122,35 +62,6 @@ namespace VNC.Phidget
         #endregion
 
         #region Event Handlers
-
-        private void AdvancedServo_ServerDisconnect(object sender, Phidgets.Events.ServerDisconnectEventArgs e)
-        {
-            try
-            {
-                var a = e;
-                var b = e.GetType();
-                Log.Trace("AdvancedServo_ServerDisconnect", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
-
-        private void AdvancedServo_ServerConnect(object sender, ServerConnectEventArgs e)
-        {
-            try
-            {
-                Phidgets.Phidget device = (Phidgets.Phidget)e.Device;
-                //var b = e.GetType();
-                //Log.Trace($"AdvancedServo_ServerConnect {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
-                Log.Trace($"AdvancedServo_ServerConnect {device.Address},{device.Port}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
 
         //private void AdvancedServo_SensorChange(object sender, SensorChangeEventArgs e)
         //{
@@ -206,69 +117,21 @@ namespace VNC.Phidget
         //    }
         //}
 
-        private void AdvancedServo_Error(object sender, Phidgets.Events.ErrorEventArgs e)
-        {
-            try
-            {
-                InterfaceKit ifk = (InterfaceKit)sender;
-                var a = e;
-                var b = e.GetType();
-                Log.Trace($"AdvancedServo_Error {ifk.Address},{ifk.Attached} - {e.Type} {e.Code} {e.Description}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
-
-        private void AdvancedServo_Detach(object sender, Phidgets.Events.DetachEventArgs e)
-        {
-            try
-            {
-                InterfaceKit ifk = (InterfaceKit)sender;
-                var a = e;
-                var b = e.GetType();
-                Log.Trace($"AdvancedServo_Detach {ifk.Address},{ifk.SerialNumber}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
-
-        private void AdvancedServo_Attach(object sender, Phidgets.Events.AttachEventArgs e)
-        {
-            try
-            {
-                AdvancedServo device = (AdvancedServo)sender;
-                //Phidget device = (Phidget)e.Device;
-                //var b = e.GetType();
-                Log.Trace($"AdvancedServo_Attach {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
-
         #endregion
 
         #region Commands (None)
 
         #endregion
 
-        #region Public Methods (None)
+        #region Public Methods
 
         public void Open()
         {
             try
             {
-                //interfaceKit.open(_hostSerialNumber, _hostIPAddress, _hostPort);
+                this.AdvancedServo.open(HostSerialNumber, HostIPAddress, HostPort);
 
-                //interfaceKit.waitForAttachment();
-                this.open(_hostSerialNumber, _hostIPAddress, _hostPort);
-
-                this.waitForAttachment();
+                this.AdvancedServo.waitForAttachment();
             }
             catch (Exception ex)
             {
@@ -278,11 +141,9 @@ namespace VNC.Phidget
 
         public void Close()
         {
-            //interfaceKit.close();
-
             try
             {
-                this.close();
+                this.AdvancedServo.close();
             }
             catch (Exception ex)
             {

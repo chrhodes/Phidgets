@@ -5,10 +5,6 @@ using Phidgets.Events;
 
 namespace VNC.Phidget
 {
-    // TODO(crhodes)
-    // Decide if this should be VNCInterfaceKit to distinguish from Phidgets.InterfaceKit
-    // For now do InterfaceKitEx
-
     public class InterfaceKitEx : PhidgetEx // InterfaceKit
     {
         #region Constructors, Initialization, and Load
@@ -23,22 +19,22 @@ namespace VNC.Phidget
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
-            IntitalizePhidgetInterfaceKit();
+            InitializePhidget();
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void IntitalizePhidgetInterfaceKit()
+        private void InitializePhidget()
         {
-            //this.Attach += Ifk_Attach;
-            //this.Detach += Ifk_Detach;
-            //this.Error += Ifk_Error;
-            //this.ServerConnect += Ifk_ServerConnect;
-            //this.ServerDisconnect += Ifk_ServerDisconnect;
+            //this.Attach += InterfaceKitk_Attach;
+            //this.Detach += InterfaceKitk_Detach;
+            //this.Error += InterfaceKitk_Error;
+            //this.ServerConnect += InterfaceKitk_ServerConnect;
+            //this.ServerDisconnect += InterfaceKitk_ServerDisconnect;
 
-            //this.InputChange += Ifk_InputChange;
-            //this.OutputChange += Ifk_OutputChange;
-            //this.SensorChange += Ifk_SensorChange;
+            //this.InputChange += InterfaceKitk_InputChange;
+            //this.OutputChange += InterfaceKitk_OutputChange;
+            //this.SensorChange += InterfaceKitk_SensorChange;
 
             InterfaceKit = new Phidgets.InterfaceKit();
 
@@ -48,9 +44,9 @@ namespace VNC.Phidget
             this.InterfaceKit.ServerConnect += Phidget_ServerConnect;
             this.InterfaceKit.ServerDisconnect += Phidget_ServerDisconnect;
 
-            this.InterfaceKit.InputChange += Ifk_InputChange;
-            this.InterfaceKit.OutputChange += Ifk_OutputChange;
-            this.InterfaceKit.SensorChange += Ifk_SensorChange;
+            this.InterfaceKit.InputChange += InterfaceKitk_InputChange;
+            this.InterfaceKit.OutputChange += InterfaceKitk_OutputChange;
+            this.InterfaceKit.SensorChange += InterfaceKitk_SensorChange;
         }
 
         #endregion
@@ -77,7 +73,7 @@ namespace VNC.Phidget
 
         #region Event Handlers
 
-        private void Ifk_SensorChange(object sender, SensorChangeEventArgs e)
+        private void InterfaceKitk_SensorChange(object sender, SensorChangeEventArgs e)
         {
             if (LogSensorChangeEvents)
             {
@@ -86,7 +82,7 @@ namespace VNC.Phidget
                     InterfaceKit ifk = (InterfaceKit)sender;
                     var a = e;
                     var b = e.GetType();
-                    Log.Trace($"Ifk_SensorChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
+                    Log.Trace($"InterfaceKitk_SensorChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -95,7 +91,7 @@ namespace VNC.Phidget
             }
         }
 
-        private void Ifk_OutputChange(object sender, Phidgets.Events.OutputChangeEventArgs e)
+        private void InterfaceKitk_OutputChange(object sender, Phidgets.Events.OutputChangeEventArgs e)
         {
             if (LogOutputChangeEvents)
             {
@@ -104,7 +100,7 @@ namespace VNC.Phidget
                     InterfaceKit ifk = (InterfaceKit)sender;
                     var a = e;
                     var b = e.GetType();
-                    Log.Trace($"Ifk_OutputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
+                    Log.Trace($"InterfaceKitk_OutputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -113,7 +109,7 @@ namespace VNC.Phidget
             }
         }
 
-        private void Ifk_InputChange(object sender, Phidgets.Events.InputChangeEventArgs e)
+        private void InterfaceKitk_InputChange(object sender, Phidgets.Events.InputChangeEventArgs e)
         {
             if (LogInputChangeEvents)
             {
@@ -122,7 +118,7 @@ namespace VNC.Phidget
                     InterfaceKit ifk = (InterfaceKit)sender;
                     var a = e;
                     var b = e.GetType();
-                    Log.Trace($"Ifk_InputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
+                    Log.Trace($"InterfaceKitk_InputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {

@@ -9,7 +9,7 @@
     <!--<Nullable>enable</Nullable>-->
       <AssemblyVersion>1.0.0</AssemblyVersion>
       <ProductVersion>1.0.1</ProductVersion>
-    <FileVersion>2023.10.25C</FileVersion>
+    <FileVersion>2023.10.26A</FileVersion>
   </PropertyGroup>
 
     <PropertyGroup Condition="'$(TargetFramework)' == 'net6.0-windows'">
