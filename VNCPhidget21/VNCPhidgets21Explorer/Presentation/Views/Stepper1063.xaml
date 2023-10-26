@@ -139,17 +139,20 @@
 
                 <dxlc:LayoutItem Label="Serial #" HorizontalAlignment="Left" >
                     <dxe:TextEdit EditValue="{Binding SelectedStepper.SerialNumber}" IsReadOnly="True" 
-                                  Background="White" Foreground="{Binding StepperAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                                  Background="White" 
+                                  Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem Label="Embedded" HorizontalAlignment="Left" >
                     <dxe:TextEdit EditValue="{Binding SelectedStepper.Embedded}" IsReadOnly="True" 
-                                  Background="White" Foreground="{Binding StepperAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                                  Background="White" 
+                                  Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem Label="Enable" HorizontalAlignment="Left" >
                     <dxe:TextEdit EditValue="{Binding SelectedStepper.Enable}" IsReadOnly="True" 
-                                  Background="White" Foreground="{Binding StepperAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                                  Background="White" 
+                                  Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem HorizontalAlignment="Right">
@@ -168,83 +171,13 @@
 
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup Orientation="Vertical" View="GroupBox" Header="Device Status" 
+            <dxlc:LayoutGroup Orientation="Vertical" View="GroupBox" Header="PhidgetDevice Status" 
                                   IsCollapsible="True" IsCollapsed="True"  >
-                <!--<dxlc:LayoutGroup.GroupBoxStyle>
-                        <Style TargetType="dxlc:GroupBox">
-                            <Setter Property="Background" Value="Transparent" />
-                            <Setter Property="BorderBrush" Value="Transparent" />
-                            <Setter Property="BorderThickness" Value="0" />
-                            <Setter Property="Padding" Value="0" />
-                            <Setter Property="TitleVisibility" Value="Collapsed" />
-                        </Style>
-                    </dxlc:LayoutGroup.GroupBoxStyle>-->
 
-                <dxlc:LayoutItem Label="Address" >
-                    <dxe:TextEdit EditValue="{Binding StepperAddress, Mode=OneWay}" IsReadOnly="True" 
-                                  Background="White" Foreground="{Binding StepperAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Label="Attached" >
-                    <dxe:TextEdit EditValue="{Binding StepperAttached, Mode=OneWay}" IsReadOnly="True" 
-                                  Background="White"  Foreground="{Binding StepperAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Label="AttachedToServer" >
-                    <dxe:TextEdit EditValue="{Binding StepperAttachedToServer, Mode=OneWay}" IsReadOnly="True" 
-                                  Background="White"  Foreground="{Binding StepperAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Label="Class" >
-                    <dxe:TextEdit EditValue="{Binding StepperClass, Mode=OneWay}" IsReadOnly="True" 
-                                  Background="White"  Foreground="{Binding StepperAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Label="ID"  >
-                    <dxe:TextEdit EditValue="{Binding StepperID, Mode=OneWay}" IsReadOnly="True" 
-                                  Background="White"  Foreground="{Binding StepperAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Label="Label"  >
-                    <dxe:TextEdit EditValue="{Binding StepperLabel, Mode=OneWay}" IsReadOnly="True" 
-                                  Background="White"  Foreground="{Binding StepperAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Label="LibraryVersion"  >
-                    <dxe:TextEdit EditValue="{Binding StepperLibraryVersion, Mode=OneWay}" IsReadOnly="True" 
-                                  Background="White"  Foreground="{Binding StepperAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Label="Name"  >
-                    <dxe:TextEdit EditValue="{Binding StepperName, Mode=OneWay}" IsReadOnly="True" 
-                                  Background="White"  Foreground="{Binding StepperAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Label="Port"  >
-                    <dxe:TextEdit EditValue="{Binding StepperPort, Mode=OneWay}" IsReadOnly="True" 
-                                  Background="White"  Foreground="{Binding StepperAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Label="SerialNumber"  >
-                    <dxe:TextEdit EditValue="{Binding StepperSerialNumber, Mode=OneWay}" IsReadOnly="True" 
-                                  Background="White"  Foreground="{Binding StepperAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Label="ServerID"  >
-                    <dxe:TextEdit EditValue="{Binding StepperServerID, Mode=OneWay}" IsReadOnly="True" 
-                                  Background="White"  Foreground="{Binding StepperAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Label="Type"  >
-                    <dxe:TextEdit EditValue="{Binding StepperType, Mode=OneWay}" IsReadOnly="True" 
-                                  Background="White"  Foreground="{Binding StepperAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Label="Version"  >
-                    <dxe:TextEdit EditValue="{Binding StepperVersion, Mode=OneWay}" IsReadOnly="True"
-                                  Background="White"  Foreground="{Binding StepperAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                </dxlc:LayoutItem>
-
+                <views:Phidget x:Name="Phidget1" Margin="-10" 
+                               PhidgetDevice="{Binding PhidgetDevice, Mode=TwoWay}"
+                               DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}"/>
+                
             </dxlc:LayoutGroup>
 
         </dxlc:LayoutControl>

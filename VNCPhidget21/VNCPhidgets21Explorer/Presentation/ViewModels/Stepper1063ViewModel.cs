@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
-using DevExpress.CodeParser;
 using Phidgets;
 
 using Prism.Commands;
@@ -15,9 +12,7 @@ using Prism.Events;
 using Prism.Services.Dialogs;
 
 using VNC;
-using VNC.Core.Events;
 using VNC.Core.Mvvm;
-using VNC.Core.Services;
 using VNC.Phidget;
 
 namespace VNCPhidgets21Explorer.Presentation.ViewModels
@@ -63,8 +58,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             ConfigFileName = "phidgetconfig.json";
             LoadUIConfig();
 
-            SayHelloCommand = new DelegateCommand(
-                SayHello, SayHelloCanExecute);
+            //SayHelloCommand = new DelegateCommand(
+            //    SayHello, SayHelloCanExecute);
                 
             Message = "Stepper1063ViewModel says hello";           
 
@@ -224,6 +219,45 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _activeStepper = value;
 
+
+                if (_activeStepper is not null)
+                {
+                    PhidgetDevice = _activeStepper.Stepper;
+                }
+                else
+                {
+                    // TODO(crhodes)
+                    // PhidgetDevice = null ???
+                    // Will need to declare Phidgets.Phidget?
+                    PhidgetDevice = null;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private Phidgets.Phidget _phidgetDevice;
+        public Phidgets.Phidget PhidgetDevice
+        {
+            get => _phidgetDevice;
+            set
+            {
+                if (_phidgetDevice == value)
+                    return;
+                _phidgetDevice = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _deviceAttached;
+        public bool? DeviceAttached
+        {
+            get => _deviceAttached;
+            set
+            {
+                if (_deviceAttached == value)
+                    return;
+                _deviceAttached = value;
                 OnPropertyChanged();
             }
         }
@@ -246,180 +280,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region AdvancedServo Properties
 
-        private string _sAddress;
-        public string StepperAddress
-        {
-            get => _sAddress;
-            set
-            {
-                if (_sAddress == value)
-                    return;
-                _sAddress = value;
-                OnPropertyChanged();
-            }
-        }
 
-        private bool? _sAttached;
-        public bool? StepperAttached
-        {
-            get => _sAttached;
-            set
-            {
-                if (_sAttached == value)
-                    return;
-                _sAttached = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _sAttachedToServer;
-        public bool? StepperAttachedToServer
-        {
-            get => _sAttachedToServer;
-            set
-            {
-                if (_sAttachedToServer == value)
-                    return;
-                _sAttachedToServer = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _sClass;
-
-        public string StepperClass
-        {
-            get => _sClass;
-            set
-            {
-                if (_sClass == value)
-                    return;
-                _sClass = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _sID;
-        public string StepperID
-        {
-            get => _sID;
-            set
-            {
-                if (_sID == value)
-                    return;
-                _sID = value;
-                OnPropertyChanged();
-            }
-        }
-
-
-        private string _sLabel;
-        public string StepperLabel
-        {
-            get => _sLabel;
-            set
-            {
-                if (_sLabel == value)
-                    return;
-                _sLabel = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _sLibraryVersion;
-        public string StepperLibraryVersion
-        {
-            get => _sLibraryVersion;
-            set
-            {
-                if (_sLibraryVersion == value)
-                    return;
-                _sLibraryVersion = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _sName;
-        public string StepperName
-        {
-            get => _sName;
-            set
-            {
-                if (_sName == value)
-                    return;
-                _sName = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private int? _sPort;
-        public int? StepperPort
-        {
-            get => _sPort;
-            set
-            {
-                if (_sPort == value)
-                    return;
-                _sPort = value;
-                OnPropertyChanged();
-            }
-        }
-
-
-        private int? _sSerialNumber;
-
-        public int? StepperSerialNumber
-        {
-            get => _sSerialNumber;
-            set
-            {
-                if (_sSerialNumber == value)
-                    return;
-                _sSerialNumber = value;
-                OnPropertyChanged();
-            }
-        }
-
-
-        private string _sServerID;
-        public string StepperServerID
-        {
-            get => _sServerID;
-            set
-            {
-                if (_sServerID == value)
-                    return;
-                _sServerID = value;
-                OnPropertyChanged();
-            }
-        }
-
-
-        private string _sType;
-        public string StepperType
-        {
-            get => _sType;
-            set
-            {
-                if (_sType == value)
-                    return;
-                _sType = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private int? _sVersion;
-        public int? StepperVersion
-        {
-            get => _sVersion;
-            set
-            {
-                if (_sVersion == value)
-                    return;
-                _sVersion = value;
-                OnPropertyChanged();
-            }
-        }
 
         #endregion
 
@@ -427,7 +288,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Commands
 
-        #region Command ConfigFIleName DoubleClick
+        #region Command ConfigFileName DoubleClick
 
         public DelegateCommand ConfigFileName_DoubleClick_Command { get; set; }
 
@@ -466,8 +327,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 SelectedStepper.Enable,
                 SelectedStepper.Embedded);
 
-            ActiveStepper.Attach += ActiveStepper_Attach;
-            ActiveStepper.Detach += ActiveStepper_Detach;
+            ActiveStepper.Stepper.Attach += ActiveStepper_Attach;
+            ActiveStepper.Stepper.Detach += ActiveStepper_Detach;
 
             // NOTE(crhodes)
             // Capture Digital Input and Output changes so we can update the UI
@@ -481,6 +342,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //// Let's do see if we can watch some analog data stream in.
 
             //ActiveStepper.SensorChange += ActiveStepper_SensorChange;
+
             ActiveStepper.Open();
 
             // Uncomment this if you are telling someone else to handle this
@@ -521,8 +383,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //return true;
             if (SelectedStepper is not null)
             {
-                if (StepperAttached is not null)
-                    return !(Boolean)StepperAttached;
+                if (DeviceAttached is not null)
+                    return !(Boolean)DeviceAttached;
                 else
                     return true;
             }
@@ -616,8 +478,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Add any before button is enabled logic.
             //return true;
-            if (StepperAttached is not null)
-                return (Boolean)StepperAttached;
+            if (DeviceAttached is not null)
+                return (Boolean)DeviceAttached;
             else
                 return false;
         }
@@ -851,10 +713,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             try
             {
-                Phidgets.Stepper ifk = (Phidgets.Stepper)sender;
-                //Phidget device = (Phidget)e.Device;
-                //var b = e.GetType();
-                Log.Trace($"ActiveStepper_Attach {ifk.Address},{ifk.Port} S#:{ifk.SerialNumber}", Common.LOG_CATEGORY);
+                Phidgets.Phidget device = (Phidgets.Phidget)sender;
+                Log.Trace($"ActiveStepper_Attach {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
                 // TODO(crhodes)
                 // This is where properties should be grabbed
                 UpdateStepperProperties();
@@ -868,21 +728,25 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private void UpdateStepperProperties()
         {
-            if (ActiveStepper.Attached)
+            // TODO(crhodes)
+            // May not need this anymore.  Consider moving into ActiveStepper_{Attach,Detach}
+
+            if (ActiveStepper.Stepper.Attached)
             {
-                StepperAddress = ActiveStepper.Address;
-                StepperAttached = ActiveStepper.Attached;
-                StepperAttachedToServer = ActiveStepper.AttachedToServer;
-                StepperClass = ActiveStepper.Class.ToString();
-                StepperID = Enum.GetName(typeof(Phidget.PhidgetID), ActiveStepper.ID);
-                StepperLabel = ActiveStepper.Label;
-                StepperLibraryVersion = Phidget.LibraryVersion;  // This is a static field
-                StepperName = ActiveStepper.Name;
-                StepperPort = ActiveStepper.Port;
-                StepperSerialNumber = ActiveStepper.SerialNumber; // This throws exception
-                //SServerID = ActiveStepper.ServerID;
-                StepperType = ActiveStepper.Type;
-                StepperVersion = ActiveStepper.Version;
+                DeviceAttached = ActiveStepper.Stepper.Attached;
+                //StepperAddress = ActiveStepper.Address;
+                //StepperAttached = ActiveStepper.Attached;
+                //StepperAttachedToServer = ActiveStepper.AttachedToServer;
+                //StepperClass = ActiveStepper.Class.ToString();
+                //StepperID = Enum.GetName(typeof(Phidget.PhidgetID), ActiveStepper.ID);
+                //StepperLabel = ActiveStepper.Label;
+                //StepperLibraryVersion = Phidget.LibraryVersion;  // This is a static field
+                //StepperName = ActiveStepper.Name;
+                //StepperPort = ActiveStepper.Port;
+                //StepperSerialNumber = ActiveStepper.SerialNumber; // This throws exception
+                ////SServerID = ActiveStepper.ServerID;
+                //StepperType = ActiveStepper.Type;
+                //StepperVersion = ActiveStepper.Version;
 
                 //var sensors = ActiveStepper.sensors;
                 //StepperAnalogSensor sensor = null;
@@ -937,34 +801,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
             else
             {
-                // NOTE(crhodes)
-                // Commented out properties throw exceptions when Phidget not attached
-                // Just clear field
-
-                //SAddress = ActiveStepper.Address;
-                StepperAddress = "";
-                StepperAttached = ActiveStepper.Attached;
-                //SAttachedToServer = ActiveStepper.AttachedToServer;
-                StepperAttachedToServer = false;
-                // This doesn't throw exception but let's clear anyway
-                //SClass = ActiveStepper.Class.ToString();
-                StepperClass = "";
-                //SID = Enum.GetName(typeof(Phidget.PhidgetID), ActiveStepper.ID);
-                StepperID = "";
-                //SLabel = ActiveStepper.Label;
-                StepperLabel = "";
-                //SLibraryVersion = ActiveStepper.LibraryVersion;
-                StepperLibraryVersion = Phidget.LibraryVersion;
-                //SName = ActiveStepper.Name;
-                StepperName = "";
-                //SSerialNumber = ActiveStepper.SerialNumber;
-                StepperSerialNumber = null;
-                //SServerID = ActiveStepper.ServerID;
-                StepperServerID = "";
-                //SType = ActiveStepper.Type;
-                StepperType = "";
-                //SVersion = ActiveStepper.Version;
-                StepperVersion = null;
+                DeviceAttached = null;
             }
 
             OpenStepperCommand.RaiseCanExecuteChanged();
@@ -975,10 +812,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             try
             {
-                Phidgets.Stepper ifk = (Phidgets.Stepper)sender;
-                var a = e;
-                var b = e.GetType();
-                Log.Trace($"ActiveStepper_Detach {ifk.Address},{ifk.SerialNumber}", Common.LOG_CATEGORY);
+                Phidgets.Phidget device = (Phidgets.Phidget)sender;
+                Log.Trace($"ActiveStepper_Detach {device.Address},{device.SerialNumber}", Common.LOG_CATEGORY);
 
                 // TODO(crhodes)
                 // What kind of cleanup?  Maybe set ActiveStepper to null.  Clear UI

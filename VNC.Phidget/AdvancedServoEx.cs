@@ -1,8 +1,5 @@
 ﻿using System;
 
-using Phidgets;
-using Phidgets.Events;
-
 namespace VNC.Phidget
 {
     public class AdvancedServoEx : PhidgetEx // AdvancedServo

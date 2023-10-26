@@ -1,8 +1,5 @@
 ﻿using System;
 
-using Phidgets;
-using Phidgets.Events;
-
 namespace VNC.Phidget
 {
     public class StepperEx : PhidgetEx //Stepper
@@ -53,7 +50,7 @@ namespace VNC.Phidget
 
         #region Fields and Properties
 
-        Phidgets.Stepper Stepper = null;
+        public Phidgets.Stepper Stepper = null;
 
         public bool LogInputChangeEvents { get; set; }
         public bool LogOutputChangeEvents { get; set; }

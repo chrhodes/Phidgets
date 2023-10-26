@@ -246,7 +246,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-        
+
+        private bool? _deviceAttached;
+        public bool? DeviceAttached
+        {
+            get => _deviceAttached;
+            set
+            {
+                if (_deviceAttached == value)
+                    return;
+                _deviceAttached = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ICommand SayHelloCommand { get; private set; }
         
         private string _message;
@@ -264,193 +277,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region AdvancedServo Properties
 
-        //private string _asAddress;
-        //public string AsAddress
-        //{
-        //    get => _asAddress;
-        //    set
-        //    {
-        //        if (_asAddress == value)
-        //            return;
-        //        _asAddress = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
 
-        //private bool? _asAttached;
-        //public bool? AsAttached
-        //{
-        //    get => _asAttached;
-        //    set
-        //    {
-        //        if (_asAttached == value)
-        //            return;
-        //        _asAttached = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        private bool? _deviceAttached;
-        public bool? DeviceAttached
-        {
-            get => _deviceAttached;
-            set
-            {
-                if (_deviceAttached == value)
-                    return;
-                _deviceAttached = value;
-                OnPropertyChanged();
-            }
-        }
-
-        //private bool? _asAttachedToServer;
-        //public bool? AsAttachedToServer
-        //{
-        //    get => _asAttachedToServer;
-        //    set
-        //    {
-        //        if (_asAttachedToServer == value)
-        //            return;
-        //        _asAttachedToServer = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private string _asClass;
-
-        //public string AsClass
-        //{
-        //    get => _asClass;
-        //    set
-        //    {
-        //        if (_asClass == value)
-        //            return;
-        //        _asClass = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private string _asID;
-        //public string AsID
-        //{
-        //    get => _asID;
-        //    set
-        //    {
-        //        if (_asID == value)
-        //            return;
-        //        _asID = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-
-        //private string _asLabel;
-        //public string AsLabel
-        //{
-        //    get => _asLabel;
-        //    set
-        //    {
-        //        if (_asLabel == value)
-        //            return;
-        //        _asLabel = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private string _asLibraryVersion;
-        //public string AsLibraryVersion
-        //{
-        //    get => _asLibraryVersion;
-        //    set
-        //    {
-        //        if (_asLibraryVersion == value)
-        //            return;
-        //        _asLibraryVersion = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private string _asName;
-        //public string AsName
-        //{
-        //    get => _asName;
-        //    set
-        //    {
-        //        if (_asName == value)
-        //            return;
-        //        _asName = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private int? _asPort;
-        //public int? AsPort
-        //{
-        //    get => _asPort;
-        //    set
-        //    {
-        //        if (_asPort == value)
-        //            return;
-        //        _asPort = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-
-        //private int? _asSerialNumber;
-
-        //public int? AsSerialNumber
-        //{
-        //    get => _asSerialNumber;
-        //    set
-        //    {
-        //        if (_asSerialNumber == value)
-        //            return;
-        //        _asSerialNumber = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-
-        //private string _asServerID;
-        //public string AsServerID
-        //{
-        //    get => _asServerID;
-        //    set
-        //    {
-        //        if (_asServerID == value)
-        //            return;
-        //        _asServerID = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-
-        //private string _asType;
-        //public string AsType
-        //{
-        //    get => _asType;
-        //    set
-        //    {
-        //        if (_asType == value)
-        //            return;
-        //        _asType = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private int? _asVersion;
-        //public int? AsVersion
-        //{
-        //    get => _asVersion;
-        //    set
-        //    {
-        //        if (_asVersion == value)
-        //            return;
-        //        _asVersion = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
 
         #endregion
 
@@ -976,34 +803,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             else
             {
                 DeviceAttached = null;
-                // NOTE(crhodes)
-                // Commented out properties throw exceptions when Phidget not attached
-                // Just clear field
-
-                //AsAddress = ActiveAdvancedServo.Address;
-                //AsAddress = "";
-                //AsAttached = ActiveAdvancedServo.AdvancedServo.Attached;
-                ////AsAttachedToServer = ActiveAdvancedServo.AttachedToServer;
-                //AsAttachedToServer = false;
-                //// This doesn't throw exception but let's clear anyway
-                ////AsClass = ActiveAdvancedServo.Class.ToString();
-                //AsClass = "";
-                ////AsID = Enum.GetName(typeof(Phidget.PhidgetID), ActiveAdvancedServo.ID);
-                //AsID = "";
-                ////AsLabel = ActiveAdvancedServo.Label;
-                //AsLabel = "";
-                ////AsLibraryVersion = ActiveAdvancedServo.LibraryVersion;
-                //AsLibraryVersion = Phidget.LibraryVersion;
-                ////AsName = ActiveAdvancedServo.Name;
-                //AsName = "";
-                ////AsSerialNumber = ActiveAdvancedServo.SerialNumber;
-                //AsSerialNumber = null;
-                ////AsServerID = ActiveAdvancedServo.ServerID;
-                //AsServerID = "";
-                ////AsType = ActiveAdvancedServo.Type;
-                //AsType = "";
-                ////AsVersion = ActiveAdvancedServo.Version;
-                //AsVersion = null;
             }
 
             OpenAdvancedServoCommand.RaiseCanExecuteChanged();
@@ -1015,8 +814,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             try
             {
                 Phidgets.Phidget device = (Phidgets.Phidget)sender;
-                var a = e;
-                var b = e.GetType();
+
                 Log.Trace($"ActiveAdvancedServo_Detach {device.Address},{device.SerialNumber}", Common.LOG_CATEGORY);
 
                 // TODO(crhodes)
