@@ -70,6 +70,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
+
         private void LoadUIConfig()
         {
             Int64 startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);

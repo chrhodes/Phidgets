@@ -37,6 +37,7 @@
     <None Remove="Resources\json\interfacekit.json" />
     <None Remove="Resources\json\phidgetconfig.json" />
     <None Remove="Resources\json\sensor.json" />
+    <None Remove="Resources\json\stepper.json" />
     <None Remove="Resources\SensorList.xml" />
   </ItemGroup>
 
@@ -48,6 +49,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\ApplicationIcon-Right-Red.ico" />
+    <Content Include="Resources\json\stepper.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\json\host.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

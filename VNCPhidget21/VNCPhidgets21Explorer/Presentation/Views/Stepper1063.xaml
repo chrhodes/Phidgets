@@ -39,24 +39,30 @@
             <!-- <Setter Property="Background" Value="White" /> -->
         <!-- </Style> -->
     <!-- </d:DesignerProperties.DesignStyle> -->
-    
-    <!-- <vncmvvm:ViewBase.Resources> -->
+
+    <vncmvvm:ViewBase.Resources>
+        <localc:ForegroundColorConverter x:Key="RedGreenConverter" />
+        <XmlDataProvider x:Key="SensorList" Source="/Resources/SensorList.xml" XPath="Sensors/Sensor" />
+        <XmlDataProvider x:Key="HostList" Source="/Resources/HostList.xml" XPath="Hosts/Host" />
+        <XmlDataProvider x:Key="AdvancedServoList" Source="/Resources/AdvancedServoList.xml" XPath="AdvancedServos/AdvancedServo" />
+        <!--<XmlDataProvider x:Key="SensorList" Source="SensorList.xml" XPath="Sensors/Sensor" />
+        <XmlDataProvider x:Key="HostList" Source="HostList.xml" XPath="Hosts/Host" />-->
         <!-- <localc:SelectedItemsToListOfStringConverter x:Key="SelectedItemsToListOfStringConverter" /> -->
         <!-- <localc:SelectedItemsConverter x:Key="SelectedItemsConverter" /> -->
-        <!-- <localc:SelectedItemsToWorkItemQueryWrapperConverter x:Key="SelectedItemsToStepper1063WrapperConverter" /> -->
-        <!-- <DataTemplate x:Key="dataTemplateStepper1063"> -->
-            <!-- <StackPanel> -->
-                <!-- <Label Content="{Binding XPath=@Name}" /> -->
-            <!-- </StackPanel> -->
+        <!-- <localc:SelectedItemsToWorkItemQueryWrapperConverter x:Key="SelectedItemsToAdvancedServo1061WrapperConverter" /> -->
+        <!-- <DataTemplate x:Key="dataTemplateAdvancedServo1061"> -->
+        <!-- <StackPanel> -->
+        <!-- <Label Content="{Binding XPath=@Name}" /> -->
+        <!-- </StackPanel> -->
         <!-- </DataTemplate> -->
 
-        <!-- <DataTemplate x:Key="dataTemplateStepper1063X"> -->
-            <!-- <StackPanel> -->
-                <!-- <Label Content="{Binding Name}" /> -->
-            <!-- </StackPanel> -->
+        <!-- <DataTemplate x:Key="dataTemplateAdvancedServo1061X"> -->
+        <!-- <StackPanel> -->
+        <!-- <Label Content="{Binding Name}" /> -->
+        <!-- </StackPanel> -->
         <!-- </DataTemplate> -->
-    <!-- </vncmvvm:ViewBase.Resources> -->
-    
+    </vncmvvm:ViewBase.Resources>
+
     <!-- Can declare ViewModel in Xaml -->
     <!-- <UserControl.DataContext> -->
         <!-- <localvm:Stepper1063ViewModel /> -->
@@ -96,13 +102,13 @@
          Need to add xmlnsDX
     -->
     
-     <DockPanel Margin="5">
+    <DockPanel Margin="5">
 
         <views:HostSelector DockPanel.Dock="Top" />
 
         <!--This is useful for debugging V VM constructor issues--> 
 
-         <DockPanel DockPanel.Dock="Bottom" > 
+        <DockPanel DockPanel.Dock="Bottom" > 
 
              <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" Margin="5"> 
                  <Label Content="Message:" /> 

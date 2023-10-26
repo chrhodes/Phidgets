@@ -1,26 +1,34 @@
 {
   "Hosts": [
     {
-      "Name": "localhost",
-      "IPAddress": "127.0.0.1",
-      "Port": 5001,
+        "Name": "localhost",
+        "IPAddress": "127.0.0.1",
+        "Port": 5001,
         "Enable": true,
-      "AdvancedServos": [
-        {
-          "Name": "AdvancedServo 1",
-          "SerialNumber": 99415,
-          "Enable": true,
-          "Embedded": false
-        }
-      ],
-      "InterfaceKits": [
-        {
-          "Name": "InterfaceKit 1",
-          "SerialNumber": 46049,
-          "Enable": true,
-          "Embedded": false
-        }
-      ]
+        "AdvancedServos": [
+            {
+                "Name": "AdvancedServo 1",
+                "SerialNumber": 99415,
+                "Enable": true,
+                "Embedded": false
+            }
+        ],
+        "Steppers": [
+            {
+                "Name": "Stepper 1",
+                "SerialNumber": 270460,
+                "Enable": true,
+                "Embedded": false
+            }
+        ],
+        "InterfaceKits": [
+            {
+                "Name": "InterfaceKit 1",
+                "SerialNumber": 46049,
+                "Enable": true,
+                "Embedded": false
+            }
+        ]
     },
     {
         "Name": "psbc11",
@@ -31,6 +39,14 @@
             {
                 "Name": "AdvancedServo 1",
                 "SerialNumber": 99415,
+                "Enable": true,
+                "Embedded": false
+            }
+        ],
+        "Steppers": [
+            {
+                "Name": "Stepper 1",
+                "SerialNumber": 270460,
                 "Enable": true,
                 "Embedded": false
             }
@@ -57,6 +73,14 @@
                 "Embedded": false
             }
         ],
+        "Steppers": [
+            {
+                "Name": "Stepper 1",
+                "SerialNumber": 270460,
+                "Enable": true,
+                "Embedded": false
+            }
+        ],
         "InterfaceKits": [
             {
                 "Name": "InterfaceKit psbc21",
@@ -79,6 +103,14 @@
                 "Embedded": false
             }
         ],
+        "Steppers": [
+            {
+                "Name": "Stepper 1",
+                "SerialNumber": 270460,
+                "Enable": true,
+                "Embedded": false
+            }
+        ],
         "InterfaceKits": [
             {
                 "Name": "InterfaceKit psbc22",
@@ -97,6 +129,14 @@
             {
                 "Name": "AdvancedServo 1",
                 "SerialNumber": 99415,
+                "Enable": true,
+                "Embedded": false
+            }
+        ],
+        "Steppers": [
+            {
+                "Name": "Stepper 1",
+                "SerialNumber": 270460,
                 "Enable": true,
                 "Embedded": false
             }
