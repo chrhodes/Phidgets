@@ -101,6 +101,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Fields and Properties
 
+
         private string _ConfigFileName;
 
         public string ConfigFileName
@@ -227,10 +228,34 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _activeAdvancedServo = value;
 
+                if (_activeAdvancedServo is not null)
+                {
+                    PhidgetDevice = _activeAdvancedServo.AdvancedServo;
+                }
+                else
+                {
+                    // TODO(crhodes)
+                    // PhidgetDevice = null ???
+                    // Will need to declare Phidgets.Phidget?
+                }
+
                 OnPropertyChanged();
             }
         }
 
+        private Phidgets.Phidget _phidgetDevice;
+        public Phidgets.Phidget PhidgetDevice
+        {
+            get => _phidgetDevice;
+            set
+            {
+                if (_phidgetDevice == value)
+                    return;
+                _phidgetDevice = value;
+                OnPropertyChanged();
+            }
+        }
+        
         public ICommand SayHelloCommand { get; private set; }
         
         private string _message;
@@ -271,6 +296,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_asAttached == value)
                     return;
                 _asAttached = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _deviceAttached;
+        public bool? DeviceAttached
+        {
+            get => _deviceAttached;
+            set
+            {
+                if (_deviceAttached == value)
+                    return;
+                _deviceAttached = value;
                 OnPropertyChanged();
             }
         }
@@ -469,8 +507,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 SelectedAdvancedServo.Enable,
                 SelectedAdvancedServo.Embedded);
 
-            ActiveAdvancedServo.Attach += ActiveAdvancedServo_Attach;
-            ActiveAdvancedServo.Detach += ActiveAdvancedServo_Detach;
+            ActiveAdvancedServo.AdvancedServo.Attach += ActiveAdvancedServo_Attach;
+            ActiveAdvancedServo.AdvancedServo.Detach += ActiveAdvancedServo_Detach;
 
             // NOTE(crhodes)
             // Capture Digital Input and Output changes so we can update the UI
@@ -577,6 +615,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you called CloseAdvancedServo";
+
+            ActiveAdvancedServo.AdvancedServo.Attach -= ActiveAdvancedServo_Attach;
+            ActiveAdvancedServo.AdvancedServo.Detach -= ActiveAdvancedServo_Detach;
 
             ActiveAdvancedServo.Close();
             UpdateAdvancedServoProperties();
@@ -871,21 +912,22 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private void UpdateAdvancedServoProperties()
         {
-            if (ActiveAdvancedServo.Attached)
+            if (ActiveAdvancedServo.AdvancedServo.Attached)
             {
-                AsAddress = ActiveAdvancedServo.Address;
-                AsAttached = ActiveAdvancedServo.Attached;
-                AsAttachedToServer = ActiveAdvancedServo.AttachedToServer;
-                AsClass = ActiveAdvancedServo.Class.ToString();
-                AsID = Enum.GetName(typeof(Phidget.PhidgetID), ActiveAdvancedServo.ID);
-                AsLabel = ActiveAdvancedServo.Label;
+                AsAddress = ActiveAdvancedServo.AdvancedServo.Address;
+                AsAttached = ActiveAdvancedServo.AdvancedServo.Attached;
+                DeviceAttached = ActiveAdvancedServo.AdvancedServo.Attached;
+                AsAttachedToServer = ActiveAdvancedServo.AdvancedServo.AttachedToServer;
+                AsClass = ActiveAdvancedServo.AdvancedServo.Class.ToString();
+                AsID = Enum.GetName(typeof(Phidget.PhidgetID), ActiveAdvancedServo.AdvancedServo.ID);
+                AsLabel = ActiveAdvancedServo.AdvancedServo.Label;
                 AsLibraryVersion = Phidget.LibraryVersion;  // This is a static field
-                AsName = ActiveAdvancedServo.Name;
-                AsPort = ActiveAdvancedServo.Port;
-                AsSerialNumber = ActiveAdvancedServo.SerialNumber; // This throws exception
-                //AsServerID = ActiveAdvancedServo.ServerID;
-                AsType = ActiveAdvancedServo.Type;
-                AsVersion = ActiveAdvancedServo.Version;
+                AsName = ActiveAdvancedServo.AdvancedServo.Name;
+                AsPort = ActiveAdvancedServo.AdvancedServo.Port;
+                AsSerialNumber = ActiveAdvancedServo.AdvancedServo.SerialNumber;
+                //AsServerID = ActiveAdvancedServo.AdvancedServo.ServerID;
+                AsType = ActiveAdvancedServo.AdvancedServo.Type;
+                AsVersion = ActiveAdvancedServo.AdvancedServo.Version;
 
                 //var sensors = ActiveAdvancedServo.sensors;
                 //AdvancedServoAnalogSensor sensor = null;
@@ -946,7 +988,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 //AsAddress = ActiveAdvancedServo.Address;
                 AsAddress = "";
-                AsAttached = ActiveAdvancedServo.Attached;
+                AsAttached = ActiveAdvancedServo.AdvancedServo.Attached;
                 //AsAttachedToServer = ActiveAdvancedServo.AttachedToServer;
                 AsAttachedToServer = false;
                 // This doesn't throw exception but let's clear anyway

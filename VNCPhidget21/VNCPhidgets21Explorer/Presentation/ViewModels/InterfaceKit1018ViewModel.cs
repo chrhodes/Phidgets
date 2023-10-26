@@ -256,6 +256,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        private bool? _deviceAttached;
+        public bool? DeviceAttached
+        {
+            get => _deviceAttached;
+            set
+            {
+                if (_deviceAttached == value)
+                    return;
+                _deviceAttached = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool? _ikAttachedToServer;
         public bool? IkAttachedToServer
         {
@@ -1989,6 +2002,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Do something amazing.
             Message = "Cool, you called CloseInterfaceKit";
 
+            ActiveInterfaceKit.InterfaceKit.Attach -= ActiveInterfaceKit_Attach;
+            ActiveInterfaceKit.InterfaceKit.Detach -= ActiveInterfaceKit_Detach;
+
             ActiveInterfaceKit.Close();
             UpdateInterfaceKitProperties();
             ActiveInterfaceKit = null;
@@ -2298,6 +2314,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             {
                 IkAddress = ActiveInterfaceKit.InterfaceKit.Address;
                 IkAttached = ActiveInterfaceKit.InterfaceKit.Attached;
+                DeviceAttached = ActiveInterfaceKit.InterfaceKit.Attached;
                 IkAttachedToServer = ActiveInterfaceKit.InterfaceKit.AttachedToServer;
                 IkClass = ActiveInterfaceKit.InterfaceKit.Class.ToString();
                 IkID = Enum.GetName(typeof(Phidget.PhidgetID), ActiveInterfaceKit.InterfaceKit.ID);

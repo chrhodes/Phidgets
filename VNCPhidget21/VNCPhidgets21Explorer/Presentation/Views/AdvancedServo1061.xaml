@@ -180,7 +180,18 @@
                         </Style>
                     </dxlc:LayoutGroup.GroupBoxStyle>-->
 
-                <dxlc:LayoutItem Label="Address" >
+                <!--<views:Phidget x:Name="Phidget1" Margin="-10" 
+                               DeviceName="{Binding ActiveAdvancedServo.AdvancedServo.Name, Mode=TwoWay}"/>-->
+
+                <views:Phidget x:Name="Phidget1" Margin="-10" 
+                               PhidgetDevice="{Binding PhidgetDevice, Mode=TwoWay}"
+                               DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}"/>
+                
+                <!--<views:Phidget x:Name="Phidget1" Margin="-10" 
+                               PhidgetDevice="{Binding ActiveAdvancedServo.AdvancedServo, Mode=TwoWay}"
+                               DeviceName="{Binding ActiveAdvancedServo.AdvancedServo.Name, Mode=TwoWay}"/>-->
+                
+                <!--<dxlc:LayoutItem Label="Address" >
                     <dxe:TextEdit EditValue="{Binding AsAddress, Mode=OneWay}" IsReadOnly="True" 
                                   Background="White" Foreground="{Binding AsAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                 </dxlc:LayoutItem>
@@ -243,7 +254,7 @@
                 <dxlc:LayoutItem Label="Version"  >
                     <dxe:TextEdit EditValue="{Binding AsVersion, Mode=OneWay}" IsReadOnly="True"
                                   Background="White"  Foreground="{Binding AsAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                </dxlc:LayoutItem>
+                </dxlc:LayoutItem>-->
 
             </dxlc:LayoutGroup>
 

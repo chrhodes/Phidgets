@@ -53,10 +53,12 @@ namespace VNCPhidgets21Explorer.Presentation.Views
         private void InitializeView()
         {
             Int64 startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
-            
+
             // NOTE(crhodes)
             // Put things here that initialize the View
-            
+
+            this.lgPhidgetStatus.IsCollapsed = true;
+
             Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
         

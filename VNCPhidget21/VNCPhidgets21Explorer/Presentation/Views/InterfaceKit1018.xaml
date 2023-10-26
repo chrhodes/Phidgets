@@ -195,9 +195,9 @@
                     </dxlc:LayoutItem>
                     
                 </dxlc:LayoutGroup>
-
-                <dxlc:LayoutGroup Orientation="Vertical" View="GroupBox" Header="Device Status" 
-                                  IsCollapsible="True" IsCollapsed="True"  >
+        
+                <dxlc:LayoutGroup Name="lgPhidgetStatus" Orientation="Vertical" View="GroupBox" Header="Device Status" 
+                                  IsCollapsible="True" IsCollapsed="False"  >
                     <!--<dxlc:LayoutGroup.GroupBoxStyle>
                         <Style TargetType="dxlc:GroupBox">
                             <Setter Property="Background" Value="Transparent" />
@@ -206,10 +206,11 @@
                             <Setter Property="Padding" Value="0" />
                             <Setter Property="TitleVisibility" Value="Collapsed" />
                         </Style>
-                    </dxlc:LayoutGroup.GroupBoxStyle>-->   
+                    </dxlc:LayoutGroup.GroupBoxStyle>-->
 
-                    <dxlc:LayoutItem Label="Address" >
-                        <!--<Label Content="{Binding ActiveInterfaceKit.Address}" />-->
+                    <views:Phidget x:Name="Phidget1" Margin="-10" />
+                    
+                    <!--<dxlc:LayoutItem Label="Address" >
                         <dxe:TextEdit EditValue="{Binding IkAddress, Mode=OneWay}" IsReadOnly="True" 
                                       Background="White" Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
@@ -271,9 +272,7 @@
                     <dxlc:LayoutItem Label="Version"  >
                         <dxe:TextEdit EditValue="{Binding IkVersion, Mode=OneWay}" IsReadOnly="True"
                                       Background="White" Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
-
-                    <!--</dxlc:LayoutGroup>-->
+                    </dxlc:LayoutItem>-->
 
                 </dxlc:LayoutGroup>
 
