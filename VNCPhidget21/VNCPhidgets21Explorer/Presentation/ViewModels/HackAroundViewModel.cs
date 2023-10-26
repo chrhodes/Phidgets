@@ -211,7 +211,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }   
 
-
         #endregion
 
         #region Event Handlers (none)
@@ -419,7 +418,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 //ifk.Detach += Ifk_Detach;
                 //ifk.Error += Ifk_Error;
                 //ifk.InputChange += Ifk_InputChange;
-                ifkEx.OutputChange += Ifk_OutputChange;
+
+                ifkEx.InterfaceKit.OutputChange += Ifk_OutputChange;
+                //ifkEx.OutputChange += Ifk_OutputChange;
+
                 //ifk.SensorChange += Ifk_SensorChange;
                 //ifk.ServerConnect += Ifk_ServerConnect;
                 //ifk.ServerDisconnect += Ifk_ServerDisconnect;
@@ -427,7 +429,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 //ifk.open(serialNumber, hostName, port);
                 //ifk.waitForAttachment();
 
-                InterfaceKitDigitalOutputCollection ifkdoc = ifkEx.outputs;
+                InterfaceKitDigitalOutputCollection ifkdoc = ifkEx.InterfaceKit.outputs;
+                //InterfaceKitDigitalOutputCollection ifkdoc = ifkEx.outputs;
 
                 for (int i = 0; i < loops; i++)
                 {
@@ -449,7 +452,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             try
             {
-                Log.Debug($"InterfaceKitParty2 {ifkEx.HostIPAddress},{ifkEx.Port} {ifkEx.SerialNumber} sleep:{sleep} loops:{loops}", Common.LOG_CATEGORY);
+                Log.Debug($"InterfaceKitParty2 {ifkEx.HostIPAddress},{ifkEx.HostPort} {ifkEx.HostSerialNumber} sleep:{sleep} loops:{loops}", Common.LOG_CATEGORY);
 
                 //VNC.Phidget.InterfaceKitEx ifkEx = new VNC.Phidget.InterfaceKitEx(hostName, port, serialNumber, enable: true, embedded: true);
 
@@ -459,7 +462,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 //ifk.Detach += Ifk_Detach;
                 //ifk.Error += Ifk_Error;
                 //ifk.InputChange += Ifk_InputChange;
-                ifkEx.OutputChange += Ifk_OutputChange;
+
+                ifkEx.InterfaceKit.OutputChange += Ifk_OutputChange;
+                //ifkEx.OutputChange += Ifk_OutputChange;
+
                 //ifk.SensorChange += Ifk_SensorChange;
                 //ifk.ServerConnect += Ifk_ServerConnect;
                 //ifk.ServerDisconnect += Ifk_ServerDisconnect;
@@ -467,7 +473,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 //ifk.open(serialNumber, hostName, port);
                 //ifk.waitForAttachment();
 
-                InterfaceKitDigitalOutputCollection ifkDigitalOut = ifkEx.outputs;
+                InterfaceKitDigitalOutputCollection ifkDigitalOut = ifkEx.InterfaceKit.outputs;
+                //InterfaceKitDigitalOutputCollection ifkDigitalOut = ifkEx.outputs;
 
                 for (int i = 0; i < loops; i++)
                 {

@@ -211,6 +211,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        // TODO(crhodes)
+        // May want to make this just a Phidgets.InterfaceKit to avoid all the ActiveInterfaceKit.InterfaceKit stuff
+
         private InterfaceKitEx _activeInterfaceKit;
         public InterfaceKitEx ActiveInterfaceKit
         {
@@ -481,9 +484,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 // No need to update if same state.
 
                 if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.sensors[0].Sensitivity)
+                    && value != ActiveInterfaceKit.InterfaceKit.sensors[0].Sensitivity)
                 {
-                    ActiveInterfaceKit.sensors[0].Sensitivity = (Int32)value;
+                    ActiveInterfaceKit.InterfaceKit.sensors[0].Sensitivity = (Int32)value;
                 }
 
                 OnPropertyChanged();
@@ -574,9 +577,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 // No need to update if same state.
 
                 if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.sensors[1].Sensitivity)
+                    && value != ActiveInterfaceKit.InterfaceKit.sensors[1].Sensitivity)
                 {
-                    ActiveInterfaceKit.sensors[1].Sensitivity = (Int32)value;
+                    ActiveInterfaceKit.InterfaceKit.sensors[1].Sensitivity = (Int32)value;
                 }
 
                 OnPropertyChanged();
@@ -667,9 +670,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 // No need to update if same state.
 
                 if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.sensors[2].Sensitivity)
+                    && value != ActiveInterfaceKit.InterfaceKit.sensors[2].Sensitivity)
                 {
-                    ActiveInterfaceKit.sensors[2].Sensitivity = (Int32)value;
+                    ActiveInterfaceKit.InterfaceKit.sensors[2].Sensitivity = (Int32)value;
                 }
 
                 OnPropertyChanged();
@@ -760,9 +763,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 // No need to update if same state.
 
                 if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.sensors[3].Sensitivity)
+                    && value != ActiveInterfaceKit.InterfaceKit.sensors[3].Sensitivity)
                 {
-                    ActiveInterfaceKit.sensors[3].Sensitivity = (Int32)value;
+                    ActiveInterfaceKit.InterfaceKit.sensors[3].Sensitivity = (Int32)value;
                 }
 
                 OnPropertyChanged();
@@ -853,9 +856,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 // No need to update if same state.
 
                 if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.sensors[4].Sensitivity)
+                    && value != ActiveInterfaceKit.InterfaceKit.sensors[4].Sensitivity)
                 {
-                    ActiveInterfaceKit.sensors[4].Sensitivity = (Int32)value;
+                    ActiveInterfaceKit.InterfaceKit.sensors[4].Sensitivity = (Int32)value;
                 }
 
                 OnPropertyChanged();
@@ -946,9 +949,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 // No need to update if same state.
 
                 if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.sensors[5].Sensitivity)
+                    && value != ActiveInterfaceKit.InterfaceKit.sensors[5].Sensitivity)
                 {
-                    ActiveInterfaceKit.sensors[5].Sensitivity = (Int32)value;
+                    ActiveInterfaceKit.InterfaceKit.sensors[5].Sensitivity = (Int32)value;
                 }
 
                 OnPropertyChanged();
@@ -1039,9 +1042,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 // No need to update if same state.
 
                 if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.sensors[6].Sensitivity)
+                    && value != ActiveInterfaceKit.InterfaceKit.sensors[6].Sensitivity)
                 {
-                    ActiveInterfaceKit.sensors[6].Sensitivity = (Int32)value;
+                    ActiveInterfaceKit.InterfaceKit.sensors[6].Sensitivity = (Int32)value;
                 }
 
                 OnPropertyChanged();
@@ -1132,9 +1135,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 // No need to update if same state.
 
                 if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.sensors[7].Sensitivity)
+                    && value != ActiveInterfaceKit.InterfaceKit.sensors[7].Sensitivity)
                 {
-                    ActiveInterfaceKit.sensors[7].Sensitivity = (Int32)value;
+                    ActiveInterfaceKit.InterfaceKit.sensors[7].Sensitivity = (Int32)value;
                 }
 
                 OnPropertyChanged();
@@ -1375,9 +1378,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 // No need to update if same state.
 
                 if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.outputs[0])
+                    && value != ActiveInterfaceKit.InterfaceKit.outputs[0])
                 {
-                    ActiveInterfaceKit.outputs[0] = (Boolean)value;
+                    ActiveInterfaceKit.InterfaceKit.outputs[0] = (Boolean)value;
                 }
 
                 OnPropertyChanged();
@@ -1395,9 +1398,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 _dO1 = value;
 
                 if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.outputs[1])
+                    && value != ActiveInterfaceKit.InterfaceKit.outputs[1])
                 {
-                    ActiveInterfaceKit.outputs[1] = (Boolean)value;
+                    ActiveInterfaceKit.InterfaceKit.outputs[1] = (Boolean)value;
                 }
 
                 OnPropertyChanged();
@@ -1415,9 +1418,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 _dO2 = value;
 
                 if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.outputs[2])
+                    && value != ActiveInterfaceKit.InterfaceKit.outputs[2])
                 {
-                    ActiveInterfaceKit.outputs[2] = (Boolean)value;
+                    ActiveInterfaceKit.InterfaceKit.outputs[2] = (Boolean)value;
                 }
 
                 OnPropertyChanged();
@@ -1435,9 +1438,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 _dO3 = value;
 
                 if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.outputs[3])
+                    && value != ActiveInterfaceKit.InterfaceKit.outputs[3])
                 {
-                    ActiveInterfaceKit.outputs[3] = (Boolean)value;
+                    ActiveInterfaceKit.InterfaceKit.outputs[3] = (Boolean)value;
                 }
 
                 OnPropertyChanged();
@@ -1455,9 +1458,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 _dO4 = value;
 
                 if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.outputs[4])
+                    && value != ActiveInterfaceKit.InterfaceKit.outputs[4])
                 {
-                    ActiveInterfaceKit.outputs[4] = (Boolean)value;
+                    ActiveInterfaceKit.InterfaceKit.outputs[4] = (Boolean)value;
                 }
 
                 OnPropertyChanged();
@@ -1475,9 +1478,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 _dO5 = value;
 
                 if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.outputs[5])
+                    && value != ActiveInterfaceKit.InterfaceKit.outputs[5])
                 {
-                    ActiveInterfaceKit.outputs[5] = (Boolean)value;
+                    ActiveInterfaceKit.InterfaceKit.outputs[5] = (Boolean)value;
                 }
 
                 OnPropertyChanged();
@@ -1495,9 +1498,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 _dO6 = value;
 
                 if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.outputs[6])
+                    && value != ActiveInterfaceKit.InterfaceKit.outputs[6])
                 {
-                    ActiveInterfaceKit.outputs[6] = (Boolean)value;
+                    ActiveInterfaceKit.InterfaceKit.outputs[6] = (Boolean)value;
                 }
                 OnPropertyChanged();
             }
@@ -1514,9 +1517,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 _dO7 = value;
 
                 if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.outputs[7])
+                    && value != ActiveInterfaceKit.InterfaceKit.outputs[7])
                 {
-                    ActiveInterfaceKit.outputs[7] = (Boolean)value;
+                    ActiveInterfaceKit.InterfaceKit.outputs[7] = (Boolean)value;
                 }
 
                 OnPropertyChanged();
@@ -1534,9 +1537,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 _dO0 = value;
 
                 if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.outputs[8])
+                    && value != ActiveInterfaceKit.InterfaceKit.outputs[8])
                 {
-                    ActiveInterfaceKit.outputs[8] = (Boolean)value;
+                    ActiveInterfaceKit.InterfaceKit.outputs[8] = (Boolean)value;
                 }
 
                 OnPropertyChanged();
@@ -1554,9 +1557,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 _dO9 = value;
 
                 if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.outputs[9])
+                    && value != ActiveInterfaceKit.InterfaceKit.outputs[9])
                 {
-                    ActiveInterfaceKit.outputs[9] = (Boolean)value;
+                    ActiveInterfaceKit.InterfaceKit.outputs[9] = (Boolean)value;
                 }
 
                 OnPropertyChanged();
@@ -1574,9 +1577,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 _dO10 = value;
 
                 if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.outputs[10])
+                    && value != ActiveInterfaceKit.InterfaceKit.outputs[10])
                 {
-                    ActiveInterfaceKit.outputs[10] = (Boolean)value;
+                    ActiveInterfaceKit.InterfaceKit.outputs[10] = (Boolean)value;
                 }
 
                 OnPropertyChanged();
@@ -1594,9 +1597,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 _dO11 = value;
 
                 if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.outputs[11])
+                    && value != ActiveInterfaceKit.InterfaceKit.outputs[11])
                 {
-                    ActiveInterfaceKit.outputs[11] = (Boolean)value;
+                    ActiveInterfaceKit.InterfaceKit.outputs[11] = (Boolean)value;
                 }
 
                 OnPropertyChanged();
@@ -1614,9 +1617,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 _dO12 = value;
 
                 if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.outputs[12])
+                    && value != ActiveInterfaceKit.InterfaceKit.outputs[12])
                 {
-                    ActiveInterfaceKit.outputs[12] = (Boolean)value;
+                    ActiveInterfaceKit.InterfaceKit.outputs[12] = (Boolean)value;
                 }
 
                 OnPropertyChanged();
@@ -1634,9 +1637,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 _dO13 = value;
 
                 if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.outputs[13])
+                    && value != ActiveInterfaceKit.InterfaceKit.outputs[13])
                 {
-                    ActiveInterfaceKit.outputs[13] = (Boolean)value;
+                    ActiveInterfaceKit.InterfaceKit.outputs[13] = (Boolean)value;
                 }
 
                 OnPropertyChanged();
@@ -1654,9 +1657,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 _dO14 = value;
 
                 if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.outputs[14])
+                    && value != ActiveInterfaceKit.InterfaceKit.outputs[14])
                 {
-                    ActiveInterfaceKit.outputs[14] = (Boolean)value;
+                    ActiveInterfaceKit.InterfaceKit.outputs[14] = (Boolean)value;
                 }
 
                 OnPropertyChanged();
@@ -1674,9 +1677,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 _dO15 = value;
 
                 if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.outputs[15])
+                    && value != ActiveInterfaceKit.InterfaceKit.outputs[15])
                 {
-                    ActiveInterfaceKit.outputs[15] = (Boolean)value;
+                    ActiveInterfaceKit.InterfaceKit.outputs[15] = (Boolean)value;
                 }
 
                 OnPropertyChanged();
@@ -1888,6 +1891,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Do something amazing.
             Message = "Cool, you called OpenInterfaceKit";
 
+            
             ActiveInterfaceKit = new InterfaceKitEx(
                 SelectedHost.IPAddress,
                 SelectedHost.Port,
@@ -1895,21 +1899,21 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 SelectedInterfaceKit.Enable,
                 SelectedInterfaceKit.Embedded);
 
-            ActiveInterfaceKit.Attach += ActiveInterfaceKit_Attach;
-            ActiveInterfaceKit.Detach += ActiveInterfaceKit_Detach;
+            ActiveInterfaceKit.InterfaceKit.Attach += ActiveInterfaceKit_Attach;
+            ActiveInterfaceKit.InterfaceKit.Detach += ActiveInterfaceKit_Detach;
 
             // NOTE(crhodes)
             // Capture Digital Input and Output changes so we can update the UI
             // The InterfaceKitEx attaches to these events also.
             // Itlogs the changes if xxx is set to true.
 
-            ActiveInterfaceKit.OutputChange += ActiveInterfaceKit_OutputChange;
-            ActiveInterfaceKit.InputChange += ActiveInterfaceKit_InputChange;
+            ActiveInterfaceKit.InterfaceKit.OutputChange += ActiveInterfaceKit_OutputChange;
+            ActiveInterfaceKit.InterfaceKit.InputChange += ActiveInterfaceKit_InputChange;
 
             // NOTE(crhodes)
             // Let's do see if we can watch some analog data stream in.
 
-            ActiveInterfaceKit.SensorChange += ActiveInterfaceKit_SensorChange;
+            ActiveInterfaceKit.InterfaceKit.SensorChange += ActiveInterfaceKit_SensorChange;
             ActiveInterfaceKit.Open();
 
             // Uncomment this if you are telling someone else to handle this
@@ -2273,10 +2277,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             try
             {
-                Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
-                //Phidget device = (Phidget)e.Device;
+                //Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
+                Phidget device = (Phidget)e.Device;
                 //var b = e.GetType();
-                Log.Trace($"ActiveInterfaceKit_Attach {ifk.Address},{ifk.Port} S#:{ifk.SerialNumber}", Common.LOG_CATEGORY);
+                Log.Trace($"ActiveInterfaceKit_Attach {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
                 // TODO(crhodes)
                 // This is where properties should be grabbed
                 UpdateInterfaceKitProperties();
@@ -2289,23 +2293,24 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private void UpdateInterfaceKitProperties()
         {
-            if (ActiveInterfaceKit.Attached)
-            {
-                IkAddress = ActiveInterfaceKit.Address;
-                IkAttached = ActiveInterfaceKit.Attached;
-                IkAttachedToServer = ActiveInterfaceKit.AttachedToServer;
-                IkClass = ActiveInterfaceKit.Class.ToString();
-                IkID = Enum.GetName(typeof(Phidget.PhidgetID), ActiveInterfaceKit.ID);
-                IkLabel = ActiveInterfaceKit.Label;
-                IkLibraryVersion = Phidget.LibraryVersion;  // This is a static field
-                IkName = ActiveInterfaceKit.Name;
-                IkPort = ActiveInterfaceKit.Port;
-                IkSerialNumber = ActiveInterfaceKit.SerialNumber; // This throws exception
-                //IkServerID = ActiveInterfaceKit.ServerID;
-                IkType = ActiveInterfaceKit.Type;
-                IkVersion = ActiveInterfaceKit.Version;
 
-                var sensors = ActiveInterfaceKit.sensors;
+            if (ActiveInterfaceKit.InterfaceKit.Attached)
+            {
+                IkAddress = ActiveInterfaceKit.InterfaceKit.Address;
+                IkAttached = ActiveInterfaceKit.InterfaceKit.Attached;
+                IkAttachedToServer = ActiveInterfaceKit.InterfaceKit.AttachedToServer;
+                IkClass = ActiveInterfaceKit.InterfaceKit.Class.ToString();
+                IkID = Enum.GetName(typeof(Phidget.PhidgetID), ActiveInterfaceKit.InterfaceKit.ID);
+                IkLabel = ActiveInterfaceKit.InterfaceKit.Label;
+                IkLibraryVersion = Phidget.LibraryVersion;  // This is a static field
+                IkName = ActiveInterfaceKit.InterfaceKit.Name;
+                IkPort = ActiveInterfaceKit.InterfaceKit.Port;
+                IkSerialNumber = ActiveInterfaceKit.InterfaceKit.SerialNumber; // This throws exception
+                //IkServerID = ActiveInterfaceKit.ServerID;
+                IkType = ActiveInterfaceKit.InterfaceKit.Type;
+                IkVersion = ActiveInterfaceKit.InterfaceKit.Version;
+
+                var sensors = ActiveInterfaceKit.InterfaceKit.sensors;
                 InterfaceKitAnalogSensor sensor = null;
 
                 // NOTE(crhodes)
@@ -2364,7 +2369,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 //IkAddress = ActiveInterfaceKit.Address;
                 IkAddress = "";
-                IkAttached = ActiveInterfaceKit.Attached;
+                IkAttached = ActiveInterfaceKit.InterfaceKit.Attached;
                 //IkAttachedToServer = ActiveInterfaceKit.AttachedToServer;
                 IkAttachedToServer = false;
                 // This doesn't throw exception but let's clear anyway

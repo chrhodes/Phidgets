@@ -24,18 +24,7 @@ namespace VNC.Phidget
             _Embedded = embedded;
             _Enable = enable;
 
-            IntitalizePhidget();
-
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private void IntitalizePhidget()
-        {
-            this.Attach += Phidget_Attach;
-            this.Detach += Phidget_Detach;
-            this.Error += Phidget_Error;
-            this.ServerConnect += Phidget_ServerConnect;
-            this.ServerDisconnect += Phidget_ServerDisconnect;
         }
 
         #endregion
@@ -107,21 +96,20 @@ namespace VNC.Phidget
             }
         }
 
-        //public bool LogInputChangeEvents { get; set; }
-        //public bool LogOutputChangeEvents { get; set; }
-        //public bool LogSensorChangeEvents { get; set; }
-
         #endregion
 
         #region Event Handlers
 
-        private void Phidget_ServerDisconnect(object sender, Phidgets.Events.ServerDisconnectEventArgs e)
+        public void Phidget_ServerDisconnect(object sender, Phidgets.Events.ServerDisconnectEventArgs e)
         {
             try
             {
                 var a = e;
                 var b = e.GetType();
-                Log.Trace("Phidget_ServerDisconnect", Common.LOG_CATEGORY);
+
+                Phidgets.Phidget device = (Phidgets.Phidget)e.Device;
+
+                Log.Trace("Phidget_ServerDisconnect {device.Address}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
@@ -129,13 +117,12 @@ namespace VNC.Phidget
             }
         }
 
-        private void Phidget_ServerConnect(object sender, ServerConnectEventArgs e)
+        public void Phidget_ServerConnect(object sender, ServerConnectEventArgs e)
         {
             try
             {
                 Phidgets.Phidget device = (Phidgets.Phidget)e.Device;
-                //var b = e.GetType();
-                //Log.Trace($"Phidget_ServerConnect {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
+
                 Log.Trace($"Phidget_ServerConnect {device.Address},{device.Port}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
@@ -144,67 +131,12 @@ namespace VNC.Phidget
             }
         }
 
-        //private void Phidget_SensorChange(object sender, SensorChangeEventArgs e)
-        //{
-        //    if (LogSensorChangeEvents)
-        //    {
-        //        try
-        //        {
-        //            InterfaceKit ifk = (InterfaceKit)sender;
-        //            var a = e;
-        //            var b = e.GetType();
-        //            Log.Trace($"Phidget_SensorChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Log.Error(ex, Common.LOG_CATEGORY);
-        //        }
-        //    }
-        //}
-
-        //private void Phidget_OutputChange(object sender, Phidgets.Events.OutputChangeEventArgs e)
-        //{
-        //    if (LogOutputChangeEvents)
-        //    {
-        //        try
-        //        {
-        //            InterfaceKit ifk = (InterfaceKit)sender;
-        //            var a = e;
-        //            var b = e.GetType();
-        //            Log.Trace($"Phidget_OutputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Log.Error(ex, Common.LOG_CATEGORY);
-        //        }
-        //    }
-        //}
-
-        //private void Phidget_InputChange(object sender, Phidgets.Events.InputChangeEventArgs e)
-        //{
-        //    if (LogInputChangeEvents)
-        //    {
-        //        try
-        //        {
-        //            InterfaceKit ifk = (InterfaceKit)sender;
-        //            var a = e;
-        //            var b = e.GetType();
-        //            Log.Trace($"Phidget_InputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Log.Error(ex, Common.LOG_CATEGORY);
-        //        }
-        //    }
-        //}
-
-        private void Phidget_Attach(object sender, Phidgets.Events.AttachEventArgs e)
+        public void Phidget_Attach(object sender, Phidgets.Events.AttachEventArgs e)
         {
             try
             {
-                InterfaceKit device = (InterfaceKit)sender;
-                //Phidget device = (Phidget)e.Device;
-                //var b = e.GetType();
+                Phidgets.Phidget device = (Phidgets.Phidget)e.Device;
+
                 Log.Trace($"Phidget_Attach {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
@@ -213,14 +145,13 @@ namespace VNC.Phidget
             }
         }
 
-        private void Phidget_Detach(object sender, Phidgets.Events.DetachEventArgs e)
+        public void Phidget_Detach(object sender, Phidgets.Events.DetachEventArgs e)
         {
             try
             {
-                InterfaceKit ifk = (InterfaceKit)sender;
-                var a = e;
-                var b = e.GetType();
-                Log.Trace($"Phidget_Detach {ifk.Address},{ifk.SerialNumber}", Common.LOG_CATEGORY);
+                Phidgets.Phidget device = (Phidgets.Phidget)e.Device;
+
+                Log.Trace($"Phidget_Detach {device.Address},{device.SerialNumber}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
@@ -228,14 +159,14 @@ namespace VNC.Phidget
             }
         }
 
-        private void Phidget_Error(object sender, Phidgets.Events.ErrorEventArgs e)
+        public void Phidget_Error(object sender, Phidgets.Events.ErrorEventArgs e)
         {
             try
             {
-                InterfaceKit ifk = (InterfaceKit)sender;
+                Phidgets.Phidget device = (Phidgets.Phidget)sender;
                 var a = e;
                 var b = e.GetType();
-                Log.Trace($"Phidget_Error {ifk.Address},{ifk.Attached} - {e.Type} {e.Code} {e.Description}", Common.LOG_CATEGORY);
+                Log.Trace($"Phidget_Error {device.Address},{device.Attached} - {e.Type} {e.Code} {e.Description}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
@@ -250,33 +181,6 @@ namespace VNC.Phidget
         #endregion
 
         #region Public Methods (None)
-
-        public void Open()
-        {
-            try
-            {
-                this.open(_hostSerialNumber, _hostIPAddress, _hostPort);
-
-                this.waitForAttachment();
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
-
-        public void Close()
-        {
-            try
-            {
-                this.close();
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-           
-        }
 
         #endregion
 
