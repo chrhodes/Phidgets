@@ -18,6 +18,7 @@
     xmlns:local="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
     xmlns:localc="clr-namespace:VNCPhidgets21Explorer.Presentation.Converters"
     
+    xmlns:controls="clr-namespace:VNCPhidgets21Explorer.Presentation.Controls"
     xmlns:views="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCPhidgets21Explorer.Presentation.ViewModels"
     
@@ -174,7 +175,7 @@
             <dxlc:LayoutGroup Name="lgPhidgetStatus" Orientation="Vertical" View="GroupBox" Header="PhidgetDevice Status" 
                                   IsCollapsible="True" IsCollapsed="True"  >
 
-                <views:PhidgetDevice x:Name="Phidget1" Margin="-10" 
+                <controls:PhidgetDevice x:Name="Phidget1" Margin="-10" 
                                AttachedPhidgetDevice="{Binding PhidgetDevice, Mode=TwoWay}"
                                DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}"/>
                 

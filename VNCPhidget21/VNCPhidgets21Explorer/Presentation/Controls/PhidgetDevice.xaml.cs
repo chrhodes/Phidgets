@@ -5,8 +5,9 @@ using VNCPhidgets21Explorer.Presentation.ViewModels;
 
 using VNC;
 using VNC.Core.Mvvm;
+using VNCPhidgets21Explorer.Presentation.Views;
 
-namespace VNCPhidgets21Explorer.Presentation.Views
+namespace VNCPhidgets21Explorer.Presentation.Controls
 {
     public partial class PhidgetDevice : ViewBase, IPhidget, IInstanceCountV
     {

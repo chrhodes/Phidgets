@@ -21,6 +21,7 @@
     xmlns:local="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
     xmlns:localc="clr-namespace:VNCPhidgets21Explorer.Presentation.Converters"
     
+    xmlns:controls="clr-namespace:VNCPhidgets21Explorer.Presentation.Controls"
     xmlns:views="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCPhidgets21Explorer.Presentation.ViewModels"
     
@@ -171,18 +172,16 @@
             <dxlc:LayoutGroup Name="lgPhidgetStatus" Orientation="Vertical" View="GroupBox" Header="PhidgetDevice Status" 
                                   IsCollapsible="True" IsCollapsed="True"  >
 
-                <views:PhidgetDevice x:Name="Phidget1" Margin="-10" 
+                <controls:PhidgetDevice x:Name="Phidget1" Margin="-10" 
                                AttachedPhidgetDevice="{Binding PhidgetDevice, Mode=TwoWay}"
                                DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}"/>
 
             </dxlc:LayoutGroup>
 
             <dxlc:LayoutGroup Name="lgServoControls" Orientation="Horizontal" View="GroupBox" Header="Servo Controls" 
-                                  IsCollapsible="True" IsCollapsed="False" >
+                                  IsCollapsible="True" IsCollapsed="False" Padding="-5" >
 
-                <dxlc:LayoutGroup 
-                	View="Group" Orientation="Vertical" >
-                    <dxlc:LayoutItem Label="Servo S0" />
+                <dxlc:LayoutGroup View="GroupBox" Orientation="Vertical" Header="Servo S0" Padding="-5" >
 
                     <dxlc:LayoutItem Label="Servo Types" LabelPosition="Top">
                         <dxe:ComboBoxEdit ItemsSource="{Binding ServoTypes}" DisplayMember="Name" />
@@ -195,113 +194,87 @@
                     <dxlc:LayoutGroup 
 	                    View="Group" Orientation="Horizontal" >
 
-                        <!--<dxlc:LayoutItem Label="Current Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding CurrentMax_S0, Mode=OneWay}" IsReadOnly="True" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Current Limit" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding CurrentLimit_S0, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>-->
-
                         <dxlc:LayoutItem Label="Current" LabelPosition="Top">
                             <dxe:TextEdit Text="{Binding Current_S0, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
-                        <!--<dxlc:LayoutItem Label="Current Min" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding CurrentMin_S0, Mode=OneWay}" IsReadOnly="True" />
-                        </dxlc:LayoutItem>-->
-
                     </dxlc:LayoutGroup>
 
+                    <dxlc:LayoutGroup View="GroupBox" Orientation="Horizontal" Header="Velocity">
 
-                    <dxlc:LayoutGroup 
-                         View="Group" Orientation="Horizontal" >
-
-                        <dxlc:LayoutItem Label="Velocity Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding VelocityMax_S0, Mode=OneWay}"  IsReadOnly="True"/>
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Velocity Limit" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding VelocityLimit_S0, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Velocity" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding Velocity_S0, Mode=OneWay}"  IsReadOnly="True"/>
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Velocity Min" LabelPosition="Top">
+                        <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
                             <dxe:TextEdit Text="{Binding VelocityMin_S0, Mode=OneWay}"  IsReadOnly="True"/>
                         </dxlc:LayoutItem>
 
-                    </dxlc:LayoutGroup>
-
-
-                    <dxlc:LayoutGroup 
-                            View="Group" Orientation="Horizontal" >
-
-                        <dxlc:LayoutItem Label="Acceleration Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding AccelerationMax_S0, Mode=OneWay}" IsReadOnly="True" />
+                        <dxlc:LayoutItem Label="Limit" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding VelocityLimit_S0, Mode=TwoWay}" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Acceleration" LabelPosition="Top">
+                        <dxlc:LayoutItem Label="Curent" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding Velocity_S0, Mode=OneWay}"  IsReadOnly="True"/>
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Max" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding VelocityMax_S0, Mode=OneWay}"  IsReadOnly="True"/>
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                    <controls:AccelerationControl />
+                    <!--<dxlc:LayoutGroup View="GroupBox" Orientation="Horizontal" Header="Acceleration">
+
+                        <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
+                            <dxe:TextEdit Text="{Binding AccelerationMin_S0, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Current" LabelPosition="Top" LabelHorizontalAlignment="Center">
                             <dxe:TextEdit Text="{Binding Acceleration_S0, Mode=TwoWay}" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Acceleration Min" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding Acceleration_S0, Mode=OneWay}" IsReadOnly="True" />
+                        <dxlc:LayoutItem Label="Max" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AccelerationMax_S0, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
-                    </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>-->
 
-                    <dxlc:LayoutGroup 
-                            View="Group" Orientation="Horizontal" >
+                    <dxlc:LayoutGroup View="GroupBox" Orientation="Horizontal" Header="Position" >
 
-                        <dxlc:LayoutItem Label="Position Min" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding PositionMin_S0, Mode=OneWay}"  IsReadOnly="True"/>
+                        <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
+                            <dxe:TextEdit Text="{Binding PositionMin_S0, Mode=TwoWay}" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Current Position" LabelPosition="Top">
+                        <dxlc:LayoutItem Label="Current" LabelPosition="Top" LabelHorizontalAlignment="Center">
                             <dxe:TextEdit Text="{Binding Position_S0, Mode=TwoWay}" />
                         </dxlc:LayoutItem>
 
-                        <!--<dxlc:LayoutItem Label="TargetPosition" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding TargetPosition_S0, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>-->
-
-                        <dxlc:LayoutItem Label="Position Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding PositionMax_S0, Mode=OneWay}" IsReadOnly="True" />
+                        <dxlc:LayoutItem Label="Max" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding PositionMax_S0, Mode=TwoWay}" />
                         </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>
-
-                    <dxlc:LayoutGroup 
-                            View="Group" Orientation="Horizontal" >
+                    
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
                         <dxlc:LayoutItem Label="Engaged" LabelPosition="Top">
-                            <!--<dxe:CheckEdit Name="ceDI_0" Tag="0" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />-->
                             <dxe:CheckEdit IsChecked="{Binding Engaged_S0}"
                                        Background="{Binding Engaged_S0, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Top">
-                            <!--<dxe:CheckEdit Name="ceDI_0" Tag="0" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />-->
                             <dxe:CheckEdit IsChecked="{Binding SpeedRamping_S0}"
                                        Background="{Binding SpeedRamping_S0, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="Stopped" LabelPosition="Top">
-                            <!--<dxe:CheckEdit Name="ceDI_0" Tag="0" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />-->
                             <dxe:CheckEdit IsChecked="{Binding Stopped_S0}"
                                        Background="{Binding Stopped_S0, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                         </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>
-
+                    
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup 
-                	View="Group" Orientation="Vertical" >
-                    <dxlc:LayoutItem Label="Servo S1" />
+                <dxlc:LayoutGroup View="GroupBox" Orientation="Vertical" Header="Servo S1" Padding="-5" >
 
                     <dxlc:LayoutItem Label="Servo Types" LabelPosition="Top">
                         <dxe:ComboBoxEdit ItemsSource="{Binding ServoTypes}" DisplayMember="Name" />
@@ -314,102 +287,77 @@
                     <dxlc:LayoutGroup 
 	                    View="Group" Orientation="Horizontal" >
 
-                        <!--<dxlc:LayoutItem Label="Current Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding CurrentMax_S1, Mode=OneWay}" IsReadOnly="True" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Current Limit" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding CurrentLimit_S1, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>-->
-
                         <dxlc:LayoutItem Label="Current" LabelPosition="Top">
                             <dxe:TextEdit Text="{Binding Current_S1, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
-                        <!--<dxlc:LayoutItem Label="Current Min" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding CurrentMin_S1, Mode=OneWay}" IsReadOnly="True" />
-                        </dxlc:LayoutItem>-->
+                      </dxlc:LayoutGroup>
 
-                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup View="GroupBox" Orientation="Horizontal" Header="Velocity">
 
-
-                    <dxlc:LayoutGroup 
-                         View="Group" Orientation="Horizontal" >
-
-                        <dxlc:LayoutItem Label="Velocity Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding VelocityMax_S1, Mode=OneWay}"  IsReadOnly="True"/>
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Velocity Limit" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding VelocityLimit_S1, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Velocity" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding Velocity_S1, Mode=OneWay}"  IsReadOnly="True"/>
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Velocity Min" LabelPosition="Top">
+                        <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
                             <dxe:TextEdit Text="{Binding VelocityMin_S1, Mode=OneWay}"  IsReadOnly="True"/>
                         </dxlc:LayoutItem>
 
-                    </dxlc:LayoutGroup>
-
-
-                    <dxlc:LayoutGroup 
-                            View="Group" Orientation="Horizontal" >
-
-                        <dxlc:LayoutItem Label="Acceleration Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding AccelerationMax_S1, Mode=OneWay}" IsReadOnly="True" />
+                        <dxlc:LayoutItem Label="Limit" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding VelocityLimit_S1, Mode=TwoWay}" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Acceleration" LabelPosition="Top">
+                        <dxlc:LayoutItem Label="Curent" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding Velocity_S1, Mode=OneWay}"  IsReadOnly="True"/>
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Max" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding VelocityMax_S1, Mode=OneWay}"  IsReadOnly="True"/>
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup View="GroupBox" Orientation="Horizontal" Header="Acceleration">
+
+                        <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
+                            <dxe:TextEdit Text="{Binding AccelerationMin_S1, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Current" LabelPosition="Top" LabelHorizontalAlignment="Center">
                             <dxe:TextEdit Text="{Binding Acceleration_S1, Mode=TwoWay}" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Acceleration Min" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding Acceleration_S1, Mode=OneWay}" IsReadOnly="True" />
+                        <dxlc:LayoutItem Label="Max" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AccelerationMax_S1, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup 
-                            View="Group" Orientation="Horizontal" >
+                    <dxlc:LayoutGroup View="GroupBox" Orientation="Horizontal" Header="Position" >
 
-                        <dxlc:LayoutItem Label="Position Min" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding PositionMin_S1, Mode=OneWay}"  IsReadOnly="True"/>
+                        <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
+                            <dxe:TextEdit Text="{Binding PositionMin_S1, Mode=TwoWay}" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Current Position" LabelPosition="Top">
+                        <dxlc:LayoutItem Label="Current" LabelPosition="Top" LabelHorizontalAlignment="Center">
                             <dxe:TextEdit Text="{Binding Position_S1, Mode=TwoWay}" />
                         </dxlc:LayoutItem>
 
-                        <!--<dxlc:LayoutItem Label="TargetPosition" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding TargetPosition_S1, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>-->
-
-                        <dxlc:LayoutItem Label="Position Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding PositionMax_S1, Mode=OneWay}" IsReadOnly="True" />
+                        <dxlc:LayoutItem Label="Max" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding PositionMax_S1, Mode=TwoWay}" />
                         </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup 
-                            View="Group" Orientation="Horizontal" >
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
                         <dxlc:LayoutItem Label="Engaged" LabelPosition="Top">
-                            <!--<dxe:CheckEdit Name="ceDI_0" Tag="0" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />-->
                             <dxe:CheckEdit IsChecked="{Binding Engaged_S1}"
                                        Background="{Binding Engaged_S1, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Top">
-                            <!--<dxe:CheckEdit Name="ceDI_0" Tag="0" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />-->
                             <dxe:CheckEdit IsChecked="{Binding SpeedRamping_S1}"
                                        Background="{Binding SpeedRamping_S1, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="Stopped" LabelPosition="Top">
-                            <!--<dxe:CheckEdit Name="ceDI_0" Tag="0" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />-->
                             <dxe:CheckEdit IsChecked="{Binding Stopped_S1}"
                                        Background="{Binding Stopped_S1, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                         </dxlc:LayoutItem>
@@ -418,9 +366,7 @@
 
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup 
-                	View="Group" Orientation="Vertical" >
-                    <dxlc:LayoutItem Label="Servo S2" />
+                <dxlc:LayoutGroup View="GroupBox" Orientation="Vertical" Header="Servo S2" Padding="-5" >
 
                     <dxlc:LayoutItem Label="Servo Types" LabelPosition="Top">
                         <dxe:ComboBoxEdit ItemsSource="{Binding ServoTypes}" DisplayMember="Name" />
@@ -433,102 +379,78 @@
                     <dxlc:LayoutGroup 
 	                    View="Group" Orientation="Horizontal" >
 
-                        <!--<dxlc:LayoutItem Label="Current Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding CurrentMax_S2, Mode=OneWay}" IsReadOnly="True" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Current Limit" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding CurrentLimit_S2, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>-->
-
                         <dxlc:LayoutItem Label="Current" LabelPosition="Top">
                             <dxe:TextEdit Text="{Binding Current_S2, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
-                        <!--<dxlc:LayoutItem Label="Current Min" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding CurrentMin_S2, Mode=OneWay}" IsReadOnly="True" />
-                        </dxlc:LayoutItem>-->
-
                     </dxlc:LayoutGroup>
 
+                    <dxlc:LayoutGroup View="GroupBox" Orientation="Horizontal" Header="Velocity">
 
-                    <dxlc:LayoutGroup 
-                         View="Group" Orientation="Horizontal" >
-
-                        <dxlc:LayoutItem Label="Velocity Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding VelocityMax_S2, Mode=OneWay}"  IsReadOnly="True"/>
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Velocity Limit" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding VelocityLimit_S2, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Velocity" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding Velocity_S2, Mode=OneWay}"  IsReadOnly="True"/>
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Velocity Min" LabelPosition="Top">
+                        <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
                             <dxe:TextEdit Text="{Binding VelocityMin_S2, Mode=OneWay}"  IsReadOnly="True"/>
                         </dxlc:LayoutItem>
 
-                    </dxlc:LayoutGroup>
-
-
-                    <dxlc:LayoutGroup 
-                            View="Group" Orientation="Horizontal" >
-
-                        <dxlc:LayoutItem Label="Acceleration Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding AccelerationMax_S2, Mode=OneWay}" IsReadOnly="True" />
+                        <dxlc:LayoutItem Label="Limit" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding VelocityLimit_S2, Mode=TwoWay}" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Acceleration" LabelPosition="Top">
+                        <dxlc:LayoutItem Label="Curent" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding Velocity_S2, Mode=OneWay}"  IsReadOnly="True"/>
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Max" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding VelocityMax_S2, Mode=OneWay}"  IsReadOnly="True"/>
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                    
+                    <dxlc:LayoutGroup View="GroupBox" Orientation="Horizontal" Header="Acceleration">
+
+                        <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
+                            <dxe:TextEdit Text="{Binding AccelerationMin_S2, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Current" LabelPosition="Top" LabelHorizontalAlignment="Center">
                             <dxe:TextEdit Text="{Binding Acceleration_S2, Mode=TwoWay}" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Acceleration Min" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding Acceleration_S2, Mode=OneWay}" IsReadOnly="True" />
+                        <dxlc:LayoutItem Label="Max" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AccelerationMax_S2, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup 
-                            View="Group" Orientation="Horizontal" >
+                    <dxlc:LayoutGroup View="GroupBox" Orientation="Horizontal" Header="Position" >
 
-                        <dxlc:LayoutItem Label="Position Min" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding PositionMin_S2, Mode=OneWay}"  IsReadOnly="True"/>
+                        <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
+                            <dxe:TextEdit Text="{Binding PositionMin_S2, Mode=TwoWay}" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Current Position" LabelPosition="Top">
+                        <dxlc:LayoutItem Label="Current" LabelPosition="Top" LabelHorizontalAlignment="Center">
                             <dxe:TextEdit Text="{Binding Position_S2, Mode=TwoWay}" />
                         </dxlc:LayoutItem>
 
-                        <!--<dxlc:LayoutItem Label="TargetPosition" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding TargetPosition_S2, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>-->
-
-                        <dxlc:LayoutItem Label="Position Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding PositionMax_S2, Mode=OneWay}" IsReadOnly="True" />
+                        <dxlc:LayoutItem Label="Max" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding PositionMax_S2, Mode=TwoWay}" />
                         </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup 
-                            View="Group" Orientation="Horizontal" >
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
                         <dxlc:LayoutItem Label="Engaged" LabelPosition="Top">
-                            <!--<dxe:CheckEdit Name="ceDI_0" Tag="0" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />-->
                             <dxe:CheckEdit IsChecked="{Binding Engaged_S2}"
                                        Background="{Binding Engaged_S2, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Top">
-                            <!--<dxe:CheckEdit Name="ceDI_0" Tag="0" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />-->
                             <dxe:CheckEdit IsChecked="{Binding SpeedRamping_S2}"
                                        Background="{Binding SpeedRamping_S2, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="Stopped" LabelPosition="Top">
-                            <!--<dxe:CheckEdit Name="ceDI_0" Tag="0" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />-->
                             <dxe:CheckEdit IsChecked="{Binding Stopped_S2}"
                                        Background="{Binding Stopped_S2, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                         </dxlc:LayoutItem>
@@ -537,9 +459,7 @@
 
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup 
-                	View="Group" Orientation="Vertical" >
-                    <dxlc:LayoutItem Label="Servo S3" />
+                <dxlc:LayoutGroup View="GroupBox" Orientation="Vertical" Header="Servo S3" Padding="-5">
 
                     <dxlc:LayoutItem Label="Servo Types" LabelPosition="Top">
                         <dxe:ComboBoxEdit ItemsSource="{Binding ServoTypes}" DisplayMember="Name" />
@@ -552,102 +472,77 @@
                     <dxlc:LayoutGroup 
 	                    View="Group" Orientation="Horizontal" >
 
-                        <!--<dxlc:LayoutItem Label="Current Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding CurrentMax_S3, Mode=OneWay}" IsReadOnly="True" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Current Limit" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding CurrentLimit_S3, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>-->
-
                         <dxlc:LayoutItem Label="Current" LabelPosition="Top">
                             <dxe:TextEdit Text="{Binding Current_S3, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
-                        <!--<dxlc:LayoutItem Label="Current Min" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding CurrentMin_S3, Mode=OneWay}" IsReadOnly="True" />
-                        </dxlc:LayoutItem>-->
-
                     </dxlc:LayoutGroup>
 
+                    <dxlc:LayoutGroup View="GroupBox" Orientation="Horizontal" Header="Velocity">
 
-                    <dxlc:LayoutGroup 
-                         View="Group" Orientation="Horizontal" >
-
-                        <dxlc:LayoutItem Label="Velocity Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding VelocityMax_S3, Mode=OneWay}"  IsReadOnly="True"/>
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Velocity Limit" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding VelocityLimit_S3, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Velocity" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding Velocity_S3, Mode=OneWay}"  IsReadOnly="True"/>
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Velocity Min" LabelPosition="Top">
+                        <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
                             <dxe:TextEdit Text="{Binding VelocityMin_S3, Mode=OneWay}"  IsReadOnly="True"/>
                         </dxlc:LayoutItem>
 
-                    </dxlc:LayoutGroup>
-
-
-                    <dxlc:LayoutGroup 
-                            View="Group" Orientation="Horizontal" >
-
-                        <dxlc:LayoutItem Label="Acceleration Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding AccelerationMax_S3, Mode=OneWay}" IsReadOnly="True" />
+                        <dxlc:LayoutItem Label="Limit" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding VelocityLimit_S3, Mode=TwoWay}" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Acceleration" LabelPosition="Top">
+                        <dxlc:LayoutItem Label="Curent" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding Velocity_S3, Mode=OneWay}"  IsReadOnly="True"/>
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Max" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding VelocityMax_S3, Mode=OneWay}"  IsReadOnly="True"/>
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup View="GroupBox" Orientation="Horizontal" Header="Acceleration">
+
+                        <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
+                            <dxe:TextEdit Text="{Binding AccelerationMin_S3, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Current" LabelPosition="Top" LabelHorizontalAlignment="Center">
                             <dxe:TextEdit Text="{Binding Acceleration_S3, Mode=TwoWay}" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Acceleration Min" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding Acceleration_S3, Mode=OneWay}" IsReadOnly="True" />
+                        <dxlc:LayoutItem Label="Max" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AccelerationMax_S3, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup 
-                            View="Group" Orientation="Horizontal" >
+                    <dxlc:LayoutGroup View="GroupBox" Orientation="Horizontal" Header="Position" >
 
-                        <dxlc:LayoutItem Label="Position Min" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding PositionMin_S3, Mode=OneWay}"  IsReadOnly="True"/>
+                        <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
+                            <dxe:TextEdit Text="{Binding PositionMin_S3, Mode=TwoWay}" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Current Position" LabelPosition="Top">
+                        <dxlc:LayoutItem Label="Current" LabelPosition="Top" LabelHorizontalAlignment="Center">
                             <dxe:TextEdit Text="{Binding Position_S3, Mode=TwoWay}" />
                         </dxlc:LayoutItem>
 
-                        <!--<dxlc:LayoutItem Label="TargetPosition" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding TargetPosition_S3, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>-->
-
-                        <dxlc:LayoutItem Label="Position Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding PositionMax_S3, Mode=OneWay}" IsReadOnly="True" />
+                        <dxlc:LayoutItem Label="Max" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding PositionMax_S3, Mode=TwoWay}" />
                         </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup 
-                            View="Group" Orientation="Horizontal" >
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
                         <dxlc:LayoutItem Label="Engaged" LabelPosition="Top">
-                            <!--<dxe:CheckEdit Name="ceDI_0" Tag="0" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />-->
                             <dxe:CheckEdit IsChecked="{Binding Engaged_S3}"
                                        Background="{Binding Engaged_S3, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Top">
-                            <!--<dxe:CheckEdit Name="ceDI_0" Tag="0" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />-->
                             <dxe:CheckEdit IsChecked="{Binding SpeedRamping_S3}"
                                        Background="{Binding SpeedRamping_S3, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="Stopped" LabelPosition="Top">
-                            <!--<dxe:CheckEdit Name="ceDI_0" Tag="0" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />-->
                             <dxe:CheckEdit IsChecked="{Binding Stopped_S3}"
                                        Background="{Binding Stopped_S3, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                         </dxlc:LayoutItem>

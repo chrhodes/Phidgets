@@ -2442,8 +2442,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             ActiveAdvancedServo = null;
             ClearDigitalInputsAndOutputs();
 
-            //OpenAdvancedServoCommand.RaiseCanExecuteChanged();
-            //CloseAdvancedServoCommand.RaiseCanExecuteChanged();
+            OpenAdvancedServoCommand.RaiseCanExecuteChanged();
+            CloseAdvancedServoCommand.RaiseCanExecuteChanged();
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -2534,28 +2534,28 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                             Current_S0 = servo.Current;
 
-                            AccelerationMax_S0 = servo.AccelerationMax;
-
-                            servo.Acceleration = 20;
-                            Acceleration_S0 = servo.Acceleration; // Throws exception if not set
-
                             AccelerationMin_S0 = servo.AccelerationMin;
 
-                            VelocityMax_S0 = servo.VelocityMax;
-                            Velocity_S0 = servo.Velocity;
+                            Acceleration_S0 = servo.Acceleration = 20;
+                            //Acceleration_S0 = servo.Acceleration; // Throws exception if not set before reading
 
-                            servo.VelocityLimit = servo.VelocityMax;
-                            VelocityLimit_S0 = servo.VelocityLimit; // Throws exception if not set
+                            AccelerationMax_S0 = servo.AccelerationMax;
 
                             VelocityMin_S0 = servo.VelocityMin;
 
-                            PositionMax_S0 = servo.PositionMax;
+                            Velocity_S0 = servo.Velocity;
 
-                            servo.Position = 90;
-                            Position_S0 = 90;
-                            //Position_S0 = servo.Position;         // Throws exception note sure why
+                            VelocityLimit_S0 = servo.VelocityLimit = 20;
+                            //VelocityLimit_S0 = servo.VelocityLimit; // Throws exception if not set before reading
+
+                            VelocityMax_S0 = servo.VelocityMax;
 
                             PositionMin_S0 = servo.PositionMin;
+
+                            Position_S0 = servo.Position = 90;
+                            //Position_S0 = servo.Position;         // Throws exception if not set before reading
+
+                            PositionMax_S0 = servo.PositionMax;
 
                             break;
 
@@ -2565,28 +2565,28 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                             Current_S1 = servo.Current;
 
-                            AccelerationMax_S1 = servo.AccelerationMax;
-
-                            servo.Acceleration = 20;
-                            Acceleration_S1 = servo.Acceleration; // Throws exception if not set
-
                             AccelerationMin_S1 = servo.AccelerationMin;
 
-                            VelocityMax_S1 = servo.VelocityMax;
-                            Velocity_S1 = servo.Velocity;
+                            Acceleration_S1 = servo.Acceleration = 20;
+                            //Acceleration_S1 = servo.Acceleration; // Throws exception if not set before reading
 
-                            servo.VelocityLimit = servo.VelocityMax;
-                            VelocityLimit_S1 = servo.VelocityLimit; // Throws exception if not set
+                            AccelerationMax_S1 = servo.AccelerationMax;
 
                             VelocityMin_S1 = servo.VelocityMin;
 
-                            PositionMax_S1 = servo.PositionMax;
+                            Velocity_S1 = servo.Velocity;
 
-                            servo.Position = 90;
-                            Position_S1 = 90;
-                            //Position_S1 = servo.Position;         // Thows exception if not set before first access
+                            VelocityLimit_S1 = servo.VelocityLimit = 20;
+                            //VelocityLimit_S1 = servo.VelocityLimit; // Throws exception if not set before reading
+
+                            VelocityMax_S1 = servo.VelocityMax;
 
                             PositionMin_S1 = servo.PositionMin;
+
+                            Position_S1 = servo.Position = 90;
+                            //Position_S1 = servo.Position;         // Throws exception if not set before reading
+
+                            PositionMax_S1 = servo.PositionMax;
 
                             break;
 
@@ -2596,28 +2596,28 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                             Current_S2 = servo.Current;
 
-                            AccelerationMax_S2 = servo.AccelerationMax;
-
-                            servo.Acceleration = 20;
-                            Acceleration_S2 = servo.Acceleration; // Throws exception if not set
-
                             AccelerationMin_S2 = servo.AccelerationMin;
 
-                            VelocityMax_S2 = servo.VelocityMax;
-                            Velocity_S2 = servo.Velocity;
+                            Acceleration_S2 = servo.Acceleration = 20;
+                            //Acceleration_S2 = servo.Acceleration; // Throws exception if not set before reading
 
-                            servo.VelocityLimit = servo.VelocityMax;
-                            VelocityLimit_S2 = servo.VelocityLimit; // Throws exception if not set
+                            AccelerationMax_S2 = servo.AccelerationMax;
 
                             VelocityMin_S2 = servo.VelocityMin;
 
-                            PositionMax_S2 = servo.PositionMax;
+                            Velocity_S2 = servo.Velocity;
 
-                            servo.Position = 90;
-                            Position_S2 = 90;
-                            //Position_S2 = servo.Position;         // Thows exception if not set before first access
+                            VelocityLimit_S2 = servo.VelocityLimit = 20;
+                            //VelocityLimit_S2 = servo.VelocityLimit; // Throws exception if not set before reading
+
+                            VelocityMax_S2 = servo.VelocityMax;
 
                             PositionMin_S2 = servo.PositionMin;
+
+                            Position_S2 = servo.Position = 90;
+                            //Position_S2 = servo.Position;         // Throws exception if not set before reading
+
+                            PositionMax_S2 = servo.PositionMax;
 
                             break;
 
@@ -2627,28 +2627,28 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                             Current_S3 = servo.Current;
 
-                            AccelerationMax_S3 = servo.AccelerationMax;
-
-                            servo.Acceleration = 20;
-                            Acceleration_S3 = servo.Acceleration; // Throws exception if not set
-
                             AccelerationMin_S3 = servo.AccelerationMin;
 
-                            VelocityMax_S3 = servo.VelocityMax;
-                            Velocity_S3 = servo.Velocity;
+                            Acceleration_S3 = servo.Acceleration = 20;
+                            //Acceleration_S3 = servo.Acceleration; // Throws exception if not set before reading
 
-                            servo.VelocityLimit = servo.VelocityMax;
-                            VelocityLimit_S3 = servo.VelocityLimit; // Throws exception if not set
+                            AccelerationMax_S3 = servo.AccelerationMax;
 
                             VelocityMin_S3 = servo.VelocityMin;
 
-                            PositionMax_S3 = servo.PositionMax;
+                            Velocity_S3 = servo.Velocity;
 
-                            servo.Position = 90;
-                            Position_S3 = 90;
-                            //Position_S3 = servo.Position;         // Thows exception if not set before first access
+                            VelocityLimit_S3 = servo.VelocityLimit = 20;
+                            //VelocityLimit_S3 = servo.VelocityLimit; // Throws exception if not set before reading
+
+                            VelocityMax_S3 = servo.VelocityMax;
 
                             PositionMin_S3 = servo.PositionMin;
+
+                            Position_S3 = servo.Position = 90;
+                            //Position_S3 = servo.Position;         // Throws exception if not set before reading
+
+                            PositionMax_S3 = servo.PositionMax;
 
                             break;
 
@@ -2658,28 +2658,28 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                             Current_S4 = servo.Current;
 
-                            AccelerationMax_S4 = servo.AccelerationMax;
-
-                            servo.Acceleration = 20;
-                            Acceleration_S4 = servo.Acceleration; // Throws exception if not set
-
                             AccelerationMin_S4 = servo.AccelerationMin;
 
-                            VelocityMax_S4 = servo.VelocityMax;
-                            Velocity_S4 = servo.Velocity;
+                            Acceleration_S4 = servo.Acceleration = 20;
+                            //Acceleration_S4 = servo.Acceleration; // Throws exception if not set before reading
 
-                            servo.VelocityLimit = servo.VelocityMax;
-                            VelocityLimit_S4 = servo.VelocityLimit; // Throws exception if not set
+                            AccelerationMax_S4 = servo.AccelerationMax;
 
                             VelocityMin_S4 = servo.VelocityMin;
 
-                            PositionMax_S4 = servo.PositionMax;
+                            Velocity_S4 = servo.Velocity;
 
-                            servo.Position = 90;
-                            Position_S4 = 90;
-                            //Position_S4 = servo.Position;         // Thows exception if not set before first access
+                            VelocityLimit_S4 = servo.VelocityLimit = 20;
+                            //VelocityLimit_S4 = servo.VelocityLimit; // Throws exception if not set before reading
+
+                            VelocityMax_S4 = servo.VelocityMax;
 
                             PositionMin_S4 = servo.PositionMin;
+
+                            Position_S4 = servo.Position = 90;
+                            //Position_S4 = servo.Position;         // Throws exception if not set before reading
+
+                            PositionMax_S4 = servo.PositionMax;
 
                             break;
 
@@ -2689,28 +2689,28 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                             Current_S5 = servo.Current;
 
-                            AccelerationMax_S5 = servo.AccelerationMax;
-
-                            servo.Acceleration = 20;
-                            Acceleration_S5 = servo.Acceleration; // Throws exception if not set
-
                             AccelerationMin_S5 = servo.AccelerationMin;
 
-                            VelocityMax_S5 = servo.VelocityMax;
-                            Velocity_S5 = servo.Velocity;
+                            Acceleration_S5 = servo.Acceleration = 20;
+                            //Acceleration_S5 = servo.Acceleration; // Throws exception if not set before reading
 
-                            servo.VelocityLimit = servo.VelocityMax;
-                            VelocityLimit_S5 = servo.VelocityLimit; // Throws exception if not set
+                            AccelerationMax_S5 = servo.AccelerationMax;
 
                             VelocityMin_S5 = servo.VelocityMin;
 
-                            PositionMax_S5 = servo.PositionMax;
+                            Velocity_S5 = servo.Velocity;
 
-                            servo.Position = 90;
-                            Position_S5 = 90;
-                            //Position_S5 = servo.Position;         // Thows exception if not set before first access
+                            VelocityLimit_S5 = servo.VelocityLimit = 20;
+                            //VelocityLimit_S5 = servo.VelocityLimit; // Throws exception if not set before reading
+
+                            VelocityMax_S5 = servo.VelocityMax;
 
                             PositionMin_S5 = servo.PositionMin;
+
+                            Position_S5 = servo.Position = 90;
+                            //Position_S5 = servo.Position;         // Throws exception if not set before reading
+
+                            PositionMax_S5 = servo.PositionMax;
 
                             break;
 
@@ -2720,28 +2720,28 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                             Current_S6 = servo.Current;
 
-                            AccelerationMax_S6 = servo.AccelerationMax;
-
-                            servo.Acceleration = 20;
-                            Acceleration_S6 = servo.Acceleration; // Throws exception if not set
-
                             AccelerationMin_S6 = servo.AccelerationMin;
 
-                            VelocityMax_S6 = servo.VelocityMax;
-                            Velocity_S6 = servo.Velocity;
+                            Acceleration_S6 = servo.Acceleration = 20;
+                            //Acceleration_S6 = servo.Acceleration; // Throws exception if not set before reading
 
-                            servo.VelocityLimit = servo.VelocityMax;
-                            VelocityLimit_S6 = servo.VelocityLimit; // Throws exception if not set
+                            AccelerationMax_S6 = servo.AccelerationMax;
 
                             VelocityMin_S6 = servo.VelocityMin;
 
-                            PositionMax_S6 = servo.PositionMax;
+                            Velocity_S6 = servo.Velocity;
 
-                            servo.Position = 90;
-                            Position_S6 = 90;
-                            //Position_S6 = servo.Position;         // Thows exception if not set before first access
+                            VelocityLimit_S6 = servo.VelocityLimit = 20;
+                            //VelocityLimit_S6 = servo.VelocityLimit; // Throws exception if not set before reading
+
+                            VelocityMax_S6 = servo.VelocityMax;
 
                             PositionMin_S6 = servo.PositionMin;
+
+                            Position_S6 = servo.Position = 90;
+                            //Position_S6 = servo.Position;         // Throws exception if not set before reading
+
+                            PositionMax_S6 = servo.PositionMax;
 
                             break;
 
@@ -2751,28 +2751,28 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                             Current_S7 = servo.Current;
 
-                            AccelerationMax_S7 = servo.AccelerationMax;
-
-                            servo.Acceleration = 20;
-                            Acceleration_S7 = servo.Acceleration; // Throws exception if not set
-
                             AccelerationMin_S7 = servo.AccelerationMin;
 
-                            VelocityMax_S7 = servo.VelocityMax;
-                            Velocity_S7 = servo.Velocity;
+                            Acceleration_S7 = servo.Acceleration = 20;
+                            //Acceleration_S7 = servo.Acceleration; // Throws exception if not set before reading
 
-                            servo.VelocityLimit = servo.VelocityMax;
-                            VelocityLimit_S7 = servo.VelocityLimit; // Throws exception if not set
+                            AccelerationMax_S7 = servo.AccelerationMax;
 
                             VelocityMin_S7 = servo.VelocityMin;
 
-                            PositionMax_S7 = servo.PositionMax;
+                            Velocity_S7 = servo.Velocity;
 
-                            servo.Position = 90;
-                            Position_S7 = 90;
-                            //Position_S7 = servo.Position;         // Thows exception if not set before first access
+                            VelocityLimit_S7 = servo.VelocityLimit = 20;
+                            //VelocityLimit_S7 = servo.VelocityLimit; // Throws exception if not set before reading
+
+                            VelocityMax_S7 = servo.VelocityMax;
 
                             PositionMin_S7 = servo.PositionMin;
+
+                            Position_S7 = servo.Position = 90;
+                            //Position_S7 = servo.Position;         // Throws exception if not set before reading
+
+                            PositionMax_S7 = servo.PositionMax;
 
                             break;
 

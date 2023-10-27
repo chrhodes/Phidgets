@@ -50,6 +50,7 @@
     <SolidColorBrush x:Key="AdvancedServo1061Background" Color="#808080" />
     <SolidColorBrush x:Key="Stepper1063Background" Color="#A0A0A0" />
     <SolidColorBrush x:Key="PhidgetBackground" Color="#A0A0FF" />
+    <SolidColorBrush x:Key="AccelerationControlBackground" Color="#A0A0A0" />
 
     <SolidColorBrush x:Key="ViewABackground" Color="#FFC0C0" />
     <SolidColorBrush x:Key="ViewBBackground" Color="#C0FFC0" />
