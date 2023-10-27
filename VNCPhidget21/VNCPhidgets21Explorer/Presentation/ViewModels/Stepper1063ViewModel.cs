@@ -95,8 +95,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-
-
         private string _ConfigFileName;
         public string ConfigFileName
         {
@@ -281,7 +279,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        #region AdvancedServo Properties
+        #region Stepper Properties
 
 
          private Double _currentMaxS0;

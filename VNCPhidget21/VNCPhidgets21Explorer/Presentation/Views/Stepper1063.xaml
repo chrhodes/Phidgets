@@ -180,7 +180,7 @@
                 
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup Name="lgServoControls" Orientation="Horizontal" View="GroupBox" Header="Servo Controls" 
+            <dxlc:LayoutGroup Name="lgStepperControls" Orientation="Horizontal" View="GroupBox" Header="Servo Controls" 
                                   IsCollapsible="True" IsCollapsed="False" >
                 
                 <dxlc:LayoutGroup 
@@ -188,7 +188,7 @@
                     <dxlc:LayoutItem Label="Servo0" />
 
                     <dxlc:LayoutItem Label="Servo Type" LabelPosition="Top">
-                        <dxe:ComboBoxEdit ItemsSource="{Binding ServoTypes}" DisplayMember="Name" />
+                        <dxe:ComboBoxEdit ItemsSource="{Binding StepperTypes}" DisplayMember="Name" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutGroup 

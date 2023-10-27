@@ -79,13 +79,13 @@
             </dxdo:LayoutGroup>
             
             <dxdo:LayoutGroup Name="lg_Body" Orientation="Horizontal" ItemHeight="Auto" >
-                
-                <dxdo:LayoutPanel Caption="Stepper1063-1" AutoHidden="False" ShowCloseButton="False" MinWidth="680" >
-                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.Stepper1063Region1}"/>
-                </dxdo:LayoutPanel>
 
                 <dxdo:LayoutPanel Caption="AdvancedServo1061-1" AutoHidden="False" ShowCloseButton="False" MinWidth="680" >
                     <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AdvancedServo1061Region1}"/>
+                </dxdo:LayoutPanel>
+                
+                <dxdo:LayoutPanel Caption="Stepper1063-1" AutoHidden="False" ShowCloseButton="False" MinWidth="680" >
+                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.Stepper1063Region1}"/>
                 </dxdo:LayoutPanel>
                 
                 <dxdo:LayoutPanel Caption="InterfaceKit888-1" AutoHidden="False" ShowCloseButton="False" MinWidth="680" >

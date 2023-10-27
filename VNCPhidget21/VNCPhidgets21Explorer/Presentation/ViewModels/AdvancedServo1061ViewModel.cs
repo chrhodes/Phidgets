@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text.Json;
 using System.Windows.Input;
 
+using Phidgets;
+using Phidgets.Events;
+
 using Prism.Commands;
 using Prism.Events;
 using Prism.Services.Dialogs;
@@ -12,6 +15,8 @@ using Prism.Services.Dialogs;
 using VNC;
 using VNC.Core.Mvvm;
 using VNC.Phidget;
+
+using VNCPhidgets21Explorer.Resources;
 
 namespace VNCPhidgets21Explorer.Presentation.ViewModels
 {
@@ -90,7 +95,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         #endregion
 
         #region Fields and Properties
-
 
         private string _ConfigFileName;
 
@@ -278,8 +282,232 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         #region AdvancedServo Properties
 
 
+        private Double _currentS0;
+        public Double Current_S0
+        {
+            get => _currentS0;
+            set
+            {
+                if (_currentS0 == value)
+                    return;
+                _currentS0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private Double _positionMax_S0;
+        public Double PositionMax_S0
+        {
+            get => _positionMax_S0;
+            set
+            {
+                if (_positionMax_S0 == value)
+                    return;
+                _positionMax_S0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private Double _positionS0;
+        public Double Position_S0
+        {
+            get => _positionS0;
+            set
+            {
+                if (_positionS0 == value)
+                    return;
+                _positionS0 = value;
+                OnPropertyChanged();
+
+                if (ActiveAdvancedServo.AdvancedServo.servos[0].Position != value)
+                {
+                    ActiveAdvancedServo.AdvancedServo.servos[0].Position = value;
+                }
+            }
+        }
+
+        private Double _positionMin_S0;
+        public Double PositionMin_S0
+        {
+            get => _positionMin_S0;
+            set
+            {
+                if (_positionMin_S0 == value)
+                    return;
+                _positionMin_S0 = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+
+
+        private Double _velocityMinS0;
+        public Double VelocityMin_S0
+        {
+            get => _velocityMinS0;
+            set
+            {
+                if (_velocityMinS0 == value)
+                    return;
+                _velocityMinS0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _velocityS0;
+        public Double Velocity_S0
+        {
+            get => _velocityS0;
+            set
+            {
+                if (_velocityS0 == value)
+                    return;
+                _velocityS0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _velocityLimitS0;
+        public Double VelocityLimit_S0
+        {
+            get => _velocityLimitS0;
+            set
+            {
+                if (_velocityLimitS0 == value)
+                    return;
+                _velocityLimitS0 = value;
+                OnPropertyChanged();
+
+                try
+                {
+                    if (ActiveAdvancedServo.AdvancedServo.servos[0].VelocityLimit != value)
+                    {
+                        ActiveAdvancedServo.AdvancedServo.servos[0].VelocityLimit = value;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ActiveAdvancedServo.AdvancedServo.servos[0].VelocityLimit = value;
+                }
+            }
+        }
+
+        private Double _velocityMaxS0;
+        public Double VelocityMax_S0
+        {
+            get => _velocityMaxS0;
+            set
+            {
+                if (_velocityMaxS0 == value)
+                    return;
+                _velocityMaxS0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
+        private Double _accelerationMinS0;
+        public Double AccelerationMin_S0
+        {
+            get => _accelerationMinS0;
+            set
+            {
+                if (_accelerationMinS0 == value)
+                    return;
+                _accelerationMinS0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _accelerationS0;
+        public Double Acceleration_S0
+        {
+            get => _accelerationS0;
+            set
+            {
+                if (_accelerationS0 == value)
+                    return;
+                _accelerationS0 = value;
+                OnPropertyChanged();
+
+                try
+                {
+                    if (ActiveAdvancedServo.AdvancedServo.servos[0].Acceleration != value)
+                    {
+                        ActiveAdvancedServo.AdvancedServo.servos[0].Acceleration = value;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // NOTE(crhodes)
+                    // This throws exception  Humm
+                    ActiveAdvancedServo.AdvancedServo.servos[0].Acceleration = value;
+                    //ActiveAdvancedServo.AdvancedServo.servos[0].Acceleration = AccelerationMax_S0;
+                }
+            }
+        }
+
+        private Double _accelerationMaxS0;
+        public Double AccelerationMax_S0
+        {
+            get => _accelerationMaxS0;
+            set
+            {
+                if (_accelerationMaxS0 == value)
+                    return;
+                _accelerationMaxS0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private bool? _engagedS0;
+        public bool? Engaged_S0
+        {
+            get => _engagedS0;
+            set
+            {
+                if (_engagedS0 == value)
+                    return;
+                _engagedS0 = value;
+
+                ActiveAdvancedServo.AdvancedServo.servos[0].Engaged = (Boolean)value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _speedRampingS0;
+        public bool? SpeedRamping_S0
+        {
+            get => _speedRampingS0;
+            set
+            {
+                if (_speedRampingS0 == value)
+                    return;
+                _speedRampingS0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _stoppedS0;
+        public bool? Stopped_S0
+        {
+            get => _stoppedS0;
+            set
+            {
+                if (_stoppedS0 == value)
+                    return;
+                _stoppedS0 = value;
+                OnPropertyChanged();
+            }
+        }
 
         #endregion
+
 
         #endregion
 
@@ -329,6 +557,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             ActiveAdvancedServo.AdvancedServo.Attach += ActiveAdvancedServo_Attach;
             ActiveAdvancedServo.AdvancedServo.Detach += ActiveAdvancedServo_Detach;
 
+            ActiveAdvancedServo.AdvancedServo.CurrentChange += ActiveAdvancedServo_CurrentChange;
+            ActiveAdvancedServo.AdvancedServo.PositionChange += ActiveAdvancedServo_PositionChange;
+            ActiveAdvancedServo.AdvancedServo.VelocityChange += ActiveAdvancedServo_VelocityChange;
+
             // NOTE(crhodes)
             // Capture Digital Input and Output changes so we can update the UI
             // The AdvancedServoEx attaches to these events also.
@@ -373,6 +605,148 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //CloseAdvancedServoCommand.RaiseCanExecuteChanged();
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void ActiveAdvancedServo_VelocityChange(object sender, VelocityChangeEventArgs e)
+        {
+            Phidgets.AdvancedServo servo = sender as Phidgets.AdvancedServo;
+            var index = e.Index;
+            var velocity = e.Velocity;
+
+            switch (e.Index)
+            {
+                case 0:
+                    Velocity_S0 = e.Velocity;
+                    break;
+
+                //case 1:
+
+                //    break;
+
+                //case 2:
+
+                //    break;
+
+                //case 3:
+
+                //    break;
+
+                //case 4:
+
+                //    break;
+
+                //case 5:
+
+                //    break;
+
+                //case 60:
+
+                //    break;
+
+                //case 7:
+
+                //    break;
+
+                default:
+                    Log.Trace($"VelocityChange index:{index} value:{velocity}", Common.LOG_CATEGORY);
+                    break;
+            }
+        }
+
+        private void ActiveAdvancedServo_PositionChange(object sender, PositionChangeEventArgs e)
+        {
+            Phidgets.AdvancedServo servo = sender as Phidgets.AdvancedServo;
+            var index = e.Index;
+            var position = e.Position;
+
+            switch (e.Index)
+            {
+                case 0:
+                    Position_S0 = e.Position;
+                    break;
+
+                //case 1:
+
+                //    break;
+
+                //case 2:
+
+                //    break;
+
+                //case 3:
+
+                //    break;
+
+                //case 4:
+
+                //    break;
+
+                //case 5:
+
+                //    break;
+
+                //case 60:
+
+                //    break;
+
+                //case 7:
+
+                //    break;
+
+                default:
+                    Log.Trace($"PositionChange index:{index} value:{position}", Common.LOG_CATEGORY);
+                    break;
+            }
+        }
+
+        private void ActiveAdvancedServo_CurrentChange(object sender, CurrentChangeEventArgs e)
+        {
+            Phidgets.AdvancedServo servo = sender as Phidgets.AdvancedServo;
+            var index = e.Index;
+            var current = e.Current;
+
+            switch (e.Index)
+            {
+                case 0:
+                    Current_S0 = e.Current;
+                    break;
+
+                //case 1:
+
+                //    break;
+
+                //case 2:
+
+                //    break;
+
+                //case 3:
+
+                //    break;
+
+                //case 4:
+
+                //    break;
+
+                //case 5:
+
+                //    break;
+
+                //case 60:
+
+                //    break;
+
+                //case 7:
+
+                //    break;
+
+                default:
+                    // NOTE(crhodes)
+                    // Constant stream of this.
+                    // Do we really need to monitor current?
+
+                    //Log.Trace($"CurrentChange index:{index} value:{current}", Common.LOG_CATEGORY);
+                    break;
+            }
         }
 
         public bool OpenAdvancedServoCanExecute()
@@ -737,68 +1111,68 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 //AsAddress = ActiveAdvancedServo.AdvancedServo.Address;
                 //AsAttached = ActiveAdvancedServo.AdvancedServo.Attached;
                 DeviceAttached = ActiveAdvancedServo.AdvancedServo.Attached;
-                //AsAttachedToServer = ActiveAdvancedServo.AdvancedServo.AttachedToServer;
-                //AsClass = ActiveAdvancedServo.AdvancedServo.Class.ToString();
-                //AsID = Enum.GetName(typeof(Phidget.PhidgetID), ActiveAdvancedServo.AdvancedServo.ID);
-                //AsLabel = ActiveAdvancedServo.AdvancedServo.Label;
-                //AsLibraryVersion = Phidget.LibraryVersion;  // This is a static field
-                //AsName = ActiveAdvancedServo.AdvancedServo.Name;
-                //AsPort = ActiveAdvancedServo.AdvancedServo.Port;
-                //AsSerialNumber = ActiveAdvancedServo.AdvancedServo.SerialNumber;
-                ////AsServerID = ActiveAdvancedServo.AdvancedServo.ServerID;
-                //AsType = ActiveAdvancedServo.AdvancedServo.Type;
-                //AsVersion = ActiveAdvancedServo.AdvancedServo.Version;
 
-                //var sensors = ActiveAdvancedServo.sensors;
-                //AdvancedServoAnalogSensor sensor = null;
+                AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
+                Phidgets.AdvancedServoServo servo = null;
 
-                //// NOTE(crhodes)
-                //// The DataRateMin and DataRateMax do not change.
-                //// Populate them here instead of SensorChange event
+                for (int i = 0; i < servos.Count; i++)
+                {
+                    servo = servos[i];
 
-                //// TODO(crhodes)
-                //// May want to grab initial values for all fields here.
+                    switch (i)
+                    {
+                        case 0:
+                            Stopped_S0 = servo.Stopped;
+                            Engaged_S0 = servo.Engaged;
 
-                //for (int i = 0; i < sensors.Count; i++)
-                //{
-                //    sensor = sensors[i];
+                            Current_S0 = servo.Current;
 
-                //    switch (i)
-                //    {
-                //        case 0:
-                //            AIDataRateMax0 = sensor.DataRateMax;
-                //            AIDataRateMin0 = sensor.DataRateMin;
-                //            break;
-                //        case 1:
-                //            AIDataRateMax1 = sensor.DataRateMax;
-                //            AIDataRateMin1 = sensor.DataRateMin;
-                //            break;
-                //        case 2:
-                //            AIDataRateMax2 = sensor.DataRateMax;
-                //            AIDataRateMin2 = sensor.DataRateMin;
-                //            break;
-                //        case 3:
-                //            AIDataRateMax3 = sensor.DataRateMax;
-                //            AIDataRateMin3 = sensor.DataRateMin;
-                //            break;
-                //        case 4:
-                //            AIDataRateMax4 = sensor.DataRateMax;
-                //            AIDataRateMin4 = sensor.DataRateMin;
-                //            break;
-                //        case 5:
-                //            AIDataRateMax5 = sensor.DataRateMax;
-                //            AIDataRateMin5 = sensor.DataRateMin;
-                //            break;
-                //        case 6:
-                //            AIDataRateMax6 = sensor.DataRateMax;
-                //            AIDataRateMin6 = sensor.DataRateMin;
-                //            break;
-                //        case 7:
-                //            AIDataRateMax7 = sensor.DataRateMax;
-                //            AIDataRateMin7 = sensor.DataRateMin;
-                //            break;
-                //    }
-                //}
+                            AccelerationMax_S0 = servo.AccelerationMax;
+                            //Acceleration_S0 = servo.Acceleration; // Throws exception
+                            AccelerationMin_S0 = servo.AccelerationMin;
+
+
+                            VelocityMax_S0 = servo.VelocityMax;
+                            Velocity_S0 = servo.Velocity;
+                            //VelocityLimit_S0 = servo.VelocityLimit; // Throws exception
+                            VelocityMin_S0 = servo.VelocityMin;
+
+
+                            PositionMax_S0 = servo.PositionMax;
+                            //Position_S0 = servo.Position;
+                            PositionMin_S0 = servo.PositionMin;
+
+
+
+                            break;
+
+                        //case 1:
+                        //    break;
+
+                        //case 2:
+                        //    break;
+
+                        //case 3:
+                        //    break;
+
+                        //case 4:
+                        //    break;
+
+                        //case 5:
+                        //    break;
+
+                        //case 6:
+                        //    break;
+
+                        //case 7:
+                        //    break;
+
+                        default:
+                            Log.Trace($"UpdateAdvancedServoProperties count:{servos.Count}", Common.LOG_CATEGORY);
+                            break;
+
+                    }
+                }
             }
             else
             {
