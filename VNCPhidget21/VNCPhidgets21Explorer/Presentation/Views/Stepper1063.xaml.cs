@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Windows;
-
-using VNCPhidgets21Explorer.Presentation.ViewModels;
 
 using VNC;
 using VNC.Core.Mvvm;
+
+using VNCPhidgets21Explorer.Presentation.ViewModels;
 
 namespace VNCPhidgets21Explorer.Presentation.Views
 {
@@ -48,10 +47,12 @@ namespace VNCPhidgets21Explorer.Presentation.Views
         private void InitializeView()
         {
             Int64 startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
-            
+
             // NOTE(crhodes)
             // Put things here that initialize the View
-            
+
+            this.lgPhidgetStatus.IsCollapsed = true;
+
             Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
         
@@ -107,6 +108,5 @@ namespace VNCPhidgets21Explorer.Presentation.Views
         }
 
         #endregion
-
     }
 }

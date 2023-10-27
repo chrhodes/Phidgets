@@ -104,9 +104,6 @@ namespace VNC.Phidget
         {
             try
             {
-                var a = e;
-                var b = e.GetType();
-
                 Phidgets.Phidget device = (Phidgets.Phidget)e.Device;
 
                 Log.Trace("Phidget_ServerDisconnect {device.Address}", Common.LOG_CATEGORY);
@@ -164,8 +161,7 @@ namespace VNC.Phidget
             try
             {
                 Phidgets.Phidget device = (Phidgets.Phidget)sender;
-                var a = e;
-                var b = e.GetType();
+
                 Log.Trace($"Phidget_Error {device.Address},{device.Attached} - {e.Type} {e.Code} {e.Description}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)

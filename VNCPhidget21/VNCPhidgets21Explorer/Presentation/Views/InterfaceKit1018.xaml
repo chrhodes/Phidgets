@@ -151,8 +151,8 @@
                     
                 </dxlc:LayoutGroup>
         
-                <dxlc:LayoutGroup Name="lgPhidgetStatus" Orientation="Vertical" View="GroupBox" Header="Device Status" 
-                                  IsCollapsible="True" IsCollapsed="False"  >
+                <dxlc:LayoutGroup Name="lgPhidgetStatus" Orientation="Vertical" View="GroupBox" Header="PhidgetDevice Status" 
+                                  IsCollapsible="True" IsCollapsed="True"  >
 
                     <views:PhidgetDevice x:Name="Phidget1" Margin="-10" 
                                AttachedPhidgetDevice="{Binding PhidgetDevice, Mode=TwoWay}"
@@ -311,10 +311,8 @@
                     
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Name="lgAnalogInputs" Header="Analog Inputs" 
-                    Orientation="Horizontal" 
-                                  IsCollapsible="True" IsCollapsed="False" 
-                    View="GroupBox" >
+                <dxlc:LayoutGroup Name="lgAnalogInputs" Orientation="Horizontal" View="GroupBox" Header="Analog Inputs" 
+                                  IsCollapsible="True" IsCollapsed="False" >
 
                     <!--<dxlc:LayoutGroup Name="lgAnalogInputs_A0" Orientation="Vertical"
                                       DataContext="{Binding Source=sensors[0]}" >-->

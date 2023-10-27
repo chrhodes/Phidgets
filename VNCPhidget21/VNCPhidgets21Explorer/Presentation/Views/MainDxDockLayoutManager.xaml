@@ -68,14 +68,6 @@
         Name="dlm"       
         FloatingMode="Desktop">
                 
-        <!--<dxdo:LayoutGroup VerticalAlignment="Top" Name="lg_Header">
-        
-            <dxdo:LayoutPanel>
-                <Label Content="lg_Header Stuff Goes Here" />
-            </dxdo:LayoutPanel>
-
-        </dxdo:LayoutGroup>-->
-
         <dxdo:LayoutGroup Name="dlm_Root" Orientation="Vertical" >
 
             <dxdo:LayoutGroup VerticalAlignment="Top" Name="lg_Header">
@@ -87,7 +79,15 @@
             </dxdo:LayoutGroup>
             
             <dxdo:LayoutGroup Name="lg_Body" Orientation="Horizontal" ItemHeight="Auto" >
+                
+                <dxdo:LayoutPanel Caption="Stepper1063-1" AutoHidden="False" ShowCloseButton="False" MinWidth="680" >
+                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.Stepper1063Region1}"/>
+                </dxdo:LayoutPanel>
 
+                <dxdo:LayoutPanel Caption="AdvancedServo1061-1" AutoHidden="False" ShowCloseButton="False" MinWidth="680" >
+                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AdvancedServo1061Region1}"/>
+                </dxdo:LayoutPanel>
+                
                 <dxdo:LayoutPanel Caption="InterfaceKit888-1" AutoHidden="False" ShowCloseButton="False" MinWidth="680" >
                     <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.InterfaceKit1018Region1}"/>
                 </dxdo:LayoutPanel>
@@ -100,17 +100,9 @@
                     <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.InterfaceKit1018Region3}"/>
                 </dxdo:LayoutPanel>
 
-                <dxdo:LayoutPanel Caption="AdvancedServo1061-1" AutoHidden="False" ShowCloseButton="False" MinWidth="680" >
-                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AdvancedServo1061Region1}"/>
-                </dxdo:LayoutPanel>
-
-                <dxdo:LayoutPanel Caption="Stepper1063-1" AutoHidden="False" ShowCloseButton="False" MinWidth="680" >
-                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.Stepper1063Region1}"/>
-                </dxdo:LayoutPanel>
-
-                <!--<dxdo:LayoutPanel Caption="HackAround" AutoHidden="False" ShowCloseButton="False">
+                <dxdo:LayoutPanel Caption="HackAround" AutoHidden="True" ShowCloseButton="False">
                     <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.HackAroundRegion}" />                        
-                </dxdo:LayoutPanel>-->
+                </dxdo:LayoutPanel>
 
             </dxdo:LayoutGroup>
 
@@ -171,13 +163,13 @@
 
             <dxdo:DockLayoutManager.FloatGroups>
 
-                <dxdo:FloatGroup FloatLocation="100,100" FloatSize="600,600">
+                <!--<dxdo:FloatGroup FloatLocation="100,100" FloatSize="600,600">
 
                     <dxdo:LayoutPanel Caption="HackAround" AutoHidden="False" ShowCloseButton="False">
                         <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.HackAroundRegion}" />
                     </dxdo:LayoutPanel>
 
-                </dxdo:FloatGroup>
+                </dxdo:FloatGroup>-->
 
             </dxdo:DockLayoutManager.FloatGroups>
 

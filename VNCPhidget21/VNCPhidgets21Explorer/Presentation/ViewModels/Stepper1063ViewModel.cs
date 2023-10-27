@@ -15,6 +15,8 @@ using VNC;
 using VNC.Core.Mvvm;
 using VNC.Phidget;
 
+using VNCPhidgets21Explorer.Resources;
+
 namespace VNCPhidgets21Explorer.Presentation.ViewModels
 {
     public class Stepper1063ViewModel : EventViewModelBase, IStepper1063ViewModel, IInstanceCountVM
@@ -93,8 +95,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        private string _ConfigFileName;
 
+
+        private string _ConfigFileName;
         public string ConfigFileName
         {
             get => _ConfigFileName;
@@ -263,7 +266,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
         public ICommand SayHelloCommand { get; private set; }
-        
+
         private string _message;
 
         public string Message
@@ -281,6 +284,302 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         #region AdvancedServo Properties
 
 
+         private Double _currentMaxS0;
+        public Double CurrentMax_S0
+        {
+            get => _currentMaxS0;
+            set
+            {
+                if (_currentMaxS0 == value)
+                    return;
+                _currentMaxS0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _currentS0;
+        public Double Current_S0
+        {
+            get => _currentS0;
+            set
+            {
+                if (_currentS0 == value)
+                    return;
+                _currentS0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _currentLimitS0;
+        public Double CurrentLimit_S0
+        {
+            get => _currentLimitS0;
+            set
+            {
+                if (_currentLimitS0 == value)
+                    return;
+                _currentLimitS0 = value;
+                OnPropertyChanged();
+
+                try
+                {
+                    if (ActiveStepper.Stepper.steppers[0].CurrentLimit != value)
+                    {
+                        ActiveStepper.Stepper.steppers[0].CurrentLimit = value;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ActiveStepper.Stepper.steppers[0].CurrentLimit = value;
+                }
+            }
+        }
+
+        private Double _currentMinS0;
+        public Double CurrentMin_S0
+        {
+            get => _currentMinS0;
+            set
+            {
+                if (_currentMinS0 == value)
+                    return;
+                _currentMinS0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _positionMax_S0;
+        public Double PositionMax_S0
+        {
+            get => _positionMax_S0;
+            set
+            {
+                if (_positionMax_S0 == value)
+                    return;
+                _positionMax_S0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private Int64 _currentPositionS0;
+        public Int64 CurrentPosition_S0
+        {
+            get => _currentPositionS0;
+            set
+            {
+                if (_currentPositionS0 == value)
+                    return;
+                _currentPositionS0 = value;
+                OnPropertyChanged();
+
+                if (ActiveStepper.Stepper.steppers[0].CurrentPosition != value)
+                {
+                    ActiveStepper.Stepper.steppers[0].CurrentPosition = value;
+                }
+            }
+        }
+
+        private Double _positionMin_S0;
+        public Double PositionMin_S0
+        {
+            get => _positionMin_S0;
+            set
+            {
+                if (_positionMin_S0 == value)
+                    return;
+                _positionMin_S0 = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        private Int64 _targetPositionS0;
+        public Int64 TargetPosition_S0
+        {
+            get => _targetPositionS0;
+            set
+            {
+                if (_targetPositionS0 == value)
+                    return;
+                _targetPositionS0 = value;
+                OnPropertyChanged();
+
+                if (ActiveStepper.Stepper.steppers[0].TargetPosition != value)
+                {
+                    ActiveStepper.Stepper.steppers[0].TargetPosition = value;
+                }
+            }
+        }
+
+
+
+        private Double _velocityMinS0;
+        public Double VelocityMin_S0
+        {
+            get => _velocityMinS0;
+            set
+            {
+                if (_velocityMinS0 == value)
+                    return;
+                _velocityMinS0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _velocityS0;
+        public Double Velocity_S0
+        {
+            get => _velocityS0;
+            set
+            {
+                if (_velocityS0 == value)
+                    return;
+                _velocityS0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _velocityLimitS0;
+        public Double VelocityLimit_S0
+        {
+            get => _velocityLimitS0;
+            set
+            {
+                if (_velocityLimitS0 == value)
+                    return;
+                _velocityLimitS0 = value;
+                OnPropertyChanged();
+
+                try
+                {
+                    if (ActiveStepper.Stepper.steppers[0].VelocityLimit != value)
+                    {
+                        ActiveStepper.Stepper.steppers[0].VelocityLimit = value;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ActiveStepper.Stepper.steppers[0].VelocityLimit = value;
+                }
+            }
+        }
+
+        private Double _velocityMaxS0;
+        public Double VelocityMax_S0
+        {
+            get => _velocityMaxS0;
+            set
+            {
+                if (_velocityMaxS0 == value)
+                    return;
+                _velocityMaxS0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
+        private Double _accelerationMinS0;
+        public Double AccelerationMin_S0
+        {
+            get => _accelerationMinS0;
+            set
+            {
+                if (_accelerationMinS0 == value)
+                    return;
+                _accelerationMinS0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _accelerationS0;
+        public Double Acceleration_S0
+        {
+            get => _accelerationS0;
+            set
+            {
+                if (_accelerationS0 == value)
+                    return;
+                _accelerationS0 = value;
+                OnPropertyChanged();
+
+                try
+                {
+                    if (ActiveStepper.Stepper.steppers[0].Acceleration != value)
+                    {
+                        ActiveStepper.Stepper.steppers[0].Acceleration = value;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // NOTE(crhodes)
+                    // This throws exception  Humm
+                    //ActiveStepper.Stepper.steppers[0].Acceleration = value;
+                    ActiveStepper.Stepper.steppers[0].Acceleration = AccelerationMax_S0;
+                }
+            }
+        }
+
+        private Double _accelerationMaxS0;
+        public Double AccelerationMax_S0
+        {
+            get => _accelerationMaxS0;
+            set
+            {
+                if (_accelerationMaxS0 == value)
+                    return;
+                _accelerationMaxS0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
+
+
+
+        private bool? _engagedS0;
+        public bool? Engaged_S0
+        {
+            get => _engagedS0;
+            set
+            {
+                if (_engagedS0 == value)
+                    return;
+                _engagedS0 = value;
+
+                ActiveStepper.Stepper.steppers[0].Engaged = (Boolean)value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private bool? _speedRampingS0;
+        public bool? SpeedRamping_S0
+        {
+            get => _speedRampingS0;
+            set
+            {
+                if (_speedRampingS0 == value)
+                    return;
+                _speedRampingS0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _stoppedS0;
+        public bool? Stopped_S0
+        {
+            get => _stoppedS0;
+            set
+            {
+                if (_stoppedS0 == value)
+                    return;
+                _stoppedS0 = value;
+                OnPropertyChanged();
+            }
+        }
 
         #endregion
 
@@ -330,6 +629,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             ActiveStepper.Stepper.Attach += ActiveStepper_Attach;
             ActiveStepper.Stepper.Detach += ActiveStepper_Detach;
 
+            ActiveStepper.Stepper.CurrentChange += ActiveStepper_CurrentChange;
+            ActiveStepper.Stepper.InputChange += ActiveStepper_InputChange;
+            ActiveStepper.Stepper.PositionChange += ActiveStepper_PositionChange;
+            ActiveStepper.Stepper.VelocityChange += ActiveStepper_VelocityChange;
+
             // NOTE(crhodes)
             // Capture Digital Input and Output changes so we can update the UI
             // The StepperEx attaches to these events also.
@@ -374,6 +678,189 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //CloseStepperCommand.RaiseCanExecuteChanged();
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void ActiveStepper_VelocityChange(object sender, Phidgets.Events.VelocityChangeEventArgs e)
+        {
+            Phidgets.Stepper stepper = sender as Phidgets.Stepper;
+            var index = e.Index;
+            var velocity = e.Velocity;
+
+            switch (e.Index)
+            {
+                case 0:
+                    Velocity_S0 = e.Velocity;
+                    break;
+
+                //case 1:
+
+                //    break;
+
+                //case 2:
+
+                //    break;
+
+                //case 3:
+
+                //    break;
+
+                //case 4:
+
+                //    break;
+
+                //case 5:
+
+                //    break;
+
+                //case 60:
+
+                //    break;
+
+                //case 7:
+
+                //    break;
+
+                default:
+                    Log.Trace($"VelocityChange index:{index} value:{velocity}", Common.LOG_CATEGORY);
+                    break;
+            }
+        }
+
+        private void ActiveStepper_PositionChange(object sender, Phidgets.Events.StepperPositionChangeEventArgs e)
+        {
+            Phidgets.Stepper stepper = sender as Phidgets.Stepper;
+            var index = e.Index;
+            var position = e.Position;
+
+            switch (e.Index)
+            {
+                case 0:
+                    CurrentPosition_S0 = e.Position;
+                    break;
+
+                //case 1:
+
+                //    break;
+
+                //case 2:
+
+                //    break;
+
+                //case 3:
+
+                //    break;
+
+                //case 4:
+
+                //    break;
+
+                //case 5:
+
+                //    break;
+
+                //case 60:
+
+                //    break;
+
+                //case 7:
+
+                //    break;
+
+                default:
+                    Log.Trace($"PositionChange index:{index} value:{position}", Common.LOG_CATEGORY);
+                    break;
+            }
+        }
+
+        private void ActiveStepper_InputChange(object sender, Phidgets.Events.InputChangeEventArgs e)
+        {
+            Phidgets.Stepper stepper = sender as Phidgets.Stepper;
+            var index = e.Index;
+            var value = e.Value;
+
+            switch (e.Index)
+            {
+                case 0:
+                    value = e.Value;
+                    break;
+
+                //case 1:
+
+                //    break;
+
+                //case 2:
+
+                //    break;
+
+                //case 3:
+
+                //    break;
+
+                //case 4:
+
+                //    break;
+
+                //case 5:
+
+                //    break;
+
+                //case 60:
+
+                //    break;
+
+                //case 7:
+                //    break;
+
+                default:
+                    Log.Trace($"InputChange index:{index} value:{value}", Common.LOG_CATEGORY);
+                    break;
+            }
+        }
+
+        private void ActiveStepper_CurrentChange(object sender, Phidgets.Events.CurrentChangeEventArgs e)
+        {
+            Phidgets.Stepper stepper = sender as Phidgets.Stepper;
+            var index = e.Index;
+            var current = e.Current;
+
+            switch (e.Index)
+            {
+                case 0:
+                    Current_S0 = e.Current;
+                    break;
+
+                //case 1:
+
+                //    break;
+
+                //case 2:
+
+                //    break;
+
+                //case 3:
+
+                //    break;
+
+                //case 4:
+
+                //    break;
+
+                //case 5:
+
+                //    break;
+
+                //case 60:
+
+                //    break;
+
+                //case 7:
+
+                //    break;
+
+                default:
+                    Log.Trace($"CurrentChange index:{index} value:{current}", Common.LOG_CATEGORY);
+                    break;
+            }
         }
 
         public bool OpenStepperCanExecute()
@@ -734,6 +1221,78 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             if (ActiveStepper.Stepper.Attached)
             {
                 DeviceAttached = ActiveStepper.Stepper.Attached;
+
+                StepperStepperCollection steppers = ActiveStepper.Stepper.steppers;
+
+                StepperStepper stepper = null;
+
+                StepperDigitalInputCollection inputs = ActiveStepper.Stepper.inputs;
+
+                for (int i = 0; i < steppers.Count; i++)
+                {
+                    stepper = steppers[i];
+
+                    switch (i)
+                    {
+                        case 0:
+                            Stopped_S0 = stepper.Stopped;
+                            Engaged_S0 = stepper.Engaged;
+               
+
+                            CurrentMax_S0 = stepper.CurrentMax;
+                            Current_S0 = stepper.Current;
+                            //CurrentLimit_S0 = stepper.CurrentLimit; // Thows exception
+                            CurrentMin_S0 = stepper.CurrentMin;
+
+ 
+                            AccelerationMax_S0 = stepper.AccelerationMax;
+                            //Acceleration_S0 = stepper.Acceleration; // Throws exception
+                            AccelerationMin_S0 = stepper.AccelerationMin;
+
+
+                            VelocityMax_S0 = stepper.VelocityMax;
+                            Velocity_S0 = stepper.Velocity;
+                            //VelocityLimit_S0 = stepper.VelocityLimit; // Throws exception
+                            VelocityMin_S0 = stepper.VelocityMin;
+
+
+                            PositionMax_S0 = stepper.PositionMax;
+                            CurrentPosition_S0 = stepper.CurrentPosition;
+                            TargetPosition_S0 = stepper.TargetPosition;
+                            PositionMin_S0 = stepper.PositionMin;
+
+
+
+                            break;
+
+                        //case 1:
+                        //    break;
+
+                        //case 2:
+                        //    break;
+
+                        //case 3:
+                        //    break;
+
+                        //case 4:
+                        //    break;
+
+                        //case 5:
+                        //    break;
+
+                        //case 6:
+                        //    break;
+
+                        //case 7:
+                        //    break;
+
+                        default:
+                            Log.Trace($"UpdateStepperProperties count:{steppers.Count}", Common.LOG_CATEGORY);
+                            break;
+
+                    }
+                }
+
                 //StepperAddress = ActiveStepper.Address;
                 //StepperAttached = ActiveStepper.Attached;
                 //StepperAttachedToServer = ActiveStepper.AttachedToServer;

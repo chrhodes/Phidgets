@@ -168,7 +168,7 @@
 
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup Orientation="Vertical" View="GroupBox" Header="PhidgetDevice Status" 
+            <dxlc:LayoutGroup Name="lgPhidgetStatus" Orientation="Vertical" View="GroupBox" Header="PhidgetDevice Status" 
                                   IsCollapsible="True" IsCollapsed="True"  >
 
                 <views:PhidgetDevice x:Name="Phidget1" Margin="-10" 

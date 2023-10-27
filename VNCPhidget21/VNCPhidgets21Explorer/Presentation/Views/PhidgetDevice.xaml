@@ -76,7 +76,6 @@
                    </dxlc:LayoutGroup.GroupBoxStyle>-->
 
             <dxlc:LayoutItem Label="Address">
-                <!--<Label Content="{Binding ActiveInterfaceKit.Address}" />-->
                 <dxe:TextEdit EditValue="{Binding DeviceAddress, Mode=OneWay}" IsReadOnly="True"
                                      Background="White" Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
             </dxlc:LayoutItem>
@@ -149,6 +148,9 @@
                               Background="White"
                               Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
             </dxlc:LayoutItem>
+            
         </dxlc:LayoutGroup>
+        
     </dxlc:LayoutControl>
+    
 </vncmvvm:ViewBase>

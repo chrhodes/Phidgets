@@ -99,12 +99,7 @@
 
     <dxlc:LayoutGroup View="GroupBox" Header="Hosts" Orientation="Horizontal" >
 
-        <dxlc:LayoutItem Label="ConfigFileName" HorizontalAlignment="Left" Background="Wheat">
-            <!-- Hopefully we don't use the first one anymore! 
-                <dxe:TextEdit x:Name="teConfigFIleName"
-            		Text="{Binding ConfigFIleName}"
-                	ToolTip="tooltip"
-                 	MouseDoubleClick="teConfigFIleName_MouseDoubleClick" /> -->
+        <dxlc:LayoutItem Label="ConfigFileName" HorizontalAlignment="Right" Background="Wheat">
             <dxe:TextEdit
             		Text="{Binding ConfigFileName }"
                 	ToolTip="{Binding ConfigFileNameToolTip }">
@@ -116,7 +111,7 @@
             </dxe:TextEdit>
         </dxlc:LayoutItem>
 
-        <dxlc:LayoutGroup View="Group"  Orientation="Horizontal" HorizontalAlignment="Right" Background="Wheat" >
+        <dxlc:LayoutGroup View="Group"  Orientation="Horizontal" HorizontalAlignment="Left" Background="Wheat" >
 
             <dxlc:LayoutItem Label="Hosts" LabelPosition="Left" >
                 <dxe:ComboBoxEdit Width="150" ItemsSource="{Binding Hosts}" DisplayMember="Name" 
@@ -125,13 +120,11 @@
             </dxlc:LayoutItem>
 
             <dxlc:LayoutItem Label="IPAddress" >
-                <!--<Label Content="{Binding SelectedHost.IPAddress}"  />-->
                 <dxe:TextEdit Text="{Binding SelectedHost.IPAddress }" IsReadOnly="True" Background="White" />
                 <!--Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>-->
             </dxlc:LayoutItem>
 
             <dxlc:LayoutItem Label="Port" >
-                <!--<Label Content="{Binding SelectedHost.Port }" />-->
                 <dxe:TextEdit Text="{Binding SelectedHost.Port }" IsReadOnly="True" Background="White" />
                 <!--Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>-->
             </dxlc:LayoutItem>
@@ -144,52 +137,5 @@
         </dxlc:LayoutGroup>
 
     </dxlc:LayoutGroup>
-    
-    <!-- Simple Layout using DevExpress LayoutControl
-         May need to add dxXMLNS -->
-    
-    <!-- <DockPanel Margin="5"> -->
-        <!-- <TextBlock Text="InterfaceKit" DockPanel.Dock="Top" /> -->
-
-        <!-- This is useful for debugging V VM constructor issues -->
-
-        <!-- <DockPanel DockPanel.Dock="Bottom" > -->
-
-            <!-- <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" Margin="5"> -->
-                <!-- <Label Content="Message:" /> -->
-                <!-- <Label Content="{Binding Message}" /> -->
-            <!-- </StackPanel> -->
-
-            <!-- <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" Margin="5"> -->
-                <!-- <Label Content="V:" /> -->
-                <!-- <Label Content="{Binding ElementName=thisControl, Path=InstanceCountV}" /> -->
-            <!-- </StackPanel> -->
-            <!-- <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" Margin="5"> -->
-                <!-- <Label Content="VM:" /> -->
-                <!-- <Label Content="{Binding InstanceCountVM}" /> -->
-            <!-- </StackPanel> -->
-
-        <!-- </DockPanel> -->
-
-        <!-- <dxlc:LayoutControl Orientation="Vertical"> -->
-
-            <!-- <dxlc:LayoutItem Label="Item X"> -->
-
-            <!-- </dxlc:LayoutItem> -->
-
-            <!-- <dxlc:LayoutGroup View="Group" Orientation="Horizontal" HorizontalAlignment="Left" > -->
-
-                <!-- <StackPanel> -->
-                    <!-- <TextBlock Text="HostSelector" /> -->
-                    <!-- <TextBlock Text="{Binding Message}" /> -->
-                    <!-- <Button Content="Say Hello" -->
-                            <!-- Command="{Binding SayHelloCommand}" /> -->
-                <!-- </StackPanel> -->
-                
-            <!-- </dxlc:LayoutGroup> -->
-
-        <!-- </dxlc:LayoutControl> -->
-
-    <!-- </DockPanel> -->
 
 </vncmvvm:ViewBase>
