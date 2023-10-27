@@ -154,8 +154,8 @@
                 <dxlc:LayoutGroup Name="lgPhidgetStatus" Orientation="Vertical" View="GroupBox" Header="Device Status" 
                                   IsCollapsible="True" IsCollapsed="False"  >
 
-                    <views:Phidget x:Name="Phidget1" Margin="-10" 
-                               PhidgetDevice="{Binding PhidgetDevice, Mode=TwoWay}"
+                    <views:PhidgetDevice x:Name="Phidget1" Margin="-10" 
+                               AttachedPhidgetDevice="{Binding PhidgetDevice, Mode=TwoWay}"
                                DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}"/>
 
                 </dxlc:LayoutGroup>
