@@ -2290,34 +2290,42 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             {
                 case 0:
                     Position_S0 = e.Position;
+                    Stopped_S0 = servo.servos[e.Index].Stopped;
                     break;
 
                 case 1:
                     Position_S1 = e.Position;
+                    Stopped_S1 = servo.servos[e.Index].Stopped;
                     break;
 
                 case 2:
                     Position_S2 = e.Position;
+                    Stopped_S2 = servo.servos[e.Index].Stopped;
                     break;
 
                 case 3:
                     Position_S3 = e.Position;
+                    Stopped_S3 = servo.servos[e.Index].Stopped;
                     break;
 
                 case 4:
                     Position_S4 = e.Position;
+                    Stopped_S4 = servo.servos[e.Index].Stopped;
                     break;
 
                 case 5:
                     Position_S5 = e.Position;
+                    Stopped_S5 = servo.servos[e.Index].Stopped;
                     break;
 
-                case 60:
+                case 6:
                     Position_S6 = e.Position;
+                    Stopped_S6 = servo.servos[e.Index].Stopped;
                     break;
 
                 case 7:
                     Position_S7 = e.Position;
+                    Stopped_S7 = servo.servos[e.Index].Stopped;
                     break;
 
                 default:
@@ -2534,6 +2542,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         case 0:
                             Stopped_S0 = servo.Stopped;
                             Engaged_S0 = servo.Engaged;
+                            SpeedRamping_S0 = servo.SpeedRamping;
 
                             Current_S0 = servo.Current;
 
@@ -2565,6 +2574,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         case 1:
                             Stopped_S1 = servo.Stopped;
                             Engaged_S1 = servo.Engaged;
+                            SpeedRamping_S1 = servo.SpeedRamping;
 
                             Current_S1 = servo.Current;
 
@@ -2596,6 +2606,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         case 2:
                             Stopped_S2 = servo.Stopped;
                             Engaged_S2 = servo.Engaged;
+                            SpeedRamping_S2 = servo.SpeedRamping;
 
                             Current_S2 = servo.Current;
 
@@ -2627,6 +2638,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         case 3:
                             Stopped_S3 = servo.Stopped;
                             Engaged_S3 = servo.Engaged;
+                            SpeedRamping_S3 = servo.SpeedRamping;
 
                             Current_S3 = servo.Current;
 
@@ -2658,6 +2670,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         case 4:
                             Stopped_S4 = servo.Stopped;
                             Engaged_S4 = servo.Engaged;
+                            SpeedRamping_S4 = servo.SpeedRamping;
 
                             Current_S4 = servo.Current;
 
@@ -2689,6 +2702,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         case 5:
                             Stopped_S5 = servo.Stopped;
                             Engaged_S5 = servo.Engaged;
+                            SpeedRamping_S5 = servo.SpeedRamping;
 
                             Current_S5 = servo.Current;
 
@@ -2720,6 +2734,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         case 6:
                             Stopped_S6 = servo.Stopped;
                             Engaged_S6 = servo.Engaged;
+                            SpeedRamping_S6 = servo.SpeedRamping;
 
                             Current_S6 = servo.Current;
 
@@ -2751,6 +2766,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         case 7:
                             Stopped_S7 = servo.Stopped;
                             Engaged_S7 = servo.Engaged;
+                            SpeedRamping_S7 = servo.SpeedRamping;
 
                             Current_S7 = servo.Current;
 
@@ -2790,8 +2806,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             {
                 DeviceAttached = null;
             }
-
-
         }
 
         private void ActiveAdvancedServo_Detach(object sender, Phidgets.Events.DetachEventArgs e)

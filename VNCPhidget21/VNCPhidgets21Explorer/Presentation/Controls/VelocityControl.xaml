@@ -1,5 +1,5 @@
 ﻿<vncmvvm:ViewBase
-    x:Class="VNCPhidgets21Explorer.Presentation.Controls.PositionControl"
+    x:Class="VNCPhidgets21Explorer.Presentation.Controls.VelocityControl"
     x:Name="thisControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -68,25 +68,24 @@
         <!-- <localvm:PositionControlViewModel /> -->
     <!-- </UserControl.DataContext> -->
 
-    <dxlc:LayoutGroup x:Name="lgMain"  View="GroupBox" Orientation="Vertical" Header="Position" Padding="-10">
-        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+    <dxlc:LayoutGroup x:Name="lgMain" View="GroupBox" Orientation="Horizontal" Header="Velocity">
 
         <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
-            <dxe:TextEdit Text="{Binding Min, Mode=TwoWay}"  />
+            <dxe:TextEdit Text="{Binding Min, Mode=OneWay}"  IsReadOnly="True"/>
         </dxlc:LayoutItem>
 
-        <dxlc:LayoutItem Label="Current" LabelPosition="Top" LabelHorizontalAlignment="Center" >
-            <dxe:TextEdit Text="{Binding Current, Mode=TwoWay}" HorizontalAlignment="Center" />
+        <dxlc:LayoutItem Label="Limit" LabelPosition="Top">
+            <dxe:TextEdit Text="{Binding Limit, Mode=TwoWay}" />
         </dxlc:LayoutItem>
 
-        <dxlc:LayoutItem Label="Max" LabelPosition="Top" >
-            <dxe:TextEdit Text="{Binding Max, Mode=TwoWay}" />
+        <dxlc:LayoutItem Label="Curent" LabelPosition="Top">
+            <dxe:TextEdit Text="{Binding Current, Mode=OneWay}"  IsReadOnly="True"/>
         </dxlc:LayoutItem>
 
-        </dxlc:LayoutGroup>
-        <dxe:TrackBarEdit Value="{Binding Current, Mode=TwoWay}" Minimum="{Binding Min}" Maximum="{Binding Max}"
-                          MouseDoubleClick="TrackBarEdit_MouseDoubleClick"
-                          ToolTip="Double Click to Center"/>
+        <dxlc:LayoutItem Label="Max" LabelPosition="Top">
+            <dxe:TextEdit Text="{Binding Max, Mode=OneWay}"  IsReadOnly="True"/>
+        </dxlc:LayoutItem>
+
     </dxlc:LayoutGroup>
 
 </vncmvvm:ViewBase>

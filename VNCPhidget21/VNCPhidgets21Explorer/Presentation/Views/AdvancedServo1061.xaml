@@ -200,7 +200,13 @@
 
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup View="GroupBox" Orientation="Horizontal" Header="Velocity">
+                    <controls:VelocityControl 
+                        Min="{Binding VelocityMin_S0, Mode=TwoWay}" 
+                        Current="{Binding Velocity_S0, Mode=TwoWay}" 
+                        Limit="{Binding VelocityLimit_S0, Mode=TwoWay}" 
+                        Max="{Binding VelocityMax_S0, Mode=TwoWay}"/>
+                    
+                    <!--<dxlc:LayoutGroup View="GroupBox" Orientation="Horizontal" Header="Velocity">
 
                         <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
                             <dxe:TextEdit Text="{Binding VelocityMin_S0, Mode=OneWay}"  IsReadOnly="True"/>
@@ -218,7 +224,7 @@
                             <dxe:TextEdit Text="{Binding VelocityMax_S0, Mode=OneWay}"  IsReadOnly="True"/>
                         </dxlc:LayoutItem>
 
-                    </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>-->
 
                     <controls:AccelerationControl 
                         Min="{Binding AccelerationMin_S0, Mode=TwoWay}" 
@@ -301,26 +307,12 @@
                         </dxlc:LayoutItem>
 
                       </dxlc:LayoutGroup>
-
-                    <dxlc:LayoutGroup View="GroupBox" Orientation="Horizontal" Header="Velocity">
-
-                        <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
-                            <dxe:TextEdit Text="{Binding VelocityMin_S1, Mode=OneWay}"  IsReadOnly="True"/>
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Limit" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding VelocityLimit_S1, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Curent" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding Velocity_S1, Mode=OneWay}"  IsReadOnly="True"/>
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding VelocityMax_S1, Mode=OneWay}"  IsReadOnly="True"/>
-                        </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>
+                    
+                    <controls:VelocityControl 
+                        Min="{Binding VelocityMin_S1, Mode=TwoWay}" 
+                        Current="{Binding Velocity_S1, Mode=TwoWay}" 
+                        Limit="{Binding VelocityLimit_S1, Mode=TwoWay}" 
+                        Max="{Binding VelocityMax_S1, Mode=TwoWay}"/>
 
                     <controls:AccelerationControl 
                         Min="{Binding AccelerationMin_S1, Mode=TwoWay}" 
@@ -372,26 +364,11 @@
 
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup View="GroupBox" Orientation="Horizontal" Header="Velocity">
-
-                        <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
-                            <dxe:TextEdit Text="{Binding VelocityMin_S2, Mode=OneWay}"  IsReadOnly="True"/>
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Limit" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding VelocityLimit_S2, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Curent" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding Velocity_S2, Mode=OneWay}"  IsReadOnly="True"/>
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding VelocityMax_S2, Mode=OneWay}"  IsReadOnly="True"/>
-                        </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>
-
+                    <controls:VelocityControl 
+                        Min="{Binding VelocityMin_S2, Mode=TwoWay}" 
+                        Current="{Binding Velocity_S2, Mode=TwoWay}" 
+                        Limit="{Binding VelocityLimit_S2, Mode=TwoWay}" 
+                        Max="{Binding VelocityMax_S2, Mode=TwoWay}"/>
 
                     <controls:AccelerationControl 
                         Min="{Binding AccelerationMin_S2, Mode=TwoWay}" 
@@ -443,25 +420,12 @@
 
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup View="GroupBox" Orientation="Horizontal" Header="Velocity">
-
-                        <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
-                            <dxe:TextEdit Text="{Binding VelocityMin_S3, Mode=OneWay}"  IsReadOnly="True"/>
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Limit" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding VelocityLimit_S3, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Curent" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding Velocity_S3, Mode=OneWay}"  IsReadOnly="True"/>
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding VelocityMax_S3, Mode=OneWay}"  IsReadOnly="True"/>
-                        </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>
+                    <controls:VelocityControl 
+                        Min="{Binding VelocityMin_S3, Mode=TwoWay}" 
+                        Current="{Binding Velocity_S3, Mode=TwoWay}" 
+                        Limit="{Binding VelocityLimit_S3, Mode=TwoWay}" 
+                        Max="{Binding VelocityMax_S3, Mode=TwoWay}"/>
+                                       
                     <controls:AccelerationControl 
                         Min="{Binding AccelerationMin_S3, Mode=TwoWay}" 
                         Current="{Binding Acceleration_S3, Mode=TwoWay}" 

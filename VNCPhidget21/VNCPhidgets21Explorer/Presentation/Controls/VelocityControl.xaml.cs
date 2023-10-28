@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Windows;
 
-using VNCPhidgets21Explorer.Presentation.ViewModels;
-
 using VNC;
 using VNC.Core.Mvvm;
-using DevExpress.Xpf.Editors;
 
 namespace VNCPhidgets21Explorer.Presentation.Controls
 {
-    public partial class PositionControl : ViewBase, IInstanceCountV
+    public partial class VelocityControl : ViewBase, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
         
-        public PositionControl()
+        public VelocityControl()
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
@@ -26,35 +23,61 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 						
             // If View First with ViewModel in Xaml
 
-            // ViewModel = (IPositionControlViewModel)DataContext;
+            // ViewModel = (IVelocityControlViewModel)DataContext;
 
             // Can create directly
-            // ViewModel = PositionControlViewModel();
+            // ViewModel = VelocityControlViewModel();
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
-        
-        // public PositionControl(IPositionControlViewModel viewModel)
+
+        // public VelocityControl(IVelocityControlViewModel viewModel)
         // {
-            // Int64 startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
+        // Int64 startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
 
-            // InstanceCountV++;
-            // InitializeComponent();
+        // InstanceCountV++;
+        // InitializeComponent();
 
-            // ViewModel = viewModel;
-            
-            // InitializeView();
+        // ViewModel = viewModel;
 
-            // Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+        // InitializeView();
+
+        // Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         // }
-        
+
+        private static object OnCoerceLimit(DependencyObject o, object value)
+        {
+            VelocityControl velocityControl = o as VelocityControl;
+            if (velocityControl != null)
+                return velocityControl.OnCoerceLimit((Double?)value);
+            else
+                return value;
+        }
+
+        private static void OnLimitChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            VelocityControl velocityControl = o as VelocityControl;
+            if (velocityControl != null)
+                velocityControl.OnLimitChanged((Double?)e.OldValue, (Double?)e.NewValue);
+        }
+
+        protected virtual Double? OnCoerceLimit(Double? value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnLimitChanged(Double? oldValue, Double? newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
         private void InitializeView()
         {
             Int64 startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
-            
+
             // NOTE(crhodes)
             // Put things here that initialize the View
-            
+
             Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
@@ -78,6 +101,14 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
             get => (Double?)GetValue(CurrentProperty);
             set => SetValue(CurrentProperty, value);
         }
+
+        public Double? Limit
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double?)GetValue(LimitProperty);
+            set => SetValue(LimitProperty, value);
+        }
+
         public Double? Min
         {
             // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
@@ -92,14 +123,18 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
             set => SetValue(MaxProperty, value);
         }
 
-        public static readonly DependencyProperty MaxProperty = DependencyProperty.Register("Max", typeof(Double?), typeof(PositionControl),
+        public static readonly DependencyProperty MaxProperty = DependencyProperty.Register("Max", typeof(Double?), typeof(VelocityControl),
             new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnMaxChanged), new CoerceValueCallback(OnCoerceMax)));
 
-        public static readonly DependencyProperty MinProperty = DependencyProperty.Register("Min", typeof(Double?), typeof(PositionControl),
+        public static readonly DependencyProperty MinProperty = DependencyProperty.Register("Min", typeof(Double?), typeof(VelocityControl),
             new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnMinChanged), new CoerceValueCallback(OnCoerceMin)));
 
-        public static readonly DependencyProperty CurrentProperty = DependencyProperty.Register("Current", typeof(Double?), typeof(PositionControl),
+        public static readonly DependencyProperty CurrentProperty = DependencyProperty.Register("Current", typeof(Double?), typeof(VelocityControl),
             new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnCurrentChanged), new CoerceValueCallback(OnCoerceCurrent)));
+
+        public static readonly DependencyProperty LimitProperty = DependencyProperty.Register("Limit", typeof(Double?), typeof(VelocityControl),
+            new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnLimitChanged), new CoerceValueCallback(OnCoerceLimit)));
+
         #endregion
 
         #region Event Handlers (None)
@@ -121,12 +156,12 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 
         #endregion
 
-        #region Private Methods (None)
+        #region Private Methods
 
 
         private static object OnCoerceCurrent(DependencyObject o, object value)
         {
-            PositionControl positionControl = o as PositionControl;
+            VelocityControl positionControl = o as VelocityControl;
             if (positionControl != null)
                 return positionControl.OnCoerceCurrent((Double?)value);
             else
@@ -135,7 +170,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 
         private static void OnCurrentChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            PositionControl positionControl = o as PositionControl;
+            VelocityControl positionControl = o as VelocityControl;
             if (positionControl != null)
                 positionControl.OnCurrentChanged((Double?)e.OldValue, (Double?)e.NewValue);
         }
@@ -152,7 +187,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         }
         private static object OnCoerceMin(DependencyObject o, object value)
         {
-            PositionControl positionControl = o as PositionControl;
+            VelocityControl positionControl = o as VelocityControl;
             if (positionControl != null)
                 return positionControl.OnCoerceMin((Double?)value);
             else
@@ -161,7 +196,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 
         private static void OnMinChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            PositionControl positionControl = o as PositionControl;
+            VelocityControl positionControl = o as VelocityControl;
             if (positionControl != null)
                 positionControl.OnMinChanged((Double?)e.OldValue, (Double?)e.NewValue);
         }
@@ -178,7 +213,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         }
         private static object OnCoerceMax(DependencyObject o, object value)
         {
-            PositionControl positionControl = o as PositionControl;
+            VelocityControl positionControl = o as VelocityControl;
             if (positionControl != null)
                 return positionControl.OnCoerceMax((Double?)value);
             else
@@ -187,7 +222,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 
         private static void OnMaxChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            PositionControl positionControl = o as PositionControl;
+            VelocityControl positionControl = o as VelocityControl;
             if (positionControl != null)
                 positionControl.OnMaxChanged((Double?)e.OldValue, (Double?)e.NewValue);
         }
@@ -217,11 +252,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         }
 
         #endregion
-
-        private void TrackBarEdit_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            var centerPosition = (Max - Min) / 2 + Min;
-            ((TrackBarEdit)sender).Value = (Double)centerPosition;
-        }
+       
+        
     }
 }
