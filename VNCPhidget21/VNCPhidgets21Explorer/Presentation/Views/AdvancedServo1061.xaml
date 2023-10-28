@@ -33,7 +33,7 @@
 
     Background="{StaticResource AdvancedServo1061Background}"
     
-    d:DesignWidth="800" d:DesignHeight="450"
+    d:DesignWidth="800" d:DesignHeight="550"
     d:DesignStyle="{StaticResource vncDesignStyleUC}" 
 >
     <!-- d:DesignWidth="800" d:DesignHeight="450" -->
@@ -220,7 +220,11 @@
 
                     </dxlc:LayoutGroup>
 
-                    <controls:AccelerationControl />
+                    <controls:AccelerationControl 
+                        Min="{Binding AccelerationMin_S0, Mode=TwoWay}" 
+                        Current="{Binding Acceleration_S0, Mode=TwoWay}" 
+                        Max="{Binding AccelerationMax_S0, Mode=TwoWay}"/>
+                    
                     <!--<dxlc:LayoutGroup View="GroupBox" Orientation="Horizontal" Header="Acceleration">
 
                         <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
@@ -237,7 +241,12 @@
 
                     </dxlc:LayoutGroup>-->
 
-                    <dxlc:LayoutGroup View="GroupBox" Orientation="Horizontal" Header="Position" >
+                    <controls:PositionControl 
+                        Min="{Binding PositionMin_S0, Mode=TwoWay}" 
+                        Current="{Binding Position_S0, Mode=TwoWay}" 
+                        Max="{Binding PositionMax_S0, Mode=TwoWay}"/>
+                    
+                    <!--<dxlc:LayoutGroup View="GroupBox" Orientation="Horizontal" Header="Position" >
 
                         <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
                             <dxe:TextEdit Text="{Binding PositionMin_S0, Mode=TwoWay}" />
@@ -251,7 +260,7 @@
                             <dxe:TextEdit Text="{Binding PositionMax_S0, Mode=TwoWay}" />
                         </dxlc:LayoutItem>
 
-                    </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>-->
                     
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
@@ -313,37 +322,15 @@
 
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup View="GroupBox" Orientation="Horizontal" Header="Acceleration">
+                    <controls:AccelerationControl 
+                        Min="{Binding AccelerationMin_S1, Mode=TwoWay}" 
+                        Current="{Binding Acceleration_S1, Mode=TwoWay}" 
+                        Max="{Binding AccelerationMax_S1, Mode=TwoWay}"/>
 
-                        <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
-                            <dxe:TextEdit Text="{Binding AccelerationMin_S1, Mode=OneWay}" IsReadOnly="True" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Current" LabelPosition="Top" LabelHorizontalAlignment="Center">
-                            <dxe:TextEdit Text="{Binding Acceleration_S1, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding AccelerationMax_S1, Mode=OneWay}" IsReadOnly="True" />
-                        </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>
-
-                    <dxlc:LayoutGroup View="GroupBox" Orientation="Horizontal" Header="Position" >
-
-                        <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
-                            <dxe:TextEdit Text="{Binding PositionMin_S1, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Current" LabelPosition="Top" LabelHorizontalAlignment="Center">
-                            <dxe:TextEdit Text="{Binding Position_S1, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding PositionMax_S1, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>
+                    <controls:PositionControl 
+                        Min="{Binding PositionMin_S1, Mode=TwoWay}" 
+                        Current="{Binding Position_S1, Mode=TwoWay}" 
+                        Max="{Binding PositionMax_S1, Mode=TwoWay}"/>
 
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
@@ -405,38 +392,16 @@
 
                     </dxlc:LayoutGroup>
 
-                    
-                    <dxlc:LayoutGroup View="GroupBox" Orientation="Horizontal" Header="Acceleration">
 
-                        <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
-                            <dxe:TextEdit Text="{Binding AccelerationMin_S2, Mode=OneWay}" IsReadOnly="True" />
-                        </dxlc:LayoutItem>
+                    <controls:AccelerationControl 
+                        Min="{Binding AccelerationMin_S2, Mode=TwoWay}" 
+                        Current="{Binding Acceleration_S2, Mode=TwoWay}" 
+                        Max="{Binding AccelerationMax_S2, Mode=TwoWay}"/>
 
-                        <dxlc:LayoutItem Label="Current" LabelPosition="Top" LabelHorizontalAlignment="Center">
-                            <dxe:TextEdit Text="{Binding Acceleration_S2, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding AccelerationMax_S2, Mode=OneWay}" IsReadOnly="True" />
-                        </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>
-
-                    <dxlc:LayoutGroup View="GroupBox" Orientation="Horizontal" Header="Position" >
-
-                        <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
-                            <dxe:TextEdit Text="{Binding PositionMin_S2, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Current" LabelPosition="Top" LabelHorizontalAlignment="Center">
-                            <dxe:TextEdit Text="{Binding Position_S2, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding PositionMax_S2, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>
+                    <controls:PositionControl 
+                        Min="{Binding PositionMin_S2, Mode=TwoWay}" 
+                        Current="{Binding Position_S2, Mode=TwoWay}" 
+                        Max="{Binding PositionMax_S2, Mode=TwoWay}"/>
 
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
@@ -497,38 +462,15 @@
                         </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>
+                    <controls:AccelerationControl 
+                        Min="{Binding AccelerationMin_S3, Mode=TwoWay}" 
+                        Current="{Binding Acceleration_S3, Mode=TwoWay}" 
+                        Max="{Binding AccelerationMax_S3, Mode=TwoWay}"/>
 
-                    <dxlc:LayoutGroup View="GroupBox" Orientation="Horizontal" Header="Acceleration">
-
-                        <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
-                            <dxe:TextEdit Text="{Binding AccelerationMin_S3, Mode=OneWay}" IsReadOnly="True" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Current" LabelPosition="Top" LabelHorizontalAlignment="Center">
-                            <dxe:TextEdit Text="{Binding Acceleration_S3, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding AccelerationMax_S3, Mode=OneWay}" IsReadOnly="True" />
-                        </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>
-
-                    <dxlc:LayoutGroup View="GroupBox" Orientation="Horizontal" Header="Position" >
-
-                        <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
-                            <dxe:TextEdit Text="{Binding PositionMin_S3, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Current" LabelPosition="Top" LabelHorizontalAlignment="Center">
-                            <dxe:TextEdit Text="{Binding Position_S3, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding PositionMax_S3, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>
+                    <controls:PositionControl 
+                        Min="{Binding PositionMin_S3, Mode=TwoWay}" 
+                        Current="{Binding Position_S3, Mode=TwoWay}" 
+                        Max="{Binding PositionMax_S3, Mode=TwoWay}"/>
 
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
