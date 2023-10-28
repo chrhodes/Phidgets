@@ -302,6 +302,12 @@ namespace VNCPhidgets21Explorer
         {
             long startTicks = Log.APPLICATION_END("Enter", Common.LOG_CATEGORY);
 
+            // TODO(crhodes)
+            // Need to fire an event that will be handled by ViewModels
+            // Indicating any open devices need to be closed
+            // Start by looking at CloseAdvancedServo
+            // This is to handle the case where things end with Open devices
+            // Maybe look for null in Active{AdvancedServo,InterfaceKit,Stepper}
 
             Log.APPLICATION_END("Exit", Common.LOG_CATEGORY, startTicks);
         }

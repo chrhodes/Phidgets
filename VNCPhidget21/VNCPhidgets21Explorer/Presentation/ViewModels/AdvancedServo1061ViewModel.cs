@@ -265,7 +265,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
         public ICommand SayHelloCommand { get; private set; }
-        
+
         private string _message;
         public string Message
         {
@@ -281,10 +281,23 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region AdvancedServo Properties
 
+        private int? _servoCount;
+        public int? ServoCount
+        {
+            get => _servoCount;
+            set
+            {
+                if (_servoCount == value)
+                    return;
+                _servoCount = value;
+                OnPropertyChanged();
+            }
+        }
+        
         #region Servo S0
 
-        private Double _currentS0;
-        public Double Current_S0
+        private Double? _currentS0;
+        public Double? Current_S0
         {
             get => _currentS0;
             set
@@ -297,8 +310,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
 
-        private Double _positionMax_S0;
-        public Double PositionMax_S0
+        private Double? _positionMax_S0;
+        public Double? PositionMax_S0
         {
             get => _positionMax_S0;
             set
@@ -311,8 +324,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
 
-        private Double _positionS0;
-        public Double Position_S0
+        private Double? _positionS0;
+        public Double? Position_S0
         {
             get => _positionS0;
             set
@@ -326,18 +339,18 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     if (ActiveAdvancedServo.AdvancedServo.servos[0].Position != value)
                     {
-                        ActiveAdvancedServo.AdvancedServo.servos[0].Position = value;
+                        ActiveAdvancedServo.AdvancedServo.servos[0].Position = (double)value;
                     }
                 }
                 catch (PhidgetException ex)
                 {
-                    ActiveAdvancedServo.AdvancedServo.servos[0].Position = value;
+                    if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[0].Position = (double)value;
                 }
             }
         }
 
-        private Double _positionMin_S0;
-        public Double PositionMin_S0
+        private Double? _positionMin_S0;
+        public Double? PositionMin_S0
         {
             get => _positionMin_S0;
             set
@@ -350,8 +363,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _velocityMinS0;
-        public Double VelocityMin_S0
+        private Double? _velocityMinS0;
+        public Double? VelocityMin_S0
         {
             get => _velocityMinS0;
             set
@@ -363,8 +376,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _velocityS0;
-        public Double Velocity_S0
+        private Double? _velocityS0;
+        public Double? Velocity_S0
         {
             get => _velocityS0;
             set
@@ -376,8 +389,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _velocityLimitS0;
-        public Double VelocityLimit_S0
+        private Double? _velocityLimitS0;
+        public Double? VelocityLimit_S0
         {
             get => _velocityLimitS0;
             set
@@ -391,18 +404,18 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     if (ActiveAdvancedServo.AdvancedServo.servos[0].VelocityLimit != value)
                     {
-                        ActiveAdvancedServo.AdvancedServo.servos[0].VelocityLimit = value;
+                        ActiveAdvancedServo.AdvancedServo.servos[0].VelocityLimit = (double)value;
                     }
                 }
                 catch (PhidgetException ex)
                 {
-                    ActiveAdvancedServo.AdvancedServo.servos[0].VelocityLimit = value;
+                    if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[0].VelocityLimit = (double)value;
                 }
             }
         }
 
-        private Double _velocityMaxS0;
-        public Double VelocityMax_S0
+        private Double? _velocityMaxS0;
+        public Double? VelocityMax_S0
         {
             get => _velocityMaxS0;
             set
@@ -414,8 +427,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _accelerationMinS0;
-        public Double AccelerationMin_S0
+        private Double? _accelerationMinS0;
+        public Double? AccelerationMin_S0
         {
             get => _accelerationMinS0;
             set
@@ -427,8 +440,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _accelerationS0;
-        public Double Acceleration_S0
+        private Double? _accelerationS0;
+        public Double? Acceleration_S0
         {
             get => _accelerationS0;
             set
@@ -442,21 +455,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     if (ActiveAdvancedServo.AdvancedServo.servos[0].Acceleration != value)
                     {
-                        ActiveAdvancedServo.AdvancedServo.servos[0].Acceleration = value;
+                        ActiveAdvancedServo.AdvancedServo.servos[0].Acceleration = (double)value;
                     }
                 }
                 catch (PhidgetException ex)
                 {
                     // NOTE(crhodes)
                     // This throws exception  Humm
-                    ActiveAdvancedServo.AdvancedServo.servos[0].Acceleration = value;
-                    //ActiveAdvancedServo.AdvancedServo.servos[0].Acceleration = AccelerationMax_S0;
+                    if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[0].Acceleration = (double)value;
                 }
             }
         }
 
-        private Double _accelerationMaxS0;
-        public Double AccelerationMax_S0
+        private Double? _accelerationMaxS0;
+        public Double? AccelerationMax_S0
         {
             get => _accelerationMaxS0;
             set
@@ -479,7 +491,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _engagedS0 = value;
 
-                ActiveAdvancedServo.AdvancedServo.servos[0].Engaged = (Boolean)value;
+                if (value is not null)ActiveAdvancedServo.AdvancedServo.servos[0].Engaged = (Boolean)value;
+
                 OnPropertyChanged();
             }
         }
@@ -514,8 +527,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Servo S1
 
-        private Double _currentS1;
-        public Double Current_S1
+        private Double? _currentS1;
+        public Double? Current_S1
         {
             get => _currentS1;
             set
@@ -528,8 +541,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
 
-        private Double _positionMax_S1;
-        public Double PositionMax_S1
+        private Double? _positionMax_S1;
+        public Double? PositionMax_S1
         {
             get => _positionMax_S1;
             set
@@ -542,8 +555,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
 
-        private Double _positionS1;
-        public Double Position_S1
+        private Double? _positionS1;
+        public Double? Position_S1
         {
             get => _positionS1;
             set
@@ -557,18 +570,18 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     if (ActiveAdvancedServo.AdvancedServo.servos[1].Position != value)
                     {
-                        ActiveAdvancedServo.AdvancedServo.servos[1].Position = value;
+                        ActiveAdvancedServo.AdvancedServo.servos[1].Position = (double)value;
                     }
                 }
                 catch (PhidgetException ex)
                 {
-                    ActiveAdvancedServo.AdvancedServo.servos[1].Position = value;
+                    if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[1].Position = (double)value;
                 }
             }
         }
 
-        private Double _positionMin_S1;
-        public Double PositionMin_S1
+        private Double? _positionMin_S1;
+        public Double? PositionMin_S1
         {
             get => _positionMin_S1;
             set
@@ -583,8 +596,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
 
 
-        private Double _velocityMinS1;
-        public Double VelocityMin_S1
+        private Double? _velocityMinS1;
+        public Double? VelocityMin_S1
         {
             get => _velocityMinS1;
             set
@@ -596,8 +609,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _velocityS1;
-        public Double Velocity_S1
+        private Double? _velocityS1;
+        public Double? Velocity_S1
         {
             get => _velocityS1;
             set
@@ -609,8 +622,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _velocityLimitS1;
-        public Double VelocityLimit_S1
+        private Double? _velocityLimitS1;
+        public Double? VelocityLimit_S1
         {
             get => _velocityLimitS1;
             set
@@ -624,18 +637,18 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     if (ActiveAdvancedServo.AdvancedServo.servos[1].VelocityLimit != value)
                     {
-                        ActiveAdvancedServo.AdvancedServo.servos[1].VelocityLimit = value;
+                        ActiveAdvancedServo.AdvancedServo.servos[1].VelocityLimit = (double)value;
                     }
                 }
                 catch (Exception ex)
                 {
-                    ActiveAdvancedServo.AdvancedServo.servos[1].VelocityLimit = value;
+                    if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[1].VelocityLimit = (double)value;
                 }
             }
         }
 
-        private Double _velocityMaxS1;
-        public Double VelocityMax_S1
+        private Double? _velocityMaxS1;
+        public Double? VelocityMax_S1
         {
             get => _velocityMaxS1;
             set
@@ -649,8 +662,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
 
 
-        private Double _accelerationMinS1;
-        public Double AccelerationMin_S1
+        private Double? _accelerationMinS1;
+        public Double? AccelerationMin_S1
         {
             get => _accelerationMinS1;
             set
@@ -662,8 +675,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _accelerationS1;
-        public Double Acceleration_S1
+        private Double? _accelerationS1;
+        public Double? Acceleration_S1
         {
             get => _accelerationS1;
             set
@@ -677,21 +690,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     if (ActiveAdvancedServo.AdvancedServo.servos[1].Acceleration != value)
                     {
-                        ActiveAdvancedServo.AdvancedServo.servos[1].Acceleration = value;
+                        ActiveAdvancedServo.AdvancedServo.servos[1].Acceleration = (double)value;
                     }
                 }
                 catch (Exception ex)
                 {
                     // NOTE(crhodes)
                     // This throws exception  Humm
-                    ActiveAdvancedServo.AdvancedServo.servos[1].Acceleration = value;
-                    //ActiveAdvancedServo.AdvancedServo.servos[1].Acceleration = AccelerationMax_S1;
+                    if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[1].Acceleration = (double)value;
                 }
             }
         }
 
-        private Double _accelerationMaxS1;
-        public Double AccelerationMax_S1
+        private Double? _accelerationMaxS1;
+        public Double? AccelerationMax_S1
         {
             get => _accelerationMaxS1;
             set
@@ -714,7 +726,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _engagedS1 = value;
 
-                ActiveAdvancedServo.AdvancedServo.servos[1].Engaged = (Boolean)value;
+                if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[1].Engaged = (Boolean)value;
                 OnPropertyChanged();
             }
         }
@@ -749,8 +761,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Servo S2
 
-        private Double _currentS2;
-        public Double Current_S2
+        private Double? _currentS2;
+        public Double? Current_S2
         {
             get => _currentS2;
             set
@@ -763,8 +775,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
 
-        private Double _positionMax_S2;
-        public Double PositionMax_S2
+        private Double? _positionMax_S2;
+        public Double? PositionMax_S2
         {
             get => _positionMax_S2;
             set
@@ -777,8 +789,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
 
-        private Double _positionS2;
-        public Double Position_S2
+        private Double? _positionS2;
+        public Double? Position_S2
         {
             get => _positionS2;
             set
@@ -795,18 +807,18 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     if (ActiveAdvancedServo.AdvancedServo.servos[2].Position != value)
                     {
-                        ActiveAdvancedServo.AdvancedServo.servos[2].Position = value;
+                        ActiveAdvancedServo.AdvancedServo.servos[2].Position = (double)value;
                     }
                 }
                 catch (PhidgetException ex)
                 {
-                    ActiveAdvancedServo.AdvancedServo.servos[2].Position = value;
+                    if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[2].Position = (double)value;
                 }
             }
         }
 
-        private Double _positionMin_S2;
-        public Double PositionMin_S2
+        private Double? _positionMin_S2;
+        public Double? PositionMin_S2
         {
             get => _positionMin_S2;
             set
@@ -819,8 +831,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _velocityMinS2;
-        public Double VelocityMin_S2
+        private Double? _velocityMinS2;
+        public Double? VelocityMin_S2
         {
             get => _velocityMinS2;
             set
@@ -832,8 +844,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _velocityS2;
-        public Double Velocity_S2
+        private Double? _velocityS2;
+        public Double? Velocity_S2
         {
             get => _velocityS2;
             set
@@ -845,8 +857,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _velocityLimitS2;
-        public Double VelocityLimit_S2
+        private Double? _velocityLimitS2;
+        public Double? VelocityLimit_S2
         {
             get => _velocityLimitS2;
             set
@@ -860,18 +872,18 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     if (ActiveAdvancedServo.AdvancedServo.servos[2].VelocityLimit != value)
                     {
-                        ActiveAdvancedServo.AdvancedServo.servos[2].VelocityLimit = value;
+                        ActiveAdvancedServo.AdvancedServo.servos[2].VelocityLimit = (double)value;
                     }
                 }
                 catch (PhidgetException ex)
                 {
-                    ActiveAdvancedServo.AdvancedServo.servos[2].VelocityLimit = value;
+                    if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[2].VelocityLimit = (double)value;
                 }
             }
         }
 
-        private Double _velocityMaxS2;
-        public Double VelocityMax_S2
+        private Double? _velocityMaxS2;
+        public Double? VelocityMax_S2
         {
             get => _velocityMaxS2;
             set
@@ -883,8 +895,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _accelerationMinS2;
-        public Double AccelerationMin_S2
+        private Double? _accelerationMinS2;
+        public Double? AccelerationMin_S2
         {
             get => _accelerationMinS2;
             set
@@ -896,8 +908,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _accelerationS2;
-        public Double Acceleration_S2
+        private Double? _accelerationS2;
+        public Double? Acceleration_S2
         {
             get => _accelerationS2;
             set
@@ -911,21 +923,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     if (ActiveAdvancedServo.AdvancedServo.servos[2].Acceleration != value)
                     {
-                        ActiveAdvancedServo.AdvancedServo.servos[2].Acceleration = value;
+                        ActiveAdvancedServo.AdvancedServo.servos[2].Acceleration = (double)value;
                     }
                 }
                 catch (PhidgetException ex)
                 {
                     // NOTE(crhodes)
                     // This throws exception  Humm
-                    ActiveAdvancedServo.AdvancedServo.servos[2].Acceleration = value;
-                    //ActiveAdvancedServo.AdvancedServo.servos[2].Acceleration = AccelerationMax_S2;
+                    if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[2].Acceleration = (double)value;
                 }
             }
         }
 
-        private Double _accelerationMaxS2;
-        public Double AccelerationMax_S2
+        private Double? _accelerationMaxS2;
+        public Double? AccelerationMax_S2
         {
             get => _accelerationMaxS2;
             set
@@ -947,7 +958,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _engagedS2 = value;
 
-                ActiveAdvancedServo.AdvancedServo.servos[2].Engaged = (Boolean)value;
+                if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[2].Engaged = (Boolean)value;
+
                 OnPropertyChanged();
             }
         }
@@ -982,8 +994,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Servo S3
 
-        private Double _currentS3;
-        public Double Current_S3
+        private Double? _currentS3;
+        public Double? Current_S3
         {
             get => _currentS3;
             set
@@ -996,8 +1008,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
 
-        private Double _positionMax_S3;
-        public Double PositionMax_S3
+        private Double? _positionMax_S3;
+        public Double? PositionMax_S3
         {
             get => _positionMax_S3;
             set
@@ -1010,8 +1022,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
 
-        private Double _positionS3;
-        public Double Position_S3
+        private Double? _positionS3;
+        public Double? Position_S3
         {
             get => _positionS3;
             set
@@ -1025,18 +1037,18 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     if (ActiveAdvancedServo.AdvancedServo.servos[3].Position != value)
                     {
-                        ActiveAdvancedServo.AdvancedServo.servos[3].Position = value;
+                        ActiveAdvancedServo.AdvancedServo.servos[3].Position = (double)value;
                     }
                 }
                 catch (PhidgetException ex)
                 {
-                    ActiveAdvancedServo.AdvancedServo.servos[3].Position = value;
+                    if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[3].Position = (double)value;
                 }
             }
         }
 
-        private Double _positionMin_S3;
-        public Double PositionMin_S3
+        private Double? _positionMin_S3;
+        public Double? PositionMin_S3
         {
             get => _positionMin_S3;
             set
@@ -1049,8 +1061,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _velocityMinS3;
-        public Double VelocityMin_S3
+        private Double? _velocityMinS3;
+        public Double? VelocityMin_S3
         {
             get => _velocityMinS3;
             set
@@ -1062,8 +1074,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _velocityS3;
-        public Double Velocity_S3
+        private Double? _velocityS3;
+        public Double? Velocity_S3
         {
             get => _velocityS3;
             set
@@ -1075,8 +1087,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _velocityLimitS3;
-        public Double VelocityLimit_S3
+        private Double? _velocityLimitS3;
+        public Double? VelocityLimit_S3
         {
             get => _velocityLimitS3;
             set
@@ -1090,18 +1102,18 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     if (ActiveAdvancedServo.AdvancedServo.servos[3].VelocityLimit != value)
                     {
-                        ActiveAdvancedServo.AdvancedServo.servos[3].VelocityLimit = value;
+                        ActiveAdvancedServo.AdvancedServo.servos[3].VelocityLimit = (double)value;
                     }
                 }
                 catch (PhidgetException ex)
                 {
-                    ActiveAdvancedServo.AdvancedServo.servos[3].VelocityLimit = value;
+                    if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[3].VelocityLimit = (double)value;
                 }
             }
         }
 
-        private Double _velocityMaxS3;
-        public Double VelocityMax_S3
+        private Double? _velocityMaxS3;
+        public Double? VelocityMax_S3
         {
             get => _velocityMaxS3;
             set
@@ -1113,8 +1125,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _accelerationMinS3;
-        public Double AccelerationMin_S3
+        private Double? _accelerationMinS3;
+        public Double? AccelerationMin_S3
         {
             get => _accelerationMinS3;
             set
@@ -1126,8 +1138,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _accelerationS3;
-        public Double Acceleration_S3
+        private Double? _accelerationS3;
+        public Double? Acceleration_S3
         {
             get => _accelerationS3;
             set
@@ -1141,21 +1153,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     if (ActiveAdvancedServo.AdvancedServo.servos[3].Acceleration != value)
                     {
-                        ActiveAdvancedServo.AdvancedServo.servos[3].Acceleration = value;
+                        ActiveAdvancedServo.AdvancedServo.servos[3].Acceleration = (double)value;
                     }
                 }
                 catch (PhidgetException ex)
                 {
                     // NOTE(crhodes)
                     // This throws exception  Humm
-                    ActiveAdvancedServo.AdvancedServo.servos[3].Acceleration = value;
-                    //ActiveAdvancedServo.AdvancedServo.servos[3].Acceleration = AccelerationMax_S3;
+                    if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[3].Acceleration = (double)value;
                 }
             }
         }
 
-        private Double _accelerationMaxS3;
-        public Double AccelerationMax_S3
+        private Double? _accelerationMaxS3;
+        public Double? AccelerationMax_S3
         {
             get => _accelerationMaxS3;
             set
@@ -1177,7 +1188,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _engagedS3 = value;
 
-                ActiveAdvancedServo.AdvancedServo.servos[3].Engaged = (Boolean)value;
+                if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[3].Engaged = (Boolean)value;
+
                 OnPropertyChanged();
             }
         }
@@ -1212,8 +1224,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Servo S4
 
-        private Double _currentS4;
-        public Double Current_S4
+        private Double? _currentS4;
+        public Double? Current_S4
         {
             get => _currentS4;
             set
@@ -1226,8 +1238,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
 
-        private Double _positionMax_S4;
-        public Double PositionMax_S4
+        private Double? _positionMax_S4;
+        public Double? PositionMax_S4
         {
             get => _positionMax_S4;
             set
@@ -1240,8 +1252,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
 
-        private Double _positionS4;
-        public Double Position_S4
+        private Double? _positionS4;
+        public Double? Position_S4
         {
             get => _positionS4;
             set
@@ -1255,18 +1267,18 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     if (ActiveAdvancedServo.AdvancedServo.servos[4].Position != value)
                     {
-                        ActiveAdvancedServo.AdvancedServo.servos[4].Position = value;
+                        ActiveAdvancedServo.AdvancedServo.servos[4].Position = (double)value;
                     }
                 }
                 catch (PhidgetException ex)
                 {
-                    ActiveAdvancedServo.AdvancedServo.servos[4].Position = value;
+                    if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[4].Position = (double)value;
                 }
             }
         }
 
-        private Double _positionMin_S4;
-        public Double PositionMin_S4
+        private Double? _positionMin_S4;
+        public Double? PositionMin_S4
         {
             get => _positionMin_S4;
             set
@@ -1279,8 +1291,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _velocityMinS4;
-        public Double VelocityMin_S4
+        private Double? _velocityMinS4;
+        public Double? VelocityMin_S4
         {
             get => _velocityMinS4;
             set
@@ -1292,8 +1304,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _velocityS4;
-        public Double Velocity_S4
+        private Double? _velocityS4;
+        public Double? Velocity_S4
         {
             get => _velocityS4;
             set
@@ -1305,8 +1317,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _velocityLimitS4;
-        public Double VelocityLimit_S4
+        private Double? _velocityLimitS4;
+        public Double? VelocityLimit_S4
         {
             get => _velocityLimitS4;
             set
@@ -1320,18 +1332,18 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     if (ActiveAdvancedServo.AdvancedServo.servos[4].VelocityLimit != value)
                     {
-                        ActiveAdvancedServo.AdvancedServo.servos[4].VelocityLimit = value;
+                        ActiveAdvancedServo.AdvancedServo.servos[4].VelocityLimit = (double)value;
                     }
                 }
                 catch (PhidgetException ex)
                 {
-                    ActiveAdvancedServo.AdvancedServo.servos[4].VelocityLimit = value;
+                    if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[4].VelocityLimit = (double)value;
                 }
             }
         }
 
-        private Double _velocityMaxS4;
-        public Double VelocityMax_S4
+        private Double? _velocityMaxS4;
+        public Double? VelocityMax_S4
         {
             get => _velocityMaxS4;
             set
@@ -1343,8 +1355,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _accelerationMinS4;
-        public Double AccelerationMin_S4
+        private Double? _accelerationMinS4;
+        public Double? AccelerationMin_S4
         {
             get => _accelerationMinS4;
             set
@@ -1356,8 +1368,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _accelerationS4;
-        public Double Acceleration_S4
+        private Double? _accelerationS4;
+        public Double? Acceleration_S4
         {
             get => _accelerationS4;
             set
@@ -1371,21 +1383,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     if (ActiveAdvancedServo.AdvancedServo.servos[4].Acceleration != value)
                     {
-                        ActiveAdvancedServo.AdvancedServo.servos[4].Acceleration = value;
+                        ActiveAdvancedServo.AdvancedServo.servos[4].Acceleration = (double)value;
                     }
                 }
                 catch (PhidgetException ex)
                 {
                     // NOTE(crhodes)
                     // This throws exception  Humm
-                    ActiveAdvancedServo.AdvancedServo.servos[4].Acceleration = value;
-                    //ActiveAdvancedServo.AdvancedServo.servos[4].Acceleration = AccelerationMax_S4;
+                    if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[4].Acceleration = (double)value;
                 }
             }
         }
 
-        private Double _accelerationMaxS4;
-        public Double AccelerationMax_S4
+        private Double? _accelerationMaxS4;
+        public Double? AccelerationMax_S4
         {
             get => _accelerationMaxS4;
             set
@@ -1406,9 +1417,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_engagedS4 == value)
                     return;
                 _engagedS4 = value;
-
-                ActiveAdvancedServo.AdvancedServo.servos[4].Engaged = (Boolean)value;
                 OnPropertyChanged();
+
+                if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[4].Engaged = (Boolean)value;
             }
         }
 
@@ -1442,8 +1453,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Servo S5
 
-        private Double _currentS5;
-        public Double Current_S5
+        private Double? _currentS5;
+        public Double? Current_S5
         {
             get => _currentS5;
             set
@@ -1455,8 +1466,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _positionMax_S5;
-        public Double PositionMax_S5
+        private Double? _positionMax_S5;
+        public Double? PositionMax_S5
         {
             get => _positionMax_S5;
             set
@@ -1468,8 +1479,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _positionS5;
-        public Double Position_S5
+        private Double? _positionS5;
+        public Double? Position_S5
         {
             get => _positionS5;
             set
@@ -1483,18 +1494,18 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     if (ActiveAdvancedServo.AdvancedServo.servos[5].Position != value)
                     {
-                        ActiveAdvancedServo.AdvancedServo.servos[5].Position = value;
+                        ActiveAdvancedServo.AdvancedServo.servos[5].Position = (double)value;
                     }
                 }
                 catch (PhidgetException ex)
                 {
-                    ActiveAdvancedServo.AdvancedServo.servos[5].Position = value;
+                    if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[5].Position = (double)value;
                 }
             }
         }
 
-        private Double _positionMin_S5;
-        public Double PositionMin_S5
+        private Double? _positionMin_S5;
+        public Double? PositionMin_S5
         {
             get => _positionMin_S5;
             set
@@ -1507,8 +1518,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _velocityMinS5;
-        public Double VelocityMin_S5
+        private Double? _velocityMinS5;
+        public Double? VelocityMin_S5
         {
             get => _velocityMinS5;
             set
@@ -1520,8 +1531,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _velocityS5;
-        public Double Velocity_S5
+        private Double? _velocityS5;
+        public Double? Velocity_S5
         {
             get => _velocityS5;
             set
@@ -1533,8 +1544,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _velocityLimitS5;
-        public Double VelocityLimit_S5
+        private Double? _velocityLimitS5;
+        public Double? VelocityLimit_S5
         {
             get => _velocityLimitS5;
             set
@@ -1548,18 +1559,18 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     if (ActiveAdvancedServo.AdvancedServo.servos[5].VelocityLimit != value)
                     {
-                        ActiveAdvancedServo.AdvancedServo.servos[5].VelocityLimit = value;
+                        ActiveAdvancedServo.AdvancedServo.servos[5].VelocityLimit = (double)value;
                     }
                 }
                 catch (PhidgetException ex)
                 {
-                    ActiveAdvancedServo.AdvancedServo.servos[5].VelocityLimit = value;
+                    if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[5].VelocityLimit = (double)value;
                 }
             }
         }
 
-        private Double _velocityMaxS5;
-        public Double VelocityMax_S5
+        private Double? _velocityMaxS5;
+        public Double? VelocityMax_S5
         {
             get => _velocityMaxS5;
             set
@@ -1571,8 +1582,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _accelerationMinS5;
-        public Double AccelerationMin_S5
+        private Double? _accelerationMinS5;
+        public Double? AccelerationMin_S5
         {
             get => _accelerationMinS5;
             set
@@ -1584,8 +1595,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _accelerationS5;
-        public Double Acceleration_S5
+        private Double? _accelerationS5;
+        public Double? Acceleration_S5
         {
             get => _accelerationS5;
             set
@@ -1599,21 +1610,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     if (ActiveAdvancedServo.AdvancedServo.servos[5].Acceleration != value)
                     {
-                        ActiveAdvancedServo.AdvancedServo.servos[5].Acceleration = value;
+                        ActiveAdvancedServo.AdvancedServo.servos[5].Acceleration = (double)value;
                     }
                 }
                 catch (PhidgetException ex)
                 {
                     // NOTE(crhodes)
                     // This throws exception  Humm
-                    ActiveAdvancedServo.AdvancedServo.servos[5].Acceleration = value;
-                    //ActiveAdvancedServo.AdvancedServo.servos[5].Acceleration = AccelerationMax_S5;
+                    if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[5].Acceleration = (double)value;
                 }
             }
         }
 
-        private Double _accelerationMaxS5;
-        public Double AccelerationMax_S5
+        private Double? _accelerationMaxS5;
+        public Double? AccelerationMax_S5
         {
             get => _accelerationMaxS5;
             set
@@ -1635,7 +1645,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _engagedS5 = value;
 
-                ActiveAdvancedServo.AdvancedServo.servos[5].Engaged = (Boolean)value;
+                if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[5].Engaged = (Boolean)value;
                 OnPropertyChanged();
             }
         }
@@ -1670,8 +1680,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Servo S6
 
-        private Double _currentS6;
-        public Double Current_S6
+        private Double? _currentS6;
+        public Double? Current_S6
         {
             get => _currentS6;
             set
@@ -1683,8 +1693,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _positionMax_S6;
-        public Double PositionMax_S6
+        private Double? _positionMax_S6;
+        public Double? PositionMax_S6
         {
             get => _positionMax_S6;
             set
@@ -1696,8 +1706,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _positionS6;
-        public Double Position_S6
+        private Double? _positionS6;
+        public Double? Position_S6
         {
             get => _positionS6;
             set
@@ -1711,18 +1721,18 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     if (ActiveAdvancedServo.AdvancedServo.servos[6].Position != value)
                     {
-                        ActiveAdvancedServo.AdvancedServo.servos[6].Position = value;
+                        ActiveAdvancedServo.AdvancedServo.servos[6].Position = (double)value;
                     }
                 }
                 catch (PhidgetException ex)
                 {
-                    ActiveAdvancedServo.AdvancedServo.servos[6].Position = value;
+                    if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[6].Position = (double)value;
                 }
             }
         }
 
-        private Double _positionMin_S6;
-        public Double PositionMin_S6
+        private Double? _positionMin_S6;
+        public Double? PositionMin_S6
         {
             get => _positionMin_S6;
             set
@@ -1735,8 +1745,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _velocityMinS6;
-        public Double VelocityMin_S6
+        private Double? _velocityMinS6;
+        public Double? VelocityMin_S6
         {
             get => _velocityMinS6;
             set
@@ -1748,8 +1758,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _velocityS6;
-        public Double Velocity_S6
+        private Double? _velocityS6;
+        public Double? Velocity_S6
         {
             get => _velocityS6;
             set
@@ -1761,8 +1771,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _velocityLimitS6;
-        public Double VelocityLimit_S6
+        private Double? _velocityLimitS6;
+        public Double? VelocityLimit_S6
         {
             get => _velocityLimitS6;
             set
@@ -1776,18 +1786,18 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     if (ActiveAdvancedServo.AdvancedServo.servos[6].VelocityLimit != value)
                     {
-                        ActiveAdvancedServo.AdvancedServo.servos[6].VelocityLimit = value;
+                        ActiveAdvancedServo.AdvancedServo.servos[6].VelocityLimit = (double)value;
                     }
                 }
                 catch (PhidgetException ex)
                 {
-                    ActiveAdvancedServo.AdvancedServo.servos[6].VelocityLimit = value;
+                    if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[6].VelocityLimit = (double)value;
                 }
             }
         }
 
-        private Double _velocityMaxS6;
-        public Double VelocityMax_S6
+        private Double? _velocityMaxS6;
+        public Double? VelocityMax_S6
         {
             get => _velocityMaxS6;
             set
@@ -1799,8 +1809,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _accelerationMinS6;
-        public Double AccelerationMin_S6
+        private Double? _accelerationMinS6;
+        public Double? AccelerationMin_S6
         {
             get => _accelerationMinS6;
             set
@@ -1812,8 +1822,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _accelerationS6;
-        public Double Acceleration_S6
+        private Double? _accelerationS6;
+        public Double? Acceleration_S6
         {
             get => _accelerationS6;
             set
@@ -1827,21 +1837,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     if (ActiveAdvancedServo.AdvancedServo.servos[6].Acceleration != value)
                     {
-                        ActiveAdvancedServo.AdvancedServo.servos[6].Acceleration = value;
+                        ActiveAdvancedServo.AdvancedServo.servos[6].Acceleration = (double)value;
                     }
                 }
                 catch (PhidgetException ex)
                 {
                     // NOTE(crhodes)
                     // This throws exception  Humm
-                    ActiveAdvancedServo.AdvancedServo.servos[6].Acceleration = value;
-                    //ActiveAdvancedServo.AdvancedServo.servos[0].Acceleration = AccelerationMax_S6;
+                    if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[6].Acceleration = (double)value;
                 }
             }
         }
 
-        private Double _accelerationMaxS6;
-        public Double AccelerationMax_S6
+        private Double? _accelerationMaxS6;
+        public Double? AccelerationMax_S6
         {
             get => _accelerationMaxS6;
             set
@@ -1863,7 +1872,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _engagedS6 = value;
 
-                ActiveAdvancedServo.AdvancedServo.servos[6].Engaged = (Boolean)value;
+                if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[6].Engaged = (Boolean)value;
                 OnPropertyChanged();
             }
         }
@@ -1898,8 +1907,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Servo S7
 
-        private Double _currentS7;
-        public Double Current_S7
+        private Double? _currentS7;
+        public Double? Current_S7
         {
             get => _currentS7;
             set
@@ -1911,8 +1920,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _positionMax_S7;
-        public Double PositionMax_S7
+        private Double? _positionMax_S7;
+        public Double? PositionMax_S7
         {
             get => _positionMax_S7;
             set
@@ -1924,8 +1933,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _positionS7;
-        public Double Position_S7
+        private Double? _positionS7;
+        public Double? Position_S7
         {
             get => _positionS7;
             set
@@ -1939,18 +1948,18 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     if (ActiveAdvancedServo.AdvancedServo.servos[7].Position != value)
                     {
-                        ActiveAdvancedServo.AdvancedServo.servos[7].Position = value;
+                        ActiveAdvancedServo.AdvancedServo.servos[7].Position = (double)value;
                     }
                 }
                 catch (PhidgetException ex)
                 {
-                    ActiveAdvancedServo.AdvancedServo.servos[7].Position = value;
+                    if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[7].Position = (double)value;
                 }
             }
         }
 
-        private Double _positionMin_S7;
-        public Double PositionMin_S7
+        private Double? _positionMin_S7;
+        public Double? PositionMin_S7
         {
             get => _positionMin_S7;
             set
@@ -1963,8 +1972,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _velocityMinS7;
-        public Double VelocityMin_S7
+        private Double? _velocityMinS7;
+        public Double? VelocityMin_S7
         {
             get => _velocityMinS7;
             set
@@ -1976,8 +1985,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _velocityS7;
-        public Double Velocity_S7
+        private Double? _velocityS7;
+        public Double? Velocity_S7
         {
             get => _velocityS7;
             set
@@ -1989,8 +1998,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _velocityLimitS7;
-        public Double VelocityLimit_S7
+        private Double? _velocityLimitS7;
+        public Double? VelocityLimit_S7
         {
             get => _velocityLimitS7;
             set
@@ -2004,18 +2013,18 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     if (ActiveAdvancedServo.AdvancedServo.servos[7].VelocityLimit != value)
                     {
-                        ActiveAdvancedServo.AdvancedServo.servos[7].VelocityLimit = value;
+                        ActiveAdvancedServo.AdvancedServo.servos[7].VelocityLimit = (double)value;
                     }
                 }
                 catch (PhidgetException ex)
                 {
-                    ActiveAdvancedServo.AdvancedServo.servos[7].VelocityLimit = value;
+                    if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[7].VelocityLimit = (double)value;
                 }
             }
         }
 
-        private Double _velocityMaxS7;
-        public Double VelocityMax_S7
+        private Double? _velocityMaxS7;
+        public Double? VelocityMax_S7
         {
             get => _velocityMaxS7;
             set
@@ -2027,8 +2036,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _accelerationMinS7;
-        public Double AccelerationMin_S7
+        private Double? _accelerationMinS7;
+        public Double? AccelerationMin_S7
         {
             get => _accelerationMinS7;
             set
@@ -2040,8 +2049,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Double _accelerationS7;
-        public Double Acceleration_S7
+        private Double? _accelerationS7;
+        public Double? Acceleration_S7
         {
             get => _accelerationS7;
             set
@@ -2055,21 +2064,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     if (ActiveAdvancedServo.AdvancedServo.servos[7].Acceleration != value)
                     {
-                        ActiveAdvancedServo.AdvancedServo.servos[7].Acceleration = value;
+                        ActiveAdvancedServo.AdvancedServo.servos[7].Acceleration = (double)value;
                     }
                 }
                 catch (PhidgetException ex)
                 {
                     // NOTE(crhodes)
                     // This throws exception  Humm
-                    ActiveAdvancedServo.AdvancedServo.servos[7].Acceleration = value;
-                    //ActiveAdvancedServo.AdvancedServo.servos[7].Acceleration = AccelerationMax_S7;
+                    if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[7].Acceleration = (double)value;
                 }
             }
         }
 
-        private Double _accelerationMaxS7;
-        public Double AccelerationMax_S7
+        private Double? _accelerationMaxS7;
+        public Double? AccelerationMax_S7
         {
             get => _accelerationMaxS7;
             set
@@ -2090,9 +2098,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_engagedS7 == value)
                     return;
                 _engagedS7 = value;
-
-                ActiveAdvancedServo.AdvancedServo.servos[7].Engaged = (Boolean)value;
                 OnPropertyChanged();
+
+                if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[7].Engaged = (Boolean)value;
             }
         }
 
@@ -2445,13 +2453,26 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Do something amazing.
             Message = "Cool, you called CloseAdvancedServo";
 
+            DisEngageAllServos();
+
+
+            // NOTE(crhodes)
+            // May need to give device chance to respond
+
             ActiveAdvancedServo.AdvancedServo.Attach -= ActiveAdvancedServo_Attach;
             ActiveAdvancedServo.AdvancedServo.Detach -= ActiveAdvancedServo_Detach;
 
+            ActiveAdvancedServo.AdvancedServo.CurrentChange -= ActiveAdvancedServo_CurrentChange;
+            ActiveAdvancedServo.AdvancedServo.PositionChange -= ActiveAdvancedServo_PositionChange;
+            ActiveAdvancedServo.AdvancedServo.VelocityChange -= ActiveAdvancedServo_VelocityChange;
+ 
             ActiveAdvancedServo.Close();
+
+            DeviceAttached = false;
             UpdateAdvancedServoProperties();
+
             ActiveAdvancedServo = null;
-            ClearDigitalInputsAndOutputs();
+            //ClearDigitalInputsAndOutputs();
 
             OpenAdvancedServoCommand.RaiseCanExecuteChanged();
             CloseAdvancedServoCommand.RaiseCanExecuteChanged();
@@ -2484,6 +2505,15 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        private void DisEngageAllServos()
+        {
+            for (int i = 0; i < ServoCount; i++)
+            {
+                var advancedServo = ActiveAdvancedServo.AdvancedServo;
+                advancedServo.servos[i].Engaged = false;
+            }
+        }
+
         public bool CloseAdvancedServoCanExecute()
         {
             // TODO(crhodes)
@@ -2507,8 +2537,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             {
                 Phidgets.Phidget device = (Phidgets.Phidget)sender;
                 Log.Trace($"ActiveAdvancedServo_Attach {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
-                // TODO(crhodes)
-                // This is where properties should be grabbed
+                
+                DeviceAttached = ActiveAdvancedServo.AdvancedServo.Attached;
                 UpdateAdvancedServoProperties();
             }
             catch (Exception ex)
@@ -2522,15 +2552,16 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private void UpdateAdvancedServoProperties()
         {
-
-            if (ActiveAdvancedServo.AdvancedServo.Attached)
+            if ((Boolean)DeviceAttached)
             {
-                DeviceAttached = ActiveAdvancedServo.AdvancedServo.Attached;
+                //DeviceAttached = ActiveAdvancedServo.AdvancedServo.Attached;
 
                 AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
                 Phidgets.AdvancedServoServo servo = null;
 
-                for (int i = 0; i < servos.Count; i++)
+                ServoCount = servos.Count;
+
+                for (int i = 0; i < ServoCount; i++)
                 {
                     servo = servos[i];
 
@@ -2805,6 +2836,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             else
             {
                 DeviceAttached = null;
+                InitializAdvancedServoUI();
             }
         }
 
@@ -2816,6 +2848,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 Log.Trace($"ActiveAdvancedServo_Detach {device.Address},{device.SerialNumber}", Common.LOG_CATEGORY);
 
+                DeviceAttached = ActiveAdvancedServo.AdvancedServo.Attached;
                 // TODO(crhodes)
                 // What kind of cleanup?  Maybe set ActiveAdvancedServo to null.  Clear UI
                 UpdateAdvancedServoProperties();
@@ -2855,9 +2888,30 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             return true;
         }
-        
+
+        private void InitializAdvancedServoUI()
+        {
+            Stopped_S0 = Stopped_S1 = Stopped_S2 = Stopped_S3 = Stopped_S4 = Stopped_S5 = Stopped_S6 = Stopped_S7 = null;
+            Engaged_S0 = Engaged_S1 = Engaged_S2 = Engaged_S3 = Engaged_S4 = Engaged_S5 = Engaged_S6 = Engaged_S7 = null;
+            SpeedRamping_S0 = SpeedRamping_S1 = SpeedRamping_S2 = SpeedRamping_S3 = SpeedRamping_S4 = SpeedRamping_S5 = SpeedRamping_S6 = SpeedRamping_S7 = null;
+            Current_S0 = Current_S1 = Current_S2 = Current_S3 = Current_S4 = Current_S5 = Current_S6 = Current_S7 = null;
+
+            AccelerationMin_S0 = AccelerationMin_S1 = AccelerationMin_S2 = AccelerationMin_S3 = AccelerationMin_S4 = AccelerationMin_S5 = AccelerationMin_S6 = AccelerationMin_S7 = null;
+            Acceleration_S0 = Acceleration_S1 = Acceleration_S2 = Acceleration_S3 = Acceleration_S4 = Acceleration_S5 = Acceleration_S6 = Acceleration_S7 = null;
+            AccelerationMax_S0 = AccelerationMax_S1 = AccelerationMax_S2 = AccelerationMax_S3 = AccelerationMax_S4 = AccelerationMax_S5 = AccelerationMax_S6 = AccelerationMax_S7 = null;
+
+            VelocityMin_S0 = VelocityMin_S1 = VelocityMin_S2 = VelocityMin_S3 = VelocityMin_S4 = VelocityMin_S5 = VelocityMin_S6 = VelocityMin_S7 = null;
+            Velocity_S0 = Velocity_S1 = Velocity_S2 = Velocity_S3 = Velocity_S4 = Velocity_S5 = Velocity_S6 = Velocity_S7 = null;
+            VelocityLimit_S0 = VelocityLimit_S1 = VelocityLimit_S2 = VelocityLimit_S3 = VelocityLimit_S4 = VelocityLimit_S5 = VelocityLimit_S6 = VelocityLimit_S7 = null;
+            VelocityMax_S0 = VelocityMax_S1 = VelocityMax_S2 = VelocityMax_S3 = VelocityMax_S4 = VelocityMax_S5 = VelocityMax_S6 = VelocityMax_S7 = null;
+
+            PositionMin_S0 = PositionMin_S1 = PositionMin_S2 = PositionMin_S3 = PositionMin_S4 = PositionMin_S5 = PositionMin_S6 = PositionMin_S7 = null;
+            Position_S0 = Position_S1 = Position_S2 = Position_S3 = Position_S4 = Position_S5 = Position_S6 = Position_S7 = null;
+            PositionMax_S0 = PositionMax_S1 = PositionMax_S2 = PositionMax_S3 = PositionMax_S4 = PositionMax_S5 = PositionMax_S6 = PositionMax_S7 = null;
+        }
+
         #endregion
-        
+
         #endregion
 
         #region IInstanceCount
