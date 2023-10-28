@@ -788,6 +788,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 _positionS2 = value;
                 OnPropertyChanged();
 
+                // TODO(crhodes)
+                // Need to bounds check the new value
+
                 try
                 {
                     if (ActiveAdvancedServo.AdvancedServo.servos[2].Position != value)
