@@ -96,6 +96,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Fields and Properties
 
+
         private string _ConfigFileName;
 
         public string ConfigFileName
@@ -108,6 +109,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        public string ConfigFileNameToolTip { get; set; } = "DoubleClick to select new file";
 
         private Resources.PhidgetConfig _phidgetConfig;
         public Resources.PhidgetConfig PhidgetConfig
@@ -241,6 +244,36 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        private IEnumerable<Resources.AdvancedServo> _AdvancedServoTypes;
+        public IEnumerable<Resources.AdvancedServo> AdvancedServoTypes
+        {
+            get
+            {
+                if (null == _AdvancedServoTypes)
+                {
+                    // TODO(crhodes)
+                    // Load this like the sensors.xml for now
+
+                    //_InterfaceKits =
+                    //    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("InterfaceKits").Elements("InterfaceKit")
+                    //    select new InterfaceKit(
+                    //        item.Attribute("Name").Value,
+                    //        item.Attribute("IPAddress").Value,
+                    //        item.Attribute("Port").Value,
+                    //        bool.Parse(item.Attribute("Enable").Value)
+                    //        );
+                }
+
+                return _AdvancedServoTypes;
+            }
+
+            set
+            {
+                _AdvancedServoTypes = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Resources.AdvancedServo _selectedAdvancedServo;
         public Resources.AdvancedServo SelectedAdvancedServo
         {
@@ -294,9 +327,22 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-        
+
         #region Servo S0
 
+        private AdvancedServo _typeS0;
+        public AdvancedServo Type_S0
+        {
+            get => _typeS0;
+            set
+            {
+                if (_typeS0 == value)
+                    return;
+                _typeS0 = value;
+                OnPropertyChanged();
+            }
+        }
+        
         private Double? _currentS0;
         public Double? Current_S0
         {
@@ -570,6 +616,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Servo S1
 
+        private AdvancedServo _typeS1;
+        public AdvancedServo Type_S1
+        {
+            get => _typeS1;
+            set
+            {
+                if (_typeS1 == value)
+                    return;
+                _typeS1 = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Double? _currentS1;
         public Double? Current_S1
         {
@@ -815,6 +874,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Servo S2
 
+        private AdvancedServo _typeS2;
+        public AdvancedServo Type_S2
+        {
+            get => _typeS2;
+            set
+            {
+                if (_typeS2 == value)
+                    return;
+                _typeS2 = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Double? _currentS2;
         public Double? Current_S2
         {
@@ -1059,6 +1131,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Servo S3
 
+        private AdvancedServo _typeS3;
+        public AdvancedServo Type_S3
+        {
+            get => _typeS3;
+            set
+            {
+                if (_typeS3 == value)
+                    return;
+                _typeS3 = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Double? _currentS3;
         public Double? Current_S3
         {
@@ -1300,6 +1385,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Servo S4
 
+        private AdvancedServo _typeS4;
+        public AdvancedServo Type_S4
+        {
+            get => _typeS4;
+            set
+            {
+                if (_typeS4 == value)
+                    return;
+                _typeS4 = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Double? _currentS4;
         public Double? Current_S4
         {
@@ -1540,6 +1638,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Servo S5
 
+        private AdvancedServo _typeS5;
+        public AdvancedServo Type_S5
+        {
+            get => _typeS5;
+            set
+            {
+                if (_typeS5 == value)
+                    return;
+                _typeS5 = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Double? _currentS5;
         public Double? Current_S5
         {
@@ -1778,6 +1889,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Servo S6
 
+        private AdvancedServo _typeS6;
+        public AdvancedServo Type_S6
+        {
+            get => _typeS6;
+            set
+            {
+                if (_typeS6 == value)
+                    return;
+                _typeS6 = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Double? _currentS6;
         public Double? Current_S6
         {
@@ -2015,6 +2139,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         #endregion
 
         #region Servo S7
+
+        private AdvancedServo _typeS7;
+        public AdvancedServo Type_S7
+        {
+            get => _typeS7;
+            set
+            {
+                if (_typeS7 == value)
+                    return;
+                _typeS7 = value;
+                OnPropertyChanged();
+            }
+        }
 
         private Double? _currentS7;
         public Double? Current_S7
@@ -2257,8 +2394,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         #endregion
 
         #region Commands
-
-        public string ConfigFileNameToolTip { get; set; }
 
         #region Command ConfigFileName DoubleClick
 

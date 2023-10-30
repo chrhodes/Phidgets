@@ -107,6 +107,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        public string ConfigFileNameToolTip { get; set; } = "DoubleClick to select new file";
+
         private Resources.PhidgetConfig _phidgetConfig;
         public Resources.PhidgetConfig PhidgetConfig
         {

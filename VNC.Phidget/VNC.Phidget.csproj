@@ -3,6 +3,11 @@
   <PropertyGroup>
         <TargetFrameworks>net6.0-windows</TargetFrameworks>
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+      <VersionPrefix>1.0.0</VersionPrefix>
+      <VersionSuffix>indevelopment-1</VersionSuffix>
+      <FileVersion>2023.10.30A</FileVersion>
+      <Company>VNC</Company>
+      <Description>Layer on top of Phidgets21</Description>
   </PropertyGroup>
 
     <ItemGroup>

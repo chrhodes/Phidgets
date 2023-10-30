@@ -141,10 +141,10 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
             set => SetValue(DeviceAddressProperty, value);
         }
 
-        public Boolean DeviceAttached
+        public Boolean? DeviceAttached
         {
             // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Boolean)GetValue(DeviceAttachedProperty);
+            get => (Boolean?)GetValue(DeviceAttachedProperty);
             set => SetValue(DeviceAttachedProperty, value);
         }
 
@@ -195,7 +195,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         public static readonly DependencyProperty AttachedPhidgetDeviceProperty = DependencyProperty.Register("AttachedPhidgetDevice", typeof(Phidgets.Phidget), typeof(PhidgetDevice), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnAttachedPhidgetDeviceChanged), new CoerceValueCallback(OnCoerceAttachedPhidgetDevice)));
 
         public static readonly DependencyProperty DeviceAddressProperty = DependencyProperty.Register("DeviceAddress", typeof(string), typeof(PhidgetDevice), new FrameworkPropertyMetadata("", new PropertyChangedCallback(OnDeviceAddressChanged), new CoerceValueCallback(OnCoerceDeviceAddress)));
-        public static readonly DependencyProperty DeviceAttachedProperty = DependencyProperty.Register("DeviceAttached", typeof(Boolean), typeof(PhidgetDevice), new FrameworkPropertyMetadata(false, new PropertyChangedCallback(OnDeviceAttachedChanged), new CoerceValueCallback(OnCoerceDeviceAttached)));
+        public static readonly DependencyProperty DeviceAttachedProperty = DependencyProperty.Register("DeviceAttached", typeof(Boolean?), typeof(PhidgetDevice), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnDeviceAttachedChanged), new CoerceValueCallback(OnCoerceDeviceAttached)));
         public static readonly DependencyProperty DeviceAttachedToServerProperty = DependencyProperty.Register("DeviceAttachedToServer", typeof(Boolean?), typeof(PhidgetDevice), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnDeviceAttachedToServerChanged), new CoerceValueCallback(OnCoerceDeviceAttachedToServer)));
         public static readonly DependencyProperty DeviceClassProperty = DependencyProperty.Register("DeviceClass", typeof(string), typeof(PhidgetDevice), new FrameworkPropertyMetadata("", new PropertyChangedCallback(OnDeviceClassChanged), new CoerceValueCallback(OnCoerceDeviceClass)));
         public static readonly DependencyProperty DeviceIDProperty = DependencyProperty.Register("DeviceID", typeof(string), typeof(PhidgetDevice), new FrameworkPropertyMetadata("", new PropertyChangedCallback(OnDeviceIDChanged), new CoerceValueCallback(OnCoerceDeviceID)));
@@ -292,7 +292,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
             return value;
         }
 
-        protected virtual Boolean OnCoerceDeviceAttached(Boolean value)
+        protected virtual Boolean? OnCoerceDeviceAttached(Boolean? value)
         {
             // TODO: Keep the proposed value within the desired range.
             return value;
@@ -345,7 +345,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
             // TODO: Add your property changed side-effects. Descendants can override as well.
         }
 
-        protected virtual void OnDeviceAttachedChanged(Boolean oldValue, Boolean newValue)
+        protected virtual void OnDeviceAttachedChanged(Boolean? oldValue, Boolean? newValue)
         {
             if (newValue is true)
             {
@@ -427,7 +427,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         {
             PhidgetDevice phidget = o as PhidgetDevice;
             if (phidget != null)
-                return phidget.OnCoerceDeviceAttached((Boolean)value);
+                return phidget.OnCoerceDeviceAttached((Boolean?)value);
             else
                 return value;
         }

@@ -184,11 +184,11 @@
                 <dxlc:LayoutGroup View="GroupBox" Orientation="Vertical" Header="Servo S0" Padding="-5" >
 
                     <dxlc:LayoutItem Label="Servo Types" LabelPosition="Top">
-                        <dxe:ComboBoxEdit ItemsSource="{Binding ServoTypes}" DisplayMember="Name" />
+                        <dxe:ComboBoxEdit ItemsSource="{Binding AdvancedServoTypes}" DisplayMember="Name" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="Type" LabelPosition="Top">
-                        <dxe:TextEdit Text="{Binding Type_S0, Mode=TwoWay}" />
+                        <dxe:TextEdit Text="{Binding Type_S0.Name, Mode=TwoWay}" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutGroup 
@@ -292,11 +292,11 @@
                 <dxlc:LayoutGroup View="GroupBox" Orientation="Vertical" Header="Servo S1" Padding="-5" >
 
                     <dxlc:LayoutItem Label="Servo Types" LabelPosition="Top">
-                        <dxe:ComboBoxEdit ItemsSource="{Binding ServoTypes}" DisplayMember="Name" />
+                        <dxe:ComboBoxEdit ItemsSource="{Binding AdvancedServoTypes}" DisplayMember="Name" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="Type" LabelPosition="Top">
-                        <dxe:TextEdit Text="{Binding Type_S1, Mode=TwoWay}" />
+                        <dxe:TextEdit Text="{Binding Type_S1.Name, Mode=TwoWay}" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutGroup 
@@ -348,11 +348,11 @@
                 <dxlc:LayoutGroup View="GroupBox" Orientation="Vertical" Header="Servo S2" Padding="-5" >
 
                     <dxlc:LayoutItem Label="Servo Types" LabelPosition="Top">
-                        <dxe:ComboBoxEdit ItemsSource="{Binding ServoTypes}" DisplayMember="Name" />
+                        <dxe:ComboBoxEdit ItemsSource="{Binding AdvancedServoTypes}" DisplayMember="Name" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="Type" LabelPosition="Top">
-                        <dxe:TextEdit Text="{Binding Type_S2, Mode=TwoWay}" />
+                        <dxe:TextEdit Text="{Binding Type_S2.Name, Mode=TwoWay}" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutGroup 
@@ -404,11 +404,11 @@
                 <dxlc:LayoutGroup View="GroupBox" Orientation="Vertical" Header="Servo S3" Padding="-5">
 
                     <dxlc:LayoutItem Label="Servo Types" LabelPosition="Top">
-                        <dxe:ComboBoxEdit ItemsSource="{Binding ServoTypes}" DisplayMember="Name" />
+                        <dxe:ComboBoxEdit ItemsSource="{Binding AdvancedServoTypes}" DisplayMember="Name" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="Type" LabelPosition="Top">
-                        <dxe:TextEdit Text="{Binding Type_S3, Mode=TwoWay}" />
+                        <dxe:TextEdit Text="{Binding Type_S3.Name, Mode=TwoWay}" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutGroup 

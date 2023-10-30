@@ -107,6 +107,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        public string ConfigFileNameToolTip { get; set; } = "DoubleClick to select new file";
+
         private Resources.PhidgetConfig _phidgetConfig;
         public Resources.PhidgetConfig PhidgetConfig
         {
@@ -481,8 +483,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aIDataRate0;
-        public Int32? AIDataRate0
+        private Int32 _aIDataRate0;
+        public Int32 AIDataRate0
         {
             get => _aIDataRate0;
             set
@@ -494,8 +496,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aIDataRateMax0;
-        public Int32? AIDataRateMax0
+        private Int32 _aIDataRateMax0;
+        public Int32 AIDataRateMax0
         {
             get => _aIDataRateMax0;
             set
@@ -507,8 +509,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aIDataRateMin0;
-        public Int32? AIDataRateMin0
+        private Int32 _aIDataRateMin0;
+        public Int32 AIDataRateMin0
         {
             get => _aIDataRateMin0;
             set
@@ -520,12 +522,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aISensitivity0;
-        public Int32? AISensitivity0
+        private Int32 _aISensitivity0;
+        public Int32 AISensitivity0
         {
             get => _aISensitivity0;
             set
-            {
+            {             
                 if (_aISensitivity0 == value)
                     return;
                 _aISensitivity0 = value;
@@ -573,8 +575,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aIDataRate1;
-        public Int32? AIDataRate1
+        private Int32 _aIDataRate1;
+        public Int32 AIDataRate1
         {
             get => _aIDataRate1;
             set
@@ -587,8 +589,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aIDataRateMax1;
-        public Int32? AIDataRateMax1
+        private Int32 _aIDataRateMax1;
+        public Int32 AIDataRateMax1
         {
             get => _aIDataRateMax1;
             set
@@ -600,8 +602,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aIDataRateMin1;
-        public Int32? AIDataRateMin1
+        private Int32 _aIDataRateMin1;
+        public Int32 AIDataRateMin1
         {
             get => _aIDataRateMin1;
             set
@@ -613,8 +615,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aISensitivity1;
-        public Int32? AISensitivity1
+        private Int32 _aISensitivity1;
+        public Int32 AISensitivity1
         {
             get => _aISensitivity1;
             set
@@ -666,8 +668,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aIDataRate2;
-        public Int32? AIDataRate2
+        private Int32 _aIDataRate2;
+        public Int32 AIDataRate2
         {
             get => _aIDataRate2;
             set
@@ -680,8 +682,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aIDataRateMax2;
-        public Int32? AIDataRateMax2
+        private Int32 _aIDataRateMax2;
+        public Int32 AIDataRateMax2
         {
             get => _aIDataRateMax2;
             set
@@ -693,8 +695,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aIDataRateMin2;
-        public Int32? AIDataRateMin2
+        private Int32 _aIDataRateMin2;
+        public Int32 AIDataRateMin2
         {
             get => _aIDataRateMin2;
             set
@@ -706,8 +708,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aISensitivity2;
-        public Int32? AISensitivity2
+        private Int32 _aISensitivity2;
+        public Int32 AISensitivity2
         {
             get => _aISensitivity2;
             set
@@ -759,8 +761,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aIDataRate3;
-        public Int32? AIDataRate3
+        private Int32 _aIDataRate3;
+        public Int32 AIDataRate3
         {
             get => _aIDataRate3;
             set
@@ -773,8 +775,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aIDataRateMax3;
-        public Int32? AIDataRateMax3
+        private Int32 _aIDataRateMax3;
+        public Int32 AIDataRateMax3
         {
             get => _aIDataRateMax3;
             set
@@ -786,8 +788,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aIDataRateMin3;
-        public Int32? AIDataRateMin3
+        private Int32 _aIDataRateMin3;
+        public Int32 AIDataRateMin3
         {
             get => _aIDataRateMin3;
             set
@@ -799,8 +801,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aISensitivity3;
-        public Int32? AISensitivity3
+        private Int32 _aISensitivity3;
+        public Int32 AISensitivity3
         {
             get => _aISensitivity3;
             set
@@ -852,8 +854,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aIDataRate4;
-        public Int32? AIDataRate4
+        private Int32 _aIDataRate4;
+        public Int32 AIDataRate4
         {
             get => _aIDataRate4;
             set
@@ -866,8 +868,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aIDataRateMax4;
-        public Int32? AIDataRateMax4
+        private Int32 _aIDataRateMax4;
+        public Int32 AIDataRateMax4
         {
             get => _aIDataRateMax4;
             set
@@ -879,8 +881,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aIDataRateMin4;
-        public Int32? AIDataRateMin4
+        private Int32 _aIDataRateMin4;
+        public Int32 AIDataRateMin4
         {
             get => _aIDataRateMin4;
             set
@@ -892,8 +894,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aISensitivity4;
-        public Int32? AISensitivity4
+        private Int32 _aISensitivity4;
+        public Int32 AISensitivity4
         {
             get => _aISensitivity4;
             set
@@ -945,8 +947,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aIDataRate5;
-        public Int32? AIDataRate5
+        private Int32 _aIDataRate5;
+        public Int32 AIDataRate5
         {
             get => _aIDataRate5;
             set
@@ -959,8 +961,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aIDataRateMax5;
-        public Int32? AIDataRateMax5
+        private Int32 _aIDataRateMax5;
+        public Int32 AIDataRateMax5
         {
             get => _aIDataRateMax5;
             set
@@ -972,8 +974,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aIDataRateMin5;
-        public Int32? AIDataRateMin5
+        private Int32 _aIDataRateMin5;
+        public Int32 AIDataRateMin5
         {
             get => _aIDataRateMin5;
             set
@@ -985,8 +987,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aISensitivity5;
-        public Int32? AISensitivity5
+        private Int32 _aISensitivity5;
+        public Int32 AISensitivity5
         {
             get => _aISensitivity5;
             set
@@ -1038,8 +1040,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aIDataRate6;
-        public Int32? AIDataRate6
+        private Int32 _aIDataRate6;
+        public Int32 AIDataRate6
         {
             get => _aIDataRate6;
             set
@@ -1052,8 +1054,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aIDataRateMax6;
-        public Int32? AIDataRateMax6
+        private Int32 _aIDataRateMax6;
+        public Int32 AIDataRateMax6
         {
             get => _aIDataRateMax6;
             set
@@ -1065,8 +1067,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aIDataRateMin6;
-        public Int32? AIDataRateMin6
+        private Int32 _aIDataRateMin6;
+        public Int32 AIDataRateMin6
         {
             get => _aIDataRateMin6;
             set
@@ -1078,8 +1080,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aISensitivity6;
-        public Int32? AISensitivity6
+        private Int32 _aISensitivity6;
+        public Int32 AISensitivity6
         {
             get => _aISensitivity6;
             set
@@ -1131,8 +1133,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aIDataRate7;
-        public Int32? AIDataRate7
+        private Int32 _aIDataRate7;
+        public Int32 AIDataRate7
         {
             get => _aIDataRate7;
             set
@@ -1145,8 +1147,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aIDataRateMax7;
-        public Int32? AIDataRateMax7
+        private Int32 _aIDataRateMax7;
+        public Int32 AIDataRateMax7
         {
             get => _aIDataRateMax7;
             set
@@ -1158,8 +1160,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aIDataRateMin7;
-        public Int32? AIDataRateMin7
+        private Int32 _aIDataRateMin7;
+        public Int32 AIDataRateMin7
         {
             get => _aIDataRateMin7;
             set
@@ -1171,8 +1173,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32? _aISensitivity7;
-        public Int32? AISensitivity7
+        private Int32 _aISensitivity7;
+        public Int32 AISensitivity7
         {
             get => _aISensitivity7;
             set
@@ -1875,8 +1877,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         #endregion
 
         #region Commands
-
-        public string ConfigFileNameToolTip { get; set; }
 
         #region Command ConfigFileName DoubleClick
 

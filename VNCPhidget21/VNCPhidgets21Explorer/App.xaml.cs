@@ -48,6 +48,11 @@ namespace VNCPhidgets21Explorer
             //Common.SetVersionInfoApplication(runtimeVersion, appVersion);
             Common.SetVersionInfoApplication(Assembly.GetExecutingAssembly(), appFileVersionInfo);
 
+            var vncPhidgetAssembly = Assembly.GetAssembly(typeof(VNC.Phidget.Common));
+            var vncPhidgetFileVersionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(vncPhidgetAssembly.Location);
+
+            Common.InformationVNCPhidget = Common.GetInformation(vncPhidgetAssembly, vncPhidgetFileVersionInfo);
+
             //Common.AssemblyVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
             Directory.SetCurrentDirectory("Resources/json");

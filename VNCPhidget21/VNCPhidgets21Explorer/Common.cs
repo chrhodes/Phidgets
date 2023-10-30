@@ -15,6 +15,8 @@ namespace VNCPhidgets21Explorer
 
         public const string cCONFIG_FILE = @"C:\temp\VNCPhidgets21Explorer_Config.xml";
 
+        public static VNC.Core.Information? InformationVNCPhidget;
+
         public static event EventHandler AutoHideGroupSpeedChanged;
 
         private static int _AutoHideGroupSpeed = 250;

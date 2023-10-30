@@ -7,6 +7,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     mc:Ignorable="d"    
 
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    
     xmlns:i1="http://schemas.microsoft.com/xaml/behaviors" 
     xmlns:i2="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
 
@@ -349,7 +351,7 @@
 
                         <dxlc:LayoutItem Label="A0-Sensitivity" LabelPosition="Top">
                             <dxe:SpinEdit MinValue="0" MaxValue="1000" Increment="1"
-                              Value="{Binding AISensitivity0, Mode=TwoWay}"
+                              Value="{Binding AISensitivity0, Mode=TwoWay}" 
                               IsFloatValue="False" />
                         </dxlc:LayoutItem>
 

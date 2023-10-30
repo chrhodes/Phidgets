@@ -5,18 +5,13 @@
       <TargetFrameworks>net6.0-windows</TargetFrameworks>      
         <OutputType>WinExe</OutputType>
     <UseWPF>true</UseWPF>
-    <!--<GenerateAssemblyInfo>false</GenerateAssemblyInfo>-->
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <!--<Nullable>enable</Nullable>-->
-      <AssemblyVersion>1.0.0</AssemblyVersion>
-      <ProductVersion>1.0.1</ProductVersion>
-    <FileVersion>2023.10.29A</FileVersion>
-      <InformationalVersion>informationalVersion</InformationalVersion>
-      <!--<Version></Version>
-      <VersionPrefix></VersionPrefix>
-      <VersionSuffix></VersionSuffix>-->
-      <!--<Product></Product>
-      <ProductName></ProductName>-->
+	  <VersionPrefix>1.0.0</VersionPrefix>
+	  <VersionSuffix>indevelopment-1</VersionSuffix>
+      <FileVersion>2023.10.30A</FileVersion>
       <Company>VNC</Company>
+	  <Description>Phidget21 Explorer</Description>
   </PropertyGroup>
 
     <PropertyGroup Condition="'$(TargetFramework)' == 'net6.0-windows'">

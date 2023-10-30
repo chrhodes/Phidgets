@@ -44,7 +44,7 @@
 
         <dxlc:LayoutGroup Name="lg_Footer"
                           Grid.Row="1" 
-            View="Group" Orientation="Horizontal" Padding="3,0,0,0" >
+            View="Group" Orientation="Horizontal" Padding="3,0,0,0" HorizontalAlignment="Left">
 
             <!-- This is useful for debugging V VM constructor issues -->
 
@@ -56,7 +56,7 @@
                 <TextBlock Text="{Binding InstanceCountVM}" />
             </dxlc:LayoutItem>
 
-            <views:AppVersionInfo />
+            <views:AppVersionInfo HorizontalAlignment="Left" />
 
         </dxlc:LayoutGroup>
 
