@@ -166,6 +166,51 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+
+        private Phidgets.Phidget _phidgetDevice;
+        public Phidgets.Phidget PhidgetDevice
+        {
+            get => _phidgetDevice;
+            set
+            {
+                if (_phidgetDevice == value)
+                    return;
+                _phidgetDevice = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _deviceAttached;
+        public bool? DeviceAttached
+        {
+            get => _deviceAttached;
+            set
+            {
+                if (_deviceAttached == value)
+                    return;
+                _deviceAttached = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ICommand SayHelloCommand { get; private set; }
+
+        private string _message;
+        public string Message
+        {
+            get => _message;
+            set
+            {
+                if (_message == value)
+                    return;
+                _message = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #region AdvancedServo Properties
+
+
         private IEnumerable<Resources.AdvancedServo> _AdvancedServos;
         public IEnumerable<Resources.AdvancedServo> AdvancedServos
         {
@@ -237,50 +282,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        private Phidgets.Phidget _phidgetDevice;
-        public Phidgets.Phidget PhidgetDevice
-        {
-            get => _phidgetDevice;
-            set
-            {
-                if (_phidgetDevice == value)
-                    return;
-                _phidgetDevice = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _deviceAttached;
-        public bool? DeviceAttached
-        {
-            get => _deviceAttached;
-            set
-            {
-                if (_deviceAttached == value)
-                    return;
-                _deviceAttached = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public ICommand SayHelloCommand { get; private set; }
-
-        private string _message;
-        public string Message
-        {
-            get => _message;
-            set
-            {
-                if (_message == value)
-                    return;
-                _message = value;
-                OnPropertyChanged();
-            }
-        }
-
-        #region AdvancedServo Properties
-
         private int? _servoCount;
         public int? ServoCount
         {
@@ -335,17 +336,18 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 _positionS0 = value;
                 OnPropertyChanged();
 
-                try
-                {
-                    if (ActiveAdvancedServo.AdvancedServo.servos[0].Position != value)
-                    {
-                        ActiveAdvancedServo.AdvancedServo.servos[0].Position = (double)value;
-                    }
-                }
-                catch (PhidgetException ex)
-                {
-                    if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[0].Position = (double)value;
-                }
+                SetServoValue(ActiveAdvancedServo.AdvancedServo.servos[0].Position, value);
+                //try
+                //{
+                //    if (ActiveAdvancedServo.AdvancedServo.servos[0].Position != value)
+                //    {
+                //        ActiveAdvancedServo.AdvancedServo.servos[0].Position = (double)value;
+                //    }
+                //}
+                //catch (PhidgetException ex)
+                //{
+                //    if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[0].Position = (double)value;
+                //}
             }
         }
 
@@ -358,7 +360,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_positionMin_S0 == value)
                     return;
                 _positionMin_S0 = value;
-
                 OnPropertyChanged();
             }
         }
@@ -400,17 +401,18 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 _velocityLimitS0 = value;
                 OnPropertyChanged();
 
-                try
-                {
-                    if (ActiveAdvancedServo.AdvancedServo.servos[0].VelocityLimit != value)
-                    {
-                        ActiveAdvancedServo.AdvancedServo.servos[0].VelocityLimit = (double)value;
-                    }
-                }
-                catch (PhidgetException ex)
-                {
-                    if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[0].VelocityLimit = (double)value;
-                }
+                SetServoValue(ActiveAdvancedServo.AdvancedServo.servos[0].VelocityLimit, value);
+                //try
+                //{
+                //    if (ActiveAdvancedServo.AdvancedServo.servos[0].VelocityLimit != value)
+                //    {
+                //        ActiveAdvancedServo.AdvancedServo.servos[0].VelocityLimit = (double)value;
+                //    }
+                //}
+                //catch (PhidgetException ex)
+                //{
+                //    if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[0].VelocityLimit = (double)value;
+                //}
             }
         }
 
@@ -440,6 +442,34 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        private void SetServoValue(Double property, Double? value)
+        {
+            if (value is not null)
+            {
+                try
+                {
+                    property = (double)value;
+                }
+                catch (PhidgetException pex)
+                {
+                    // NOTE(crhodes)
+                    // This throws exception  Humm
+                    try
+                    {
+                        property = (double)value;
+                    }
+                    catch (PhidgetException pex2)
+                    {
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error(ex, Common.LOG_CATEGORY);
+                    }
+                }
+            }
+        }
+
         private Double? _accelerationS0;
         public Double? Acceleration_S0
         {
@@ -451,30 +481,32 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 _accelerationS0 = value;
                 OnPropertyChanged();
 
-                if (value is not null)
-                {
-                    try
-                    {
-                        ActiveAdvancedServo.AdvancedServo.servos[0].Acceleration = (double)value;
-                    }
-                    catch (PhidgetException pex)
-                    {
-                        // NOTE(crhodes)
-                        // This throws exception  Humm
-                        try
-                        {
-                            ActiveAdvancedServo.AdvancedServo.servos[0].Acceleration = (double)value;
-                        }
-                        catch (PhidgetException pex2)
-                        {
+                SetServoValue(ActiveAdvancedServo.AdvancedServo.servos[0].Acceleration, value);
 
-                        }
-                        catch (Exception ex)
-                        {
+                //if (value is not null)
+                //{
+                //    try
+                //    {
+                //        ActiveAdvancedServo.AdvancedServo.servos[0].Acceleration = (double)value;
+                //    }
+                //    catch (PhidgetException pex)
+                //    {
+                //        // NOTE(crhodes)
+                //        // This throws exception  Humm
+                //        try
+                //        {
+                //            ActiveAdvancedServo.AdvancedServo.servos[0].Acceleration = (double)value;
+                //        }
+                //        catch (PhidgetException pex2)
+                //        {
 
-                        }
-                    }
-                }
+                //        }
+                //        catch (Exception ex)
+                //        {
+
+                //        }
+                //    }
+                //}
             }
         }
 

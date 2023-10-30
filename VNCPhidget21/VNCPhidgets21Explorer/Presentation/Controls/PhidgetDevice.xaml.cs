@@ -596,6 +596,5 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         }
 
         #endregion
-
     }
 }

@@ -36,16 +36,19 @@ namespace VNCPhidgets21Explorer
 
             Log.APPLICATION_START("App()", Common.LOG_CATEGORY, startTicks);
 
-            // TODO(crhodes)
-            // Can also get the version of VNC.Core if we don't pass in ourselves
+            // Get Information about VNC.Core
 
             Common.SetVersionInfoVNCCore();
 
             var runtimeVersion = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(int).Assembly.Location);
-            var appVersion = System.Diagnostics.FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
+            var appFileVersionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
 
-            Common.SetVersionInfoApplication(runtimeVersion, appVersion);
-            Common.AssemblyVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            // Get Information about ourselves
+
+            //Common.SetVersionInfoApplication(runtimeVersion, appVersion);
+            Common.SetVersionInfoApplication(Assembly.GetExecutingAssembly(), appFileVersionInfo);
+
+            //Common.AssemblyVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
             Directory.SetCurrentDirectory("Resources/json");
 
@@ -269,9 +272,9 @@ namespace VNCPhidgets21Explorer
             // Add any necessary checks for config files, etc
             // That are required by application
 
-            var versionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(int).Assembly.Location);
+            //var versionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(int).Assembly.Location);
 
-            Common.RuntimeVersion = versionInfo.FileVersion;
+            //Common.RuntimeVersion = versionInfo.FileVersion;
 
             //var v = versionInfo.Comments;
             //var v1 = versionInfo.CompanyName;

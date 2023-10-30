@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNCPhidgets21Explorer.Core"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.Phidget", "..\VNC.Phidget\VNC.Phidget.csproj", "{7E565559-41E9-4D7E-A07C-F7BB31C2545F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.Core", "..\..\VNC\VNC.Core\VNC.Core.csproj", "{681A2F17-484D-4F8D-85A7-865EB53EB334}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{7E565559-41E9-4D7E-A07C-F7BB31C2545F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E565559-41E9-4D7E-A07C-F7BB31C2545F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E565559-41E9-4D7E-A07C-F7BB31C2545F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{681A2F17-484D-4F8D-85A7-865EB53EB334}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{681A2F17-484D-4F8D-85A7-865EB53EB334}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{681A2F17-484D-4F8D-85A7-865EB53EB334}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{681A2F17-484D-4F8D-85A7-865EB53EB334}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -87,7 +87,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         public ICommand Button2Command { get; private set; }
         public ICommand Button3Command { get; private set; }
 
-        private string _title = "VNCPhidgets21Explorer - Main - " + Common.ProductVersion;
+        private string _title = "VNCPhidgets21Explorer - Main";
 
         public string Title
         {

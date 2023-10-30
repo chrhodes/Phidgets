@@ -9,7 +9,14 @@
     <!--<Nullable>enable</Nullable>-->
       <AssemblyVersion>1.0.0</AssemblyVersion>
       <ProductVersion>1.0.1</ProductVersion>
-    <FileVersion>2023.10.28A</FileVersion>
+    <FileVersion>2023.10.29A</FileVersion>
+      <InformationalVersion>informationalVersion</InformationalVersion>
+      <!--<Version></Version>
+      <VersionPrefix></VersionPrefix>
+      <VersionSuffix></VersionSuffix>-->
+      <!--<Product></Product>
+      <ProductName></ProductName>-->
+      <Company>VNC</Company>
   </PropertyGroup>
 
     <PropertyGroup Condition="'$(TargetFramework)' == 'net6.0-windows'">
@@ -85,10 +92,6 @@
         <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
         <PackageReference Include="Prism.Unity" Version="8.1.97" />
     </ItemGroup>
-        
-    <ItemGroup>
-        <PackageReference Include="VNC.Core" Version="2.1.2" />
-    </ItemGroup>
     
     <ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows'">
         <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.10" />
@@ -100,6 +103,11 @@
         <PackageReference Include="VNC.Logging.TraceListeners.SignalRListener" Version="1.0.0" />
     </ItemGroup>
 
+    <ItemGroup>
+        <!--<PackageReference Include="VNC.Core" Version="2.1.2" />-->
+        <ProjectReference Include="..\..\..\VNC\VNC.Core\VNC.Core.csproj" />
+    </ItemGroup>
+    
     <ItemGroup>
       <ProjectReference Include="..\..\VNC.Phidget\VNC.Phidget.csproj" />
       <ProjectReference Include="..\VNCPhidgets21Explorer.Core\VNCPhidgets21Explorer.Core.csproj" />

@@ -42,7 +42,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        private string _title = "VNCLogViewer - MainDxDockLayoutManager - " + Common.ProductVersion;
+        private string _title = "VNCLogViewer - MainDxDockLayoutManager - ";
 
         public string Title
         {
@@ -89,6 +89,5 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
         #endregion
-
     }
 }

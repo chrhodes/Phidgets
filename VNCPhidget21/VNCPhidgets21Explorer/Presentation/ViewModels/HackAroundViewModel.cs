@@ -48,23 +48,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Turn on logging of PropertyChanged from VNC.Core
             LogOnPropertyChanged = true;
 
-            //try
-            //{
-            //    digitalOutput0 = new ph22.DigitalOutput();
-            //    digitalOutput0.Channel = 0;
-            //    digitalOutput0.DeviceSerialNumber = sbc22SerialNumber;
-            //    digitalOutput0.Open(5000);
-
-            //    digitalOutput2 = new ph22.DigitalOutput();
-            //    digitalOutput2.Channel = 2;
-            //    digitalOutput0.DeviceSerialNumber = sbc22SerialNumber;
-            //    digitalOutput2.Open(5000);
-            //}
-            //catch (Exception ex)
-            //{
-
-            //}
-
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
@@ -87,7 +70,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         public ICommand Button2Command { get; private set; }
         public ICommand Button3Command { get; private set; }
 
-        private string _title = "VNCPhidgets21Explorer - Main - " + Common.ProductVersion;
+        private string _title = "VNCPhidgets21Explorer - Main";
 
         public string Title
         {

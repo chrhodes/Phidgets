@@ -24,30 +24,83 @@
     <!-- d:DesignWidth="800" d:DesignHeight="450" -->
     
     <Grid>
-        <StackPanel Orientation="Vertical">
+        <StackPanel x:Name="spMain" Orientation="Vertical">
+            <Label Content="AssemblyInformation " />
             <StackPanel Orientation="Horizontal" >
-                <Label Content="Product Name: " />
-                <Label Content="{Binding ProductName}" Foreground="{StaticResource RedText}" />
-                <Label Content="Assembly Version: " Margin="10,0,0,0" />
+                <Label Content="Version: " />
                 <Label Content="{Binding AssemblyVersion}" Foreground="{StaticResource RedText}" />
-                <Label Content="Product Version: " Margin="10,0,0,0"/>
-                <Label Content="{Binding ProductVersion}" Foreground="{StaticResource RedText}" />
-                <Label Content="File Version: " Margin="10,0,0,0"/>
-                <Label Content="{Binding FileVersion}" Foreground="{StaticResource RedText}" />
-                <Label Content=".NET Runtime: " Margin="10,0,0,0" />
-                <Label Content="{Binding RuntimeVersion}" Foreground="{StaticResource RedText}"/>
+                <Label Content="Name: " Margin="10,0,0,0" />
+                <Label Content="{Binding AssemblyName}" Foreground="{StaticResource RedText}" />
+                <Label Content="FullName: " Margin="10,0,0,0"/>
+                <Label Content="{Binding AssemblyFullName}" Foreground="{StaticResource RedText}" />
+                <Label Content="AssemblyTitle: " Margin="10,0,0,0"/>
+                <Label Content="{Binding AssemblyTitle}" Foreground="{StaticResource RedText}" />
+                <Label Content="AssemblyVersion: " Margin="10,0,0,0" />
+                <Label Content="{Binding AssemblyAssemblyVersion}" Foreground="{StaticResource RedText}"/>
+                <Label Content="AssemblyCompnay: " Margin="10,0,0,0" />
+                <Label Content="{Binding AssemblyCompany}" Foreground="{StaticResource RedText}"/>
+                <Label Content="AssemblyConfiguration: " Margin="10,0,0,0" />
+                <Label Content="{Binding AssemlbyConfiguration}" Foreground="{StaticResource RedText}"/>
+                <Label Content="AssemlbyCopyright: " Margin="10,0,0,0" />
+                <Label Content="{Binding AssemlbyCopyright}" Foreground="{StaticResource RedText}"/>
+                <Label Content="AssemblyDescription: " Margin="10,0,0,0" />
+                <Label Content="{Binding AssemblyDescription}" Foreground="{StaticResource RedText}"/>
             </StackPanel>
+            <Label Content="FileInformation " />
             <StackPanel Orientation="Horizontal" >
-                <Label Content="Product Name: " />
-                <Label Content="{Binding ProductNameVNCCore}" Foreground="{StaticResource RedText}" />
-                <Label Content="Assembly Version: " Margin="10,0,0,0" />
+                <Label Content="FileVersion: " />
+                <Label Content="{Binding FileVersion}" Foreground="{StaticResource RedText}" />
+                <Label Content="FileDescription: " Margin="10,0,0,0" />
+                <Label Content="{Binding FileDescription}" Foreground="{StaticResource RedText}" />
+                <Label Content="ProductName: " Margin="10,0,0,0" />
+                <Label Content="{Binding ProductName}" Foreground="{StaticResource RedText}" />
+                <Label Content="InternalName: " Margin="10,0,0,0"/>
+                <Label Content="{Binding InternalName}" Foreground="{StaticResource RedText}" />
+                <Label Content="ProductVersion: " Margin="10,0,0,0" />
+                <Label Content="{Binding ProductVersion}" Foreground="{StaticResource RedText}"/>
+            </StackPanel>
+            <Label Content="FileInformation " />
+            <StackPanel Orientation="Horizontal" >
+                <Label Content="PrdouctMajorPart: " />
+                <Label Content="{Binding PrdouctMajorPart}" Foreground="{StaticResource RedText}" />
+                <Label Content="ProductMinorPart: " Margin="10,0,0,0" />
+                <Label Content="{Binding ProductMinorPart}" Foreground="{StaticResource RedText}" />
+                <Label Content="ProductBuildPart: " Margin="10,0,0,0" />
+                <Label Content="{Binding ProductBuildPart}" Foreground="{StaticResource RedText}" />
+                <Label Content="Comments: " Margin="10,0,0,0"/>
+                <Label Content="{Binding Comments}" Foreground="{StaticResource RedText}" />
+                <Label Content="IsDebug: " Margin="10,0,0,0" />
+                <Label Content="{Binding IsDebug}" Foreground="{StaticResource RedText}"/>
+                <Label Content="IsPatched: " Margin="10,0,0,0" />
+                <Label Content="{Binding IsPatched}" Foreground="{StaticResource RedText}"/>
+                <Label Content="IsPreRelease: " Margin="10,0,0,0" />
+                <Label Content="{Binding IsPreRelease}" Foreground="{StaticResource RedText}"/>
+                <Label Content="IsPrivateBuild: " Margin="10,0,0,0" />
+                <Label Content="{Binding IsPrivateBuild}" Foreground="{StaticResource RedText}"/>
+                <Label Content="IsSpecialBuild: " Margin="10,0,0,0" />
+                <Label Content="{Binding IsSpecialBuild}" Foreground="{StaticResource RedText}"/>
+            </StackPanel>
+
+            <Label Content="AssemblyInformation VNCCore" />
+            <StackPanel Orientation="Horizontal" >
+                <Label Content="Version: " />
                 <Label Content="{Binding AssemblyVersionVNCCore}" Foreground="{StaticResource RedText}" />
-                <Label Content="Product Version: " Margin="10,0,0,0" />
-                <Label Content="{Binding ProductVersionVNCCore}" Foreground="{StaticResource RedText}" />
-                <Label Content="File Version: " Margin="10,0,0,0"/>
-                <Label Content="{Binding FileVersionVNCCore}" Foreground="{StaticResource RedText}" />
-                <Label Content=".NET Runtime: " Margin="10,0,0,0" />
-                <Label Content="{Binding RuntimeVersionVNCCore}" Foreground="{StaticResource RedText}"/>
+                <Label Content="Name: " Margin="10,0,0,0" />
+                <Label Content="{Binding AssemblyNameVNCCore}" Foreground="{StaticResource RedText}" />
+                <Label Content="FullName: " Margin="10,0,0,0"/>
+                <Label Content="{Binding AssemblyFullNameVNCCore}" Foreground="{StaticResource RedText}" />
+                <Label Content="AssemblyTitle: " Margin="10,0,0,0"/>
+                <Label Content="{Binding AssemblyTitleVNCCore}" Foreground="{StaticResource RedText}" />
+                <Label Content="AssemblyVersion: " Margin="10,0,0,0" />
+                <Label Content="{Binding AssemblyAssemblyVersionVNCCore}" Foreground="{StaticResource RedText}"/>
+                <Label Content="AssemblyCompnay: " Margin="10,0,0,0" />
+                <Label Content="{Binding AssemblyCompanyVNCCore}" Foreground="{StaticResource RedText}"/>
+                <Label Content="AssemblyConfiguration: " Margin="10,0,0,0" />
+                <Label Content="{Binding AssemlbyConfigurationVNCCore}" Foreground="{StaticResource RedText}"/>
+                <Label Content="AssemlbyCopyright: " Margin="10,0,0,0" />
+                <Label Content="{Binding AssemlbyCopyrightVNCCore}" Foreground="{StaticResource RedText}"/>
+                <Label Content="AssemblyDescription: " Margin="10,0,0,0" />
+                <Label Content="{Binding AssemblyDescriptionVNCCore}" Foreground="{StaticResource RedText}"/>
             </StackPanel>
         </StackPanel>
 
