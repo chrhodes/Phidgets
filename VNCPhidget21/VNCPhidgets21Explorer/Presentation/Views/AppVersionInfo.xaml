@@ -28,12 +28,12 @@
 
             <StackPanel Orientation="Horizontal">
 
-                <Border BorderBrush="Red" BorderThickness="2" Margin="2">
+                <Border BorderBrush="Red" BorderThickness="2" Margin="2" >
 
                     <StackPanel Orientation="Vertical" Margin="2">
-                        <Label Content="AssemblyInformation" FontWeight="Bold" />
+                        <Label Content="AssemblyInformation" FontWeight="Bold" Margin="0,-5,-5,-5"/>
 
-                        <StackPanel Orientation="Horizontal" >
+                        <StackPanel Orientation="Horizontal" Margin="-5">
                             <Label Content="Name:" Margin="10,0,5,0" />
                             <Label Content="{Binding AssemblyName}" Foreground="{StaticResource AssemblyInfoText}" />
                             <Label Content="FullName:" Margin="10,0,5,0"/>
@@ -42,7 +42,7 @@
                             <Label Content="{Binding AssemblyVersion}" Foreground="{StaticResource AssemblyInfoText}" />
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" >
+                        <StackPanel Orientation="Horizontal" Margin="-5">
                             <Label Content="AssemblyTitle:" Margin="10,0,5,0"/>
                             <Label Content="{Binding AssemblyTitle}" Foreground="{StaticResource AssemblyInfoText}" />
                             <!--<Label Content="AssemblyVersion:" Margin="10,0,5,0" />
@@ -57,9 +57,9 @@
                             <Label Content="{Binding AssemblyDescription}" Foreground="{StaticResource AssemblyInfoText}"/>
                         </StackPanel>
 
-                        <Label Content="FileInformation" FontWeight="Bold" />
+                        <Label Content="FileInformation" FontWeight="Bold" Margin="0,-5,-5,-5"/>
 
-                        <StackPanel Orientation="Horizontal" >
+                        <StackPanel Orientation="Horizontal" Margin="-5" >
                             <Label Content="ProductName:" Margin="10,0,5,0" />
                             <Label Content="{Binding ProductName}" Foreground="{StaticResource FileInfoText}" />
                             <Label Content="InternalName:" Margin="10,0,5,0"/>
@@ -68,7 +68,7 @@
                             <Label Content="{Binding ProductVersion}" Foreground="{StaticResource FileInfoText}"/>
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" >
+                        <StackPanel Orientation="Horizontal" Margin="-5" >
                             <!--<Label Content="ProductMajorPart:"  Margin="10,0,5,0"/>
                         <Label Content="{Binding ProductMajorPart}" Foreground="{StaticResource FileInfoText}" />
                         <Label Content="ProductMinorPart:" Margin="10,0,5,0" />
@@ -105,9 +105,9 @@
                 <Border BorderBrush="Red" BorderThickness="2" Margin="2">
 
                     <StackPanel Orientation="Vertical" Margin="2">
-                        <Label Content="AssemblyInformation VNCCore" FontWeight="Bold" />
+                        <Label Content="AssemblyInformation VNCCore" FontWeight="Bold" Margin="0,-5,-5,-5"/>
 
-                        <StackPanel Orientation="Horizontal" >
+                        <StackPanel Orientation="Horizontal" Margin="-5" >
                             <Label Content="Name:" Margin="10,0,5,0" />
                             <Label Content="{Binding AssemblyNameVNCCore}" Foreground="{StaticResource AssemblyInfoText}" />
                             <Label Content="FullName:" Margin="10,0,5,0"/>
@@ -116,7 +116,7 @@
                             <Label Content="{Binding AssemblyVersionVNCCore}" Foreground="{StaticResource AssemblyInfoText}" />
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" >
+                        <StackPanel Orientation="Horizontal" Margin="-5" >
                             <Label Content="AssemblyTitle:" Margin="10,0,5,0"/>
                             <Label Content="{Binding AssemblyTitleVNCCore}" Foreground="{StaticResource AssemblyInfoText}" />
                             <!--<Label Content="AssemblyVersion:" Margin="10,0,5,0" />
@@ -131,9 +131,9 @@
                             <Label Content="{Binding AssemblyDescriptionVNCCore}" Foreground="{StaticResource AssemblyInfoText}"/>
                         </StackPanel>
 
-                        <Label Content="FileInformation VNCCore" FontWeight="Bold" />
+                        <Label Content="FileInformation VNCCore" FontWeight="Bold" Margin="0,-5,-5,-5" />
 
-                        <StackPanel Orientation="Horizontal" >
+                        <StackPanel Orientation="Horizontal" Margin="-5">
                             <Label Content="ProductName:" Margin="10,0,5,0" />
                             <Label Content="{Binding ProductNameVNCCore}" Foreground="{StaticResource FileInfoText}" />
                             <Label Content="InternalName:" Margin="10,0,5,0"/>
@@ -142,7 +142,7 @@
                             <Label Content="{Binding ProductVersionVNCCore}" Foreground="{StaticResource FileInfoText}"/>
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" >
+                        <StackPanel Orientation="Horizontal" Margin="-5" >
                             <!--<Label Content="ProductMajorPart:"  Margin="10,0,5,0"/>
                         <Label Content="{Binding ProductMajorPartVNCCore}" Foreground="{StaticResource FileInfoText}" />
                         <Label Content="ProductMinorPart:" Margin="10,0,5,0" />
@@ -260,9 +260,9 @@
             </StackPanel>
 
             <Border BorderBrush="Red" BorderThickness="2" Margin="2" VerticalAlignment="Stretch">
-                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                    <Label Content="RuntimeVersion:" />
-                    <Label Content="{Binding RuntimeVersion}" />
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="2">
+                    <Label Content="RuntimeVersion:" FontWeight="Bold" />
+                    <Label Content="{Binding RuntimeVersion}" HorizontalAlignment="Center" />
                 </StackPanel>
             </Border>
 
