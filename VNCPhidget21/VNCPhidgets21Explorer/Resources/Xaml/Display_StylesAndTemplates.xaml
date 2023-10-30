@@ -43,7 +43,11 @@
 
     <SolidColorBrush x:Key="AppVersionInfoBackground" Color="#A0A0A0" />
 
-    <SolidColorBrush x:Key="RedText" Color="#c70000" />
+    <SolidColorBrush x:Key="RedText" Color="Red" />
+    <SolidColorBrush x:Key="BlueText" Color="Blue" />
+
+    <SolidColorBrush x:Key="FileInfoText" Color="Red" />
+    <SolidColorBrush x:Key="AssemblyInfoText" Color="Blue" />
 
     <SolidColorBrush x:Key="HostSelectorBackground" Color="#606060" />
     <SolidColorBrush x:Key="InterfaceKitBackground" Color="#A0A0A0" />

@@ -56,7 +56,7 @@
                 <TextBlock Text="{Binding InstanceCountVM}" />
             </dxlc:LayoutItem>
 
-            <views:AppVersionInfo HorizontalAlignment="Right" />
+            <views:AppVersionInfo />
 
         </dxlc:LayoutGroup>
 
