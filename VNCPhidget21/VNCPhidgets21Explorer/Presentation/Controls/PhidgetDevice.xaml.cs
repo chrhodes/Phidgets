@@ -506,7 +506,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         {
             PhidgetDevice phidget = o as PhidgetDevice;
             if (phidget != null)
-                phidget.OnDeviceAttachedChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
+                phidget.OnDeviceAttachedChanged((Boolean?)e.OldValue, (Boolean?)e.NewValue);
         }
 
         private static void OnDeviceClassChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
