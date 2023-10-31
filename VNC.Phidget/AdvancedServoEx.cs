@@ -128,6 +128,10 @@ namespace VNC.Phidget
             {
                 this.AdvancedServo.open(HostSerialNumber, HostIPAddress, HostPort);
 
+                // TDO(crhodes)
+                // This will hang if AdvancedServo no attached.
+                // How to handle this
+
                 this.AdvancedServo.waitForAttachment();
             }
             catch (Exception ex)
