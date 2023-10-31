@@ -2856,6 +2856,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     // TODO(crhodes)
                     // Should probably set some defaults here
 
+                    var initialAcceleration = 100;
+                    var initialVelocityLimit = 100;
+
                     switch (i)
                     {
                         case 0:
@@ -2871,17 +2874,17 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                             AccelerationMin_S0 = servo.AccelerationMin;
 
-                            //Acceleration_S0 = 20;
+                            //Acceleration_S0 = initialAcceleration;
                             //Acceleration_S0 = servo.Acceleration; // Throws exception if not set before reading
 
                             try
                             {
-                                servo.Acceleration = 20;
+                                servo.Acceleration = initialAcceleration;
                             }
                             catch (PhidgetException pex)
                             {
                                 Log.Error(pex, Common.LOG_CATEGORY);
-                                Acceleration_S0 = 20;
+                                Acceleration_S0 = initialAcceleration;
                             }                            
 
                             AccelerationMax_S0 = servo.AccelerationMax;
@@ -2890,18 +2893,18 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                             Velocity_S0 = servo.Velocity;
 
-                            //VelocityLimit_S0 = 20;
+                            //VelocityLimit_S0 = initialVeleocity;
                             //VelocityLimit_S0 = servo.VelocityLimit; // Throws exception if not set before reading
 
                             try
                             {
-                                servo.VelocityLimit = 20;
-                                VelocityLimit_S0 = 20;
+                                servo.VelocityLimit = initialVelocityLimit;
+                                VelocityLimit_S0 = initialVelocityLimit;
                             }
                             catch (PhidgetException pex)
                             {
                                 Log.Error(pex, Common.LOG_CATEGORY);
-                                VelocityLimit_S0 = 20;
+                                VelocityLimit_S0 = initialVelocityLimit;
                             }
 
                             VelocityMax_S0 = servo.VelocityMax;
@@ -2939,16 +2942,16 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                             AccelerationMin_S1 = servo.AccelerationMin;
 
-                            //Acceleration_S1 = 20;
+                            //Acceleration_S1 = initialAcceleration;
                             //Acceleration_S1 = servo.Acceleration; // Throws exception if not set before reading
 
                             try
                             {
-                                servo.Acceleration = 20;
+                                servo.Acceleration = initialAcceleration;
                             }
                             catch (PhidgetException pex)
                             {
-                                Acceleration_S1 = 20;
+                                Acceleration_S1 = initialAcceleration;
                             }
 
                             AccelerationMax_S1 = servo.AccelerationMax;
@@ -2957,17 +2960,17 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                             Velocity_S1 = servo.Velocity;
 
-                            //VelocityLimit_S1 = 20;
+                            //VelocityLimit_S1 = initialVeleocity;
                             //VelocityLimit_S1 = servo.VelocityLimit; // Throws exception if not set before reading
 
                             try
                             {
-                                servo.VelocityLimit = 20;
-                                VelocityLimit_S1 = 20;
+                                servo.VelocityLimit = initialVelocityLimit;
+                                VelocityLimit_S1 = initialVelocityLimit;
                             }
                             catch (PhidgetException pex)
                             {
-                                VelocityLimit_S1 = 20;
+                                VelocityLimit_S1 = initialVelocityLimit;
                             }
 
                             VelocityMax_S1 = servo.VelocityMax;
@@ -3004,16 +3007,16 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                             AccelerationMin_S2 = servo.AccelerationMin;
 
-                            //Acceleration_S2 = 20;
+                            //Acceleration_S2 = initialAcceleration;
                             //Acceleration_S2 = servo.Acceleration; // Throws exception if not set before reading
 
                             try
                             {
-                                servo.Acceleration = 20;
+                                servo.Acceleration = initialAcceleration;
                             }
                             catch (PhidgetException pex)
                             {
-                                Acceleration_S2 = 20;
+                                Acceleration_S2 = initialAcceleration;
                             }
 
                             AccelerationMax_S2 = servo.AccelerationMax;
@@ -3022,17 +3025,17 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                             Velocity_S2 = servo.Velocity;
 
-                            //VelocityLimit_S2 = 20;
+                            //VelocityLimit_S2 = initialVeleocity;
                             //VelocityLimit_S2 = servo.VelocityLimit; // Throws exception if not set before reading
 
                             try
                             {
-                                servo.VelocityLimit = 20;
-                                VelocityLimit_S2 = 20;
+                                servo.VelocityLimit = initialVelocityLimit;
+                                VelocityLimit_S2 = initialVelocityLimit;
                             }
                             catch (PhidgetException pex)
                             {
-                                VelocityLimit_S2 = 20;
+                                VelocityLimit_S2 = initialVelocityLimit;
                             }
 
                             VelocityMax_S2 = servo.VelocityMax;
@@ -3069,16 +3072,16 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                             AccelerationMin_S3 = servo.AccelerationMin;
 
-                            //Acceleration_S3 = 20;
+                            //Acceleration_S3 = initialAcceleration;
                             //Acceleration_S3 = servo.Acceleration; // Throws exception if not set before reading
 
                             try
                             {
-                                servo.Acceleration = 20;
+                                servo.Acceleration = initialAcceleration;
                             }
                             catch (PhidgetException pex)
                             {
-                                Acceleration_S3 = 20;
+                                Acceleration_S3 = initialAcceleration;
                             }
 
                             AccelerationMax_S3 = servo.AccelerationMax;
@@ -3087,17 +3090,17 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                             Velocity_S3 = servo.Velocity;
 
-                            //VelocityLimit_S3 = 20;
+                            //VelocityLimit_S3 = initialVeleocity;
                             //VelocityLimit_S3 = servo.VelocityLimit; // Throws exception if not set before reading
 
                             try
                             {
-                                servo.VelocityLimit = 20;
-                                VelocityLimit_S3 = 20;
+                                servo.VelocityLimit = initialVelocityLimit;
+                                VelocityLimit_S3 = initialVelocityLimit;
                             }
                             catch (PhidgetException pex)
                             {
-                                VelocityLimit_S3 = 20;
+                                VelocityLimit_S3 = initialVelocityLimit;
                             }
 
                             VelocityMax_S3 = servo.VelocityMax;
@@ -3139,11 +3142,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                             try
                             {
-                                servo.Acceleration = 20;
+                                servo.Acceleration = initialAcceleration;
                             }
                             catch (PhidgetException pex)
                             {
-                                Acceleration_S4 = 20;
+                                Acceleration_S4 = initialAcceleration;
                             }
 
                             AccelerationMax_S4 = servo.AccelerationMax;
@@ -3152,17 +3155,17 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                             Velocity_S4 = servo.Velocity;
 
-                            //VelocityLimit_S4 = 20;
+                            //VelocityLimit_S4 = initialVeleocity;
                             //VelocityLimit_S4 = servo.VelocityLimit; // Throws exception if not set before reading
 
                             try
                             {
-                                servo.VelocityLimit = 20;
-                                VelocityLimit_S4 = 20;
+                                servo.VelocityLimit = initialVelocityLimit;
+                                VelocityLimit_S4 = initialVelocityLimit;
                             }
                             catch (PhidgetException pex)
                             {
-                                VelocityLimit_S4 = 20;
+                                VelocityLimit_S4 = initialVelocityLimit;
                             }
 
                             VelocityMax_S4 = servo.VelocityMax;
@@ -3199,16 +3202,16 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                             AccelerationMin_S5 = servo.AccelerationMin;
 
-                            //Acceleration_S5 = 20;
+                            //Acceleration_S5 = initialAcceleration;
                             //Acceleration_S5 = servo.Acceleration; // Throws exception if not set before reading
 
                             try
                             {
-                                servo.Acceleration = 20;
+                                servo.Acceleration = initialAcceleration;
                             }
                             catch (PhidgetException pex)
                             {
-                                Acceleration_S5 = 20;
+                                Acceleration_S5 = initialAcceleration;
                             }
 
                             AccelerationMax_S5 = servo.AccelerationMax;
@@ -3217,17 +3220,17 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                             Velocity_S5 = servo.Velocity;
 
-                            //VelocityLimit_S5 = 20;
+                            //VelocityLimit_S5 = initialVeleocity;
                             //VelocityLimit_S5 = servo.VelocityLimit; // Throws exception if not set before reading
 
                             try
                             {
-                                servo.VelocityLimit = 20;
-                                VelocityLimit_S5 = 20;
+                                servo.VelocityLimit = initialVelocityLimit;
+                                VelocityLimit_S5 = initialVelocityLimit;
                             }
                             catch (PhidgetException pex)
                             {
-                                VelocityLimit_S5 = 20;
+                                VelocityLimit_S5 = initialVelocityLimit;
                             }
 
                             VelocityMax_S5 = servo.VelocityMax;
@@ -3264,16 +3267,16 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                             AccelerationMin_S6 = servo.AccelerationMin;
 
-                            //Acceleration_S6 = 20;
+                            //Acceleration_S6 = initialAcceleration;
                             //Acceleration_S6 = servo.Acceleration; // Throws exception if not set before reading
 
                             try
                             {
-                                servo.Acceleration = 20;
+                                servo.Acceleration = initialAcceleration;
                             }
                             catch (PhidgetException pex)
                             {
-                                Acceleration_S6 = 20;
+                                Acceleration_S6 = initialAcceleration;
                             }
 
                             AccelerationMax_S6 = servo.AccelerationMax;
@@ -3282,13 +3285,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                             Velocity_S6 = servo.Velocity;
 
-                            //VelocityLimit_S6 = 20;
+                            //VelocityLimit_S6 = 2initialVeleocity0;
                             //VelocityLimit_S6 = servo.VelocityLimit; // Throws exception if not set before reading
 
                             try
                             {
-                                servo.VelocityLimit = 20;
-                                VelocityLimit_S6 = 20;
+                                servo.VelocityLimit = initialVelocityLimit;
+                                VelocityLimit_S6 = initialVelocityLimit;
                             }
                             catch (PhidgetException pex)
                             {
@@ -3329,16 +3332,16 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                             AccelerationMin_S7 = servo.AccelerationMin;
 
-                            //Acceleration_S7 = 20;
+                            //Acceleration_S7 = initialAcceleration;
                             //Acceleration_S7 = servo.Acceleration; // Throws exception if not set before reading
 
                             try
                             {
-                                servo.Acceleration = 20;
+                                servo.Acceleration = initialAcceleration;
                             }
                             catch (PhidgetException pex)
                             {
-                                Acceleration_S7 = 20;
+                                Acceleration_S7 = initialAcceleration;
                             }
 
                             AccelerationMax_S7 = servo.AccelerationMax;
@@ -3347,13 +3350,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                             Velocity_S7 = servo.Velocity;
 
-                            //VelocityLimit_S7 = 20;
+                            //VelocityLimit_S7 = initialVeleocity;
                             //VelocityLimit_S7 = servo.VelocityLimit; // Throws exception if not set before reading
 
                             try
                             {
-                                servo.VelocityLimit = 20;
-                                VelocityLimit_S7 = 20;
+                                servo.VelocityLimit = initialVelocityLimit;
+                                VelocityLimit_S7 = initialVelocityLimit;
                             }
                             catch (PhidgetException pex)
                             {
