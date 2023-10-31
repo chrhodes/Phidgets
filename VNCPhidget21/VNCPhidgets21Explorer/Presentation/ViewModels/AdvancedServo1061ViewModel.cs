@@ -454,18 +454,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 if (value is not null)
                 {
-                    //try
-                    //{
-                    if (ActiveAdvancedServo.AdvancedServo.servos[0].VelocityLimit != value)
-                    {
-                        ActiveAdvancedServo.AdvancedServo.servos[0].VelocityLimit = (double)value;
-                    }
-                    //}
-                    //catch (PhidgetException pex)
-                    //{
-                    //    Log.Error(pex, Common.LOG_CATEGORY);
-                    //    ActiveAdvancedServo.AdvancedServo.servos[0].VelocityLimit = (double)value;
-                    //}
+                    ActiveAdvancedServo.AdvancedServo.servos[0].VelocityLimit = (double)value;
                 }
             }
         }
@@ -508,33 +497,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
 
                 if (value is not null)
-                {
-                    if (ActiveAdvancedServo.AdvancedServo.servos[0].Acceleration != value)
-                    {
-                        ActiveAdvancedServo.AdvancedServo.servos[0].Acceleration = (double)value;
-                    }
-                    //try
-                    //{
-                    //    ActiveAdvancedServo.AdvancedServo.servos[0].Acceleration = (double)value;
-                    //}
-                    //catch (PhidgetException pex)
-                    //{
-                    //    Log.Error(pex, Common.LOG_CATEGORY);
-                    //    // NOTE(crhodes)
-                    //    // This throws exception  Humm
-                    //    try
-                    //    {
-                    //        ActiveAdvancedServo.AdvancedServo.servos[0].Acceleration = (double)value;
-                    //    }
-                    //    catch (PhidgetException pex2)
-                    //    {
-                    //        Log.Error(pex2, Common.LOG_CATEGORY);
-                    //    }
-                    //    catch (Exception ex)
-                    //    {
-                    //        Log.Error(ex, Common.LOG_CATEGORY);
-                    //    }
-                    //}
+                { 
+                    ActiveAdvancedServo.AdvancedServo.servos[0].Acceleration = (double)value;
                 }
             }
         }
@@ -624,7 +588,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-
         private Double? _positionMax_S1;
         public Double? PositionMax_S1
         {
@@ -637,7 +600,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-
 
         private Double? _positionS1;
         public Double? Position_S1
@@ -676,7 +638,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_positionMin_S1 == value)
                     return;
                 _positionMin_S1 = value;
-
                 OnPropertyChanged();
             }
         }
@@ -720,18 +681,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 if (value is not null)
                 {
-                    try
-                    {
-                        if (ActiveAdvancedServo.AdvancedServo.servos[1].VelocityLimit != value)
-                        {
-                            ActiveAdvancedServo.AdvancedServo.servos[1].VelocityLimit = (double)value;
-                        }
-                    }
-                    catch (PhidgetException pex)
-                    {
-                        Log.Error(pex, Common.LOG_CATEGORY);
-                        ActiveAdvancedServo.AdvancedServo.servos[1].VelocityLimit = (double)value;
-                    }
+                    ActiveAdvancedServo.AdvancedServo.servos[1].VelocityLimit = (double)value;
                 }
             }
         }
@@ -775,27 +725,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 if (value is not null)
                 {
-                    try
-                    {
-                        ActiveAdvancedServo.AdvancedServo.servos[1].Acceleration = (double)value;
-                    }
-                    catch (PhidgetException pex)
-                    {
-                        Log.Error(pex, Common.LOG_CATEGORY);
-
-                        try
-                        {
-                            ActiveAdvancedServo.AdvancedServo.servos[1].Acceleration = (double)value;
-                        }
-                        catch (PhidgetException pex2)
-                        {
-                            Log.Error(pex2, Common.LOG_CATEGORY);
-                        }
-                        catch (Exception ex)
-                        {
-                            Log.Error(ex, Common.LOG_CATEGORY);
-                        }
-                    }
+                    ActiveAdvancedServo.AdvancedServo.servos[1].Acceleration = (double)value;
                 }
             }
         }
@@ -813,7 +743,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-
         private bool? _engagedS1;
         public bool? Engaged_S1
         {
@@ -823,9 +752,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_engagedS1 == value)
                     return;
                 _engagedS1 = value;
+                OnPropertyChanged();
 
                 if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[1].Engaged = (Boolean)value;
-                OnPropertyChanged();
+
             }
         }
 
@@ -885,7 +815,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-
         private Double? _positionMax_S2;
         public Double? PositionMax_S2
         {
@@ -898,7 +827,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-
 
         private Double? _positionS2;
         public Double? Position_S2
@@ -981,17 +909,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 if (value is not null)
                 {
-                    try
-                    {
-                        if (ActiveAdvancedServo.AdvancedServo.servos[2].VelocityLimit != value)
-                        {
-                            ActiveAdvancedServo.AdvancedServo.servos[2].VelocityLimit = (double)value;
-                        }
-                    }
-                    catch (PhidgetException pex)
-                    {
-                        ActiveAdvancedServo.AdvancedServo.servos[2].VelocityLimit = (double)value;
-                    }
+                    ActiveAdvancedServo.AdvancedServo.servos[2].VelocityLimit = (double)value;
                 }
             }
         }
@@ -1035,27 +953,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 if (value is not null)
                 {
-                    try
-                    {
-                        ActiveAdvancedServo.AdvancedServo.servos[2].Acceleration = (double)value;
-                    }
-                    catch (PhidgetException pex)
-                    {
-                        Log.Error(pex, Common.LOG_CATEGORY);
-
-                        try
-                        {
-                            ActiveAdvancedServo.AdvancedServo.servos[2].Acceleration = (double)value;
-                        }
-                        catch (PhidgetException pex2)
-                        {
-                            Log.Error(pex2, Common.LOG_CATEGORY);
-                        }
-                        catch (Exception ex)
-                        {
-                            Log.Error(ex, Common.LOG_CATEGORY);
-                        }
-                    }
+                    ActiveAdvancedServo.AdvancedServo.servos[2].Acceleration = (double)value;
                 }
             }
         }
@@ -1082,10 +980,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_engagedS2 == value)
                     return;
                 _engagedS2 = value;
+                OnPropertyChanged();
 
                 if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[2].Engaged = (Boolean)value;
-
-                OnPropertyChanged();
             }
         }
 
@@ -1158,7 +1055,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-
 
         private Double? _positionS3;
         public Double? Position_S3
@@ -1241,17 +1137,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 if (value is not null)
                 {
-                    try
-                    {
-                        if (ActiveAdvancedServo.AdvancedServo.servos[3].VelocityLimit != value)
-                        {
-                            ActiveAdvancedServo.AdvancedServo.servos[3].VelocityLimit = (double)value;
-                        }
-                    }
-                    catch (PhidgetException pex)
-                    {
-                        ActiveAdvancedServo.AdvancedServo.servos[3].VelocityLimit = (double)value;
-                    }
+                    ActiveAdvancedServo.AdvancedServo.servos[3].VelocityLimit = (double)value;
                 }
             }
         }
@@ -1295,27 +1181,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 if (value is not null)
                 {
-                    try
-                    {
-                        ActiveAdvancedServo.AdvancedServo.servos[3].Acceleration = (double)value;
-                    }
-                    catch (PhidgetException pex)
-                    {
-                        Log.Error(pex, Common.LOG_CATEGORY);
-
-                        try
-                        {
-                            ActiveAdvancedServo.AdvancedServo.servos[3].Acceleration = (double)value;
-                        }
-                        catch (PhidgetException pex2)
-                        {
-                            Log.Error(pex2, Common.LOG_CATEGORY);
-                        }
-                        catch (Exception ex)
-                        {
-                            Log.Error(ex, Common.LOG_CATEGORY);
-                        }
-                    }
+                    ActiveAdvancedServo.AdvancedServo.servos[3].Acceleration = (double)value;
                 }
             }
         }
@@ -1343,9 +1209,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _engagedS3 = value;
 
-                if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[3].Engaged = (Boolean)value;
-
                 OnPropertyChanged();
+
+                if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[3].Engaged = (Boolean)value;
             }
         }
 
@@ -1405,7 +1271,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-
         private Double? _positionMax_S4;
         public Double? PositionMax_S4
         {
@@ -1418,7 +1283,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-
 
         private Double? _positionS4;
         public Double? Position_S4
@@ -1501,17 +1365,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 if (value is not null)
                 {
-                    try
-                    {
-                        if (ActiveAdvancedServo.AdvancedServo.servos[4].VelocityLimit != value)
-                        {
-                            ActiveAdvancedServo.AdvancedServo.servos[4].VelocityLimit = (double)value;
-                        }
-                    }
-                    catch (PhidgetException pex)
-                    {
-                        ActiveAdvancedServo.AdvancedServo.servos[4].VelocityLimit = (double)value;
-                    }
+                    ActiveAdvancedServo.AdvancedServo.servos[4].VelocityLimit = (double)value;
                 }
             }
         }
@@ -1555,27 +1409,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 if (value is not null)
                 {
-                    try
-                    {
-                        ActiveAdvancedServo.AdvancedServo.servos[4].Acceleration = (double)value;
-                    }
-                    catch (PhidgetException pex)
-                    {
-                        Log.Error(pex, Common.LOG_CATEGORY);
-
-                        try
-                        {
-                            ActiveAdvancedServo.AdvancedServo.servos[4].Acceleration = (double)value;
-                        }
-                        catch (PhidgetException pex2)
-                        {
-                            Log.Error(pex2, Common.LOG_CATEGORY);
-                        }
-                        catch (Exception ex)
-                        {
-                            Log.Error(ex, Common.LOG_CATEGORY);
-                        }
-                    }
+                    ActiveAdvancedServo.AdvancedServo.servos[4].Acceleration = (double)value;
                 }
             }
         }
@@ -1714,7 +1548,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_positionMin_S5 == value)
                     return;
                 _positionMin_S5 = value;
-
                 OnPropertyChanged();
             }
         }
@@ -1758,17 +1591,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 if (value is not null)
                 {
-                    try
-                    {
-                        if (ActiveAdvancedServo.AdvancedServo.servos[5].VelocityLimit != value)
-                        {
-                            ActiveAdvancedServo.AdvancedServo.servos[5].VelocityLimit = (double)value;
-                        }
-                    }
-                    catch (PhidgetException pex)
-                    {
-                        ActiveAdvancedServo.AdvancedServo.servos[5].VelocityLimit = (double)value;
-                    }
+                    ActiveAdvancedServo.AdvancedServo.servos[5].VelocityLimit = (double)value;
                 }
             }
         }
@@ -1812,27 +1635,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 if (value is not null)
                 {
-                    try
-                    {
-                        ActiveAdvancedServo.AdvancedServo.servos[5].Acceleration = (double)value;
-                    }
-                    catch (PhidgetException pex)
-                    {
-                        Log.Error(pex, Common.LOG_CATEGORY);
-
-                        try
-                        {
-                            ActiveAdvancedServo.AdvancedServo.servos[5].Acceleration = (double)value;
-                        }
-                        catch (PhidgetException pex2)
-                        {
-                            Log.Error(pex2, Common.LOG_CATEGORY);
-                        }
-                        catch (Exception ex)
-                        {
-                            Log.Error(ex, Common.LOG_CATEGORY);
-                        }
-                    }
+                    ActiveAdvancedServo.AdvancedServo.servos[5].Acceleration = (double)value;
                 }
             }
         }
@@ -1859,9 +1662,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_engagedS5 == value)
                     return;
                 _engagedS5 = value;
+                OnPropertyChanged();
 
                 if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[5].Engaged = (Boolean)value;
-                OnPropertyChanged();
             }
         }
 
@@ -1971,7 +1774,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_positionMin_S6 == value)
                     return;
                 _positionMin_S6 = value;
-
                 OnPropertyChanged();
             }
         }
@@ -2015,17 +1817,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 if (value is not null)
                 {
-                    try
-                    {
-                        if (ActiveAdvancedServo.AdvancedServo.servos[6].VelocityLimit != value)
-                        {
-                            ActiveAdvancedServo.AdvancedServo.servos[6].VelocityLimit = (double)value;
-                        }
-                    }
-                    catch (PhidgetException pex)
-                    {
-                        ActiveAdvancedServo.AdvancedServo.servos[6].VelocityLimit = (double)value;
-                    }
+                    ActiveAdvancedServo.AdvancedServo.servos[0].VelocityLimit = (double)value;
                 }
             }
         }
@@ -2069,27 +1861,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 if (value is not null)
                 {
-                    try
-                    {
-                        ActiveAdvancedServo.AdvancedServo.servos[6].Acceleration = (double)value;
-                    }
-                    catch (PhidgetException pex)
-                    {
-                        Log.Error(pex, Common.LOG_CATEGORY);
-
-                        try
-                        {
-                            ActiveAdvancedServo.AdvancedServo.servos[6].Acceleration = (double)value;
-                        }
-                        catch (PhidgetException pex2)
-                        {
-                            Log.Error(pex2, Common.LOG_CATEGORY);
-                        }
-                        catch (Exception ex)
-                        {
-                            Log.Error(ex, Common.LOG_CATEGORY);
-                        }
-                    }
+                    ActiveAdvancedServo.AdvancedServo.servos[6].Acceleration = (double)value;
                 }
             }
         }
@@ -2116,9 +1888,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_engagedS6 == value)
                     return;
                 _engagedS6 = value;
+                OnPropertyChanged();
 
                 if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[6].Engaged = (Boolean)value;
-                OnPropertyChanged();
             }
         }
 
@@ -2272,17 +2044,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 if (value is not null)
                 {
-                    try
-                    {
-                        if (ActiveAdvancedServo.AdvancedServo.servos[7].VelocityLimit != value)
-                        {
-                            ActiveAdvancedServo.AdvancedServo.servos[7].VelocityLimit = (double)value;
-                        }
-                    }
-                    catch (PhidgetException pex)
-                    {
-                        ActiveAdvancedServo.AdvancedServo.servos[7].VelocityLimit = (double)value;
-                    }
+                    ActiveAdvancedServo.AdvancedServo.servos[7].VelocityLimit = (double)value;
                 }
             }
         }
@@ -2326,27 +2088,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 if (value is not null)
                 {
-                    try
-                    {
-                        ActiveAdvancedServo.AdvancedServo.servos[7].Acceleration = (double)value;
-                    }
-                    catch (PhidgetException pex)
-                    {
-                        Log.Error(pex, Common.LOG_CATEGORY);
-
-                        try
-                        {
-                            ActiveAdvancedServo.AdvancedServo.servos[7].Acceleration = (double)value;
-                        }
-                        catch (PhidgetException pex2)
-                        {
-                            Log.Error(pex2, Common.LOG_CATEGORY);
-                        }
-                        catch (Exception ex)
-                        {
-                            Log.Error(ex, Common.LOG_CATEGORY);
-                        }
-                    }
+                    ActiveAdvancedServo.AdvancedServo.servos[7].Acceleration = (double)value;
                 }
             }
         }
