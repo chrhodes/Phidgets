@@ -18,6 +18,8 @@ using VNC;
 using VNC.Core.Mvvm;
 using VNC.Phidget;
 
+using VNCPhidgets21Explorer.Resources;
+
 namespace VNCPhidgets21Explorer.Presentation.ViewModels
 {
     public class AdvancedServo1061ViewModel : EventViewModelBase, IAdvancedServo1061ViewModel, IInstanceCountVM
@@ -410,8 +412,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private AdvancedServo _typeS0;
-        public AdvancedServo Type_S0
+        private Phidgets.AdvancedServo _typeS0;
+        public Phidgets.AdvancedServo Type_S0
         {
             get => _typeS0;
             set
@@ -642,8 +644,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Servo S1
 
-        private AdvancedServo _typeS1;
-        public AdvancedServo Type_S1
+        private Phidgets.AdvancedServo _typeS1;
+        public Phidgets.AdvancedServo Type_S1
         {
             get => _typeS1;
             set
@@ -869,8 +871,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Servo S2
 
-        private AdvancedServo _typeS2;
-        public AdvancedServo Type_S2
+        private Phidgets.AdvancedServo _typeS2;
+        public Phidgets.AdvancedServo Type_S2
         {
             get => _typeS2;
             set
@@ -1096,8 +1098,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Servo S3
 
-        private AdvancedServo _typeS3;
-        public AdvancedServo Type_S3
+        private Phidgets.AdvancedServo _typeS3;
+        public Phidgets.AdvancedServo Type_S3
         {
             get => _typeS3;
             set
@@ -1325,8 +1327,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Servo S4
 
-        private AdvancedServo _typeS4;
-        public AdvancedServo Type_S4
+        private Phidgets.AdvancedServo _typeS4;
+        public Phidgets.AdvancedServo Type_S4
         {
             get => _typeS4;
             set
@@ -1552,8 +1554,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Servo S5
 
-        private AdvancedServo _typeS5;
-        public AdvancedServo Type_S5
+        private Phidgets.AdvancedServo _typeS5;
+        public Phidgets.AdvancedServo Type_S5
         {
             get => _typeS5;
             set
@@ -1778,8 +1780,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Servo S6
 
-        private AdvancedServo _typeS6;
-        public AdvancedServo Type_S6
+        private Phidgets.AdvancedServo _typeS6;
+        public Phidgets.AdvancedServo Type_S6
         {
             get => _typeS6;
             set
@@ -2004,8 +2006,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Servo S7
 
-        private AdvancedServo _typeS7;
-        public AdvancedServo Type_S7
+        private Phidgets.AdvancedServo _typeS7;
+        public Phidgets.AdvancedServo Type_S7
         {
             get => _typeS7;
             set
@@ -2757,10 +2759,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
-
         #region PlayPerformance Command
-
-
 
         public DelegateCommand PlayPerformanceCommand { get; set; }
         // If using CommandParameter, figure out TYPE here and above
@@ -2785,7 +2784,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
             // TODO(crhodes)
             // Do something amazing.
-            Message = "Cool, you called PlayPerformance";
+             Message = "Cool, you called PlayPerformance";
+
+            foreach (AdvancedServoStep step in SelectedAdvancedServoPerformance.AdvancedServoSteps)
+            {
+                Log.Trace($"Servo:{step.ServoIndex} TargetPosition:{step.TargetPosition} Duration:{step.Duration}", Common.LOG_CATEGORY);
+            }
 
             // Uncomment this if you are telling someone else to handle this
 
