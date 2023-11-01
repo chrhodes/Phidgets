@@ -31,7 +31,7 @@
       ]
     },
     {
-      "Name": "PerformanceServp1",
+      "Name": "PerformanceServo1",
       "AdvancedServoSteps": [
         {
           "ServoIndex": 1,
@@ -61,34 +61,134 @@
       ]
     },
     {
-      "Name": "PerformanceServo2",
-      "AdvancedServoSteps": [
-        {
-          "ServoIndex": 2,
-          "TargetPosition": 90,
-          "Duration": 1000
-        },
-        {
-          "ServoIndex": 2,
-          "TargetPosition": 95,
-          "Duration": 1000
-        },
-        {
-          "ServoIndex": 2,
-          "TargetPosition": 100,
-          "Duration": 2000
-        },
-        {
-          "ServoIndex": 2,
-          "TargetPosition": 95,
-          "Duration": 500
-        },
-        {
-          "ServoIndex": 2,
-          "TargetPosition": 90,
-          "Duration": 500
-        }
-      ]
+        "Name": "PerformanceServo2",
+        "AdvancedServoSteps": [
+            {
+                "ServoIndex": 2,
+                "TargetPosition": 90,
+                "Duration": 1000
+            },
+            {
+                "ServoIndex": 2,
+                "TargetPosition": 95,
+                "Duration": 1000
+            },
+            {
+                "ServoIndex": 2,
+                "TargetPosition": 100,
+                "Duration": 2000
+            },
+            {
+                "ServoIndex": 2,
+                "TargetPosition": 95,
+                "Duration": 500
+            },
+            {
+                "ServoIndex": 2,
+                "TargetPosition": 90,
+                "Duration": 500
+            }
+        ]
+    },
+    {
+        "Name": "PerformanceXYZ",
+        "AdvancedServoSteps": [
+            { "ServoIndex": 0, "TargetPosition": 90, "Duration": 0 },
+            { "ServoIndex": 1, "TargetPosition": 90,  "Duration": 0 },
+            { "ServoIndex": 2, "TargetPosition": 90,  "Duration": 0 },
+
+            { "ServoIndex": 0, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 1, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 2, "TargetPosition": 100, "Duration": 1000 },
+            { "ServoIndex": 0, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 1, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 2, "TargetPosition": 80, "Duration": 1000 },
+            { "ServoIndex": 0, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 1, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 2, "TargetPosition": 100, "Duration": 1000 },
+            { "ServoIndex": 2, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 1, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 0, "TargetPosition": 80, "Duration": 1000 },
+
+            { "ServoIndex": 0, "TargetPosition": 90, "Duration": 0 },
+            { "ServoIndex": 1, "TargetPosition": 90, "Duration": 0 },
+            { "ServoIndex": 2, "TargetPosition": 90, "Duration": 1000 },
+            
+            { "ServoIndex": 0, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 0, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 0, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 0, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 0, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 0, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 0, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 0, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 0, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 0, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 0, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 0, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 0, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 0, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 0, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 0, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 0, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 0, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 0, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 0, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 0, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 0, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 0, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 0, "TargetPosition": 80, "Duration": 300 },
+
+            { "ServoIndex": 0, "TargetPosition": 90, "Duration": 0 },
+            { "ServoIndex": 1, "TargetPosition": 90, "Duration": 0 },
+            { "ServoIndex": 2, "TargetPosition": 90, "Duration": 1000 },
+
+            { "ServoIndex": 1, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 1, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 1, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 1, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 1, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 1, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 1, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 1, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 1, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 1, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 1, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 1, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 1, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 1, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 1, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 1, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 1, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 1, "TargetPosition": 80, "Duration": 300 },
+
+            { "ServoIndex": 0, "TargetPosition": 90, "Duration": 0 },
+            { "ServoIndex": 1, "TargetPosition": 90, "Duration": 0 },
+            { "ServoIndex": 2, "TargetPosition": 90, "Duration": 1000 },
+
+            { "ServoIndex": 2, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 2, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 2, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 2, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 2, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 2, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 2, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 2, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 2, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 2, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 2, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 2, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 2, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 2, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 2, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 2, "TargetPosition": 80, "Duration": 300 },
+            { "ServoIndex": 2, "TargetPosition": 100, "Duration": 300 },
+            { "ServoIndex": 2, "TargetPosition": 80, "Duration": 300 },
+
+            { "ServoIndex": 0, "TargetPosition": 90, "Duration": 0 },
+            { "ServoIndex": 1, "TargetPosition": 90,  "Duration": 0 },
+            { "ServoIndex": 2, "TargetPosition": 90,  "Duration": 0 }
+        ]
     }
   ]
 }

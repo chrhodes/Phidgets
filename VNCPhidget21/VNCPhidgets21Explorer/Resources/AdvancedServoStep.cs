@@ -8,7 +8,7 @@ namespace VNCPhidgets21Explorer.Resources
     {
         public int ServoIndex { get; set; }
         public double TargetPosition { get; set; }
-        public double Duration { get; set; } = 1000;    // ms
+        public Int32 Duration { get; set; } = 1000;    // ms
 
     }
 }

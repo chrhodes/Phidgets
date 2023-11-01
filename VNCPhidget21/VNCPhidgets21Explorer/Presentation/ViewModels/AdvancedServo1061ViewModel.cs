@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using System.Threading;
 using System.Windows.Input;
 
 using DevExpress.XtraRichEdit.Commands;
@@ -2789,6 +2791,57 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             foreach (AdvancedServoStep step in SelectedAdvancedServoPerformance.AdvancedServoSteps)
             {
                 Log.Trace($"Servo:{step.ServoIndex} TargetPosition:{step.TargetPosition} Duration:{step.Duration}", Common.LOG_CATEGORY);
+
+                try
+                {
+                    switch (step.ServoIndex)
+                    {
+                        case 0:
+                            Position_S0 = step.TargetPosition;
+                            Thread.Sleep(step.Duration);
+
+                            break;
+
+                        case 1:
+                            Position_S1 = step.TargetPosition;
+                            Thread.Sleep(step.Duration);
+                            break;
+
+                        case 2:
+                            Position_S2 = step.TargetPosition;
+                            Thread.Sleep(step.Duration);
+                            break;
+
+                        case 3:
+                            Position_S3 = step.TargetPosition;
+                            Thread.Sleep(step.Duration);
+                            break;
+
+                        case 4:
+                            Position_S4 = step.TargetPosition;
+                            Thread.Sleep(step.Duration);
+                            break;
+
+                        case 5:
+                            Position_S5 = step.TargetPosition;
+                            Thread.Sleep(step.Duration);
+                            break;
+
+                        case 6:
+                            Position_S6 = step.TargetPosition;
+                            Thread.Sleep(step.Duration);
+                            break;
+
+                        case 7:
+                            Position_S7 = step.TargetPosition;
+                            Thread.Sleep(step.Duration);
+                            break;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
             }
 
             // Uncomment this if you are telling someone else to handle this
