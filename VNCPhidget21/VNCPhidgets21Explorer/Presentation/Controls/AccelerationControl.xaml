@@ -76,7 +76,11 @@
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem Label="Current" LabelPosition="Top" LabelHorizontalAlignment="Center" >
-            <dxe:TextEdit Text="{Binding Current, Mode=TwoWay}" HorizontalAlignment="Center" />
+            <!--<dxe:TextEdit Text="{Binding Current, Mode=TwoWay}" HorizontalAlignment="Center" />-->
+            <dxe:SpinEdit Value="{Binding Current, Mode=TwoWay}" Increment="10"
+                            MinValue="{Binding Min, Mode=OneWay}"
+                            MaxValue="{Binding Max, Mode=OneWay}" 
+                            IsFloatValue="False" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem Label="Max" LabelPosition="Top" >

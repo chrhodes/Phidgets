@@ -74,8 +74,12 @@
             <dxe:TextEdit Text="{Binding Min, Mode=OneWay}"  IsReadOnly="True" HorizontalContentAlignment="Right"/>
         </dxlc:LayoutItem>
 
-        <dxlc:LayoutItem Label="Limit" LabelPosition="Top">
-            <dxe:TextEdit Text="{Binding Limit, Mode=TwoWay}" />
+        <dxlc:LayoutItem Label="Limit" LabelPosition="Top" Width="45">
+            <!--<dxe:TextEdit Text="{Binding Limit, Mode=TwoWay}" />-->
+            <dxe:SpinEdit Value="{Binding Limit, Mode=TwoWay}" Increment="10" 
+                            MinValue="{Binding Min, Mode=OneWay}"
+                            MaxValue="{Binding Max, Mode=OneWay}" 
+                            IsFloatValue="False" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem Label="Curent" LabelPosition="Top">
