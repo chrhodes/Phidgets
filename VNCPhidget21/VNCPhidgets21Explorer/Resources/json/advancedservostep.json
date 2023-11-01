@@ -1,5 +1,6 @@
 {
   "ServoIndex": 0,
+  "Engaged": false,
   "TargetPosition": 0,
   "Duration": 1000
 }

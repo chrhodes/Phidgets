@@ -2790,51 +2790,59 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             foreach (AdvancedServoStep step in SelectedAdvancedServoPerformance.AdvancedServoSteps)
             {
-                Log.Trace($"Servo:{step.ServoIndex} TargetPosition:{step.TargetPosition} Duration:{step.Duration}", Common.LOG_CATEGORY);
+                Log.Trace($"Servo:{step.ServoIndex} Engaged:{step.Engaged} TargetPosition:{step.TargetPosition} Duration:{step.Duration}", Common.LOG_CATEGORY);
 
                 try
                 {
                     switch (step.ServoIndex)
                     {
                         case 0:
+                            if (step.Engaged is not null) Engaged_S0 = step.Engaged;
                             Position_S0 = step.TargetPosition;
-                            Thread.Sleep(step.Duration);
+                            if (step.Duration > 0) Thread.Sleep(step.Duration);
 
                             break;
 
                         case 1:
+                            if (step.Engaged is not null) Engaged_S1 = step.Engaged;
                             Position_S1 = step.TargetPosition;
-                            Thread.Sleep(step.Duration);
+                            if (step.Duration > 0) Thread.Sleep(step.Duration);
                             break;
 
                         case 2:
+                            if (step.Engaged is not null) Engaged_S2 = step.Engaged;
                             Position_S2 = step.TargetPosition;
-                            Thread.Sleep(step.Duration);
+                            if (step.Duration > 0) Thread.Sleep(step.Duration);
                             break;
 
                         case 3:
+                            if (step.Engaged is not null) Engaged_S3 = step.Engaged;
                             Position_S3 = step.TargetPosition;
-                            Thread.Sleep(step.Duration);
+                            if (step.Duration > 0) Thread.Sleep(step.Duration);
                             break;
 
                         case 4:
+                            if (step.Engaged is not null) Engaged_S4 = step.Engaged;
                             Position_S4 = step.TargetPosition;
-                            Thread.Sleep(step.Duration);
+                            if (step.Duration > 0) Thread.Sleep(step.Duration);
                             break;
 
                         case 5:
+                            if (step.Engaged is not null) Engaged_S5 = step.Engaged;
                             Position_S5 = step.TargetPosition;
-                            Thread.Sleep(step.Duration);
+                            if (step.Duration > 0) Thread.Sleep(step.Duration);
                             break;
 
                         case 6:
+                            if (step.Engaged is not null) Engaged_S6 = step.Engaged;
                             Position_S6 = step.TargetPosition;
-                            Thread.Sleep(step.Duration);
+                            if (step.Duration > 0) Thread.Sleep(step.Duration);
                             break;
 
                         case 7:
+                            if (step.Engaged is not null) Engaged_S7 = step.Engaged;
                             Position_S7 = step.TargetPosition;
-                            Thread.Sleep(step.Duration);
+                            if (step.Duration > 0) Thread.Sleep(step.Duration);
                             break;
                     }
                 }
