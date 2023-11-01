@@ -9,7 +9,7 @@
     <!--<Nullable>enable</Nullable>-->
 	  <VersionPrefix>1.0.0</VersionPrefix>
 	  <VersionSuffix>indevelopment-4</VersionSuffix>
-      <FileVersion>2023.10.31B</FileVersion>
+      <FileVersion>2023.11.01A</FileVersion>
       <Company>VNC</Company>
 	  <Description>Phidget21 Explorer</Description>
   </PropertyGroup>
@@ -35,6 +35,9 @@
     <None Remove="Resources\HostList.xml" />
     <None Remove="Resources\InterfaceKitList.xml" />
     <None Remove="Resources\json\advancedservo.json" />
+    <None Remove="Resources\json\advancedservoperformance.json" />
+    <None Remove="Resources\json\advancedservoperformancesconfig.json" />
+    <None Remove="Resources\json\advancedservostep.json" />
     <None Remove="Resources\json\host.json" />
     <None Remove="Resources\json\interfacekit.json" />
     <None Remove="Resources\json\phidgetconfig.json" />
@@ -51,6 +54,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Icons\ApplicationIcon-Right-Red.ico" />
+    <Content Include="Resources\json\advancedservoperformance.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\advancedservoperformancesconfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\advancedservostep.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\json\stepper.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -103,6 +103,7 @@
     <DockPanel Margin="5">
         
         <views:HostSelector DockPanel.Dock="Top" />
+        <views:PerformanceSelector DockPanel.Dock="Top" />
 
         <!-- This is useful for debugging V VM constructor issues -->
 
@@ -166,6 +167,32 @@
                 		    Content="{Binding CloseAdvancedServoContent, FallbackValue='CloseIK' }"
                 		    ToolTip="{Binding CloseAdvancedServoToolTip, FallbackValue='CloseIK ToolTip' }" />
                 </dxlc:LayoutItem>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Orientation="Horizontal" >
+
+                <dxlc:LayoutItem Label="Performances" LabelPosition="Left" HorizontalAlignment="Left">
+                    <dxe:ComboBoxEdit Width="150" 
+                                          ItemsSource="{Binding AdvancedServoPerformances}" DisplayMember="Name" 
+                                          SelectedItem="{Binding SelectedAdvancedServoPerformance}"
+                                          SelectedIndex="0"/>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="Serial #" HorizontalAlignment="Left" >
+                    <dxe:TextEdit EditValue="{Binding SelectedAdvancedServoPerformance.Name}" IsReadOnly="True" 
+                                  Background="White" 
+                                  Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                </dxlc:LayoutItem>
+<dxlc:LayoutItem>
+    <Button 
+		Command="{Binding PlayPerformanceCommand }"
+		Content="{Binding PlayPerformanceContent, FallbackValue='PlayPerformance' }"
+		ToolTip="{Binding PlayPerformanceToolTip, FallbackValue='PlayPerformance ToolTip' }" />
+</dxlc:LayoutItem>
+
+
+
 
             </dxlc:LayoutGroup>
 

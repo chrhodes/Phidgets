@@ -54,25 +54,23 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             ConfigFileName_DoubleClick_Command = new DelegateCommand(ConfigFileName_DoubleClick);
             OpenAdvancedServoCommand = new DelegateCommand(OpenAdvancedServo, OpenAdvancedServoCanExecute);
             CloseAdvancedServoCommand = new DelegateCommand(CloseAdvancedServo, CloseAdvancedServoCanExecute);
-            ConfigureServoCommand = new DelegateCommand(ConfigureServo, ConfigureServoCanExecute);
 
-            // Start Cut Two - Put this in InitializeViewModel or Constructor
+            //ConfigureServoCommand = new DelegateCommand(ConfigureServo, ConfigureServoCanExecute);
 
-            //ConfigureServo2Command = new DelegateCommand(ConfigureServo2, ConfigureServo2CanExecute);
-            // If using CommandParameter, figure out TYPE and fix below
             ConfigureServo2Command = new DelegateCommand<string>(ConfigureServo2, ConfigureServo2CanExecute);
+            PlayPerformanceCommand = new DelegateCommand(PlayPerformance, PlayPerformanceCanExecute);
 
-            // End Cut Two
 
             // TODO(crhodes)
             // For now just hard code this.  Can have UI let us choose later.
 
             ConfigFileName = "phidgetconfig.json";
+            PerformanceConfigFileName = "advancedservoperformancesconfig.json";
             LoadUIConfig();
 
             //SayHelloCommand = new DelegateCommand(
             //    SayHello, SayHelloCanExecute);
-                
+
             Message = "AdvancedServo1061ViewModel says hello";           
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
@@ -86,6 +84,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             Resources.PhidgetConfig? phidgetConfig = JsonSerializer.Deserialize<Resources.PhidgetConfig>(jsonString);
             this.Hosts = phidgetConfig.Hosts.ToList();
+
+            jsonString = File.ReadAllText(PerformanceConfigFileName);
+
+            Resources.AdvancedServoPerformanceConfig? performancesConfig = JsonSerializer.Deserialize<Resources.AdvancedServoPerformanceConfig>(jsonString);
+            this.AdvancedServoPerformances = performancesConfig.AdvancedServoPerformances.ToList();
+
             //this.Sensors2 = phidgetConfig.Sensors.ToList();
 
             Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
@@ -120,6 +124,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public string ConfigFileNameToolTip { get; set; } = "DoubleClick to select new file";
 
+        private string _performanceConfigFileName;
+        public string PerformanceConfigFileName
+        { 
+            get => _performanceConfigFileName; 
+            set
+            {
+                if (_performanceConfigFileName == value) return;
+                _performanceConfigFileName  = value;
+                OnPropertyChanged();
+            }
+        }
+        public string PerformanceFileNameToolTip { get; set; } = "DoubleClick to select new file";
+
         private Resources.PhidgetConfig _phidgetConfig;
         public Resources.PhidgetConfig PhidgetConfig
         {
@@ -136,26 +153,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         private IEnumerable<Resources.Host> _Hosts;
         public IEnumerable<Resources.Host> Hosts
         {
-            get
-            {
-                if (null == _Hosts)
-                {
-                    // TODO(crhodes)
-                    // Load this like the sensors.xml for now
-
-                    //_Hosts =
-                    //    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("Hosts").Elements("Host")
-                    //    select new Host(
-                    //        item.Attribute("Name").Value,
-                    //        item.Attribute("IPAddress").Value,
-                    //        item.Attribute("Port").Value,
-                    //        bool.Parse(item.Attribute("Enable").Value)
-                    //        );
-                }
-
-                return _Hosts;
-            }
-
+            get => _Hosts;
             set
             {
                 _Hosts = value;
@@ -173,6 +171,43 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _selectedHost = value;
                 AdvancedServos = _selectedHost.AdvancedServos.ToList<Resources.AdvancedServo>();
+                OnPropertyChanged();
+            }
+        }
+
+        private Resources.AdvancedServoPerformanceConfig _advancedServoPerformanceConfig;
+        public Resources.AdvancedServoPerformanceConfig AdvancedServoPerformanceConfig
+        {
+            get => _advancedServoPerformanceConfig;
+            set
+            {
+                if (_advancedServoPerformanceConfig == value)
+                    return;
+                _advancedServoPerformanceConfig = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private IEnumerable<Resources.AdvancedServoPerformance> _advancedServoPerformances;
+        public IEnumerable<Resources.AdvancedServoPerformance> AdvancedServoPerformances
+        {
+            get => _advancedServoPerformances;
+            set
+            {
+                _advancedServoPerformances = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Resources.AdvancedServoPerformance? _selectedAdvancedServoPerformance;
+        public Resources.AdvancedServoPerformance? SelectedAdvancedServoPerformance
+        { 
+            get => _selectedAdvancedServoPerformance; 
+            set
+            {
+                if (_selectedAdvancedServoPerformance == value) return;
+
+                _selectedAdvancedServoPerformance = value;
                 OnPropertyChanged();
             }
         }
@@ -2683,7 +2718,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
 
-
             // Uncomment this if you are telling someone else to handle this
 
             // Common.EventAggregator.GetEvent<ConfigureServo2Event>().Publish();
@@ -2715,6 +2749,75 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         // If using CommandParameter, figure out TYPE and fix above
         public bool ConfigureServo2CanExecute(string value)
         //public bool ConfigureServo2CanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            return true;
+        }
+
+        #endregion
+
+
+        #region PlayPerformance Command
+
+
+
+        public DelegateCommand PlayPerformanceCommand { get; set; }
+        // If using CommandParameter, figure out TYPE here and above
+        // and remove above declaration
+        //public DelegateCommand<TYPE> PlayPerformanceCommand { get; set; }
+        //public TYPE PlayPerformanceCommandParameter;
+        public string PlayPerformanceContent { get; set; } = "PlayPerformance";
+        public string PlayPerformanceToolTip { get; set; } = "PlayPerformance ToolTip";
+
+        // Can get fancy and use Resources
+        //public string PlayPerformanceContent { get; set; } = "ViewName_PlayPerformanceContent";
+        //public string PlayPerformanceToolTip { get; set; } = "ViewName_PlayPerformanceContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_PlayPerformanceContent">PlayPerformance</system:String>
+        //    <system:String x:Key="ViewName_PlayPerformanceContentToolTip">PlayPerformance ToolTip</system:String>  
+
+        // If using CommandParameter, figure out TYPE and fix above
+        //public void PlayPerformance(TYPE value)
+        public void PlayPerformance()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = "Cool, you called PlayPerformance";
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<PlayPerformanceEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<PlayPerformanceEvent>().Publish(
+            //      new PlayPerformanceEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class PlayPerformanceEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<PlayPerformanceEvent>().Subscribe(PlayPerformance);
+
+            // End Cut Four
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        // If using CommandParameter, figure out TYPE and fix above
+        //public bool PlayPerformanceCanExecute(TYPE value)
+        public bool PlayPerformanceCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
@@ -2774,6 +2877,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             // HACK(crhodes)
                             // Do this until we have a better list of Servos
                             servo.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
+                            //servo.Type = Phidgets.ServoServo.ServoType.RAW_us_MODE;
 
                             Stopped_S0 = servo.Stopped;
                             Engaged_S0 = servo.Engaged;
@@ -2781,8 +2885,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                             Current_S0 = servo.Current;
 
-                            AccelerationMin_S0 = servo.AccelerationMin;                            
-                            Acceleration_S0 = servo.Acceleration = initialAcceleration;                  
+                            AccelerationMin_S0 = servo.AccelerationMin;
+                            Acceleration_S0 = servo.Acceleration = initialAcceleration;
                             AccelerationMax_S0 = servo.AccelerationMax;
 
                             VelocityMin_S0 = servo.VelocityMin;

@@ -1,0 +1,30 @@
+{
+  "Name": "PERFORMANCE NAME",
+  "AdvancedServoSteps": [
+    {
+      "ServoIndex": 0,
+      "TargetPosition": 90,
+      "Duration": 1000
+    },
+    {
+      "ServoIndex": 0,
+      "TargetPosition": 95,
+      "Duration": 1000
+    },
+    {
+      "ServoIndex": 0,
+      "TargetPosition": 100,
+      "Duration": 2000
+    },
+    {
+      "ServoIndex": 0,
+      "TargetPosition": 95,
+      "Duration": 500
+    },
+    {
+      "ServoIndex": 0,
+      "TargetPosition": 90,
+      "Duration": 500
+    }
+  ]
+}

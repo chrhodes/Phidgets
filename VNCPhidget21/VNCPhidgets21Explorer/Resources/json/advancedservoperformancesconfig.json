@@ -1,0 +1,94 @@
+{
+  "AdvancedServoPerformances": [
+    {
+      "Name": "PerformanceServo0",
+      "AdvancedServoSteps": [
+        {
+          "ServoIndex": 0,
+          "TargetPosition": 90,
+          "Duration": 1000
+        },
+        {
+          "ServoIndex": 0,
+          "TargetPosition": 95,
+          "Duration": 1000
+        },
+        {
+          "ServoIndex": 0,
+          "TargetPosition": 100,
+          "Duration": 2000
+        },
+        {
+          "ServoIndex": 0,
+          "TargetPosition": 95,
+          "Duration": 500
+        },
+        {
+          "ServoIndex": 0,
+          "TargetPosition": 90,
+          "Duration": 500
+        }
+      ]
+    },
+    {
+      "Name": "PerformanceServp1",
+      "AdvancedServoSteps": [
+        {
+          "ServoIndex": 1,
+          "TargetPosition": 90,
+          "Duration": 1000
+        },
+        {
+          "ServoIndex": 1,
+          "TargetPosition": 95,
+          "Duration": 1000
+        },
+        {
+          "ServoIndex": 1,
+          "TargetPosition": 100,
+          "Duration": 2000
+        },
+        {
+          "ServoIndex": 1,
+          "TargetPosition": 95,
+          "Duration": 500
+        },
+        {
+          "ServoIndex": 1,
+          "TargetPosition": 90,
+          "Duration": 500
+        }
+      ]
+    },
+    {
+      "Name": "PerformanceServo2",
+      "AdvancedServoSteps": [
+        {
+          "ServoIndex": 2,
+          "TargetPosition": 90,
+          "Duration": 1000
+        },
+        {
+          "ServoIndex": 2,
+          "TargetPosition": 95,
+          "Duration": 1000
+        },
+        {
+          "ServoIndex": 2,
+          "TargetPosition": 100,
+          "Duration": 2000
+        },
+        {
+          "ServoIndex": 2,
+          "TargetPosition": 95,
+          "Duration": 500
+        },
+        {
+          "ServoIndex": 2,
+          "TargetPosition": 90,
+          "Duration": 500
+        }
+      ]
+    }
+  ]
+}
