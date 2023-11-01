@@ -54,6 +54,15 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             ConfigFileName_DoubleClick_Command = new DelegateCommand(ConfigFileName_DoubleClick);
             OpenAdvancedServoCommand = new DelegateCommand(OpenAdvancedServo, OpenAdvancedServoCanExecute);
             CloseAdvancedServoCommand = new DelegateCommand(CloseAdvancedServo, CloseAdvancedServoCanExecute);
+            ConfigureServoCommand = new DelegateCommand(ConfigureServo, ConfigureServoCanExecute);
+
+            // Start Cut Two - Put this in InitializeViewModel or Constructor
+
+            //ConfigureServo2Command = new DelegateCommand(ConfigureServo2, ConfigureServo2CanExecute);
+            // If using CommandParameter, figure out TYPE and fix below
+            ConfigureServo2Command = new DelegateCommand<string>(ConfigureServo2, ConfigureServo2CanExecute);
+
+            // End Cut Two
 
             // TODO(crhodes)
             // For now just hard code this.  Can have UI let us choose later.
@@ -98,7 +107,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
 
         private string _ConfigFileName;
-
         public string ConfigFileName
         {
             get => _ConfigFileName;
@@ -169,7 +177,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-
         private Phidgets.Phidget _phidgetDevice;
         public Phidgets.Phidget PhidgetDevice
         {
@@ -212,7 +219,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
         #region AdvancedServo Properties
-
 
         private IEnumerable<Resources.AdvancedServo> _AdvancedServos;
         public IEnumerable<Resources.AdvancedServo> AdvancedServos
@@ -329,6 +335,45 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
         #region Servo S0
+
+        private double _minimumPulseWidthS0 = 1000;
+        public double MinimumPulseWidth_S0
+        {
+            get => _minimumPulseWidthS0;
+            set
+            {
+                if (_minimumPulseWidthS0 == value)
+                    return;
+                _minimumPulseWidthS0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double _maximumPulseWidthS0 = 1001;
+        public double MaximumPulseWidth_S0
+        {
+            get => _maximumPulseWidthS0;
+            set
+            {
+                if (_maximumPulseWidthS0 == value)
+                    return;
+                _maximumPulseWidthS0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double _degreesS0;
+        public double Degrees_S0
+        {
+            get => _degreesS0;
+            set
+            {
+                if (_degreesS0 == value)
+                    return;
+                _degreesS0 = value;
+                OnPropertyChanged();
+            }
+        }
 
         private AdvancedServo _typeS0;
         public AdvancedServo Type_S0
@@ -2541,6 +2586,144 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
+        #region ConfigureServo Command
+
+        public DelegateCommand ConfigureServoCommand { get; set; }
+        public string ConfigureServoContent { get; set; } = "ConfigureServo";
+        public string ConfigureServoToolTip { get; set; } = "ConfigureServo ToolTip";
+
+        // Can get fancy and use Resources
+        //public string ConfigureServoContent { get; set; } = "ViewName_ConfigureServoContent";
+        //public string ConfigureServoToolTip { get; set; } = "ViewName_ConfigureServoContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_ConfigureServoContent">ConfigureServo</system:String>
+        //    <system:String x:Key="ViewName_ConfigureServoContentToolTip">ConfigureServo ToolTip</system:String>  
+
+        public void ConfigureServo()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = "Cool, you called ConfigureServo";
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<ConfigureServoEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<ConfigureServoEvent>().Publish(
+            //      new ConfigureServoEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class ConfigureServoEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<ConfigureServoEvent>().Subscribe(ConfigureServo);
+
+            // End Cut Four
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool ConfigureServoCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            return true;
+        }
+
+        #endregion
+
+        #region ConfigureServo2 Command
+
+        //public DelegateCommand ConfigureServo2Command { get; set; }
+        public DelegateCommand<string> ConfigureServo2Command { get; set; }
+        // If using CommandParameter, figure out TYPE and use second above
+        //public DelegateCommand<TYPE> ConfigureServo2CommandParameter;
+        public string ConfigureServo2Content { get; set; } = "ConfigureServo2";
+        public string ConfigureServo2ToolTip { get; set; } = "ConfigureServo2 ToolTip";
+
+        // Can get fancy and use Resources
+        //public string ConfigureServo2Content { get; set; } = "ViewName_ConfigureServo2Content";
+        //public string ConfigureServo2ToolTip { get; set; } = "ViewName_ConfigureServo2ContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_ConfigureServo2Content">ConfigureServo2</system:String>
+        //    <system:String x:Key="ViewName_ConfigureServo2ContentToolTip">ConfigureServo2 ToolTip</system:String>  
+
+        // If using CommandParameter, figure out TYPE and fix above
+        public void ConfigureServo2(string value)
+        //public void ConfigureServo2()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = $"Cool, you called ConfigureServo2 and passed: {value}";
+
+            Int32 servoIndex = Int32.Parse(value);
+
+            AdvancedServoServo servo = ActiveAdvancedServo.AdvancedServo.servos[servoIndex];
+
+            try
+            {
+                servo.setServoParameters(MinimumPulseWidth_S0, MaximumPulseWidth_S0, Degrees_S0, (Double)VelocityMax_S0);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<ConfigureServo2Event>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<ConfigureServo2Event>().Publish(
+            //      new ConfigureServo2EventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class ConfigureServo2Event : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<ConfigureServo2Event>().Subscribe(ConfigureServo2);
+
+            // End Cut Four
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        // If using CommandParameter, figure out TYPE and fix above
+        public bool ConfigureServo2CanExecute(string value)
+        //public bool ConfigureServo2CanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            return true;
+        }
+
+        #endregion
+
+        // End Cut One
         #endregion
 
         #region Event Handlers

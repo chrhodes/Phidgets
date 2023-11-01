@@ -205,69 +205,17 @@
                         Current="{Binding Velocity_S0, Mode=TwoWay}" 
                         Limit="{Binding VelocityLimit_S0, Mode=TwoWay}" 
                         Max="{Binding VelocityMax_S0, Mode=TwoWay}"/>
-                    
-                    <!--<dxlc:LayoutGroup View="GroupBox" Orientation="Horizontal" Header="Velocity">
-
-                        <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
-                            <dxe:TextEdit Text="{Binding VelocityMin_S0, Mode=OneWay}"  IsReadOnly="True"/>
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Limit" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding VelocityLimit_S0, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Curent" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding Velocity_S0, Mode=OneWay}"  IsReadOnly="True"/>
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding VelocityMax_S0, Mode=OneWay}"  IsReadOnly="True"/>
-                        </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>-->
 
                     <controls:AccelerationControl 
                         Min="{Binding AccelerationMin_S0, Mode=TwoWay}" 
                         Current="{Binding Acceleration_S0, Mode=TwoWay}" 
                         Max="{Binding AccelerationMax_S0, Mode=TwoWay}"/>
-                    
-                    <!--<dxlc:LayoutGroup View="GroupBox" Orientation="Horizontal" Header="Acceleration">
-
-                        <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
-                            <dxe:TextEdit Text="{Binding AccelerationMin_S0, Mode=OneWay}" IsReadOnly="True" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Current" LabelPosition="Top" LabelHorizontalAlignment="Center">
-                            <dxe:TextEdit Text="{Binding Acceleration_S0, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding AccelerationMax_S0, Mode=OneWay}" IsReadOnly="True" />
-                        </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>-->
 
                     <controls:PositionControl 
                         Min="{Binding PositionMin_S0, Mode=TwoWay}" 
                         Current="{Binding Position_S0, Mode=TwoWay}" 
                         Max="{Binding PositionMax_S0, Mode=TwoWay}"/>
-                    
-                    <!--<dxlc:LayoutGroup View="GroupBox" Orientation="Horizontal" Header="Position" >
-
-                        <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
-                            <dxe:TextEdit Text="{Binding PositionMin_S0, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Current" LabelPosition="Top" LabelHorizontalAlignment="Center">
-                            <dxe:TextEdit Text="{Binding Position_S0, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding PositionMax_S0, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>-->
-                    
+                                       
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
                         <dxlc:LayoutItem Label="Engaged" LabelPosition="Top">
@@ -286,7 +234,44 @@
                         </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>
-                    
+
+                    <dxlc:LayoutGroup 
+	                    View="GroupBox" Orientation="Vertical"  Header="ConfigureServo">
+
+                        <dxlc:LayoutItem Label="MinimumPulseWidth" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding MinimumPulseWidth_S0, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="MaximumPulseWidth" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding MaximumPulseWidth_S0, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Degress" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding Degrees_S0, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="VelocityMax" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding VelocityMax_S0, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <!--<dxlc:LayoutItem>
+                            <Button 
+                        		Command="{Binding ConfigureServoCommand }"
+                        		Content="{Binding ConfigureServoContent, FallbackValue='ConfigureServo' }"
+                        		ToolTip="{Binding ConfigureServoToolTip, FallbackValue='ConfigureServo ToolTip' }" />
+                        </dxlc:LayoutItem>-->
+                         
+                        <dxlc:LayoutItem>
+                            <Button 
+                        		Command="{Binding ConfigureServo2Command }"
+                        		CommandParameter="0"
+                        		Content="{Binding ConfigureServo2Content, FallbackValue='ConfigureServo2' }"
+                        		ToolTip="{Binding ConfigureServo2ToolTip, FallbackValue='ConfigureServo2 ToolTip' }" />
+                        </dxlc:LayoutItem>
+
+                        <!--CommandParameter="{Binding ConfigureServo2CommandParameter}"-->
+                    </dxlc:LayoutGroup>
+
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup View="GroupBox" Orientation="Vertical" Header="Servo S1" Padding="-5" >
