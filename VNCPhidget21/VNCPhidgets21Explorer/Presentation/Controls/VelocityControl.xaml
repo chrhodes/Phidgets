@@ -71,7 +71,7 @@
     <dxlc:LayoutGroup x:Name="lgMain" View="GroupBox" Orientation="Horizontal" Header="Velocity">
 
         <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
-            <dxe:TextEdit Text="{Binding Min, Mode=OneWay}"  IsReadOnly="True"/>
+            <dxe:TextEdit Text="{Binding Min, Mode=OneWay}"  IsReadOnly="True" HorizontalContentAlignment="Right"/>
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem Label="Limit" LabelPosition="Top">

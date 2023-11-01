@@ -72,7 +72,7 @@
         <!--<dxlc:LayoutGroup View="Group" Orientation="Horizontal" >-->
 
         <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
-            <dxe:TextEdit Text="{Binding Min, Mode=TwoWay}" IsReadOnly="True" />
+            <dxe:TextEdit Text="{Binding Min, Mode=TwoWay}" IsReadOnly="True" HorizontalContentAlignment="Right" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem Label="Current" LabelPosition="Top" LabelHorizontalAlignment="Center" >
