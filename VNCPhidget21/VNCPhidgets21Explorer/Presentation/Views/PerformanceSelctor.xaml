@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    mc:Ignorable="d"    
+    mc:Ignorable="d"
 
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
     
@@ -97,52 +97,54 @@
     <!-- Simple Layout using DevExpress LayoutGroup
         May need to add dxXMLNS -->
 
-    <dxlc:LayoutGroup View="GroupBox" Header="Performancees" Orientation="Horizontal" >
+    <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
 
-        <dxlc:LayoutItem Label="PerformanceFileName" HorizontalAlignment="Right" Background="Wheat">
-            <dxe:TextEdit
-            		Text="{Binding PerformanceConfigFileName }"
-                	ToolTip="{Binding PerformanceConfigFileNameToolTip }">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="MouseDoubleClick">
-                        <i:InvokeCommandAction Command="{Binding PerformanceFileName_DoubleClick_Command}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </dxe:TextEdit>
-        </dxlc:LayoutItem>
+        <dxlc:LayoutGroup Header="Performances" View="GroupBox" Orientation="Horizontal" >
 
-        <dxlc:LayoutGroup View="Group"  Orientation="Horizontal" HorizontalAlignment="Left" Background="Wheat" >
-
-            <dxlc:LayoutItem Label="Performances" LabelPosition="Left" >
-                <dxe:ComboBoxEdit Width="150" ItemsSource="{Binding AdvancedServoPerformances}" DisplayMember="Name" 
-                                      SelectedItem="{Binding SelectedAdvancedServoPerformance}"
-                                      SelectedIndex="0"/>
+            <dxlc:LayoutItem Label="PerformanceFileName" HorizontalAlignment="Right" Background="Wheat">
+                <dxe:TextEdit
+            		    Text="{Binding PerformanceConfigFileName }"
+                	    ToolTip="{Binding PerformanceConfigFileNameToolTip }">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDoubleClick">
+                            <i:InvokeCommandAction Command="{Binding PerformanceFileName_DoubleClick_Command}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </dxe:TextEdit>
             </dxlc:LayoutItem>
 
-            <dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="Performances" LabelPosition="Left" >
+                <dxe:ComboBoxEdit Width="150" 
+                                  ItemsSource="{Binding AdvancedServoPerformances}" DisplayMember="Name" 
+                                    SelectedItem="{Binding SelectedAdvancedServoPerformance}"
+                                    SelectedIndex="0"/>
+            </dxlc:LayoutItem>
+          
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+            
+            <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+                
+                <dxlc:LayoutItem Label="Description" HorizontalAlignment="Left" Background="Wheat">
+                    <dxe:TextEdit Text="{Binding SelectedAdvancedServoPerformance.Description }" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="ContinueWith" HorizontalAlignment="Left" Background="Wheat">
+                    <dxe:TextEdit Text="{Binding SelectedAdvancedServoPerformance.ContinueWith }" />
+                </dxlc:LayoutItem>
+                
+            </dxlc:LayoutGroup>           
+
+            <dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">
                 <Button 
 		                Command="{Binding PlayPerformanceCommand }"
 		                Content="{Binding PlayPerformanceContent, FallbackValue='PlayPerformance' }"
 		                ToolTip="{Binding PlayPerformanceToolTip, FallbackValue='PlayPerformance ToolTip' }" />
             </dxlc:LayoutItem>
             
-            <!--<dxlc:LayoutItem Label="IPAddress" >
-                <dxe:TextEdit Text="{Binding SelectedHost.IPAddress }" IsReadOnly="True" Background="White" />
-                --><!--Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>--><!--
-            </dxlc:LayoutItem>
-
-            <dxlc:LayoutItem Label="Port" >
-                <dxe:TextEdit Text="{Binding SelectedHost.Port }" IsReadOnly="True" Background="White" />
-                --><!--Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>--><!--
-            </dxlc:LayoutItem>
-
-            <dxlc:LayoutItem Label="Enable" >
-                <dxe:TextEdit Text="{Binding SelectedHost.Enable }" IsReadOnly="True" Background="White" />
-                --><!--Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>--><!--
-            </dxlc:LayoutItem>-->
-
         </dxlc:LayoutGroup>
-
+     
     </dxlc:LayoutGroup>
 
 </vncmvvm:ViewBase>
