@@ -42,22 +42,22 @@
         <!-- </Style> -->
     <!-- </d:DesignerProperties.DesignStyle> -->
     
-    <!-- <vncmvvm:ViewBase.Resources> -->
-        <!-- <localc:SelectedItemsToListOfStringConverter x:Key="SelectedItemsToListOfStringConverter" /> -->
-        <!-- <localc:SelectedItemsConverter x:Key="SelectedItemsConverter" /> -->
-        <!-- <localc:SelectedItemsToWorkItemQueryWrapperConverter x:Key="SelectedItemsToHostSelectorWrapperConverter" /> -->
-        <!-- <DataTemplate x:Key="dataTemplateHostSelector"> -->
-            <!-- <StackPanel> -->
-                <!-- <Label Content="{Binding XPath=@Name}" /> -->
-            <!-- </StackPanel> -->
-        <!-- </DataTemplate> -->
+     <vncmvvm:ViewBase.Resources> 
+         <localc:SelectedItemsToListOfStringConverter x:Key="SelectedItemsToListOfStringConverter" /> 
+         <!--<localc:SelectedItemsConverter x:Key="SelectedItemsConverter" /> 
+         <localc:SelectedItemsToWorkItemQueryWrapperConverter x:Key="SelectedItemsToHostSelectorWrapperConverter" /> 
+         <DataTemplate x:Key="dataTemplateHostSelector"> 
+             <StackPanel> 
+                 <Label Content="{Binding XPath=@Name}" /> 
+             </StackPanel> 
+         </DataTemplate> 
 
-        <!-- <DataTemplate x:Key="dataTemplateHostSelectorX"> -->
-            <!-- <StackPanel> -->
-                <!-- <Label Content="{Binding Name}" /> -->
-            <!-- </StackPanel> -->
-        <!-- </DataTemplate> -->
-    <!-- </vncmvvm:ViewBase.Resources> -->
+         <DataTemplate x:Key="dataTemplateHostSelectorX"> 
+             <StackPanel> 
+                 <Label Content="{Binding Name}" /> 
+             </StackPanel> 
+         </DataTemplate>--> 
+     </vncmvvm:ViewBase.Resources> 
     
     <!-- Can declare ViewModel in Xaml -->
     <!-- <UserControl.DataContext> -->
@@ -124,8 +124,40 @@
                 <dxe:ComboBoxEdit Width="150" 
                                   ItemsSource="{Binding AdvancedServoPerformancesD}" DisplayMember="Key" 
                                     SelectedItem="{Binding SelectedAdvancedServoPerformanceD.Value}"
-                                    SelectedIndex="0"/>
+                                    SelectedIndex="0">
+                    <dxe:ComboBoxEdit.StyleSettings>
+                        <dxe:CheckedComboBoxStyleSettings />
+                    </dxe:ComboBoxEdit.StyleSettings>
+                </dxe:ComboBoxEdit>
             </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem Label="PerformancesL" LabelPosition="Top" HorizontalAlignment="Left" >
+                <dxe:ComboBoxEdit Width="150" 
+                                ItemsSource="{Binding AdvancedServoPerformances}" DisplayMember="Name" 
+                                EditValue="{ Binding 
+                                Path=SelectedPerformances,
+                                Mode=TwoWay,
+                                UpdateSourceTrigger=PropertyChanged,
+                                Converter={StaticResource SelectedItemsToListOfStringConverter} }" >
+                    <dxe:ComboBoxEdit.StyleSettings>
+                        <dxe:CheckedComboBoxStyleSettings />
+                    </dxe:ComboBoxEdit.StyleSettings>
+                </dxe:ComboBoxEdit>
+            </dxlc:LayoutItem>
+
+            <!--<dxlc:LayoutItem Label="Pick CS Files" LabelPosition="Top" >
+                <dxe:ComboBoxEdit
+                            ItemsSource="{Binding FilesDemoCS}"
+                            EditValue="{ Binding 
+                            Path=SelectedFilesDemoCS,
+                            Mode=TwoWay,
+                            UpdateSourceTrigger=PropertyChanged,
+                            Converter={StaticResource selectedItemsToListOfStringConverter} }" >>
+                    <dxe:ComboBoxEdit.StyleSettings>
+                        <dxe:CheckedComboBoxStyleSettings />
+                    </dxe:ComboBoxEdit.StyleSettings>
+                </dxe:ComboBoxEdit>
+            </dxlc:LayoutItem>-->
 
         </dxlc:LayoutGroup>
 
@@ -158,6 +190,12 @@
 		                Content="Play All Performances"
 		                ToolTip="{Binding PlayPerformanceToolTip, FallbackValue='PlayPerformance ToolTip' }" />
             </dxlc:LayoutItem>
+            
+            <dxlc:LayoutItem Label="DisplayPerformanceStep">
+                <dxe:CheckEdit 
+                	IsChecked="{Binding DisplayPerformanceStep}"/>
+            </dxlc:LayoutItem>
+            
         </dxlc:LayoutGroup>
      
     </dxlc:LayoutGroup>

@@ -529,7 +529,7 @@
       "Name": "PerformanceServo2 - Shake Head 3",
       "Description": "Acceleration 1000, Vary VelocityLimit 300 250ms Duration Delay",
       "Loops": 3,
-      "ContinueWith": "CONTINUE WITH PERFORMANCE NAME",
+      "ContinueWith": "XXX",
       "AdvancedServoSteps": [
         { "ServoIndex": 0, "Engaged": true },
         { "ServoIndex": 1, "Engaged": true },

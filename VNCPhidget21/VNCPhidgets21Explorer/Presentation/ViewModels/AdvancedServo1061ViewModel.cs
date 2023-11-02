@@ -101,6 +101,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 = JsonSerializer.Deserialize<Resources.AdvancedServoPerformanceConfig>(jsonString, jsonOptions);
 
             this.AdvancedServoPerformances = performancesConfig.AdvancedServoPerformances.ToList();
+            this.AdvancedServoPerformancesL = performancesConfig.AdvancedServoPerformances.ToList();
 
             AdvancedServoPerformancesD = 
                 performancesConfig.AdvancedServoPerformances
@@ -242,6 +243,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        private List<AdvancedServoPerformance> _advancedServoPerformancesL;
+        public List<AdvancedServoPerformance> AdvancedServoPerformancesL
+        {
+            get => _advancedServoPerformancesL;
+            set
+            {
+                _advancedServoPerformancesL = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public List<AdvancedServoPerformance> SelectedPerformances { get; set; }
+
         private Resources.AdvancedServoPerformance? _selectedAdvancedServoPerformanceD;
         public Resources.AdvancedServoPerformance? SelectedAdvancedServoPerformanceD
         {
@@ -256,6 +270,23 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 PlayPerformanceCommand.RaiseCanExecuteChanged();
             }
         }
+
+        //public Dictionary<string, Resources.AdvancedServoPerformance> SelectedPerformancesD { get; set; }
+
+        //private Resources.AdvancedServoPerformance? _selectedAdvancedServoPerformanceD;
+        //public Resources.AdvancedServoPerformance? SelectedAdvancedServoPerformanceD
+        //{
+        //    get => _selectedAdvancedServoPerformanceD;
+        //    set
+        //    {
+        //        if (_selectedAdvancedServoPerformanceD == value) return;
+
+        //        _selectedAdvancedServoPerformanceD = value;
+        //        OnPropertyChanged();
+
+        //        PlayPerformanceCommand.RaiseCanExecuteChanged();
+        //    }
+        //}
 
         private Phidgets.Phidget _phidgetDevice;
         public Phidgets.Phidget PhidgetDevice
@@ -322,6 +353,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_displayPositionChangeEvents == value)
                     return;
                 _displayPositionChangeEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _displayPerformanceStep = false;
+        public bool DisplayPerformanceStep
+        {
+            get => _displayPerformanceStep;
+            set
+            {
+                if (_displayPerformanceStep == value)
+                    return;
+                _displayPerformanceStep = value;
                 OnPropertyChanged();
             }
         }
@@ -2866,26 +2910,44 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
             else
             {
-                // TODO(crhodes)
-                // Figure out how to handle loops
-                var nextPerformance = SelectedAdvancedServoPerformance;         
+                var runAllThese = SelectedPerformances;
+                var allPerformances = AdvancedServoPerformancesD;
 
-                string name;
-                string? continueWith;
+                //var runAllTheseD = SelectedAdvancedServoPerformanceD;
 
-                do
+                //// TODO(crhodes)
+                //// Figure out how to handle loops
+                //var nextPerformance = SelectedAdvancedServoPerformance;
+
+                foreach (AdvancedServoPerformance performance in SelectedPerformances)
                 {
-                    name = nextPerformance.Name;
-                    continueWith = nextPerformance.ContinueWith;
+                    Log.Trace($"Running performance:{performance.Name}", Common.LOG_CATEGORY);
 
-                    PlayPerformanceLoops(nextPerformance);
+                    var nextPerformance = performance;
 
-                    if (AdvancedServoPerformancesD.ContainsKey(continueWith?? ""))
+                    string name = "";
+                    string? continueWith = "";
+
+                    do
                     {
-                        nextPerformance = AdvancedServoPerformancesD[continueWith];
-                    }
-                    
-                } while (!string.IsNullOrEmpty(continueWith));
+                        name = nextPerformance.Name;
+                        continueWith = nextPerformance.ContinueWith;
+                        Log.Trace($"  Playing performance:{name} continueWidth:{continueWith}", Common.LOG_CATEGORY);
+
+                        PlayPerformanceLoops(nextPerformance);
+
+                        if (AdvancedServoPerformancesD.ContainsKey(continueWith ?? ""))
+                        {
+                            nextPerformance = AdvancedServoPerformancesD[continueWith];
+                        }
+                        else
+                        {
+                            continueWith = "";
+                        }
+
+                    } while (!string.IsNullOrEmpty(continueWith));
+                }
+
             }
 
             // HACK(crhodes)
@@ -2929,8 +2991,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 foreach (AdvancedServoStep step in advancedServoPerformance.AdvancedServoSteps)
                 {
-                    Log.Trace($"Servo:{step.ServoIndex} Acceleration:{step.Acceleration} VelocityLimit:{step.VelocityLimit}" +
-                        $" Engaged:{step.Engaged} TargetPosition:{step.TargetPosition} Duration:{step.Duration}", Common.LOG_CATEGORY);
+                    if (DisplayPerformanceStep)
+                    {
+                        Log.Trace($"Servo:{step.ServoIndex} Acceleration:{step.Acceleration} VelocityLimit:{step.VelocityLimit}" +
+                            $" Engaged:{step.Engaged} TargetPosition:{step.TargetPosition} Duration:{step.Duration}", Common.LOG_CATEGORY);
+                    }
 
                     try
                     {
