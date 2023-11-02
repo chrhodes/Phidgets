@@ -178,8 +178,22 @@
                                AttachedPhidgetDevice="{Binding PhidgetDevice, Mode=TwoWay}"
                                DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}"/>
 
+                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">-->
+                    <dxe:CheckEdit
+                            Content="Display PositionChange Events"
+                            IsChecked="{Binding DisplayPositionChangeEvents, Mode=TwoWay}" />
+                    <dxe:CheckEdit
+                            Content="Display VelocityChange Events"
+                            IsChecked="{Binding DisplayVelocityChangeEvents, Mode=TwoWay}" />
+                    <!--<dxe:CheckEdit x:Name="ceSensorChangedEvents"
+                            Content="DisplaySensorChangeEvents"
+                            IsChecked="{Binding DisplaySensorChangeEvents, Mode=TwoWay}" />-->
+                    <!--</StackPanel>-->
+                </dxlc:LayoutGroup>
+                
             </dxlc:LayoutGroup>
-
+            
             <dxlc:LayoutGroup Name="lgServoControls" Orientation="Horizontal" View="GroupBox" Header="Servo Controls" 
                                   IsCollapsible="True" IsCollapsed="False" Padding="-5" >
 
@@ -443,10 +457,10 @@
                     </dxlc:LayoutGroup>
 
                 </dxlc:LayoutGroup>
-                
+
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup Orientation="Horizontal" >
+            <!--<dxlc:LayoutGroup Orientation="Horizontal" >
 
                 <dxlc:LayoutItem Label="Performances" LabelPosition="Left" HorizontalAlignment="Left">
                     <dxe:ComboBoxEdit Width="150" 
@@ -468,7 +482,7 @@
 		                ToolTip="{Binding PlayPerformanceToolTip, FallbackValue='PlayPerformance ToolTip' }" />
                 </dxlc:LayoutItem>
 
-            </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>-->
             
         </dxlc:LayoutControl>
 

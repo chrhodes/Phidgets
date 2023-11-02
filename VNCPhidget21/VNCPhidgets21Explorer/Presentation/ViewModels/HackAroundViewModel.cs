@@ -138,7 +138,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-
         private bool _displayInputChangeEvents = false;
 
         public bool DisplayInputChangeEvents

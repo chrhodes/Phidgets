@@ -16,7 +16,7 @@ namespace VNCPhidgets21Explorer.Resources
         /// <summary>
         /// Number of loops of Performance
         /// </summary>
-        public Int32? Loops { get; set; }
+        public Int32 Loops { get; set; } = 1;
         /// <summary>
         /// Name of performance to invoke at end of performance
         /// </summary>

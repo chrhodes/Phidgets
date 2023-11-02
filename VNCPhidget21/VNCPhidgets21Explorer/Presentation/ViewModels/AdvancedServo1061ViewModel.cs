@@ -84,14 +84,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
+            var jsonOptions = new JsonSerializerOptions { ReadCommentHandling = JsonCommentHandling.Skip };
+
             string jsonString = File.ReadAllText(ConfigFileName);
 
-            Resources.PhidgetConfig? phidgetConfig = JsonSerializer.Deserialize<Resources.PhidgetConfig>(jsonString);
+            Resources.PhidgetConfig? phidgetConfig 
+                = JsonSerializer.Deserialize<Resources.PhidgetConfig>(jsonString, jsonOptions);
+
             this.Hosts = phidgetConfig.Hosts.ToList();
 
             jsonString = File.ReadAllText(PerformanceConfigFileName);
 
-            Resources.AdvancedServoPerformanceConfig? performancesConfig = JsonSerializer.Deserialize<Resources.AdvancedServoPerformanceConfig>(jsonString);
+            Resources.AdvancedServoPerformanceConfig? performancesConfig 
+                = JsonSerializer.Deserialize<Resources.AdvancedServoPerformanceConfig>(jsonString, jsonOptions);
+
             this.AdvancedServoPerformances = performancesConfig.AdvancedServoPerformances.ToList();
 
             //this.Sensors2 = phidgetConfig.Sensors.ToList();
@@ -112,7 +118,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         #endregion
 
         #region Fields and Properties
-
 
         private string _ConfigFileName;
         public string ConfigFileName
@@ -255,6 +260,34 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_message == value)
                     return;
                 _message = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _displayVelocityChangeEvents = false;
+
+        public bool DisplayVelocityChangeEvents
+        {
+            get => _displayVelocityChangeEvents;
+            set
+            {
+                if (_displayVelocityChangeEvents == value)
+                    return;
+                _displayVelocityChangeEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _displayPositionChangeEvents = false;
+
+        public bool DisplayPositionChangeEvents
+        {
+            get => _displayPositionChangeEvents;
+            set
+            {
+                if (_displayPositionChangeEvents == value)
+                    return;
+                _displayPositionChangeEvents = value;
                 OnPropertyChanged();
             }
         }
@@ -2339,10 +2372,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             var index = e.Index;
             var velocity = e.Velocity;
 
-            // TODO(crhodes)
-            // Wrap in LogVelocityChange
-
-            Log.Trace($"VelocityChange index:{index} value:{velocity}", Common.LOG_CATEGORY);
+            if (DisplayVelocityChangeEvents)
+            {
+                Log.Trace($"VelocityChange index:{index} value:{velocity}", Common.LOG_CATEGORY);
+            }
 
             switch (e.Index)
             {
@@ -2390,10 +2423,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             var index = e.Index;
             var position = e.Position;
 
-            // TODO(crhodes)
-            // Wrap in LogPositionChange
-
-            Log.Trace($"PositionChange index:{index} value:{position}", Common.LOG_CATEGORY);
+            if (DisplayPositionChangeEvents)
+            {
+                Log.Trace($"PositionChange index:{index} value:{position}", Common.LOG_CATEGORY);
+            }
 
             switch (e.Index)
             {
