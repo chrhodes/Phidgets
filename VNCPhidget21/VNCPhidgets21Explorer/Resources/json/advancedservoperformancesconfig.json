@@ -3,7 +3,7 @@
     {
       "Name": "PerformanceServo0",
       "Description": "PERFORMANCE DESCRIPTION",
-      "ContinueWith": "CONTINUE WITH PERFORMANCE NAME",
+      "ContinueWith": "PerformanceServo1",
       "AdvancedServoSteps": [
         { "ServoIndex": 0, "Engaged": true },
         { "ServoIndex": 1, "Engaged": true },
@@ -56,7 +56,7 @@
     {
       "Name": "PerformanceServo1",
       "Description": "PERFORMANCE DESCRIPTION",
-      "ContinueWith": "CONTINUE WITH PERFORMANCE NAME",
+      "ContinueWith": "PerformanceServo2",
       "AdvancedServoSteps": [
         { "ServoIndex": 0, "Engaged": true },
         { "ServoIndex": 1, "Engaged": true },
@@ -109,7 +109,7 @@
     {
       "Name": "PerformanceServo2",
       "Description": "PERFORMANCE DESCRIPTION",
-      "ContinueWith": "CONTINUE WITH PERFORMANCE NAME",
+      "ContinueWith": "",
       "AdvancedServoSteps": [
         { "ServoIndex": 0, "Engaged": true },
         { "ServoIndex": 1, "Engaged": true },

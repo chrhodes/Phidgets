@@ -7,6 +7,8 @@ using System.Text.Json;
 using System.Threading;
 using System.Windows.Input;
 
+using DevExpress.Mvvm.Native;
+using DevExpress.Utils.Serializing;
 using DevExpress.XtraRichEdit.Commands;
 
 using Phidgets;
@@ -99,6 +101,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 = JsonSerializer.Deserialize<Resources.AdvancedServoPerformanceConfig>(jsonString, jsonOptions);
 
             this.AdvancedServoPerformances = performancesConfig.AdvancedServoPerformances.ToList();
+
+            AdvancedServoPerformancesD = 
+                performancesConfig.AdvancedServoPerformances
+                .ToDictionary(k => k.Name, v => v); 
 
             //this.Sensors2 = phidgetConfig.Sensors.ToList();
 
@@ -208,6 +214,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+
         private Resources.AdvancedServoPerformance? _selectedAdvancedServoPerformance;
         public Resources.AdvancedServoPerformance? SelectedAdvancedServoPerformance
         { 
@@ -217,6 +224,33 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_selectedAdvancedServoPerformance == value) return;
 
                 _selectedAdvancedServoPerformance = value;
+                OnPropertyChanged();
+
+                PlayPerformanceCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+
+        private Dictionary<string, Resources.AdvancedServoPerformance> _advancedServoPerformancesD;
+        public Dictionary<string, Resources.AdvancedServoPerformance> AdvancedServoPerformancesD
+        {
+            get => _advancedServoPerformancesD;
+            set
+            {
+                _advancedServoPerformancesD = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Resources.AdvancedServoPerformance? _selectedAdvancedServoPerformanceD;
+        public Resources.AdvancedServoPerformance? SelectedAdvancedServoPerformanceD
+        {
+            get => _selectedAdvancedServoPerformanceD;
+            set
+            {
+                if (_selectedAdvancedServoPerformanceD == value) return;
+
+                _selectedAdvancedServoPerformanceD = value;
                 OnPropertyChanged();
 
                 PlayPerformanceCommand.RaiseCanExecuteChanged();
@@ -2832,9 +2866,26 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
             else
             {
-                PlayPerformanceLoops(SelectedAdvancedServoPerformance);
-                PlayPerformanceLoops(AdvancedServoPerformances.ToArray()[1]);
-                PlayPerformanceLoops(AdvancedServoPerformances.ToArray()[2]);
+                // TODO(crhodes)
+                // Figure out how to handle loops
+                var nextPerformance = SelectedAdvancedServoPerformance;         
+
+                string name;
+                string? continueWith;
+
+                do
+                {
+                    name = nextPerformance.Name;
+                    continueWith = nextPerformance.ContinueWith;
+
+                    PlayPerformanceLoops(nextPerformance);
+
+                    if (AdvancedServoPerformancesD.ContainsKey(continueWith?? ""))
+                    {
+                        nextPerformance = AdvancedServoPerformancesD[continueWith];
+                    }
+                    
+                } while (!string.IsNullOrEmpty(continueWith));
             }
 
             // HACK(crhodes)

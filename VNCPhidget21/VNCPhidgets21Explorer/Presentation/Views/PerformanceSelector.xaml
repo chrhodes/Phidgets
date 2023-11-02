@@ -113,24 +113,31 @@
                 </dxe:TextEdit>
             </dxlc:LayoutItem>
 
-            <dxlc:LayoutItem Label="Performances" LabelPosition="Left" >
+            <dxlc:LayoutItem Label="Performances" LabelPosition="Top" HorizontalAlignment="Left" >
                 <dxe:ComboBoxEdit Width="150" 
                                   ItemsSource="{Binding AdvancedServoPerformances}" DisplayMember="Name" 
                                     SelectedItem="{Binding SelectedAdvancedServoPerformance}"
                                     SelectedIndex="0"/>
             </dxlc:LayoutItem>
-          
+
+            <dxlc:LayoutItem Label="PerformancesD" LabelPosition="Top" HorizontalAlignment="Left" >
+                <dxe:ComboBoxEdit Width="150" 
+                                  ItemsSource="{Binding AdvancedServoPerformancesD}" DisplayMember="Key" 
+                                    SelectedItem="{Binding SelectedAdvancedServoPerformanceD.Value}"
+                                    SelectedIndex="0"/>
+            </dxlc:LayoutItem>
+
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
             
             <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
                 
-                <dxlc:LayoutItem Label="Description" HorizontalAlignment="Left" Background="Wheat">
+                <dxlc:LayoutItem Label="Description" HorizontalAlignment="Left" Background="Wheat" >
                     <dxe:TextEdit Text="{Binding SelectedAdvancedServoPerformance.Description }" />
                 </dxlc:LayoutItem>
 
-                <dxlc:LayoutItem Label="ContinueWith" HorizontalAlignment="Left" Background="Wheat">
+                <dxlc:LayoutItem Label="ContinueWith" HorizontalAlignment="Left" Background="Wheat" >
                     <dxe:TextEdit Text="{Binding SelectedAdvancedServoPerformance.ContinueWith }" />
                 </dxlc:LayoutItem>
                 
