@@ -21,7 +21,7 @@
     Title="{Binding Title}"
     Background="{StaticResource ShellBackground}"
 
-    Width="2400" Height="1200"
+    Width="2400" Height="1250"
     
     d:DesignStyle="{StaticResource vncDesignStyleW}"
  >

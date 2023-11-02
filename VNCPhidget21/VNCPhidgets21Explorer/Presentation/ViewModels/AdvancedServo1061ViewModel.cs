@@ -213,6 +213,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 _selectedAdvancedServoPerformance = value;
                 OnPropertyChanged();
+
+                PlayPerformanceCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -2788,67 +2790,78 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Do something amazing.
              Message = "Cool, you called PlayPerformance";
 
-            foreach (AdvancedServoStep step in SelectedAdvancedServoPerformance.AdvancedServoSteps)
+            for (int i = 0; i < SelectedAdvancedServoPerformance.Loops; i++)
             {
-                Log.Trace($"Servo:{step.ServoIndex} Engaged:{step.Engaged} TargetPosition:{step.TargetPosition} Duration:{step.Duration}", Common.LOG_CATEGORY);
+                Log.Trace($"Loop:{i+1}", Common.LOG_CATEGORY);    
 
-                try
+                foreach (AdvancedServoStep step in SelectedAdvancedServoPerformance.AdvancedServoSteps)
                 {
-                    switch (step.ServoIndex)
+                    Log.Trace($"Servo:{step.ServoIndex} Acceleration:{step.Acceleration} VelocityLimit:{step.VelocityLimit}" +
+                        $" Engaged:{step.Engaged} TargetPosition:{step.TargetPosition} Duration:{step.Duration}", Common.LOG_CATEGORY);
+
+                    try
                     {
-                        case 0:
-                            if (step.Engaged is not null) Engaged_S0 = step.Engaged;
-                            Position_S0 = step.TargetPosition;
-                            if (step.Duration > 0) Thread.Sleep(step.Duration);
+                        switch (step.ServoIndex)
+                        {
+                            case 0:
+                                //PerformStep(step, Acceleration_S0, VelocityLimit_S0, Engaged_S0, Position_S0);
+                                PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[0], step);
+                                break;
 
-                            break;
+                            case 1:
+                                PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[1], step);
+                                //if (step.Engaged is not null) Engaged_S1 = step.Engaged;
+                                //Position_S1 = step.TargetPosition;
+                                //if (step.Duration > 0) Thread.Sleep(step.Duration);
+                                break;
 
-                        case 1:
-                            if (step.Engaged is not null) Engaged_S1 = step.Engaged;
-                            Position_S1 = step.TargetPosition;
-                            if (step.Duration > 0) Thread.Sleep(step.Duration);
-                            break;
+                            case 2:
+                                PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[2], step);
+                                //if (step.Engaged is not null) Engaged_S2 = step.Engaged;
+                                //Position_S2 = step.TargetPosition;
+                                //if (step.Duration > 0) Thread.Sleep(step.Duration);
+                                break;
 
-                        case 2:
-                            if (step.Engaged is not null) Engaged_S2 = step.Engaged;
-                            Position_S2 = step.TargetPosition;
-                            if (step.Duration > 0) Thread.Sleep(step.Duration);
-                            break;
+                            case 3:
+                                PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[3], step);
+                                //if (step.Engaged is not null) Engaged_S3 = step.Engaged;
+                                //Position_S3 = step.TargetPosition;
+                                //if (step.Duration > 0) Thread.Sleep(step.Duration);
+                                break;
 
-                        case 3:
-                            if (step.Engaged is not null) Engaged_S3 = step.Engaged;
-                            Position_S3 = step.TargetPosition;
-                            if (step.Duration > 0) Thread.Sleep(step.Duration);
-                            break;
+                            case 4:
+                                PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[4], step);
+                                //if (step.Engaged is not null) Engaged_S4 = step.Engaged;
+                                //Position_S4 = step.TargetPosition;
+                                //if (step.Duration > 0) Thread.Sleep(step.Duration);
+                                break;
 
-                        case 4:
-                            if (step.Engaged is not null) Engaged_S4 = step.Engaged;
-                            Position_S4 = step.TargetPosition;
-                            if (step.Duration > 0) Thread.Sleep(step.Duration);
-                            break;
+                            case 5:
+                                PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[5], step);
+                                //if (step.Engaged is not null) Engaged_S5 = step.Engaged;
+                                //Position_S5 = step.TargetPosition;
+                                //if (step.Duration > 0) Thread.Sleep(step.Duration);
+                                break;
 
-                        case 5:
-                            if (step.Engaged is not null) Engaged_S5 = step.Engaged;
-                            Position_S5 = step.TargetPosition;
-                            if (step.Duration > 0) Thread.Sleep(step.Duration);
-                            break;
+                            case 6:
+                                PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[6], step);
+                                //if (step.Engaged is not null) Engaged_S6 = step.Engaged;
+                                //Position_S6 = step.TargetPosition;
+                                //if (step.Duration > 0) Thread.Sleep(step.Duration);
+                                break;
 
-                        case 6:
-                            if (step.Engaged is not null) Engaged_S6 = step.Engaged;
-                            Position_S6 = step.TargetPosition;
-                            if (step.Duration > 0) Thread.Sleep(step.Duration);
-                            break;
-
-                        case 7:
-                            if (step.Engaged is not null) Engaged_S7 = step.Engaged;
-                            Position_S7 = step.TargetPosition;
-                            if (step.Duration > 0) Thread.Sleep(step.Duration);
-                            break;
+                            case 7:
+                                PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[7], step);
+                                //if (step.Engaged is not null) Engaged_S7 = step.Engaged;
+                                //Position_S7 = step.TargetPosition;
+                                //if (step.Duration > 0) Thread.Sleep(step.Duration);
+                                break;
+                        }
                     }
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
+                    catch (Exception ex)
+                    {
+                        Log.Error(ex, Common.LOG_CATEGORY);
+                    }
                 }
             }
 
@@ -2880,13 +2893,44 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        private void PerformServoStep(AdvancedServoServo servo, AdvancedServoStep step)
+        {
+            try
+            {
+                if (step.Acceleration is not null) servo.Acceleration = (Double)step.Acceleration;
+                if (step.VelocityLimit is not null) servo.VelocityLimit = (Double)step.VelocityLimit;
+                if (step.Engaged is not null) servo.Engaged = (Boolean)step.Engaged;
+                if (step.TargetPosition is not null)
+                {
+                    servo.Position = (Double)step.TargetPosition;
+                    if (step.Duration > 0) Thread.Sleep((Int32)step.Duration);
+
+                    // HACK(crhodes)
+                    // This is scary.  Movement may not have completed
+                    // so wait for Velocity to drop to zero
+                    while (servo.Velocity > 0) { };
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
+
         // If using CommandParameter, figure out TYPE and fix above
         //public bool PlayPerformanceCanExecute(TYPE value)
         public bool PlayPerformanceCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
-            return true;
+            if (SelectedAdvancedServoPerformance is not null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         #endregion

@@ -1,6 +1,9 @@
 {
   "ServoIndex": 0,
-  "Engaged": false,
-  "TargetPosition": 0,
-  "Duration": 1000
+  "Engaged": null,
+  "Acceleration": null,
+  "Velocity": null,
+  "TargetPosition": null,
+  "Duration": 1000,
+  "Loops": 1
 }

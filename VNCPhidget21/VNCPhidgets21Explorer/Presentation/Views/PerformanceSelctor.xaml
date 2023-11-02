@@ -119,6 +119,13 @@
                                       SelectedIndex="0"/>
             </dxlc:LayoutItem>
 
+            <dxlc:LayoutItem>
+                <Button 
+		                Command="{Binding PlayPerformanceCommand }"
+		                Content="{Binding PlayPerformanceContent, FallbackValue='PlayPerformance' }"
+		                ToolTip="{Binding PlayPerformanceToolTip, FallbackValue='PlayPerformance ToolTip' }" />
+            </dxlc:LayoutItem>
+            
             <!--<dxlc:LayoutItem Label="IPAddress" >
                 <dxe:TextEdit Text="{Binding SelectedHost.IPAddress }" IsReadOnly="True" Background="White" />
                 --><!--Foreground="{Binding IkAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>--><!--

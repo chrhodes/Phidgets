@@ -8,8 +8,8 @@
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <!--<Nullable>enable</Nullable>-->
 	  <VersionPrefix>1.0.0</VersionPrefix>
-	  <VersionSuffix>indevelopment-4</VersionSuffix>
-      <FileVersion>2023.11.01A</FileVersion>
+	  <VersionSuffix>indevelopment-v5</VersionSuffix>
+      <FileVersion>2023.11.02A</FileVersion>
       <Company>VNC</Company>
 	  <Description>Phidget21 Explorer</Description>
   </PropertyGroup>
@@ -43,6 +43,7 @@
     <None Remove="Resources\json\phidgetconfig.json" />
     <None Remove="Resources\json\sensor.json" />
     <None Remove="Resources\json\stepper.json" />
+    <None Remove="Resources\json\VNCperformancesconfig.json" />
     <None Remove="Resources\SensorList.xml" />
   </ItemGroup>
 
@@ -55,6 +56,9 @@
     </Content>
     <Content Include="Resources\Icons\ApplicationIcon-Right-Red.ico" />
     <Content Include="Resources\json\advancedservoperformance.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\VNCperformancesconfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\json\advancedservoperformancesconfig.json">

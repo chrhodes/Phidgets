@@ -1,35 +1,52 @@
 {
   "Name": "PERFORMANCE NAME",
+  "Description": "PERFORMANCE DESCRIPTION",
+  "ContinueWith": "CONTINUE WITH PERFORMANCE NAME",
   "AdvancedServoSteps": [
     {
       "ServoIndex": 0,
       "Engaged": true,
+      "Acceleration": null,
+      "Velocity": null,
       "TargetPosition": 90,
-      "Duration": 1000
+      "Duration": 1000,
+      "Loops": 1
     },
     {
       "ServoIndex": 0,
       "Engaged": true,
+      "Acceleration": null,
+      "Velocity": null,
       "TargetPosition": 95,
-      "Duration": 1000
+      "Duration": 1000,
+      "Loops": 1
     },
     {
       "ServoIndex": 0,
       "Engaged": true,
+      "Acceleration": null,
+      "Velocity": null,
       "TargetPosition": 100,
-      "Duration": 2000
+      "Duration": 2000,
+      "Loops": 1
     },
     {
       "ServoIndex": 0,
       "Engaged": true,
+      "Acceleration": null,
+      "Velocity": null,
       "TargetPosition": 95,
-      "Duration": 500
+      "Duration": 500,
+      "Loops": 1
     },
     {
       "ServoIndex": 0,
       "Engaged": true,
+      "Acceleration": null,
+      "Velocity": null,
       "TargetPosition": 90,
-      "Duration": 500
+      "Duration": 500,
+      "Loops": 1
     }
   ]
 }
