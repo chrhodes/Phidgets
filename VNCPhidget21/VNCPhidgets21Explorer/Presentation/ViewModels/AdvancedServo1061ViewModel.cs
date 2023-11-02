@@ -62,7 +62,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //ConfigureServoCommand = new DelegateCommand(ConfigureServo, ConfigureServoCanExecute);
 
             ConfigureServo2Command = new DelegateCommand<string>(ConfigureServo2, ConfigureServo2CanExecute);
-            PlayPerformanceCommand = new DelegateCommand(PlayPerformance, PlayPerformanceCanExecute);
+            PlayPerformanceCommand = new DelegateCommand<string>(PlayPerformance, PlayPerformanceCanExecute);
 
 
             // TODO(crhodes)
@@ -2798,7 +2798,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region PlayPerformance Command
 
-        public DelegateCommand PlayPerformanceCommand { get; set; }
+        public DelegateCommand<string> PlayPerformanceCommand { get; set; }
         // If using CommandParameter, figure out TYPE here and above
         // and remove above declaration
         //public DelegateCommand<TYPE> PlayPerformanceCommand { get; set; }
@@ -2816,18 +2816,65 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         // If using CommandParameter, figure out TYPE and fix above
         //public void PlayPerformance(TYPE value)
-        public void PlayPerformance()
+        public void PlayPerformance(string playAll)
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
             // TODO(crhodes)
             // Do something amazing.
-             Message = "Cool, you called PlayPerformance";
+            Message = "Cool, you called PlayPerformance";
 
-            for (int i = 0; i < SelectedAdvancedServoPerformance.Loops; i++)
+            if (Boolean.Parse(playAll))
             {
-                Log.Trace($"Loop:{i+1}", Common.LOG_CATEGORY);    
+                foreach (AdvancedServoPerformance performance in AdvancedServoPerformances)
+                {
+                    PlayPerformanceLoops(performance);
+                }
+            }
+            else
+            {
+                PlayPerformanceLoops(SelectedAdvancedServoPerformance);
+            }
 
-                foreach (AdvancedServoStep step in SelectedAdvancedServoPerformance.AdvancedServoSteps)
+            // HACK(crhodes)
+            // Lets try calling another performance.  If this works, move to a dictionary.
+
+
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<PlayPerformanceEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<PlayPerformanceEvent>().Publish(
+            //      new PlayPerformanceEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class PlayPerformanceEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<PlayPerformanceEvent>().Subscribe(PlayPerformance);
+
+            // End Cut Four
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void PlayPerformanceLoops(AdvancedServoPerformance advancedServoPerformance)
+        {
+            for (int i = 0; i < advancedServoPerformance.Loops; i++)
+            {
+                Log.Trace($"Loop:{i + 1}", Common.LOG_CATEGORY);
+
+                foreach (AdvancedServoStep step in advancedServoPerformance.AdvancedServoSteps)
                 {
                     Log.Trace($"Servo:{step.ServoIndex} Acceleration:{step.Acceleration} VelocityLimit:{step.VelocityLimit}" +
                         $" Engaged:{step.Engaged} TargetPosition:{step.TargetPosition} Duration:{step.Duration}", Common.LOG_CATEGORY);
@@ -2897,33 +2944,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     }
                 }
             }
-
-            // Uncomment this if you are telling someone else to handle this
-
-            // Common.EventAggregator.GetEvent<PlayPerformanceEvent>().Publish();
-
-            // May want EventArgs
-
-            //  EventAggregator.GetEvent<PlayPerformanceEvent>().Publish(
-            //      new PlayPerformanceEventArgs()
-            //      {
-            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-            //            Process = _contextMainViewModel.Context.SelectedProcess
-            //      });
-
-            // Start Cut Three - Put this in PrismEvents
-
-            // public class PlayPerformanceEvent : PubSubEvent { }
-
-            // End Cut Three
-
-            // Start Cut Four - Put this in places that listen for event
-
-            //Common.EventAggregator.GetEvent<PlayPerformanceEvent>().Subscribe(PlayPerformance);
-
-            // End Cut Four
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void PerformServoStep(AdvancedServoServo servo, AdvancedServoStep step)
@@ -2952,7 +2972,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         // If using CommandParameter, figure out TYPE and fix above
         //public bool PlayPerformanceCanExecute(TYPE value)
-        public bool PlayPerformanceCanExecute()
+        public bool PlayPerformanceCanExecute(string playAll)
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.

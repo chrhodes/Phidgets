@@ -139,10 +139,18 @@
             <dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">
                 <Button 
 		                Command="{Binding PlayPerformanceCommand }"
+                        CommandParameter="false"
 		                Content="{Binding PlayPerformanceContent, FallbackValue='PlayPerformance' }"
 		                ToolTip="{Binding PlayPerformanceToolTip, FallbackValue='PlayPerformance ToolTip' }" />
             </dxlc:LayoutItem>
-            
+
+            <dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                <Button 
+		                Command="{Binding PlayPerformanceCommand }"
+                        CommandParameter="true"
+		                Content="Play All Performances"
+		                ToolTip="{Binding PlayPerformanceToolTip, FallbackValue='PlayPerformance ToolTip' }" />
+            </dxlc:LayoutItem>
         </dxlc:LayoutGroup>
      
     </dxlc:LayoutGroup>
