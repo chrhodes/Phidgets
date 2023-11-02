@@ -5,14 +5,16 @@
       "Description": "PERFORMANCE DESCRIPTION",
       "ContinueWith": "CONTINUE WITH PERFORMANCE NAME",
       "AdvancedServoSteps": [
+        { "ServoIndex": 0, "Engaged": true },
+        { "ServoIndex": 1, "Engaged": true },
+        { "ServoIndex": 2, "Engaged": true },
         {
           "ServoIndex": 0,
           "Engaged": true,
           "Acceleration": null,
           "VelocityLimit": null,
           "TargetPosition": 90,
-          "Duration": 1000,
-          "Loops": 1
+          "Duration": 1000
         },
         {
           "ServoIndex": 0,
@@ -20,8 +22,7 @@
           "Acceleration": null,
           "VelocityLimit": null,
           "TargetPosition": 95,
-          "Duration": 1000,
-          "Loops": 1
+          "Duration": 1000
         },
         {
           "ServoIndex": 0,
@@ -29,8 +30,7 @@
           "Acceleration": null,
           "VelocityLimit": null,
           "TargetPosition": 100,
-          "Duration": 2000,
-          "Loops": 1
+          "Duration": 2000
         },
         {
           "ServoIndex": 0,
@@ -38,8 +38,7 @@
           "Acceleration": null,
           "VelocityLimit": null,
           "TargetPosition": 95,
-          "Duration": 500,
-          "Loops": 1
+          "Duration": 500
         },
         {
           "ServoIndex": 0,
@@ -47,9 +46,11 @@
           "Acceleration": null,
           "VelocityLimit": null,
           "TargetPosition": 90,
-          "Duration": 500,
-          "Loops": 1
-        }
+          "Duration": 500
+        },
+        { "ServoIndex": 0, "Engaged": false },
+        { "ServoIndex": 1, "Engaged": false },
+        { "ServoIndex": 2, "Engaged": false }
       ]
     },
     {
@@ -57,14 +58,16 @@
       "Description": "PERFORMANCE DESCRIPTION",
       "ContinueWith": "CONTINUE WITH PERFORMANCE NAME",
       "AdvancedServoSteps": [
+        { "ServoIndex": 0, "Engaged": true },
+        { "ServoIndex": 1, "Engaged": true },
+        { "ServoIndex": 2, "Engaged": true },
         {
           "ServoIndex": 1,
           "Engaged": true,
           "Acceleration": null,
           "VelocityLimit": null,
           "TargetPosition": 90,
-          "Duration": 1000,
-          "Loops": 1
+          "Duration": 1000
         },
         {
           "ServoIndex": 1,
@@ -72,8 +75,7 @@
           "Acceleration": null,
           "VelocityLimit": null,
           "TargetPosition": 95,
-          "Duration": 1000,
-          "Loops": 1
+          "Duration": 1000
         },
         {
           "ServoIndex": 1,
@@ -81,8 +83,7 @@
           "Acceleration": null,
           "VelocityLimit": null,
           "TargetPosition": 100,
-          "Duration": 2000,
-          "Loops": 1
+          "Duration": 2000
         },
         {
           "ServoIndex": 1,
@@ -90,8 +91,7 @@
           "Acceleration": null,
           "VelocityLimit": null,
           "TargetPosition": 95,
-          "Duration": 500,
-          "Loops": 1
+          "Duration": 500
         },
         {
           "ServoIndex": 1,
@@ -99,9 +99,64 @@
           "Acceleration": null,
           "VelocityLimit": null,
           "TargetPosition": 90,
-          "Duration": 500,
-          "Loops": 1
-        }
+          "Duration": 500
+        },
+        { "ServoIndex": 0, "Engaged": false },
+        { "ServoIndex": 1, "Engaged": false },
+        { "ServoIndex": 2, "Engaged": false }
+      ]
+    },
+    {
+      "Name": "PerformanceServo2",
+      "Description": "PERFORMANCE DESCRIPTION",
+      "ContinueWith": "CONTINUE WITH PERFORMANCE NAME",
+      "AdvancedServoSteps": [
+        { "ServoIndex": 0, "Engaged": true },
+        { "ServoIndex": 1, "Engaged": true },
+        { "ServoIndex": 2, "Engaged": true },
+        {
+          "ServoIndex": 2,
+          "Engaged": true,
+          "Acceleration": null,
+          "VelocityLimit": null,
+          "TargetPosition": 90,
+          "Duration": 1000
+        },
+        {
+          "ServoIndex": 2,
+          "Engaged": true,
+          "Acceleration": null,
+          "VelocityLimit": null,
+          "TargetPosition": 95,
+          "Duration": 1000
+        },
+        {
+          "ServoIndex": 2,
+          "Engaged": true,
+          "Acceleration": null,
+          "VelocityLimit": null,
+          "TargetPosition": 100,
+          "Duration": 2000
+        },
+        {
+          "ServoIndex": 2,
+          "Engaged": true,
+          "Acceleration": null,
+          "VelocityLimit": null,
+          "TargetPosition": 95,
+          "Duration": 500
+        },
+        {
+          "ServoIndex": 2,
+          "Engaged": true,
+          "Acceleration": null,
+          "VelocityLimit": null,
+          "TargetPosition": 90,
+          "Duration": 500
+        },
+        { "ServoIndex": 0, "Engaged": false },
+        { "ServoIndex": 1, "Engaged": false },
+        { "ServoIndex": 2, "Engaged": false }
       ]
     },
     {

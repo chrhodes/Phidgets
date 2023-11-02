@@ -2833,6 +2833,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             else
             {
                 PlayPerformanceLoops(SelectedAdvancedServoPerformance);
+                PlayPerformanceLoops(AdvancedServoPerformances.ToArray()[1]);
+                PlayPerformanceLoops(AdvancedServoPerformances.ToArray()[2]);
             }
 
             // HACK(crhodes)
