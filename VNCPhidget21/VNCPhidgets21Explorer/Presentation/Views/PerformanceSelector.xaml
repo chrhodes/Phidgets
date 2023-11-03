@@ -131,9 +131,11 @@
                 </dxe:ComboBoxEdit>
             </dxlc:LayoutItem>-->
 
-            <dxlc:LayoutItem Label="Performances" LabelPosition="Top" HorizontalAlignment="Left" >
+            <!--<dxlc:LayoutItem Label="Performances" LabelPosition="Top" HorizontalAlignment="Left" >-->
+            <dxlc:LayoutItem HorizontalAlignment="Left" >
                 <dxe:ComboBoxEdit Width="150" 
                                 ItemsSource="{Binding AdvancedServoPerformances}" DisplayMember="Name" 
+                                SelectedItem="{Binding SelectedAdvancedServoPerformance}"
                                 EditValue="{ Binding 
                                     Path=SelectedPerformances,
                                     Mode=TwoWay,

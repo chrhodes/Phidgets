@@ -101,7 +101,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 = JsonSerializer.Deserialize<Resources.AdvancedServoPerformanceConfig>(jsonString, jsonOptions);
 
             this.AdvancedServoPerformances = performancesConfig.AdvancedServoPerformances.ToList();
-            this.AdvancedServoPerformancesL = performancesConfig.AdvancedServoPerformances.ToList();
+            //this.AdvancedServoPerformancesL = performancesConfig.AdvancedServoPerformances.ToList();
 
             AvailableAdvancedServoPerformances = 
                 performancesConfig.AdvancedServoPerformances
@@ -243,20 +243,22 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private List<AdvancedServoPerformance> _advancedServoPerformancesL;
-        public List<AdvancedServoPerformance> AdvancedServoPerformancesL
-        {
-            get => _advancedServoPerformancesL;
-            set
-            {
-                _advancedServoPerformancesL = value;
-                OnPropertyChanged();
-            }
-        }
+        //private List<AdvancedServoPerformance> _advancedServoPerformancesL;
+        //public List<AdvancedServoPerformance> AdvancedServoPerformancesL
+        //{
+        //    get => _advancedServoPerformancesL;
+        //    set
+        //    {
+        //        _advancedServoPerformancesL = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         private List<AdvancedServoPerformance> _selectedPerformances;
         public List<AdvancedServoPerformance> SelectedPerformances
-        { get => _selectedPerformances; set
+        { 
+            get => _selectedPerformances; 
+            set
             {
                 if (_selectedPerformances == value)
                 {
@@ -2413,6 +2415,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             ActiveAdvancedServo.AdvancedServo.PositionChange += ActiveAdvancedServo_PositionChange;
             ActiveAdvancedServo.AdvancedServo.VelocityChange += ActiveAdvancedServo_VelocityChange;
 
+            PlayPerformanceCommand.RaiseCanExecuteChanged();
+
             // NOTE(crhodes)
             // Capture Digital Input and Output changes so we can update the UI
             // The AdvancedServoEx attaches to these events also.
@@ -2702,7 +2706,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             OpenAdvancedServoCommand.RaiseCanExecuteChanged();
             CloseAdvancedServoCommand.RaiseCanExecuteChanged();
-
+            PlayPerformanceCommand.RaiseCanExecuteChanged();
+            
             // Uncomment this if you are telling someone else to handle this
 
             // Common.EventAggregator.GetEvent<CloseAdvancedServoEvent>().Publish();
@@ -3109,7 +3114,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
-            if (ActiveAdvancedServo is not null && SelectedPerformances is not null)
+            if (ActiveAdvancedServo is not null && SelectedPerformances?.Count > 0)
             {
                 return true;
             }
