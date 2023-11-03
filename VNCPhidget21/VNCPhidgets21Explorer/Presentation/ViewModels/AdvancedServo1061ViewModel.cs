@@ -330,8 +330,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        public ICommand SayHelloCommand { get; private set; }
-
         private string _message;
         public string Message
         {
@@ -345,43 +343,43 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private bool _displayVelocityChangeEvents = false;
+        private bool _logVelocityChangeEvents = false;
 
-        public bool DisplayVelocityChangeEvents
+        public bool LogVelocityChangeEvents
         {
-            get => _displayVelocityChangeEvents;
+            get => _logVelocityChangeEvents;
             set
             {
-                if (_displayVelocityChangeEvents == value)
+                if (_logVelocityChangeEvents == value)
                     return;
-                _displayVelocityChangeEvents = value;
+                _logVelocityChangeEvents = value;
                 OnPropertyChanged();
             }
         }
 
-        private bool _displayPositionChangeEvents = false;
+        private bool _logPositionChangeEvents = false;
 
-        public bool DisplayPositionChangeEvents
+        public bool LogPositionChangeEvents
         {
-            get => _displayPositionChangeEvents;
+            get => _logPositionChangeEvents;
             set
             {
-                if (_displayPositionChangeEvents == value)
+                if (_logPositionChangeEvents == value)
                     return;
-                _displayPositionChangeEvents = value;
+                _logPositionChangeEvents = value;
                 OnPropertyChanged();
             }
         }
 
-        private bool _displayPerformanceStep = false;
-        public bool DisplayPerformanceStep
+        private bool _logPerformanceStep = false;
+        public bool LogPerformanceStep
         {
-            get => _displayPerformanceStep;
+            get => _logPerformanceStep;
             set
             {
-                if (_displayPerformanceStep == value)
+                if (_logPerformanceStep == value)
                     return;
-                _displayPerformanceStep = value;
+                _logPerformanceStep = value;
                 OnPropertyChanged();
             }
         }
@@ -2368,6 +2366,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         #endregion
 
         #region Commands
+        
+        public ICommand SayHelloCommand { get; private set; }
 
         #region Command ConfigFileName DoubleClick
 
@@ -2469,7 +2469,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             var index = e.Index;
             var velocity = e.Velocity;
 
-            if (DisplayVelocityChangeEvents)
+            if (LogVelocityChangeEvents)
             {
                 Log.Trace($"VelocityChange index:{index} value:{velocity}", Common.LOG_CATEGORY);
             }
@@ -2520,7 +2520,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             var index = e.Index;
             var position = e.Position;
 
-            if (DisplayPositionChangeEvents)
+            if (LogPositionChangeEvents)
             {
                 Log.Trace($"PositionChange index:{index} value:{position}", Common.LOG_CATEGORY);
             }
@@ -3011,7 +3011,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 foreach (AdvancedServoStep step in advancedServoPerformance.AdvancedServoSteps)
                 {
-                    if (DisplayPerformanceStep)
+                    if (LogPerformanceStep)
                     {
                         Log.Trace($"Servo:{step.ServoIndex} Acceleration:{step.Acceleration} VelocityLimit:{step.VelocityLimit}" +
                             $" Engaged:{step.Engaged} TargetPosition:{step.TargetPosition} Duration:{step.Duration}", Common.LOG_CATEGORY);

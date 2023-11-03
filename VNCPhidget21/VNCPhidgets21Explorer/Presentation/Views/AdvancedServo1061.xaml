@@ -181,10 +181,10 @@
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
                     <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">-->
                     <dxe:CheckEdit
-                            Content="Display PositionChange Events"
+                            Content="Log PositionChange Events"
                             IsChecked="{Binding DisplayPositionChangeEvents, Mode=TwoWay}" />
                     <dxe:CheckEdit
-                            Content="Display VelocityChange Events"
+                            Content="Log VelocityChange Events"
                             IsChecked="{Binding DisplayVelocityChangeEvents, Mode=TwoWay}" />
                     <!--<dxe:CheckEdit x:Name="ceSensorChangedEvents"
                             Content="DisplaySensorChangeEvents"

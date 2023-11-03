@@ -195,8 +195,8 @@
 		                ToolTip="{Binding PlayPerformanceToolTip, FallbackValue='PlayPerformance ToolTip' }" />
             </dxlc:LayoutItem>-->
 
-                <dxlc:LayoutItem Label="DisplayPerformanceStep" >
-                    <dxe:CheckEdit IsChecked="{Binding DisplayPerformanceStep}"/>
+                <dxlc:LayoutItem Label="Log PerformanceStep" >
+                    <dxe:CheckEdit IsChecked="{Binding LogPerformanceStep}"/>
                 </dxlc:LayoutItem>
 
             </dxlc:LayoutGroup>

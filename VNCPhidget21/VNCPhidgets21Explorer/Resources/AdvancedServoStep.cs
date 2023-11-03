@@ -13,18 +13,22 @@ namespace VNCPhidgets21Explorer.Resources
         /// Engage Servo (optional)
         /// </summary>
         public bool? Engaged { get; set; }
+
         /// <summary>
         /// Servo Acceleration (optional)
         /// </summary>
         public Double? Acceleration { get; set; }
+
         /// <summary>
         /// Servo Velocity (optional)
         /// </summary>
         public Double? VelocityLimit { get; set; }
+
         /// <summary>
         /// TargetPosition (optional)
         /// </summary>
         public double? TargetPosition { get; set; }
+
         /// <summary>
         /// Duration of step in ms (sleep time after step)
         /// </summary>
