@@ -113,14 +113,14 @@
                 </dxe:TextEdit>
             </dxlc:LayoutItem>
 
-            <dxlc:LayoutItem Label="Performances" LabelPosition="Top" HorizontalAlignment="Left" >
+            <!--<dxlc:LayoutItem Label="Performances" LabelPosition="Top" HorizontalAlignment="Left" >
                 <dxe:ComboBoxEdit Width="150" 
                                   ItemsSource="{Binding AdvancedServoPerformances}" DisplayMember="Name" 
                                     SelectedItem="{Binding SelectedAdvancedServoPerformance}"
                                     SelectedIndex="0"/>
-            </dxlc:LayoutItem>
+            </dxlc:LayoutItem>-->
 
-            <dxlc:LayoutItem Label="PerformancesD" LabelPosition="Top" HorizontalAlignment="Left" >
+            <!--<dxlc:LayoutItem Label="PerformancesD" LabelPosition="Top" HorizontalAlignment="Left" >
                 <dxe:ComboBoxEdit Width="150" 
                                   ItemsSource="{Binding AdvancedServoPerformancesD}" DisplayMember="Key" 
                                     SelectedItem="{Binding SelectedAdvancedServoPerformanceD.Value}"
@@ -129,16 +129,16 @@
                         <dxe:CheckedComboBoxStyleSettings />
                     </dxe:ComboBoxEdit.StyleSettings>
                 </dxe:ComboBoxEdit>
-            </dxlc:LayoutItem>
+            </dxlc:LayoutItem>-->
 
-            <dxlc:LayoutItem Label="PerformancesL" LabelPosition="Top" HorizontalAlignment="Left" >
+            <dxlc:LayoutItem Label="Performances" LabelPosition="Top" HorizontalAlignment="Left" >
                 <dxe:ComboBoxEdit Width="150" 
                                 ItemsSource="{Binding AdvancedServoPerformances}" DisplayMember="Name" 
                                 EditValue="{ Binding 
-                                Path=SelectedPerformances,
-                                Mode=TwoWay,
-                                UpdateSourceTrigger=PropertyChanged,
-                                Converter={StaticResource SelectedItemsToListOfStringConverter} }" >
+                                    Path=SelectedPerformances,
+                                    Mode=TwoWay,
+                                    UpdateSourceTrigger=PropertyChanged,
+                                    Converter={StaticResource SelectedItemsToListOfStringConverter} }" >
                     <dxe:ComboBoxEdit.StyleSettings>
                         <dxe:CheckedComboBoxStyleSettings />
                     </dxe:ComboBoxEdit.StyleSettings>
@@ -175,26 +175,29 @@
                 
             </dxlc:LayoutGroup>           
 
-            <dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">
-                <Button 
+            <dxlc:LayoutGroup View="Group" Orientation="Vertical" HorizontalAlignment="Right" >
+
+                <dxlc:LayoutItem VerticalAlignment="Stretch">
+                    <Button 
 		                Command="{Binding PlayPerformanceCommand }"
                         CommandParameter="false"
 		                Content="{Binding PlayPerformanceContent, FallbackValue='PlayPerformance' }"
 		                ToolTip="{Binding PlayPerformanceToolTip, FallbackValue='PlayPerformance ToolTip' }" />
-            </dxlc:LayoutItem>
+                </dxlc:LayoutItem>
 
-            <dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                <!--<dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">
                 <Button 
 		                Command="{Binding PlayPerformanceCommand }"
                         CommandParameter="true"
 		                Content="Play All Performances"
 		                ToolTip="{Binding PlayPerformanceToolTip, FallbackValue='PlayPerformance ToolTip' }" />
-            </dxlc:LayoutItem>
-            
-            <dxlc:LayoutItem Label="DisplayPerformanceStep">
-                <dxe:CheckEdit 
-                	IsChecked="{Binding DisplayPerformanceStep}"/>
-            </dxlc:LayoutItem>
+            </dxlc:LayoutItem>-->
+
+                <dxlc:LayoutItem Label="DisplayPerformanceStep" >
+                    <dxe:CheckEdit IsChecked="{Binding DisplayPerformanceStep}"/>
+                </dxlc:LayoutItem>
+
+            </dxlc:LayoutGroup>
             
         </dxlc:LayoutGroup>
      

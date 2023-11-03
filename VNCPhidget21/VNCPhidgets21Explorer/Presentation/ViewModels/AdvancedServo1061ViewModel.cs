@@ -103,7 +103,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             this.AdvancedServoPerformances = performancesConfig.AdvancedServoPerformances.ToList();
             this.AdvancedServoPerformancesL = performancesConfig.AdvancedServoPerformances.ToList();
 
-            AdvancedServoPerformancesD = 
+            AvailableAdvancedServoPerformances = 
                 performancesConfig.AdvancedServoPerformances
                 .ToDictionary(k => k.Name, v => v); 
 
@@ -232,13 +232,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
 
-        private Dictionary<string, Resources.AdvancedServoPerformance> _advancedServoPerformancesD;
-        public Dictionary<string, Resources.AdvancedServoPerformance> AdvancedServoPerformancesD
+        private Dictionary<string, Resources.AdvancedServoPerformance> _availableAdvancedServoPerformances;
+        public Dictionary<string, Resources.AdvancedServoPerformance> AvailableAdvancedServoPerformances
         {
-            get => _advancedServoPerformancesD;
+            get => _availableAdvancedServoPerformances;
             set
             {
-                _advancedServoPerformancesD = value;
+                _availableAdvancedServoPerformances = value;
                 OnPropertyChanged();
             }
         }
@@ -254,22 +254,36 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        public List<AdvancedServoPerformance> SelectedPerformances { get; set; }
-
-        private Resources.AdvancedServoPerformance? _selectedAdvancedServoPerformanceD;
-        public Resources.AdvancedServoPerformance? SelectedAdvancedServoPerformanceD
-        {
-            get => _selectedAdvancedServoPerformanceD;
-            set
+        private List<AdvancedServoPerformance> _selectedPerformances;
+        public List<AdvancedServoPerformance> SelectedPerformances
+        { get => _selectedPerformances; set
             {
-                if (_selectedAdvancedServoPerformanceD == value) return;
+                if (_selectedPerformances == value)
+                {
+                    return;
+                }
 
-                _selectedAdvancedServoPerformanceD = value;
+                _selectedPerformances = value;
                 OnPropertyChanged();
 
                 PlayPerformanceCommand.RaiseCanExecuteChanged();
             }
         }
+
+        //private Resources.AdvancedServoPerformance? _selectedAdvancedServoPerformanceD;
+        //public Resources.AdvancedServoPerformance? SelectedAdvancedServoPerformanceD
+        //{
+        //    get => _selectedAdvancedServoPerformanceD;up UI
+        //    set
+        //    {
+        //        if (_selectedAdvancedServoPerformanceD == value) return;
+
+        //        _selectedAdvancedServoPerformanceD = value;
+        //        OnPropertyChanged();
+
+        //        PlayPerformanceCommand.RaiseCanExecuteChanged();
+        //    }
+        //}
 
         //public Dictionary<string, Resources.AdvancedServoPerformance> SelectedPerformancesD { get; set; }
 
@@ -443,6 +457,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 _selectedAdvancedServo = value;
 
                 OpenAdvancedServoCommand.RaiseCanExecuteChanged();
+                PlayPerformanceCommand.RaiseCanExecuteChanged();
 
                 OnPropertyChanged();
             }
@@ -2911,7 +2926,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             else
             {
                 var runAllThese = SelectedPerformances;
-                var allPerformances = AdvancedServoPerformancesD;
+                var allPerformances = AvailableAdvancedServoPerformances;
 
                 //var runAllTheseD = SelectedAdvancedServoPerformanceD;
 
@@ -2936,9 +2951,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                         PlayPerformanceLoops(nextPerformance);
 
-                        if (AdvancedServoPerformancesD.ContainsKey(continueWith ?? ""))
+                        if (AvailableAdvancedServoPerformances.ContainsKey(continueWith ?? ""))
                         {
-                            nextPerformance = AdvancedServoPerformancesD[continueWith];
+                            nextPerformance = AvailableAdvancedServoPerformances[continueWith];
                         }
                         else
                         {
@@ -3094,7 +3109,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
-            if (SelectedAdvancedServoPerformance is not null)
+            if (ActiveAdvancedServo is not null && SelectedPerformances is not null)
             {
                 return true;
             }
