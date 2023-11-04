@@ -33,28 +33,80 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
-        
+
         // public PositionControl(IPositionControlViewModel viewModel)
         // {
-            // Int64 startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
+        // Int64 startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
 
-            // InstanceCountV++;
-            // InitializeComponent();
+        // InstanceCountV++;
+        // InitializeComponent();
 
-            // ViewModel = viewModel;
-            
-            // InitializeView();
+        // ViewModel = viewModel;
 
-            // Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+        // InitializeView();
+
+        // Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         // }
-        
+
+        private static object OnCoerceDeviceMax(DependencyObject o, object value)
+        {
+            PositionControl positionControl = o as PositionControl;
+            if (positionControl != null)
+                return positionControl.OnCoerceDeviceMax((Double?)value);
+            else
+                return value;
+        }
+
+        private static void OnDeviceMaxChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            PositionControl positionControl = o as PositionControl;
+            if (positionControl != null)
+                positionControl.OnDeviceMaxChanged((Double?)e.OldValue, (Double?)e.NewValue);
+        }
+
+        protected virtual Double? OnCoerceDeviceMax(Double? value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnDeviceMaxChanged(Double? oldValue, Double? newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+        private static object OnCoerceDeviceMin(DependencyObject o, object value)
+        {
+            PositionControl positionControl = o as PositionControl;
+            if (positionControl != null)
+                return positionControl.OnCoerceDeviceMin((Double?)value);
+            else
+                return value;
+        }
+
+        private static void OnDeviceMinChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            PositionControl positionControl = o as PositionControl;
+            if (positionControl != null)
+                positionControl.OnDeviceMinChanged((Double?)e.OldValue, (Double?)e.NewValue);
+        }
+
+        protected virtual Double? OnCoerceDeviceMin(Double? value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnDeviceMinChanged(Double? oldValue, Double? newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
         private void InitializeView()
         {
             Int64 startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
-            
+
             // NOTE(crhodes)
             // Put things here that initialize the View
-            
+
             Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
@@ -72,6 +124,18 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 
         #region Fields and Properties (None)
 
+        public Double? DeviceMax
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double?)GetValue(DeviceMaxProperty);
+            set => SetValue(DeviceMaxProperty, value);
+        }
+        public Double? DeviceMin
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double?)GetValue(DeviceMinProperty);
+            set => SetValue(DeviceMinProperty, value);
+        }
         public Double? Current
         {
             // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
@@ -223,5 +287,11 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
             var centerPosition = (Max - Min) / 2 + Min;
             ((TrackBarEdit)sender).Value = (Double)centerPosition;
         }
+
+        public static readonly DependencyProperty DeviceMinProperty = DependencyProperty.Register("DeviceMin", typeof(Double?), typeof(PositionControl), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnDeviceMinChanged), new CoerceValueCallback(OnCoerceDeviceMin)));
+        public static readonly DependencyProperty DeviceMaxProperty = DependencyProperty.Register("DeviceMax", typeof(Double?), typeof(PositionControl), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnDeviceMaxChanged), new CoerceValueCallback(OnCoerceDeviceMax)));
+        
+        
+
     }
 }

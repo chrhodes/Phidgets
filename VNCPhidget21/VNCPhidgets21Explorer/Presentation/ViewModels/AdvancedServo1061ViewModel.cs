@@ -151,6 +151,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
         public string PerformanceFileNameToolTip { get; set; } = "DoubleClick to select new file";
 
         private Resources.PhidgetConfig _phidgetConfig;
@@ -344,7 +345,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
         private bool _logVelocityChangeEvents = false;
-
         public bool LogVelocityChangeEvents
         {
             get => _logVelocityChangeEvents;
@@ -358,7 +358,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
         private bool _logPositionChangeEvents = false;
-
         public bool LogPositionChangeEvents
         {
             get => _logPositionChangeEvents;
@@ -488,6 +487,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
         private int? _servoCount;
         public int? ServoCount
         {
@@ -542,8 +542,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Phidgets.AdvancedServo _typeS0;
-        public Phidgets.AdvancedServo Type_S0
+        private Phidgets.ServoServo.ServoType _typeS0;
+        public Phidgets.ServoServo.ServoType Type_S0
         {
             get => _typeS0;
             set
@@ -564,6 +564,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_currentS0 == value)
                     return;
                 _currentS0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double? _devicePositionMax_S0;
+        public Double? DevicePositionMax_S0
+        {
+            get => _devicePositionMax_S0;
+            set
+            {
+                if (_devicePositionMax_S0 == value)
+                    return;
+                _devicePositionMax_S0 = value;
                 OnPropertyChanged();
             }
         }
@@ -623,6 +636,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_positionMin_S0 == value)
                     return;
                 _positionMin_S0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double? _devicePositionMin_S0;
+        public Double? DevicePositionMin_S0
+        {
+            get => _devicePositionMin_S0;
+            set
+            {
+                if (_devicePositionMin_S0 == value)
+                    return;
+                _devicePositionMin_S0 = value;
                 OnPropertyChanged();
             }
         }
@@ -774,8 +800,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Servo S1
 
-        private Phidgets.AdvancedServo _typeS1;
-        public Phidgets.AdvancedServo Type_S1
+        private Phidgets.ServoServo.ServoType _typeS1;
+        public Phidgets.ServoServo.ServoType Type_S1
         {
             get => _typeS1;
             set
@@ -796,6 +822,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_currentS1 == value)
                     return;
                 _currentS1 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double? _devicePositionMax_S1;
+        public Double? DevicePositionMax_S1
+        {
+            get => _devicePositionMax_S1;
+            set
+            {
+                if (_devicePositionMax_S1 == value)
+                    return;
+                _devicePositionMax_S1 = value;
                 OnPropertyChanged();
             }
         }
@@ -850,6 +889,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_positionMin_S1 == value)
                     return;
                 _positionMin_S1 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double? _devicePositionMin_S1;
+        public Double? DevicePositionMin_S1
+        {
+            get => _devicePositionMin_S1;
+            set
+            {
+                if (_devicePositionMin_S1 == value)
+                    return;
+                _devicePositionMin_S1 = value;
                 OnPropertyChanged();
             }
         }
@@ -1001,8 +1053,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Servo S2
 
-        private Phidgets.AdvancedServo _typeS2;
-        public Phidgets.AdvancedServo Type_S2
+        private Phidgets.ServoServo.ServoType _typeS2;
+        public Phidgets.ServoServo.ServoType Type_S2
         {
             get => _typeS2;
             set
@@ -1023,6 +1075,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_currentS2 == value)
                     return;
                 _currentS2 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double? _devicePositionMax_S2;
+        public Double? DevicePositionMax_S2
+        {
+            get => _devicePositionMax_S2;
+            set
+            {
+                if (_devicePositionMax_S2 == value)
+                    return;
+                _devicePositionMax_S2 = value;
                 OnPropertyChanged();
             }
         }
@@ -1078,6 +1143,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _positionMin_S2 = value;
 
+                OnPropertyChanged();
+            }
+        }
+
+        private Double? _devicePositionMin_S2;
+        public Double? DevicePositionMin_S2
+        {
+            get => _devicePositionMin_S2;
+            set
+            {
+                if (_devicePositionMin_S2 == value)
+                    return;
+                _devicePositionMin_S2 = value;
                 OnPropertyChanged();
             }
         }
@@ -1228,8 +1306,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Servo S3
 
-        private Phidgets.AdvancedServo _typeS3;
-        public Phidgets.AdvancedServo Type_S3
+        private Phidgets.ServoServo.ServoType _typeS3;
+        public Phidgets.ServoServo.ServoType Type_S3
         {
             get => _typeS3;
             set
@@ -1254,6 +1332,18 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        private Double? _devicePositionMax_S3;
+        public Double? DevicePositionMax_S3
+        {
+            get => _devicePositionMax_S3;
+            set
+            {
+                if (_devicePositionMax_S3 == value)
+                    return;
+                _devicePositionMax_S3 = value;
+                OnPropertyChanged();
+            }
+        }
 
         private Double? _positionMax_S3;
         public Double? PositionMax_S3
@@ -1306,6 +1396,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _positionMin_S3 = value;
 
+                OnPropertyChanged();
+            }
+        }
+
+        private Double? _devicePositionMin_S3;
+        public Double? DevicePositionMin_S3
+        {
+            get => _devicePositionMin_S3;
+            set
+            {
+                if (_devicePositionMin_S3 == value)
+                    return;
+                _devicePositionMin_S3 = value;
                 OnPropertyChanged();
             }
         }
@@ -1457,8 +1560,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Servo S4
 
-        private Phidgets.AdvancedServo _typeS4;
-        public Phidgets.AdvancedServo Type_S4
+        private Phidgets.ServoServo.ServoType _typeS4;
+        public Phidgets.ServoServo.ServoType Type_S4
         {
             get => _typeS4;
             set
@@ -1479,6 +1582,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_currentS4 == value)
                     return;
                 _currentS4 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double? _devicePositionMax_S4;
+        public Double? DevicePositionMax_S4
+        {
+            get => _devicePositionMax_S4;
+            set
+            {
+                if (_devicePositionMax_S4 == value)
+                    return;
+                _devicePositionMax_S4 = value;
                 OnPropertyChanged();
             }
         }
@@ -1534,6 +1650,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _positionMin_S4 = value;
 
+                OnPropertyChanged();
+            }
+        }
+
+        private Double? _devicePositionMin_S4;
+        public Double? DevicePositionMin_S4
+        {
+            get => _devicePositionMin_S4;
+            set
+            {
+                if (_devicePositionMin_S4 == value)
+                    return;
+                _devicePositionMin_S4 = value;
                 OnPropertyChanged();
             }
         }
@@ -1684,8 +1813,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Servo S5
 
-        private Phidgets.AdvancedServo _typeS5;
-        public Phidgets.AdvancedServo Type_S5
+        private Phidgets.ServoServo.ServoType _typeS5;
+        public Phidgets.ServoServo.ServoType Type_S5
         {
             get => _typeS5;
             set
@@ -1706,6 +1835,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_currentS5 == value)
                     return;
                 _currentS5 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double? _devicePositionMax_S5;
+        public Double? DevicePositionMax_S5
+        {
+            get => _devicePositionMax_S5;
+            set
+            {
+                if (_devicePositionMax_S5 == value)
+                    return;
+                _devicePositionMax_S5 = value;
                 OnPropertyChanged();
             }
         }
@@ -1760,6 +1902,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_positionMin_S5 == value)
                     return;
                 _positionMin_S5 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double? _devicePositionMin_S5;
+        public Double? DevicePositionMin_S5
+        {
+            get => _devicePositionMin_S5;
+            set
+            {
+                if (_devicePositionMin_S5 == value)
+                    return;
+                _devicePositionMin_S5 = value;
                 OnPropertyChanged();
             }
         }
@@ -1910,8 +2065,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Servo S6
 
-        private Phidgets.AdvancedServo _typeS6;
-        public Phidgets.AdvancedServo Type_S6
+        private Phidgets.ServoServo.ServoType _typeS6;
+        public Phidgets.ServoServo.ServoType Type_S6
         {
             get => _typeS6;
             set
@@ -1932,6 +2087,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_currentS6 == value)
                     return;
                 _currentS6 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double? _devicePositionMax_S6;
+        public Double? DevicePositionMax_S6
+        {
+            get => _devicePositionMax_S6;
+            set
+            {
+                if (_devicePositionMax_S6 == value)
+                    return;
+                _devicePositionMax_S6 = value;
                 OnPropertyChanged();
             }
         }
@@ -1986,6 +2154,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_positionMin_S6 == value)
                     return;
                 _positionMin_S6 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double? _devicePositionMin_S6;
+        public Double? DevicePositionMin_S6
+        {
+            get => _devicePositionMin_S6;
+            set
+            {
+                if (_devicePositionMin_S6 == value)
+                    return;
+                _devicePositionMin_S6 = value;
                 OnPropertyChanged();
             }
         }
@@ -2136,8 +2317,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Servo S7
 
-        private Phidgets.AdvancedServo _typeS7;
-        public Phidgets.AdvancedServo Type_S7
+        private Phidgets.ServoServo.ServoType _typeS7;
+        public Phidgets.ServoServo.ServoType Type_S7
         {
             get => _typeS7;
             set
@@ -2158,6 +2339,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_currentS7 == value)
                     return;
                 _currentS7 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double? _devicePositionMax_S7;
+        public Double? DevicePositionMax_S7
+        {
+            get => _devicePositionMax_S7;
+            set
+            {
+                if (_devicePositionMax_S7 == value)
+                    return;
+                _devicePositionMax_S7 = value;
                 OnPropertyChanged();
             }
         }
@@ -2213,6 +2407,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _positionMin_S7 = value;
 
+                OnPropertyChanged();
+            }
+        }
+
+        private Double? _devicePositionMin_S7;
+        public Double? DevicePositionMin_S7
+        {
+            get => _devicePositionMin_S7;
+            set
+            {
+                if (_devicePositionMin_S7 == value)
+                    return;
+                _devicePositionMin_S7 = value;
                 OnPropertyChanged();
             }
         }
@@ -3178,6 +3385,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             // Do this until we have a better list of Servos
                             //servo.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
                             //servo.Type = Phidgets.ServoServo.ServoType.RAW_us_MODE;
+                            Type_S0 = servo.Type;
+                            // Get the device position min/max before any changes are made
+                            DevicePositionMin_S0 = servo.PositionMin;
+                            DevicePositionMax_S0 = servo.PositionMax;
 
                             Stopped_S0 = servo.Stopped;
                             Engaged_S0 = servo.Engaged;
@@ -3205,6 +3416,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             // Do this until we have a better list of Servos
                             servo.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
 
+                            Type_S1 = servo.Type;
+                            // Get the device position min/max before any changes are made
+                            DevicePositionMin_S1 = servo.PositionMin;
+                            DevicePositionMax_S1 = servo.PositionMax;
+
                             Stopped_S1 = servo.Stopped;
                             Engaged_S1 = servo.Engaged;
                             SpeedRamping_S1 = servo.SpeedRamping;
@@ -3230,6 +3446,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             // HACK(crhodes)
                             // Do this until we have a better list of Servos
                             servo.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
+
+                            Type_S2 = servo.Type;
+                            // Get the device position min/max before any changes are made
+                            DevicePositionMin_S2 = servo.PositionMin;
+                            DevicePositionMax_S2 = servo.PositionMax;
 
                             Stopped_S2 = servo.Stopped;
                             Engaged_S2 = servo.Engaged;
@@ -3257,6 +3478,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             // Do this until we have a better list of Servos
                             servo.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
 
+                            Type_S3 = servo.Type;
+                            // Get the device position min/max before any changes are made
+                            DevicePositionMin_S3 = servo.PositionMin;
+                            DevicePositionMax_S3 = servo.PositionMax;
+
                             Stopped_S3 = servo.Stopped;
                             Engaged_S3 = servo.Engaged;
                             SpeedRamping_S3 = servo.SpeedRamping;
@@ -3281,7 +3507,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         case 4:
                             // HACK(crhodes)
                             // Do this until we have a better list of Servos
-                            servo.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
+                            //servo.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
+
+                            Type_S4 = servo.Type;
+                            // Get the device position min/max before any changes are made
+                            DevicePositionMin_S4 = servo.PositionMin;
+                            DevicePositionMax_S4 = servo.PositionMax;
 
                             Stopped_S4 = servo.Stopped;
                             Engaged_S4 = servo.Engaged;
@@ -3307,7 +3538,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         case 5:
                             // HACK(crhodes)
                             // Do this until we have a better list of Servos
-                            servo.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
+                            //servo.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
+
+                            Type_S5 = servo.Type;
+                            // Get the device position min/max before any changes are made
+                            DevicePositionMin_S5 = servo.PositionMin;
+                            DevicePositionMax_S5 = servo.PositionMax;
 
                             Stopped_S5 = servo.Stopped;
                             Engaged_S5 = servo.Engaged;
@@ -3333,7 +3569,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         case 6:
                             // HACK(crhodes)
                             // Do this until we have a better list of Servos
-                            servo.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
+                            //servo.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
+
+                            Type_S6 = servo.Type;
+                            // Get the device position min/max before any changes are made
+                            DevicePositionMin_S6 = servo.PositionMin;
+                            DevicePositionMax_S6 = servo.PositionMax;
 
                             Stopped_S6 = servo.Stopped;
                             Engaged_S6 = servo.Engaged;
@@ -3359,7 +3600,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         case 7:
                             // HACK(crhodes)
                             // Do this until we have a better list of Servos
-                            servo.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
+                            //servo.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
+
+                            Type_S7 = servo.Type;
+                            // Get the device position min/max before any changes are made
+                            DevicePositionMin_S7 = servo.PositionMin;
+                            DevicePositionMax_S7 = servo.PositionMax;
 
                             Stopped_S7 = servo.Stopped;
                             Engaged_S7 = servo.Engaged;

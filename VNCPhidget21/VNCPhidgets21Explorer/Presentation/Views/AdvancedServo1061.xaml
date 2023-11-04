@@ -228,9 +228,11 @@
                         Max="{Binding AccelerationMax_S0, Mode=TwoWay}"/>
 
                     <controls:PositionControl 
+                        DeviceMin="{Binding DevicePositionMin_S0, Mode=OneWay}" 
                         Min="{Binding PositionMin_S0, Mode=TwoWay}" 
                         Current="{Binding Position_S0, Mode=TwoWay}" 
-                        Max="{Binding PositionMax_S0, Mode=TwoWay}"/>
+                        Max="{Binding PositionMax_S0, Mode=TwoWay}"
+                        DeviceMax="{Binding DevicePositionMax_S0, Mode=OneWay}"/>
                                        
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
@@ -321,9 +323,11 @@
                         Max="{Binding AccelerationMax_S1, Mode=TwoWay}"/>
 
                     <controls:PositionControl 
+                        DeviceMin="{Binding DevicePositionMin_S1, Mode=OneWay}" 
                         Min="{Binding PositionMin_S1, Mode=TwoWay}" 
                         Current="{Binding Position_S1, Mode=TwoWay}" 
-                        Max="{Binding PositionMax_S1, Mode=TwoWay}"/>
+                        Max="{Binding PositionMax_S1, Mode=TwoWay}"
+                        DeviceMax="{Binding DevicePositionMax_S1, Mode=OneWay}"/>
 
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
@@ -377,9 +381,11 @@
                         Max="{Binding AccelerationMax_S2, Mode=TwoWay}"/>
 
                     <controls:PositionControl 
+                        DeviceMin="{Binding DevicePositionMin_S2, Mode=OneWay}" 
                         Min="{Binding PositionMin_S2, Mode=TwoWay}" 
                         Current="{Binding Position_S2, Mode=TwoWay}" 
-                        Max="{Binding PositionMax_S2, Mode=TwoWay}"/>
+                        Max="{Binding PositionMax_S2, Mode=TwoWay}"
+                        DeviceMax="{Binding DevicePositionMax_S2, Mode=OneWay}"/>
 
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
@@ -433,9 +439,11 @@
                         Max="{Binding AccelerationMax_S3, Mode=TwoWay}"/>
 
                     <controls:PositionControl 
+                        DeviceMin="{Binding DevicePositionMin_S3, Mode=OneWay}" 
                         Min="{Binding PositionMin_S3, Mode=TwoWay}" 
                         Current="{Binding Position_S3, Mode=TwoWay}" 
-                        Max="{Binding PositionMax_S3, Mode=TwoWay}"/>
+                        Max="{Binding PositionMax_S3, Mode=TwoWay}"
+                        DeviceMax="{Binding DevicePositionMax_S3, Mode=OneWay}"/>
 
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
