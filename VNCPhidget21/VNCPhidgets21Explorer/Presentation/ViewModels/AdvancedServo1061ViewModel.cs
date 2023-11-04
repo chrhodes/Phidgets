@@ -232,7 +232,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-
         private Dictionary<string, Resources.AdvancedServoPerformance> _availableAdvancedServoPerformances;
         public Dictionary<string, Resources.AdvancedServoPerformance> AvailableAdvancedServoPerformances
         {
@@ -414,6 +413,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        //public Phidgets.ServoServo.ServoType ServoTypeEnum;
 
         private IEnumerable<Resources.AdvancedServo> _AdvancedServoTypes;
         public IEnumerable<Resources.AdvancedServo> AdvancedServoTypes

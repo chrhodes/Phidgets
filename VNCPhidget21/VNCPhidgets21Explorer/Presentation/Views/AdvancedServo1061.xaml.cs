@@ -55,7 +55,7 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 
             Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
-        
+
         #endregion
 
         #region Enums (None)
@@ -70,6 +70,7 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 
         #region Fields and Properties (None)
 
+        public Phidgets.ServoServo.ServoType ServoTypeEnum;
 
         #endregion
 
@@ -79,7 +80,7 @@ namespace VNCPhidgets21Explorer.Presentation.Views
         #endregion
 
         #region Commands (None)
-         
+
         #endregion
 
         #region Public Methods (None)
@@ -95,8 +96,8 @@ namespace VNCPhidgets21Explorer.Presentation.Views
         #region Private Methods (None)
 
 
-        #endregion   
-        
+        #endregion
+
         #region IInstanceCount
 
         private static int _instanceCountV;
