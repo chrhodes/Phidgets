@@ -33,7 +33,7 @@
     Background="{StaticResource PositionControlBackground}"
     
     d:DesignStyle="{StaticResource vncDesignStyleUC}" 
-    Height="85"
+    Height="110"
 >  
 
     <!-- TODO:(crhodes)
@@ -71,33 +71,38 @@
     <!-- </UserControl.DataContext> -->
 
     <dxlc:LayoutGroup x:Name="lgMain"  View="GroupBox" Orientation="Vertical" Header="Position" Padding="-10">
+        
         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
-        <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
-            <!--<dxe:TextEdit Text="{Binding Min, Mode=TwoWay}" HorizontalContentAlignment="Right"  />-->
-                <dxe:SpinEdit Value="{Binding Min, Mode=TwoWay}" Increment="10"
-                                          MinValue="0"
-                                          MaxValue="{Binding Current, Mode=OneWay}" 
-                                          IsFloatValue="False" />
-            </dxlc:LayoutItem>
-
-        <dxlc:LayoutItem Label="Current" LabelPosition="Top" LabelHorizontalAlignment="Center" >
-            <dxe:TextEdit Text="{Binding Current, Mode=TwoWay}" HorizontalAlignment="Center" />
-        </dxlc:LayoutItem>
-
-        <dxlc:LayoutItem Label="Max" LabelPosition="Top" >
-            <!--<dxe:TextEdit Text="{Binding Max, Mode=TwoWay}" />-->
+            <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Right">
                 <!--<dxe:TextEdit Text="{Binding Min, Mode=TwoWay}" HorizontalContentAlignment="Right"  />-->
-                <dxe:SpinEdit Value="{Binding Max, Mode=TwoWay}" Increment="10"
-                                          MinValue="{Binding Current, Mode=OneWay}"
-                                          MaxValue="{Binding Max, Mode=OneWay}" 
-                                          IsFloatValue="False" />
+                    <dxe:SpinEdit Value="{Binding Min, Mode=TwoWay}" Increment="10"
+                                              MinValue="0"
+                                              MaxValue="{Binding Current, Mode=OneWay}" 
+                                              IsFloatValue="False" />
             </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem Label="Current" LabelPosition="Top" LabelHorizontalAlignment="Center" >
+                <!--<dxe:TextEdit Text="{Binding Current, Mode=TwoWay}" HorizontalAlignment="Center" />-->
+                <dxe:SpinEdit Value="{Binding Current, Mode=TwoWay}" Increment="1"
+                                              MinValue="0"                                              
+                                              IsFloatValue="False" />
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem Label="Max" LabelPosition="Top" >
+                <!--<dxe:TextEdit Text="{Binding Max, Mode=TwoWay}" />-->
+                    <!--<dxe:TextEdit Text="{Binding Min, Mode=TwoWay}" HorizontalContentAlignment="Right"  />-->
+                    <dxe:SpinEdit Value="{Binding Max, Mode=TwoWay}" Increment="10"
+                                              MinValue="{Binding Current, Mode=OneWay}"
+                                              MaxValue="{Binding Max, Mode=OneWay}" 
+                                              IsFloatValue="False" />
+                </dxlc:LayoutItem>
 
         </dxlc:LayoutGroup>
+        
         <dxe:TrackBarEdit Value="{Binding Current, Mode=TwoWay}" Minimum="{Binding Min}" Maximum="{Binding Max}"
                           MouseDoubleClick="TrackBarEdit_MouseDoubleClick" EditValueType="{x:Type sys:Decimal}"
-                          ToolTip="Double Click to Center"/>
+                          ToolTip="Double Click to Center" />
     </dxlc:LayoutGroup>
 
 </vncmvvm:ViewBase>

@@ -3176,7 +3176,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         case 0:
                             // HACK(crhodes)
                             // Do this until we have a better list of Servos
-                            servo.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
+                            //servo.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
                             //servo.Type = Phidgets.ServoServo.ServoType.RAW_us_MODE;
 
                             Stopped_S0 = servo.Stopped;

@@ -8,8 +8,8 @@
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <!--<Nullable>enable</Nullable>-->
 	  <VersionPrefix>1.0.0</VersionPrefix>
-	  <VersionSuffix>indevelopment-v5</VersionSuffix>
-      <FileVersion>2023.11.02A</FileVersion>
+	  <VersionSuffix>indevelopment-v6</VersionSuffix>
+      <FileVersion>2023.11.03A</FileVersion>
       <Company>VNC</Company>
 	  <Description>Phidget21 Explorer</Description>
   </PropertyGroup>
@@ -123,16 +123,7 @@
       <ProjectReference Include="..\..\VNC.Phidget\VNC.Phidget.csproj" />
       <ProjectReference Include="..\VNCPhidgets21Explorer.Core\VNCPhidgets21Explorer.Core.csproj" />
     </ItemGroup>
-
-    <!--<ItemGroup>
-        <ProjectReference Include="..\VNCPhidgets21Explorer.Core\VNCPhidgets21Explorer.Core.csproj" />  
-        <ProjectReference Include="..\VNCPhidgets21Explorer.Domain\VNCPhidgets21Explorer.Domain.csproj" />
-    </ItemGroup>-->
-    
-  <!--<ItemGroup>
-    <ProjectReference Include="..\..\vnc\VNC.Logging\VNC.Logging\VNC.Logging.csproj" />
-  </ItemGroup>-->
-  
+ 
   <ItemGroup>
     <Reference Include="Phidget21.NET">
       <HintPath>..\..\Libraries\Phidget21-windevel_2.1.8.20110615\phidget21-windevel\Phidget21.NET.dll</HintPath>
@@ -142,13 +133,6 @@
     <ItemGroup>
         <!-- Workaround for https://github.com/dotnet/wpf/issues/2648#issuecomment-635674683 -->
         <Reference Include="System.Web" />
-    </ItemGroup>    
-  
-  <!--<ItemGroup>
-    <None Update="ApplicationIcon-Right-Red.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>-->
+    </ItemGroup>
 
 </Project>
