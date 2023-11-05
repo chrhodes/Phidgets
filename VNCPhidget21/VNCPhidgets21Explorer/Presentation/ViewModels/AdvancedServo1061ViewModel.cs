@@ -84,6 +84,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             ConfigFileName_DoubleClick_Command = new DelegateCommand(ConfigFileName_DoubleClick);
             OpenAdvancedServoCommand = new DelegateCommand(OpenAdvancedServo, OpenAdvancedServoCanExecute);
+            RefreshAdvancedServoCommand = new DelegateCommand(RefreshAdvancedServo, RefreshAdvancedServoCanExecute);
             CloseAdvancedServoCommand = new DelegateCommand(CloseAdvancedServo, CloseAdvancedServoCanExecute);
 
             //ConfigureServoCommand = new DelegateCommand(ConfigureServo, ConfigureServoCanExecute);
@@ -2909,6 +2910,79 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
+        #region RefreshAdvancedServo Command
+
+        public DelegateCommand RefreshAdvancedServoCommand { get; set; }
+        // If using CommandParameter, figure out TYPE here and above
+        // and remove above declaration
+        //public DelegateCommand<TYPE> RefreshAdvancedServoCommand { get; set; }
+        //public TYPE RefreshAdvancedServoCommandParameter;
+        public string RefreshAdvancedServoContent { get; set; } = "Refresh";
+        public string RefreshAdvancedServoToolTip { get; set; } = "Refresh ToolTip";
+
+        // Can get fancy and use Resources
+        //public string RefreshAdvancedServoContent { get; set; } = "ViewName_RefreshAdvancedServoContent";
+        //public string RefreshAdvancedServoToolTip { get; set; } = "ViewName_RefreshAdvancedServoContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_RefreshAdvancedServoContent">RefreshAdvancedServo</system:String>
+        //    <system:String x:Key="ViewName_RefreshAdvancedServoContentToolTip">RefreshAdvancedServo ToolTip</system:String>  
+
+        // If using CommandParameter, figure out TYPE and fix above
+        //public void RefreshAdvancedServo(TYPE value)
+        public void RefreshAdvancedServo()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = "Cool, you called RefreshAdvancedServo";
+
+            UpdateAdvancedServoProperties();
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<RefreshAdvancedServoEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<RefreshAdvancedServoEvent>().Publish(
+            //      new RefreshAdvancedServoEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class RefreshAdvancedServoEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<RefreshAdvancedServoEvent>().Subscribe(RefreshAdvancedServo);
+
+            // End Cut Four
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        // If using CommandParameter, figure out TYPE and fix above
+        //public bool RefreshAdvancedServoCanExecute(TYPE value)
+        public bool RefreshAdvancedServoCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            if (DeviceAttached is not null)
+                return (Boolean)DeviceAttached;
+            else
+                return false;
+        }
+
+        #endregion
+
+        // End Cut One
+
         #region CloseAdvancedServo Command
 
         public DelegateCommand CloseAdvancedServoCommand { get; set; }
@@ -2971,6 +3045,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //ClearDigitalInputsAndOutputs();
 
             OpenAdvancedServoCommand.RaiseCanExecuteChanged();
+            RefreshAdvancedServoCommand.RaiseCanExecuteChanged();
             CloseAdvancedServoCommand.RaiseCanExecuteChanged();
             PlayPerformanceCommand.RaiseCanExecuteChanged();
             
@@ -3539,6 +3614,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
 
             OpenAdvancedServoCommand.RaiseCanExecuteChanged();
+            RefreshAdvancedServoCommand.RaiseCanExecuteChanged();
             CloseAdvancedServoCommand.RaiseCanExecuteChanged();
         }
 

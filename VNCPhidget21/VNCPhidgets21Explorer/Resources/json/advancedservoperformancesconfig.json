@@ -150,10 +150,54 @@
       ]
     },
     {
+      "Name": "Serial Skull Configure and Engage",
+      "Description": "Servo {0,1,2} Acceleration:5000, VelocityLimit:500, Engaged",
+      "PlayInParallel": false,
+      "ContinueWith": "Serial Skull Center",
+      "AdvancedServoSteps": [
+        { "ServoIndex": 0, "Acceleration": 5000, "VelocityLimit": 500, "Engaged": true },
+        { "ServoIndex": 1, "Acceleration": 5000, "VelocityLimit": 500, "Engaged": true },
+        { "ServoIndex": 2, "Acceleration": 5000, "VelocityLimit": 500, "Engaged": true }
+      ]
+    },
+    {
+      "Name": "Serial Skull Center",
+      "Description": "Servo {0,1,2} TargetPosition Center",
+      "PlayInParallel": false,
+      "ContinueWith": "",
+      "AdvancedServoSteps": [
+        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 110 },
+        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 115 },
+        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 120 }
+      ]
+    },
+    {
+      "Name": "Parallel Skull Configure and Engage",
+      "Description": "Servo {0,1,2} Acceleration:5000, VelocityLimit:500, Engaged",
+      "PlayInParallel": true,
+      "ContinueWith": "Parallel Skull Center",
+      "AdvancedServoSteps": [
+        { "ServoIndex": 0, "Acceleration": 5000, "VelocityLimit": 500, "Engaged": true },
+        { "ServoIndex": 1, "Acceleration": 5000, "VelocityLimit": 500, "Engaged": true },
+        { "ServoIndex": 2, "Acceleration": 5000, "VelocityLimit": 500, "Engaged": true }
+      ]
+    },
+    {
+      "Name": "Parallel Skull Center",
+      "Description": "Servo {0,1,2} TargetPosition Center",
+      "PlayInParallel": true,
+      "ContinueWith": "",
+      "AdvancedServoSteps": [
+        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 110 },
+        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 115 },
+        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 120 }
+      ]
+    },
+    {
       "Name": "Serial Configure and Engage",
       "Description": "Servo {0,1,2} Acceleration:5000, VelocityLimit:500, Engaged",
       "PlayInParallel": false,
-      "ContinueWith": "",
+      "ContinueWith": "Serial Center",
       "AdvancedServoSteps": [
         { "ServoIndex": 0, "Acceleration": 5000, "VelocityLimit": 500, "Engaged": true },
         { "ServoIndex": 1, "Acceleration": 5000, "VelocityLimit": 500, "Engaged": true },
@@ -164,7 +208,7 @@
       "Name": "Serial Center",
       "Description": "Servo {0,1,2} TargetPosition Center",
       "PlayInParallel": false,
-      "ContinueWith": "",
+      "ContinueWith": "Serial -80",
       "AdvancedServoSteps": [
         { "ServoIndex": 0, "Engaged": true, "TargetPosition": 120 },
         { "ServoIndex": 1, "Engaged": true, "TargetPosition": 114 },
@@ -175,7 +219,7 @@
       "Name": "Serial -80",
       "Description": "Servo {0,1,2} TargetPosition -80",
       "PlayInParallel": false,
-      "ContinueWith": "",
+      "ContinueWith": "Serial +80",
       "AdvancedServoSteps": [
         { "ServoIndex": 0, "Engaged": true, "TargetPosition": 40 },
         { "ServoIndex": 1, "Engaged": true, "TargetPosition": 34 },
@@ -183,10 +227,10 @@
       ]
     },
     {
-      "Name": "Serial POC +80",
+      "Name": "Serial +80",
       "Description": "Servo {0,1,2} TargetPosition +80",
       "PlayInParallel": false,
-      "ContinueWith": "",
+      "ContinueWith": "Serial Center and Disengage",
       "AdvancedServoSteps": [
         { "ServoIndex": 0, "Engaged": true, "TargetPosition": 200 },
         { "ServoIndex": 1, "Engaged": true, "TargetPosition": 194 },
@@ -194,10 +238,24 @@
       ]
     },
     {
+      "Name": "Serial Center and Disengage",
+      "Description": "Servo {0,1,2} TargetPosition Center, DisEngaged",
+      "PlayInParallel": false,
+      "ContinueWith": "",
+      "AdvancedServoSteps": [
+        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 120 },
+        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 114 },
+        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 132 },
+        { "ServoIndex": 0, "Engaged": false },
+        { "ServoIndex": 1, "Engaged": false },
+        { "ServoIndex": 2, "Engaged": false }
+      ]
+    },
+    {
       "Name": "Parallel Configure and Engage",
       "Description": "Servo {0,1,2} Acceleration:5000, VelocityLimit:500, Engaged",
       "PlayInParallel": true,
-      "ContinueWith": "",
+      "ContinueWith": "Parallel Center",
       "AdvancedServoSteps": [
         { "ServoIndex": 0, "Acceleration": 5000, "VelocityLimit": 500, "Engaged": true },
         { "ServoIndex": 1, "Acceleration": 5000, "VelocityLimit": 500, "Engaged": true },
@@ -208,7 +266,7 @@
       "Name": "Parallel Center",
       "Description": "Servo {0,1,2} TargetPosition Center",
       "PlayInParallel": true,
-      "ContinueWith": "",
+      "ContinueWith": "Parallel -80",
       "AdvancedServoSteps": [
         { "ServoIndex": 0, "Engaged": true, "TargetPosition": 120 },
         { "ServoIndex": 1, "Engaged": true, "TargetPosition": 114 },
@@ -219,7 +277,7 @@
       "Name": "Parallel -80",
       "Description": "Servo {0,1,2} TargetPosition -80",
       "PlayInParallel": true,
-      "ContinueWith": "",
+      "ContinueWith": "Parallel +80",
       "AdvancedServoSteps": [
         { "ServoIndex": 0, "Engaged": true, "TargetPosition": 40 },
         { "ServoIndex": 1, "Engaged": true, "TargetPosition": 34 },
@@ -230,11 +288,25 @@
       "Name": "Parallel +80",
       "Description": "Servo {0,1,2} TargetPosition +80",
       "PlayInParallel": true,
-      "ContinueWith": "",
+      "ContinueWith": "Parallel Center and Disengage",
       "AdvancedServoSteps": [
         { "ServoIndex": 0, "Engaged": true, "TargetPosition": 200 },
         { "ServoIndex": 1, "Engaged": true, "TargetPosition": 194 },
         { "ServoIndex": 2, "Engaged": true, "TargetPosition": 212 }
+      ]
+    },
+    {
+      "Name": "Parallel Center and Disengage",
+      "Description": "Servo {0,1,2} TargetPosition Center, DisEngaged",
+      "PlayInParallel": true,
+      "ContinueWith": "",
+      "AdvancedServoSteps": [
+        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 120 },
+        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 114 },
+        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 132 },
+        { "ServoIndex": 0, "Engaged": false },
+        { "ServoIndex": 1, "Engaged": false },
+        { "ServoIndex": 2, "Engaged": false }
       ]
     },
     {

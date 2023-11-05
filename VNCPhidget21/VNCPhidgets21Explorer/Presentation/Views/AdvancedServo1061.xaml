@@ -167,15 +167,22 @@
                 <dxlc:LayoutItem HorizontalAlignment="Right">
                     <Button 
 		                    Command="{Binding OpenAdvancedServoCommand }"
-		                    Content="{Binding OpenAdvancedServoContent, FallbackValue='OpenIK' }"
-		                    ToolTip="{Binding OpenAdvancedServoToolTip, FallbackValue='OpenIK ToolTip' }" />
+		                    Content="{Binding OpenAdvancedServoContent, FallbackValue='Open' }"
+		                    ToolTip="{Binding OpenAdvancedServoToolTip, FallbackValue='Open ToolTip' }" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem HorizontalAlignment="Right">
+                    <Button 
+                		Command="{Binding RefreshAdvancedServoCommand }"
+                		Content="{Binding RefreshAdvancedServoContent, FallbackValue='Refresh' }"
+                		ToolTip="{Binding RefreshAdvancedServoToolTip, FallbackValue='Refresh ToolTip' }" />
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem HorizontalAlignment="Right">
                     <Button 
                 		    Command="{Binding CloseAdvancedServoCommand }"
-                		    Content="{Binding CloseAdvancedServoContent, FallbackValue='CloseIK' }"
-                		    ToolTip="{Binding CloseAdvancedServoToolTip, FallbackValue='CloseIK ToolTip' }" />
+                		    Content="{Binding CloseAdvancedServoContent, FallbackValue='Close' }"
+                		    ToolTip="{Binding CloseAdvancedServoToolTip, FallbackValue='Close ToolTip' }" />
                 </dxlc:LayoutItem>
 
             </dxlc:LayoutGroup>
