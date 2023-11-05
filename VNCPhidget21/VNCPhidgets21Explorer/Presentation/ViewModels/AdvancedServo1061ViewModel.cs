@@ -5,8 +5,10 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
+using DevExpress.CodeParser;
 using DevExpress.Mvvm.Native;
 using DevExpress.Utils.Serializing;
 using DevExpress.XtraRichEdit.Commands;
@@ -3178,7 +3180,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         // If using CommandParameter, figure out TYPE and fix above
         //public void PlayPerformance(TYPE value)
-        public void PlayPerformance(string playAll)
+        public async void PlayPerformance(string playAll)
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
             // TODO(crhodes)
@@ -3189,7 +3191,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             {
                 foreach (AdvancedServoPerformance performance in AdvancedServoPerformances)
                 {
-                    PlayPerformanceLoops(performance);
+                    await PlayPerformanceLoops(performance);
                 }
             }
             else
@@ -3218,7 +3220,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         continueWith = nextPerformance.ContinueWith;
                         Log.Trace($"  Playing performance:{name} continueWidth:{continueWith}", Common.LOG_CATEGORY);
 
-                        PlayPerformanceLoops(nextPerformance);
+                        await PlayPerformanceLoops(nextPerformance);
 
                         if (AvailableAdvancedServoPerformances.ContainsKey(continueWith ?? ""))
                         {
@@ -3267,8 +3269,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void PlayPerformanceLoops(AdvancedServoPerformance advancedServoPerformance)
+        private async Task PlayPerformanceLoops(AdvancedServoPerformance advancedServoPerformance)
         {
+            Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
+
             for (int i = 0; i < advancedServoPerformance.Loops; i++)
             {
                 Log.Trace($"Loop:{i + 1}", Common.LOG_CATEGORY);
@@ -3287,53 +3291,53 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         {
                             case 0:
                                 //PerformStep(step, Acceleration_S0, VelocityLimit_S0, Engaged_S0, Position_S0);
-                                PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[0], step);
+                                await PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[0], step, 0);
                                 break;
 
                             case 1:
-                                PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[1], step);
+                                await PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[1], step, 1);
                                 //if (step.Engaged is not null) Engaged_S1 = step.Engaged;
                                 //Position_S1 = step.TargetPosition;
                                 //if (step.Duration > 0) Thread.Sleep(step.Duration);
                                 break;
 
                             case 2:
-                                PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[2], step);
+                                await PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[2], step, 2);
                                 //if (step.Engaged is not null) Engaged_S2 = step.Engaged;
                                 //Position_S2 = step.TargetPosition;
                                 //if (step.Duration > 0) Thread.Sleep(step.Duration);
                                 break;
 
                             case 3:
-                                PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[3], step);
+                                await PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[3], step, 3);
                                 //if (step.Engaged is not null) Engaged_S3 = step.Engaged;
                                 //Position_S3 = step.TargetPosition;
                                 //if (step.Duration > 0) Thread.Sleep(step.Duration);
                                 break;
 
                             case 4:
-                                PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[4], step);
+                                await PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[4], step, 4);
                                 //if (step.Engaged is not null) Engaged_S4 = step.Engaged;
                                 //Position_S4 = step.TargetPosition;
                                 //if (step.Duration > 0) Thread.Sleep(step.Duration);
                                 break;
 
                             case 5:
-                                PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[5], step);
+                                await PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[5], step, 5);
                                 //if (step.Engaged is not null) Engaged_S5 = step.Engaged;
                                 //Position_S5 = step.TargetPosition;
                                 //if (step.Duration > 0) Thread.Sleep(step.Duration);
                                 break;
 
                             case 6:
-                                PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[6], step);
+                                await PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[6], step, 6);
                                 //if (step.Engaged is not null) Engaged_S6 = step.Engaged;
                                 //Position_S6 = step.TargetPosition;
                                 //if (step.Duration > 0) Thread.Sleep(step.Duration);
                                 break;
 
                             case 7:
-                                PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[7], step);
+                                await PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[7], step, 7);
                                 //if (step.Engaged is not null) Engaged_S7 = step.Engaged;
                                 //Position_S7 = step.TargetPosition;
                                 //if (step.Duration > 0) Thread.Sleep(step.Duration);
@@ -3346,10 +3350,14 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     }
                 }
             }
+
+            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void PerformServoStep(AdvancedServoServo servo, AdvancedServoStep step)
+        private async Task PerformServoStep(AdvancedServoServo servo, AdvancedServoStep step, Int32 index)
         {
+            Int64 startTicks = Log.Trace($"Enter servo:{index}", Common.LOG_CATEGORY);
+
             try
             {
                 if (step.Acceleration is not null) servo.Acceleration = (Double)step.Acceleration;
@@ -3367,8 +3375,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     // so wait for Velocity to drop to zero
                     // NB. Velocity can be positive or negative depending on direction
                     //while (servo.Velocity != 0) { };
-                    while (servo.Position != step.TargetPosition) { Thread.Sleep(1); }
-
+                    await VerifyNewPositionAchieved(servo, (Double)step.TargetPosition);
+                     
                     if (step.Duration > 0) Thread.Sleep((Int32)step.Duration);
                 }
             }
@@ -3376,6 +3384,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             {
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
+
+            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private async Task VerifyNewPositionAchieved(AdvancedServoServo servo, double targetPosition)
+        {
+            while (servo.Position != targetPosition) { Thread.Sleep(1); }
         }
 
         // If using CommandParameter, figure out TYPE and fix above
