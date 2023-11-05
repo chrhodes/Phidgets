@@ -133,7 +133,7 @@
 
             <!--<dxlc:LayoutItem Label="Performances" LabelPosition="Top" HorizontalAlignment="Left" >-->
             <dxlc:LayoutItem HorizontalAlignment="Left" >
-                <dxe:ComboBoxEdit Width="150" 
+                <dxe:ComboBoxEdit Width="250" 
                                 ItemsSource="{Binding AdvancedServoPerformances}" DisplayMember="Name" 
                                 SelectedItem="{Binding SelectedAdvancedServoPerformance}"
                                 EditValue="{ Binding 

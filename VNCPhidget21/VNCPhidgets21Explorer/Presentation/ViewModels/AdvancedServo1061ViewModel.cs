@@ -29,7 +29,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
     public enum ServoType
     {
         DEFAULT,
-        RAW_us_MODE,
+        //RAW_us_MODE,
         HITEC_HS322HD,
         HITEC_HS5245MG,
         HITEC_805BB,
@@ -46,7 +46,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         FIRGELLI_L12_100_50_06_R,
         FIRGELLI_L12_100_100_06_R,
         USER_DEFINED,
-        INVALID
+        //INVALID
     }
 
     public class AdvancedServo1061ViewModel : EventViewModelBase, IAdvancedServo1061ViewModel, IInstanceCountVM
@@ -2727,13 +2727,15 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private void ActiveAdvancedServo_VelocityChange(object sender, VelocityChangeEventArgs e)
         {
+            var senderType = sender.GetType();
+
             Phidgets.AdvancedServo servo = sender as Phidgets.AdvancedServo;
             var index = e.Index;
             var velocity = e.Velocity;
 
             if (LogVelocityChangeEvents)
             {
-                Log.Trace($"VelocityChange index:{index} value:{velocity}", Common.LOG_CATEGORY);
+                Log.Trace($"VelocityChange index:{index} velocity:{velocity} position:{servo.servos[index].Position}", Common.LOG_CATEGORY);
             }
 
             switch (e.Index)
@@ -2784,7 +2786,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             if (LogPositionChangeEvents)
             {
-                Log.Trace($"PositionChange index:{index} value:{position}", Common.LOG_CATEGORY);
+                Log.Trace($"PositionChange index:{index} position:{position} velocity:{servo.servos[index].Velocity}", Common.LOG_CATEGORY);
             }
 
             switch (e.Index)
@@ -3353,15 +3355,21 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (step.Acceleration is not null) servo.Acceleration = (Double)step.Acceleration;
                 if (step.VelocityLimit is not null) servo.VelocityLimit = (Double)step.VelocityLimit;
                 if (step.Engaged is not null) servo.Engaged = (Boolean)step.Engaged;
+                //while (servo.Velocity != 0) { };
+
                 if (step.TargetPosition is not null)
                 {
                     servo.Position = (Double)step.TargetPosition;
-                    if (step.Duration > 0) Thread.Sleep((Int32)step.Duration);
+                    Thread.Sleep(1);
 
                     // HACK(crhodes)
                     // This is scary.  Movement may not have completed
                     // so wait for Velocity to drop to zero
-                    while (servo.Velocity > 0) { };
+                    // NB. Velocity can be positive or negative depending on direction
+                    //while (servo.Velocity != 0) { };
+                    while (servo.Position != step.TargetPosition) { Thread.Sleep(1); }
+
+                    if (step.Duration > 0) Thread.Sleep((Int32)step.Duration);
                 }
             }
             catch (Exception ex)
