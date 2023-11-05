@@ -3277,92 +3277,193 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             {
                 Log.Trace($"Loop:{i + 1}", Common.LOG_CATEGORY);
 
-                foreach (AdvancedServoStep step in advancedServoPerformance.AdvancedServoSteps)
+                if (advancedServoPerformance.PlayInParallel)
                 {
-                    if (LogPerformanceStep)
-                    {
-                        Log.Trace($"Servo:{step.ServoIndex} Acceleration:{step.Acceleration} VelocityLimit:{step.VelocityLimit}" +
-                            $" Engaged:{step.Engaged} TargetPosition:{step.TargetPosition} Duration:{step.Duration}", Common.LOG_CATEGORY);
-                    }
-
-                    try
-                    {
-                        switch (step.ServoIndex)
-                        {
-                            case 0:
-                                //PerformStep(step, Acceleration_S0, VelocityLimit_S0, Engaged_S0, Position_S0);
-                                await PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[0], step, 0);
-                                break;
-
-                            case 1:
-                                await PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[1], step, 1);
-                                //if (step.Engaged is not null) Engaged_S1 = step.Engaged;
-                                //Position_S1 = step.TargetPosition;
-                                //if (step.Duration > 0) Thread.Sleep(step.Duration);
-                                break;
-
-                            case 2:
-                                await PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[2], step, 2);
-                                //if (step.Engaged is not null) Engaged_S2 = step.Engaged;
-                                //Position_S2 = step.TargetPosition;
-                                //if (step.Duration > 0) Thread.Sleep(step.Duration);
-                                break;
-
-                            case 3:
-                                await Task.Run(() =>
-                                { 
-                                    Parallel.Invoke(
-                                        () => PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[0], step, 0),
-                                        () => PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[1], step, 1),
-                                        () => PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[2], step, 2)
-                                    );
-                                });
-                                //await PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[3], step, 3);
-                                //if (step.Engaged is not null) Engaged_S3 = step.Engaged;
-                                //Position_S3 = step.TargetPosition;
-                                //if (step.Duration > 0) Thread.Sleep(step.Duration);
-                                break;
-
-                            case 4:
-                                await PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[4], step, 4);
-                                //if (step.Engaged is not null) Engaged_S4 = step.Engaged;
-                                //Position_S4 = step.TargetPosition;
-                                //if (step.Duration > 0) Thread.Sleep(step.Duration);
-                                break;
-
-                            case 5:
-                                await PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[5], step, 5);
-                                //if (step.Engaged is not null) Engaged_S5 = step.Engaged;
-                                //Position_S5 = step.TargetPosition;
-                                //if (step.Duration > 0) Thread.Sleep(step.Duration);
-                                break;
-
-                            case 6:
-                                await PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[6], step, 6);
-                                //if (step.Engaged is not null) Engaged_S6 = step.Engaged;
-                                //Position_S6 = step.TargetPosition;
-                                //if (step.Duration > 0) Thread.Sleep(step.Duration);
-                                break;
-
-                            case 7:
-                                await PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[7], step, 7);
-                                //if (step.Engaged is not null) Engaged_S7 = step.Engaged;
-                                //Position_S7 = step.TargetPosition;
-                                //if (step.Duration > 0) Thread.Sleep(step.Duration);
-                                break;
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.Error(ex, Common.LOG_CATEGORY);
-                    }
+                    PlayPerformanceInParallel(advancedServoPerformance);
                 }
+                else
+                {
+                    PlayPerformanceInSequence(advancedServoPerformance);
+                }
+                
             }
 
             Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private async Task PerformServoStep(AdvancedServoServo servo, AdvancedServoStep step, Int32 index)
+        private async void PlayPerformanceInParallel(AdvancedServoPerformance advancedServoPerformance)
+        {
+            // TODO(crhodes)
+            // Figure out how to use Parallel.Foreach
+
+            Parallel.ForEach(advancedServoPerformance.AdvancedServoSteps, step =>
+            {
+                if (LogPerformanceStep)
+                {
+                    Log.Trace($"Servo:{step.ServoIndex} Acceleration:{step.Acceleration} VelocityLimit:{step.VelocityLimit}" +
+                        $" Engaged:{step.Engaged} TargetPosition:{step.TargetPosition} Duration:{step.Duration}", Common.LOG_CATEGORY);
+                }
+
+                try
+                {
+                    switch (step.ServoIndex)
+                    {
+                        case 0:
+                            PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[0], step, 0);
+                            break;
+
+                        case 1:
+                            PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[1], step, 1);
+                            break;
+
+                        case 2:
+                            PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[2], step, 2);
+                            break;
+
+                        case 3:
+                            PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[3], step, 3);
+                            break;
+
+                        case 4:
+                            PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[4], step, 4);
+                            break;
+
+                        case 5:
+                            PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[5], step, 5);
+                            break;
+
+                        case 6:
+                            PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[6], step, 6);
+                            break;
+
+                        case 7:
+                            PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[7], step, 7);
+                            break;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            });
+
+            //foreach (AdvancedServoStep step in advancedServoPerformance.AdvancedServoSteps)
+            //{
+            //    if (LogPerformanceStep)
+            //    {
+            //        Log.Trace($"Servo:{step.ServoIndex} Acceleration:{step.Acceleration} VelocityLimit:{step.VelocityLimit}" +
+            //            $" Engaged:{step.Engaged} TargetPosition:{step.TargetPosition} Duration:{step.Duration}", Common.LOG_CATEGORY);
+            //    }
+
+            //    try
+            //    {
+            //        switch (step.ServoIndex)
+            //        {
+            //            case 0:
+            //                PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[0], step, 0);
+            //                break;
+
+            //            case 1:
+            //                PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[1], step, 1);
+            //                break;
+
+            //            case 2:
+            //                PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[2], step, 2);
+            //                break;
+
+            //            case 3:
+            //                // HACK(crhodes)
+            //                // This is early POC
+            //                await Task.Run(() =>
+            //                {
+            //                    Parallel.Invoke(
+            //                        () => PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[0], step, 0),
+            //                        () => PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[1], step, 1),
+            //                        () => PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[2], step, 2)
+            //                    );
+            //                });
+            //                //PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[3], step, 3);
+            //                break;
+
+            //            case 4:
+            //                PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[4], step, 4);
+            //                break;
+
+            //            case 5:
+            //                PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[5], step, 5);
+            //                break;
+
+            //            case 6:
+            //                PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[6], step, 6);
+            //                break;
+
+            //            case 7:
+            //                PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[7], step, 7);
+            //                break;
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Log.Error(ex, Common.LOG_CATEGORY);
+            //    }
+            //}
+        }
+
+        private void PlayPerformanceInSequence(AdvancedServoPerformance advancedServoPerformance)
+        {
+            foreach (AdvancedServoStep step in advancedServoPerformance.AdvancedServoSteps)
+            {
+                if (LogPerformanceStep)
+                {
+                    Log.Trace($"Servo:{step.ServoIndex} Acceleration:{step.Acceleration} VelocityLimit:{step.VelocityLimit}" +
+                        $" Engaged:{step.Engaged} TargetPosition:{step.TargetPosition} Duration:{step.Duration}", Common.LOG_CATEGORY);
+                }
+
+                try
+                {
+                    switch (step.ServoIndex)
+                    {
+                        case 0:
+                            PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[0], step, 0);
+                            break;
+
+                        case 1:
+                            PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[1], step, 1);
+                            break;
+
+                        case 2:
+                             PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[2], step, 2);
+                            break;
+
+                        case 3:
+                            PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[3], step, 3);
+                            break;
+
+                        case 4:
+                            PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[4], step, 4);
+                            break;
+
+                        case 5:
+                            PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[5], step, 5);
+                            break;
+
+                        case 6:
+                            PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[6], step, 6);
+                            break;
+
+                        case 7:
+                            PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[7], step, 7);
+                            break;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void PerformServoStep(AdvancedServoServo servo, AdvancedServoStep step, Int32 index)
         {
             Int64 startTicks = Log.Trace($"Enter servo:{index}", Common.LOG_CATEGORY);
 
@@ -3371,19 +3472,17 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (step.Acceleration is not null) servo.Acceleration = (Double)step.Acceleration;
                 if (step.VelocityLimit is not null) servo.VelocityLimit = (Double)step.VelocityLimit;
                 if (step.Engaged is not null) servo.Engaged = (Boolean)step.Engaged;
-                //while (servo.Velocity != 0) { };
+
+                // TODO(crhodes)
+                // Maybe wait for servo Engaged to complete if not currently engaged
+                // View logs and see how often exceptions thrown.
 
                 if (step.TargetPosition is not null)
                 {
                     servo.Position = (Double)step.TargetPosition;
                     Thread.Sleep(1);
 
-                    // HACK(crhodes)
-                    // This is scary.  Movement may not have completed
-                    // so wait for Velocity to drop to zero
-                    // NB. Velocity can be positive or negative depending on direction
-                    //while (servo.Velocity != 0) { };
-                    await VerifyNewPositionAchieved(servo, (Double)step.TargetPosition);
+                    VerifyNewPositionAchieved(servo, (Double)step.TargetPosition);
                      
                     if (step.Duration > 0) Thread.Sleep((Int32)step.Duration);
                 }
@@ -3396,7 +3495,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private async Task VerifyNewPositionAchieved(AdvancedServoServo servo, double targetPosition)
+        private void VerifyNewPositionAchieved(AdvancedServoServo servo, double targetPosition)
         {
             while (servo.Position != targetPosition) { Thread.Sleep(1); }
         }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace VNCPhidgets21Explorer.Resources
+﻿namespace VNCPhidgets21Explorer.Resources
 {
     public class AdvancedServoPerformanceConfig
     {
@@ -11,6 +7,7 @@ namespace VNCPhidgets21Explorer.Resources
             new AdvancedServoPerformance
             {
                 Name="PerformanceServo0",
+                ContinueWith="PerformanceServo1",
 
                 AdvancedServoSteps = new[]
                 {
@@ -24,6 +21,7 @@ namespace VNCPhidgets21Explorer.Resources
             new AdvancedServoPerformance
             {
                 Name="PerformanceServo1",
+                ContinueWith="PerformanceServo2",
 
                 AdvancedServoSteps = new[]
                 {

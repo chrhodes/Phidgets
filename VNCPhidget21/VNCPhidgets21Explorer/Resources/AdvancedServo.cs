@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace VNCPhidgets21Explorer.Resources
+﻿namespace VNCPhidgets21Explorer.Resources
 {
     public class AdvancedServo
     {

@@ -4,6 +4,5 @@
   "Acceleration": null,
   "Velocity": null,
   "TargetPosition": null,
-  "Duration": 1000,
-  "Loops": 1
+  "Duration": 1000
 }

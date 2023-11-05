@@ -20,6 +20,11 @@ namespace VNCPhidgets21Explorer.Resources
         public Int32 Loops { get; set; } = 1;
 
         /// <summary>
+        /// Number of loops of Performance
+        /// </summary>
+        public Boolean PlayInParallel { get; set; } = false;
+
+        /// <summary>
         /// Name of performance to invoke at end of performance (optional)
         /// none, null, or empty string to stop
         /// </summary>
