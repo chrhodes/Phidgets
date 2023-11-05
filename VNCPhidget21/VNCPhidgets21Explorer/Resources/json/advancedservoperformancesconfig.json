@@ -130,6 +130,25 @@
       ]
     },
     {
+      "Name": "PerformanceServo 6",
+      "Description": "Servo {0,1,2} TargetPosition 90/20/160/90 no duration",
+      "ContinueWith": "",
+      "AdvancedServoSteps": [
+        { "ServoIndex": 0, "Acceleration": 5000, "VelocityLimit": 200, "Engaged": true },
+        { "ServoIndex": 1, "Acceleration": 5000, "VelocityLimit": 200, "Engaged": true },
+        { "ServoIndex": 2, "Acceleration": 5000, "VelocityLimit": 200, "Engaged": true },
+
+        { "ServoIndex": 3, "Engaged": true, "TargetPosition": 90 },
+        { "ServoIndex": 3, "Engaged": true, "TargetPosition": 20 },
+        { "ServoIndex": 3, "Engaged": true, "TargetPosition": 160 },
+        { "ServoIndex": 3, "Engaged": true, "TargetPosition": 90 }
+
+        //{ "ServoIndex": 0, "Engaged": false },
+        //{ "ServoIndex": 1, "Engaged": false },
+        //{ "ServoIndex": 2, "Engaged": false }
+      ]
+    },
+    {
       "Name": "PerformanceServo2 - Explore Acceleration 1",
       "Description": "VelocityLimit 20, Vary Acceleration {50,100,200,500}",
       "Loops": 1,

@@ -3309,7 +3309,15 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                                 break;
 
                             case 3:
-                                await PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[3], step, 3);
+                                await Task.Run(() =>
+                                { 
+                                    Parallel.Invoke(
+                                        () => PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[0], step, 0),
+                                        () => PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[1], step, 1),
+                                        () => PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[2], step, 2)
+                                    );
+                                });
+                                //await PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[3], step, 3);
                                 //if (step.Engaged is not null) Engaged_S3 = step.Engaged;
                                 //Position_S3 = step.TargetPosition;
                                 //if (step.Duration > 0) Thread.Sleep(step.Duration);
