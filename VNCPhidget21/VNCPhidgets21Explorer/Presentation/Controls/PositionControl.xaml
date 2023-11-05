@@ -79,7 +79,8 @@
             </dxlc:LayoutItem>
 
             <dxlc:LayoutItem Label="Device Max" LabelPosition="Top" HorizontalAlignment="Right">
-                <dxe:TextEdit Text="{Binding DeviceMax, Mode=TwoWay}" IsReadOnly="True" HorizontalContentAlignment="Right"  />
+                <dxe:TextEdit Text="{Binding DeviceMax, Mode=TwoWay}" IsReadOnly="True" HorizontalContentAlignment="Right"
+                              Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"/>
             </dxlc:LayoutItem>
 
         </dxlc:LayoutGroup>
@@ -108,6 +109,7 @@
                     <dxe:SpinEdit Value="{Binding Max, Mode=TwoWay}" Increment="10"
                                 MinValue="{Binding Current, Mode=OneWay}"
                                 MaxValue="{Binding DeviceMax, Mode=OneWay}" 
+                                  Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"
                                 IsFloatValue="False" />
                 </dxlc:LayoutItem>
 

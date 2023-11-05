@@ -26,6 +26,29 @@ using VNCPhidgets21Explorer.Resources;
 
 namespace VNCPhidgets21Explorer.Presentation.ViewModels
 {
+    public enum ServoType
+    {
+        DEFAULT,
+        RAW_us_MODE,
+        HITEC_HS322HD,
+        HITEC_HS5245MG,
+        HITEC_805BB,
+        HITEC_HS422,
+        TOWERPRO_MG90,
+        HITEC_HSR1425CR,
+        HITEC_HS785HB,
+        HITEC_HS485HB,
+        HITEC_HS645MG,
+        HITEC_815BB,
+        FIRGELLI_L12_30_50_06_R,
+        FIRGELLI_L12_50_100_06_R,
+        FIRGELLI_L12_50_210_06_R,
+        FIRGELLI_L12_100_50_06_R,
+        FIRGELLI_L12_100_100_06_R,
+        USER_DEFINED,
+        INVALID
+    }
+
     public class AdvancedServo1061ViewModel : EventViewModelBase, IAdvancedServo1061ViewModel, IInstanceCountVM
     {
         #region Constructors, Initialization, and Load
@@ -215,7 +238,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-
 
         private Resources.AdvancedServoPerformance? _selectedAdvancedServoPerformance;
         public Resources.AdvancedServoPerformance? SelectedAdvancedServoPerformance
@@ -446,6 +468,22 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        //private ServoServo.ServoType _servoTypeEnum;
+        //public ServoServo.ServoType ServoTypeEnum
+        //{
+        //    get => _servoTypeEnum;
+        //    set
+        //    {
+        //        if (_servoTypeEnum == value)
+        //        {
+        //            return;
+        //        }
+
+        //        _servoTypeEnum = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
         private Resources.AdvancedServo _selectedAdvancedServo;
         public Resources.AdvancedServo SelectedAdvancedServo
         {
@@ -553,6 +591,22 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _typeS0 = value;
                 OnPropertyChanged();
+
+                if (ActiveAdvancedServo is not null)
+                {
+                    if (ActiveAdvancedServo.AdvancedServo is not null)
+                    {
+                        ActiveAdvancedServo.AdvancedServo.servos[0].Type = value;
+                        // HACK(crhodes)
+                        // This is a bit much as only one servo changed type
+                        // TODO(crhodes)
+                        // Break UpdateAdvancedServoProperties into pieces
+                        // that can be called from here.
+                        UpdateAdvancedServoProperties();     
+                    }
+                    
+                }
+                
             }
         }
         
@@ -3398,12 +3452,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             Current_S0 = servo.Current;
 
                             AccelerationMin_S0 = servo.AccelerationMin;
-                            Acceleration_S0 = servo.Acceleration = initialAcceleration;
+                            //Acceleration_S0 = servo.Acceleration;// = servo.AccelerationMin;// = initialAcceleration;
                             AccelerationMax_S0 = servo.AccelerationMax;
 
                             VelocityMin_S0 = servo.VelocityMin;
                             Velocity_S0 = servo.Velocity;
-                            VelocityLimit_S0 = servo.VelocityLimit = initialVelocityLimit;
+                            VelocityLimit_S0 = servo.VelocityLimit = servo.VelocityMin;// = initialVelocityLimit;
                             VelocityMax_S0 = servo.VelocityMax;
 
                             PositionMin_S0 = servo.PositionMin;
@@ -3415,7 +3469,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         case 1:
                             // HACK(crhodes)
                             // Do this until we have a better list of Servos
-                            servo.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
+                            //servo.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
 
                             Type_S1 = servo.Type;
                             // Get the device position min/max before any changes are made
@@ -3429,12 +3483,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             Current_S1 = servo.Current;
 
                             AccelerationMin_S1 = servo.AccelerationMin;
-                            Acceleration_S1 = servo.Acceleration = initialAcceleration;
+                            //Acceleration_S1 = servo.Acceleration;// = servo.AccelerationMin;// = initialAcceleration;
                             AccelerationMax_S1 = servo.AccelerationMax;
 
                             VelocityMin_S1 = servo.VelocityMin;
                             Velocity_S1 = servo.Velocity;
-                            VelocityLimit_S1 = servo.VelocityLimit = initialVelocityLimit;
+                            VelocityLimit_S1 = servo.VelocityLimit = servo.VelocityMin;// = initialVelocityLimit;
                             VelocityMax_S1 = servo.VelocityMax;
 
                             PositionMin_S1 = servo.PositionMin;
@@ -3446,7 +3500,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         case 2:
                             // HACK(crhodes)
                             // Do this until we have a better list of Servos
-                            servo.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
+                            //servo.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
 
                             Type_S2 = servo.Type;
                             // Get the device position min/max before any changes are made
@@ -3460,12 +3514,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             Current_S2 = servo.Current;
 
                             AccelerationMin_S2 = servo.AccelerationMin;
-                            Acceleration_S2 = servo.Acceleration = initialAcceleration;
+                            //Acceleration_S2 = servo.Acceleration;// = servo.AccelerationMin;// = initialAcceleration;
                             AccelerationMax_S2 = servo.AccelerationMax;
 
                             VelocityMin_S2 = servo.VelocityMin;
                             Velocity_S2 = servo.Velocity;
-                            VelocityLimit_S2 = servo.VelocityLimit = initialVelocityLimit;
+                            VelocityLimit_S2 = servo.VelocityLimit = servo.VelocityMin;// = initialVelocityLimit;
                             VelocityMax_S2 = servo.VelocityMax;
 
                             PositionMin_S2 = servo.PositionMin;
@@ -3477,7 +3531,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         case 3:
                             // HACK(crhodes)
                             // Do this until we have a better list of Servos
-                            servo.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
+                            //servo.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
 
                             Type_S3 = servo.Type;
                             // Get the device position min/max before any changes are made
@@ -3491,12 +3545,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             Current_S3 = servo.Current;
 
                             AccelerationMin_S3 = servo.AccelerationMin;
-                            Acceleration_S3 = servo.Acceleration = initialAcceleration;
+                            //Acceleration_S3 = servo.Acceleration;// = servo.AccelerationMin;// = initialAcceleration;
                             AccelerationMax_S3 = servo.AccelerationMax;
 
                             VelocityMin_S3 = servo.VelocityMin;
                             Velocity_S3 = servo.Velocity;
-                            VelocityLimit_S3 = servo.VelocityLimit = initialVelocityLimit;
+                            VelocityLimit_S3 = servo.VelocityLimit = servo.VelocityMin;// = initialVelocityLimit;
                             VelocityMax_S3 = servo.VelocityMax;
 
                             PositionMin_S3 = servo.PositionMin;
@@ -3522,12 +3576,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             Current_S4 = servo.Current;
 
                             AccelerationMin_S4 = servo.AccelerationMin;
-                            Acceleration_S4 = servo.Acceleration = initialAcceleration;
+                            //Acceleration_S4 = servo.Acceleration = servo.AccelerationMin;// = initialAcceleration;
                             AccelerationMax_S4 = servo.AccelerationMax;
 
                             VelocityMin_S4 = servo.VelocityMin;
                             Velocity_S4 = servo.Velocity;
-                            VelocityLimit_S4 = servo.VelocityLimit = initialVelocityLimit;
+                            VelocityLimit_S4 = servo.VelocityLimit = servo.VelocityMin;// = initialVelocityLimit;
                             VelocityMax_S4 = servo.VelocityMax;
 
                             PositionMin_S4 = servo.PositionMin;
@@ -3553,12 +3607,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             Current_S5 = servo.Current;
 
                             AccelerationMin_S5 = servo.AccelerationMin;
-                            Acceleration_S5 = servo.Acceleration = initialAcceleration;
+                            //Acceleration_S5 = servo.Acceleration;// = servo.AccelerationMin;// = initialAcceleration;
                             AccelerationMax_S5 = servo.AccelerationMax;
 
                             VelocityMin_S5 = servo.VelocityMin;
                             Velocity_S5 = servo.Velocity;
-                            VelocityLimit_S5 = servo.VelocityLimit = initialVelocityLimit;
+                            VelocityLimit_S5 = servo.VelocityLimit = servo.VelocityMin;// = initialVelocityLimit;
                             VelocityMax_S5 = servo.VelocityMax;
 
                             PositionMin_S5 = servo.PositionMin;
@@ -3584,12 +3638,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             Current_S6 = servo.Current;
 
                             AccelerationMin_S6 = servo.AccelerationMin;
-                            Acceleration_S6 = servo.Acceleration = initialAcceleration;
+                            //Acceleration_S6 = servo.Acceleration;// = servo.AccelerationMin;// = initialAcceleration;
                             AccelerationMax_S6 = servo.AccelerationMax;
 
                             VelocityMin_S6 = servo.VelocityMin;
                             Velocity_S6 = servo.Velocity;
-                            VelocityLimit_S6 = servo.VelocityLimit = initialVelocityLimit;
+                            VelocityLimit_S6 = servo.VelocityLimit = servo.VelocityMin;// = initialVelocityLimit;
                             VelocityMax_S6 = servo.VelocityMax;
 
                             PositionMin_S6 = servo.PositionMin;
@@ -3615,12 +3669,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             Current_S7 = servo.Current;
 
                             AccelerationMin_S7 = servo.AccelerationMin;
-                            Acceleration_S7 = servo.Acceleration = initialAcceleration;
+                            //Acceleration_S7 = servo.Acceleration;// = servo.AccelerationMin;// = initialAcceleration;
                             AccelerationMax_S7 = servo.AccelerationMax;
 
                             VelocityMin_S7 = servo.VelocityMin;
                             Velocity_S7 = servo.Velocity;
-                            VelocityLimit_S7 = servo.VelocityLimit = initialVelocityLimit;
+                            VelocityLimit_S7 = servo.VelocityLimit = servo.VelocityMin;// = initialVelocityLimit;
                             VelocityMax_S7 = servo.VelocityMax;
 
                             PositionMin_S7 = servo.PositionMin;

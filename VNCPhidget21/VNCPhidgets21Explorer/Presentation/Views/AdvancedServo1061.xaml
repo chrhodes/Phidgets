@@ -73,7 +73,7 @@
         <!-- <Label Content="{Binding Name}" /> -->
         <!-- </StackPanel> -->
         <!-- </DataTemplate> -->
-
+        <localc:SelectedItemToEnumConverter x:Key="SelectedItemToEnumConverter" />
     </vncmvvm:ViewBase.Resources>
     
     <!-- Can declare ViewModel in Xaml -->
@@ -191,14 +191,10 @@
                     <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">-->
                     <dxe:CheckEdit
                             Content="Log PositionChange Events"
-                            IsChecked="{Binding DisplayPositionChangeEvents, Mode=TwoWay}" />
+                            IsChecked="{Binding LogPositionChangeEvents, Mode=TwoWay}" />
                     <dxe:CheckEdit
                             Content="Log VelocityChange Events"
-                            IsChecked="{Binding DisplayVelocityChangeEvents, Mode=TwoWay}" />
-                    <!--<dxe:CheckEdit x:Name="ceSensorChangedEvents"
-                            Content="DisplaySensorChangeEvents"
-                            IsChecked="{Binding DisplaySensorChangeEvents, Mode=TwoWay}" />-->
-                    <!--</StackPanel>-->
+                            IsChecked="{Binding LogVelocityChangeEvents, Mode=TwoWay}" />
                 </dxlc:LayoutGroup>
                 
             </dxlc:LayoutGroup>
@@ -208,12 +204,18 @@
 
                 <dxlc:LayoutGroup View="GroupBox" Orientation="Vertical" Header="Servo S0" Padding="-5" >
 
-                    <dxlc:LayoutItem Label="Servo Types" LabelPosition="Top">
+                    <!--<dxlc:LayoutItem Label="Servo Types" LabelPosition="Top">
                         <dxe:ComboBoxEdit ItemsSource="{Binding AdvancedServoTypes}" DisplayMember="Name" />
-                    </dxlc:LayoutItem>
+                    </dxlc:LayoutItem>-->
 
                     <dxlc:LayoutItem Label="Servo Types" LabelPosition="Top">
-                        <dxe:ComboBoxEdit ItemSource="{Binding Source={vncenum:EnumBindingSource {x:Type phidget:ServoServo.ServoType}}}"/>
+                        <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
+                                          SelectedIndex="0"
+                                          EditValue="{ Binding Path=Type_S0,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={StaticResource SelectedItemToEnumConverter} }" />
+                        <!--<dxe:ComboBoxEdit ItemsSource="{Binding ServoTypeEnum}"/>-->
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="Type" LabelPosition="Top">

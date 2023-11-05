@@ -70,7 +70,7 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 
         #region Fields and Properties (None)
 
-        public Phidgets.ServoServo.ServoType ServoTypeEnum;
+        //public Phidgets.ServoServo.ServoType ServoTypeEnum;
 
         #endregion
 
