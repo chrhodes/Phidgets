@@ -69,6 +69,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+
         private void InitializeViewModel()
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
@@ -83,8 +84,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //
 
             ConfigFileName_DoubleClick_Command = new DelegateCommand(ConfigFileName_DoubleClick);
+            PerformanceFileName_DoubleClick_Command = new DelegateCommand(PerformanceFileName_DoubleClick);
+
             OpenAdvancedServoCommand = new DelegateCommand(OpenAdvancedServo, OpenAdvancedServoCanExecute);
             RefreshAdvancedServoCommand = new DelegateCommand(RefreshAdvancedServo, RefreshAdvancedServoCanExecute);
+            SetAdvancedServoDefaultsCommand = new DelegateCommand<string>(SetAdvancedServoDefaults, SetAdvancedServoDefaultsCanExecute);
             CloseAdvancedServoCommand = new DelegateCommand(CloseAdvancedServo, CloseAdvancedServoCanExecute);
 
             //ConfigureServoCommand = new DelegateCommand(ConfigureServo, ConfigureServoCanExecute);
@@ -98,7 +102,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             ConfigFileName = "phidgetconfig.json";
             PerformanceConfigFileName = "advancedservoperformancesconfig.json";
+
             LoadUIConfig();
+            LoadPerformancesConfig();
 
             //SayHelloCommand = new DelegateCommand(
             //    SayHello, SayHelloCanExecute);
@@ -121,19 +127,25 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             this.Hosts = phidgetConfig.Hosts.ToList();
 
-            jsonString = File.ReadAllText(PerformanceConfigFileName);
+            Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+        }
 
-            Resources.AdvancedServoPerformanceConfig? performancesConfig 
+        private void LoadPerformancesConfig()
+        {
+            Int64 startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
+
+            var jsonOptions = new JsonSerializerOptions { ReadCommentHandling = JsonCommentHandling.Skip };
+
+            string jsonString = File.ReadAllText(PerformanceConfigFileName);
+
+            Resources.AdvancedServoPerformanceConfig? performancesConfig
                 = JsonSerializer.Deserialize<Resources.AdvancedServoPerformanceConfig>(jsonString, jsonOptions);
 
             this.AdvancedServoPerformances = performancesConfig.AdvancedServoPerformances.ToList();
-            //this.AdvancedServoPerformancesL = performancesConfig.AdvancedServoPerformances.ToList();
 
-            AvailableAdvancedServoPerformances = 
+            AvailableAdvancedServoPerformances =
                 performancesConfig.AdvancedServoPerformances
-                .ToDictionary(k => k.Name, v => v); 
-
-            //this.Sensors2 = phidgetConfig.Sensors.ToList();
+                .ToDictionary(k => k.Name, v => v);
 
             Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -606,10 +618,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         // Break UpdateAdvancedServoProperties into pieces
                         // that can be called from here.
                         UpdateAdvancedServoProperties();     
-                    }
-                    
-                }
-                
+                    }                    
+                }                
             }
         }
         
@@ -868,6 +878,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _typeS1 = value;
                 OnPropertyChanged();
+
+                if (ActiveAdvancedServo is not null)
+                {
+                    if (ActiveAdvancedServo.AdvancedServo is not null)
+                    {
+                        ActiveAdvancedServo.AdvancedServo.servos[1].Type = value;
+                        // HACK(crhodes)
+                        // This is a bit much as only one servo changed type
+                        // TODO(crhodes)
+                        // Break UpdateAdvancedServoProperties into pieces
+                        // that can be called from here.
+                        UpdateAdvancedServoProperties();
+                    }
+                }
             }
         }
 
@@ -1121,6 +1145,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _typeS2 = value;
                 OnPropertyChanged();
+
+                if (ActiveAdvancedServo is not null)
+                {
+                    if (ActiveAdvancedServo.AdvancedServo is not null)
+                    {
+                        ActiveAdvancedServo.AdvancedServo.servos[2].Type = value;
+                        // HACK(crhodes)
+                        // This is a bit much as only one servo changed type
+                        // TODO(crhodes)
+                        // Break UpdateAdvancedServoProperties into pieces
+                        // that can be called from here.
+                        UpdateAdvancedServoProperties();
+                    }
+                }
             }
         }
 
@@ -1374,6 +1412,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _typeS3 = value;
                 OnPropertyChanged();
+
+                if (ActiveAdvancedServo is not null)
+                {
+                    if (ActiveAdvancedServo.AdvancedServo is not null)
+                    {
+                        ActiveAdvancedServo.AdvancedServo.servos[3].Type = value;
+                        // HACK(crhodes)
+                        // This is a bit much as only one servo changed type
+                        // TODO(crhodes)
+                        // Break UpdateAdvancedServoProperties into pieces
+                        // that can be called from here.
+                        UpdateAdvancedServoProperties();
+                    }
+                }
             }
         }
 
@@ -1628,6 +1680,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _typeS4 = value;
                 OnPropertyChanged();
+
+                if (ActiveAdvancedServo is not null)
+                {
+                    if (ActiveAdvancedServo.AdvancedServo is not null)
+                    {
+                        ActiveAdvancedServo.AdvancedServo.servos[4].Type = value;
+                        // HACK(crhodes)
+                        // This is a bit much as only one servo changed type
+                        // TODO(crhodes)
+                        // Break UpdateAdvancedServoProperties into pieces
+                        // that can be called from here.
+                        UpdateAdvancedServoProperties();
+                    }
+                }
             }
         }
 
@@ -1881,6 +1947,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _typeS5 = value;
                 OnPropertyChanged();
+
+                if (ActiveAdvancedServo is not null)
+                {
+                    if (ActiveAdvancedServo.AdvancedServo is not null)
+                    {
+                        ActiveAdvancedServo.AdvancedServo.servos[5].Type = value;
+                        // HACK(crhodes)
+                        // This is a bit much as only one servo changed type
+                        // TODO(crhodes)
+                        // Break UpdateAdvancedServoProperties into pieces
+                        // that can be called from here.
+                        UpdateAdvancedServoProperties();
+                    }
+                }
             }
         }
 
@@ -2133,6 +2213,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _typeS6 = value;
                 OnPropertyChanged();
+
+                if (ActiveAdvancedServo is not null)
+                {
+                    if (ActiveAdvancedServo.AdvancedServo is not null)
+                    {
+                        ActiveAdvancedServo.AdvancedServo.servos[6].Type = value;
+                        // HACK(crhodes)
+                        // This is a bit much as only one servo changed type
+                        // TODO(crhodes)
+                        // Break UpdateAdvancedServoProperties into pieces
+                        // that can be called from here.
+                        UpdateAdvancedServoProperties();
+                    }
+                }
             }
         }
 
@@ -2385,6 +2479,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _typeS7 = value;
                 OnPropertyChanged();
+
+                if (ActiveAdvancedServo is not null)
+                {
+                    if (ActiveAdvancedServo.AdvancedServo is not null)
+                    {
+                        ActiveAdvancedServo.AdvancedServo.servos[7].Type = value;
+                        // HACK(crhodes)
+                        // This is a bit much as only one servo changed type
+                        // TODO(crhodes)
+                        // Break UpdateAdvancedServoProperties into pieces
+                        // that can be called from here.
+                        UpdateAdvancedServoProperties();
+                    }
+                }
             }
         }
 
@@ -2637,10 +2745,18 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         #region Command ConfigFileName DoubleClick
 
         public DelegateCommand ConfigFileName_DoubleClick_Command { get; set; }
+        public DelegateCommand PerformanceFileName_DoubleClick_Command { get; set; }
 
         public void ConfigFileName_DoubleClick()
         {
             Message = "ConfigFileName_DoubleClick";
+        }
+
+        private void PerformanceFileName_DoubleClick()
+        {
+            Message = "PerformanceFileName_DoubleClick";
+
+            LoadPerformancesConfig();
         }
 
         #endregion
@@ -2937,7 +3053,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Do something amazing.
             Message = "Cool, you called RefreshAdvancedServo";
 
-            UpdateAdvancedServoProperties();
+            RefreshAdvancedServoUIProperties();
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -2981,7 +3097,145 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
-        // End Cut One
+        #region SetAdvancedServoDefaults Command
+
+        public DelegateCommand<string> SetAdvancedServoDefaultsCommand { get; set; }
+        //public string SetAdvancedServoDefaultsCommandParameter;
+        public string SetAdvancedServoDefaultsContent { get; set; } = "SetAdvancedServoDefaults";
+        public string SetAdvancedServoDefaultsToolTip { get; set; } = "SetAdvancedServoDefaults ToolTip";
+
+        // Can get fancy and use Resources
+        //public string SetAdvancedServoDefaultsContent { get; set; } = "ViewName_SetAdvancedServoDefaultsContent";
+        //public string SetAdvancedServoDefaultsToolTip { get; set; } = "ViewName_SetAdvancedServoDefaultsContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_SetAdvancedServoDefaultsContent">SetAdvancedServoDefaults</system:String>
+        //    <system:String x:Key="ViewName_SetAdvancedServoDefaultsContentToolTip">SetAdvancedServoDefaults ToolTip</system:String>  
+
+        public void SetAdvancedServoDefaults(string servoID)
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = $"Cool, you called SetAdvancedServoDefaults from servo {servoID}";
+
+            AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
+            Phidgets.AdvancedServoServo servo = null;
+
+            Int32 servoIndex = Int32.Parse(servoID);
+            servo = servos[servoIndex];
+
+            // NOTE(crhodes)
+            // Should be safe to get Acceleration, Velocity, and Position here
+            // Device is Engaged
+
+            try
+            {
+                switch (servoIndex)
+                {
+                    case 0:
+                        Acceleration_S0 = AccelerationMin_S0;
+                        VelocityLimit_S0 = VelocityMin_S0 == 0 ? 10 : VelocityMin_S0;
+                        Position_S0 = (PositionMax_S0 - PositionMin_S0) / 2;
+
+                        break;
+
+                    case 1:
+                        Acceleration_S1 = AccelerationMin_S1;
+                        VelocityLimit_S1 = VelocityMin_S1 == 0 ? 10 : VelocityMin_S1;
+                        Position_S1 = (PositionMax_S1 - PositionMin_S1) / 2;
+
+                        break;
+
+                    case 2:
+                        Acceleration_S2 = AccelerationMin_S2;
+                        VelocityLimit_S2 = VelocityMin_S2 == 0 ? 10 : VelocityMin_S2;
+                        Position_S2 = (PositionMax_S2 - PositionMin_S2) / 2;
+
+                        break;
+
+                    case 3:
+                        Acceleration_S3 = AccelerationMin_S3;
+                        VelocityLimit_S3 = VelocityMin_S3 == 0 ? 10 : VelocityMin_S3;
+                        Position_S3 = (PositionMax_S3 - PositionMin_S3) / 2;
+
+                        break;
+
+                    case 4:
+                        Acceleration_S4 = AccelerationMin_S4;
+                        VelocityLimit_S4 = VelocityMin_S4 == 0 ? 10 : VelocityMin_S4;
+                        Position_S4 = (PositionMax_S4 - PositionMin_S4) / 2;
+
+                        break;
+
+                    case 5:
+                        Acceleration_S5 = AccelerationMin_S5;
+                        VelocityLimit_S5 = VelocityMin_S5 == 0 ? 10 : VelocityMin_S5;
+                        Position_S5 = (PositionMax_S5 - PositionMin_S5) / 2;
+
+                        break;
+
+                    case 6:
+                        Acceleration_S6 = AccelerationMin_S6;
+                        VelocityLimit_S6 = VelocityMin_S6 == 0 ? 10 : VelocityMin_S6;
+                        Position_S6 = (PositionMax_S6 - PositionMin_S6) / 2;
+
+                        break;
+
+                    case 7:
+                        Acceleration_S7 = AccelerationMin_S7;
+                        VelocityLimit_S7 = VelocityMin_S7 == 0 ? 10 : VelocityMin_S7;
+                        Position_S7 = (PositionMax_S7 - PositionMin_S7) / 2;
+
+                        break;
+
+                    default:
+                        Log.Trace($"UpdateAdvancedServoProperties count:{servos.Count}", Common.LOG_CATEGORY);
+                        break;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<SetAdvancedServoDefaultsEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<SetAdvancedServoDefaultsEvent>().Publish(
+            //      new SetAdvancedServoDefaultsEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class SetAdvancedServoDefaultsEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<SetAdvancedServoDefaultsEvent>().Subscribe(SetAdvancedServoDefaults);
+
+            // End Cut Four
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool SetAdvancedServoDefaultsCanExecute(string value)
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            return true;
+        }
+
+        #endregion
 
         #region CloseAdvancedServo Command
 
@@ -3622,278 +3876,505 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             if ((Boolean)DeviceAttached)
             {
-                //DeviceAttached = ActiveAdvancedServo.AdvancedServo.Attached;
-
                 AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
                 Phidgets.AdvancedServoServo servo = null;
 
                 ServoCount = servos.Count;
 
-                for (int i = 0; i < ServoCount; i++)
+                try
                 {
-                    servo = servos[i];
-
-                    // TODO(crhodes)
-                    // Should probably set some defaults here
-
-                    var initialAcceleration = 100;
-                    var initialVelocityLimit = 100;
-
-                    switch (i)
+                    for (int i = 0; i < ServoCount; i++)
                     {
-                        case 0:
-                            // HACK(crhodes)
-                            // Do this until we have a better list of Servos
-                            //servo.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
-                            //servo.Type = Phidgets.ServoServo.ServoType.RAW_us_MODE;
-                            Type_S0 = servo.Type;
-                            // Get the device position min/max before any changes are made
-                            DevicePositionMin_S0 = servo.PositionMin;
-                            DevicePositionMax_S0 = servo.PositionMax;
-
-                            Stopped_S0 = servo.Stopped;
-                            Engaged_S0 = servo.Engaged;
-                            SpeedRamping_S0 = servo.SpeedRamping;
-
-                            Current_S0 = servo.Current;
-
-                            AccelerationMin_S0 = servo.AccelerationMin;
-                            //Acceleration_S0 = servo.Acceleration;// = servo.AccelerationMin;// = initialAcceleration;
-                            AccelerationMax_S0 = servo.AccelerationMax;
-
-                            VelocityMin_S0 = servo.VelocityMin;
-                            Velocity_S0 = servo.Velocity;
-                            VelocityLimit_S0 = servo.VelocityLimit = servo.VelocityMin;// = initialVelocityLimit;
-                            VelocityMax_S0 = servo.VelocityMax;
+                        servo = servos[i];
 
-                            PositionMin_S0 = servo.PositionMin;
-                            Position_S0 = 90;
-                            PositionMax_S0 = servo.PositionMax;
-
-                            break;
-
-                        case 1:
-                            // HACK(crhodes)
-                            // Do this until we have a better list of Servos
-                            //servo.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
-
-                            Type_S1 = servo.Type;
-                            // Get the device position min/max before any changes are made
-                            DevicePositionMin_S1 = servo.PositionMin;
-                            DevicePositionMax_S1 = servo.PositionMax;
+                        // NOTE(crhodes)
+                        // Avoid setting defaults here.
+                        // Put those in a performance or behind a button
 
-                            Stopped_S1 = servo.Stopped;
-                            Engaged_S1 = servo.Engaged;
-                            SpeedRamping_S1 = servo.SpeedRamping;
+                        switch (i)
+                        {
+                            case 0:
+                                Type_S0 = servo.Type;
+                                // Get the device position min/max before any changes are made
+                                DevicePositionMin_S0 = servo.PositionMin;
+                                DevicePositionMax_S0 = servo.PositionMax;
+
+                                Stopped_S0 = servo.Stopped;
+                                Engaged_S0 = servo.Engaged;
+                                SpeedRamping_S0 = servo.SpeedRamping;
 
-                            Current_S1 = servo.Current;
-
-                            AccelerationMin_S1 = servo.AccelerationMin;
-                            //Acceleration_S1 = servo.Acceleration;// = servo.AccelerationMin;// = initialAcceleration;
-                            AccelerationMax_S1 = servo.AccelerationMax;
-
-                            VelocityMin_S1 = servo.VelocityMin;
-                            Velocity_S1 = servo.Velocity;
-                            VelocityLimit_S1 = servo.VelocityLimit = servo.VelocityMin;// = initialVelocityLimit;
-                            VelocityMax_S1 = servo.VelocityMax;
+                                Current_S0 = servo.Current;
 
-                            PositionMin_S1 = servo.PositionMin;
-                            Position_S1 = 90;
-                            PositionMax_S1 = servo.PositionMax;
-
-                            break;
-
-                        case 2:
-                            // HACK(crhodes)
-                            // Do this until we have a better list of Servos
-                            //servo.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
-
-                            Type_S2 = servo.Type;
-                            // Get the device position min/max before any changes are made
-                            DevicePositionMin_S2 = servo.PositionMin;
-                            DevicePositionMax_S2 = servo.PositionMax;
+                                AccelerationMin_S0 = servo.AccelerationMin;
+                                //Acceleration_S0 = servo.Acceleration;// = servo.AccelerationMin;// = initialAcceleration;
+                                AccelerationMax_S0 = servo.AccelerationMax;
 
-                            Stopped_S2 = servo.Stopped;
-                            Engaged_S2 = servo.Engaged;
-                            SpeedRamping_S2 = servo.SpeedRamping;
+                                VelocityMin_S0 = servo.VelocityMin;
+                                Velocity_S0 = servo.Velocity;
+                                VelocityLimit_S0 = servo.VelocityLimit = servo.VelocityMin;
+                                VelocityMax_S0 = servo.VelocityMax;
 
-                            Current_S2 = servo.Current;
-
-                            AccelerationMin_S2 = servo.AccelerationMin;
-                            //Acceleration_S2 = servo.Acceleration;// = servo.AccelerationMin;// = initialAcceleration;
-                            AccelerationMax_S2 = servo.AccelerationMax;
-
-                            VelocityMin_S2 = servo.VelocityMin;
-                            Velocity_S2 = servo.Velocity;
-                            VelocityLimit_S2 = servo.VelocityLimit = servo.VelocityMin;// = initialVelocityLimit;
-                            VelocityMax_S2 = servo.VelocityMax;
+                                PositionMin_S0 = servo.PositionMin;
+                                //Position_S0 = 90;
+                                PositionMax_S0 = servo.PositionMax;
 
-                            PositionMin_S2 = servo.PositionMin;
-                            Position_S2 = 90;
-                            PositionMax_S2 = servo.PositionMax;
-
-                            break;
+                                break;
 
-                        case 3:
-                            // HACK(crhodes)
-                            // Do this until we have a better list of Servos
-                            //servo.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
-
-                            Type_S3 = servo.Type;
-                            // Get the device position min/max before any changes are made
-                            DevicePositionMin_S3 = servo.PositionMin;
-                            DevicePositionMax_S3 = servo.PositionMax;
+                            case 1:
+                                Type_S1 = servo.Type;
+                                // Get the device position min/max before any changes are made
+                                DevicePositionMin_S1 = servo.PositionMin;
+                                DevicePositionMax_S1 = servo.PositionMax;
 
-                            Stopped_S3 = servo.Stopped;
-                            Engaged_S3 = servo.Engaged;
-                            SpeedRamping_S3 = servo.SpeedRamping;
+                                Stopped_S1 = servo.Stopped;
+                                Engaged_S1 = servo.Engaged;
+                                SpeedRamping_S1 = servo.SpeedRamping;
 
-                            Current_S3 = servo.Current;
+                                Current_S1 = servo.Current;
 
-                            AccelerationMin_S3 = servo.AccelerationMin;
-                            //Acceleration_S3 = servo.Acceleration;// = servo.AccelerationMin;// = initialAcceleration;
-                            AccelerationMax_S3 = servo.AccelerationMax;
+                                AccelerationMin_S1 = servo.AccelerationMin;
+                                //Acceleration_S1 = servo.Acceleration;// = servo.AccelerationMin;// = initialAcceleration;
+                                AccelerationMax_S1 = servo.AccelerationMax;
 
-                            VelocityMin_S3 = servo.VelocityMin;
-                            Velocity_S3 = servo.Velocity;
-                            VelocityLimit_S3 = servo.VelocityLimit = servo.VelocityMin;// = initialVelocityLimit;
-                            VelocityMax_S3 = servo.VelocityMax;
+                                VelocityMin_S1 = servo.VelocityMin;
+                                Velocity_S1 = servo.Velocity;
+                                VelocityLimit_S1 = servo.VelocityLimit = servo.VelocityMin;
+                                VelocityMax_S1 = servo.VelocityMax;
 
-                            PositionMin_S3 = servo.PositionMin;
-                            Position_S3 = 90;
-                            PositionMax_S3 = servo.PositionMax;
+                                PositionMin_S1 = servo.PositionMin;
+                                //Position_S1 = 90;
+                                PositionMax_S1 = servo.PositionMax;
 
-                            break;
+                                break;
 
-                        case 4:
-                            // HACK(crhodes)
-                            // Do this until we have a better list of Servos
-                            //servo.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
+                            case 2:
+                                Type_S2 = servo.Type;
+                                // Get the device position min/max before any changes are made
+                                DevicePositionMin_S2 = servo.PositionMin;
+                                DevicePositionMax_S2 = servo.PositionMax;
 
-                            Type_S4 = servo.Type;
-                            // Get the device position min/max before any changes are made
-                            DevicePositionMin_S4 = servo.PositionMin;
-                            DevicePositionMax_S4 = servo.PositionMax;
+                                Stopped_S2 = servo.Stopped;
+                                Engaged_S2 = servo.Engaged;
+                                SpeedRamping_S2 = servo.SpeedRamping;
 
-                            Stopped_S4 = servo.Stopped;
-                            Engaged_S4 = servo.Engaged;
-                            SpeedRamping_S4 = servo.SpeedRamping;
+                                Current_S2 = servo.Current;
 
-                            Current_S4 = servo.Current;
+                                AccelerationMin_S2 = servo.AccelerationMin;
+                                //Acceleration_S2 = servo.Acceleration;// = servo.AccelerationMin;// = initialAcceleration;
+                                AccelerationMax_S2 = servo.AccelerationMax;
 
-                            AccelerationMin_S4 = servo.AccelerationMin;
-                            //Acceleration_S4 = servo.Acceleration = servo.AccelerationMin;// = initialAcceleration;
-                            AccelerationMax_S4 = servo.AccelerationMax;
+                                VelocityMin_S2 = servo.VelocityMin;
+                                Velocity_S2 = servo.Velocity;
+                                VelocityLimit_S2 = servo.VelocityLimit = servo.VelocityMin;
+                                VelocityMax_S2 = servo.VelocityMax;
 
-                            VelocityMin_S4 = servo.VelocityMin;
-                            Velocity_S4 = servo.Velocity;
-                            VelocityLimit_S4 = servo.VelocityLimit = servo.VelocityMin;// = initialVelocityLimit;
-                            VelocityMax_S4 = servo.VelocityMax;
+                                PositionMin_S2 = servo.PositionMin;
+                                //Position_S2 = 90;
+                                PositionMax_S2 = servo.PositionMax;
 
-                            PositionMin_S4 = servo.PositionMin;
-                            Position_S4 = 90;
-                            PositionMax_S4 = servo.PositionMax;
+                                break;
 
-                            break;
+                            case 3:
+                                Type_S3 = servo.Type;
+                                // Get the device position min/max before any changes are made
+                                DevicePositionMin_S3 = servo.PositionMin;
+                                DevicePositionMax_S3 = servo.PositionMax;
 
-                        case 5:
-                            // HACK(crhodes)
-                            // Do this until we have a better list of Servos
-                            //servo.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
+                                Stopped_S3 = servo.Stopped;
+                                Engaged_S3 = servo.Engaged;
+                                SpeedRamping_S3 = servo.SpeedRamping;
 
-                            Type_S5 = servo.Type;
-                            // Get the device position min/max before any changes are made
-                            DevicePositionMin_S5 = servo.PositionMin;
-                            DevicePositionMax_S5 = servo.PositionMax;
+                                Current_S3 = servo.Current;
 
-                            Stopped_S5 = servo.Stopped;
-                            Engaged_S5 = servo.Engaged;
-                            SpeedRamping_S5 = servo.SpeedRamping;
+                                AccelerationMin_S3 = servo.AccelerationMin;
+                                //Acceleration_S3 = servo.Acceleration;// = servo.AccelerationMin;// = initialAcceleration;
+                                AccelerationMax_S3 = servo.AccelerationMax;
 
-                            Current_S5 = servo.Current;
+                                VelocityMin_S3 = servo.VelocityMin;
+                                Velocity_S3 = servo.Velocity;
+                                VelocityLimit_S3 = servo.VelocityLimit = servo.VelocityMin;
+                                VelocityMax_S3 = servo.VelocityMax;
 
-                            AccelerationMin_S5 = servo.AccelerationMin;
-                            //Acceleration_S5 = servo.Acceleration;// = servo.AccelerationMin;// = initialAcceleration;
-                            AccelerationMax_S5 = servo.AccelerationMax;
+                                PositionMin_S3 = servo.PositionMin;
+                                //Position_S3 = 90;
+                                PositionMax_S3 = servo.PositionMax;
 
-                            VelocityMin_S5 = servo.VelocityMin;
-                            Velocity_S5 = servo.Velocity;
-                            VelocityLimit_S5 = servo.VelocityLimit = servo.VelocityMin;// = initialVelocityLimit;
-                            VelocityMax_S5 = servo.VelocityMax;
+                                break;
 
-                            PositionMin_S5 = servo.PositionMin;
-                            Position_S5 = 90;
-                            PositionMax_S5 = servo.PositionMax;
+                            case 4:
+                                Type_S4 = servo.Type;
+                                // Get the device position min/max before any changes are made
+                                DevicePositionMin_S4 = servo.PositionMin;
+                                DevicePositionMax_S4 = servo.PositionMax;
 
-                            break;
+                                Stopped_S4 = servo.Stopped;
+                                Engaged_S4 = servo.Engaged;
+                                SpeedRamping_S4 = servo.SpeedRamping;
 
-                        case 6:
-                            // HACK(crhodes)
-                            // Do this until we have a better list of Servos
-                            //servo.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
+                                Current_S4 = servo.Current;
 
-                            Type_S6 = servo.Type;
-                            // Get the device position min/max before any changes are made
-                            DevicePositionMin_S6 = servo.PositionMin;
-                            DevicePositionMax_S6 = servo.PositionMax;
+                                AccelerationMin_S4 = servo.AccelerationMin;
+                                //Acceleration_S4 = servo.Acceleration = servo.AccelerationMin;// = initialAcceleration;
+                                AccelerationMax_S4 = servo.AccelerationMax;
 
-                            Stopped_S6 = servo.Stopped;
-                            Engaged_S6 = servo.Engaged;
-                            SpeedRamping_S6 = servo.SpeedRamping;
+                                VelocityMin_S4 = servo.VelocityMin;
+                                Velocity_S4 = servo.Velocity;
+                                VelocityLimit_S4 = servo.VelocityLimit = servo.VelocityMin;
+                                VelocityMax_S4 = servo.VelocityMax;
 
-                            Current_S6 = servo.Current;
+                                PositionMin_S4 = servo.PositionMin;
+                                //Position_S4 = 90;
+                                PositionMax_S4 = servo.PositionMax;
 
-                            AccelerationMin_S6 = servo.AccelerationMin;
-                            //Acceleration_S6 = servo.Acceleration;// = servo.AccelerationMin;// = initialAcceleration;
-                            AccelerationMax_S6 = servo.AccelerationMax;
+                                break;
 
-                            VelocityMin_S6 = servo.VelocityMin;
-                            Velocity_S6 = servo.Velocity;
-                            VelocityLimit_S6 = servo.VelocityLimit = servo.VelocityMin;// = initialVelocityLimit;
-                            VelocityMax_S6 = servo.VelocityMax;
+                            case 5:
+                                Type_S5 = servo.Type;
+                                // Get the device position min/max before any changes are made
+                                DevicePositionMin_S5 = servo.PositionMin;
+                                DevicePositionMax_S5 = servo.PositionMax;
 
-                            PositionMin_S6 = servo.PositionMin;
-                            Position_S6 = 90;
-                            PositionMax_S6 = servo.PositionMax;
+                                Stopped_S5 = servo.Stopped;
+                                Engaged_S5 = servo.Engaged;
+                                SpeedRamping_S5 = servo.SpeedRamping;
 
-                            break;
+                                Current_S5 = servo.Current;
 
-                        case 7:
-                            // HACK(crhodes)
-                            // Do this until we have a better list of Servos
-                            //servo.Type = Phidgets.ServoServo.ServoType.HITEC_HS322HD;
+                                AccelerationMin_S5 = servo.AccelerationMin;
+                                //Acceleration_S5 = servo.Acceleration;// = servo.AccelerationMin;// = initialAcceleration;
+                                AccelerationMax_S5 = servo.AccelerationMax;
 
-                            Type_S7 = servo.Type;
-                            // Get the device position min/max before any changes are made
-                            DevicePositionMin_S7 = servo.PositionMin;
-                            DevicePositionMax_S7 = servo.PositionMax;
+                                VelocityMin_S5 = servo.VelocityMin;
+                                Velocity_S5 = servo.Velocity;
+                                VelocityLimit_S5 = servo.VelocityLimit = servo.VelocityMin;
+                                VelocityMax_S5 = servo.VelocityMax;
 
-                            Stopped_S7 = servo.Stopped;
-                            Engaged_S7 = servo.Engaged;
-                            SpeedRamping_S7 = servo.SpeedRamping;
+                                PositionMin_S5 = servo.PositionMin;
+                                //Position_S5 = 90;
+                                PositionMax_S5 = servo.PositionMax;
 
-                            Current_S7 = servo.Current;
+                                break;
 
-                            AccelerationMin_S7 = servo.AccelerationMin;
-                            //Acceleration_S7 = servo.Acceleration;// = servo.AccelerationMin;// = initialAcceleration;
-                            AccelerationMax_S7 = servo.AccelerationMax;
+                            case 6:
+                                Type_S6 = servo.Type;
+                                // Get the device position min/max before any changes are made
+                                DevicePositionMin_S6 = servo.PositionMin;
+                                DevicePositionMax_S6 = servo.PositionMax;
 
-                            VelocityMin_S7 = servo.VelocityMin;
-                            Velocity_S7 = servo.Velocity;
-                            VelocityLimit_S7 = servo.VelocityLimit = servo.VelocityMin;// = initialVelocityLimit;
-                            VelocityMax_S7 = servo.VelocityMax;
+                                Stopped_S6 = servo.Stopped;
+                                Engaged_S6 = servo.Engaged;
+                                SpeedRamping_S6 = servo.SpeedRamping;
 
-                            PositionMin_S7 = servo.PositionMin;
-                            Position_S7 = 90;
-                            PositionMax_S7 = servo.PositionMax;
+                                Current_S6 = servo.Current;
 
-                            break;
+                                AccelerationMin_S6 = servo.AccelerationMin;
+                                //Acceleration_S6 = servo.Acceleration;// = servo.AccelerationMin;// = initialAcceleration;
+                                AccelerationMax_S6 = servo.AccelerationMax;
 
-                        default:
-                            Log.Trace($"UpdateAdvancedServoProperties count:{servos.Count}", Common.LOG_CATEGORY);
-                            break;
+                                VelocityMin_S6 = servo.VelocityMin;
+                                Velocity_S6 = servo.Velocity;
+                                VelocityLimit_S6 = servo.VelocityLimit = servo.VelocityMin;
+                                VelocityMax_S6 = servo.VelocityMax;
 
+                                PositionMin_S6 = servo.PositionMin;
+                                //Position_S6 = 90;
+                                PositionMax_S6 = servo.PositionMax;
+
+                                break;
+
+                            case 7:
+                                Type_S7 = servo.Type;
+                                // Get the device position min/max before any changes are made
+                                DevicePositionMin_S7 = servo.PositionMin;
+                                DevicePositionMax_S7 = servo.PositionMax;
+
+                                Stopped_S7 = servo.Stopped;
+                                Engaged_S7 = servo.Engaged;
+                                SpeedRamping_S7 = servo.SpeedRamping;
+
+                                Current_S7 = servo.Current;
+
+                                AccelerationMin_S7 = servo.AccelerationMin;
+                                //Acceleration_S7 = servo.Acceleration;// = servo.AccelerationMin;// = initialAcceleration;
+                                AccelerationMax_S7 = servo.AccelerationMax;
+
+                                VelocityMin_S7 = servo.VelocityMin;
+                                Velocity_S7 = servo.Velocity;
+                                VelocityLimit_S7 = servo.VelocityLimit = servo.VelocityMin;
+                                VelocityMax_S7 = servo.VelocityMax;
+
+                                PositionMin_S7 = servo.PositionMin;
+                                //Position_S7 = 90;
+                                PositionMax_S7 = servo.PositionMax;
+
+                                break;
+
+                            default:
+                                Log.Trace($"UpdateAdvancedServoProperties count:{servos.Count}", Common.LOG_CATEGORY);
+                                break;
+
+                        }
                     }
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+            else
+            {
+                DeviceAttached = null;
+                InitializAdvancedServoUI();
+            }
+        }
+
+        private void RefreshAdvancedServoUIProperties()
+        {
+            if ((Boolean)DeviceAttached)
+            {
+                AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
+                Phidgets.AdvancedServoServo servo = null;
+
+                ServoCount = servos.Count;
+
+                try
+                {
+                    for (int i = 0; i < ServoCount; i++)
+                    {
+                        servo = servos[i];
+
+                        // NOTE(crhodes)
+                        // Should be safe to get Acceleration, Velocity, and Position here
+                        // Device is Engaged
+
+                        switch (i)
+                        {
+                            case 0:
+                                Type_S0 = servo.Type;
+
+                                DevicePositionMin_S0 = servo.PositionMin;
+                                DevicePositionMax_S0 = servo.PositionMax;
+
+                                Stopped_S0 = servo.Stopped;
+                                Engaged_S0 = servo.Engaged;
+                                SpeedRamping_S0 = servo.SpeedRamping;
+
+                                Current_S0 = servo.Current;
+
+                                AccelerationMin_S0 = servo.AccelerationMin;
+                                Acceleration_S0 = servo.Acceleration;
+                                AccelerationMax_S0 = servo.AccelerationMax;
+
+                                VelocityMin_S0 = servo.VelocityMin;
+                                Velocity_S0 = servo.Velocity;
+                                VelocityLimit_S0 = servo.VelocityLimit;
+                                VelocityMax_S0 = servo.VelocityMax;
+
+                                PositionMin_S0 = servo.PositionMin;
+                                Position_S0 = servo.Position;
+                                PositionMax_S0 = servo.PositionMax;
+
+                                break;
+
+                            case 1:
+                                Type_S1 = servo.Type;
+
+                                DevicePositionMin_S1 = servo.PositionMin;
+                                DevicePositionMax_S1 = servo.PositionMax;
+
+                                Stopped_S1 = servo.Stopped;
+                                Engaged_S1 = servo.Engaged;
+                                SpeedRamping_S1 = servo.SpeedRamping;
+
+                                Current_S1 = servo.Current;
+
+                                AccelerationMin_S1 = servo.AccelerationMin;
+                                Acceleration_S1 = servo.Acceleration;
+                                AccelerationMax_S1 = servo.AccelerationMax;
+
+                                VelocityMin_S1 = servo.VelocityMin;
+                                Velocity_S1 = servo.Velocity;
+                                VelocityLimit_S1 = servo.VelocityLimit;
+                                VelocityMax_S1 = servo.VelocityMax;
+
+                                PositionMin_S1 = servo.PositionMin;
+                                Position_S1 = servo.Position;
+                                PositionMax_S1 = servo.PositionMax;
+
+                                break;
+
+                            case 2:
+                                Type_S2 = servo.Type;
+
+                                DevicePositionMin_S2 = servo.PositionMin;
+                                DevicePositionMax_S2 = servo.PositionMax;
+
+                                Stopped_S2 = servo.Stopped;
+                                Engaged_S2 = servo.Engaged;
+                                SpeedRamping_S2 = servo.SpeedRamping;
+
+                                Current_S2 = servo.Current;
+
+                                AccelerationMin_S2 = servo.AccelerationMin;
+                                Acceleration_S2 = servo.Acceleration;
+                                AccelerationMax_S2 = servo.AccelerationMax;
+
+                                VelocityMin_S2 = servo.VelocityMin;
+                                Velocity_S2 = servo.Velocity;
+                                VelocityLimit_S2 = servo.VelocityLimit;
+                                VelocityMax_S2 = servo.VelocityMax;
+
+                                PositionMin_S2 = servo.PositionMin;
+                                Position_S2 = servo.Position;
+                                PositionMax_S2 = servo.PositionMax;
+
+                                break;
+
+                            case 3:
+                                Type_S3 = servo.Type;
+
+                                DevicePositionMin_S3 = servo.PositionMin;
+                                DevicePositionMax_S3 = servo.PositionMax;
+
+                                Stopped_S3 = servo.Stopped;
+                                Engaged_S3 = servo.Engaged;
+                                SpeedRamping_S3 = servo.SpeedRamping;
+
+                                Current_S3 = servo.Current;
+
+                                AccelerationMin_S3 = servo.AccelerationMin;
+                                Acceleration_S3 = servo.Acceleration;
+                                AccelerationMax_S3 = servo.AccelerationMax;
+
+                                VelocityMin_S3 = servo.VelocityMin;
+                                Velocity_S3 = servo.Velocity;
+                                VelocityLimit_S3 = servo.VelocityLimit;
+                                VelocityMax_S3 = servo.VelocityMax;
+
+                                PositionMin_S3 = servo.PositionMin;
+                                Position_S3 = servo.Position;
+                                PositionMax_S3 = servo.PositionMax;
+
+                                break;
+
+                            case 4:
+                                Type_S4 = servo.Type;
+
+                                DevicePositionMin_S4 = servo.PositionMin;
+                                DevicePositionMax_S4 = servo.PositionMax;
+
+                                Stopped_S4 = servo.Stopped;
+                                Engaged_S4 = servo.Engaged;
+                                SpeedRamping_S4 = servo.SpeedRamping;
+
+                                Current_S4 = servo.Current;
+
+                                AccelerationMin_S4 = servo.AccelerationMin;
+                                Acceleration_S4 = servo.Acceleration;
+                                AccelerationMax_S4 = servo.AccelerationMax;
+
+                                VelocityMin_S4 = servo.VelocityMin;
+                                Velocity_S4 = servo.Velocity;
+                                VelocityLimit_S4 = servo.VelocityLimit;
+                                VelocityMax_S4 = servo.VelocityMax;
+
+                                PositionMin_S4 = servo.PositionMin;
+                                Position_S4 = servo.Position;
+                                PositionMax_S4 = servo.PositionMax;
+
+                                break;
+
+                            case 5:
+                                Type_S5 = servo.Type;
+
+                                DevicePositionMin_S5 = servo.PositionMin;
+                                DevicePositionMax_S5 = servo.PositionMax;
+
+                                Stopped_S5 = servo.Stopped;
+                                Engaged_S5 = servo.Engaged;
+                                SpeedRamping_S5 = servo.SpeedRamping;
+
+                                Current_S5 = servo.Current;
+
+                                AccelerationMin_S5 = servo.AccelerationMin;
+                                Acceleration_S5 = servo.Acceleration;
+                                AccelerationMax_S5 = servo.AccelerationMax;
+
+                                VelocityMin_S5 = servo.VelocityMin;
+                                Velocity_S5 = servo.Velocity;
+                                VelocityLimit_S5 = servo.VelocityLimit;
+                                VelocityMax_S5 = servo.VelocityMax;
+
+                                PositionMin_S5 = servo.PositionMin;
+                                Position_S5 = servo.Position;
+                                PositionMax_S5 = servo.PositionMax;
+
+                                break;
+
+                            case 6:
+                                Type_S6 = servo.Type;
+
+                                DevicePositionMin_S6 = servo.PositionMin;
+                                DevicePositionMax_S6 = servo.PositionMax;
+
+                                Stopped_S6 = servo.Stopped;
+                                Engaged_S6 = servo.Engaged;
+                                SpeedRamping_S6 = servo.SpeedRamping;
+
+                                Current_S6 = servo.Current;
+
+                                AccelerationMin_S6 = servo.AccelerationMin;
+                                Acceleration_S6 = servo.Acceleration;
+                                AccelerationMax_S6 = servo.AccelerationMax;
+
+                                VelocityMin_S6 = servo.VelocityMin;
+                                Velocity_S6 = servo.Velocity;
+                                VelocityLimit_S6 = servo.VelocityLimit;
+                                VelocityMax_S6 = servo.VelocityMax;
+
+                                PositionMin_S6 = servo.PositionMin;
+                                Position_S6 = servo.Position;
+                                PositionMax_S6 = servo.PositionMax;
+
+                                break;
+
+                            case 7:
+                                Type_S7 = servo.Type;
+
+                                DevicePositionMin_S7 = servo.PositionMin;
+                                DevicePositionMax_S7 = servo.PositionMax;
+
+                                Stopped_S7 = servo.Stopped;
+                                Engaged_S7 = servo.Engaged;
+                                SpeedRamping_S7 = servo.SpeedRamping;
+
+                                Current_S7 = servo.Current;
+
+                                AccelerationMin_S7 = servo.AccelerationMin;
+                                Acceleration_S7 = servo.Acceleration;
+                                AccelerationMax_S7 = servo.AccelerationMax;
+
+                                VelocityMin_S7 = servo.VelocityMin;
+                                Velocity_S7 = servo.Velocity;
+                                VelocityLimit_S7 = servo.VelocityLimit;
+                                VelocityMax_S7 = servo.VelocityMax;
+
+                                PositionMin_S7 = servo.PositionMin;
+                                Position_S7 = servo.Position;
+                                PositionMax_S7 = servo.PositionMax;
+
+                                break;
+
+                            default:
+                                Log.Trace($"UpdateAdvancedServoProperties count:{servos.Count}", Common.LOG_CATEGORY);
+                                break;
+
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
                 }
             }
             else
@@ -3959,13 +4440,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             SpeedRamping_S0 = SpeedRamping_S1 = SpeedRamping_S2 = SpeedRamping_S3 = SpeedRamping_S4 = SpeedRamping_S5 = SpeedRamping_S6 = SpeedRamping_S7 = null;
             Current_S0 = Current_S1 = Current_S2 = Current_S3 = Current_S4 = Current_S5 = Current_S6 = Current_S7 = null;
 
-            AccelerationMin_S0 = AccelerationMin_S1 = AccelerationMin_S2 = AccelerationMin_S3 = AccelerationMin_S4 = AccelerationMin_S5 = AccelerationMin_S6 = AccelerationMin_S7 = null;
+            // NOTE(crhodes)
+            // Have to clear Acceleration before Min/Max as UI triggers an update
             Acceleration_S0 = Acceleration_S1 = Acceleration_S2 = Acceleration_S3 = Acceleration_S4 = Acceleration_S5 = Acceleration_S6 = Acceleration_S7 = null;
+            
+            AccelerationMin_S0 = AccelerationMin_S1 = AccelerationMin_S2 = AccelerationMin_S3 = AccelerationMin_S4 = AccelerationMin_S5 = AccelerationMin_S6 = AccelerationMin_S7 = null;
             AccelerationMax_S0 = AccelerationMax_S1 = AccelerationMax_S2 = AccelerationMax_S3 = AccelerationMax_S4 = AccelerationMax_S5 = AccelerationMax_S6 = AccelerationMax_S7 = null;
+
+            // NOTE(crhodes)
+            // Handle VelocityLimit same way as Acceleration
+            // Have not confirmed this is an issue
+            VelocityLimit_S0 = VelocityLimit_S1 = VelocityLimit_S2 = VelocityLimit_S3 = VelocityLimit_S4 = VelocityLimit_S5 = VelocityLimit_S6 = VelocityLimit_S7 = null;
 
             VelocityMin_S0 = VelocityMin_S1 = VelocityMin_S2 = VelocityMin_S3 = VelocityMin_S4 = VelocityMin_S5 = VelocityMin_S6 = VelocityMin_S7 = null;
             Velocity_S0 = Velocity_S1 = Velocity_S2 = Velocity_S3 = Velocity_S4 = Velocity_S5 = Velocity_S6 = Velocity_S7 = null;
-            VelocityLimit_S0 = VelocityLimit_S1 = VelocityLimit_S2 = VelocityLimit_S3 = VelocityLimit_S4 = VelocityLimit_S5 = VelocityLimit_S6 = VelocityLimit_S7 = null;
             VelocityMax_S0 = VelocityMax_S1 = VelocityMax_S2 = VelocityMax_S3 = VelocityMax_S4 = VelocityMax_S5 = VelocityMax_S6 = VelocityMax_S7 = null;
 
             PositionMin_S0 = PositionMin_S1 = PositionMin_S2 = PositionMin_S3 = PositionMin_S4 = PositionMin_S5 = PositionMin_S6 = PositionMin_S7 = null;

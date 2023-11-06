@@ -205,7 +205,7 @@
                 </dxlc:LayoutGroup>
                 
             </dxlc:LayoutGroup>
-            
+
             <dxlc:LayoutGroup Name="lgServoControls" Orientation="Horizontal" View="GroupBox" Header="Servo Controls" 
                                   IsCollapsible="True" IsCollapsed="False" Padding="-5" >
 
@@ -238,6 +238,14 @@
 
                     </dxlc:LayoutGroup>
 
+                    <dxlc:LayoutItem>
+                        <Button 
+                    		Command="{Binding SetAdvancedServoDefaultsCommand }"
+                    		CommandParameter="0"
+                    		Content="{Binding SetAdvancedServoDefaultsContent, FallbackValue='SetAdvancedServoDefaults' }"
+                    		ToolTip="{Binding SetAdvancedServoDefaultsToolTip, FallbackValue='SetAdvancedServoDefaults ToolTip' }" />
+                    </dxlc:LayoutItem>
+                    
                     <controls:VelocityControl 
                         Min="{Binding VelocityMin_S0, Mode=TwoWay}" 
                         Current="{Binding Velocity_S0, Mode=TwoWay}" 
@@ -255,7 +263,7 @@
                         Current="{Binding Position_S0, Mode=TwoWay}" 
                         Max="{Binding PositionMax_S0, Mode=TwoWay}"
                         DeviceMax="{Binding DevicePositionMax_S0, Mode=OneWay}"/>
-                                       
+
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
                         <dxlc:LayoutItem Label="Engaged" LabelPosition="Top">
@@ -300,7 +308,7 @@
                         		Content="{Binding ConfigureServoContent, FallbackValue='ConfigureServo' }"
                         		ToolTip="{Binding ConfigureServoToolTip, FallbackValue='ConfigureServo ToolTip' }" />
                         </dxlc:LayoutItem>-->
-                         
+
                         <dxlc:LayoutItem>
                             <Button 
                         		Command="{Binding ConfigureServo2Command }"
@@ -331,8 +339,16 @@
                             <dxe:TextEdit Text="{Binding Current_S1, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
-                      </dxlc:LayoutGroup>
-                    
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutItem>
+                        <Button 
+                    		Command="{Binding SetAdvancedServoDefaultsCommand }"
+                    		CommandParameter="1"
+                    		Content="{Binding SetAdvancedServoDefaultsContent, FallbackValue='SetAdvancedServoDefaults' }"
+                    		ToolTip="{Binding SetAdvancedServoDefaultsToolTip, FallbackValue='SetAdvancedServoDefaults ToolTip' }" />
+                    </dxlc:LayoutItem>
+
                     <controls:VelocityControl 
                         Min="{Binding VelocityMin_S1, Mode=TwoWay}" 
                         Current="{Binding Velocity_S1, Mode=TwoWay}" 
@@ -390,6 +406,14 @@
                         </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutItem>
+                        <Button 
+                    		Command="{Binding SetAdvancedServoDefaultsCommand }"
+                    		CommandParameter="2"
+                    		Content="{Binding SetAdvancedServoDefaultsContent, FallbackValue='SetAdvancedServoDefaults' }"
+                    		ToolTip="{Binding SetAdvancedServoDefaultsToolTip, FallbackValue='SetAdvancedServoDefaults ToolTip' }" />
+                    </dxlc:LayoutItem>
 
                     <controls:VelocityControl 
                         Min="{Binding VelocityMin_S2, Mode=TwoWay}" 
@@ -449,12 +473,20 @@
 
                     </dxlc:LayoutGroup>
 
+                    <dxlc:LayoutItem>
+                        <Button 
+                    		Command="{Binding SetAdvancedServoDefaultsCommand }"
+                    		CommandParameter="3"
+                    		Content="{Binding SetAdvancedServoDefaultsContent, FallbackValue='SetAdvancedServoDefaults' }"
+                    		ToolTip="{Binding SetAdvancedServoDefaultsToolTip, FallbackValue='SetAdvancedServoDefaults ToolTip' }" />
+                    </dxlc:LayoutItem>
+
                     <controls:VelocityControl 
                         Min="{Binding VelocityMin_S3, Mode=TwoWay}" 
                         Current="{Binding Velocity_S3, Mode=TwoWay}" 
                         Limit="{Binding VelocityLimit_S3, Mode=TwoWay}" 
                         Max="{Binding VelocityMax_S3, Mode=TwoWay}"/>
-                                       
+
                     <controls:AccelerationControl 
                         Min="{Binding AccelerationMin_S3, Mode=TwoWay}" 
                         Current="{Binding Acceleration_S3, Mode=TwoWay}" 
@@ -490,30 +522,6 @@
 
             </dxlc:LayoutGroup>
 
-            <!--<dxlc:LayoutGroup Orientation="Horizontal" >
-
-                <dxlc:LayoutItem Label="Performances" LabelPosition="Left" HorizontalAlignment="Left">
-                    <dxe:ComboBoxEdit Width="150" 
-                                          ItemsSource="{Binding AdvancedServoPerformances}" DisplayMember="Name" 
-                                          SelectedItem="{Binding SelectedAdvancedServoPerformance}"
-                                          SelectedIndex="0"/>
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Label="Serial #" HorizontalAlignment="Left" >
-                    <dxe:TextEdit EditValue="{Binding SelectedAdvancedServoPerformance.Name}" IsReadOnly="True" 
-                                  Background="White" 
-                                  Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem>
-                    <Button 
-		                Command="{Binding PlayPerformanceCommand }"
-		                Content="{Binding PlayPerformanceContent, FallbackValue='PlayPerformance' }"
-		                ToolTip="{Binding PlayPerformanceToolTip, FallbackValue='PlayPerformance ToolTip' }" />
-                </dxlc:LayoutItem>
-
-            </dxlc:LayoutGroup>-->
-            
         </dxlc:LayoutControl>
 
     </DockPanel>

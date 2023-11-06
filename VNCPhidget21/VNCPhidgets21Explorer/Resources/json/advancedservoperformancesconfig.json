@@ -155,9 +155,9 @@
       "PlayInParallel": false,
       "ContinueWith": "Serial Skull Center",
       "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Acceleration": 5000, "VelocityLimit": 500, "Engaged": true },
-        { "ServoIndex": 1, "Acceleration": 5000, "VelocityLimit": 500, "Engaged": true },
-        { "ServoIndex": 2, "Acceleration": 5000, "VelocityLimit": 500, "Engaged": true }
+        { "ServoIndex": 0, "Acceleration": 500, "VelocityLimit": 50, "Engaged": true },
+        { "ServoIndex": 1, "Acceleration": 500, "VelocityLimit": 50, "Engaged": true },
+        { "ServoIndex": 2, "Acceleration": 500, "VelocityLimit": 50, "Engaged": true }
       ]
     },
     {
@@ -177,9 +177,9 @@
       "PlayInParallel": true,
       "ContinueWith": "Parallel Skull Center",
       "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Acceleration": 5000, "VelocityLimit": 500, "Engaged": true },
-        { "ServoIndex": 1, "Acceleration": 5000, "VelocityLimit": 500, "Engaged": true },
-        { "ServoIndex": 2, "Acceleration": 5000, "VelocityLimit": 500, "Engaged": true }
+        { "ServoIndex": 0, "Acceleration": 500, "VelocityLimit": 50, "Engaged": true },
+        { "ServoIndex": 1, "Acceleration": 500, "VelocityLimit": 50, "Engaged": true },
+        { "ServoIndex": 2, "Acceleration": 500, "VelocityLimit": 50, "Engaged": true }
       ]
     },
     {
