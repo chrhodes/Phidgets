@@ -94,6 +94,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //ConfigureServoCommand = new DelegateCommand(ConfigureServo, ConfigureServoCanExecute);
 
             ConfigureServo2Command = new DelegateCommand<string>(ConfigureServo2, ConfigureServo2CanExecute);
+
+            SetPositionRangeCommand = new DelegateCommand<string>(SetPositionRange, SetPositionRangeCanExecute);
+
             PlayPerformanceCommand = new DelegateCommand<string>(PlayPerformance, PlayPerformanceCanExecute);
 
 
@@ -180,12 +183,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private string _performanceConfigFileName;
         public string PerformanceConfigFileName
-        { 
-            get => _performanceConfigFileName; 
+        {
+            get => _performanceConfigFileName;
             set
             {
                 if (_performanceConfigFileName == value) return;
-                _performanceConfigFileName  = value;
+                _performanceConfigFileName = value;
                 OnPropertyChanged();
             }
         }
@@ -256,8 +259,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private Resources.AdvancedServoPerformance? _selectedAdvancedServoPerformance;
         public Resources.AdvancedServoPerformance? SelectedAdvancedServoPerformance
-        { 
-            get => _selectedAdvancedServoPerformance; 
+        {
+            get => _selectedAdvancedServoPerformance;
             set
             {
                 if (_selectedAdvancedServoPerformance == value) return;
@@ -293,8 +296,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private List<AdvancedServoPerformance> _selectedPerformances;
         public List<AdvancedServoPerformance> SelectedPerformances
-        { 
-            get => _selectedPerformances; 
+        {
+            get => _selectedPerformances;
             set
             {
                 if (_selectedPerformances == value)
@@ -308,38 +311,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 PlayPerformanceCommand.RaiseCanExecuteChanged();
             }
         }
-
-        //private Resources.AdvancedServoPerformance? _selectedAdvancedServoPerformanceD;
-        //public Resources.AdvancedServoPerformance? SelectedAdvancedServoPerformanceD
-        //{
-        //    get => _selectedAdvancedServoPerformanceD;up UI
-        //    set
-        //    {
-        //        if (_selectedAdvancedServoPerformanceD == value) return;
-
-        //        _selectedAdvancedServoPerformanceD = value;
-        //        OnPropertyChanged();
-
-        //        PlayPerformanceCommand.RaiseCanExecuteChanged();
-        //    }
-        //}
-
-        //public Dictionary<string, Resources.AdvancedServoPerformance> SelectedPerformancesD { get; set; }
-
-        //private Resources.AdvancedServoPerformance? _selectedAdvancedServoPerformanceD;
-        //public Resources.AdvancedServoPerformance? SelectedAdvancedServoPerformanceD
-        //{
-        //    get => _selectedAdvancedServoPerformanceD;
-        //    set
-        //    {
-        //        if (_selectedAdvancedServoPerformanceD == value) return;
-
-        //        _selectedAdvancedServoPerformanceD = value;
-        //        OnPropertyChanged();
-
-        //        PlayPerformanceCommand.RaiseCanExecuteChanged();
-        //    }
-        //}
 
         private Phidgets.Phidget _phidgetDevice;
         public Phidgets.Phidget PhidgetDevice
@@ -617,12 +588,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         // TODO(crhodes)
                         // Break UpdateAdvancedServoProperties into pieces
                         // that can be called from here.
-                        UpdateAdvancedServoProperties();     
-                    }                    
-                }                
+                        UpdateAdvancedServoProperties();
+                    }
+                }
             }
         }
-        
+
         private Double? _currentS0;
         public Double? Current_S0
         {
@@ -721,6 +692,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        private int _positionRangeS0 = 10;
+        public int PositionRange_S0
+        {
+            get => _positionRangeS0;
+            set
+            {
+                if (_positionRangeS0 == value)
+                    return;
+                _positionRangeS0 = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Double? _velocityMinS0;
         public Double? VelocityMin_S0
         {
@@ -803,7 +787,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
 
                 if (value is not null)
-                { 
+                {
                     ActiveAdvancedServo.AdvancedServo.servos[0].Acceleration = (double)value;
                 }
             }
@@ -832,7 +816,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _engagedS0 = value;
 
-                if (value is not null)ActiveAdvancedServo.AdvancedServo.servos[0].Engaged = (Boolean)value;
+                if (value is not null) ActiveAdvancedServo.AdvancedServo.servos[0].Engaged = (Boolean)value;
 
                 OnPropertyChanged();
             }
@@ -984,6 +968,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_devicePositionMin_S1 == value)
                     return;
                 _devicePositionMin_S1 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int _positionRangeS1 = 10;
+        public int PositionRange_S1
+        {
+            get => _positionRangeS1;
+            set
+            {
+                if (_positionRangeS1 == value)
+                    return;
+                _positionRangeS1 = value;
                 OnPropertyChanged();
             }
         }
@@ -1256,6 +1253,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        private int _positionRangeS2 = 10;
+        public int PositionRange_S2
+        {
+            get => _positionRangeS2;
+            set
+            {
+                if (_positionRangeS2 == value)
+                    return;
+                _positionRangeS2 = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Double? _velocityMinS2;
         public Double? VelocityMin_S2
         {
@@ -1519,6 +1529,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_devicePositionMin_S3 == value)
                     return;
                 _devicePositionMin_S3 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int _positionRangeS3 = 10;
+        public int PositionRange_S3
+        {
+            get => _positionRangeS3;
+            set
+            {
+                if (_positionRangeS3 == value)
+                    return;
+                _positionRangeS3 = value;
                 OnPropertyChanged();
             }
         }
@@ -1791,6 +1814,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        private int _positionRangeS4 = 10;
+        public int PositionRange_S4
+        {
+            get => _positionRangeS4;
+            set
+            {
+                if (_positionRangeS4 == value)
+                    return;
+                _positionRangeS4 = value;
+                OnPropertyChanged();
+            }
+        }        
+
         private Double? _velocityMinS4;
         public Double? VelocityMin_S4
         {
@@ -2057,6 +2093,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        private int _positionRangeS5 = 10;
+        public int PositionRange_S5
+        {
+            get => _positionRangeS5;
+            set
+            {
+                if (_positionRangeS5 == value)
+                    return;
+                _positionRangeS5 = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Double? _velocityMinS5;
         public Double? VelocityMin_S5
         {
@@ -2319,6 +2368,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_devicePositionMin_S6 == value)
                     return;
                 _devicePositionMin_S6 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int _positionRangeS6 = 10;
+        public int PositionRange_S6
+        {
+            get => _positionRangeS6;
+            set
+            {
+                if (_positionRangeS6 == value)
+                    return;
+                _positionRangeS6 = value;
                 OnPropertyChanged();
             }
         }
@@ -2590,6 +2652,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        private int _positionRangeS7 = 10;
+        public int PositionRange_S7
+        {
+            get => _positionRangeS7;
+            set
+            {
+                if (_positionRangeS7 == value)
+                    return;
+                _positionRangeS7 = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Double? _velocityMinS7;
         public Double? VelocityMin_S7
         {
@@ -2837,9 +2912,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //Common.EventAggregator.GetEvent<OpenAdvancedServoEvent>().Subscribe(OpenAdvancedServo);
 
             // End Cut Four
-
-            //OpenAdvancedServoCommand.RaiseCanExecuteChanged();
-            //CloseAdvancedServoCommand.RaiseCanExecuteChanged();
 
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -3129,6 +3201,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Should be safe to get Acceleration, Velocity, and Position here
             // Device is Engaged
 
+            Double? halfRange;
+            Double? tenPercent;
+
             try
             {
                 switch (servoIndex)
@@ -3136,56 +3211,88 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     case 0:
                         Acceleration_S0 = AccelerationMin_S0;
                         VelocityLimit_S0 = VelocityMin_S0 == 0 ? 10 : VelocityMin_S0;
-                        Position_S0 = (PositionMax_S0 - PositionMin_S0) / 2;
+                        halfRange = (PositionMax_S0 - PositionMin_S0) / 2;
+                        tenPercent = halfRange / 10;
+                        PositionMin_S0 = halfRange - tenPercent;
+                        Position_S0 = halfRange;
+                        PositionMax_S0 = halfRange + tenPercent;
 
                         break;
 
                     case 1:
                         Acceleration_S1 = AccelerationMin_S1;
                         VelocityLimit_S1 = VelocityMin_S1 == 0 ? 10 : VelocityMin_S1;
-                        Position_S1 = (PositionMax_S1 - PositionMin_S1) / 2;
+                        halfRange = (PositionMax_S1 - PositionMin_S1) / 2;
+                        tenPercent = halfRange / 10;
+                        PositionMin_S1 = halfRange - tenPercent;
+                        Position_S1 = halfRange;
+                        PositionMax_S1 = halfRange + tenPercent;
 
                         break;
 
                     case 2:
                         Acceleration_S2 = AccelerationMin_S2;
                         VelocityLimit_S2 = VelocityMin_S2 == 0 ? 10 : VelocityMin_S2;
-                        Position_S2 = (PositionMax_S2 - PositionMin_S2) / 2;
+                        halfRange = (PositionMax_S2 - PositionMin_S2) / 2;
+                        tenPercent = halfRange / 10;
+                        PositionMin_S2 = halfRange - tenPercent;
+                        Position_S2 = halfRange;
+                        PositionMax_S2 = halfRange + tenPercent;
 
                         break;
 
                     case 3:
                         Acceleration_S3 = AccelerationMin_S3;
                         VelocityLimit_S3 = VelocityMin_S3 == 0 ? 10 : VelocityMin_S3;
-                        Position_S3 = (PositionMax_S3 - PositionMin_S3) / 2;
+                        halfRange = (PositionMax_S3 - PositionMin_S3) / 2;
+                        tenPercent = halfRange / 10;
+                        PositionMin_S3 = halfRange - tenPercent; ;
+                        Position_S3 = halfRange;
+                        PositionMax_S3 = halfRange + tenPercent;
 
                         break;
 
                     case 4:
                         Acceleration_S4 = AccelerationMin_S4;
                         VelocityLimit_S4 = VelocityMin_S4 == 0 ? 10 : VelocityMin_S4;
-                        Position_S4 = (PositionMax_S4 - PositionMin_S4) / 2;
+                        halfRange = (PositionMax_S4 - PositionMin_S4) / 2;
+                        tenPercent = halfRange / 10;
+                        PositionMin_S4 = halfRange - tenPercent;
+                        Position_S4 = halfRange;
+                        PositionMax_S4 = halfRange + tenPercent;
 
                         break;
 
                     case 5:
                         Acceleration_S5 = AccelerationMin_S5;
                         VelocityLimit_S5 = VelocityMin_S5 == 0 ? 10 : VelocityMin_S5;
-                        Position_S5 = (PositionMax_S5 - PositionMin_S5) / 2;
+                        halfRange = (PositionMax_S5 - PositionMin_S5) / 2;
+                        tenPercent = halfRange / 10;
+                        PositionMin_S5 = halfRange - tenPercent;
+                        Position_S5 = halfRange;
+                        PositionMax_S5 = halfRange + tenPercent;
 
                         break;
 
                     case 6:
                         Acceleration_S6 = AccelerationMin_S6;
                         VelocityLimit_S6 = VelocityMin_S6 == 0 ? 10 : VelocityMin_S6;
-                        Position_S6 = (PositionMax_S6 - PositionMin_S6) / 2;
+                        halfRange = (PositionMax_S6 - PositionMin_S6) / 2;
+                        tenPercent = halfRange / 10;
+                        PositionMin_S6 = halfRange - tenPercent;
+                        Position_S6 = halfRange;
+                        PositionMax_S6 = halfRange + tenPercent;
 
                         break;
 
                     case 7:
                         Acceleration_S7 = AccelerationMin_S7;
                         VelocityLimit_S7 = VelocityMin_S7 == 0 ? 10 : VelocityMin_S7;
-                        Position_S7 = (PositionMax_S7 - PositionMin_S7) / 2;
+                        halfRange = (PositionMax_S7 - PositionMin_S7) / 2;
+                        tenPercent = halfRange / 10;
+                        PositionMin_S7 = halfRange - tenPercent;
+                        Position_S7 = halfRange;
+                        PositionMax_S7 = halfRange + tenPercent;
 
                         break;
 
@@ -3232,7 +3339,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
-            return true;
+            if (DeviceAttached is not null)
+                return (Boolean)DeviceAttached;
+            else
+                return false;
         }
 
         #endregion
@@ -3301,6 +3411,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             OpenAdvancedServoCommand.RaiseCanExecuteChanged();
             RefreshAdvancedServoCommand.RaiseCanExecuteChanged();
             CloseAdvancedServoCommand.RaiseCanExecuteChanged();
+            SetAdvancedServoDefaultsCommand.RaiseCanExecuteChanged();
+            SetPositionRangeCommand.RaiseCanExecuteChanged();
+
             PlayPerformanceCommand.RaiseCanExecuteChanged();
             
             // Uncomment this if you are telling someone else to handle this
@@ -3410,6 +3523,160 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
         #endregion
+
+        #region SetPositionRange Command
+
+        public DelegateCommand<string> SetPositionRangeCommand { get; set; }
+        //public TYPE SetPositionRangeCommandParameter;
+        public string SetPositionRangeContent { get; set; } = "SetPositionRange";
+        public string SetPositionRangeToolTip { get; set; } = "SetPositionRange ToolTip";
+
+        // Can get fancy and use Resources
+        //public string SetPositionRangeContent { get; set; } = "ViewName_SetPositionRangeContent";
+        //public string SetPositionRangeToolTip { get; set; } = "ViewName_SetPositionRangeContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_SetPositionRangeContent">SetPositionRange</system:String>
+        //    <system:String x:Key="ViewName_SetPositionRangeContentToolTip">SetPositionRange ToolTip</system:String>  
+
+        public void SetPositionRange(string servoID)
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = "Cool, you called SetPositionRange";
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<SetPositionRangeEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<SetPositionRangeEvent>().Publish(
+            //      new SetPositionRangeEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class SetPositionRangeEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<SetPositionRangeEvent>().Subscribe(SetPositionRange);
+
+            // End Cut Four
+
+
+            AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
+            Phidgets.AdvancedServoServo servo = null;
+
+            Int32 servoIndex = Int32.Parse(servoID);
+            servo = servos[servoIndex];
+
+            // NOTE(crhodes)
+            // Should be safe to get Acceleration, Velocity, and Position here
+            // Device is Engaged
+
+            Double? halfRange;
+            Double? tenPercent;
+
+            try
+            {
+                switch (servoIndex)
+                {
+                    case 0:
+                        // TODO(crhodes)
+                        // Make this fancier.  Take the smaller of difference
+                        // between Min and Current and Max and Current
+                        // and then divide that by 10
+
+                        PositionMin_S0 = Position_S0 - PositionRange_S0;
+
+                        PositionMax_S0 = Position_S0 + PositionRange_S0;
+
+                        break;
+
+                    case 1:
+                        PositionMin_S1 = Position_S1 - PositionRange_S1;
+
+                        PositionMax_S1 = Position_S1 + PositionRange_S1;
+
+                        break;
+
+                    case 2:
+                        PositionMin_S2 = Position_S2 - PositionRange_S2;
+
+                        PositionMax_S2 = Position_S2 + PositionRange_S2;
+
+                        break;
+
+                    case 3:
+                        PositionMin_S3 = Position_S3 - PositionRange_S3;
+
+                        PositionMax_S3 = Position_S3 + PositionRange_S3;
+
+                        break;
+
+                    case 4:
+                        PositionMin_S4 = Position_S4 - PositionRange_S4;
+
+                        PositionMax_S4 = Position_S4 + PositionRange_S4;
+
+                        break;
+
+                    case 5:
+                        PositionMin_S5 = Position_S5 - PositionRange_S5;
+
+                        PositionMax_S5 = Position_S5 + PositionRange_S5;
+
+                        break;
+
+                    case 6:
+                        PositionMin_S6 = Position_S6 - PositionRange_S6;
+
+                        PositionMax_S6 = Position_S6 + PositionRange_S6;
+
+                        break;
+
+                    case 7:
+                        PositionMin_S7 = Position_S7 - PositionRange_S7;
+
+                        PositionMax_S7 = Position_S7 + PositionRange_S7;
+
+                        break;
+
+                    default:
+                        Log.Trace($"UpdateAdvancedServoProperties count:{servos.Count}", Common.LOG_CATEGORY);
+                        break;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool SetPositionRangeCanExecute(string value)
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            if (DeviceAttached is not null)
+                return (Boolean)DeviceAttached;
+            else
+                return false;
+        }
+
+        #endregion
+
+        // End Cut One
 
         #region ConfigureServo2 Command
 
@@ -3847,7 +4114,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
-        // End Cut One
         #endregion
 
         #region Event Handlers
@@ -3870,6 +4136,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             OpenAdvancedServoCommand.RaiseCanExecuteChanged();
             RefreshAdvancedServoCommand.RaiseCanExecuteChanged();
             CloseAdvancedServoCommand.RaiseCanExecuteChanged();
+
+            SetAdvancedServoDefaultsCommand.RaiseCanExecuteChanged();
+            SetPositionRangeCommand.RaiseCanExecuteChanged();
         }
 
         private void UpdateAdvancedServoProperties()
@@ -4435,30 +4704,48 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private void InitializAdvancedServoUI()
         {
-            Stopped_S0 = Stopped_S1 = Stopped_S2 = Stopped_S3 = Stopped_S4 = Stopped_S5 = Stopped_S6 = Stopped_S7 = null;
-            Engaged_S0 = Engaged_S1 = Engaged_S2 = Engaged_S3 = Engaged_S4 = Engaged_S5 = Engaged_S6 = Engaged_S7 = null;
-            SpeedRamping_S0 = SpeedRamping_S1 = SpeedRamping_S2 = SpeedRamping_S3 = SpeedRamping_S4 = SpeedRamping_S5 = SpeedRamping_S6 = SpeedRamping_S7 = null;
-            Current_S0 = Current_S1 = Current_S2 = Current_S3 = Current_S4 = Current_S5 = Current_S6 = Current_S7 = null;
+            Stopped_S0 = Stopped_S1 = Stopped_S2 = Stopped_S3 = null;
+            Stopped_S4 = Stopped_S5 = Stopped_S6 = Stopped_S7 = null;
+            Engaged_S0 = Engaged_S1 = Engaged_S2 = Engaged_S3 = null;
+            Engaged_S4 = Engaged_S5 = Engaged_S6 = Engaged_S7 = null;
+            SpeedRamping_S0 = SpeedRamping_S1 = SpeedRamping_S2 = SpeedRamping_S3 = null;
+            SpeedRamping_S4 = SpeedRamping_S5 = SpeedRamping_S6 = SpeedRamping_S7 = null;
+            Current_S0 = Current_S1 = Current_S2 = Current_S3 = null;
+            Current_S4 = Current_S5 = Current_S6 = Current_S7 = null;
 
             // NOTE(crhodes)
             // Have to clear Acceleration before Min/Max as UI triggers an update
-            Acceleration_S0 = Acceleration_S1 = Acceleration_S2 = Acceleration_S3 = Acceleration_S4 = Acceleration_S5 = Acceleration_S6 = Acceleration_S7 = null;
-            
-            AccelerationMin_S0 = AccelerationMin_S1 = AccelerationMin_S2 = AccelerationMin_S3 = AccelerationMin_S4 = AccelerationMin_S5 = AccelerationMin_S6 = AccelerationMin_S7 = null;
-            AccelerationMax_S0 = AccelerationMax_S1 = AccelerationMax_S2 = AccelerationMax_S3 = AccelerationMax_S4 = AccelerationMax_S5 = AccelerationMax_S6 = AccelerationMax_S7 = null;
+            Acceleration_S0 = Acceleration_S1 = Acceleration_S2 = Acceleration_S3 = null;
+            Acceleration_S4 = Acceleration_S5 = Acceleration_S6 = Acceleration_S7 = null;
+
+            AccelerationMin_S0 = AccelerationMin_S1 = AccelerationMin_S2 = AccelerationMin_S3 = null;
+            AccelerationMin_S4 = AccelerationMin_S5 = AccelerationMin_S6 = AccelerationMin_S7 = null;
+            AccelerationMax_S0 = AccelerationMax_S1 = AccelerationMax_S2 = AccelerationMax_S3 = null;
+            AccelerationMax_S4 = AccelerationMax_S5 = AccelerationMax_S6 = AccelerationMax_S7 = null;
 
             // NOTE(crhodes)
             // Handle VelocityLimit same way as Acceleration
             // Have not confirmed this is an issue
-            VelocityLimit_S0 = VelocityLimit_S1 = VelocityLimit_S2 = VelocityLimit_S3 = VelocityLimit_S4 = VelocityLimit_S5 = VelocityLimit_S6 = VelocityLimit_S7 = null;
+            VelocityLimit_S0 = VelocityLimit_S1 = VelocityLimit_S2 = VelocityLimit_S3 = null;
+            VelocityLimit_S4 = VelocityLimit_S5 = VelocityLimit_S6 = VelocityLimit_S7 = null;
 
-            VelocityMin_S0 = VelocityMin_S1 = VelocityMin_S2 = VelocityMin_S3 = VelocityMin_S4 = VelocityMin_S5 = VelocityMin_S6 = VelocityMin_S7 = null;
-            Velocity_S0 = Velocity_S1 = Velocity_S2 = Velocity_S3 = Velocity_S4 = Velocity_S5 = Velocity_S6 = Velocity_S7 = null;
-            VelocityMax_S0 = VelocityMax_S1 = VelocityMax_S2 = VelocityMax_S3 = VelocityMax_S4 = VelocityMax_S5 = VelocityMax_S6 = VelocityMax_S7 = null;
+            VelocityMin_S0 = VelocityMin_S1 = VelocityMin_S2 = VelocityMin_S3 = null;
+            VelocityMin_S4 = VelocityMin_S5 = VelocityMin_S6 = VelocityMin_S7 = null;
+            Velocity_S0 = Velocity_S1 = Velocity_S2 = Velocity_S3 = null;
+            Velocity_S4 = Velocity_S5 = Velocity_S6 = Velocity_S7 = null;
+            VelocityMax_S0 = VelocityMax_S1 = VelocityMax_S2 = VelocityMax_S3 = null;
+            VelocityMax_S4 = VelocityMax_S5 = VelocityMax_S6 = VelocityMax_S7 = null;
 
-            PositionMin_S0 = PositionMin_S1 = PositionMin_S2 = PositionMin_S3 = PositionMin_S4 = PositionMin_S5 = PositionMin_S6 = PositionMin_S7 = null;
-            Position_S0 = Position_S1 = Position_S2 = Position_S3 = Position_S4 = Position_S5 = Position_S6 = Position_S7 = null;
-            PositionMax_S0 = PositionMax_S1 = PositionMax_S2 = PositionMax_S3 = PositionMax_S4 = PositionMax_S5 = PositionMax_S6 = PositionMax_S7 = null;
+            DevicePositionMin_S0 = DevicePositionMin_S1 = DevicePositionMin_S2 = DevicePositionMin_S3 = null;
+            DevicePositionMin_S4 = DevicePositionMin_S5 = DevicePositionMin_S6 = DevicePositionMin_S7 = null;
+            PositionMin_S0 = PositionMin_S1 = PositionMin_S2 = PositionMin_S3 = null;
+            PositionMin_S4 = PositionMin_S5 = PositionMin_S6 = PositionMin_S7 = null;
+            Position_S0 = Position_S1 = Position_S2 = Position_S3 = null;
+            Position_S4 = Position_S5 = Position_S6 = Position_S7 = null;
+            PositionMax_S0 = PositionMax_S1 = PositionMax_S2 = PositionMax_S3 = null;
+            PositionMax_S4 = PositionMax_S5 = PositionMax_S6 = PositionMax_S7 = null;
+            DevicePositionMax_S0 = DevicePositionMax_S1 = DevicePositionMax_S2 = DevicePositionMax_S3 = null;
+            DevicePositionMax_S4 = DevicePositionMax_S5 = DevicePositionMax_S6 = DevicePositionMax_S7 = null;
         }
 
         #endregion

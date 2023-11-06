@@ -265,6 +265,21 @@
                         DeviceMax="{Binding DevicePositionMax_S0, Mode=OneWay}"/>
 
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+                        <dxlc:LayoutItem>
+                            <Button 
+                    		Command="{Binding SetPositionRangeCommand }"
+                    		CommandParameter="0"
+                    		Content="{Binding SetPositionRangeContent, FallbackValue='SetPositionRange' }"
+                    		ToolTip="{Binding SetPositionRangeToolTip, FallbackValue='SetPositionRange ToolTip' }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Current" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding PositionRange_S0, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
                         <dxlc:LayoutItem Label="Engaged" LabelPosition="Top">
                             <dxe:CheckEdit IsChecked="{Binding Engaged_S0}"
@@ -368,6 +383,21 @@
                         DeviceMax="{Binding DevicePositionMax_S1, Mode=OneWay}"/>
 
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+                        <dxlc:LayoutItem>
+                            <Button 
+                    		Command="{Binding SetPositionRangeCommand }"
+                    		CommandParameter="1"
+                    		Content="{Binding SetPositionRangeContent, FallbackValue='SetPositionRange' }"
+                    		ToolTip="{Binding SetPositionRangeToolTip, FallbackValue='SetPositionRange ToolTip' }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Current" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding PositionRange_S1, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+                    
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
                         <dxlc:LayoutItem Label="Engaged" LabelPosition="Top">
                             <dxe:CheckEdit IsChecked="{Binding Engaged_S1}"
@@ -434,6 +464,21 @@
                         DeviceMax="{Binding DevicePositionMax_S2, Mode=OneWay}"/>
 
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+                        <dxlc:LayoutItem>
+                            <Button 
+                    		Command="{Binding SetPositionRangeCommand }"
+                    		CommandParameter="2"
+                    		Content="{Binding SetPositionRangeContent, FallbackValue='SetPositionRange' }"
+                    		ToolTip="{Binding SetPositionRangeToolTip, FallbackValue='SetPositionRange ToolTip' }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Current" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding PositionRange_S2, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+                    
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
                         <dxlc:LayoutItem Label="Engaged" LabelPosition="Top">
                             <dxe:CheckEdit IsChecked="{Binding Engaged_S2}"
@@ -499,6 +544,21 @@
                         Max="{Binding PositionMax_S3, Mode=TwoWay}"
                         DeviceMax="{Binding DevicePositionMax_S3, Mode=OneWay}"/>
 
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+                        <dxlc:LayoutItem>
+                            <Button 
+                    		Command="{Binding SetPositionRangeCommand }"
+                    		CommandParameter="3"
+                    		Content="{Binding SetPositionRangeContent, FallbackValue='SetPositionRange' }"
+                    		ToolTip="{Binding SetPositionRangeToolTip, FallbackValue='SetPositionRange ToolTip' }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Current" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding PositionRange_S3, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+                    
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
                         <dxlc:LayoutItem Label="Engaged" LabelPosition="Top">
