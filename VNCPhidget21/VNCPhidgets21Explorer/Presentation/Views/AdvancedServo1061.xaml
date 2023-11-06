@@ -273,8 +273,11 @@
                     		ToolTip="{Binding SetPositionRangeToolTip, FallbackValue='SetPositionRange ToolTip' }" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Current" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding PositionRange_S0, Mode=TwoWay}" />
+                        <dxlc:LayoutItem HorizontalAlignment="Right">
+                            <dxe:SpinEdit Value="{Binding PositionRange_S0, Mode=TwoWay}" Increment="5"
+                                MinValue="0"
+                                MaxValue="90" 
+                                IsFloatValue="False" />
                         </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>
@@ -391,8 +394,11 @@
                     		ToolTip="{Binding SetPositionRangeToolTip, FallbackValue='SetPositionRange ToolTip' }" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Current" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding PositionRange_S1, Mode=TwoWay}" />
+                        <dxlc:LayoutItem HorizontalAlignment="Right">
+                            <dxe:SpinEdit Value="{Binding PositionRange_S1, Mode=TwoWay}" Increment="5"
+                                MinValue="0"
+                                MaxValue="90" 
+                                IsFloatValue="False" />
                         </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>
@@ -472,8 +478,11 @@
                     		ToolTip="{Binding SetPositionRangeToolTip, FallbackValue='SetPositionRange ToolTip' }" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Current" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding PositionRange_S2, Mode=TwoWay}" />
+                        <dxlc:LayoutItem HorizontalAlignment="Right">
+                            <dxe:SpinEdit Value="{Binding PositionRange_S2, Mode=TwoWay}" Increment="5"
+                                MinValue="0"
+                                MaxValue="90" 
+                                IsFloatValue="False" />
                         </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>
@@ -553,8 +562,11 @@
                     		ToolTip="{Binding SetPositionRangeToolTip, FallbackValue='SetPositionRange ToolTip' }" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Current" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding PositionRange_S3, Mode=TwoWay}" />
+                        <dxlc:LayoutItem HorizontalAlignment="Right">
+                            <dxe:SpinEdit Value="{Binding PositionRange_S3, Mode=TwoWay}" Increment="5"
+                                MinValue="0"
+                                MaxValue="90" 
+                                IsFloatValue="False" />
                         </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>

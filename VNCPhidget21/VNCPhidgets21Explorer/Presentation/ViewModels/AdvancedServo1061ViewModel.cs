@@ -630,6 +630,22 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _positionMax_S0 = value;
                 OnPropertyChanged();
+
+                if (value is not null)
+                {
+                    try
+                    {
+                        if (ActiveAdvancedServo.AdvancedServo.servos[0].PositionMax != value)
+                        {
+                            ActiveAdvancedServo.AdvancedServo.servos[0].PositionMax = (double)value;
+                        }
+                    }
+                    catch (PhidgetException pex)
+                    {
+                        Log.Error(pex, Common.LOG_CATEGORY);
+                        ActiveAdvancedServo.AdvancedServo.servos[0].Position = (double)value;
+                    }
+                }
             }
         }
 
@@ -676,6 +692,22 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _positionMin_S0 = value;
                 OnPropertyChanged();
+
+                if (value is not null)
+                {
+                    try
+                    {
+                        if (ActiveAdvancedServo.AdvancedServo.servos[0].PositionMin != value)
+                        {
+                            ActiveAdvancedServo.AdvancedServo.servos[0].PositionMin = (double)value;
+                        }
+                    }
+                    catch (PhidgetException pex)
+                    {
+                        Log.Error(pex, Common.LOG_CATEGORY);
+                        ActiveAdvancedServo.AdvancedServo.servos[0].Position = (double)value;
+                    }
+                }
             }
         }
 
@@ -915,6 +947,22 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _positionMax_S1 = value;
                 OnPropertyChanged();
+
+                if (value is not null)
+                {
+                    try
+                    {
+                        if (ActiveAdvancedServo.AdvancedServo.servos[1].PositionMax != value)
+                        {
+                            ActiveAdvancedServo.AdvancedServo.servos[1].PositionMax = (double)value;
+                        }
+                    }
+                    catch (PhidgetException pex)
+                    {
+                        Log.Error(pex, Common.LOG_CATEGORY);
+                        ActiveAdvancedServo.AdvancedServo.servos[1].Position = (double)value;
+                    }
+                }
             }
         }
 
@@ -956,6 +1004,22 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _positionMin_S1 = value;
                 OnPropertyChanged();
+
+                if (value is not null)
+                {
+                    try
+                    {
+                        if (ActiveAdvancedServo.AdvancedServo.servos[1].PositionMin != value)
+                        {
+                            ActiveAdvancedServo.AdvancedServo.servos[1].PositionMin = (double)value;
+                        }
+                    }
+                    catch (PhidgetException pex)
+                    {
+                        Log.Error(pex, Common.LOG_CATEGORY);
+                        ActiveAdvancedServo.AdvancedServo.servos[1].Position = (double)value;
+                    }
+                }
             }
         }
 
@@ -1195,6 +1259,22 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _positionMax_S2 = value;
                 OnPropertyChanged();
+
+                if (value is not null)
+                {
+                    try
+                    {
+                        if (ActiveAdvancedServo.AdvancedServo.servos[2].PositionMax != value)
+                        {
+                            ActiveAdvancedServo.AdvancedServo.servos[2].PositionMax = (double)value;
+                        }
+                    }
+                    catch (PhidgetException pex)
+                    {
+                        Log.Error(pex, Common.LOG_CATEGORY);
+                        ActiveAdvancedServo.AdvancedServo.servos[2].Position = (double)value;
+                    }
+                }
             }
         }
 
@@ -1235,8 +1315,23 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_positionMin_S2 == value)
                     return;
                 _positionMin_S2 = value;
-
                 OnPropertyChanged();
+
+                if (value is not null)
+                {
+                    try
+                    {
+                        if (ActiveAdvancedServo.AdvancedServo.servos[2].PositionMin != value)
+                        {
+                            ActiveAdvancedServo.AdvancedServo.servos[2].PositionMin = (double)value;
+                        }
+                    }
+                    catch (PhidgetException pex)
+                    {
+                        Log.Error(pex, Common.LOG_CATEGORY);
+                        ActiveAdvancedServo.AdvancedServo.servos[2].Position = (double)value;
+                    }
+                }
             }
         }
 
@@ -1475,6 +1570,22 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _positionMax_S3 = value;
                 OnPropertyChanged();
+
+                if (value is not null)
+                {
+                    try
+                    {
+                        if (ActiveAdvancedServo.AdvancedServo.servos[3].PositionMax != value)
+                        {
+                            ActiveAdvancedServo.AdvancedServo.servos[3].PositionMax = (double)value;
+                        }
+                    }
+                    catch (PhidgetException pex)
+                    {
+                        Log.Error(pex, Common.LOG_CATEGORY);
+                        ActiveAdvancedServo.AdvancedServo.servos[3].Position = (double)value;
+                    }
+                }
             }
         }
 
@@ -1515,8 +1626,23 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_positionMin_S3 == value)
                     return;
                 _positionMin_S3 = value;
-
                 OnPropertyChanged();
+
+                if (value is not null)
+                {
+                    try
+                    {
+                        if (ActiveAdvancedServo.AdvancedServo.servos[3].PositionMin != value)
+                        {
+                            ActiveAdvancedServo.AdvancedServo.servos[3].PositionMin = (double)value;
+                        }
+                    }
+                    catch (PhidgetException pex)
+                    {
+                        Log.Error(pex, Common.LOG_CATEGORY);
+                        ActiveAdvancedServo.AdvancedServo.servos[3].Position = (double)value;
+                    }
+                }
             }
         }
 
@@ -1756,6 +1882,22 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _positionMax_S4 = value;
                 OnPropertyChanged();
+
+                if (value is not null)
+                {
+                    try
+                    {
+                        if (ActiveAdvancedServo.AdvancedServo.servos[4].PositionMax != value)
+                        {
+                            ActiveAdvancedServo.AdvancedServo.servos[4].PositionMax = (double)value;
+                        }
+                    }
+                    catch (PhidgetException pex)
+                    {
+                        Log.Error(pex, Common.LOG_CATEGORY);
+                        ActiveAdvancedServo.AdvancedServo.servos[4].Position = (double)value;
+                    }
+                }
             }
         }
 
@@ -1796,8 +1938,23 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_positionMin_S4 == value)
                     return;
                 _positionMin_S4 = value;
-
                 OnPropertyChanged();
+
+                if (value is not null)
+                {
+                    try
+                    {
+                        if (ActiveAdvancedServo.AdvancedServo.servos[4].PositionMin != value)
+                        {
+                            ActiveAdvancedServo.AdvancedServo.servos[4].PositionMin = (double)value;
+                        }
+                    }
+                    catch (PhidgetException pex)
+                    {
+                        Log.Error(pex, Common.LOG_CATEGORY);
+                        ActiveAdvancedServo.AdvancedServo.servos[4].Position = (double)value;
+                    }
+                }
             }
         }
 
@@ -2036,6 +2193,22 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _positionMax_S5 = value;
                 OnPropertyChanged();
+
+                if (value is not null)
+                {
+                    try
+                    {
+                        if (ActiveAdvancedServo.AdvancedServo.servos[5].PositionMax != value)
+                        {
+                            ActiveAdvancedServo.AdvancedServo.servos[5].PositionMax = (double)value;
+                        }
+                    }
+                    catch (PhidgetException pex)
+                    {
+                        Log.Error(pex, Common.LOG_CATEGORY);
+                        ActiveAdvancedServo.AdvancedServo.servos[5].Position = (double)value;
+                    }
+                }
             }
         }
 
@@ -2077,6 +2250,22 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _positionMin_S5 = value;
                 OnPropertyChanged();
+
+                if (value is not null)
+                {
+                    try
+                    {
+                        if (ActiveAdvancedServo.AdvancedServo.servos[5].PositionMin != value)
+                        {
+                            ActiveAdvancedServo.AdvancedServo.servos[5].PositionMin = (double)value;
+                        }
+                    }
+                    catch (PhidgetException pex)
+                    {
+                        Log.Error(pex, Common.LOG_CATEGORY);
+                        ActiveAdvancedServo.AdvancedServo.servos[5].Position = (double)value;
+                    }
+                }
             }
         }
 
@@ -2315,6 +2504,22 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _positionMax_S6 = value;
                 OnPropertyChanged();
+
+                if (value is not null)
+                {
+                    try
+                    {
+                        if (ActiveAdvancedServo.AdvancedServo.servos[6].PositionMax != value)
+                        {
+                            ActiveAdvancedServo.AdvancedServo.servos[6].PositionMax = (double)value;
+                        }
+                    }
+                    catch (PhidgetException pex)
+                    {
+                        Log.Error(pex, Common.LOG_CATEGORY);
+                        ActiveAdvancedServo.AdvancedServo.servos[6].Position = (double)value;
+                    }
+                }
             }
         }
 
@@ -2369,6 +2574,22 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _devicePositionMin_S6 = value;
                 OnPropertyChanged();
+
+                if (value is not null)
+                {
+                    try
+                    {
+                        if (ActiveAdvancedServo.AdvancedServo.servos[6].PositionMin != value)
+                        {
+                            ActiveAdvancedServo.AdvancedServo.servos[6].PositionMin = (double)value;
+                        }
+                    }
+                    catch (PhidgetException pex)
+                    {
+                        Log.Error(pex, Common.LOG_CATEGORY);
+                        ActiveAdvancedServo.AdvancedServo.servos[6].Position = (double)value;
+                    }
+                }
             }
         }
 
@@ -2594,6 +2815,22 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _positionMax_S7 = value;
                 OnPropertyChanged();
+
+                if (value is not null)
+                {
+                    try
+                    {
+                        if (ActiveAdvancedServo.AdvancedServo.servos[7].PositionMax != value)
+                        {
+                            ActiveAdvancedServo.AdvancedServo.servos[7].PositionMax = (double)value;
+                        }
+                    }
+                    catch (PhidgetException pex)
+                    {
+                        Log.Error(pex, Common.LOG_CATEGORY);
+                        ActiveAdvancedServo.AdvancedServo.servos[7].Position = (double)value;
+                    }
+                }
             }
         }
 
@@ -2634,8 +2871,23 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_positionMin_S7 == value)
                     return;
                 _positionMin_S7 = value;
-
                 OnPropertyChanged();
+
+                if (value is not null)
+                {
+                    try
+                    {
+                        if (ActiveAdvancedServo.AdvancedServo.servos[7].PositionMin != value)
+                        {
+                            ActiveAdvancedServo.AdvancedServo.servos[7].PositionMin = (double)value;
+                        }
+                    }
+                    catch (PhidgetException pex)
+                    {
+                        Log.Error(pex, Common.LOG_CATEGORY);
+                        ActiveAdvancedServo.AdvancedServo.servos[7].Position = (double)value;
+                    }
+                }
             }
         }
 
@@ -4421,8 +4673,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             case 0:
                                 Type_S0 = servo.Type;
 
-                                DevicePositionMin_S0 = servo.PositionMin;
-                                DevicePositionMax_S0 = servo.PositionMax;
+                                //DevicePositionMin_S0 = servo.PositionMin;
+                                //DevicePositionMax_S0 = servo.PositionMax;
 
                                 Stopped_S0 = servo.Stopped;
                                 Engaged_S0 = servo.Engaged;
@@ -4448,8 +4700,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             case 1:
                                 Type_S1 = servo.Type;
 
-                                DevicePositionMin_S1 = servo.PositionMin;
-                                DevicePositionMax_S1 = servo.PositionMax;
+                                //DevicePositionMin_S1 = servo.PositionMin;
+                                //DevicePositionMax_S1 = servo.PositionMax;
 
                                 Stopped_S1 = servo.Stopped;
                                 Engaged_S1 = servo.Engaged;
@@ -4475,8 +4727,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             case 2:
                                 Type_S2 = servo.Type;
 
-                                DevicePositionMin_S2 = servo.PositionMin;
-                                DevicePositionMax_S2 = servo.PositionMax;
+                                //DevicePositionMin_S2 = servo.PositionMin;
+                                //DevicePositionMax_S2 = servo.PositionMax;
 
                                 Stopped_S2 = servo.Stopped;
                                 Engaged_S2 = servo.Engaged;
@@ -4502,8 +4754,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             case 3:
                                 Type_S3 = servo.Type;
 
-                                DevicePositionMin_S3 = servo.PositionMin;
-                                DevicePositionMax_S3 = servo.PositionMax;
+                                //DevicePositionMin_S3 = servo.PositionMin;
+                                //DevicePositionMax_S3 = servo.PositionMax;
 
                                 Stopped_S3 = servo.Stopped;
                                 Engaged_S3 = servo.Engaged;
