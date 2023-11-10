@@ -27,7 +27,17 @@ namespace VNCPhidgets21Explorer.Resources
         /// <summary>
         /// TargetPosition (optional)
         /// </summary>
+        public double? PositionMin { get; set; }
+
+        /// <summary>
+        /// TargetPosition (optional)
+        /// </summary>
         public double? TargetPosition { get; set; }
+
+        /// <summary>
+        /// TargetPosition (optional)
+        /// </summary>
+        public double? PositionMax { get; set; }
 
         /// <summary>
         /// Duration of step in ms (sleep time after step)

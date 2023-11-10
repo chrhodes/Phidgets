@@ -2,7 +2,9 @@
   "ServoIndex": 0,
   "Engaged": null,
   "Acceleration": null,
-  "Velocity": null,
+  "VelocityLimit": null,
+  "PositionMin": null,
   "TargetPosition": null,
-  "Duration": 1000
+  "PositionMax": null,
+  "Duration": null
 }

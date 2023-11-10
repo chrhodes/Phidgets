@@ -51,7 +51,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         //INVALID
     }
 
-    public class AdvancedServo1061ViewModel : EventViewModelBase, IAdvancedServo1061ViewModel, IInstanceCountVM
+    public class AdvancedServo1061ViewModel 
+        : EventViewModelBase, IAdvancedServo1061ViewModel, IInstanceCountVM
     {
         #region Constructors, Initialization, and Load
 
@@ -4319,6 +4320,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             {
                 if (step.Acceleration is not null) servo.Acceleration = (Double)step.Acceleration;
                 if (step.VelocityLimit is not null) servo.VelocityLimit = (Double)step.VelocityLimit;
+                if (step.PositionMin is not null) servo.PositionMin = (Double)step.PositionMin;
+                if (step.PositionMax is not null) servo.PositionMax = (Double)step.PositionMax;
                 if (step.Engaged is not null) servo.Engaged = (Boolean)step.Engaged;
 
                 // TODO(crhodes)
@@ -4931,7 +4934,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region Protected Methods
+        #region Protected Methods (none)
 
 
         #endregion

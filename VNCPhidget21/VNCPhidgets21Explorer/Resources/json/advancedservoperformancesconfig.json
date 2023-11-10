@@ -172,6 +172,17 @@
       ]
     },
     {
+      "Name": "Serial Skull Center 2",
+      "Description": "Servo {0,1,2} TargetPosition Center",
+      "PlayInParallel": false,
+      "ContinueWith": "",
+      "AdvancedServoSteps": [
+        { "ServoIndex": 0, "Engaged": true, "PositionMin": 90, "TargetPosition": 110, "PositionMax": 130},
+        { "ServoIndex": 1, "Engaged": true, "PositionMin": 95, "TargetPosition": 115, "PositionMax": 135 },
+        { "ServoIndex": 2, "Engaged": true, "PositionMin": 100, "TargetPosition": 120, "PositionMax": 140 }
+      ]
+    },
+    {
       "Name": "Parallel Skull Configure and Engage",
       "Description": "Servo {0,1,2} Acceleration:5000, VelocityLimit:500, Engaged",
       "PlayInParallel": true,
@@ -191,6 +202,17 @@
         { "ServoIndex": 0, "Engaged": true, "TargetPosition": 110 },
         { "ServoIndex": 1, "Engaged": true, "TargetPosition": 115 },
         { "ServoIndex": 2, "Engaged": true, "TargetPosition": 120 }
+      ]
+    },
+    {
+      "Name": "Parallel Skull Center 2",
+      "Description": "Servo {0,1,2} TargetPosition Center",
+      "PlayInParallel": true,
+      "ContinueWith": "",
+      "AdvancedServoSteps": [
+        { "ServoIndex": 0, "Engaged": true, "PositionMin": 90, "TargetPosition": 110, "PositionMax": 130},
+        { "ServoIndex": 1, "Engaged": true, "PositionMin": 95, "TargetPosition": 115, "PositionMax": 135 },
+        { "ServoIndex": 2, "Engaged": true, "PositionMin": 100, "TargetPosition": 120, "PositionMax": 140 }
       ]
     },
     {
