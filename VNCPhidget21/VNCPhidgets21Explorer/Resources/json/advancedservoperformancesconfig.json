@@ -1,724 +1,2373 @@
 {
   "AdvancedServoPerformances": [
     {
-      "Name": "PerformanceServo0",
-      "Description": "PERFORMANCE DESCRIPTION",
-      "ContinueWith": "PerformanceServo1",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Acceleration": 5000, "VelocityLimit": 200,"Engaged": true },
-        { "ServoIndex": 1, "Acceleration": 5000, "VelocityLimit": 200,"Engaged": true },
-        { "ServoIndex": 2, "Acceleration": 5000, "VelocityLimit": 200,"Engaged": true },
-        { "ServoIndex": 0, "Engaged": true, "Acceleration": null, "VelocityLimit": null, "TargetPosition": 90, "Duration": 1000 },
-        { "ServoIndex": 0, "Engaged": true, "Acceleration": null, "VelocityLimit": null, "TargetPosition": 95, "Duration": 1000 },
-        { "ServoIndex": 0, "Engaged": true, "Acceleration": null, "VelocityLimit": null, "TargetPosition": 100, "Duration": 2000 },
-        { "ServoIndex": 0, "Engaged": true, "Acceleration": null, "VelocityLimit": null, "TargetPosition": 95, "Duration": 500 },
-        { "ServoIndex": 0, "Engaged": true, "Acceleration": null, "VelocityLimit": null, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 0, "Engaged": false },
-        { "ServoIndex": 1, "Engaged": false },
-        { "ServoIndex": 2, "Engaged": false }
-      ]
-    },
-    {
-      "Name": "PerformanceServo1",
-      "Description": "PERFORMANCE DESCRIPTION",
-      "ContinueWith": "PerformanceServo2",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Acceleration": 5000, "VelocityLimit": 200, "Engaged": true },
-        { "ServoIndex": 1, "Acceleration": 5000, "VelocityLimit": 200,"Engaged": true },
-        { "ServoIndex": 2, "Acceleration": 5000, "VelocityLimit": 200,"Engaged": true },
-        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 90, "Duration": 1000 },
-        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 95, "Duration": 1000 },
-        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 100, "Duration": 2000 },
-        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 95, "Duration": 500 },
-        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 0, "Engaged": false },
-        { "ServoIndex": 1, "Engaged": false },
-        { "ServoIndex": 2, "Engaged": false }
-      ]
-    },
-    {
-      "Name": "PerformanceServo2",
-      "Description": "PERFORMANCE DESCRIPTION",
-      "ContinueWith": "",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Acceleration": 5000, "VelocityLimit": 200,"Engaged": true },
-        { "ServoIndex": 1, "Acceleration": 5000, "VelocityLimit": 200,"Engaged": true },
-        { "ServoIndex": 2, "Acceleration": 5000, "VelocityLimit": 200,"Engaged": true },
-        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 90, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 95, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 100, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 95, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 0, "Engaged": false },
-        { "ServoIndex": 1, "Engaged": false },
-        { "ServoIndex": 2, "Engaged": false }
-      ]
-    },
-    {
-      "Name": "PerformanceServo 3",
-      "Description": "Servo {0,1,2} TargetPosition 90/20/160/90 100ms",
-      "ContinueWith": "",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Acceleration": 5000, "VelocityLimit": 200, "Engaged": true },
-        { "ServoIndex": 1, "Acceleration": 5000, "VelocityLimit": 200, "Engaged": true },
-        { "ServoIndex": 2, "Acceleration": 5000, "VelocityLimit": 200, "Engaged": true },
-        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 90, "Duration": 100 },
-        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 90, "Duration": 100 },
-        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 90, "Duration": 100 },
-        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 20, "Duration": 100 },
-        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 20, "Duration": 100 },
-        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 20, "Duration": 100 },
-        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 160, "Duration": 100 },
-        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 160, "Duration": 100 },
-        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 160, "Duration": 100 },
-        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 90, "Duration": 100 },
-        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 90, "Duration": 100 },
-        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 90, "Duration": 100 }
-        //{ "ServoIndex": 0, "Engaged": false },
-        //{ "ServoIndex": 1, "Engaged": false },
-        //{ "ServoIndex": 2, "Engaged": false }
-      ]
-    },
-    {
-      "Name": "PerformanceServo 4",
-      "Description": "Servo {0,1,2} TargetPosition 90/20/160/90 200ms",
-      "ContinueWith": "",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Acceleration": 5000, "VelocityLimit": 200, "Engaged": true },
-        { "ServoIndex": 1, "Acceleration": 5000, "VelocityLimit": 200, "Engaged": true },
-        { "ServoIndex": 2, "Acceleration": 5000, "VelocityLimit": 200, "Engaged": true },
-        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 90, "Duration": 200 },
-        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 90, "Duration": 200 },
-        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 90, "Duration": 200 },
-        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 20, "Duration": 200 },
-        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 20, "Duration": 200 },
-        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 20, "Duration": 200 },
-        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 160, "Duration": 200 },
-        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 160, "Duration": 200 },
-        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 160, "Duration": 200 },
-        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 90, "Duration": 200 },
-        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 90, "Duration": 200 },
-        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 90, "Duration": 200 }
-        //{ "ServoIndex": 0, "Engaged": false },
-        //{ "ServoIndex": 1, "Engaged": false },
-        //{ "ServoIndex": 2, "Engaged": false }
-      ]
-    },
-    {
-      "Name": "PerformanceServo 5",
-      "Description": "Servo {0,1,2} TargetPosition 90/20/160/90 no duration",
-      "ContinueWith": "",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Acceleration": 5000, "VelocityLimit": 200, "Engaged": true },
-        { "ServoIndex": 1, "Acceleration": 5000, "VelocityLimit": 200, "Engaged": true },
-        { "ServoIndex": 2, "Acceleration": 5000, "VelocityLimit": 200, "Engaged": true },
-        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 90 },
-        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 90 },
-        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 90 },
-        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 20 },
-        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 20 },
-        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 20 },
-        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 160 },
-        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 160 },
-        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 160 },
-        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 90 },
-        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 90 },
-        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 90 }
-        //{ "ServoIndex": 0, "Engaged": false },
-        //{ "ServoIndex": 1, "Engaged": false },
-        //{ "ServoIndex": 2, "Engaged": false }
-      ]
-    },
-    {
-      "Name": "Parallel POC",
-      "Description": "Servo 3 TargetPosition 90/20/160/90 no duration",
-      "PlayInParallel": true,
-      "ContinueWith": "",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Acceleration": 5000, "VelocityLimit": 200, "Engaged": true },
-        { "ServoIndex": 1, "Acceleration": 5000, "VelocityLimit": 200, "Engaged": true },
-        { "ServoIndex": 2, "Acceleration": 5000, "VelocityLimit": 200, "Engaged": true },
-
-        { "ServoIndex": 3, "Engaged": true, "TargetPosition": 100 },
-        { "ServoIndex": 3, "Engaged": true, "TargetPosition": 20 },
-        { "ServoIndex": 3, "Engaged": true, "TargetPosition": 180 },
-        { "ServoIndex": 3, "Engaged": true, "TargetPosition": 100 }
-
-        //{ "ServoIndex": 0, "Engaged": false },
-        //{ "ServoIndex": 1, "Engaged": false },
-        //{ "ServoIndex": 2, "Engaged": false }
-      ]
-    },
-    {
-      "Name": "Serial Skull Configure and Engage",
-      "Description": "Servo {0,1,2} Acceleration:5000, VelocityLimit:500, Engaged",
-      "PlayInParallel": false,
-      "ContinueWith": "Serial Skull Center",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Acceleration": 500, "VelocityLimit": 50, "Engaged": true },
-        { "ServoIndex": 1, "Acceleration": 500, "VelocityLimit": 50, "Engaged": true },
-        { "ServoIndex": 2, "Acceleration": 500, "VelocityLimit": 50, "Engaged": true }
-      ]
-    },
-    {
-      "Name": "Serial Skull Center",
-      "Description": "Servo {0,1,2} TargetPosition Center",
-      "PlayInParallel": false,
-      "ContinueWith": "",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 110 },
-        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 115 },
-        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 120 }
-      ]
-    },
-    {
-      "Name": "Serial Skull Center 2",
-      "Description": "Servo {0,1,2} TargetPosition Center",
-      "PlayInParallel": false,
-      "ContinueWith": "",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Engaged": true, "PositionMin": 90, "TargetPosition": 110, "PositionMax": 130},
-        { "ServoIndex": 1, "Engaged": true, "PositionMin": 95, "TargetPosition": 115, "PositionMax": 135 },
-        { "ServoIndex": 2, "Engaged": true, "PositionMin": 100, "TargetPosition": 120, "PositionMax": 140 }
-      ]
-    },
-    {
-      "Name": "Parallel Skull Configure and Engage",
-      "Description": "Servo {0,1,2} Acceleration:5000, VelocityLimit:500, Engaged",
-      "PlayInParallel": true,
-      "ContinueWith": "Parallel Skull Center",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Acceleration": 500, "VelocityLimit": 50, "Engaged": true },
-        { "ServoIndex": 1, "Acceleration": 500, "VelocityLimit": 50, "Engaged": true },
-        { "ServoIndex": 2, "Acceleration": 500, "VelocityLimit": 50, "Engaged": true }
-      ]
-    },
-    {
-      "Name": "Parallel Skull Center",
-      "Description": "Servo {0,1,2} TargetPosition Center",
-      "PlayInParallel": true,
-      "ContinueWith": "",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 110 },
-        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 115 },
-        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 120 }
-      ]
-    },
-    {
-      "Name": "Parallel Skull Center 2",
-      "Description": "Servo {0,1,2} TargetPosition Center",
-      "PlayInParallel": true,
-      "ContinueWith": "",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Engaged": true, "PositionMin": 90, "TargetPosition": 110, "PositionMax": 130},
-        { "ServoIndex": 1, "Engaged": true, "PositionMin": 95, "TargetPosition": 115, "PositionMax": 135 },
-        { "ServoIndex": 2, "Engaged": true, "PositionMin": 100, "TargetPosition": 120, "PositionMax": 140 }
-      ]
-    },
-    {
-      "Name": "Serial Configure and Engage",
-      "Description": "Servo {0,1,2} Acceleration:5000, VelocityLimit:500, Engaged",
-      "PlayInParallel": false,
-      "ContinueWith": "Serial Center",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Acceleration": 5000, "VelocityLimit": 500, "Engaged": true },
-        { "ServoIndex": 1, "Acceleration": 5000, "VelocityLimit": 500, "Engaged": true },
-        { "ServoIndex": 2, "Acceleration": 5000, "VelocityLimit": 500, "Engaged": true }
-      ]
-    },
-    {
-      "Name": "Serial Center",
-      "Description": "Servo {0,1,2} TargetPosition Center",
-      "PlayInParallel": false,
-      "ContinueWith": "Serial -80",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 120 },
-        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 114 },
-        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 132 }
-      ]
-    },
-    {
-      "Name": "Serial -80",
-      "Description": "Servo {0,1,2} TargetPosition -80",
-      "PlayInParallel": false,
-      "ContinueWith": "Serial +80",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 40 },
-        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 34 },
-        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 52 }
-      ]
-    },
-    {
-      "Name": "Serial +80",
-      "Description": "Servo {0,1,2} TargetPosition +80",
-      "PlayInParallel": false,
-      "ContinueWith": "Serial Center and Disengage",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 200 },
-        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 194 },
-        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 212 }
-      ]
-    },
-    {
-      "Name": "Serial Center and Disengage",
-      "Description": "Servo {0,1,2} TargetPosition Center, DisEngaged",
-      "PlayInParallel": false,
-      "ContinueWith": "",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 120 },
-        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 114 },
-        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 132 },
-        { "ServoIndex": 0, "Engaged": false },
-        { "ServoIndex": 1, "Engaged": false },
-        { "ServoIndex": 2, "Engaged": false }
-      ]
-    },
-    {
-      "Name": "Parallel Configure and Engage",
-      "Description": "Servo {0,1,2} Acceleration:5000, VelocityLimit:500, Engaged",
-      "PlayInParallel": true,
-      "ContinueWith": "Parallel Center",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Acceleration": 5000, "VelocityLimit": 500, "Engaged": true },
-        { "ServoIndex": 1, "Acceleration": 5000, "VelocityLimit": 500, "Engaged": true },
-        { "ServoIndex": 2, "Acceleration": 5000, "VelocityLimit": 500, "Engaged": true }
-      ]
-    },
-    {
-      "Name": "Parallel Center",
-      "Description": "Servo {0,1,2} TargetPosition Center",
-      "PlayInParallel": true,
-      "ContinueWith": "Parallel -80",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 120 },
-        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 114 },
-        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 132 }
-      ]
-    },
-    {
-      "Name": "Parallel -80",
-      "Description": "Servo {0,1,2} TargetPosition -80",
-      "PlayInParallel": true,
-      "ContinueWith": "Parallel +80",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 40 },
-        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 34 },
-        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 52 }
-      ]
-    },
-    {
-      "Name": "Parallel +80",
-      "Description": "Servo {0,1,2} TargetPosition +80",
-      "PlayInParallel": true,
-      "ContinueWith": "Parallel Center and Disengage",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 200 },
-        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 194 },
-        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 212 }
-      ]
-    },
-    {
-      "Name": "Parallel Center and Disengage",
-      "Description": "Servo {0,1,2} TargetPosition Center, DisEngaged",
-      "PlayInParallel": true,
-      "ContinueWith": "",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 120 },
-        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 114 },
-        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 132 },
-        { "ServoIndex": 0, "Engaged": false },
-        { "ServoIndex": 1, "Engaged": false },
-        { "ServoIndex": 2, "Engaged": false }
-      ]
-    },
-    {
-      "Name": "PerformanceServo2 - Explore Acceleration 1",
-      "Description": "VelocityLimit 20, Vary Acceleration {50,100,200,500}",
+      "Name": "Performance0",
+      "Description": "Performance0 Description",
       "Loops": 1,
-      "ContinueWith": "CONTINUE WITH PERFORMANCE NAME",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Engaged": true },
-        { "ServoIndex": 1, "Engaged": true },
-        { "ServoIndex": 2, "Engaged": true },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 50, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 50, "VelocityLimit": 20, "TargetPosition": 95, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 50, "VelocityLimit": 20, "TargetPosition": 100, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 50, "VelocityLimit": 20, "TargetPosition": 95, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 50, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 50, "VelocityLimit": 20, "TargetPosition": 85, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 50, "VelocityLimit": 20, "TargetPosition": 80, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 50, "VelocityLimit": 20, "TargetPosition": 85, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 50, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 500 },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 20, "TargetPosition": 95, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 20, "TargetPosition": 100, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 20, "TargetPosition": 95, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 20, "TargetPosition": 85, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 20, "TargetPosition": 80, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 20, "TargetPosition": 85, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 500 },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 20, "TargetPosition": 95, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 20, "TargetPosition": 100, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 20, "TargetPosition": 95, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 20, "TargetPosition": 85, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 20, "TargetPosition": 80, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 20, "TargetPosition": 85, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 500 },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 20, "TargetPosition": 95, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 20, "TargetPosition": 100, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 20, "TargetPosition": 95, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 20, "TargetPosition": 85, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 20, "TargetPosition": 80, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 20, "TargetPosition": 85, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 500 },
-
-        { "ServoIndex": 0, "Engaged": false },
-        { "ServoIndex": 1, "Engaged": false },
-        { "ServoIndex": 2, "Engaged": false }
+      "PlayInParallel": false,
+      "ContinueWith": "",
+      "AdvancedServoSequences": [
+        {
+          "Host": {
+            "Name": "localhost",
+            "IPAddress": "127.0.0.1",
+            "Port": 5001,
+            "Enable": true,
+            "AdvancedServos": [
+              {
+                "Name": "AdvancedServo 1",
+                "SerialNumber": 99415,
+                "Open": true
+              }
+            ],
+            "InterfaceKits": [
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 1234,
+                "Open": true,
+                "Embedded": true
+              },
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 5678,
+                "Open": false,
+                "Embedded": false
+              }
+            ],
+            "Steppers": [
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 1234,
+                "Open": true
+              },
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 5678,
+                "Open": false
+              }
+            ]
+          },
+          "Name": "SequenceServo0",
+          "Description": "SEQUENCE DESCRIPTION",
+          "Loops": 1,
+          "PlayInParallel": false,
+          "ContinueWith": "SequenceServo1",
+          "AdvancedServoServoActions": [
+            {
+              "ServoIndex": 0,
+              "Engaged": true,
+              "Acceleration": 5000,
+              "VelocityLimit": 200,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 0,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 0,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 0,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 100,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 0,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 0,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 0,
+              "Engaged": false,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            }
+          ]
+        },
+        {
+          "Host": {
+            "Name": "localhost",
+            "IPAddress": "127.0.0.1",
+            "Port": 5001,
+            "Enable": true,
+            "AdvancedServos": [
+              {
+                "Name": "AdvancedServo 1",
+                "SerialNumber": 46049,
+                "Open": true
+              }
+            ],
+            "InterfaceKits": [
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 1234,
+                "Open": true,
+                "Embedded": true
+              },
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 5678,
+                "Open": false,
+                "Embedded": false
+              }
+            ],
+            "Steppers": [
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 1234,
+                "Open": true
+              },
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 5678,
+                "Open": false
+              }
+            ]
+          },
+          "Name": "SequenceServo1",
+          "Description": "SEQUENCE DESCRIPTION",
+          "Loops": 1,
+          "PlayInParallel": false,
+          "ContinueWith": "SequenceServo2",
+          "AdvancedServoServoActions": [
+            {
+              "ServoIndex": 1,
+              "Engaged": true,
+              "Acceleration": 5000,
+              "VelocityLimit": 200,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 100,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": false,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            }
+          ]
+        },
+        {
+          "Host": {
+            "Name": "localhost",
+            "IPAddress": "127.0.0.1",
+            "Port": 5001,
+            "Enable": true,
+            "AdvancedServos": [
+              {
+                "Name": "AdvancedServo 1",
+                "SerialNumber": 46049,
+                "Open": true
+              }
+            ],
+            "InterfaceKits": [
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 1234,
+                "Open": true,
+                "Embedded": true
+              },
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 5678,
+                "Open": false,
+                "Embedded": false
+              }
+            ],
+            "Steppers": [
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 1234,
+                "Open": true
+              },
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 5678,
+                "Open": false
+              }
+            ]
+          },
+          "Name": "SequenceServo2",
+          "Description": "SEQUENCE DESCRIPTION",
+          "Loops": 1,
+          "PlayInParallel": false,
+          "ContinueWith": "",
+          "AdvancedServoServoActions": [
+            {
+              "ServoIndex": 2,
+              "Engaged": true,
+              "Acceleration": 5000,
+              "VelocityLimit": 200,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 100,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": false,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            }
+          ]
+        }
       ]
     },
     {
-      "Name": "PerformanceServo2 - Explore Acceleration 2",
-      "Description": "TargetPosition +-10 VelocityLimit 20, Vary Acceleration {50,100,200,500}",
+      "Name": "Performance1",
+      "Description": "Performance1 Description",
       "Loops": 1,
-      "ContinueWith": "CONTINUE WITH PERFORMANCE NAME",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Engaged": true },
-        { "ServoIndex": 1, "Engaged": true },
-        { "ServoIndex": 2, "Engaged": true },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 50, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 50, "VelocityLimit": 20, "TargetPosition": 100, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 50, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 50, "VelocityLimit": 20, "TargetPosition": 80, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 50, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 500 },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 20, "TargetPosition": 100, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 20, "TargetPosition": 80, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 500 },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 20, "TargetPosition": 100, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 20, "TargetPosition": 80, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 500 },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 20, "TargetPosition": 100, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 20, "TargetPosition": 80, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 500 },
-
-        { "ServoIndex": 0, "Engaged": false },
-        { "ServoIndex": 1, "Engaged": false },
-        { "ServoIndex": 2, "Engaged": false }
+      "PlayInParallel": false,
+      "ContinueWith": "",
+      "AdvancedServoSequences": [
+        {
+          "Host": {
+            "Name": "psbc11",
+            "IPAddress": "192.168.150.11",
+            "Port": 5001,
+            "Enable": true,
+            "AdvancedServos": [
+              {
+                "Name": "AdvancedServo 1",
+                "SerialNumber": 99415,
+                "Open": true
+              }
+            ],
+            "InterfaceKits": [
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 1234,
+                "Open": true,
+                "Embedded": true
+              },
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 5678,
+                "Open": false,
+                "Embedded": false
+              }
+            ],
+            "Steppers": [
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 1234,
+                "Open": true
+              },
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 5678,
+                "Open": false
+              }
+            ]
+          },
+          "Name": "SequenceServo0",
+          "Description": "SEQUENCE DESCRIPTION",
+          "Loops": 1,
+          "PlayInParallel": false,
+          "ContinueWith": "SequenceServo1",
+          "AdvancedServoServoActions": [
+            {
+              "ServoIndex": 0,
+              "Engaged": true,
+              "Acceleration": 5000,
+              "VelocityLimit": 200,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 0,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 0,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 0,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 100,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 0,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 0,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 0,
+              "Engaged": false,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            }
+          ]
+        },
+        {
+          "Host": {
+            "Name": "localhost",
+            "IPAddress": "127.0.0.1",
+            "Port": 5001,
+            "Enable": true,
+            "AdvancedServos": [
+              {
+                "Name": "AdvancedServo 1",
+                "SerialNumber": 46049,
+                "Open": true
+              }
+            ],
+            "InterfaceKits": [
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 1234,
+                "Open": true,
+                "Embedded": true
+              },
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 5678,
+                "Open": false,
+                "Embedded": false
+              }
+            ],
+            "Steppers": [
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 1234,
+                "Open": true
+              },
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 5678,
+                "Open": false
+              }
+            ]
+          },
+          "Name": "SequenceServo1",
+          "Description": "SEQUENCE DESCRIPTION",
+          "Loops": 1,
+          "PlayInParallel": false,
+          "ContinueWith": "SequenceServo2",
+          "AdvancedServoServoActions": [
+            {
+              "ServoIndex": 1,
+              "Engaged": true,
+              "Acceleration": 5000,
+              "VelocityLimit": 200,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 100,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": false,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            }
+          ]
+        },
+        {
+          "Host": {
+            "Name": "localhost",
+            "IPAddress": "127.0.0.1",
+            "Port": 5001,
+            "Enable": true,
+            "AdvancedServos": [
+              {
+                "Name": "AdvancedServo 1",
+                "SerialNumber": 46049,
+                "Open": true
+              }
+            ],
+            "InterfaceKits": [
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 1234,
+                "Open": true,
+                "Embedded": true
+              },
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 5678,
+                "Open": false,
+                "Embedded": false
+              }
+            ],
+            "Steppers": [
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 1234,
+                "Open": true
+              },
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 5678,
+                "Open": false
+              }
+            ]
+          },
+          "Name": "SequenceServo2",
+          "Description": "SEQUENCE DESCRIPTION",
+          "Loops": 1,
+          "PlayInParallel": false,
+          "ContinueWith": "",
+          "AdvancedServoServoActions": [
+            {
+              "ServoIndex": 2,
+              "Engaged": true,
+              "Acceleration": 5000,
+              "VelocityLimit": 200,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 100,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": false,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            }
+          ]
+        }
       ]
     },
     {
-      "Name": "PerformanceServo2 - Explore Velocity 1",
-      "Description": "TargetPosition +-10 Acceleration 100, Vary VelocityLimit {20,40,80,160,300}",
+      "Name": "Performance2",
+      "Description": "Performance2 Description",
       "Loops": 1,
-      "ContinueWith": "CONTINUE WITH PERFORMANCE NAME",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Engaged": true },
-        { "ServoIndex": 1, "Engaged": true },
-        { "ServoIndex": 2, "Engaged": true },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 20, "TargetPosition": 100, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 20, "TargetPosition": 80, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 500 },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 40, "TargetPosition": 90, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 40, "TargetPosition": 100, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 40, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 40, "TargetPosition": 80, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 40, "TargetPosition": 90, "Duration": 500 },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 80, "TargetPosition": 90, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 80, "TargetPosition": 100, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 80, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 80, "TargetPosition": 80, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 80, "TargetPosition": 90, "Duration": 500 },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 160, "TargetPosition": 90, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 160, "TargetPosition": 100, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 160, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 160, "TargetPosition": 80, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 160, "TargetPosition": 90, "Duration": 500 },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 240, "TargetPosition": 90, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 240, "TargetPosition": 100, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 240, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 240, "TargetPosition": 80, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 100, "VelocityLimit": 240, "TargetPosition": 90, "Duration": 500 },
-
-        { "ServoIndex": 0, "Engaged": false },
-        { "ServoIndex": 1, "Engaged": false },
-        { "ServoIndex": 2, "Engaged": false }
+      "PlayInParallel": false,
+      "ContinueWith": "",
+      "AdvancedServoSequences": [
+        {
+          "Host": {
+            "Name": "psbc21",
+            "IPAddress": "192.168.150.21",
+            "Port": 5001,
+            "Enable": true,
+            "AdvancedServos": [
+              {
+                "Name": "AdvancedServo 1",
+                "SerialNumber": 99415,
+                "Open": true
+              }
+            ],
+            "InterfaceKits": [
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 1234,
+                "Open": true,
+                "Embedded": true
+              },
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 5678,
+                "Open": false,
+                "Embedded": false
+              }
+            ],
+            "Steppers": [
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 1234,
+                "Open": true
+              },
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 5678,
+                "Open": false
+              }
+            ]
+          },
+          "Name": "SequenceServo0",
+          "Description": "SEQUENCE DESCRIPTION",
+          "Loops": 1,
+          "PlayInParallel": false,
+          "ContinueWith": "SequenceServo1",
+          "AdvancedServoServoActions": [
+            {
+              "ServoIndex": 0,
+              "Engaged": true,
+              "Acceleration": 5000,
+              "VelocityLimit": 200,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 0,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 0,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 0,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 100,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 0,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 0,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 0,
+              "Engaged": false,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            }
+          ]
+        },
+        {
+          "Host": {
+            "Name": "localhost",
+            "IPAddress": "127.0.0.1",
+            "Port": 5001,
+            "Enable": true,
+            "AdvancedServos": [
+              {
+                "Name": "AdvancedServo 1",
+                "SerialNumber": 46049,
+                "Open": true
+              }
+            ],
+            "InterfaceKits": [
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 1234,
+                "Open": true,
+                "Embedded": true
+              },
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 5678,
+                "Open": false,
+                "Embedded": false
+              }
+            ],
+            "Steppers": [
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 1234,
+                "Open": true
+              },
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 5678,
+                "Open": false
+              }
+            ]
+          },
+          "Name": "SequenceServo1",
+          "Description": "SEQUENCE DESCRIPTION",
+          "Loops": 1,
+          "PlayInParallel": false,
+          "ContinueWith": "SequenceServo2",
+          "AdvancedServoServoActions": [
+            {
+              "ServoIndex": 1,
+              "Engaged": true,
+              "Acceleration": 5000,
+              "VelocityLimit": 200,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 100,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": false,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            }
+          ]
+        },
+        {
+          "Host": {
+            "Name": "localhost",
+            "IPAddress": "127.0.0.1",
+            "Port": 5001,
+            "Enable": true,
+            "AdvancedServos": [
+              {
+                "Name": "AdvancedServo 1",
+                "SerialNumber": 46049,
+                "Open": true
+              }
+            ],
+            "InterfaceKits": [
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 1234,
+                "Open": true,
+                "Embedded": true
+              },
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 5678,
+                "Open": false,
+                "Embedded": false
+              }
+            ],
+            "Steppers": [
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 1234,
+                "Open": true
+              },
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 5678,
+                "Open": false
+              }
+            ]
+          },
+          "Name": "SequenceServo2",
+          "Description": "SEQUENCE DESCRIPTION",
+          "Loops": 1,
+          "PlayInParallel": false,
+          "ContinueWith": "",
+          "AdvancedServoServoActions": [
+            {
+              "ServoIndex": 2,
+              "Engaged": true,
+              "Acceleration": 5000,
+              "VelocityLimit": 200,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 100,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": false,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            }
+          ]
+        }
       ]
     },
     {
-      "Name": "PerformanceServo2 - Explore Velocity 2",
-      "Description": "Acceleration 200, Vary VelocityLimit {20,40,80,160,300}",
+      "Name": "Performance2 Parallel",
+      "Description": "Performance2 Parallel Description",
       "Loops": 1,
-      "ContinueWith": "CONTINUE WITH PERFORMANCE NAME",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Engaged": true },
-        { "ServoIndex": 1, "Engaged": true },
-        { "ServoIndex": 2, "Engaged": true },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 20, "TargetPosition": 100, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 20, "TargetPosition": 80, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 500 },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 40, "TargetPosition": 90, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 40, "TargetPosition": 100, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 40, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 40, "TargetPosition": 80, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 40, "TargetPosition": 90, "Duration": 500 },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 80, "TargetPosition": 90, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 80, "TargetPosition": 100, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 80, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 80, "TargetPosition": 80, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 80, "TargetPosition": 90, "Duration": 500 },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 160, "TargetPosition": 90, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 160, "TargetPosition": 100, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 160, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 160, "TargetPosition": 80, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 160, "TargetPosition": 90, "Duration": 500 },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 300, "TargetPosition": 90, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 300, "TargetPosition": 100, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 300, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 300, "TargetPosition": 80, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 200, "VelocityLimit": 300, "TargetPosition": 90, "Duration": 500 },
-
-        { "ServoIndex": 0, "Engaged": false },
-        { "ServoIndex": 1, "Engaged": false },
-        { "ServoIndex": 2, "Engaged": false }
+      "PlayInParallel": false,
+      "ContinueWith": "",
+      "AdvancedServoSequences": [
+        {
+          "Host": {
+            "Name": "psbc21",
+            "IPAddress": "192.168.150.21",
+            "Port": 5001,
+            "Enable": true,
+            "AdvancedServos": [
+              {
+                "Name": "AdvancedServo 1",
+                "SerialNumber": 99415,
+                "Open": true
+              }
+            ],
+            "InterfaceKits": [
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 1234,
+                "Open": true,
+                "Embedded": true
+              },
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 5678,
+                "Open": false,
+                "Embedded": false
+              }
+            ],
+            "Steppers": [
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 1234,
+                "Open": true
+              },
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 5678,
+                "Open": false
+              }
+            ]
+          },
+          "Name": "SequenceServo0P Configure and Engage",
+          "Description": "SEQUENCE DESCRIPTION",
+          "Loops": 1,
+          "PlayInParallel": true,
+          "ContinueWith": "SequenceServo1P",
+          "AdvancedServoServoActions": [
+            {
+              "ServoIndex": 0,
+              "Engaged": true,
+              "Acceleration": 5000,
+              "VelocityLimit": 200,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": true,
+              "Acceleration": 5000,
+              "VelocityLimit": 200,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": true,
+              "Acceleration": 5000,
+              "VelocityLimit": 200,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            }
+          ]
+        },
+        {
+          "Host": {
+            "Name": "localhost",
+            "IPAddress": "127.0.0.1",
+            "Port": 5001,
+            "Enable": true,
+            "AdvancedServos": [
+              {
+                "Name": "AdvancedServo 1",
+                "SerialNumber": 46049,
+                "Open": true
+              }
+            ],
+            "InterfaceKits": [
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 1234,
+                "Open": true,
+                "Embedded": true
+              },
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 5678,
+                "Open": false,
+                "Embedded": false
+              }
+            ],
+            "Steppers": [
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 1234,
+                "Open": true
+              },
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 5678,
+                "Open": false
+              }
+            ]
+          },
+          "Name": "SequenceServo1P",
+          "Description": "SEQUENCE DESCRIPTION",
+          "Loops": 1,
+          "PlayInParallel": true,
+          "ContinueWith": "SequenceServo2P",
+          "AdvancedServoServoActions": [
+            {
+              "ServoIndex": 0,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            }
+          ]
+        },
+        {
+          "Host": {
+            "Name": "localhost",
+            "IPAddress": "127.0.0.1",
+            "Port": 5001,
+            "Enable": true,
+            "AdvancedServos": [
+              {
+                "Name": "AdvancedServo 1",
+                "SerialNumber": 46049,
+                "Open": true
+              }
+            ],
+            "InterfaceKits": [
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 1234,
+                "Open": true,
+                "Embedded": true
+              },
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 5678,
+                "Open": false,
+                "Embedded": false
+              }
+            ],
+            "Steppers": [
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 1234,
+                "Open": true
+              },
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 5678,
+                "Open": false
+              }
+            ]
+          },
+          "Name": "SequenceServo2P",
+          "Description": "SEQUENCE DESCRIPTION",
+          "Loops": 1,
+          "PlayInParallel": true,
+          "ContinueWith": "SequenceServo3P",
+          "AdvancedServoServoActions": [
+            {
+              "ServoIndex": 0,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            }
+          ]
+        },
+        {
+          "Host": {
+            "Name": "localhost",
+            "IPAddress": "127.0.0.1",
+            "Port": 5001,
+            "Enable": true,
+            "AdvancedServos": [
+              {
+                "Name": "AdvancedServo 1",
+                "SerialNumber": 46049,
+                "Open": true
+              }
+            ],
+            "InterfaceKits": [
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 1234,
+                "Open": true,
+                "Embedded": true
+              },
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 5678,
+                "Open": false,
+                "Embedded": false
+              }
+            ],
+            "Steppers": [
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 1234,
+                "Open": true
+              },
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 5678,
+                "Open": false
+              }
+            ]
+          },
+          "Name": "SequenceServo3P",
+          "Description": "SEQUENCE DESCRIPTION",
+          "Loops": 1,
+          "PlayInParallel": true,
+          "ContinueWith": "SequenceServo4P",
+          "AdvancedServoServoActions": [
+            {
+              "ServoIndex": 0,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 100,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 100,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 100,
+              "PositionMax": null,
+              "Duration": null
+            }
+          ]
+        },
+        {
+          "Host": {
+            "Name": "localhost",
+            "IPAddress": "127.0.0.1",
+            "Port": 5001,
+            "Enable": true,
+            "AdvancedServos": [
+              {
+                "Name": "AdvancedServo 1",
+                "SerialNumber": 46049,
+                "Open": true
+              }
+            ],
+            "InterfaceKits": [
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 1234,
+                "Open": true,
+                "Embedded": true
+              },
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 5678,
+                "Open": false,
+                "Embedded": false
+              }
+            ],
+            "Steppers": [
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 1234,
+                "Open": true
+              },
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 5678,
+                "Open": false
+              }
+            ]
+          },
+          "Name": "SequenceServo4P",
+          "Description": "SEQUENCE DESCRIPTION",
+          "Loops": 1,
+          "PlayInParallel": true,
+          "ContinueWith": "SequenceServo5P",
+          "AdvancedServoServoActions": [
+            {
+              "ServoIndex": 0,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            }
+          ]
+        },
+        {
+          "Host": {
+            "Name": "localhost",
+            "IPAddress": "127.0.0.1",
+            "Port": 5001,
+            "Enable": true,
+            "AdvancedServos": [
+              {
+                "Name": "AdvancedServo 1",
+                "SerialNumber": 46049,
+                "Open": true
+              }
+            ],
+            "InterfaceKits": [
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 1234,
+                "Open": true,
+                "Embedded": true
+              },
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 5678,
+                "Open": false,
+                "Embedded": false
+              }
+            ],
+            "Steppers": [
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 1234,
+                "Open": true
+              },
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 5678,
+                "Open": false
+              }
+            ]
+          },
+          "Name": "SequenceServo5P",
+          "Description": "SEQUENCE DESCRIPTION",
+          "Loops": 1,
+          "PlayInParallel": true,
+          "ContinueWith": "SequenceServoFin",
+          "AdvancedServoServoActions": [
+            {
+              "ServoIndex": 0,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            }
+          ]
+        },
+        {
+          "Host": {
+            "Name": "localhost",
+            "IPAddress": "127.0.0.1",
+            "Port": 5001,
+            "Enable": true,
+            "AdvancedServos": [
+              {
+                "Name": "AdvancedServo 1",
+                "SerialNumber": 46049,
+                "Open": true
+              }
+            ],
+            "InterfaceKits": [
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 1234,
+                "Open": true,
+                "Embedded": true
+              },
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 5678,
+                "Open": false,
+                "Embedded": false
+              }
+            ],
+            "Steppers": [
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 1234,
+                "Open": true
+              },
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 5678,
+                "Open": false
+              }
+            ]
+          },
+          "Name": "SequenceServoFin",
+          "Description": "SEQUENCE DESCRIPTION",
+          "Loops": 1,
+          "PlayInParallel": false,
+          "ContinueWith": "",
+          "AdvancedServoServoActions": [
+            {
+              "ServoIndex": 0,
+              "Engaged": false,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": false,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": false,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            }
+          ]
+        }
       ]
     },
     {
-      "Name": "PerformanceServo2 - Explore Velocity 3",
-      "Description": "Acceleration 500, Vary VelocityLimit {20,40,80,160,300}",
+      "Name": "Performance3",
+      "Description": "Performance3 Description",
       "Loops": 1,
-      "ContinueWith": "CONTINUE WITH PERFORMANCE NAME",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Engaged": true },
-        { "ServoIndex": 1, "Engaged": true },
-        { "ServoIndex": 2, "Engaged": true },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 20, "TargetPosition": 100, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 20, "TargetPosition": 80, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 500 },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 40, "TargetPosition": 90, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 40, "TargetPosition": 100, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 40, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 40, "TargetPosition": 80, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 40, "TargetPosition": 90, "Duration": 500 },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 80, "TargetPosition": 90, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 80, "TargetPosition": 100, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 80, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 80, "TargetPosition": 80, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 80, "TargetPosition": 90, "Duration": 500 },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 160, "TargetPosition": 90, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 160, "TargetPosition": 100, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 160, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 160, "TargetPosition": 80, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 160, "TargetPosition": 90, "Duration": 500 },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 300, "TargetPosition": 90, "Duration": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 300, "TargetPosition": 100, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 300, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 300, "TargetPosition": 80, "Duration": 2000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 300, "TargetPosition": 90, "Duration": 500 },
-
-        { "ServoIndex": 0, "Engaged": false },
-        { "ServoIndex": 1, "Engaged": false },
-        { "ServoIndex": 2, "Engaged": false }
+      "PlayInParallel": false,
+      "ContinueWith": "",
+      "AdvancedServoSequences": [
+        {
+          "Host": {
+            "Name": "psbc22",
+            "IPAddress": "192.168.150.22",
+            "Port": 5001,
+            "Enable": true,
+            "AdvancedServos": [
+              {
+                "Name": "AdvancedServo 1",
+                "SerialNumber": 99415,
+                "Open": true
+              }
+            ],
+            "InterfaceKits": [
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 1234,
+                "Open": true,
+                "Embedded": true
+              },
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 5678,
+                "Open": false,
+                "Embedded": false
+              }
+            ],
+            "Steppers": [
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 1234,
+                "Open": true
+              },
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 5678,
+                "Open": false
+              }
+            ]
+          },
+          "Name": "SequenceServo0",
+          "Description": "SEQUENCE DESCRIPTION",
+          "Loops": 1,
+          "PlayInParallel": false,
+          "ContinueWith": "SequenceServo1",
+          "AdvancedServoServoActions": [
+            {
+              "ServoIndex": 0,
+              "Engaged": true,
+              "Acceleration": 5000,
+              "VelocityLimit": 200,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 0,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 0,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 0,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 100,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 0,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 0,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 0,
+              "Engaged": false,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            }
+          ]
+        },
+        {
+          "Host": {
+            "Name": "localhost",
+            "IPAddress": "127.0.0.1",
+            "Port": 5001,
+            "Enable": true,
+            "AdvancedServos": [
+              {
+                "Name": "AdvancedServo 1",
+                "SerialNumber": 46049,
+                "Open": true
+              }
+            ],
+            "InterfaceKits": [
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 1234,
+                "Open": true,
+                "Embedded": true
+              },
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 5678,
+                "Open": false,
+                "Embedded": false
+              }
+            ],
+            "Steppers": [
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 1234,
+                "Open": true
+              },
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 5678,
+                "Open": false
+              }
+            ]
+          },
+          "Name": "SequenceServo1",
+          "Description": "SEQUENCE DESCRIPTION",
+          "Loops": 1,
+          "PlayInParallel": false,
+          "ContinueWith": "SequenceServo2",
+          "AdvancedServoServoActions": [
+            {
+              "ServoIndex": 1,
+              "Engaged": true,
+              "Acceleration": 5000,
+              "VelocityLimit": 200,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 100,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": false,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            }
+          ]
+        },
+        {
+          "Host": {
+            "Name": "localhost",
+            "IPAddress": "127.0.0.1",
+            "Port": 5001,
+            "Enable": true,
+            "AdvancedServos": [
+              {
+                "Name": "AdvancedServo 1",
+                "SerialNumber": 46049,
+                "Open": true
+              }
+            ],
+            "InterfaceKits": [
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 1234,
+                "Open": true,
+                "Embedded": true
+              },
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 5678,
+                "Open": false,
+                "Embedded": false
+              }
+            ],
+            "Steppers": [
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 1234,
+                "Open": true
+              },
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 5678,
+                "Open": false
+              }
+            ]
+          },
+          "Name": "SequenceServo2",
+          "Description": "SEQUENCE DESCRIPTION",
+          "Loops": 1,
+          "PlayInParallel": false,
+          "ContinueWith": "",
+          "AdvancedServoServoActions": [
+            {
+              "ServoIndex": 2,
+              "Engaged": true,
+              "Acceleration": 5000,
+              "VelocityLimit": 200,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 100,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": false,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            }
+          ]
+        }
       ]
     },
     {
-      "Name": "PerformanceServo2 - Explore Velocity 4",
-      "Description": "Acceleration 500, Vary VelocityLimit {20,40,80,160,300} 500ms Duration Delay",
+      "Name": "Performance4",
+      "Description": "Performance4 Description",
       "Loops": 1,
-      "ContinueWith": "CONTINUE WITH PERFORMANCE NAME",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Engaged": true },
-        { "ServoIndex": 1, "Engaged": true },
-        { "ServoIndex": 2, "Engaged": true },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 20, "TargetPosition": 100, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 500  },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 20, "TargetPosition": 80, "Duration": 500  },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 500  },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 40, "TargetPosition": 90, "Duration": 500  },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 40, "TargetPosition": 100, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 40, "TargetPosition": 90, "Duration": 500  },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 40, "TargetPosition": 80, "Duration": 500  },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 40, "TargetPosition": 90, "Duration": 500  },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 80, "TargetPosition": 90, "Duration": 500  },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 80, "TargetPosition": 100, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 80, "TargetPosition": 90, "Duration": 500  },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 80, "TargetPosition": 80, "Duration": 500  },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 80, "TargetPosition": 90, "Duration": 500  },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 160, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 160, "TargetPosition": 100, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 160, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 160, "TargetPosition": 80, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 160, "TargetPosition": 90, "Duration": 500 },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 300, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 300, "TargetPosition": 100, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 300, "TargetPosition": 90, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 300, "TargetPosition": 80, "Duration": 500 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 300, "TargetPosition": 90, "Duration": 500 },
-
-        { "ServoIndex": 0, "Engaged": false },
-        { "ServoIndex": 1, "Engaged": false },
-        { "ServoIndex": 2, "Engaged": false }
-      ]
-    },
-    {
-      "Name": "PerformanceServo2 - Explore Velocity 5",
-      "Description": "Acceleration 500, Vary VelocityLimit {20,40,80,160,300} 250ms Duration Delay",
-      "Loops": 1,
-      "ContinueWith": "CONTINUE WITH PERFORMANCE NAME",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Engaged": true },
-        { "ServoIndex": 1, "Engaged": true },
-        { "ServoIndex": 2, "Engaged": true },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 20, "TargetPosition": 100, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 250  },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 20, "TargetPosition": 80, "Duration": 250  },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 20, "TargetPosition": 90, "Duration": 250  },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 40, "TargetPosition": 90, "Duration": 250  },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 40, "TargetPosition": 100, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 40, "TargetPosition": 90, "Duration": 250  },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 40, "TargetPosition": 80, "Duration": 250  },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 40, "TargetPosition": 90, "Duration": 250  },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 80, "TargetPosition": 90, "Duration": 250  },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 80, "TargetPosition": 100, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 80, "TargetPosition": 90, "Duration": 250  },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 80, "TargetPosition": 80, "Duration": 250  },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 80, "TargetPosition": 90, "Duration": 250  },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 160, "TargetPosition": 90, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 160, "TargetPosition": 100, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 160, "TargetPosition": 90, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 160, "TargetPosition": 80, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 160, "TargetPosition": 90, "Duration": 250 },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 300, "TargetPosition": 90, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 300, "TargetPosition": 100, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 300, "TargetPosition": 90, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 300, "TargetPosition": 80, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 300, "TargetPosition": 90, "Duration": 250 },
-
-        { "ServoIndex": 0, "Engaged": false },
-        { "ServoIndex": 1, "Engaged": false },
-        { "ServoIndex": 2, "Engaged": false }
-      ]
-    },
-    {
-      "Name": "PerformanceServo2 - Shake Head 1",
-      "Description": "Acceleration 500, Vary VelocityLimit 160 250ms Duration Delay",
-      "Loops": 3,
-      "ContinueWith": "CONTINUE WITH PERFORMANCE NAME",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Engaged": true },
-        { "ServoIndex": 1, "Engaged": true },
-        { "ServoIndex": 2, "Engaged": true },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 160, "TargetPosition": 90, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 160, "TargetPosition": 100, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 160, "TargetPosition": 80, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 160, "TargetPosition": 100, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 160, "TargetPosition": 80, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 160, "TargetPosition": 100, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 160, "TargetPosition": 80, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 160, "TargetPosition": 90, "Duration": 250 },
-
-        { "ServoIndex": 0, "Engaged": false },
-        { "ServoIndex": 1, "Engaged": false },
-        { "ServoIndex": 2, "Engaged": false }
-      ]
-    },
-    {
-      "Name": "PerformanceServo2 - Shake Head 2",
-      "Description": "Acceleration 500, Vary VelocityLimit 300 250ms Duration Delay",
-      "Loops": 3,
-      "ContinueWith": "CONTINUE WITH PERFORMANCE NAME",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Engaged": true },
-        { "ServoIndex": 1, "Engaged": true },
-        { "ServoIndex": 2, "Engaged": true },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 300, "TargetPosition": 90, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 300, "TargetPosition": 100, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 300, "TargetPosition": 80, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 300, "TargetPosition": 100, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 300, "TargetPosition": 80, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 300, "TargetPosition": 100, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 300, "TargetPosition": 80, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 300, "TargetPosition": 90, "Duration": 250 },
-
-        { "ServoIndex": 0, "Engaged": false },
-        { "ServoIndex": 1, "Engaged": false },
-        { "ServoIndex": 2, "Engaged": false }
-      ]
-    },
-    {
-      "Name": "PerformanceServo2 - Shake Head 3",
-      "Description": "Acceleration 1000, Vary VelocityLimit 300 250ms Duration Delay",
-      "Loops": 3,
-      "ContinueWith": "XXX",
-      "AdvancedServoSteps": [
-        { "ServoIndex": 0, "Engaged": true },
-        { "ServoIndex": 1, "Engaged": true },
-        { "ServoIndex": 2, "Engaged": true },
-
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 1000, "VelocityLimit": 300, "TargetPosition": 90, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 1000, "VelocityLimit": 300, "TargetPosition": 100, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 1000, "VelocityLimit": 300, "TargetPosition": 80, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 1000, "VelocityLimit": 300, "TargetPosition": 100, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 1000, "VelocityLimit": 300, "TargetPosition": 80, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 1000, "VelocityLimit": 300, "TargetPosition": 100, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 1000, "VelocityLimit": 300, "TargetPosition": 80, "Duration": 250 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 1000, "VelocityLimit": 300, "TargetPosition": 90, "Duration": 250 },
-
-        { "ServoIndex": 0, "Engaged": false },
-        { "ServoIndex": 1, "Engaged": false },
-        { "ServoIndex": 2, "Engaged": false }
+      "PlayInParallel": false,
+      "ContinueWith": "",
+      "AdvancedServoSequences": [
+        {
+          "Host": {
+            "Name": "psbc23",
+            "IPAddress": "192.168.150.23",
+            "Port": 5001,
+            "Enable": true,
+            "AdvancedServos": [
+              {
+                "Name": "AdvancedServo 1",
+                "SerialNumber": 99415,
+                "Open": true
+              }
+            ],
+            "InterfaceKits": [
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 1234,
+                "Open": true,
+                "Embedded": true
+              },
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 5678,
+                "Open": false,
+                "Embedded": false
+              }
+            ],
+            "Steppers": [
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 1234,
+                "Open": true
+              },
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 5678,
+                "Open": false
+              }
+            ]
+          },
+          "Name": "SequenceServo0",
+          "Description": "SEQUENCE DESCRIPTION",
+          "Loops": 1,
+          "PlayInParallel": false,
+          "ContinueWith": "SequenceServo1",
+          "AdvancedServoServoActions": [
+            {
+              "ServoIndex": 0,
+              "Engaged": true,
+              "Acceleration": 5000,
+              "VelocityLimit": 200,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 0,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 0,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 0,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 100,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 0,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 0,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 0,
+              "Engaged": false,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            }
+          ]
+        },
+        {
+          "Host": {
+            "Name": "localhost",
+            "IPAddress": "127.0.0.1",
+            "Port": 5001,
+            "Enable": true,
+            "AdvancedServos": [
+              {
+                "Name": "AdvancedServo 1",
+                "SerialNumber": 46049,
+                "Open": true
+              }
+            ],
+            "InterfaceKits": [
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 1234,
+                "Open": true,
+                "Embedded": true
+              },
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 5678,
+                "Open": false,
+                "Embedded": false
+              }
+            ],
+            "Steppers": [
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 1234,
+                "Open": true
+              },
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 5678,
+                "Open": false
+              }
+            ]
+          },
+          "Name": "SequenceServo1",
+          "Description": "SEQUENCE DESCRIPTION",
+          "Loops": 1,
+          "PlayInParallel": false,
+          "ContinueWith": "SequenceServo2",
+          "AdvancedServoServoActions": [
+            {
+              "ServoIndex": 1,
+              "Engaged": true,
+              "Acceleration": 5000,
+              "VelocityLimit": 200,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 100,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 1,
+              "Engaged": false,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            }
+          ]
+        },
+        {
+          "Host": {
+            "Name": "localhost",
+            "IPAddress": "127.0.0.1",
+            "Port": 5001,
+            "Enable": true,
+            "AdvancedServos": [
+              {
+                "Name": "AdvancedServo 1",
+                "SerialNumber": 46049,
+                "Open": true
+              }
+            ],
+            "InterfaceKits": [
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 1234,
+                "Open": true,
+                "Embedded": true
+              },
+              {
+                "Name": "INTERFACEKIT NAME",
+                "SerialNumber": 5678,
+                "Open": false,
+                "Embedded": false
+              }
+            ],
+            "Steppers": [
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 1234,
+                "Open": true
+              },
+              {
+                "Name": "STEPPER NAME",
+                "SerialNumber": 5678,
+                "Open": false
+              }
+            ]
+          },
+          "Name": "SequenceServo2",
+          "Description": "SEQUENCE DESCRIPTION",
+          "Loops": 1,
+          "PlayInParallel": false,
+          "ContinueWith": "",
+          "AdvancedServoServoActions": [
+            {
+              "ServoIndex": 2,
+              "Engaged": true,
+              "Acceleration": 5000,
+              "VelocityLimit": 200,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 100,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 95,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": null,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": 90,
+              "PositionMax": null,
+              "Duration": null
+            },
+            {
+              "ServoIndex": 2,
+              "Engaged": false,
+              "Acceleration": null,
+              "VelocityLimit": null,
+              "PositionMin": null,
+              "TargetPosition": null,
+              "PositionMax": null,
+              "Duration": null
+            }
+          ]
+        }
       ]
     }
   ]

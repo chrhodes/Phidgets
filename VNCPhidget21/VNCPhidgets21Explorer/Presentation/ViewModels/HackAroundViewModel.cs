@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -7,14 +11,19 @@ using Phidgets;
 
 using Prism.Commands;
 
+using Unity.Interception.Utilities;
+
 using VNC;
 using VNC.Core.Mvvm;
+using VNC.Phidget;
+
+//using VNCPhidgets21Explorer.Resources;
+using VNCPhidgets21Explorer;
 
 namespace VNCPhidgets21Explorer.Presentation.ViewModels
 {
     public class HackAroundViewModel : ViewModelBase, IMainViewModel, IInstanceCountVM
     {
-
         #region Constructors, Initialization, and Load
 
         public HackAroundViewModel()
@@ -45,10 +54,39 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Button2Command = new DelegateCommand(Button2Execute);
             Button3Command = new DelegateCommand(Button3Execute);
 
+            PlayPerformanceCommand = new DelegateCommand<string>(PlayPerformance, PlayPerformanceCanExecute);
+            PlaySequenceCommand = new DelegateCommand<string>(PlaySequence, PlaySequenceCanExecute);
+
+            PerformanceConfigFileName = "advancedservoperformancesconfig.json";
+
+            LoadPerformancesConfig();
+
             // Turn on logging of PropertyChanged from VNC.Core
             LogOnPropertyChanged = true;
 
+            Message = "HackAroundViewModel says hello";
+
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void LoadPerformancesConfig()
+        {
+            Int64 startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
+
+            var jsonOptions = new JsonSerializerOptions { ReadCommentHandling = JsonCommentHandling.Skip };
+
+            string jsonString = File.ReadAllText(PerformanceConfigFileName);
+
+            Resources.AdvancedServoPerformanceConfig? performancesConfig
+                = JsonSerializer.Deserialize<Resources.AdvancedServoPerformanceConfig>(jsonString, jsonOptions);
+
+            this.AdvancedServoPerformances = performancesConfig.AdvancedServoPerformances.ToList();
+
+            AvailableAdvancedServoPerformances =
+                performancesConfig.AdvancedServoPerformances
+                .ToDictionary(k => k.Name, v => v);
+
+            Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -191,7 +229,803 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 _repeats = value;
                 OnPropertyChanged();
             }
-        }   
+        }
+
+        private string _performanceConfigFileName;
+        public string PerformanceConfigFileName
+        {
+            get => _performanceConfigFileName;
+            set
+            {
+                if (_performanceConfigFileName == value) return;
+                _performanceConfigFileName = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string PerformanceFileNameToolTip { get; set; } = "DoubleClick to select new file";
+
+        private Resources.AdvancedServoPerformanceConfig _advancedServoPerformanceConfig;
+        public Resources.AdvancedServoPerformanceConfig AdvancedServoPerformanceConfig
+        {
+            get => _advancedServoPerformanceConfig;
+            set
+            {
+                if (_advancedServoPerformanceConfig == value)
+                    return;
+                _advancedServoPerformanceConfig = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private IEnumerable<Resources.AdvancedServoPerformance> _advancedServoPerformances;
+        public IEnumerable<Resources.AdvancedServoPerformance> AdvancedServoPerformances
+        {
+            get => _advancedServoPerformances;
+            set
+            {
+                _advancedServoPerformances = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Resources.AdvancedServoPerformance? _selectedAdvancedServoPerformance;
+        public Resources.AdvancedServoPerformance? SelectedAdvancedServoPerformance
+        {
+            get => _selectedAdvancedServoPerformance;
+            set
+            {
+                if (_selectedAdvancedServoPerformance == value) return;
+
+                _selectedAdvancedServoPerformance = value;
+                OnPropertyChanged();
+
+                AdvancedServoSequences = _selectedAdvancedServoPerformance.AdvancedServoSequences.ToList<Resources.AdvancedServoSequence>();
+
+                AvailableAdvancedServoSequences =
+                    AdvancedServoSequences
+                    .ToDictionary(k => k.Name, v => v);
+
+                PlayPerformanceCommand.RaiseCanExecuteChanged();
+                PlaySequenceCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        private Dictionary<string, Resources.AdvancedServoPerformance> _availableAdvancedServoPerformances;
+        public Dictionary<string, Resources.AdvancedServoPerformance> AvailableAdvancedServoPerformances
+        {
+            get => _availableAdvancedServoPerformances;
+            set
+            {
+                _availableAdvancedServoPerformances = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<Resources.AdvancedServoPerformance> _selectedPerformances;
+        public List<Resources.AdvancedServoPerformance> SelectedPerformances
+        {
+            get => _selectedPerformances;
+            set
+            {
+                if (_selectedPerformances == value)
+                {
+                    return;
+                }
+
+                _selectedPerformances = value;
+                OnPropertyChanged();
+
+                PlayPerformanceCommand.RaiseCanExecuteChanged();
+                PlaySequenceCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        private IEnumerable<Resources.AdvancedServoSequence> _advancedServoSequences;
+        public IEnumerable<Resources.AdvancedServoSequence> AdvancedServoSequences
+        {
+            get => _advancedServoSequences;
+            set
+            {
+                _advancedServoSequences = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Resources.AdvancedServoSequence? _selectedAdvancedServoSequence;
+        public Resources.AdvancedServoSequence? SelectedAdvancedServoSequence
+        {
+            get => _selectedAdvancedServoSequence;
+            set
+            {
+                if (_selectedAdvancedServoSequence == value) return;
+
+                _selectedAdvancedServoSequence = value;
+                OnPropertyChanged();
+
+                PlaySequenceCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        private Dictionary<string, Resources.AdvancedServoSequence> _availableAdvancedServoSequences;
+        public Dictionary<string, Resources.AdvancedServoSequence> AvailableAdvancedServoSequences
+        {
+            get => _availableAdvancedServoSequences;
+            set
+            {
+                _availableAdvancedServoSequences = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<Resources.AdvancedServoSequence> _selectedSequences;
+        public List<Resources.AdvancedServoSequence> SelectedSequences
+        {
+            get => _selectedSequences;
+            set
+            {
+                if (_selectedSequences == value)
+                {
+                    return;
+                }
+
+                _selectedSequences = value;
+                OnPropertyChanged();
+
+                PlaySequenceCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        private bool _logPerformanceStep = false;
+        public bool LogPerformanceStep
+        {
+            get => _logPerformanceStep;
+            set
+            {
+                if (_logPerformanceStep == value)
+                    return;
+                _logPerformanceStep = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region Commands
+
+        #region PerformanceFileName DoubleClick
+
+        public DelegateCommand PerformanceFileName_DoubleClick_Command { get; set; }
+
+        //private void PerformanceFileName_DoubleClick()
+        //{
+        //    Message = "PerformanceFileName_DoubleClick";
+
+        //    LoadPerformancesConfig();
+        //}
+
+        #endregion
+
+
+        #region PlayPerformance Command
+
+        public DelegateCommand<string> PlayPerformanceCommand { get; set; }
+        // If using CommandParameter, figure out TYPE here and above
+        // and remove above declaration
+        //public DelegateCommand<TYPE> PlayPerformanceCommand { get; set; }
+        //public TYPE PlayPerformanceCommandParameter;
+        public string PlayPerformanceContent { get; set; } = "PlayPerformance";
+        public string PlayPerformanceToolTip { get; set; } = "PlayPerformance ToolTip";
+
+        // Can get fancy and use Resources
+        //public string PlayPerformanceContent { get; set; } = "ViewName_PlayPerformanceContent";
+        //public string PlayPerformanceToolTip { get; set; } = "ViewName_PlayPerformanceContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_PlayPerformanceContent">PlayPerformance</system:String>
+        //    <system:String x:Key="ViewName_PlayPerformanceContentToolTip">PlayPerformance ToolTip</system:String>  
+
+        // If using CommandParameter, figure out TYPE and fix above
+        //public void PlayPerformance(TYPE value)
+        public async void PlayPerformance(string playAll)
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = "Cool, you called PlayPerformance";
+
+            if (Boolean.Parse(playAll))
+            {
+                foreach (Resources.AdvancedServoPerformance performance in AdvancedServoPerformances)
+                {
+                    await PlayPerformanceLoops(performance);
+                }
+            }
+            else
+            {
+                var runAllThese = SelectedPerformances;
+                var allPerformances = AvailableAdvancedServoPerformances;
+
+                //var runAllTheseD = SelectedAdvancedServoPerformanceD;
+
+                //// TODO(crhodes)
+                //// Figure out how to handle loops
+                //var nextPerformance = SelectedAdvancedServoPerformance;
+
+                foreach (Resources.AdvancedServoPerformance performance in SelectedPerformances)
+                {
+                    Log.Trace($"Running performance:{performance.Name}", Common.LOG_CATEGORY);
+
+                    var nextPerformance = performance;
+
+                    string name = "";
+                    string? continueWith = "";
+
+                    do
+                    {
+                        name = nextPerformance.Name;
+                        continueWith = nextPerformance.ContinueWith;
+                        Log.Trace($"  Playing performance:{name} continueWidth:{continueWith}", Common.LOG_CATEGORY);
+
+                        await PlayPerformanceLoops(nextPerformance);
+
+                        if (AvailableAdvancedServoPerformances.ContainsKey(continueWith ?? ""))
+                        {
+                            nextPerformance = AvailableAdvancedServoPerformances[continueWith];
+                        }
+                        else
+                        {
+                            continueWith = "";
+                        }
+
+                    } while (!string.IsNullOrEmpty(continueWith));
+                }
+
+            }
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<PlayPerformanceEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<PlayPerformanceEvent>().Publish(
+            //      new PlayPerformanceEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class PlayPerformanceEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<PlayPerformanceEvent>().Subscribe(PlayPerformance);
+
+            // End Cut Four
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private async Task PlayPerformanceLoops(Resources.AdvancedServoPerformance advancedServoPerformance)
+        {
+            Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
+
+            for (int i = 0; i < advancedServoPerformance.Loops; i++)
+            {
+                Log.Trace($"Loop:{i + 1}", Common.LOG_CATEGORY);
+
+                if (advancedServoPerformance.PlayInParallel)
+                {
+                    PlayPerformanceInParallel(advancedServoPerformance);
+                }
+                else
+                {
+                    PlayPerformanceInSequence(advancedServoPerformance);
+                }
+
+            }
+
+            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private async void PlayPerformanceInParallel(Resources.AdvancedServoPerformance advancedServoPerformance)
+        {
+            // TODO(crhodes)
+            // Figure out what this should do
+
+            //Parallel.ForEach(advancedServoSequence.AdvancedServoServoActions, action =>
+            //{
+            //    if (LogPerformanceStep)
+            //    {
+            //        Log.Trace($"Servo:{action.ServoIndex} Acceleration:{action.Acceleration} VelocityLimit:{action.VelocityLimit}" +
+            //            $" Engaged:{action.Engaged} TargetPosition:{action.TargetPosition} Duration:{action.Duration}", Common.LOG_CATEGORY);
+            //    }
+
+            //    try
+            //    {
+            //        switch (action.ServoIndex)
+            //        {
+            //            case 0:
+            //                PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[0], action, 0);
+            //                break;
+
+            //            case 1:
+            //                PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[1], action, 1);
+            //                break;
+
+            //            case 2:
+            //                PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[2], action, 2);
+            //                break;
+
+            //            case 3:
+            //                PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[3], action, 3);
+            //                break;
+
+            //            case 4:
+            //                PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[4], action, 4);
+            //                break;
+
+            //            case 5:
+            //                PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[5], action, 5);
+            //                break;
+
+            //            case 6:
+            //                PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[6], action, 6);
+            //                break;
+
+            //            case 7:
+            //                PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[7], action, 7);
+            //                break;
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Log.Error(ex, Common.LOG_CATEGORY);
+            //    }
+            //});
+        }
+
+        private void PlayPerformanceInSequence(Resources.AdvancedServoPerformance advancedServoPerformance)
+        {
+            foreach (Resources.AdvancedServoSequence sequence in advancedServoPerformance.AdvancedServoSequences)
+            {
+                //if (LogPerformanceStep)
+                //{
+                //    Log.Trace($"Servo:{action.ServoIndex} Acceleration:{action.Acceleration} VelocityLimit:{action.VelocityLimit}" +
+                //        $" Engaged:{action.Engaged} TargetPosition:{action.TargetPosition} Duration:{action.Duration}", Common.LOG_CATEGORY);
+                //}
+
+                try
+                {
+                    //switch (action.ServoIndex)
+                    //{
+                    //    case 0:
+                    //        PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[0], action, 0);
+                    //        break;
+
+                    //    case 1:
+                    //        PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[1], action, 1);
+                    //        break;
+
+                    //    case 2:
+                    //        PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[2], action, 2);
+                    //        break;
+
+                    //    case 3:
+                    //        PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[3], action, 3);
+                    //        break;
+
+                    //    case 4:
+                    //        PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[4], action, 4);
+                    //        break;
+
+                    //    case 5:
+                    //        PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[5], action, 5);
+                    //        break;
+
+                    //    case 6:
+                    //        PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[6], action, 6);
+                    //        break;
+
+                    //    case 7:
+                    //        PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[7], action, 7);
+                    //        break;
+                    //}
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        //private void PerformServoAction(AdvancedServoServo servo, AdvancedServoServoAction action, Int32 index)
+        //{
+        //    Int64 startTicks = Log.Trace($"Enter servo:{index}", Common.LOG_CATEGORY);
+
+        //    try
+        //    {
+        //        if (action.Acceleration is not null) servo.Acceleration = (Double)action.Acceleration;
+        //        if (action.VelocityLimit is not null) servo.VelocityLimit = (Double)action.VelocityLimit;
+        //        if (action.PositionMin is not null) servo.PositionMin = (Double)action.PositionMin;
+        //        if (action.PositionMax is not null) servo.PositionMax = (Double)action.PositionMax;
+        //        if (action.Engaged is not null) servo.Engaged = (Boolean)action.Engaged;
+
+        //        // TODO(crhodes)
+        //        // Maybe wait for servo Engaged to complete if not currently engaged
+        //        // View logs and see how often exceptions thrown.
+
+        //        if (action.TargetPosition is not null)
+        //        {
+        //            servo.Position = (Double)action.TargetPosition;
+        //            Thread.Sleep(1);
+
+        //            VerifyNewPositionAchieved(servo, (Double)action.TargetPosition);
+
+        //            if (action.Duration > 0) Thread.Sleep((Int32)action.Duration);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.Error(ex, Common.LOG_CATEGORY);
+        //    }
+
+        //    Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+        //}
+
+        //private void VerifyNewPositionAchieved(AdvancedServoServo servo, double targetPosition)
+        //{
+        //    while (servo.Position != targetPosition) { Thread.Sleep(1); }
+        //}
+
+        // If using CommandParameter, figure out TYPE and fix above
+        //public bool PlayPerformanceCanExecute(TYPE value)
+        public bool PlayPerformanceCanExecute(string playAll)
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            if (SelectedPerformances?.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        #endregion
+
+        #region PlaySequence Command
+
+        public DelegateCommand<string> PlaySequenceCommand { get; set; }
+        // If using CommandParameter, figure out TYPE here and above
+        // and remove above declaration
+        //public DelegateCommand<TYPE> PlaySequenceCommand { get; set; }
+        //public TYPE PlaySequenceCommandParameter;
+        public string PlaySequenceContent { get; set; } = "PlaySequence";
+        public string PlaySequenceToolTip { get; set; } = "PlaySequence ToolTip";
+
+        // Can get fancy and use Resources
+        //public string PlaySequenceContent { get; set; } = "ViewName_PlaySequenceContent";
+        //public string PlaySequenceToolTip { get; set; } = "ViewName_PlaySequenceContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_PlaySequenceContent">PlaySequence</system:String>
+        //    <system:String x:Key="ViewName_PlaySequenceContentToolTip">PlaySequence ToolTip</system:String>  
+
+        // If using CommandParameter, figure out TYPE and fix above
+        //public void PlaySequence(TYPE value)
+        public async void PlaySequence(string playAll)
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = "Cool, you called PlaySequence";
+
+            if (Boolean.Parse(playAll))
+            {
+                // TODO(crhodes)
+                // Figure out how to get Host
+
+                //var advancedServo = OpenHost(sequence.Host);
+
+                //foreach (Resources.AdvancedServoSequence sequence in AdvancedServoSequences)
+                //{
+                //    await PlaySequenceLoops(sequence);
+                //}
+            }
+            else
+            {
+                var runAllThese = SelectedSequences;
+                var allSequences = AvailableAdvancedServoSequences;
+
+                foreach (Resources.AdvancedServoSequence sequence in SelectedSequences)
+                {
+                    Log.Trace($"Running sequence:{sequence.Name}", Common.LOG_CATEGORY);
+
+                    try
+                    {
+                        var advancedServo = OpenHost(sequence.Host);
+
+                        var nextSequence = sequence;
+
+                        string name = "";
+                        string? continueWith = "";
+
+                        do
+                        {
+                            name = nextSequence.Name;
+                            continueWith = nextSequence.ContinueWith;
+                            Log.Trace($"  Playing sequence:{name} continueWidth:{continueWith}", Common.LOG_CATEGORY);
+
+                            await PlaySequenceLoops(advancedServo, nextSequence);
+
+                            if (AvailableAdvancedServoSequences.ContainsKey(continueWith ?? ""))
+                            {
+                                nextSequence = AvailableAdvancedServoSequences[continueWith];
+                            }
+                            else
+                            {
+                                continueWith = "";
+                            }
+
+                        } while (!string.IsNullOrEmpty(continueWith));
+                        
+                        advancedServo.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error(ex, Common.LOG_CATEGORY);
+                    }
+                }
+            }
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<PlayPerformanceEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<PlayPerformanceEvent>().Publish(
+            //      new PlayPerformanceEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class PlayPerformanceEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<PlayPerformanceEvent>().Subscribe(PlayPerformance);
+
+            // End Cut Four
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+        private AdvancedServoEx OpenHost(Resources.Host host)
+        { 
+            AdvancedServoEx advancedServo;
+
+            advancedServo = new AdvancedServoEx(
+                host.IPAddress,
+                host.Port,
+                host.AdvancedServos[0].SerialNumber);
+
+            advancedServo.Open();
+
+            return advancedServo;
+        }
+
+        private async Task PlaySequenceLoops(AdvancedServoEx advancedServo, Resources.AdvancedServoSequence advancedServoSequence)
+        {
+            Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
+
+            for (int i = 0; i < advancedServoSequence.Loops; i++)
+            {
+                Log.Trace($"Loop:{i + 1}", Common.LOG_CATEGORY);
+
+                if (advancedServoSequence.PlayInParallel)
+                {
+                    PlaySequenceInParallel(advancedServo, advancedServoSequence);
+                }
+                else
+                {
+                    PlaySequenceInSequence(advancedServo, advancedServoSequence);
+                }
+            }
+
+            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private async void PlaySequenceInParallel(AdvancedServoEx advancedServo, Resources.AdvancedServoSequence advancedServoSequence)
+        {
+            Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
+
+            Parallel.ForEach(advancedServoSequence.AdvancedServoServoActions, action =>
+            {
+                if (LogPerformanceStep)
+                {
+                    Log.Trace($"Servo:{action.ServoIndex} Acceleration:{action.Acceleration} VelocityLimit:{action.VelocityLimit}" +
+                        $" Engaged:{action.Engaged} TargetPosition:{action.TargetPosition} Duration:{action.Duration}", Common.LOG_CATEGORY);
+                }
+
+                try
+                {
+                    switch (action.ServoIndex)
+                    {
+                        case 0:
+                            PerformServoAction(advancedServo.AdvancedServo.servos[0], action, 0);
+                            break;
+
+                        case 1:
+                            PerformServoAction(advancedServo.AdvancedServo.servos[1], action, 1);
+                            break;
+
+                        case 2:
+                            PerformServoAction(advancedServo.AdvancedServo.servos[2], action, 2);
+                            break;
+
+                        case 3:
+                            PerformServoAction(advancedServo.AdvancedServo.servos[3], action, 3);
+                            break;
+
+                        case 4:
+                            PerformServoAction(advancedServo.AdvancedServo.servos[4], action, 4);
+                            break;
+
+                        case 5:
+                            PerformServoAction(advancedServo.AdvancedServo.servos[5], action, 5);
+                            break;
+
+                        case 6:
+                            PerformServoAction(advancedServo.AdvancedServo.servos[6], action, 6);
+                            break;
+
+                        case 7:
+                            PerformServoAction(advancedServo.AdvancedServo.servos[7], action, 7);
+                            break;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            });
+
+            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void PlaySequenceInSequence(AdvancedServoEx advancedServo, Resources.AdvancedServoSequence advancedServoSequence)
+        {
+            Int64 startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+
+            foreach (Resources.AdvancedServoServoAction action in advancedServoSequence.AdvancedServoServoActions)
+            {
+                if (LogPerformanceStep)
+                {
+                    Log.Trace($"Servo:{action.ServoIndex} Acceleration:{action.Acceleration} VelocityLimit:{action.VelocityLimit}" +
+                        $" Engaged:{action.Engaged} TargetPosition:{action.TargetPosition} Duration:{action.Duration}", Common.LOG_CATEGORY);
+                }
+
+                try
+                {
+                    switch (action.ServoIndex)
+                    {
+                        case 0:
+                            PerformServoAction(advancedServo.AdvancedServo.servos[0], action, 0);
+                            break;
+
+                        case 1:
+                            PerformServoAction(advancedServo.AdvancedServo.servos[1], action, 1);
+                            break;
+
+                        case 2:
+                            PerformServoAction(advancedServo.AdvancedServo.servos[2], action, 2);
+                            break;
+
+                        case 3:
+                            PerformServoAction(advancedServo.AdvancedServo.servos[3], action, 3);
+                            break;
+
+                        case 4:
+                            PerformServoAction(advancedServo.AdvancedServo.servos[4], action, 4);
+                            break;
+
+                        case 5:
+                            PerformServoAction(advancedServo.AdvancedServo.servos[5], action, 5);
+                            break;
+
+                        case 6:
+                            PerformServoAction(advancedServo.AdvancedServo.servos[6], action, 6);
+                            break;
+
+                        case 7:
+                            PerformServoAction(advancedServo.AdvancedServo.servos[7], action, 7);
+                            break;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void PerformServoAction(AdvancedServoServo servo, Resources.AdvancedServoServoAction action, Int32 index)
+        {
+            Int64 startTicks = Log.Trace($"Enter servo:{index}", Common.LOG_CATEGORY);
+
+            try
+            {
+                if (action.Acceleration is not null) servo.Acceleration = (Double)action.Acceleration;
+                if (action.VelocityLimit is not null) servo.VelocityLimit = (Double)action.VelocityLimit;
+                if (action.PositionMin is not null) servo.PositionMin = (Double)action.PositionMin;
+                if (action.PositionMax is not null) servo.PositionMax = (Double)action.PositionMax;
+                if (action.Engaged is not null) servo.Engaged = (Boolean)action.Engaged;
+
+                // TODO(crhodes)
+                // Maybe wait for servo Engaged to complete if not currently engaged
+                // View logs and see how often exceptions thrown.
+
+                VerifyServoEngaged(servo);
+
+                if (action.TargetPosition is not null)
+                {
+                    servo.Position = (Double)action.TargetPosition;
+                    Thread.Sleep(1);
+
+                    VerifyNewPositionAchieved(servo, (Double)action.TargetPosition);
+
+                    if (action.Duration > 0) Thread.Sleep((Int32)action.Duration);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+
+            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+        private void VerifyServoEngaged(AdvancedServoServo servo)
+        {
+            while (servo.Engaged != true) { Thread.Sleep(1); }
+        }
+
+        private void VerifyNewPositionAchieved(AdvancedServoServo servo, double targetPosition)
+        {
+            while (servo.Position != targetPosition) { Thread.Sleep(1); }
+        }
+
+        // If using CommandParameter, figure out TYPE and fix above
+        //public bool PlayPerformanceCanExecute(TYPE value)
+        public bool PlaySequenceCanExecute(string playAll)
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            if (SelectedSequences?.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        #endregion
 
         #endregion
 
@@ -212,52 +1046,52 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Private Methods
 
-        private void OpenPhidget()
-        {
-            //Net.ServerAdded += Net_ServerAdded;
-            //ph22.Net.ServerRemoved += Net_ServerRemoved;
+        //private void OpenPhidget()
+        //{
+        //    //Net.ServerAdded += Net_ServerAdded;
+        //    //ph22.Net.ServerRemoved += Net_ServerRemoved;
 
-            ////ph22.Net.EnableServerDiscovery(ph22.ServerType.SBC);
-            //ph22.Net.AddServer("phsbc11", "192.168.150.11", 5001, "", 0);
-            //ph22.Net.AddServer("phsbc21", "192.168.150.21", 5001, "", 0);
-            //ph22.Net.AddServer("phsbc22", "192.168.150.22", 5001, "", 0);
-            //ph22.Net.AddServer("phsbc23", "192.168.150.23", 5001, "", 0);
+        //    ////ph22.Net.EnableServerDiscovery(ph22.ServerType.SBC);
+        //    //ph22.Net.AddServer("phsbc11", "192.168.150.11", 5001, "", 0);
+        //    //ph22.Net.AddServer("phsbc21", "192.168.150.21", 5001, "", 0);
+        //    //ph22.Net.AddServer("phsbc22", "192.168.150.22", 5001, "", 0);
+        //    //ph22.Net.AddServer("phsbc23", "192.168.150.23", 5001, "", 0);
 
-            //// NOTE(crhodes)
-            //// Passing null throws exception
+        //    //// NOTE(crhodes)
+        //    //// Passing null throws exception
 
-            ////ph22.Net.AddServer("phsbc11", "192.168.150.11", 5001, null, 0);
-            ////ph22.Net.AddServer("phsbc21", "192.168.150.21", 5001, null, 0);
-            ////ph22.Net.AddServer("phsbc22", "192.168.150.22", 5001, null, 0);
-            ////ph22.Net.AddServer("phsbc23", "192.168.150.23", 5001, null, 0);
+        //    ////ph22.Net.AddServer("phsbc11", "192.168.150.11", 5001, null, 0);
+        //    ////ph22.Net.AddServer("phsbc21", "192.168.150.21", 5001, null, 0);
+        //    ////ph22.Net.AddServer("phsbc22", "192.168.150.22", 5001, null, 0);
+        //    ////ph22.Net.AddServer("phsbc23", "192.168.150.23", 5001, null, 0);
 
-            //ph22.Phidget phidget = new ph22.Phidget();
+        //    //ph22.Phidget phidget = new ph22.Phidget();
 
-            //phidget.Attach += Phidget_Attach;
-            //phidget.Detach += Phidget_Detach;
+        //    //phidget.Attach += Phidget_Attach;
+        //    //phidget.Detach += Phidget_Detach;
 
-            //ph22.DigitalOutput digitalOutput;
+        //    //ph22.DigitalOutput digitalOutput;
 
-            //digitalOutput = new ph22.DigitalOutput();
+        //    //digitalOutput = new ph22.DigitalOutput();
 
-            //digitalOutput.Attach += DigitalOutput_Attach;
-            //digitalOutput.Detach += DigitalOutput_Detach;
+        //    //digitalOutput.Attach += DigitalOutput_Attach;
+        //    //digitalOutput.Detach += DigitalOutput_Detach;
 
-            //digitalOutput.Channel = 0;
-            //digitalOutput.IsRemote = true;
-            //digitalOutput.DeviceSerialNumber = sbc22SerialNumber;
-            //digitalOutput.Open(5000);
+        //    //digitalOutput.Channel = 0;
+        //    //digitalOutput.IsRemote = true;
+        //    //digitalOutput.DeviceSerialNumber = sbc22SerialNumber;
+        //    //digitalOutput.Open(5000);
 
-            //digitalOutput.DutyCycle = 1;
-            //digitalOutput.DutyCycle = 0;
+        //    //digitalOutput.DutyCycle = 1;
+        //    //digitalOutput.DutyCycle = 0;
 
-            //phidget.IsHubPortDevice = true;
+        //    //phidget.IsHubPortDevice = true;
 
-            //phidget.Channel = 0;
-            //phidget.DeviceSerialNumber = sbc21SerialNumber;
+        //    //phidget.Channel = 0;
+        //    //phidget.DeviceSerialNumber = sbc21SerialNumber;
 
-            //phidget.Open();
-        }
+        //    //phidget.Open();
+        //}
 
         //private void DigitalOutput_Detach(object sender, ph22E.DetachEventArgs e)
         //{

@@ -36,6 +36,7 @@
     <None Remove="Resources\InterfaceKitList.xml" />
     <None Remove="Resources\json\advancedservo.json" />
     <None Remove="Resources\json\advancedservoperformance.json" />
+    <None Remove="Resources\json\advancedservoperformancesconfig-orig.json" />
     <None Remove="Resources\json\advancedservoperformancesconfig.json" />
     <None Remove="Resources\json\advancedservostep.json" />
     <None Remove="Resources\json\host.json" />
@@ -58,10 +59,13 @@
     <Content Include="Resources\json\advancedservoperformance.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\json\advancedservoperformancesconfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\json\VNCperformancesconfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\json\advancedservoperformancesconfig.json">
+    <Content Include="Resources\json\advancedservoperformancesconfig-orig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\json\advancedservostep.json">

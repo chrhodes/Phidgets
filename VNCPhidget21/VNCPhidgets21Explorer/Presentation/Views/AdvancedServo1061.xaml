@@ -133,7 +133,7 @@
 
         </DockPanel>
 
-        <views:PerformanceSelector DockPanel.Dock="Bottom" />
+        <!--<views:PerformanceSelector DockPanel.Dock="Bottom" />-->
 
         <dxlc:LayoutControl Orientation="Vertical" Padding="0">
 

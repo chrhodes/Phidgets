@@ -98,135 +98,162 @@
     <!-- Simple Layout using DevExpress LayoutGroup
         May need to add dxXMLNS -->
 
-    <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
-
-        <dxlc:LayoutGroup Header="Performances" View="GroupBox" Orientation="Horizontal" >
-
-            <dxlc:LayoutItem Label="PerformanceFileName" HorizontalAlignment="Right" Background="Wheat">
-                <dxe:TextEdit
+    <dxlc:LayoutControl View="Group" Orientation="Vertical" >
+        
+        <dxlc:LayoutItem Label="PerformanceFileName" Background="Wheat">
+            <dxe:TextEdit
             		    Text="{Binding PerformanceConfigFileName }"
                 	    ToolTip="{Binding PerformanceConfigFileNameToolTip }">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="MouseDoubleClick">
-                            <i:InvokeCommandAction Command="{Binding PerformanceFileName_DoubleClick_Command}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </dxe:TextEdit>
-            </dxlc:LayoutItem>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDoubleClick">
+                        <i:InvokeCommandAction Command="{Binding PerformanceFileName_DoubleClick_Command}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </dxe:TextEdit>
+        </dxlc:LayoutItem>
 
-            <!--<dxlc:LayoutItem Label="Performances" LabelPosition="Top" HorizontalAlignment="Left" >
-                <dxe:ComboBoxEdit Width="150" 
-                                  ItemsSource="{Binding AdvancedServoPerformances}" DisplayMember="Name" 
-                                    SelectedItem="{Binding SelectedAdvancedServoPerformance}"
-                                    SelectedIndex="0"/>
-            </dxlc:LayoutItem>-->
+        <dxlc:LayoutGroup Header="Performances" View="GroupBox" Orientation="Vertical" >
 
-            <!--<dxlc:LayoutItem Label="PerformancesD" LabelPosition="Top" HorizontalAlignment="Left" >
-                <dxe:ComboBoxEdit Width="150" 
-                                  ItemsSource="{Binding AdvancedServoPerformancesD}" DisplayMember="Key" 
-                                    SelectedItem="{Binding SelectedAdvancedServoPerformanceD.Value}"
-                                    SelectedIndex="0">
-                    <dxe:ComboBoxEdit.StyleSettings>
-                        <dxe:CheckedComboBoxStyleSettings />
-                    </dxe:ComboBoxEdit.StyleSettings>
-                </dxe:ComboBoxEdit>
-            </dxlc:LayoutItem>-->
-
-            <!--<dxlc:LayoutItem Label="Performances" LabelPosition="Top" HorizontalAlignment="Left" >-->
-            <dxlc:LayoutItem HorizontalAlignment="Left" >
-                <dxe:ComboBoxEdit Width="250" 
-                                ItemsSource="{Binding AdvancedServoPerformances}" DisplayMember="Name" 
-                                SelectedItem="{Binding SelectedAdvancedServoPerformance}"
-                                EditValue="{ Binding 
-                                    Path=SelectedPerformances,
-                                    Mode=TwoWay,
-                                    UpdateSourceTrigger=PropertyChanged,
-                                    Converter={StaticResource SelectedItemsToListOfAdvancedServoPerformanceConverter} }" >
-                    <dxe:ComboBoxEdit.StyleSettings>
-                        <dxe:CheckedComboBoxStyleSettings />
-                    </dxe:ComboBoxEdit.StyleSettings>
-                </dxe:ComboBoxEdit>
-            </dxlc:LayoutItem>
-
-            <dxlc:LayoutItem HorizontalAlignment="Left" >
-                <dxe:ComboBoxEdit Width="250" 
-                                ItemsSource="{Binding AdvancedServoSequences}" DisplayMember="Name" 
-                                SelectedItem="{Binding SelectedAdvancedServoSequence}"
-                                EditValue="{ Binding 
-                                    Path=SelectedSequences,
-                                    Mode=TwoWay,
-                                    UpdateSourceTrigger=PropertyChanged,
-                                    Converter={StaticResource SelectedItemsToListOfAdvancedServoSequenceConverter} }" >
-                    <dxe:ComboBoxEdit.StyleSettings>
-                        <dxe:CheckedComboBoxStyleSettings />
-                    </dxe:ComboBoxEdit.StyleSettings>
-                </dxe:ComboBoxEdit>
-            </dxlc:LayoutItem>
-
-            <!--<dxlc:LayoutItem Label="Pick CS Files" LabelPosition="Top" >
-                <dxe:ComboBoxEdit
-                            ItemsSource="{Binding FilesDemoCS}"
-                            EditValue="{ Binding 
-                            Path=SelectedFilesDemoCS,
-                            Mode=TwoWay,
-                            UpdateSourceTrigger=PropertyChanged,
-                            Converter={StaticResource selectedItemsToListOfStringConverter} }" >>
-                    <dxe:ComboBoxEdit.StyleSettings>
-                        <dxe:CheckedComboBoxStyleSettings />
-                    </dxe:ComboBoxEdit.StyleSettings>
-                </dxe:ComboBoxEdit>
-            </dxlc:LayoutItem>-->
-
-        </dxlc:LayoutGroup>
-
-        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
-            
             <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
-                
-                <dxlc:LayoutItem Label="Description" HorizontalAlignment="Left" Background="Wheat" >
-                    <dxe:TextEdit Text="{Binding SelectedAdvancedServoPerformance.Description }" />
+
+                <dxlc:LayoutItem HorizontalAlignment="Left" >
+                    <dxe:ComboBoxEdit Width="250" 
+                                    ItemsSource="{Binding AdvancedServoPerformances}" DisplayMember="Name" 
+                                    SelectedItem="{Binding SelectedAdvancedServoPerformance}"
+                                    EditValue="{ Binding 
+                                        Path=SelectedPerformances,
+                                        Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged,
+                                        Converter={StaticResource SelectedItemsToListOfAdvancedServoPerformanceConverter} }" >
+                        <dxe:ComboBoxEdit.StyleSettings>
+                            <dxe:CheckedComboBoxStyleSettings />
+                        </dxe:ComboBoxEdit.StyleSettings>
+                    </dxe:ComboBoxEdit>
                 </dxlc:LayoutItem>
 
-                <dxlc:LayoutItem Label="ContinueWith" HorizontalAlignment="Left" Background="Wheat" >
-                    <dxe:TextEdit Text="{Binding SelectedAdvancedServoPerformance.ContinueWith }" />
+                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+
+                        <dxlc:LayoutItem Label="Description" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoPerformance.Description }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Loops" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoPerformance.Loops }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="PlayInParallel" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoPerformance.PlayInParallel }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="ContinueWith" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoPerformance.ContinueWith }" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" HorizontalAlignment="Right" >
+
+                        <dxlc:LayoutItem VerticalAlignment="Stretch">
+                            <Button 
+		                        Command="{Binding PlayPerformanceCommand }"
+                                CommandParameter="false"
+		                        Content="{Binding PlayPerformanceContent, FallbackValue='PlayPerformance' }"
+		                        ToolTip="{Binding PlayPerformanceToolTip, FallbackValue='PlayPerformance ToolTip' }" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Header="Sequences" View="GroupBox" Orientation="Vertical" >
+
+                <dxlc:LayoutItem HorizontalAlignment="Left" >
+                    <dxe:ComboBoxEdit Width="250" 
+                                    ItemsSource="{Binding AdvancedServoSequences}" DisplayMember="Name" 
+                                    SelectedItem="{Binding SelectedAdvancedServoSequence}"
+                                    EditValue="{ Binding 
+                                        Path=SelectedSequences,
+                                        Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged,
+                                        Converter={StaticResource SelectedItemsToListOfAdvancedServoSequenceConverter} }" >
+                        <dxe:ComboBoxEdit.StyleSettings>
+                            <dxe:CheckedComboBoxStyleSettings />
+                        </dxe:ComboBoxEdit.StyleSettings>
+                    </dxe:ComboBoxEdit>
                 </dxlc:LayoutItem>
-                
-            </dxlc:LayoutGroup>           
 
-            <dxlc:LayoutGroup View="Group" Orientation="Vertical" HorizontalAlignment="Right" >
+                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+                    
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
 
-                <dxlc:LayoutItem VerticalAlignment="Stretch">
-                    <Button 
-		                Command="{Binding PlayPerformanceCommand }"
-                        CommandParameter="false"
-		                Content="{Binding PlayPerformanceContent, FallbackValue='PlayPerformance' }"
-		                ToolTip="{Binding PlayPerformanceToolTip, FallbackValue='PlayPerformance ToolTip' }" />
-                </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="Description" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.Description }" />
+                        </dxlc:LayoutItem>
 
-                <dxlc:LayoutItem VerticalAlignment="Stretch">
-                    <Button 
-		                Command="{Binding PlaySequenceCommand }"
-                        CommandParameter="false"
-		                Content="{Binding PlaySequenceContent, FallbackValue='PlaySequence' }"
-		                ToolTip="{Binding PlaySequenceToolTip, FallbackValue='PlaySequence ToolTip' }" />
-                </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="Loops" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.Loops }" />
+                        </dxlc:LayoutItem>
 
-                <!--<dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">
-                <Button 
-		                Command="{Binding PlayPerformanceCommand }"
-                        CommandParameter="true"
-		                Content="Play All Performances"
-		                ToolTip="{Binding PlayPerformanceToolTip, FallbackValue='PlayPerformance ToolTip' }" />
-            </dxlc:LayoutItem>-->
+                        <dxlc:LayoutItem Label="PlayInParallel" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.PlayInParallel }" />
+                        </dxlc:LayoutItem>
 
+                        <dxlc:LayoutItem Label="ContinueWith" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.ContinueWith }" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Host" View="GroupBox" Orientation="Vertical" >
+
+                        <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.Host.Name }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="IP Address" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.Host.IPAddress }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Port" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.Host.Port }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="AdvancedServo" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.AdvancedServos[0].Name }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="AdvancedServo" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.AdvancedServos[0].SerialNumber }" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" HorizontalAlignment="Right" >
+
+                        <dxlc:LayoutItem VerticalAlignment="Stretch">
+                            <Button 
+		                        Command="{Binding PlaySequenceCommand }"
+                                CommandParameter="false"
+		                        Content="{Binding PlaySequenceContent, FallbackValue='PlaySequence' }"
+		                        ToolTip="{Binding PlaySequenceToolTip, FallbackValue='PlaySequence ToolTip' }" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
+            
                 <dxlc:LayoutItem Label="Log PerformanceStep" >
                     <dxe:CheckEdit IsChecked="{Binding LogPerformanceStep}"/>
                 </dxlc:LayoutItem>
 
             </dxlc:LayoutGroup>
-            
+
         </dxlc:LayoutGroup>
-     
-    </dxlc:LayoutGroup>
+
+    </dxlc:LayoutControl>
 
 </vncmvvm:ViewBase>
