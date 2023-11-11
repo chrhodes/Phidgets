@@ -2,7 +2,7 @@
 
 namespace VNCPhidgets21Explorer.Resources
 {
-    public class AdvancedServoStep
+    public class AdvancedServoServoAction
     {
         /// <summary>
         /// Index of servo on board 

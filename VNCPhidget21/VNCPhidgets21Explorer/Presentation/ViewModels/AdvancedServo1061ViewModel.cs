@@ -4118,21 +4118,21 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private async Task PlayPerformanceLoops(AdvancedServoPerformance advancedServoPerformance)
+        private async Task PlayPerformanceLoops(AdvancedServoSequence advancedServoSequence)
         {
             Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
 
-            for (int i = 0; i < advancedServoPerformance.Loops; i++)
+            for (int i = 0; i < advancedServoSequence.Loops; i++)
             {
                 Log.Trace($"Loop:{i + 1}", Common.LOG_CATEGORY);
 
-                if (advancedServoPerformance.PlayInParallel)
+                if (advancedServoSequence.PlayInParallel)
                 {
-                    PlayPerformanceInParallel(advancedServoPerformance);
+                    PlayPerformanceInParallel(advancedServoSequence);
                 }
                 else
                 {
-                    PlayPerformanceInSequence(advancedServoPerformance);
+                    PlayPerformanceInSequence(advancedServoSequence);
                 }
                 
             }
@@ -4140,53 +4140,53 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private async void PlayPerformanceInParallel(AdvancedServoPerformance advancedServoPerformance)
+        private async void PlayPerformanceInParallel(AdvancedServoSequence advancedServoSequence)
         {
             // TODO(crhodes)
             // Figure out how to use Parallel.Foreach
 
-            Parallel.ForEach(advancedServoPerformance.AdvancedServoSteps, step =>
+            Parallel.ForEach(advancedServoSequence.AdvancedServoServoActions, action =>
             {
                 if (LogPerformanceStep)
                 {
-                    Log.Trace($"Servo:{step.ServoIndex} Acceleration:{step.Acceleration} VelocityLimit:{step.VelocityLimit}" +
-                        $" Engaged:{step.Engaged} TargetPosition:{step.TargetPosition} Duration:{step.Duration}", Common.LOG_CATEGORY);
+                    Log.Trace($"Servo:{action.ServoIndex} Acceleration:{action.Acceleration} VelocityLimit:{action.VelocityLimit}" +
+                        $" Engaged:{action.Engaged} TargetPosition:{action.TargetPosition} Duration:{action.Duration}", Common.LOG_CATEGORY);
                 }
 
                 try
                 {
-                    switch (step.ServoIndex)
+                    switch (action.ServoIndex)
                     {
                         case 0:
-                            PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[0], step, 0);
+                            PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[0], action, 0);
                             break;
 
                         case 1:
-                            PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[1], step, 1);
+                            PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[1], action, 1);
                             break;
 
                         case 2:
-                            PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[2], step, 2);
+                            PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[2], action, 2);
                             break;
 
                         case 3:
-                            PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[3], step, 3);
+                            PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[3], action, 3);
                             break;
 
                         case 4:
-                            PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[4], step, 4);
+                            PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[4], action, 4);
                             break;
 
                         case 5:
-                            PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[5], step, 5);
+                            PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[5], action, 5);
                             break;
 
                         case 6:
-                            PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[6], step, 6);
+                            PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[6], action, 6);
                             break;
 
                         case 7:
-                            PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[7], step, 7);
+                            PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[7], action, 7);
                             break;
                     }
                 }
@@ -4258,50 +4258,50 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //}
         }
 
-        private void PlayPerformanceInSequence(AdvancedServoPerformance advancedServoPerformance)
+        private void PlayPerformanceInSequence(AdvancedServoSequence advancedServoSequence)
         {
-            foreach (AdvancedServoStep step in advancedServoPerformance.AdvancedServoSteps)
+            foreach (AdvancedServoServoAction action in advancedServoSequence.AdvancedServoServoActions)
             {
                 if (LogPerformanceStep)
                 {
-                    Log.Trace($"Servo:{step.ServoIndex} Acceleration:{step.Acceleration} VelocityLimit:{step.VelocityLimit}" +
-                        $" Engaged:{step.Engaged} TargetPosition:{step.TargetPosition} Duration:{step.Duration}", Common.LOG_CATEGORY);
+                    Log.Trace($"Servo:{action.ServoIndex} Acceleration:{action.Acceleration} VelocityLimit:{action.VelocityLimit}" +
+                        $" Engaged:{action.Engaged} TargetPosition:{action.TargetPosition} Duration:{action.Duration}", Common.LOG_CATEGORY);
                 }
 
                 try
                 {
-                    switch (step.ServoIndex)
+                    switch (action.ServoIndex)
                     {
                         case 0:
-                            PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[0], step, 0);
+                            PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[0], action, 0);
                             break;
 
                         case 1:
-                            PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[1], step, 1);
+                            PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[1], action, 1);
                             break;
 
                         case 2:
-                             PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[2], step, 2);
+                            PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[2], action, 2);
                             break;
 
                         case 3:
-                            PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[3], step, 3);
+                            PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[3], action, 3);
                             break;
 
                         case 4:
-                            PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[4], step, 4);
+                            PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[4], action, 4);
                             break;
 
                         case 5:
-                            PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[5], step, 5);
+                            PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[5], action, 5);
                             break;
 
                         case 6:
-                            PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[6], step, 6);
+                            PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[6], action, 6);
                             break;
 
                         case 7:
-                            PerformServoStep(ActiveAdvancedServo.AdvancedServo.servos[7], step, 7);
+                            PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[7], action, 7);
                             break;
                     }
                 }
@@ -4312,30 +4312,30 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private void PerformServoStep(AdvancedServoServo servo, AdvancedServoStep step, Int32 index)
+        private void PerformServoAction(AdvancedServoServo servo, AdvancedServoServoAction action, Int32 index)
         {
             Int64 startTicks = Log.Trace($"Enter servo:{index}", Common.LOG_CATEGORY);
 
             try
             {
-                if (step.Acceleration is not null) servo.Acceleration = (Double)step.Acceleration;
-                if (step.VelocityLimit is not null) servo.VelocityLimit = (Double)step.VelocityLimit;
-                if (step.PositionMin is not null) servo.PositionMin = (Double)step.PositionMin;
-                if (step.PositionMax is not null) servo.PositionMax = (Double)step.PositionMax;
-                if (step.Engaged is not null) servo.Engaged = (Boolean)step.Engaged;
+                if (action.Acceleration is not null) servo.Acceleration = (Double)action.Acceleration;
+                if (action.VelocityLimit is not null) servo.VelocityLimit = (Double)action.VelocityLimit;
+                if (action.PositionMin is not null) servo.PositionMin = (Double)action.PositionMin;
+                if (action.PositionMax is not null) servo.PositionMax = (Double)action.PositionMax;
+                if (action.Engaged is not null) servo.Engaged = (Boolean)action.Engaged;
 
                 // TODO(crhodes)
                 // Maybe wait for servo Engaged to complete if not currently engaged
                 // View logs and see how often exceptions thrown.
 
-                if (step.TargetPosition is not null)
+                if (action.TargetPosition is not null)
                 {
-                    servo.Position = (Double)step.TargetPosition;
+                    servo.Position = (Double)action.TargetPosition;
                     Thread.Sleep(1);
 
-                    VerifyNewPositionAchieved(servo, (Double)step.TargetPosition);
+                    VerifyNewPositionAchieved(servo, (Double)action.TargetPosition);
                      
-                    if (step.Duration > 0) Thread.Sleep((Int32)step.Duration);
+                    if (action.Duration > 0) Thread.Sleep((Int32)action.Duration);
                 }
             }
             catch (Exception ex)

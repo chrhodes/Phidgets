@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.Phidget", "..\VNC.Phidg
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.Core", "..\..\VNC\VNC.Core\VNC.Core.csproj", "{681A2F17-484D-4F8D-85A7-865EB53EB334}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JSONConsoleApp", "..\..\JSONConsoleApp\JSONConsoleApp.csproj", "{75F4A35C-D0DE-4D2C-BE68-94610690D206}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{681A2F17-484D-4F8D-85A7-865EB53EB334}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{681A2F17-484D-4F8D-85A7-865EB53EB334}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{681A2F17-484D-4F8D-85A7-865EB53EB334}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75F4A35C-D0DE-4D2C-BE68-94610690D206}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75F4A35C-D0DE-4D2C-BE68-94610690D206}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75F4A35C-D0DE-4D2C-BE68-94610690D206}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75F4A35C-D0DE-4D2C-BE68-94610690D206}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
