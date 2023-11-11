@@ -8,8 +8,5 @@
         // How do we use Enable?  If just like open, remove
         //public bool? Enable { get; set; } = true;
         public bool Open { get; set; } = true;
-        // NOTE(crhodes)
-        // How is this used.  Seems just descriptive
-        //public bool? Embedded { get; set; } = false;
     }
 }

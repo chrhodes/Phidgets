@@ -22,22 +22,22 @@ namespace VNCPhidgets21Explorer.Resources
             };
 
         /// <summary>
-        /// Name of performance
+        /// Name of Sequence
         /// </summary>
         public string Name { get; set; } = "SEQUENCE NAME";
 
         /// <summary>
-        /// Description of performance
+        /// Description of Sequence
         /// </summary>
         public string Description { get; set; } = "SEQUENCE DESCRIPTION";
 
         /// <summary>
-        /// Number of loops of Performance
+        /// Number of loops of Sequence
         /// </summary>
         public Int32 Loops { get; set; } = 1;
 
         /// <summary>
-        /// Number of loops of Performance
+        /// Play ServoAction[] in Parallel or Sequential (false)
         /// </summary>
         public Boolean PlayInParallel { get; set; } = false;
 

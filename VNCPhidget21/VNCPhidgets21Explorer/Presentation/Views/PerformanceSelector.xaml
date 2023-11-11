@@ -43,7 +43,8 @@
     <!-- </d:DesignerProperties.DesignStyle> -->
     
      <vncmvvm:ViewBase.Resources> 
-         <localc:SelectedItemsToListOfStringConverter x:Key="SelectedItemsToListOfStringConverter" /> 
+         <localc:SelectedItemsToListOfAdvancedServoPerformanceConverter x:Key="SelectedItemsToListOfAdvancedServoPerformanceConverter" />
+         <localc:SelectedItemsToListOfAdvancedServoSequenceConverter x:Key="SelectedItemsToListOfAdvancedServoSequenceConverter" /> 
          <!--<localc:SelectedItemsConverter x:Key="SelectedItemsConverter" /> 
          <localc:SelectedItemsToWorkItemQueryWrapperConverter x:Key="SelectedItemsToHostSelectorWrapperConverter" /> 
          <DataTemplate x:Key="dataTemplateHostSelector"> 
@@ -140,7 +141,22 @@
                                     Path=SelectedPerformances,
                                     Mode=TwoWay,
                                     UpdateSourceTrigger=PropertyChanged,
-                                    Converter={StaticResource SelectedItemsToListOfStringConverter} }" >
+                                    Converter={StaticResource SelectedItemsToListOfAdvancedServoPerformanceConverter} }" >
+                    <dxe:ComboBoxEdit.StyleSettings>
+                        <dxe:CheckedComboBoxStyleSettings />
+                    </dxe:ComboBoxEdit.StyleSettings>
+                </dxe:ComboBoxEdit>
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem HorizontalAlignment="Left" >
+                <dxe:ComboBoxEdit Width="250" 
+                                ItemsSource="{Binding AdvancedServoSequences}" DisplayMember="Name" 
+                                SelectedItem="{Binding SelectedAdvancedServoSequence}"
+                                EditValue="{ Binding 
+                                    Path=SelectedSequences,
+                                    Mode=TwoWay,
+                                    UpdateSourceTrigger=PropertyChanged,
+                                    Converter={StaticResource SelectedItemsToListOfAdvancedServoSequenceConverter} }" >
                     <dxe:ComboBoxEdit.StyleSettings>
                         <dxe:CheckedComboBoxStyleSettings />
                     </dxe:ComboBoxEdit.StyleSettings>
@@ -185,6 +201,14 @@
                         CommandParameter="false"
 		                Content="{Binding PlayPerformanceContent, FallbackValue='PlayPerformance' }"
 		                ToolTip="{Binding PlayPerformanceToolTip, FallbackValue='PlayPerformance ToolTip' }" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem VerticalAlignment="Stretch">
+                    <Button 
+		                Command="{Binding PlaySequenceCommand }"
+                        CommandParameter="false"
+		                Content="{Binding PlaySequenceContent, FallbackValue='PlaySequence' }"
+		                ToolTip="{Binding PlaySequenceToolTip, FallbackValue='PlaySequence ToolTip' }" />
                 </dxlc:LayoutItem>
 
                 <!--<dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">

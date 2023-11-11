@@ -1915,7 +1915,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 SelectedHost.IPAddress,
                 SelectedHost.Port,
                 SelectedInterfaceKit.SerialNumber,
-                SelectedInterfaceKit.Enable,
                 SelectedInterfaceKit.Embedded);
 
             ActiveInterfaceKit.InterfaceKit.Attach += ActiveInterfaceKit_Attach;

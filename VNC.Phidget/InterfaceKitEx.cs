@@ -14,8 +14,8 @@ namespace VNC.Phidget
         /// </summary>
         /// <param name="embedded"></param>
         /// <param name="enabled"></param>
-        public InterfaceKitEx(string ipAddress, int port, int serialNumber, bool enable, bool embedded) 
-            : base(ipAddress, port, serialNumber, enable, embedded)
+        public InterfaceKitEx(string ipAddress, int port, int serialNumber, bool embedded) 
+            : base(ipAddress, port, serialNumber, true, embedded)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 

@@ -316,10 +316,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //InterfaceKit ifk22 = new InterfaceKit();
             //InterfaceKit ifk23 = new InterfaceKit();
 
-            VNC.Phidget.InterfaceKitEx ifkEx11 = new VNC.Phidget.InterfaceKitEx("192.168.150.11", 5001, sbc11SerialNumber, enable: true, embedded: true);
-            VNC.Phidget.InterfaceKitEx ifkEx21 = new VNC.Phidget.InterfaceKitEx("192.168.150.21", 5001, sbc21SerialNumber, enable: true, embedded: true);
-            VNC.Phidget.InterfaceKitEx ifkEx22 = new VNC.Phidget.InterfaceKitEx("192.168.150.22", 5001, sbc22SerialNumber, enable: true, embedded: true);
-            VNC.Phidget.InterfaceKitEx ifkEx23 = new VNC.Phidget.InterfaceKitEx("192.168.150.23", 5001, sbc23SerialNumber, enable: true, embedded: true);
+            VNC.Phidget.InterfaceKitEx ifkEx11 = new VNC.Phidget.InterfaceKitEx("192.168.150.11", 5001, sbc11SerialNumber, embedded: true);
+            VNC.Phidget.InterfaceKitEx ifkEx21 = new VNC.Phidget.InterfaceKitEx("192.168.150.21", 5001, sbc21SerialNumber, embedded: true);
+            VNC.Phidget.InterfaceKitEx ifkEx22 = new VNC.Phidget.InterfaceKitEx("192.168.150.22", 5001, sbc22SerialNumber, embedded: true);
+            VNC.Phidget.InterfaceKitEx ifkEx23 = new VNC.Phidget.InterfaceKitEx("192.168.150.23", 5001, sbc23SerialNumber, embedded: true);
 
             try
             {
@@ -392,7 +392,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             {
                 Log.Debug($"InterfaceKitParty {hostName},{port} {serialNumber} sleep:{sleep} loops:{loops}", Common.LOG_CATEGORY);
 
-                VNC.Phidget.InterfaceKitEx ifkEx = new VNC.Phidget.InterfaceKitEx(hostName, port, serialNumber, enable: true, embedded: true);
+                VNC.Phidget.InterfaceKitEx ifkEx = new VNC.Phidget.InterfaceKitEx(hostName, port, serialNumber, embedded: true);
 
                 ifkEx.Open();
 

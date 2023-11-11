@@ -11,8 +11,8 @@ namespace VNC.Phidget
         /// </summary>
         /// <param name="embedded"></param>
         /// <param name="enabled"></param>
-        public StepperEx(string ipAddress, int port, int serialNumber, bool enable, bool embedded)
-            : base(ipAddress, port, serialNumber, enable, embedded)
+        public StepperEx(string ipAddress, int port, int serialNumber)
+            : base(ipAddress, port, serialNumber, true, true)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
