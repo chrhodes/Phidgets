@@ -708,7 +708,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_positionS0 == value)
                     return;
 
-                if (value < PositionMin_S0 || value < PositionMax_S0)
+                if (value < PositionMin_S0 || value > PositionMax_S0)
                 {
                     return;
                 }
@@ -1038,7 +1038,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_positionS1 == value)
                     return;
 
-                if (value < PositionMin_S1 || value < PositionMax_S1)
+                if (value < PositionMin_S1 || value > PositionMax_S1)
                 {
                     return;
                 }
@@ -1356,7 +1356,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_positionS2 == value)
                     return;
 
-                if (value < PositionMin_S2 || value < PositionMax_S2)
+                if (value < PositionMin_S2 || value > PositionMax_S2)
                 {
                     return;
                 }
@@ -1673,7 +1673,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_positionS3 == value)
                     return;
 
-                if (value < PositionMin_S3 || value < PositionMax_S3)
+                if (value < PositionMin_S3 || value > PositionMax_S3)
                 {
                     return;
                 }
@@ -1991,7 +1991,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_positionS4 == value)
                     return;
 
-                if (value < PositionMin_S4 || value < PositionMax_S4)
+                if (value < PositionMin_S4 || value > PositionMax_S4)
                 {
                     return;
                 }
@@ -2308,7 +2308,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_positionS5 == value)
                     return;
 
-                if (value < PositionMin_S5 || value < PositionMax_S5)
+                if (value < PositionMin_S5 || value > PositionMax_S5)
                 {
                     return;
                 }
@@ -2625,7 +2625,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_positionS6 == value)
                     return;
 
-                if (value < PositionMin_S6 || value < PositionMax_S6)
+                if (value < PositionMin_S6 || value > PositionMax_S6)
                 {
                     return;
                 }
@@ -2744,7 +2744,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 if (value is not null)
                 {
-                    ActiveAdvancedServo.AdvancedServo.servos[0].VelocityLimit = (double)value;
+                    ActiveAdvancedServo.AdvancedServo.servos[6].VelocityLimit = (double)value;
                 }
             }
         }
@@ -2942,7 +2942,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_positionS7 == value)
                     return;
 
-                if (value < PositionMin_S7 || value < PositionMax_S7)
+                if (value < PositionMin_S7 || value > PositionMax_S7)
                 {
                     return;
                 }
@@ -3311,7 +3311,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     Velocity_S5 = e.Velocity;
                     break;
 
-                case 60:
+                case 6:
                     Velocity_S6 = e.Velocity;
                     break;
 
@@ -3416,7 +3416,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     Current_S5 = e.Current;
                     break;
 
-                case 60:
+                case 6:
                     Current_S6 = e.Current;
                     break;
 
