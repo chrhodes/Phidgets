@@ -73,9 +73,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             string jsonString = File.ReadAllText(ConfigFileName);
 
-            Resources.PhidgetConfig? phidgetConfig = JsonSerializer.Deserialize<Resources.PhidgetConfig>(jsonString);
-            this.Hosts = phidgetConfig.Hosts.ToList();
-            this.Sensors2 = phidgetConfig.Sensors.ToList();
+            Resources.HostConfig? hostConfig = JsonSerializer.Deserialize<Resources.HostConfig>(jsonString);
+            this.Hosts = hostConfig.Hosts.ToList();
+            this.Sensors2 = hostConfig.Sensors.ToList();
 
             Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -109,15 +109,15 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public string ConfigFileNameToolTip { get; set; } = "DoubleClick to select new file";
 
-        private Resources.PhidgetConfig _phidgetConfig;
-        public Resources.PhidgetConfig PhidgetConfig
+        private Resources.HostConfig _hostConfig;
+        public Resources.HostConfig HostConfig
         {
-            get => _phidgetConfig;
+            get => _hostConfig;
             set
             {
-                if (_phidgetConfig == value)
+                if (_hostConfig == value)
                     return;
-                _phidgetConfig = value;
+                _hostConfig = value;
                 OnPropertyChanged();
             }
         }

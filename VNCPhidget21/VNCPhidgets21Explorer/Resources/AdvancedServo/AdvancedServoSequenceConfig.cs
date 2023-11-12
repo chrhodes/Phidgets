@@ -4,7 +4,7 @@ namespace VNCPhidgets21Explorer.Resources
 {
     public class AdvancedServoSequenceConfig
     {
-        AdvancedServoSequence[] AdvancedServoSequences = new[]
+        public AdvancedServoSequence[] AdvancedServoSequences = new[]
         {
             new AdvancedServoSequence
             {

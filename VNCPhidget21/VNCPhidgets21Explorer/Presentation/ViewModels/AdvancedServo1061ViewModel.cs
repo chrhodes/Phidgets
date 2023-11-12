@@ -1,17 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Input;
-
-using DevExpress.CodeParser;
-using DevExpress.Mvvm.Native;
-using DevExpress.Utils.Serializing;
-using DevExpress.XtraRichEdit.Commands;
 
 using Phidgets;
 using Phidgets.Events;
@@ -23,8 +15,6 @@ using Prism.Services.Dialogs;
 using VNC;
 using VNC.Core.Mvvm;
 using VNC.Phidget;
-
-using VNCPhidgets21Explorer.Resources;
 
 namespace VNCPhidgets21Explorer.Presentation.ViewModels
 {
