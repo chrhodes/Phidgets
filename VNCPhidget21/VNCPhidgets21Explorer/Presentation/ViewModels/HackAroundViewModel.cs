@@ -590,52 +590,45 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //});
         }
 
-        private void PlayPerformanceInSequence(Resources.AdvancedServoPerformance advancedServoPerformance)
+        private async void PlayPerformanceInSequence(Resources.AdvancedServoPerformance advancedServoPerformance)
         {
             foreach (Resources.AdvancedServoSequence sequence in advancedServoPerformance.AdvancedServoSequences)
             {
-                //if (LogPerformanceStep)
-                //{
-                //    Log.Trace($"Servo:{action.ServoIndex} Acceleration:{action.Acceleration} VelocityLimit:{action.VelocityLimit}" +
-                //        $" Engaged:{action.Engaged} TargetPosition:{action.TargetPosition} Duration:{action.Duration}", Common.LOG_CATEGORY);
-                //}
+                if (LogPerformanceStep)
+                {
+                    Log.Trace($"Running sequence:{sequence.Name} Description:{sequence.Description} " +
+                        $"PlayInParallel:{sequence.PlayInParallel} ContinueWith:{sequence.ContinueWith}", Common.LOG_CATEGORY);
+                }
 
                 try
                 {
-                    //switch (action.ServoIndex)
-                    //{
-                    //    case 0:
-                    //        PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[0], action, 0);
-                    //        break;
+                    var advancedServo = OpenHost(sequence.Host);
 
-                    //    case 1:
-                    //        PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[1], action, 1);
-                    //        break;
+                    var nextSequence = sequence;
 
-                    //    case 2:
-                    //        PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[2], action, 2);
-                    //        break;
+                    string name = "";
+                    string? continueWith = "";
 
-                    //    case 3:
-                    //        PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[3], action, 3);
-                    //        break;
+                    do
+                    {
+                        name = nextSequence.Name;
+                        continueWith = nextSequence.ContinueWith;
+                        Log.Trace($"  Playing sequence:{name} continueWidth:{continueWith}", Common.LOG_CATEGORY);
 
-                    //    case 4:
-                    //        PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[4], action, 4);
-                    //        break;
+                        await PlaySequenceLoops(advancedServo, nextSequence);
 
-                    //    case 5:
-                    //        PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[5], action, 5);
-                    //        break;
+                        if (AvailableAdvancedServoSequences.ContainsKey(continueWith ?? ""))
+                        {
+                            nextSequence = AvailableAdvancedServoSequences[continueWith];
+                        }
+                        else
+                        {
+                            continueWith = "";
+                        }
 
-                    //    case 6:
-                    //        PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[6], action, 6);
-                    //        break;
+                    } while (!string.IsNullOrEmpty(continueWith));
 
-                    //    case 7:
-                    //        PerformServoAction(ActiveAdvancedServo.AdvancedServo.servos[7], action, 7);
-                    //        break;
-                    //}
+                    advancedServo.Close();
                 }
                 catch (Exception ex)
                 {
