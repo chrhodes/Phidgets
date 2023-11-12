@@ -12,6 +12,7 @@
             new AdvancedServo { SerialNumber = 1234, Open = true },
             new AdvancedServo { SerialNumber = 5678, Open = false }
         };
+
         public InterfaceKit[] InterfaceKits { get; set; } = new[]
         {
             new InterfaceKit { SerialNumber = 1234, Embedded = true, Open = true },
@@ -25,3 +26,4 @@
         };
     }
 }
+

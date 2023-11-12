@@ -7,6 +7,6 @@
         // NOTE(crhodes)
         // How do we use Enable?  If just like open, remove
         //public bool? Enable { get; set; } = true;
-        public bool Open { get; set; } = true;
+        public bool Open { get; set; } = false;
     }
 }

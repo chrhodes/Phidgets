@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace VNCPhidgets21Explorer.Resources
+﻿namespace VNCPhidgets21Explorer.Resources
 {
     public class Sensor
     {

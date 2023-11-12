@@ -16,7 +16,7 @@ namespace VNCPhidgets21Explorer.Presentation.Converters
     /// <summary>
     /// Converts to and from a MultiItem Select ComboBox Control
     /// </summary>
-    public class SelectedItemsToListOfAdvancedServoPerformanceConverter : MarkupExtension, IValueConverter
+    public class SelectedItemsToListOfPerformanceSequenceConverter : MarkupExtension, IValueConverter
     {
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
@@ -27,7 +27,7 @@ namespace VNCPhidgets21Explorer.Presentation.Converters
         {
             if (value != null)
             {
-                return new List<object>((IEnumerable<AdvancedServoPerformance>)value);
+                return new List<object>((IEnumerable<PerformanceSequence>)value);
             }
 
             return null;
@@ -57,14 +57,14 @@ namespace VNCPhidgets21Explorer.Presentation.Converters
 
         object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            List<AdvancedServoPerformance> result = new List<AdvancedServoPerformance>();
+            List<PerformanceSequence> result = new List<PerformanceSequence>();
             var enumerable = (List<object>)value;
 
             if (enumerable != null)
             {
                 foreach (object item in enumerable)
                 {
-                    result.Add((AdvancedServoPerformance)item);
+                    result.Add((PerformanceSequence)item);
                 }
             }
 

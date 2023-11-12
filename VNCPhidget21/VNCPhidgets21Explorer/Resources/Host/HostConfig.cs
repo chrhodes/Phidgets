@@ -1,6 +1,6 @@
 ﻿namespace VNCPhidgets21Explorer.Resources
 {
-    public class PhidgetConfig
+    public class HostConfig
     {
         public Host[] Hosts { get; set; } = new[]
         {

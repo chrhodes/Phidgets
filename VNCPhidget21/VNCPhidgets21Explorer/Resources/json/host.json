@@ -3,18 +3,42 @@
   "IPAddress": "192.168.150.1",
   "Port": 5001,
   "Enable": true,
+  "AdvancedServos": [
+    {
+      "Name": "ADVANCEDSERVO NAME",
+      "SerialNumber": 1234,
+      "Open": true
+    },
+    {
+      "Name": "ADVANCEDSERVO NAME",
+      "SerialNumber": 5678,
+      "Open": false
+    }
+  ],
   "InterfaceKits": [
     {
-      "Name": "InterfaceKit 1",
+      "Name": "INTERFACEKIT NAME",
       "SerialNumber": 1234,
-      "Enable": true,
+      "Open": true,
       "Embedded": true
     },
     {
-      "Name": "InterfaceKit 2",
+      "Name": "INTERFACEKIT NAME",
       "SerialNumber": 5678,
-      "Enable": false,
+      "Open": false,
       "Embedded": false
+    }
+  ],
+  "Steppers": [
+    {
+      "Name": "STEPPER NAME",
+      "SerialNumber": 1234,
+      "Open": true
+    },
+    {
+      "Name": "STEPPER NAME",
+      "SerialNumber": 5678,
+      "Open": false
     }
   ]
 }

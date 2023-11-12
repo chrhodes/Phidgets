@@ -57,7 +57,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             PlayPerformanceCommand = new DelegateCommand<string>(PlayPerformance, PlayPerformanceCanExecute);
             PlaySequenceCommand = new DelegateCommand<string>(PlaySequence, PlaySequenceCanExecute);
 
-            PerformanceConfigFileName = "advancedservoperformancesconfig.json";
+            PerformanceConfigFileName = "performancesconfig.json";
 
             LoadPerformancesConfig();
 
@@ -77,13 +77,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             string jsonString = File.ReadAllText(PerformanceConfigFileName);
 
-            Resources.AdvancedServoPerformanceConfig? performancesConfig
-                = JsonSerializer.Deserialize<Resources.AdvancedServoPerformanceConfig>(jsonString, jsonOptions);
+            Resources.PerformanceConfig? performancesConfig
+                = JsonSerializer.Deserialize<Resources.PerformanceConfig>(jsonString, jsonOptions);
 
-            this.AdvancedServoPerformances = performancesConfig.AdvancedServoPerformances.ToList();
+            this.PerformanceSequences = performancesConfig.PerformanceSequences.ToList();
 
             AvailableAdvancedServoPerformances =
-                performancesConfig.AdvancedServoPerformances
+                performancesConfig.PerformanceSequences
                 .ToDictionary(k => k.Name, v => v);
 
             Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
@@ -245,75 +245,75 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public string PerformanceFileNameToolTip { get; set; } = "DoubleClick to select new file";
 
-        private Resources.AdvancedServoPerformanceConfig _advancedServoPerformanceConfig;
-        public Resources.AdvancedServoPerformanceConfig AdvancedServoPerformanceConfig
+        private Resources.PerformanceConfig _performanceConfig;
+        public Resources.PerformanceConfig PerformanceConfig
         {
-            get => _advancedServoPerformanceConfig;
+            get => _performanceConfig;
             set
             {
-                if (_advancedServoPerformanceConfig == value)
+                if (_performanceConfig == value)
                     return;
-                _advancedServoPerformanceConfig = value;
+                _performanceConfig = value;
                 OnPropertyChanged();
             }
         }
 
-        private IEnumerable<Resources.AdvancedServoPerformance> _advancedServoPerformances;
-        public IEnumerable<Resources.AdvancedServoPerformance> AdvancedServoPerformances
+        //private IEnumerable<Resources.AdvancedServoPerformance> _advancedServoPerformances;
+        //public IEnumerable<Resources.AdvancedServoPerformance> PerformanceSequences
+        //{
+        //    get => _advancedServoPerformances;
+        //    set
+        //    {
+        //        _advancedServoPerformances = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
+        //private Resources.AdvancedServoPerformance? _selectedAdvancedServoPerformance;
+        //public Resources.AdvancedServoPerformance? SelectedAdvancedServoPerformance
+        //{
+        //    get => _selectedAdvancedServoPerformance;
+        //    set
+        //    {
+        //        if (_selectedAdvancedServoPerformance == value) return;
+
+        //        _selectedAdvancedServoPerformance = value;
+        //        OnPropertyChanged();
+
+        //        AdvancedServoSequences = _selectedAdvancedServoPerformance.AdvancedServoSequences.ToList<Resources.AdvancedServoSequence>();
+
+        //        AvailableAdvancedServoSequences =
+        //            AdvancedServoSequences
+        //            .ToDictionary(k => k.Name, v => v);
+
+        //        PlayPerformanceCommand.RaiseCanExecuteChanged();
+        //        PlaySequenceCommand.RaiseCanExecuteChanged();
+        //    }
+        //}
+
+        //private Dictionary<string, Resources.PerformanceSequence> _availableAdvancedServoPerformances;
+        //public Dictionary<string, Resources.PerformanceSequence> AvailableAdvancedServoPerformances
+        //{
+        //    get => _availableAdvancedServoPerformances;
+        //    set
+        //    {
+        //        _availableAdvancedServoPerformances = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
+        private List<Resources.PerformanceSequence> _selectedPerformanceSequences;
+        public List<Resources.PerformanceSequence> SelectedPerformanceSequences
         {
-            get => _advancedServoPerformances;
+            get => _selectedPerformanceSequences;
             set
             {
-                _advancedServoPerformances = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Resources.AdvancedServoPerformance? _selectedAdvancedServoPerformance;
-        public Resources.AdvancedServoPerformance? SelectedAdvancedServoPerformance
-        {
-            get => _selectedAdvancedServoPerformance;
-            set
-            {
-                if (_selectedAdvancedServoPerformance == value) return;
-
-                _selectedAdvancedServoPerformance = value;
-                OnPropertyChanged();
-
-                AdvancedServoSequences = _selectedAdvancedServoPerformance.AdvancedServoSequences.ToList<Resources.AdvancedServoSequence>();
-
-                AvailableAdvancedServoSequences =
-                    AdvancedServoSequences
-                    .ToDictionary(k => k.Name, v => v);
-
-                PlayPerformanceCommand.RaiseCanExecuteChanged();
-                PlaySequenceCommand.RaiseCanExecuteChanged();
-            }
-        }
-
-        private Dictionary<string, Resources.AdvancedServoPerformance> _availableAdvancedServoPerformances;
-        public Dictionary<string, Resources.AdvancedServoPerformance> AvailableAdvancedServoPerformances
-        {
-            get => _availableAdvancedServoPerformances;
-            set
-            {
-                _availableAdvancedServoPerformances = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private List<Resources.AdvancedServoPerformance> _selectedPerformances;
-        public List<Resources.AdvancedServoPerformance> SelectedPerformances
-        {
-            get => _selectedPerformances;
-            set
-            {
-                if (_selectedPerformances == value)
+                if (_selectedPerformanceSequences == value)
                 {
                     return;
                 }
 
-                _selectedPerformances = value;
+                _selectedPerformanceSequences = value;
                 OnPropertyChanged();
 
                 PlayPerformanceCommand.RaiseCanExecuteChanged();
@@ -436,7 +436,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             if (Boolean.Parse(playAll))
             {
-                foreach (Resources.AdvancedServoPerformance performance in AdvancedServoPerformances)
+                foreach (Resources.AdvancedServoPerformance performance in PerformanceSequences)
                 {
                     await PlayPerformanceLoops(performance);
                 }
@@ -590,7 +590,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //});
         }
 
-        private async void PlayPerformanceInSequence(Resources.AdvancedServoPerformance advancedServoPerformance)
+        private async void PlayPerformanceInSequence(Resources.PerformanceSequence advancedServoPerformance)
         {
             foreach (Resources.AdvancedServoSequence sequence in advancedServoPerformance.AdvancedServoSequences)
             {

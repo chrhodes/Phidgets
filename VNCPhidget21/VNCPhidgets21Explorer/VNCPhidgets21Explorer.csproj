@@ -32,64 +32,80 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\HostList.xml" />
-    <None Remove="Resources\InterfaceKitList.xml" />
     <None Remove="Resources\json\advancedservo.json" />
-    <None Remove="Resources\json\advancedservoperformance.json" />
     <None Remove="Resources\json\advancedservoperformancesconfig-orig.json" />
-    <None Remove="Resources\json\advancedservoperformancesconfig.json" />
+    <None Remove="Resources\json\advancedservosequence.json" />
+    <None Remove="Resources\json\advancedservosequenceconfig.json" />
+    <None Remove="Resources\json\advancedservoservoaction.json" />
     <None Remove="Resources\json\advancedservostep.json" />
     <None Remove="Resources\json\host.json" />
+    <None Remove="Resources\json\hostconfig.json" />
     <None Remove="Resources\json\interfacekit.json" />
-    <None Remove="Resources\json\phidgetconfig.json" />
+    <None Remove="Resources\json\interfacekitaction.json" />
+    <None Remove="Resources\json\interfacekitsequence.json" />
+    <None Remove="Resources\json\interfacekitsequenceconfig" />
     <None Remove="Resources\json\sensor.json" />
     <None Remove="Resources\json\stepper.json" />
+    <None Remove="Resources\json\stepperaction.json" />
+    <None Remove="Resources\json\steppersequence.json" />
+    <None Remove="Resources\json\steppersequenceconfig.json" />
     <None Remove="Resources\json\VNCperformancesconfig.json" />
-    <None Remove="Resources\SensorList.xml" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Resources\InterfaceKitList.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\HostList.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\Icons\ApplicationIcon-Right-Red.ico" />
-    <Content Include="Resources\json\advancedservoperformance.json">
+    <Content Include="Resources\json\advancedservo.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\json\advancedservoperformancesconfig.json">
+    <Content Include="Resources\json\advancedservosequence.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\advancedservosequenceconfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\advancedservoservoaction.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\advancedservostep.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\host.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\hostconfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\interfacekit.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\interfacekitaction.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\interfacekitsequence.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\interfacekitsequenceconfig">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\sensor.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\stepper.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\stepperaction.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\steppersequence.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\steppersequenceconfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\json\VNCperformancesconfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\json\advancedservoperformancesconfig-orig.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\json\advancedservostep.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\json\stepper.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\json\host.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\json\advancedservo.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\json\interfacekit.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\json\phidgetconfig.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\json\sensor.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\SensorList.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
