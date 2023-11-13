@@ -5,39 +5,39 @@ namespace VNCPhidgets21Explorer.Resources
     public class InterfaceKitAction
     {
         /// <summary>
-        /// Index of servo on board 
+        /// Index of DigitalOutput on board 
         /// </summary>
-        public int ServoIndex { get; set; }
-
+        public int DigitalOutIndex { get; set; }
+   
         /// <summary>
-        /// Engage Servo (optional)
+        /// Set DigitalOut value
         /// </summary>
-        public bool? Engaged { get; set; }
+        public bool? DigitalOut { get; set; }
 
-        /// <summary>
-        /// Servo Acceleration (optional)
-        /// </summary>
-        public Double? Acceleration { get; set; }
+        ///// <summary>
+        ///// Servo Acceleration (optional)
+        ///// </summary>
+        //public Double? Acceleration { get; set; }
 
-        /// <summary>
-        /// Servo Velocity (optional)
-        /// </summary>
-        public Double? VelocityLimit { get; set; }
+        ///// <summary>
+        ///// Servo Velocity (optional)
+        ///// </summary>
+        //public Double? VelocityLimit { get; set; }
 
-        /// <summary>
-        /// TargetPosition (optional)
-        /// </summary>
-        public double? PositionMin { get; set; }
+        ///// <summary>
+        ///// TargetPosition (optional)
+        ///// </summary>
+        //public double? PositionMin { get; set; }
 
-        /// <summary>
-        /// TargetPosition (optional)
-        /// </summary>
-        public double? TargetPosition { get; set; }
+        ///// <summary>
+        ///// TargetPosition (optional)
+        ///// </summary>
+        //public double? TargetPosition { get; set; }
 
-        /// <summary>
-        /// TargetPosition (optional)
-        /// </summary>
-        public double? PositionMax { get; set; }
+        ///// <summary>
+        ///// TargetPosition (optional)
+        ///// </summary>
+        //public double? PositionMax { get; set; }
 
         /// <summary>
         /// Duration of step in ms (sleep time after step)

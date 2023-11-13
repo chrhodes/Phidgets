@@ -15,7 +15,7 @@
       "InterfaceKits": [
         {
           "Name": "InterfaceKit 1",
-          "SerialNumber": 46049,
+          "SerialNumber": 124744,
           "Open": true,
           "Embedded": false
         }
@@ -47,7 +47,7 @@
       ],
       "InterfaceKits": [
         {
-          "Name": "InterfaceKit psbc11",
+          "Name": "psbc11 InterfaceKit",
           "SerialNumber": 46049,
           "Open": true,
           "Embedded": true
@@ -80,7 +80,7 @@
       ],
       "InterfaceKits": [
         {
-          "Name": "InterfaceKit psbc21",
+          "Name": "psbc21 InterfaceKit",
           "SerialNumber": 48301,
           "Open": true,
           "Embedded": true
@@ -113,7 +113,7 @@
       ],
       "InterfaceKits": [
         {
-          "Name": "InterfaceKit psbc22",
+          "Name": "psbc22 InterfaceKit",
           "SerialNumber": 251831,
           "Open": true,
           "Embedded": true
@@ -146,7 +146,7 @@
       ],
       "InterfaceKits": [
         {
-          "Name": "InterfaceKit psbc23",
+          "Name": "psbc23 InterfaceKit",
           "SerialNumber": 48284,
           "Open": true,
           "Embedded": true

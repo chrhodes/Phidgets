@@ -47,8 +47,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
             <RowDefinition Height="100" />
-            <RowDefinition Height="100" />
-            <RowDefinition Height="100" />
+            <!--<RowDefinition Height="100" />
+            <RowDefinition Height="100" />-->
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -82,7 +82,7 @@
             </StackPanel>
         </Grid>
 
-        <Button Grid.Row="2" Content="Button2" Command="{Binding Button2Command}" Width="400" Margin="10" />
+        <!--<Button Grid.Row="2" Content="Button2" Command="{Binding Button2Command}" Width="400" Margin="10" />
 
         <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="10" HorizontalAlignment="Center">
             <Button  Content="Calculate" Command="{Binding Button3Command}"
@@ -101,13 +101,13 @@
             <Label Content=" = " FontSize="36" VerticalAlignment="Center" />
 
             <TextBox Text="{Binding Answer}" FontSize="36"  VerticalAlignment="Center" />
-        </StackPanel>
+        </StackPanel>-->
 
-        <views:PerformanceSelector Grid.Row="4"/>
+        <views:PerformanceSelector Grid.Row="2"/>
         
         <!-- This is useful for debugging V VM constructor issues -->
 
-        <StackPanel Grid.Row="5" Orientation="Horizontal" VerticalAlignment="Bottom">
+        <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Bottom">
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label Content="V:" />
                 <Label Content="{Binding ElementName=thisControl, Path=InstanceCountV}" />

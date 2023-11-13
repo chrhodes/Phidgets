@@ -9,7 +9,7 @@
     <!--<Nullable>enable</Nullable>-->
 	  <VersionPrefix>1.0.0</VersionPrefix>
 	  <VersionSuffix>indevelopment-v7</VersionSuffix>
-      <FileVersion>2023.11.12A</FileVersion>
+      <FileVersion>2023.11.13A</FileVersion>
       <Company>VNC</Company>
 	  <Description>Phidget21 Explorer</Description>
   </PropertyGroup>
@@ -43,7 +43,7 @@
     <None Remove="Resources\json\interfacekit.json" />
     <None Remove="Resources\json\interfacekitaction.json" />
     <None Remove="Resources\json\interfacekitsequence.json" />
-    <None Remove="Resources\json\interfacekitsequenceconfig" />
+    <None Remove="Resources\json\interfacekitsequenceconfig.json" />
     <None Remove="Resources\json\performanceconfig.json" />
     <None Remove="Resources\json\performancesequence.json" />
     <None Remove="Resources\json\sensor.json" />
@@ -85,7 +85,7 @@
     <Content Include="Resources\json\interfacekitsequence.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\json\interfacekitsequenceconfig">
+    <Content Include="Resources\json\interfacekitsequenceconfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\json\performanceconfig.json">

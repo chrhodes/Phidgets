@@ -19,7 +19,7 @@
     "InterfaceKits": [
       {
         "Name": "InterfaceKit 1",
-        "SerialNumber": 99415,
+        "SerialNumber": 124744,
         "Open": true,
         "Embedded": false
       }
@@ -44,53 +44,33 @@
   "ContinueWith": "",
   "InterfaceKitActions": [
     {
-      "ServoIndex": 0,
-      "Engaged": true,
-      "Acceleration": null,
-      "VelocityLimit": null,
-      "PositionMin": null,
-      "TargetPosition": 90,
-      "PositionMax": null,
-      "Duration": 1000
-    },
-    {
-      "ServoIndex": 0,
-      "Engaged": true,
-      "Acceleration": null,
-      "VelocityLimit": null,
-      "PositionMin": null,
-      "TargetPosition": 95,
-      "PositionMax": null,
-      "Duration": 1000
-    },
-    {
-      "ServoIndex": 0,
-      "Engaged": true,
-      "Acceleration": null,
-      "VelocityLimit": null,
-      "PositionMin": null,
-      "TargetPosition": 100,
-      "PositionMax": null,
-      "Duration": 2000
-    },
-    {
-      "ServoIndex": 0,
-      "Engaged": true,
-      "Acceleration": null,
-      "VelocityLimit": null,
-      "PositionMin": null,
-      "TargetPosition": 95,
-      "PositionMax": null,
+      "DigitalOutIndex": 0,
+      "DigitalOut": true,
       "Duration": 500
     },
     {
-      "ServoIndex": 0,
-      "Engaged": true,
-      "Acceleration": null,
-      "VelocityLimit": null,
-      "PositionMin": null,
-      "TargetPosition": 90,
-      "PositionMax": null,
+      "DigitalOutIndex": 0,
+      "DigitalOut": false,
+      "Duration": 500
+    },
+    {
+      "DigitalOutIndex": 1,
+      "DigitalOut": true,
+      "Duration": 500
+    },
+    {
+      "DigitalOutIndex": 1,
+      "DigitalOut": false,
+      "Duration": 500
+    },
+    {
+      "DigitalOutIndex": 2,
+      "DigitalOut": true,
+      "Duration": 500
+    },
+    {
+      "DigitalOutIndex": 2,
+      "DigitalOut": false,
       "Duration": 500
     }
   ]

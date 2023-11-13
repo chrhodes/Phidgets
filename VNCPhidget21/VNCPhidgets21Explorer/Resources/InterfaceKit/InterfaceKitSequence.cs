@@ -13,14 +13,8 @@ namespace VNCPhidgets21Explorer.Resources
                 Port = 5001,
                 InterfaceKits = new[]
                 {
-                    new InterfaceKit 
-                    { 
-                        Name = "InterfaceKit 1", 
-                        SerialNumber = 99415,                         
-                        Open = true,
-                        Embedded = false
-                    }
-                }
+                    new InterfaceKit { Name = "InterfaceKit 1", SerialNumber = 124744, Embedded = false, Open = true }
+                },
             };
 
         /// <summary>
@@ -54,11 +48,12 @@ namespace VNCPhidgets21Explorer.Resources
         /// </summary>
         public InterfaceKitAction[] InterfaceKitActions { get; set; } = new[] // InterfaceKitAction[0];
         {
-            new InterfaceKitAction { ServoIndex = 0, Engaged = true, TargetPosition = 90, Duration=1000 },
-            new InterfaceKitAction { ServoIndex = 0, Engaged = true, TargetPosition = 95, Duration=1000 },
-            new InterfaceKitAction { ServoIndex = 0, Engaged = true, TargetPosition = 100, Duration = 2000 },
-            new InterfaceKitAction { ServoIndex = 0, Engaged = true, TargetPosition = 95, Duration = 500 },
-            new InterfaceKitAction { ServoIndex = 0, Engaged = true, TargetPosition = 90, Duration = 500 }
+            new InterfaceKitAction { DigitalOutIndex = 0, DigitalOut = true, Duration=500 },
+            new InterfaceKitAction { DigitalOutIndex = 0, DigitalOut = false, Duration=500 },
+            new InterfaceKitAction { DigitalOutIndex = 1, DigitalOut = true, Duration = 500 },
+            new InterfaceKitAction { DigitalOutIndex = 1, DigitalOut = false, Duration = 500 },
+            new InterfaceKitAction { DigitalOutIndex = 2, DigitalOut = true, Duration = 500 },
+            new InterfaceKitAction { DigitalOutIndex = 2, DigitalOut = false, Duration = 500 }
         };
     }
 }
