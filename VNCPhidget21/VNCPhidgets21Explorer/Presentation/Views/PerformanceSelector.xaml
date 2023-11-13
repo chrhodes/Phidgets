@@ -44,8 +44,10 @@
     
      <vncmvvm:ViewBase.Resources>
          <localc:SelectedItemsToListOfPerformanceSequenceConverter x:Key="SelectedItemsToListOfPerformanceSequenceConverter" />
-         <localc:SelectedItemsToListOfAdvancedServoSequenceConverter x:Key="SelectedItemsToListOfAdvancedServoSequenceConverter" /> 
-         <!--<localc:SelectedItemsConverter x:Key="SelectedItemsConverter" /> 
+         <localc:SelectedItemsToListOfAdvancedServoSequenceConverter x:Key="SelectedItemsToListOfAdvancedServoSequenceConverter" />
+         <localc:SelectedItemsToListOfInterfaceKitSequenceConverter x:Key="SelectedItemsToListOfInterfaceKitSequenceConverter" />
+         <localc:SelectedItemsToListOfStepperSequenceConverter x:Key="SelectedItemsToListOfStepperSequenceConverter" />
+        <!--<localc:SelectedItemsConverter x:Key="SelectedItemsConverter" /> 
          <localc:SelectedItemsToWorkItemQueryWrapperConverter x:Key="SelectedItemsToHostSelectorWrapperConverter" /> 
          <DataTemplate x:Key="dataTemplateHostSelector"> 
              <StackPanel> 
@@ -65,42 +67,9 @@
         <!-- <localvm:HostSelectorViewModel /> -->
     <!-- </UserControl.DataContext> -->
     
-    <!-- Simple Layout using Grid -->
-        
-    <!--<Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
-        <StackPanel>
-            <TextBlock Text="HostSelector" />
-            <TextBlock Text="{Binding Message}" />
-            <Button Content="Say Hello"
-                    Command="{Binding SayHelloCommand}" />
-        </StackPanel>
-        
-        --><!-- This is useful for debugging V VM constructor issues --><!--
-
-        <StackPanel Grid.Row="1" Orientation="Horizontal" >
-            <StackPanel Orientation="Horizontal" Margin="5">
-                <Label Content="V:" />
-                <Label Content="{Binding ElementName=thisControl, Path=InstanceCountV}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="5">
-                <Label Content="VM:" />
-                <Label Content="{Binding InstanceCountVM}" />
-            </StackPanel>
-        </StackPanel>
-
-    </Grid>-->
-    
-    <!-- Simple Layout using DevExpress LayoutGroup
-        May need to add dxXMLNS -->
-
     <dxlc:LayoutControl View="Group" Orientation="Vertical" >
         
-        <dxlc:LayoutItem Label="PerformanceFileName" Background="Wheat">
+        <dxlc:LayoutItem Label="PerformanceConfig FileName" Background="Wheat">
             <dxe:TextEdit
             		    Text="{Binding PerformanceConfigFileName }"
                 	    ToolTip="{Binding PerformanceConfigFileNameToolTip }">
@@ -118,10 +87,10 @@
 
                 <dxlc:LayoutItem HorizontalAlignment="Left" >
                     <dxe:ComboBoxEdit Width="250" 
-                                    ItemsSource="{Binding AdvancedServoPerformances}" DisplayMember="Name" 
-                                    SelectedItem="{Binding SelectedAdvancedServoPerformance}"
+                                    ItemsSource="{Binding PerformanceSequences}" DisplayMember="Name" 
+                                    SelectedItem="{Binding SelectedPerformanceSequence}"
                                     EditValue="{ Binding 
-                                        Path=SelectedPerformances,
+                                        Path=SelectedPerformanceSequences,
                                         Mode=TwoWay,
                                         UpdateSourceTrigger=PropertyChanged,
                                         Converter={StaticResource SelectedItemsToListOfPerformanceSequenceConverter} }" >
@@ -169,14 +138,26 @@
 
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup Header="Sequences" View="GroupBox" Orientation="Vertical" >
+            <dxlc:LayoutGroup Header="AdvancedServo Sequences" View="GroupBox" Orientation="Vertical" IsCollapsible="True" IsCollapsed="False" >
 
+                <dxlc:LayoutItem Label="AdvancdeServoConfig FileName" Background="Wheat">
+                    <dxe:TextEdit
+            		    Text="{Binding AdvancedServoConfigFileName }"
+                	    ToolTip="{Binding AdvancedServoConfigFileNameToolTip }">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseDoubleClick">
+                                <i:InvokeCommandAction Command="{Binding PerformanceFileName_DoubleClick_Command}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </dxe:TextEdit>
+                </dxlc:LayoutItem>
+                
                 <dxlc:LayoutItem HorizontalAlignment="Left" >
                     <dxe:ComboBoxEdit Width="250" 
                                     ItemsSource="{Binding AdvancedServoSequences}" DisplayMember="Name" 
                                     SelectedItem="{Binding SelectedAdvancedServoSequence}"
                                     EditValue="{ Binding 
-                                        Path=SelectedSequences,
+                                        Path=SelectedAdvancedServoSequences,
                                         Mode=TwoWay,
                                         UpdateSourceTrigger=PropertyChanged,
                                         Converter={StaticResource SelectedItemsToListOfAdvancedServoSequenceConverter} }" >
@@ -236,16 +217,206 @@
 
                         <dxlc:LayoutItem VerticalAlignment="Stretch">
                             <Button 
-		                        Command="{Binding PlaySequenceCommand }"
+		                        Command="{Binding PlayAdvancedServoSequenceCommand }"
                                 CommandParameter="false"
-		                        Content="{Binding PlaySequenceContent, FallbackValue='PlaySequence' }"
-		                        ToolTip="{Binding PlaySequenceToolTip, FallbackValue='PlaySequence ToolTip' }" />
+		                        Content="{Binding PlayAdvanceddServoSequenceContent, FallbackValue='PlayAdvancedServoSequence' }"
+		                        ToolTip="{Binding PlayAdvanceddServoSequenceToolTip, FallbackValue='PlayAdvancedServoSequence ToolTip' }" />
                         </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>
 
                 </dxlc:LayoutGroup>
             
+                <dxlc:LayoutItem Label="Log PerformanceStep" >
+                    <dxe:CheckEdit IsChecked="{Binding LogPerformanceStep}"/>
+                </dxlc:LayoutItem>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Header="InterfaceKit Sequences" View="GroupBox" Orientation="Vertical" IsCollapsible="True" IsCollapsed="False" >
+
+                <dxlc:LayoutItem Label="InterfaceKitConfig FileName" Background="Wheat">
+                    <dxe:TextEdit
+            		    Text="{Binding InterfaceKitConfigFileName }"
+                	    ToolTip="{Binding InterfaceKitConfigFileNameToolTip }">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseDoubleClick">
+                                <i:InvokeCommandAction Command="{Binding PerformanceFileName_DoubleClick_Command}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </dxe:TextEdit>
+                </dxlc:LayoutItem>
+                
+                <dxlc:LayoutItem HorizontalAlignment="Left" >
+                    <dxe:ComboBoxEdit Width="250" 
+                                    ItemsSource="{Binding InterfaceKitSequences}" DisplayMember="Name" 
+                                    SelectedItem="{Binding SelectedInterfaceKitSequence}"
+                                    EditValue="{ Binding 
+                                        Path=SelectedInterfaceKitSequences,
+                                        Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged,
+                                        Converter={StaticResource SelectedItemsToListOfInterfaceKitSequenceConverter} }" >
+                        <dxe:ComboBoxEdit.StyleSettings>
+                            <dxe:CheckedComboBoxStyleSettings />
+                        </dxe:ComboBoxEdit.StyleSettings>
+                    </dxe:ComboBoxEdit>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+
+                        <dxlc:LayoutItem Label="Description" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedInterfaceKitSequence.Description }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Loops" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedInterfaceKitSequence.Loops }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="PlayInParallel" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedInterfaceKitSequence.PlayInParallel }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="ContinueWith" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedInterfaceKitSequence.ContinueWith }" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Host" View="GroupBox" Orientation="Vertical" >
+
+                        <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedInterfaceKitSequence.Host.Name }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="IP Address" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedInterfaceKitSequence.Host.IPAddress }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Port" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedInterfaceKitSequence.Host.Port }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="InterfaceKit" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedInterfaceKitSequence.InterfaceKits[0].Name }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="InterfaceKit" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedInterfaceKitSequence.InterfaceKits[0].SerialNumber }" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" HorizontalAlignment="Right" >
+
+                        <dxlc:LayoutItem VerticalAlignment="Stretch">
+                            <Button 
+		                        Command="{Binding PlayInterfaceKitSequenceCommand }"
+                                CommandParameter="false"
+		                        Content="{Binding PlayInterfaceKitSequenceContent, FallbackValue='PlayInterfaceKitSequence' }"
+		                        ToolTip="{Binding PlayInterfaceKitSequenceToolTip, FallbackValue='PlayInterfaceKitSequence ToolTip' }" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutItem Label="Log PerformanceStep" >
+                    <dxe:CheckEdit IsChecked="{Binding LogPerformanceStep}"/>
+                </dxlc:LayoutItem>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Header="Stepper Sequences" View="GroupBox" Orientation="Vertical" IsCollapsible="True" IsCollapsed="False" >
+
+                <dxlc:LayoutItem Label="StepperConfig FileName" Background="Wheat">
+                    <dxe:TextEdit
+            		    Text="{Binding StepperConfigFileName }"
+                	    ToolTip="{Binding StepperConfigFileNameToolTip }">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseDoubleClick">
+                                <i:InvokeCommandAction Command="{Binding PerformanceFileName_DoubleClick_Command}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </dxe:TextEdit>
+                </dxlc:LayoutItem>
+                
+                <dxlc:LayoutItem HorizontalAlignment="Left" >
+                    <dxe:ComboBoxEdit Width="250" 
+                                    ItemsSource="{Binding StepperSequences}" DisplayMember="Name" 
+                                    SelectedItem="{Binding SelectedStepperSequence}"
+                                    EditValue="{ Binding 
+                                        Path=SelectedStepperSequences,
+                                        Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged,
+                                        Converter={StaticResource SelectedItemsToListOfStepperSequenceConverter} }" >
+                        <dxe:ComboBoxEdit.StyleSettings>
+                            <dxe:CheckedComboBoxStyleSettings />
+                        </dxe:ComboBoxEdit.StyleSettings>
+                    </dxe:ComboBoxEdit>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+
+                        <dxlc:LayoutItem Label="Description" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedStepperSequence.Description }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Loops" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedStepperSequence.Loops }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="PlayInParallel" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedStepperSequence.PlayInParallel }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="ContinueWith" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedStepperSequence.ContinueWith }" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="Host" View="GroupBox" Orientation="Vertical" >
+
+                        <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedStepperSequence.Host.Name }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="IP Address" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedStepperSequence.Host.IPAddress }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Port" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedStepperSequence.Host.Port }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Stepper" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedStepperSequence.Steppers[0].Name }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Stepper" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedStepperSequence.Steppers[0].SerialNumber }" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" HorizontalAlignment="Right" >
+
+                        <dxlc:LayoutItem VerticalAlignment="Stretch">
+                            <Button 
+		                        Command="{Binding PlayStepperSequenceCommand }"
+                                CommandParameter="false"
+		                        Content="{Binding PlayStepperSequenceContent, FallbackValue='PlayStepperSequence' }"
+		                        ToolTip="{Binding PlayStepperSequenceToolTip, FallbackValue='PlayStepperSequence ToolTip' }" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
+
                 <dxlc:LayoutItem Label="Log PerformanceStep" >
                     <dxe:CheckEdit IsChecked="{Binding LogPerformanceStep}"/>
                 </dxlc:LayoutItem>

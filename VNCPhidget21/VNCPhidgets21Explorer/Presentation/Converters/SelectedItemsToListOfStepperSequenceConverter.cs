@@ -11,7 +11,7 @@ namespace VNCPhidgets21Explorer.Presentation.Converters
     /// <summary>
     /// Converts to and from a MultiItem Select ComboBox Control
     /// </summary>
-    public class SelectedItemsToListOfPerformanceSequenceConverter : MarkupExtension, IValueConverter
+    public class SelectedItemsToListOfStepperSequenceConverter : MarkupExtension, IValueConverter
     {
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
@@ -22,7 +22,7 @@ namespace VNCPhidgets21Explorer.Presentation.Converters
         {
             if (value != null)
             {
-                return new List<object>((IEnumerable<PerformanceSequence>)value);
+                return new List<object>((IEnumerable<StepperSequence>)value);
             }
 
             return null;
@@ -30,14 +30,14 @@ namespace VNCPhidgets21Explorer.Presentation.Converters
 
         object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            List<PerformanceSequence> result = new List<PerformanceSequence>();
+            List<StepperSequence> result = new List<StepperSequence>();
             var enumerable = (List<object>)value;
 
             if (enumerable != null)
             {
                 foreach (object item in enumerable)
                 {
-                    result.Add((PerformanceSequence)item);
+                    result.Add((StepperSequence)item);
                 }
             }
 

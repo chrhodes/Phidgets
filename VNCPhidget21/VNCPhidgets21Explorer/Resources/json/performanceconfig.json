@@ -1,0 +1,28 @@
+{
+  "Name": "PERFORMANCE NAME",
+  "Description": "PERFORMANCE DESCRIPTION",
+  "Loops": 1,
+  "ContinueWith": null,
+  "PerformanceSequences": [
+    {
+      "Name": "AdvancedServoSequence 1",
+      "Description": "AdvancedServoSequence 1 Description",
+      "Loops": 1,
+      "SequenceType": "AS",
+      "ContinueWith": {
+        "Name": "AdvancedServoSequence 2",
+        "Description": "SEQUENCE DESCRIPTION",
+        "Loops": 1,
+        "SequenceType": "AS",
+        "ContinueWith": null
+      }
+    },
+    {
+      "Name": "AdvancedServoSequence 2",
+      "Description": "AdvancedServoSequence 2 Description",
+      "Loops": 1,
+      "SequenceType": "AS",
+      "ContinueWith": null
+    }
+  ]
+}

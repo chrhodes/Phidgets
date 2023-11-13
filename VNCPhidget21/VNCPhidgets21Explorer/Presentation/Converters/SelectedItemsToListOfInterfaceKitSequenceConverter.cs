@@ -8,10 +8,11 @@ using VNCPhidgets21Explorer.Resources;
 
 namespace VNCPhidgets21Explorer.Presentation.Converters
 {
+
     /// <summary>
     /// Converts to and from a MultiItem Select ComboBox Control
     /// </summary>
-    public class SelectedItemsToListOfPerformanceSequenceConverter : MarkupExtension, IValueConverter
+    public class SelectedItemsToListOfInterfaceKitSequenceConverter : MarkupExtension, IValueConverter
     {
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
@@ -22,7 +23,7 @@ namespace VNCPhidgets21Explorer.Presentation.Converters
         {
             if (value != null)
             {
-                return new List<object>((IEnumerable<PerformanceSequence>)value);
+                return new List<object>((IEnumerable<InterfaceKitSequence>)value);
             }
 
             return null;
@@ -30,14 +31,14 @@ namespace VNCPhidgets21Explorer.Presentation.Converters
 
         object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            List<PerformanceSequence> result = new List<PerformanceSequence>();
+            List<InterfaceKitSequence> result = new List<InterfaceKitSequence>();
             var enumerable = (List<object>)value;
 
             if (enumerable != null)
             {
                 foreach (object item in enumerable)
                 {
-                    result.Add((PerformanceSequence)item);
+                    result.Add((InterfaceKitSequence)item);
                 }
             }
 

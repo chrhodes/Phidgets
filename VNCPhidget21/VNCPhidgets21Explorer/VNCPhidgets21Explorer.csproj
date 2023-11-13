@@ -44,12 +44,13 @@
     <None Remove="Resources\json\interfacekitaction.json" />
     <None Remove="Resources\json\interfacekitsequence.json" />
     <None Remove="Resources\json\interfacekitsequenceconfig" />
+    <None Remove="Resources\json\performanceconfig.json" />
+    <None Remove="Resources\json\performancesequence.json" />
     <None Remove="Resources\json\sensor.json" />
     <None Remove="Resources\json\stepper.json" />
     <None Remove="Resources\json\stepperaction.json" />
     <None Remove="Resources\json\steppersequence.json" />
     <None Remove="Resources\json\steppersequenceconfig.json" />
-    <None Remove="Resources\json\VNCperformancesconfig.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -87,6 +88,12 @@
     <Content Include="Resources\json\interfacekitsequenceconfig">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\json\performanceconfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\performancesequence.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\json\sensor.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -100,9 +107,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\json\steppersequenceconfig.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\json\VNCperformancesconfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\json\advancedservoperformancesconfig-orig.json">
