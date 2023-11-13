@@ -3,5 +3,5 @@
   "Description": "SEQUENCE DESCRIPTION",
   "Loops": 1,
   "SequenceType": null,
-  "ContinueWith": null
+  "NextPerformance": null
 }

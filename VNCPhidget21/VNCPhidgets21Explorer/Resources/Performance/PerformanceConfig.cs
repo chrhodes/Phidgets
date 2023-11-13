@@ -23,25 +23,25 @@ namespace VNCPhidgets21Explorer.Resources
         /// Name of performanceSequence to invoke at end of performanceSequence (optional)
         /// none or null to stop
         /// </summary>
-        public PerformanceSequence? ContinueWith { get; set; }
+        public PerformanceSequence? NextPerformance { get; set; }
 
         public PerformanceSequence[] PerformanceSequences { get; set; } = new[] // PerformanceSequence[0];
-{
+        {
             new PerformanceSequence
             { 
-                Name = "AdvancedServoSequence 1",
-                Description = "AdvancedServoSequence 1 Description",
+                Name = "psbc21_SequenceServo0",
+                Description = "psbc21_SequenceServo0 1 Description",
                 Loops = 1,
                 SequenceType = "AS",
-                ContinueWith = new PerformanceSequence { Name = "AdvancedServoSequence 2", SequenceType = "AS"}
+                NextPerformance = new PerformanceSequence { Name = "psbc21_SequenceServo0P Configure and Engage", SequenceType = "AS"}
             },
             new PerformanceSequence
             {
-                Name = "AdvancedServoSequence 2",
-                Description = "AdvancedServoSequence 2 Description",
+                Name = "psbc21_SequenceServo0P Configure and Engage",
+                Description = "psbc21_SequenceServo0P Configure and Engage",
                 Loops = 1,
                 SequenceType = "AS",
-                ContinueWith = null
+                NextPerformance = null
             }
         };
     }

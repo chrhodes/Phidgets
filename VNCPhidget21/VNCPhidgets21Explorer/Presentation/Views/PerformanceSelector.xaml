@@ -105,19 +105,19 @@
                     <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
 
                         <dxlc:LayoutItem Label="Description" HorizontalAlignment="Left" Background="Wheat" >
-                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoPerformance.Description }" />
+                            <dxe:TextEdit Text="{Binding SelectedPerformanceSequence.Description }" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="Loops" HorizontalAlignment="Left" Background="Wheat" >
-                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoPerformance.Loops }" />
+                            <dxe:TextEdit Text="{Binding SelectedPerformanceSequence.Loops }" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="PlayInParallel" HorizontalAlignment="Left" Background="Wheat" >
-                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoPerformance.PlayInParallel }" />
+                            <dxe:TextEdit Text="{Binding SelectedPerformanceSequence.PlayInParallel }" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="ContinueWith" HorizontalAlignment="Left" Background="Wheat" >
-                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoPerformance.ContinueWith }" />
+                            <dxe:TextEdit Text="{Binding SelectedPerformanceSequence.NextPerformance.Name }" />
                         </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>

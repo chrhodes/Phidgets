@@ -19,6 +19,7 @@ using VNC.Phidget;
 
 //using VNCPhidgets21Explorer.Resources;
 using VNCPhidgets21Explorer;
+using VNCPhidgets21Explorer.Resources;
 
 namespace VNCPhidgets21Explorer.Presentation.ViewModels
 {
@@ -640,54 +641,99 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Do something amazing.
             Message = "Cool, you called PlayPerformance";
 
-            //if (Boolean.Parse(playAll))
-            //{
-            //    foreach (Resources.PerformanceSequence performance in PerformanceSequences)
-            //    {
-            //        await PlayPerformanceLoops(performance);
-            //    }
-            //}
-            //else
-            //{
-            //    var runAllThese = SelectedPerformances;
-            //    var allPerformances = A;
+            if (Boolean.Parse(playAll))
+            {
+                foreach (Resources.PerformanceSequence performance in PerformanceSequences)
+                {
+                    await PlayPerformanceLoops(performance);
+                }
+            }
+            else
+            {
+                var runAllThese = SelectedPerformanceSequences;
+                //var allPerformances = A;
 
-            //    //var runAllTheseD = SelectedAdvancedServoPerformanceD;
+                //var runAllTheseD = SelectedAdvancedServoPerformanceD;
 
-            //    //// TODO(crhodes)
-            //    //// Figure out how to handle loops
-            //    //var nextPerformance = SelectedAdvancedServoPerformance;
+                //// TODO(crhodes)
+                //// Figure out how to handle loops
+                //var nextPerformance = SelectedAdvancedServoPerformance;
 
-            //    foreach (Resources.AdvancedServoPerformance performance in SelectedPerformances)
-            //    {
-            //        Log.Trace($"Running performance:{performance.Name}", Common.LOG_CATEGORY);
+                foreach (Resources.PerformanceSequence performance in SelectedPerformanceSequences)
+                {
+                    Log.Trace($"Running performance:{performance.Name}", Common.LOG_CATEGORY);
 
-            //        var nextPerformance = performance;
+                    string name = "";
+                    PerformanceSequence? nextPerformance = performance;
 
-            //        string name = "";
-            //        string? continueWith = "";
+                    do
+                    {
+                        name = nextPerformance.Name;
 
-            //        do
-            //        {
-            //            name = nextPerformance.Name;
-            //            continueWith = nextPerformance.ContinueWith;
-            //            Log.Trace($"  Playing performance:{name} continueWidth:{continueWith}", Common.LOG_CATEGORY);
+                        Log.Trace($"  Playing performance:{name} continueWidth:{nextPerformance?.Name}", Common.LOG_CATEGORY);
 
-            //            await PlayPerformanceLoops(nextPerformance);
+                        switch (nextPerformance.SequenceType)
+                        {
+                            case "AS":
+                                var advancedServoSequence = AvailableAdvancedServoSequences[nextPerformance.Name];
+                                var advancedServoHost = advancedServoSequence.Host;
+                                string? continueWith = "";
 
-            //            if (AvailableAdvancedServoPerformances.ContainsKey(continueWith ?? ""))
-            //            {
-            //                nextPerformance = AvailableAdvancedServoPerformances[continueWith];
-            //            }
-            //            else
-            //            {
-            //                continueWith = "";
-            //            }
+                                var advancedServo = OpenAdvancedServoHost(advancedServoHost);
+                                AdvancedServoSequence nextSequence = advancedServoSequence;
 
-            //        } while (!string.IsNullOrEmpty(continueWith));
-            //    }
+                                do
+                                {
+                                    name = nextSequence.Name;
+                                    continueWith = nextSequence.ContinueWith;
+                                    Log.Trace($"  Playing sequence:{name} NextPerformance:{nextPerformance.NextPerformance?.Name}", Common.LOG_CATEGORY);
 
-            //}
+                                    await PlayAdvancedServoSequenceLoops(advancedServo, nextSequence);
+
+                                    if (AvailableAdvancedServoSequences.ContainsKey(continueWith ?? ""))
+                                    {
+                                        nextSequence = AvailableAdvancedServoSequences[continueWith];
+                                    }
+                                    else
+                                    {
+                                        continueWith = "";
+                                    }
+
+                                } while (!string.IsNullOrEmpty(continueWith));
+
+                                advancedServo.Close();
+
+                                break;
+
+                            case "IK":
+
+                                break;
+
+                            case "ST":
+
+                                break;
+
+                            default:
+                                Log.Trace($"Unexpected SequenceType:{nextPerformance.SequenceType}", Common.LOG_CATEGORY);
+                                break;
+                        }
+
+                        nextPerformance = nextPerformance.NextPerformance;
+                        //await PlayPerformanceLoops(nextPerformance);
+
+                        //if (AvailableAdvancedServoPerformances.ContainsKey(continueWith.Name ?? ""))
+                        //{
+                        //    nextPerformance = AvailableAdvancedServoPerformances[continueWith];
+                        //}
+                        //else
+                        //{
+                        //    continueWith = "";
+                        //}
+
+                    } while (nextPerformance is not null);
+                }
+
+            }
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -1885,7 +1931,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             {
                 try
                 {
-                    InterfaceKit ifk = (InterfaceKit)sender;
+                    Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
                     var a = e;
                     var b = e.GetType();
                     Log.Trace($"Ifk_SensorChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
@@ -1903,7 +1949,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             {
                 try
                 {
-                    InterfaceKit ifk = (InterfaceKit)sender;
+                    Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
                     var a = e;
                     var b = e.GetType();
                     Log.Trace($"Ifk_OutputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
@@ -1921,7 +1967,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             {
                 try
                 {
-                    InterfaceKit ifk = (InterfaceKit)sender;
+                    Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
                     var a = e;
                     var b = e.GetType();
                     Log.Trace($"Ifk_InputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
@@ -1937,7 +1983,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             try
             {
-                InterfaceKit ifk = (InterfaceKit)sender;
+                Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
                 var a = e;
                 var b = e.GetType();
                 Log.Trace($"Ifk_Error {ifk.Address},{ifk.Attached} - {e.Type} {e.Code} {e.Description}", Common.LOG_CATEGORY);
@@ -1952,7 +1998,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             try
             {
-                InterfaceKit ifk = (InterfaceKit)sender;
+                Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
                 var a = e;
                 var b = e.GetType();
                 Log.Trace($"Ifk_Detach {ifk.Address},{ifk.SerialNumber}", Common.LOG_CATEGORY);
@@ -1967,7 +2013,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             try
             {
-                InterfaceKit ifk = (InterfaceKit)sender;
+                Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
                 //Phidget device = (Phidget)e.Device;
                 //var b = e.GetType();
                 Log.Trace($"Ifk_Attach {ifk.Address},{ifk.Port} S#:{ifk.SerialNumber}", Common.LOG_CATEGORY);
