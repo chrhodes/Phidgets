@@ -82,13 +82,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             var jsonOptions = new JsonSerializerOptions { ReadCommentHandling = JsonCommentHandling.Skip };
             string jsonString = File.ReadAllText(PerformanceConfigFileName);
 
-            Resources.PerformanceConfig? sequenceConfig
+            Resources.PerformanceConfig? performanceConfig
                 = JsonSerializer.Deserialize<Resources.PerformanceConfig>(jsonString, jsonOptions);
 
-            this.PerformanceSequences = sequenceConfig.PerformanceSequences.ToList();
+            Performances = performanceConfig.Performances.ToList();
 
-            AvailablePerformanceSequences =
-                sequenceConfig.PerformanceSequences
+            AvailablePerformances =
+                performanceConfig.Performances
                 .ToDictionary(k => k.Name, v => v);
 
             LoadAdvanceServoConfig(jsonOptions);
@@ -114,12 +114,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private void LoadInterfaceKitConfig(JsonSerializerOptions jsonOptions)
         {
-            string jsonString = File.ReadAllText(AdvancedServoConfigFileName);
+            string jsonString = File.ReadAllText(InterfaceKitConfigFileName);
 
             Resources.InterfaceKitSequenceConfig? sequenceConfig
                 = JsonSerializer.Deserialize<Resources.InterfaceKitSequenceConfig>(jsonString, jsonOptions);
 
-            this.InterfaceKitSequences = sequenceConfig.InterfaceKitSequences.ToList();
+            InterfaceKitSequences = sequenceConfig.InterfaceKitSequences.ToList();
 
             AvailableInterfaceKitSequences =
                 sequenceConfig.InterfaceKitSequences
@@ -133,7 +133,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Resources.StepperSequenceConfig? sequenceConfig
                 = JsonSerializer.Deserialize<Resources.StepperSequenceConfig>(jsonString, jsonOptions);
 
-            this.StepperSequences = sequenceConfig.StepperSequences.ToList();
+            StepperSequences = sequenceConfig.StepperSequences.ToList();
 
             AvailableStepperSequences =
                 sequenceConfig.StepperSequences
@@ -297,42 +297,42 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public string PerformanceFileNameToolTip { get; set; } = "DoubleClick to select new file";
 
-        private Resources.PerformanceConfig _performanceConfig;
-        public Resources.PerformanceConfig PerformanceConfig
+        //private Resources.PerformanceConfig _performanceConfig;
+        //public Resources.PerformanceConfig PerformanceConfig
+        //{
+        //    get => _performanceConfig;
+        //    set
+        //    {
+        //        if (_performanceConfig == value)
+        //            return;
+        //        _performanceConfig = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
+        private IEnumerable<Resources.Performance> _performances;
+        public IEnumerable<Resources.Performance> Performances
         {
-            get => _performanceConfig;
+            get => _performances;
             set
             {
-                if (_performanceConfig == value)
-                    return;
-                _performanceConfig = value;
+                _performances = value;
                 OnPropertyChanged();
             }
         }
 
-        private IEnumerable<Resources.PerformanceSequence> _performanceSequences;
-        public IEnumerable<Resources.PerformanceSequence> PerformanceSequences
+        private Resources.Performance? _selectedPerformance;
+        public Resources.Performance? SelectedPerformance
         {
-            get => _performanceSequences;
+            get => _selectedPerformance;
             set
             {
-                _performanceSequences = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Resources.PerformanceSequence? _selectedPerformanceSequence;
-        public Resources.PerformanceSequence? SelectedPerformanceSequence
-        {
-            get => _selectedPerformanceSequence;
-            set
-            {
-                if (_selectedPerformanceSequence == value)
+                if (_selectedPerformance == value)
                 {
                     return;
                 }
 
-                _selectedPerformanceSequence = value;
+                _selectedPerformance = value;
                 OnPropertyChanged();
 
                 PlayPerformanceCommand.RaiseCanExecuteChanged();
@@ -341,29 +341,29 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Dictionary<string, Resources.PerformanceSequence> _availablePerformanceSequences;
-        public Dictionary<string, Resources.PerformanceSequence> AvailablePerformanceSequences
+        private Dictionary<string, Resources.Performance> _availablePerformances;
+        public Dictionary<string, Resources.Performance> AvailablePerformances
         {
-            get => _availablePerformanceSequences;
+            get => _availablePerformances;
             set
             {
-                _availablePerformanceSequences = value;
+                _availablePerformances = value;
                 OnPropertyChanged();
             }
         }
 
-        private List<Resources.PerformanceSequence> _selectedPerformanceSequences;
-        public List<Resources.PerformanceSequence> SelectedPerformanceSequences
+        private List<Resources.Performance> _selectedPerformances;
+        public List<Resources.Performance> SelectedPerformances
         {
-            get => _selectedPerformanceSequences;
+            get => _selectedPerformances;
             set
             {
-                if (_selectedPerformanceSequences == value)
+                if (_selectedPerformances == value)
                 {
                     return;
                 }
 
-                _selectedPerformanceSequences = value;
+                _selectedPerformances = value;
                 OnPropertyChanged();
 
                 PlayAdvancedServoSequenceCommand.RaiseCanExecuteChanged();
@@ -643,18 +643,22 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Do something amazing.
             Message = "Cool, you called PlayPerformance";
 
-            foreach (Resources.PerformanceSequence performance in SelectedPerformanceSequences)
+            foreach (Resources.Performance performance in SelectedPerformances)
             {
-                Log.Trace($"Running performance:{performance.Name}", Common.LOG_CATEGORY);
+                Log.Trace($"Running performance:{performance.Name} description:{performance.Description}", Common.LOG_CATEGORY);
 
                 string name = "";
-                PerformanceSequence? nextPerformance = performance;
+                Performance? nextPerformance = performance;
 
+                foreach (PerformanceSequence performanceSequence in performance.PerformanceSequences)
+                {
+                    
+                }
                 do
                 {
                     name = nextPerformance.Name;
 
-                    Log.Trace($"  Playing performance:{name} continueWidth:{nextPerformance?.Name}", Common.LOG_CATEGORY);
+                    Log.Trace($"  Playing performance:{name} NextPerformance:{nextPerformance?.Name}", Common.LOG_CATEGORY);
 
                     switch (nextPerformance.SequenceType)
                     {
@@ -662,6 +666,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             var advancedServoSequence = AvailableAdvancedServoSequences[nextPerformance.Name];
                             var advancedServoHost = advancedServoSequence.Host;
                             string? continueWith = "";
+
+                            // TODO(crhodes)
+                            // Think about Open/Close.  Do we do it heare or inside Loops
 
                             var advancedServo = OpenAdvancedServoHost(advancedServoHost);
                             AdvancedServoSequence nextSequence = advancedServoSequence;
@@ -685,12 +692,47 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                             } while (!string.IsNullOrEmpty(continueWith));
 
+                            // TODO(crhodes)
+                            // Think about Open/Close.  Do we do it heare or inside Loops
+
                             advancedServo.Close();
 
                             break;
 
                         case "IK":
+                            var interfaceKitSequence = AvailableInterfaceKitSequences[nextPerformance.Name];
+                            var ikHost = interfaceKitSequence.Host;
+                            string? ikContinueWith = "";
 
+                            // TODO(crhodes)
+                            // Think about Open/Close.  Do we do it heare or inside Loops
+
+                            var interfaceKit = OpenInterfaceKitHost(ikHost);
+                            InterfaceKitSequence ikNextSequence = interfaceKitSequence;
+
+                            do
+                            {
+                                name = ikNextSequence.Name;
+                                continueWith = ikNextSequence.ContinueWith;
+                                Log.Trace($"  Playing sequence:{name} NextPerformance:{nextPerformance.NextPerformance?.Name}", Common.LOG_CATEGORY);
+
+                                await PlayInterfaceKitSequenceLoops(interfaceKit, ikNextSequence);
+
+                                if (AvailableInterfaceKitSequences.ContainsKey(ikContinueWith ?? ""))
+                                {
+                                    ikNextSequence = AvailableInterfaceKitSequences[ikContinueWith];
+                                }
+                                else
+                                {
+                                    ikContinueWith = "";
+                                }
+
+                            } while (!string.IsNullOrEmpty(ikContinueWith));
+
+                            // TODO(crhodes)
+                            // Think about Open/Close.  Do we do it heare or inside Loops
+
+                            interfaceKit.Close();
                             break;
 
                         case "ST":
@@ -745,7 +787,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private async Task PlayPerformanceLoops(Resources.PerformanceSequence performanceSequence)
+        private async Task PlayPerformanceLoops(Resources.Performance performanceSequence)
         {
             Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
 
@@ -767,7 +809,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private async void PlayPerformanceInParallel(Resources.PerformanceSequence performance)
+        private async void PlayPerformanceInParallel(Resources.Performance performance)
         {
             // TODO(crhodes)
             // Figure out what this should do
@@ -824,7 +866,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //});
         }
 
-        private async void PlayPerformanceInSequence(Resources.PerformanceSequence performance)
+        private async void PlayPerformanceInSequence(Resources.Performance performance)
         {
             //foreach (Resources.AdvancedServoSequence sequence in advancedServoPerformance.AdvancedServoSequences)
             //{
@@ -916,7 +958,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
-            if (SelectedPerformanceSequences?.Count > 0)
+            if (SelectedPerformances?.Count > 0)
             {
                 return true;
             }
@@ -964,7 +1006,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 try
                 {
-                    var advancedServo = OpenAdvancedServoHost(sequence.Host);
+                    //var advancedServo = OpenAdvancedServoHost(sequence.Host);
 
                     var nextSequence = sequence;
 
@@ -973,6 +1015,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                     do
                     {
+                        // TODO(crhodes)
+                        // Think about Open/Close more.  Maybe config.
+
+                        var advancedServo = OpenAdvancedServoHost(nextSequence.Host);
+
                         name = nextSequence.Name;
                         continueWith = nextSequence.ContinueWith;
                         Log.Trace($"  Playing sequence:{name} continueWidth:{continueWith}", Common.LOG_CATEGORY);
@@ -988,9 +1035,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             continueWith = "";
                         }
 
+                        // TODO(crhodes)
+                        // Think about Open/Close more.  Maybe config.
+
+                        advancedServo.Close();
                     } while (!string.IsNullOrEmpty(continueWith));
                         
-                    advancedServo.Close();
+                    //advancedServo.Close();
                 }
                 catch (Exception ex)
                 {
@@ -1279,8 +1330,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 try
                 {
-                    var interfaceKit = OpenInterfaceKitHost(sequence.Host);
-
                     var nextSequence = sequence;
 
                     string name = "";
@@ -1288,9 +1337,14 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                     do
                     {
+                        // TODO(crhodes)
+                        // Think about Open/Close more.  Maybe config.
+
+                        var interfaceKit = OpenInterfaceKitHost(nextSequence.Host);
+
                         name = nextSequence.Name;
                         continueWith = nextSequence.ContinueWith;
-                        Log.Trace($"  Playing sequence:{name} continueWidth:{continueWith}", Common.LOG_CATEGORY);
+                        Log.Trace($"  Playing sequence:{name} continueWith:{continueWith}", Common.LOG_CATEGORY);
 
                         await PlayInterfaceKitSequenceLoops(interfaceKit, nextSequence);
 
@@ -1303,9 +1357,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             continueWith = "";
                         }
 
-                    } while (!string.IsNullOrEmpty(continueWith));
+                        // TODO(crhodes)
+                        // Think about Open/Close more.  Maybe config.
 
-                    interfaceKit.Close();
+                        interfaceKit.Close();
+
+                    } while (!string.IsNullOrEmpty(continueWith));
                 }
                 catch (Exception ex)
                 {
@@ -1348,7 +1405,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             interfaceKit = new InterfaceKitEx(
                 host.IPAddress,
                 host.Port,
-                host.InterfaceKits[0].SerialNumber,true);
+                host.InterfaceKits[0].SerialNumber, true);
 
             interfaceKit.Open();
 
@@ -1558,10 +1615,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         private async Task OpenSBCInterfaceKit()
         {
 
-            VNC.Phidget.InterfaceKitEx ifkEx11 = new VNC.Phidget.InterfaceKitEx("192.168.150.11", 5001, sbc11SerialNumber, embedded: true);
-            VNC.Phidget.InterfaceKitEx ifkEx21 = new VNC.Phidget.InterfaceKitEx("192.168.150.21", 5001, sbc21SerialNumber, embedded: true);
-            VNC.Phidget.InterfaceKitEx ifkEx22 = new VNC.Phidget.InterfaceKitEx("192.168.150.22", 5001, sbc22SerialNumber, embedded: true);
-            VNC.Phidget.InterfaceKitEx ifkEx23 = new VNC.Phidget.InterfaceKitEx("192.168.150.23", 5001, sbc23SerialNumber, embedded: true);
+            InterfaceKitEx ifkEx11 = new InterfaceKitEx("192.168.150.11", 5001, sbc11SerialNumber, embedded: true);
+            InterfaceKitEx ifkEx21 = new InterfaceKitEx("192.168.150.21", 5001, sbc21SerialNumber, embedded: true);
+            InterfaceKitEx ifkEx22 = new InterfaceKitEx("192.168.150.22", 5001, sbc22SerialNumber, embedded: true);
+            InterfaceKitEx ifkEx23 = new InterfaceKitEx("192.168.150.23", 5001, sbc23SerialNumber, embedded: true);
 
             try
             {
@@ -1569,6 +1626,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 ifkEx21.Open();
                 ifkEx22.Open();
                 ifkEx23.Open();
+
+                ifkEx11.InterfaceKit.OutputChange += Ifk_OutputChange;
+                ifkEx21.InterfaceKit.OutputChange += Ifk_OutputChange;
+                ifkEx22.InterfaceKit.OutputChange += Ifk_OutputChange;
+                ifkEx23.InterfaceKit.OutputChange += Ifk_OutputChange;
 
                 await Task.Run(() =>
                 {
@@ -1579,6 +1641,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                          () => InterfaceKitParty2(ifkEx11, 333, 8 * Repeats)
                      );
                 });
+
+                ifkEx11.InterfaceKit.OutputChange -= Ifk_OutputChange;
+                ifkEx21.InterfaceKit.OutputChange -= Ifk_OutputChange;
+                ifkEx22.InterfaceKit.OutputChange -= Ifk_OutputChange;
+                ifkEx23.InterfaceKit.OutputChange -= Ifk_OutputChange;
 
                 ifkEx11.Close();
                 ifkEx21.Close();
@@ -1660,7 +1727,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             {
                 Log.Debug($"InterfaceKitParty2 {ifkEx.HostIPAddress},{ifkEx.HostPort} {ifkEx.HostSerialNumber} sleep:{sleep} loops:{loops}", Common.LOG_CATEGORY);
 
-                ifkEx.InterfaceKit.OutputChange += Ifk_OutputChange;
+                //ifkEx.InterfaceKit.OutputChange += Ifk_OutputChange;
 
                 InterfaceKitDigitalOutputCollection ifkDigitalOut = ifkEx.InterfaceKit.outputs;
 

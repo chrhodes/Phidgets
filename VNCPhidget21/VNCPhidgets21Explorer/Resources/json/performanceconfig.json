@@ -1,28 +1,65 @@
 {
   "Name": "PERFORMANCE NAME",
   "Description": "PERFORMANCE DESCRIPTION",
-  "Loops": 1,
-  "NextPerformance": null,
-  "PerformanceSequences": [
+  "Performances": [
     {
-      "Name": "psbc21_SequenceServo0",
-      "Description": "psbc21_SequenceServo0 1 Description",
+      "Name": "psbc21_AS Performance 1",
+      "Description": "psbc21_AS Performance 1 Description",
       "Loops": 1,
-      "SequenceType": "AS",
-      "NextPerformance": {
-        "Name": "psbc21_SequenceServo0P Configure and Engage",
-        "Description": "SEQUENCE DESCRIPTION",
-        "Loops": 1,
-        "SequenceType": "AS",
-        "NextPerformance": null
-      }
+      "PlayInParallel": false,
+      "NextPerformance": null,
+      "PerformanceSequences": [
+        {
+          "Name": "psbc21_SequenceServo0",
+          "Description": "psbc21_SequenceServo0 1 Description",
+          "Loops": 1,
+          "SequenceType": "AS",
+          "NextSequence": {
+            "Name": "psbc21_SequenceServo0P Configure and Engage",
+            "Description": "SEQUENCE DESCRIPTION",
+            "Loops": 1,
+            "SequenceType": "AS",
+            "NextSequence": null
+          }
+        },
+        {
+          "Name": "psbc21_SequenceServo0P Configure and Engage",
+          "Description": "psbc21_SequenceServo0P Configure and Engage",
+          "Loops": 1,
+          "SequenceType": "AS",
+          "NextSequence": null
+        }
+      ]
     },
     {
-      "Name": "psbc21_SequenceServo0P Configure and Engage",
-      "Description": "psbc21_SequenceServo0P Configure and Engage",
+      "Name": "psbc21_IK Performance 1",
+      "Description": "psbc21_IK Performance 1 Description",
       "Loops": 1,
-      "SequenceType": "AS",
-      "NextPerformance": null
+      "PlayInParallel": true,
+      "NextPerformance": null,
+      "PerformanceSequences": [
+        {
+          "Name": "psbc21_SequenceIK 1",
+          "Description": "psbc21_SequenceIK 1 Description",
+          "Loops": 1,
+          "SequenceType": "IK",
+          "NextSequence": null
+        },
+        {
+          "Name": "psbc22_SequenceIK 1",
+          "Description": "psbc22_SequenceIK 1 Description",
+          "Loops": 1,
+          "SequenceType": "IK",
+          "NextSequence": null
+        },
+        {
+          "Name": "psbc23_SequenceIK 1",
+          "Description": "psbc23_SequenceIK 1 Description",
+          "Loops": 1,
+          "SequenceType": "IK",
+          "NextSequence": null
+        }
+      ]
     }
   ]
 }

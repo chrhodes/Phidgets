@@ -44,6 +44,7 @@
     <None Remove="Resources\json\interfacekitaction.json" />
     <None Remove="Resources\json\interfacekitsequence.json" />
     <None Remove="Resources\json\interfacekitsequenceconfig.json" />
+    <None Remove="Resources\json\performance.json" />
     <None Remove="Resources\json\performanceconfig.json" />
     <None Remove="Resources\json\performancesequence.json" />
     <None Remove="Resources\json\sensor.json" />
@@ -86,6 +87,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\json\interfacekitsequenceconfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\performance.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\json\performanceconfig.json">

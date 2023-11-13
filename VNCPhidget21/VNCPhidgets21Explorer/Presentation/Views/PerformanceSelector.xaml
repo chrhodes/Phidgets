@@ -44,6 +44,7 @@
     
      <vncmvvm:ViewBase.Resources>
          <localc:SelectedItemsToListOfPerformanceSequenceConverter x:Key="SelectedItemsToListOfPerformanceSequenceConverter" />
+         <localc:SelectedItemsToListOfPerformanceConverter x:Key="SelectedItemsToListOfPerformanceConverter" />
          <localc:SelectedItemsToListOfAdvancedServoSequenceConverter x:Key="SelectedItemsToListOfAdvancedServoSequenceConverter" />
          <localc:SelectedItemsToListOfInterfaceKitSequenceConverter x:Key="SelectedItemsToListOfInterfaceKitSequenceConverter" />
          <localc:SelectedItemsToListOfStepperSequenceConverter x:Key="SelectedItemsToListOfStepperSequenceConverter" />
@@ -87,13 +88,13 @@
 
                 <dxlc:LayoutItem HorizontalAlignment="Left" >
                     <dxe:ComboBoxEdit Width="250" 
-                                    ItemsSource="{Binding PerformanceSequences}" DisplayMember="Name" 
-                                    SelectedItem="{Binding SelectedPerformanceSequence}"
+                                    ItemsSource="{Binding Performances}" DisplayMember="Name" 
+                                    SelectedItem="{Binding SelectedPerformance}"
                                     EditValue="{ Binding 
-                                        Path=SelectedPerformanceSequences,
+                                        Path=SelectedPerformances,
                                         Mode=TwoWay,
                                         UpdateSourceTrigger=PropertyChanged,
-                                        Converter={StaticResource SelectedItemsToListOfPerformanceSequenceConverter} }" >
+                                        Converter={StaticResource SelectedItemsToListOfPerformanceConverter} }" >
                         <dxe:ComboBoxEdit.StyleSettings>
                             <dxe:CheckedComboBoxStyleSettings />
                         </dxe:ComboBoxEdit.StyleSettings>
@@ -105,19 +106,19 @@
                     <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
 
                         <dxlc:LayoutItem Label="Description" HorizontalAlignment="Left" Background="Wheat" >
-                            <dxe:TextEdit Text="{Binding SelectedPerformanceSequence.Description }" />
+                            <dxe:TextEdit Text="{Binding SelectedPerformance.Description }" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="Loops" HorizontalAlignment="Left" Background="Wheat" >
-                            <dxe:TextEdit Text="{Binding SelectedPerformanceSequence.Loops }" />
+                            <dxe:TextEdit Text="{Binding SelectedPerformance.Loops }" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="PlayInParallel" HorizontalAlignment="Left" Background="Wheat" >
-                            <dxe:TextEdit Text="{Binding SelectedPerformanceSequence.PlayInParallel }" />
+                            <dxe:TextEdit Text="{Binding SelectedPerformance.PlayInParallel }" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="ContinueWith" HorizontalAlignment="Left" Background="Wheat" >
-                            <dxe:TextEdit Text="{Binding SelectedPerformanceSequence.NextPerformance.Name }" />
+                        <dxlc:LayoutItem Label="NextPerformance" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedPerformance.NextPerformance }" />
                         </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>
@@ -138,7 +139,8 @@
 
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup Header="AdvancedServo Sequences" View="GroupBox" Orientation="Vertical" IsCollapsible="True" IsCollapsed="False" >
+            <dxlc:LayoutGroup Header="AdvancedServo Sequences" View="GroupBox" Orientation="Vertical" 
+                              IsCollapsible="True" IsCollapsed="False" >
 
                 <dxlc:LayoutItem Label="AdvancdeServoConfig FileName" Background="Wheat">
                     <dxe:TextEdit
@@ -233,7 +235,8 @@
 
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup Header="InterfaceKit Sequences" View="GroupBox" Orientation="Vertical" IsCollapsible="True" IsCollapsed="False" >
+            <dxlc:LayoutGroup Header="InterfaceKit Sequences" View="GroupBox" Orientation="Vertical" 
+                              IsCollapsible="True" IsCollapsed="False" >
 
                 <dxlc:LayoutItem Label="InterfaceKitConfig FileName" Background="Wheat">
                     <dxe:TextEdit

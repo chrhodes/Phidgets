@@ -197,7 +197,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayInParallel": false,
-      "ContinueWith": "",
+      "ContinueWith": "psbc22_SequenceIK 1",
       "InterfaceKitActions": [
         {
           "DigitalOutIndex": 0,
@@ -351,7 +351,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayInParallel": false,
-      "ContinueWith": "",
+      "ContinueWith": "psbc23_SequenceIK 1",
       "InterfaceKitActions": [
         {
           "DigitalOutIndex": 0,
