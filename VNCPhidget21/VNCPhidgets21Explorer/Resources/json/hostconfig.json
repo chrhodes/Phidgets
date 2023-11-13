@@ -7,14 +7,9 @@
       "Enable": true,
       "AdvancedServos": [
         {
-          "Name": "ADVANCEDSERVO NAME",
-          "SerialNumber": 1234,
+          "Name": "AdvancedServo1",
+          "SerialNumber": 99415,
           "Open": true
-        },
-        {
-          "Name": "ADVANCEDSERVO NAME",
-          "SerialNumber": 5678,
-          "Open": false
         }
       ],
       "InterfaceKits": [
@@ -45,14 +40,9 @@
       "Enable": true,
       "AdvancedServos": [
         {
-          "Name": "ADVANCEDSERVO NAME",
-          "SerialNumber": 1234,
+          "Name": "AdvancedServo1",
+          "SerialNumber": 99415,
           "Open": true
-        },
-        {
-          "Name": "ADVANCEDSERVO NAME",
-          "SerialNumber": 5678,
-          "Open": false
         }
       ],
       "InterfaceKits": [
@@ -83,14 +73,9 @@
       "Enable": true,
       "AdvancedServos": [
         {
-          "Name": "ADVANCEDSERVO NAME",
-          "SerialNumber": 1234,
+          "Name": "AdvancedServo1",
+          "SerialNumber": 99415,
           "Open": true
-        },
-        {
-          "Name": "ADVANCEDSERVO NAME",
-          "SerialNumber": 5678,
-          "Open": false
         }
       ],
       "InterfaceKits": [
@@ -121,14 +106,9 @@
       "Enable": true,
       "AdvancedServos": [
         {
-          "Name": "ADVANCEDSERVO NAME",
-          "SerialNumber": 1234,
+          "Name": "AdvancedServo1",
+          "SerialNumber": 99415,
           "Open": true
-        },
-        {
-          "Name": "ADVANCEDSERVO NAME",
-          "SerialNumber": 5678,
-          "Open": false
         }
       ],
       "InterfaceKits": [
@@ -159,14 +139,9 @@
       "Enable": true,
       "AdvancedServos": [
         {
-          "Name": "ADVANCEDSERVO NAME",
-          "SerialNumber": 1234,
+          "Name": "AdvancedServo1",
+          "SerialNumber": 99415,
           "Open": true
-        },
-        {
-          "Name": "ADVANCEDSERVO NAME",
-          "SerialNumber": 5678,
-          "Open": false
         }
       ],
       "InterfaceKits": [

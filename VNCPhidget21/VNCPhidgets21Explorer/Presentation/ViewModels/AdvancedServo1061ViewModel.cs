@@ -94,7 +94,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // For now just hard code this.  Can have UI let us choose later.
 
-            ConfigFileName = "phidgetconfig.json";
+            ConfigFileName = "hostconfig.json";
             //PerformanceConfigFileName = "advancedservoperformancesconfig.json";
 
             LoadUIConfig();

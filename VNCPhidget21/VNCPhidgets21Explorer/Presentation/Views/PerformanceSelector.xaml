@@ -124,7 +124,7 @@
                                         Path=SelectedPerformances,
                                         Mode=TwoWay,
                                         UpdateSourceTrigger=PropertyChanged,
-                                        Converter={StaticResource SelectedItemsToListOfAdvancedServoPerformanceConverter} }" >
+                                        Converter={StaticResource SelectedItemsToListOfPerformanceSequenceConverter} }" >
                         <dxe:ComboBoxEdit.StyleSettings>
                             <dxe:CheckedComboBoxStyleSettings />
                         </dxe:ComboBoxEdit.StyleSettings>

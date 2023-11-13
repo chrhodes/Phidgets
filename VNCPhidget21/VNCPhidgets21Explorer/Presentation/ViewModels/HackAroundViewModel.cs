@@ -163,7 +163,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
         private string _answer = "???";
-
         public string Answer
         {
             get => _answer;
@@ -973,7 +972,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 // Maybe wait for servo Engaged to complete if not currently engaged
                 // View logs and see how often exceptions thrown.
 
-                VerifyServoEngaged(servo);
+                if (action?.Engaged ?? false)
+                {
+                    VerifyServoEngaged(servo);
+                }             
 
                 if (action.TargetPosition is not null)
                 {
