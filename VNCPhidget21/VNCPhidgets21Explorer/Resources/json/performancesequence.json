@@ -1,7 +1,5 @@
 {
   "Name": "SEQUENCE NAME",
-  "Description": "SEQUENCE DESCRIPTION",
-  "Loops": 1,
   "SequenceType": null,
-  "NextSequence": null
+  "Loops": 1
 }

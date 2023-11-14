@@ -43,8 +43,12 @@
       "Name": "localhost_SequenceServo0",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": false,
-      "ContinueWith": "localhost_SequenceServo1",
+      "PlayActionsInParallel": false,
+      "NextSequence": {
+        "Name": "localhost_SequenceServo1",
+        "SequenceType": "AS",
+        "Loops": 1
+      },
       "AdvancedServoServoActions": [
         {
           "ServoIndex": 0,
@@ -161,8 +165,12 @@
       "Name": "localhost_SequenceServo1",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": false,
-      "ContinueWith": "localhost_SequenceServo2",
+      "PlayActionsInParallel": false,
+      "NextSequence": {
+        "Name": "localhost_SequenceServo2",
+        "SequenceType": "AS",
+        "Loops": 1
+      },
       "AdvancedServoServoActions": [
         {
           "ServoIndex": 1,
@@ -279,8 +287,12 @@
       "Name": "localhost_SequenceServo2",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": false,
-      "ContinueWith": "localhost_SequenceServoFin",
+      "PlayActionsInParallel": false,
+      "NextSequence": {
+        "Name": "localhost_SequenceServoFin",
+        "SequenceType": "AS",
+        "Loops": 1
+      },
       "AdvancedServoServoActions": [
         {
           "ServoIndex": 2,
@@ -397,8 +409,8 @@
       "Name": "localhost_SequenceServoFin",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": false,
-      "ContinueWith": "",
+      "PlayActionsInParallel": false,
+      "NextSequence": null,
       "AdvancedServoServoActions": [
         {
           "ServoIndex": 0,
@@ -475,8 +487,12 @@
       "Name": "psbc11_SequenceServo0",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": false,
-      "ContinueWith": "psbc11_SequenceServo1",
+      "PlayActionsInParallel": false,
+      "NextSequence": {
+        "Name": "psbc11_SequenceServo1",
+        "SequenceType": "AS",
+        "Loops": 1
+      },
       "AdvancedServoServoActions": [
         {
           "ServoIndex": 0,
@@ -593,8 +609,12 @@
       "Name": "psbc11_SequenceServo1",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": false,
-      "ContinueWith": "psbc11_SequenceServo2",
+      "PlayActionsInParallel": false,
+      "NextSequence": {
+        "Name": "psbc11_SequenceServo2",
+        "SequenceType": "AS",
+        "Loops": 1
+      },
       "AdvancedServoServoActions": [
         {
           "ServoIndex": 1,
@@ -711,8 +731,12 @@
       "Name": "psbc11_SequenceServo2",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": false,
-      "ContinueWith": "psbc11_SequenceServoFin",
+      "PlayActionsInParallel": false,
+      "NextSequence": {
+        "Name": "psbc11_SequenceServoFin",
+        "SequenceType": "AS",
+        "Loops": 1
+      },
       "AdvancedServoServoActions": [
         {
           "ServoIndex": 2,
@@ -829,8 +853,8 @@
       "Name": "psbc11_SequenceServoFin",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": false,
-      "ContinueWith": "",
+      "PlayActionsInParallel": false,
+      "NextSequence": null,
       "AdvancedServoServoActions": [
         {
           "ServoIndex": 0,
@@ -907,8 +931,12 @@
       "Name": "psbc21_SequenceServo0",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": false,
-      "ContinueWith": "psbc21_SequenceServo1",
+      "PlayActionsInParallel": false,
+      "NextSequence": {
+        "Name": "psbc21_SequenceServo1",
+        "SequenceType": "AS",
+        "Loops": 1
+      },
       "AdvancedServoServoActions": [
         {
           "ServoIndex": 0,
@@ -1025,8 +1053,12 @@
       "Name": "psbc21_SequenceServo1",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": false,
-      "ContinueWith": "psbc21_SequenceServo2",
+      "PlayActionsInParallel": false,
+      "NextSequence": {
+        "Name": "psbc21_SequenceServo2",
+        "SequenceType": "AS",
+        "Loops": 1
+      },
       "AdvancedServoServoActions": [
         {
           "ServoIndex": 1,
@@ -1143,8 +1175,12 @@
       "Name": "psbc21_SequenceServo2",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": false,
-      "ContinueWith": "psbc21_SequenceServoFin",
+      "PlayActionsInParallel": false,
+      "NextSequence": {
+        "Name": "psbc21_SequenceServoFin",
+        "SequenceType": "AS",
+        "Loops": 1
+      },
       "AdvancedServoServoActions": [
         {
           "ServoIndex": 2,
@@ -1261,8 +1297,12 @@
       "Name": "psbc21_SequenceServo0P Configure and Engage",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 5,
-      "PlayInParallel": true,
-      "ContinueWith": "psbc21_SequenceServo1P",
+      "PlayActionsInParallel": true,
+      "NextSequence": {
+        "Name": "psbc21_SequenceServo1P",
+        "SequenceType": "AS",
+        "Loops": 1
+      },
       "AdvancedServoServoActions": [
         {
           "ServoIndex": 0,
@@ -1339,8 +1379,12 @@
       "Name": "psbc21_SequenceServo1P",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": true,
-      "ContinueWith": "psbc21_SequenceServo2P",
+      "PlayActionsInParallel": true,
+      "NextSequence": {
+        "Name": "psbc21_SequenceServo2P",
+        "SequenceType": "AS",
+        "Loops": 1
+      },
       "AdvancedServoServoActions": [
         {
           "ServoIndex": 0,
@@ -1417,8 +1461,12 @@
       "Name": "psbc21_SequenceServo2P",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": true,
-      "ContinueWith": "psbc21_SequenceServo3P",
+      "PlayActionsInParallel": true,
+      "NextSequence": {
+        "Name": "psbc21_SequenceServo3P",
+        "SequenceType": "AS",
+        "Loops": 1
+      },
       "AdvancedServoServoActions": [
         {
           "ServoIndex": 0,
@@ -1495,8 +1543,12 @@
       "Name": "psbc21_SequenceServo3P",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": true,
-      "ContinueWith": "psbc21_SequenceServo4P",
+      "PlayActionsInParallel": true,
+      "NextSequence": {
+        "Name": "psbc21_SequenceServo4P",
+        "SequenceType": "AS",
+        "Loops": 1
+      },
       "AdvancedServoServoActions": [
         {
           "ServoIndex": 0,
@@ -1573,8 +1625,12 @@
       "Name": "psbc21_SequenceServo4P",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": true,
-      "ContinueWith": "psbc21_SequenceServo5P",
+      "PlayActionsInParallel": true,
+      "NextSequence": {
+        "Name": "psbc21_SequenceServo5P",
+        "SequenceType": "AS",
+        "Loops": 1
+      },
       "AdvancedServoServoActions": [
         {
           "ServoIndex": 0,
@@ -1651,8 +1707,12 @@
       "Name": "psbc21_SequenceServo5P",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": true,
-      "ContinueWith": "psbc21_SequenceServoFin",
+      "PlayActionsInParallel": true,
+      "NextSequence": {
+        "Name": "psbc21_SequenceServoFin",
+        "SequenceType": "AS",
+        "Loops": 1
+      },
       "AdvancedServoServoActions": [
         {
           "ServoIndex": 0,
@@ -1729,8 +1789,8 @@
       "Name": "psbc21_SequenceServoFin",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": false,
-      "ContinueWith": "",
+      "PlayActionsInParallel": false,
+      "NextSequence": null,
       "AdvancedServoServoActions": [
         {
           "ServoIndex": 0,
@@ -1807,8 +1867,12 @@
       "Name": "psbc22_SequenceServo0",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": false,
-      "ContinueWith": "psbc22_SequenceServo1",
+      "PlayActionsInParallel": false,
+      "NextSequence": {
+        "Name": "psbc22_SequenceServo1",
+        "SequenceType": "AS",
+        "Loops": 1
+      },
       "AdvancedServoServoActions": [
         {
           "ServoIndex": 0,
@@ -1925,8 +1989,12 @@
       "Name": "psbc22_SequenceServo1",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": false,
-      "ContinueWith": "psbc22_SequenceServo2",
+      "PlayActionsInParallel": false,
+      "NextSequence": {
+        "Name": "psbc22_SequenceServo2",
+        "SequenceType": "AS",
+        "Loops": 1
+      },
       "AdvancedServoServoActions": [
         {
           "ServoIndex": 1,
@@ -2043,8 +2111,12 @@
       "Name": "psbc22_SequenceServo2",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": false,
-      "ContinueWith": "psbc22_SequenceServoFin",
+      "PlayActionsInParallel": false,
+      "NextSequence": {
+        "Name": "psbc22_SequenceServoFin",
+        "SequenceType": "AS",
+        "Loops": 1
+      },
       "AdvancedServoServoActions": [
         {
           "ServoIndex": 2,
@@ -2161,8 +2233,8 @@
       "Name": "psbc22_SequenceServoFin",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": false,
-      "ContinueWith": "",
+      "PlayActionsInParallel": false,
+      "NextSequence": null,
       "AdvancedServoServoActions": [
         {
           "ServoIndex": 0,
@@ -2239,8 +2311,12 @@
       "Name": "psbc23_SequenceServo0",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": false,
-      "ContinueWith": "psbc23_SequenceServo1",
+      "PlayActionsInParallel": false,
+      "NextSequence": {
+        "Name": "psbc23_SequenceServo1",
+        "SequenceType": "AS",
+        "Loops": 1
+      },
       "AdvancedServoServoActions": [
         {
           "ServoIndex": 0,
@@ -2357,8 +2433,12 @@
       "Name": "psbc23_SequenceServo1",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": false,
-      "ContinueWith": "psbc23_SequenceServo2",
+      "PlayActionsInParallel": false,
+      "NextSequence": {
+        "Name": "psbc23_SequenceServo2",
+        "SequenceType": "AS",
+        "Loops": 1
+      },
       "AdvancedServoServoActions": [
         {
           "ServoIndex": 1,
@@ -2475,8 +2555,12 @@
       "Name": "psbc23_SequenceServo2",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": false,
-      "ContinueWith": "psbc23_SequenceServoFin",
+      "PlayActionsInParallel": false,
+      "NextSequence": {
+        "Name": "psbc23_SequenceServoFin",
+        "SequenceType": "AS",
+        "Loops": 1
+      },
       "AdvancedServoServoActions": [
         {
           "ServoIndex": 2,
@@ -2593,8 +2677,8 @@
       "Name": "psbc23_SequenceServoFin",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": false,
-      "ContinueWith": "",
+      "PlayActionsInParallel": false,
+      "NextSequence": null,
       "AdvancedServoServoActions": [
         {
           "ServoIndex": 0,

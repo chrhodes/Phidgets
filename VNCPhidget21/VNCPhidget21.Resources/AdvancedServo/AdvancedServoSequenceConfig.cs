@@ -13,16 +13,11 @@
                     Port = 5001,
                     AdvancedServos = new[]
                     {
-                        new AdvancedServo
-                        {
-                            Name = "AdvancedServo 1",
-                            SerialNumber = 99415,
-                            Open = true
-                        }
+                        new AdvancedServo { Name = "AdvancedServo 1", SerialNumber = 99415, Open = true }
                     }
                 },
                 Name="localhost_SequenceServo0",
-                ContinueWith="localhost_SequenceServo1",
+                NextSequence = new PerformanceSequence { Name = "localhost_SequenceServo1", SequenceType = "AS", Loops = 1 },
 
                 AdvancedServoServoActions = new[]
                 {
@@ -38,7 +33,7 @@
             new AdvancedServoSequence
             {
                 Name="localhost_SequenceServo1",
-                ContinueWith="localhost_SequenceServo2",
+                NextSequence = new PerformanceSequence { Name = "localhost_SequenceServo2", SequenceType = "AS", Loops = 1 },
 
                 AdvancedServoServoActions = new[]
                 {
@@ -54,7 +49,7 @@
             new AdvancedServoSequence
             {
                 Name="localhost_SequenceServo2",
-                ContinueWith = "localhost_SequenceServoFin",
+                NextSequence = new PerformanceSequence { Name = "localhost_SequenceServoFin", SequenceType = "AS", Loops = 1 },
 
                 AdvancedServoServoActions = new[]
                 {
@@ -87,16 +82,11 @@
                     Port = 5001,
                     AdvancedServos = new[]
                     {
-                        new AdvancedServo
-                        {
-                            Name = "AdvancedServo 1",
-                            SerialNumber = 99415,
-                            Open = true
-                        }
+                        new AdvancedServo { Name = "AdvancedServo 1", SerialNumber = 99415, Open = true }
                     }
                 },
                 Name="psbc11_SequenceServo0",
-                ContinueWith="psbc11_SequenceServo1",
+                NextSequence = new PerformanceSequence { Name = "psbc11_SequenceServo1", SequenceType = "AS", Loops = 1 },
 
                 AdvancedServoServoActions = new[]
                 {
@@ -112,7 +102,7 @@
             new AdvancedServoSequence
             {
                 Name="psbc11_SequenceServo1",
-                ContinueWith="psbc11_SequenceServo2",
+                NextSequence = new PerformanceSequence { Name = "psbc11_SequenceServo2", SequenceType = "AS", Loops = 1 },
 
                 AdvancedServoServoActions = new[]
                 {
@@ -128,7 +118,7 @@
             new AdvancedServoSequence
             {
                 Name="psbc11_SequenceServo2",
-                ContinueWith="psbc11_SequenceServoFin",
+                NextSequence = new PerformanceSequence { Name = "psbc11_SequenceServoFin", SequenceType = "AS", Loops = 1 },
 
                 AdvancedServoServoActions = new[]
                 {
@@ -158,19 +148,14 @@
                 {
                     Name = "psbc21",
                     IPAddress = "192.168.150.21",
-                    Port = 5001,
-                    AdvancedServos = new[]
-                    {
-                        new AdvancedServo
-                        {
-                            Name = "AdvancedServo 1",
-                            SerialNumber = 99415,
-                            Open = true
-                        }
+                    Port = 5001, 
+                    AdvancedServos = new[] 
+                    { 
+                        new AdvancedServo { Name = "AdvancedServo 1", SerialNumber = 99415, Open = true }
                     }
                 },
                 Name="psbc21_SequenceServo0",
-                ContinueWith="psbc21_SequenceServo1",
+                NextSequence = new PerformanceSequence { Name = "psbc21_SequenceServo1", SequenceType = "AS", Loops = 1 },
 
                 AdvancedServoServoActions = new[]
                 {
@@ -186,7 +171,7 @@
             new AdvancedServoSequence
             {
                 Name="psbc21_SequenceServo1",
-                ContinueWith="psbc21_SequenceServo2",
+                NextSequence = new PerformanceSequence { Name = "psbc21_SequenceServo2", SequenceType = "AS", Loops = 1 },
 
                 AdvancedServoServoActions = new[]
                 {
@@ -202,7 +187,7 @@
             new AdvancedServoSequence
             {
                 Name="psbc21_SequenceServo2",
-                ContinueWith="psbc21_SequenceServoFin",
+                NextSequence = new PerformanceSequence { Name = "psbc21_SequenceServoFin", SequenceType = "AS", Loops = 1 },
 
                 AdvancedServoServoActions = new[]
                 {
@@ -224,18 +209,13 @@
                     Port = 5001,
                     AdvancedServos = new[]
                     {
-                        new AdvancedServo
-                        {
-                            Name = "AdvancedServo 1",
-                            SerialNumber = 99415,
-                            Open = true
-                        }
+                        new AdvancedServo { Name = "AdvancedServo 1", SerialNumber = 99415, Open = true }
                     }
                 },
                 Name="psbc21_SequenceServo0P Configure and Engage",
                 Loops = 5,
-                PlayInParallel = true,
-                ContinueWith = "psbc21_SequenceServo1P",
+                PlayActionsInParallel = true,
+                NextSequence = new PerformanceSequence { Name = "psbc21_SequenceServo1P", SequenceType = "AS", Loops = 1 },
 
                 AdvancedServoServoActions = new[]
                 {
@@ -247,8 +227,8 @@
             new AdvancedServoSequence
             {
                 Name="psbc21_SequenceServo1P",
-                PlayInParallel = true,
-                ContinueWith="psbc21_SequenceServo2P",
+                PlayActionsInParallel = true,
+                NextSequence = new PerformanceSequence { Name = "psbc21_SequenceServo2P", SequenceType = "AS", Loops = 1 },
 
                 AdvancedServoServoActions = new[]
                 {
@@ -261,8 +241,8 @@
             new AdvancedServoSequence
             {
                 Name="psbc21_SequenceServo2P",
-                PlayInParallel = true,
-                ContinueWith="psbc21_SequenceServo3P",
+                PlayActionsInParallel = true,
+                NextSequence = new PerformanceSequence { Name = "psbc21_SequenceServo3P", SequenceType = "AS", Loops = 1 },
 
                 AdvancedServoServoActions = new[]
                 {
@@ -275,8 +255,8 @@
             new AdvancedServoSequence
             {
                 Name="psbc21_SequenceServo3P",
-                PlayInParallel = true,
-                ContinueWith="psbc21_SequenceServo4P",
+                PlayActionsInParallel = true,
+                NextSequence = new PerformanceSequence { Name = "psbc21_SequenceServo4P", SequenceType = "AS", Loops = 1 },
 
                 AdvancedServoServoActions = new[]
                 {
@@ -289,8 +269,8 @@
             new AdvancedServoSequence
             {
                 Name="psbc21_SequenceServo4P",
-                PlayInParallel = true,
-                ContinueWith="psbc21_SequenceServo5P",
+                PlayActionsInParallel = true,
+                NextSequence = new PerformanceSequence { Name = "psbc21_SequenceServo5P", SequenceType = "AS", Loops = 1 },
 
                 AdvancedServoServoActions = new[]
                 {
@@ -302,8 +282,8 @@
             new AdvancedServoSequence
             {
                 Name="psbc21_SequenceServo5P",
-                PlayInParallel = true,
-                ContinueWith="psbc21_SequenceServoFin",
+                PlayActionsInParallel = true,
+                NextSequence = new PerformanceSequence { Name = "psbc21_SequenceServoFin", SequenceType = "AS", Loops = 1 },
 
                 AdvancedServoServoActions = new[]
                 {
@@ -332,16 +312,11 @@
                     Port = 5001,
                     AdvancedServos = new[]
                     {
-                        new AdvancedServo
-                        {
-                            Name = "AdvancedServo 1",
-                            SerialNumber = 99415,
-                            Open = true
-                        }
+                        new AdvancedServo { Name = "AdvancedServo 1", SerialNumber = 99415, Open = true }
                     }
                 },
                 Name="psbc22_SequenceServo0",
-                ContinueWith="psbc22_SequenceServo1",
+                NextSequence = new PerformanceSequence { Name = "psbc22_SequenceServo1", SequenceType = "AS", Loops = 1 },
 
                 AdvancedServoServoActions = new[]
                 {
@@ -357,7 +332,7 @@
             new AdvancedServoSequence
             {
                 Name="psbc22_SequenceServo1",
-                ContinueWith="psbc22_SequenceServo2",
+                NextSequence = new PerformanceSequence { Name = "psbc22_SequenceServo2", SequenceType = "AS", Loops = 1 },
 
                 AdvancedServoServoActions = new[]
                 {
@@ -373,7 +348,7 @@
             new AdvancedServoSequence
             {
                 Name="psbc22_SequenceServo2",
-                ContinueWith = "psbc22_SequenceServoFin",
+                NextSequence = new PerformanceSequence { Name = "psbc22_SequenceServoFin", SequenceType = "AS", Loops = 1 },
 
                 AdvancedServoServoActions = new[]
                 {
@@ -406,16 +381,11 @@
                     Port = 5001,
                     AdvancedServos = new[]
                     {
-                        new AdvancedServo
-                        {
-                            Name = "AdvancedServo 1",
-                            SerialNumber = 99415,
-                            Open = true
-                        }
+                        new AdvancedServo { Name = "AdvancedServo 1", SerialNumber = 99415, Open = true }
                     }
                 },
                 Name="psbc23_SequenceServo0",
-                ContinueWith="psbc23_SequenceServo1",
+                NextSequence = new PerformanceSequence { Name = "psbc23_SequenceServo1", SequenceType = "AS", Loops = 1 },
 
                 AdvancedServoServoActions = new[]
                 {
@@ -431,7 +401,7 @@
             new AdvancedServoSequence
             {
                 Name="psbc23_SequenceServo1",
-                ContinueWith="psbc23_SequenceServo2",
+                NextSequence = new PerformanceSequence { Name = "psbc23_SequenceServo2", SequenceType = "AS", Loops = 1 },
 
                 AdvancedServoServoActions = new[]
                 {
@@ -447,7 +417,7 @@
             new AdvancedServoSequence
             {
                 Name="psbc23_SequenceServo2",
-                ContinueWith = "psbc23_SequenceServoFin",
+                NextSequence = new PerformanceSequence { Name = "psbc23_SequenceServoFin", SequenceType = "AS", Loops = 1 },
 
                 AdvancedServoServoActions = new[]
                 {

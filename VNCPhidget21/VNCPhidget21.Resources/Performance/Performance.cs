@@ -2,17 +2,17 @@
 
 namespace VNCPhidgets21Explorer.Resources
 {
-    public class PerformanceSequence
+    public class Performance
     {
         /// <summary>
         /// Name of Sequence
         /// </summary>
-        public string Name { get; set; } = "SEQUENCE NAME";
+        public string Name { get; set; } = "PERFORMANCE NAME";
 
         /// <summary>
         /// Description of Sequence
         /// </summary>
-        public string Description { get; set; } = "SEQUENCE DESCRIPTION";
+        public string Description { get; set; } = "PERFORMANCE DESCRIPTION";
 
         /// <summary>
         /// Number of loops of Sequence
@@ -20,15 +20,16 @@ namespace VNCPhidgets21Explorer.Resources
         public Int32 Loops { get; set; } = 1;
 
         /// <summary>
-        /// Type of Sequence {AS, IK, ST}
-        /// Maybe make this enum
+        /// Play PerformanceSequence[] in Parallel or Sequential (false)
         /// </summary>
-        public string SequenceType { get; set; }
+        public Boolean PlayInParallel { get; set; } = false;
 
         /// <summary>
         /// Name of performanceSequence to invoke at end of performanceSequence (optional)
         /// none or null to stop
         /// </summary>
-        public PerformanceSequence? NextSequence { get; set; }
+        public Performance? NextPerformance { get; set; }
+
+        public PerformanceSequence[] PerformanceSequences { get; set; }
     }
 }

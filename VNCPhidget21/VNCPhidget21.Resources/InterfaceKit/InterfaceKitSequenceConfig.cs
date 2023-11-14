@@ -17,7 +17,6 @@
                     },
                 },
                 Name="localhost_SequenceIK 1",
-                ContinueWith="",
 
                 InterfaceKitActions = new[]
                 {
@@ -42,7 +41,6 @@
                     },
                 },
                 Name="psbc11_SequenceIK 1",
-                ContinueWith="",
 
                 InterfaceKitActions = new[]
                 {
@@ -67,7 +65,7 @@
                     },
                 },
                 Name="psbc21_SequenceIK 1",
-                ContinueWith="psbc22_SequenceIK 1",
+                NextSequence = new PerformanceSequence { Name = "psbc22_SequenceIK 1", SequenceType = "IK", Loops = 1 },
 
                 InterfaceKitActions = new[]
                 {
@@ -92,8 +90,7 @@
                     },
                 },
                 Name="psbc21_SequenceIK 1 Parallel",
-                PlayInParallel = true,
-                ContinueWith="",
+                PlayActionsInParallel = true,
 
                 InterfaceKitActions = new[]
                 {
@@ -118,7 +115,7 @@
                     },
                 },
                 Name="psbc22_SequenceIK 1",
-                ContinueWith="psbc23_SequenceIK 1",
+                NextSequence = new PerformanceSequence { Name = "psbc23_SequenceIK 1", SequenceType = "IK", Loops = 1 },
 
                 InterfaceKitActions = new[]
                 {
@@ -143,7 +140,6 @@
                     },
                 },
                 Name="psbc23_SequenceIK 1",
-                ContinueWith="",
 
                 InterfaceKitActions = new[]
                 {

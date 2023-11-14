@@ -42,8 +42,8 @@
       "Name": "localhost_SequenceIK 1",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": false,
-      "ContinueWith": "",
+      "PlayActionsInParallel": false,
+      "NextSequence": null,
       "InterfaceKitActions": [
         {
           "DigitalOutIndex": 0,
@@ -119,8 +119,8 @@
       "Name": "psbc11_SequenceIK 1",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": false,
-      "ContinueWith": "",
+      "PlayActionsInParallel": false,
+      "NextSequence": null,
       "InterfaceKitActions": [
         {
           "DigitalOutIndex": 0,
@@ -196,8 +196,12 @@
       "Name": "psbc21_SequenceIK 1",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": false,
-      "ContinueWith": "psbc22_SequenceIK 1",
+      "PlayActionsInParallel": false,
+      "NextSequence": {
+        "Name": "psbc22_SequenceIK 1",
+        "SequenceType": "IK",
+        "Loops": 1
+      },
       "InterfaceKitActions": [
         {
           "DigitalOutIndex": 0,
@@ -273,8 +277,8 @@
       "Name": "psbc21_SequenceIK 1 Parallel",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": true,
-      "ContinueWith": "",
+      "PlayActionsInParallel": true,
+      "NextSequence": null,
       "InterfaceKitActions": [
         {
           "DigitalOutIndex": 0,
@@ -350,8 +354,12 @@
       "Name": "psbc22_SequenceIK 1",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": false,
-      "ContinueWith": "psbc23_SequenceIK 1",
+      "PlayActionsInParallel": false,
+      "NextSequence": {
+        "Name": "psbc23_SequenceIK 1",
+        "SequenceType": "IK",
+        "Loops": 1
+      },
       "InterfaceKitActions": [
         {
           "DigitalOutIndex": 0,
@@ -427,8 +435,8 @@
       "Name": "psbc23_SequenceIK 1",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayInParallel": false,
-      "ContinueWith": "",
+      "PlayActionsInParallel": false,
+      "NextSequence": null,
       "InterfaceKitActions": [
         {
           "DigitalOutIndex": 0,
