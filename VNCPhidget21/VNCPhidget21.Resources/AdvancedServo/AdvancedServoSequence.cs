@@ -5,17 +5,7 @@ namespace VNCPhidgets21Explorer.Resources
 
     public class AdvancedServoSequence
     {
-        public Host Host { get; set; }
-            = new Host
-            {
-                Name = "localhost",
-                IPAddress = "127.0.0.1",
-                Port = 5001,
-                AdvancedServos = new[]
-                {
-                    new AdvancedServo { Name = "AdvancedServo 1", SerialNumber = 99415, Open = true }
-                }
-            };
+        public Host? Host { get; set; }
 
         /// <summary>
         /// Name of sequence
@@ -46,6 +36,6 @@ namespace VNCPhidgets21Explorer.Resources
         /// <summary>
         /// Array of actions in sequence
         /// </summary>
-        public AdvancedServoServoAction[] AdvancedServoServoActions { get; set; }
+        public AdvancedServoServoAction[]? AdvancedServoServoActions { get; set; }
     }
 }

@@ -2,6 +2,8 @@
 using System.Threading;
 using System.Threading.Tasks;
 
+using Microsoft.SqlServer.Server;
+
 using Phidgets;
 
 using VNCPhidgets21Explorer.Resources;
@@ -36,10 +38,6 @@ namespace VNC.Phidget
             this.AdvancedServo.Error += Phidget_Error;
             this.AdvancedServo.ServerConnect += Phidget_ServerConnect;
             this.AdvancedServo.ServerDisconnect += Phidget_ServerDisconnect;
-
-            //this.InputChange += AdvancedServo_InputChange;
-            //this.OutputChange += AdvancedServo_OutputChange;
-            //this.SensorChange += AdvancedServo_SensorChange;
         }
 
         #endregion
@@ -58,69 +56,13 @@ namespace VNC.Phidget
 
         public Phidgets.AdvancedServo AdvancedServo = null;
 
-        public bool LogInputChangeEvents { get; set; }
-        public bool LogOutputChangeEvents { get; set; }
-        public bool LogSensorChangeEvents { get; set; }
         public bool LogPerformanceStep { get; set; }
 
         #endregion
 
         #region Event Handlers
 
-        //private void AdvancedServo_SensorChange(object sender, SensorChangeEventArgs e)
-        //{
-        //    if (LogSensorChangeEvents)
-        //    {
-        //        try
-        //        {
-        //            InterfaceKit ifk = (InterfaceKit)sender;
-        //            var a = e;
-        //            var b = e.GetType();
-        //            Log.Trace($"AdvancedServo_SensorChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Log.Error(ex, Common.LOG_CATEGORY);
-        //        }
-        //    }
-        //}
-
-        //private void AdvancedServo_OutputChange(object sender, Phidgets.Events.OutputChangeEventArgs e)
-        //{
-        //    if (LogOutputChangeEvents)
-        //    {
-        //        try
-        //        {
-        //            InterfaceKit ifk = (InterfaceKit)sender;
-        //            var a = e;
-        //            var b = e.GetType();
-        //            Log.Trace($"AdvancedServo_OutputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Log.Error(ex, Common.LOG_CATEGORY);
-        //        }
-        //    }
-        //}
-
-        //private void AdvancedServo_InputChange(object sender, Phidgets.Events.InputChangeEventArgs e)
-        //{
-        //    if (LogInputChangeEvents)
-        //    {
-        //        try
-        //        {
-        //            InterfaceKit ifk = (InterfaceKit)sender;
-        //            var a = e;
-        //            var b = e.GetType();
-        //            Log.Trace($"AdvancedServo_InputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Log.Error(ex, Common.LOG_CATEGORY);
-        //        }
-        //    }
-        //}
-
+       
         #endregion
 
         #region Commands (None)
@@ -131,6 +73,8 @@ namespace VNC.Phidget
 
         public void Open()
         {
+            Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
+
             try
             {
                 this.AdvancedServo.open(HostSerialNumber, HostIPAddress, HostPort);
@@ -145,10 +89,14 @@ namespace VNC.Phidget
             {
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
+
+            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public void Close()
         {
+            Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
+
             try
             {
                 AdvancedServo.close();
@@ -156,10 +104,12 @@ namespace VNC.Phidget
             catch (Exception ex)
             {
                 Log.Error(ex, Common.LOG_CATEGORY);
-            }           
+            }
+
+            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public async Task PlayAdvancedServoSequenceLoops(AdvancedServoEx advancedServo, AdvancedServoSequence advancedServoSequence)
+        public async Task PlaySequenceLoops(AdvancedServoSequence advancedServoSequence)
         {
             Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
 
@@ -169,18 +119,28 @@ namespace VNC.Phidget
 
                 if (advancedServoSequence.PlayActionsInParallel)
                 {
-                    PlayAdvancedServoSequenceActionsInParallel(advancedServo, advancedServoSequence);
+                    PlaySequenceActionsInParallel(advancedServoSequence);
                 }
                 else
                 {
-                    PlayAdvancedServoSequenceActionsInSequence(advancedServo, advancedServoSequence);
+                    PlaySequenceActionsInSequence(advancedServoSequence);
                 }
             }
 
             Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private async void PlayAdvancedServoSequenceActionsInParallel(AdvancedServoEx advancedServo, AdvancedServoSequence advancedServoSequence)
+
+        #endregion
+
+        #region Protected Methods (None)
+
+
+        #endregion
+
+        #region Private Methods (None)
+
+        private async void PlaySequenceActionsInParallel(AdvancedServoSequence advancedServoSequence)
         {
             Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
 
@@ -197,35 +157,35 @@ namespace VNC.Phidget
                     switch (action.ServoIndex)
                     {
                         case 0:
-                            PerformAdvancedServoAction(advancedServo.AdvancedServo.servos[0], action, 0);
+                            PerformAction(AdvancedServo.servos[0], action, 0);
                             break;
 
                         case 1:
-                            PerformAdvancedServoAction(advancedServo.AdvancedServo.servos[1], action, 1);
+                            PerformAction(AdvancedServo.servos[1], action, 1);
                             break;
 
                         case 2:
-                            PerformAdvancedServoAction(advancedServo.AdvancedServo.servos[2], action, 2);
+                            PerformAction(AdvancedServo.servos[2], action, 2);
                             break;
 
                         case 3:
-                            PerformAdvancedServoAction(advancedServo.AdvancedServo.servos[3], action, 3);
+                            PerformAction(AdvancedServo.servos[3], action, 3);
                             break;
 
                         case 4:
-                            PerformAdvancedServoAction(advancedServo.AdvancedServo.servos[4], action, 4);
+                            PerformAction(AdvancedServo.servos[4], action, 4);
                             break;
 
                         case 5:
-                            PerformAdvancedServoAction(advancedServo.AdvancedServo.servos[5], action, 5);
+                            PerformAction(AdvancedServo.servos[5], action, 5);
                             break;
 
                         case 6:
-                            PerformAdvancedServoAction(advancedServo.AdvancedServo.servos[6], action, 6);
+                            PerformAction(AdvancedServo.servos[6], action, 6);
                             break;
 
                         case 7:
-                            PerformAdvancedServoAction(advancedServo.AdvancedServo.servos[7], action, 7);
+                            PerformAction(AdvancedServo.servos[7], action, 7);
                             break;
                     }
                 }
@@ -238,7 +198,7 @@ namespace VNC.Phidget
             Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void PlayAdvancedServoSequenceActionsInSequence(AdvancedServoEx advancedServo, AdvancedServoSequence advancedServoSequence)
+        private void PlaySequenceActionsInSequence(AdvancedServoSequence advancedServoSequence)
         {
             Int64 startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
 
@@ -255,35 +215,35 @@ namespace VNC.Phidget
                     switch (action.ServoIndex)
                     {
                         case 0:
-                            PerformAdvancedServoAction(advancedServo.AdvancedServo.servos[0], action, 0);
+                            PerformAction(AdvancedServo.servos[0], action, 0);
                             break;
 
                         case 1:
-                            PerformAdvancedServoAction(advancedServo.AdvancedServo.servos[1], action, 1);
+                            PerformAction(AdvancedServo.servos[1], action, 1);
                             break;
 
                         case 2:
-                            PerformAdvancedServoAction(advancedServo.AdvancedServo.servos[2], action, 2);
+                            PerformAction(AdvancedServo.servos[2], action, 2);
                             break;
 
                         case 3:
-                            PerformAdvancedServoAction(advancedServo.AdvancedServo.servos[3], action, 3);
+                            PerformAction(AdvancedServo.servos[3], action, 3);
                             break;
 
                         case 4:
-                            PerformAdvancedServoAction(advancedServo.AdvancedServo.servos[4], action, 4);
+                            PerformAction(AdvancedServo.servos[4], action, 4);
                             break;
 
                         case 5:
-                            PerformAdvancedServoAction(advancedServo.AdvancedServo.servos[5], action, 5);
+                            PerformAction(AdvancedServo.servos[5], action, 5);
                             break;
 
                         case 6:
-                            PerformAdvancedServoAction(advancedServo.AdvancedServo.servos[6], action, 6);
+                            PerformAction(AdvancedServo.servos[6], action, 6);
                             break;
 
                         case 7:
-                            PerformAdvancedServoAction(advancedServo.AdvancedServo.servos[7], action, 7);
+                            PerformAction(AdvancedServo.servos[7], action, 7);
                             break;
                     }
                 }
@@ -296,10 +256,18 @@ namespace VNC.Phidget
             Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void PerformAdvancedServoAction(AdvancedServoServo servo, AdvancedServoServoAction action, Int32 index)
+        private void PerformAction(AdvancedServoServo servo, AdvancedServoServoAction action, Int32 index)
         {
-            Int64 startTicks = Log.Trace($"Enter servo:{index}", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
 
+            if (LogPerformanceStep)
+            {
+                startTicks = Log.Trace($"Enter servo:{index} engaged:{action.Engaged}"
+                    + $" acceleration:{action.Acceleration} velocityLimit:{action.VelocityLimit}"
+                    + $" postionMax:{action.PositionMax} positionMin:{action.PositionMin} targetAction:{action.TargetPosition}"
+                    + $" duration:{action.Duration}", Common.LOG_CATEGORY);
+            }
+            
             try
             {
                 if (action.Acceleration is not null) servo.Acceleration = (Double)action.Acceleration;
@@ -332,7 +300,10 @@ namespace VNC.Phidget
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
 
-            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+            if (LogPerformanceStep)
+            {
+                Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+            }            
         }
 
         private void VerifyServoEngaged(AdvancedServoServo servo)
@@ -344,16 +315,6 @@ namespace VNC.Phidget
         {
             while (servo.Position != targetPosition) { Thread.Sleep(1); }
         }
-
-        #endregion
-
-        #region Protected Methods (None)
-
-
-        #endregion
-
-        #region Private Methods (None)
-
 
         #endregion
     }

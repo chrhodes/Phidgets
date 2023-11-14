@@ -1010,12 +1010,44 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         if (AvailableAdvancedServoSequences.ContainsKey(nextPerformanceSequence.Name ?? ""))
                         {
                             var advancedServoSequence = AvailableAdvancedServoSequences[nextPerformanceSequence.Name];
-                            var advancedServo = OpenAdvancedServoHost(advancedServoSequence.Host);
 
-                            await advancedServo.PlayAdvancedServoSequenceLoops(advancedServo, advancedServoSequence);
+                            if (advancedServoSequence.Host is not null)
+                            {
+                                var advancedServoHost = OpenAdvancedServoHost(advancedServoSequence.Host);
 
-                            nextPerformanceSequence = advancedServoSequence.NextSequence;
-                            advancedServo.Close();
+                                //nextPerformanceSequence = await advancedServo.PlayAdvancedServoSequenceLoops(advancedServoSequence);
+                                await advancedServoHost.PlaySequenceLoops(advancedServoSequence);
+
+                                nextPerformanceSequence = advancedServoSequence.NextSequence;
+
+                                // NOTE(crhodes)
+                                // This should handle continuations without a Host.  
+                                // TODO(crhodes)
+                                // Do we need to handle continuations that have a Host?  I think so.
+                                // Play AS sequence on one Host and then a different AS sequence on a different host.
+                                // This would be dialog back and forth across hosts.
+
+                                while (nextPerformanceSequence is not null && nextPerformanceSequence.SequenceType == "AS")
+                                {
+                                    advancedServoSequence = AvailableAdvancedServoSequences[nextPerformanceSequence.Name];
+   
+                                    await advancedServoHost.PlaySequenceLoops(advancedServoSequence);
+
+                                    nextPerformanceSequence = advancedServoSequence.NextSequence;
+                                }
+
+                                advancedServoHost.Close();
+                            }
+                            else
+                            {
+                                Log.Trace($"    Host is null", Common.LOG_CATEGORY);
+                                nextPerformanceSequence = null;
+                            }
+                        }
+                        else
+                        {
+                            Log.Trace($"    Cannot find sequence:{nextPerformanceSequence.Name}", Common.LOG_CATEGORY);
+                            nextPerformanceSequence = null;
                         }
 
                         break;
@@ -1024,12 +1056,44 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         if (AvailableInterfaceKitSequences.ContainsKey(nextPerformanceSequence.Name ?? ""))
                         {
                             var interfaceKitSequence = AvailableInterfaceKitSequences[nextPerformanceSequence.Name];
-                            var interfaceKit = OpenInterfaceKitHost(interfaceKitSequence.Host);
 
-                            await interfaceKit.PlayInterfaceKitSequenceLoops(interfaceKit, interfaceKitSequence);
+                            if (interfaceKitSequence.Host is not null)
+                            {
+                                var interfaceKitHost = OpenInterfaceKitHost(interfaceKitSequence.Host);
 
-                            nextPerformanceSequence = interfaceKitSequence.NextSequence;
-                            interfaceKit.Close();
+                                //nextPerformanceSequence = await advancedServo.PlayAdvancedServoSequenceLoops(advancedServoSequence);
+                                await interfaceKitHost.PlaySequenceLoops(interfaceKitSequence);
+
+                                nextPerformanceSequence = interfaceKitSequence.NextSequence;
+
+                                // NOTE(crhodes)
+                                // This should handle continuations without a Host.  
+                                // TODO(crhodes)
+                                // Do we need to handle continuations that have a Host?  I think so.
+                                // Play AS sequence on one Host and then a different AS sequence on a different host.
+                                // This would be dialog back and forth across hosts.
+
+                                while (nextPerformanceSequence is not null && nextPerformanceSequence.SequenceType == "AS")
+                                {
+                                    interfaceKitSequence = AvailableInterfaceKitSequences[nextPerformanceSequence.Name];
+
+                                    await interfaceKitHost.PlaySequenceLoops(interfaceKitSequence);
+
+                                    nextPerformanceSequence = interfaceKitSequence.NextSequence;
+                                }
+
+                                interfaceKitHost.Close();
+                            }
+                            else
+                            {
+                                Log.Trace($"    Host is null", Common.LOG_CATEGORY);
+                                nextPerformanceSequence = null;
+                            }
+                        }
+                        else
+                        {
+                            Log.Trace($"    Cannot find sequence:{nextPerformanceSequence.Name}", Common.LOG_CATEGORY);
+                            nextPerformanceSequence = null;
                         }
 
                         break;

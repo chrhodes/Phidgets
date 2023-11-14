@@ -142,9 +142,15 @@ namespace VNC.Phidget
 
         public void Open()
         {
+            Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
+
             try
             {
                 this.InterfaceKit.open(HostSerialNumber, HostIPAddress, HostPort);
+
+                // TDO(crhodes)
+                // This will hang if AdvancedServo no attached.
+                // How to handle this
 
                 this.InterfaceKit.waitForAttachment();
             }
@@ -152,10 +158,14 @@ namespace VNC.Phidget
             {
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
+
+            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public void Close()
         {
+            Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
+
             try
             {
                 this.InterfaceKit.close();
@@ -164,9 +174,11 @@ namespace VNC.Phidget
             {
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
+
+            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public async Task PlayInterfaceKitSequenceLoops(InterfaceKitEx interfaceKit, InterfaceKitSequence interfaceKitSequence)
+        public async Task PlaySequenceLoops(InterfaceKitSequence interfaceKitSequence)
         {
             Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
 
@@ -176,154 +188,12 @@ namespace VNC.Phidget
 
                 if (interfaceKitSequence.PlayActionsInParallel)
                 {
-                    PlayInterfaceKitSequenceActionsInParallel(interfaceKit, interfaceKitSequence);
+                    PlaySequenceActionsInParallel(interfaceKitSequence);
                 }
                 else
                 {
-                    PlayInterfaceKitSequenceActionsInSequence(interfaceKit, interfaceKitSequence);
+                    PlaySequenceActionsInSequence(interfaceKitSequence);
                 }
-            }
-
-            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private async void PlayInterfaceKitSequenceActionsInParallel(InterfaceKitEx interfaceKit, InterfaceKitSequence interfaceKitSequence)
-        {
-            Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
-
-            // TODO(crhodes)
-            // Maybe just pass the interfaceKit into Action and get this there
-
-            InterfaceKitDigitalOutputCollection ifkDigitalOutputs = interfaceKit.InterfaceKit.outputs;
-
-            Parallel.ForEach(interfaceKitSequence.InterfaceKitActions, action =>
-            {
-                if (LogPerformanceStep)
-                {
-                    Log.Trace($"DigitalOut Index:{action.DigitalOutIndex} DigitalOut:{action.DigitalOut} Duration:{action.Duration}", Common.LOG_CATEGORY);
-                }
-
-                try
-                {
-                    switch (action.DigitalOutIndex)
-                    {
-                        case 0:
-                            PerformInterfaceKitAction(ifkDigitalOutputs, action, 0);
-                            break;
-
-                        case 1:
-                            PerformInterfaceKitAction(ifkDigitalOutputs, action, 1);
-                            break;
-
-                        case 2:
-                            PerformInterfaceKitAction(ifkDigitalOutputs, action, 2);
-                            break;
-
-                        case 3:
-                            PerformInterfaceKitAction(ifkDigitalOutputs, action, 30);
-                            break;
-
-                        case 4:
-                            PerformInterfaceKitAction(ifkDigitalOutputs, action, 4);
-                            break;
-
-                        case 5:
-                            PerformInterfaceKitAction(ifkDigitalOutputs, action, 50);
-                            break;
-
-                        case 6:
-                            PerformInterfaceKitAction(ifkDigitalOutputs, action, 60);
-                            break;
-
-                        case 7:
-                            PerformInterfaceKitAction(ifkDigitalOutputs, action, 7);
-                            break;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
-                }
-            });
-
-            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private void PlayInterfaceKitSequenceActionsInSequence(InterfaceKitEx interfaceKit, InterfaceKitSequence interfaceKitSequence)
-        {
-            Int64 startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
-
-            // TODO(crhodes)
-            // Maybe just pass the interfaceKit into Action and get this there
-
-            InterfaceKitDigitalOutputCollection ifkDigitalOutputs = interfaceKit.InterfaceKit.outputs;
-
-            foreach (InterfaceKitAction action in interfaceKitSequence.InterfaceKitActions)
-            {
-                if (LogPerformanceStep)
-                {
-                    Log.Trace($"DigitalOut Index:{action.DigitalOutIndex} DigitalOut:{action.DigitalOut} Duration:{action.Duration}", Common.LOG_CATEGORY);
-                }
-
-                try
-                {
-                    switch (action.DigitalOutIndex)
-                    {
-                        case 0:
-                            PerformInterfaceKitAction(ifkDigitalOutputs, action, 0);
-                            break;
-
-                        case 1:
-                            PerformInterfaceKitAction(ifkDigitalOutputs, action, 1);
-                            break;
-
-                        case 2:
-                            PerformInterfaceKitAction(ifkDigitalOutputs, action, 2);
-                            break;
-
-                        case 3:
-                            PerformInterfaceKitAction(ifkDigitalOutputs, action, 30);
-                            break;
-
-                        case 4:
-                            PerformInterfaceKitAction(ifkDigitalOutputs, action, 4);
-                            break;
-
-                        case 5:
-                            PerformInterfaceKitAction(ifkDigitalOutputs, action, 50);
-                            break;
-
-                        case 6:
-                            PerformInterfaceKitAction(ifkDigitalOutputs, action, 60);
-                            break;
-
-                        case 7:
-                            PerformInterfaceKitAction(ifkDigitalOutputs, action, 7);
-                            break;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
-                }
-            }
-
-            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private void PerformInterfaceKitAction(InterfaceKitDigitalOutputCollection ifkDigitalOutputs, InterfaceKitAction action, Int32 index)
-        {
-            Int64 startTicks = Log.Trace($"Enter servo:{index}", Common.LOG_CATEGORY);
-
-            try
-            {
-                if (action.DigitalOut is not null) ifkDigitalOutputs[index] = (Boolean)action.DigitalOut;
-
-                if (action.Duration > 0) Thread.Sleep((Int32)action.Duration);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
             }
 
             Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
@@ -338,6 +208,156 @@ namespace VNC.Phidget
 
         #region Private Methods (None)
 
+        private async void PlaySequenceActionsInParallel(InterfaceKitSequence interfaceKitSequence)
+        {
+            Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
+
+            // TODO(crhodes)
+            // Maybe just pass the interfaceKit into Action and get this there
+
+            InterfaceKitDigitalOutputCollection ifkDigitalOutputs = InterfaceKit.outputs;
+
+            Parallel.ForEach(interfaceKitSequence.InterfaceKitActions, action =>
+            {
+                if (LogPerformanceStep)
+                {
+                    Log.Trace($"DigitalOut Index:{action.DigitalOutIndex} DigitalOut:{action.DigitalOut} Duration:{action.Duration}", Common.LOG_CATEGORY);
+                }
+
+                try
+                {
+                    switch (action.DigitalOutIndex)
+                    {
+                        case 0:
+                            PerformAction(ifkDigitalOutputs, action, 0);
+                            break;
+
+                        case 1:
+                            PerformAction(ifkDigitalOutputs, action, 1);
+                            break;
+
+                        case 2:
+                            PerformAction(ifkDigitalOutputs, action, 2);
+                            break;
+
+                        case 3:
+                            PerformAction(ifkDigitalOutputs, action, 30);
+                            break;
+
+                        case 4:
+                            PerformAction(ifkDigitalOutputs, action, 4);
+                            break;
+
+                        case 5:
+                            PerformAction(ifkDigitalOutputs, action, 50);
+                            break;
+
+                        case 6:
+                            PerformAction(ifkDigitalOutputs, action, 60);
+                            break;
+
+                        case 7:
+                            PerformAction(ifkDigitalOutputs, action, 7);
+                            break;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            });
+
+            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void PlaySequenceActionsInSequence(InterfaceKitSequence interfaceKitSequence)
+        {
+            Int64 startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+
+            // TODO(crhodes)
+            // Maybe just pass the interfaceKit into Action and get this there
+
+            InterfaceKitDigitalOutputCollection ifkDigitalOutputs = InterfaceKit.outputs;
+
+            foreach (InterfaceKitAction action in interfaceKitSequence.InterfaceKitActions)
+            {
+                if (LogPerformanceStep)
+                {
+                    Log.Trace($"DigitalOut Index:{action.DigitalOutIndex} DigitalOut:{action.DigitalOut} Duration:{action.Duration}", Common.LOG_CATEGORY);
+                }
+
+                try
+                {
+                    switch (action.DigitalOutIndex)
+                    {
+                        case 0:
+                            PerformAction(ifkDigitalOutputs, action, 0);
+                            break;
+
+                        case 1:
+                            PerformAction(ifkDigitalOutputs, action, 1);
+                            break;
+
+                        case 2:
+                            PerformAction(ifkDigitalOutputs, action, 2);
+                            break;
+
+                        case 3:
+                            PerformAction(ifkDigitalOutputs, action, 30);
+                            break;
+
+                        case 4:
+                            PerformAction(ifkDigitalOutputs, action, 4);
+                            break;
+
+                        case 5:
+                            PerformAction(ifkDigitalOutputs, action, 50);
+                            break;
+
+                        case 6:
+                            PerformAction(ifkDigitalOutputs, action, 60);
+                            break;
+
+                        case 7:
+                            PerformAction(ifkDigitalOutputs, action, 7);
+                            break;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void PerformAction(InterfaceKitDigitalOutputCollection ifkDigitalOutputs, InterfaceKitAction action, Int32 index)
+        {
+            Int64 startTicks = 0;
+
+            if (LogPerformanceStep)
+            {
+                startTicks = Log.Trace($"Enter index:{index} digitalOut:{action.DigitalOut}" +
+                    $" duration:{action.Duration}", Common.LOG_CATEGORY);
+            }
+
+            try
+            {
+                if (action.DigitalOut is not null) ifkDigitalOutputs[index] = (Boolean)action.DigitalOut;
+
+                if (action.Duration > 0) Thread.Sleep((Int32)action.Duration);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+
+            if (LogPerformanceStep)
+            {
+                Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+            }
+        }
 
         #endregion
     }

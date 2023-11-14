@@ -27,8 +27,8 @@
             },
             new Performance
             {
-                Name = "psbc21_IK Performance 1",
-                Description = "psbc21_IK Performance 1 Description",
+                Name = "IK Performance 1",
+                Description = "psbc{21,22,23}_SequenceIK 1 in Parallel",
                 PlayInParallel = true,
 
                 PerformanceSequences = new[]
@@ -36,6 +36,29 @@
                     new PerformanceSequence { Name = "psbc21_SequenceIK 1", SequenceType = "IK", Loops = 1 },
                     new PerformanceSequence { Name = "psbc22_SequenceIK 1", SequenceType = "IK", Loops = 1 },
                     new PerformanceSequence { Name = "psbc23_SequenceIK 1", SequenceType = "IK", Loops = 1 }
+                }
+            },
+            new Performance
+            {
+                Name = "AS and IK",
+                Description = "",
+
+                PerformanceSequences = new[]
+                {
+                    new PerformanceSequence { Name = "psbc21_SequenceServo0", SequenceType = "AS", Loops = 1 },
+                    new PerformanceSequence { Name = "psbc21_SequenceIK 1", SequenceType = "IK", Loops = 1 }
+                }
+            },
+            new Performance
+            {
+                Name = "AS and IK",
+                Description = "",
+                PlayInParallel = true,
+
+                PerformanceSequences = new[]
+                {
+                    new PerformanceSequence { Name = "psbc21_SequenceServo0", SequenceType = "AS", Loops = 1 },
+                    new PerformanceSequence { Name = "psbc21_SequenceIK 1", SequenceType = "IK", Loops = 1 }
                 }
             }
         };

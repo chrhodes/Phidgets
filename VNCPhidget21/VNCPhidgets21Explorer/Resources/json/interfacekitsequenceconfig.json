@@ -6,18 +6,7 @@
         "IPAddress": "127.0.0.1",
         "Port": 5001,
         "Enable": true,
-        "AdvancedServos": [
-          {
-            "Name": "ADVANCEDSERVO NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "ADVANCEDSERVO NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ],
+        "AdvancedServos": null,
         "InterfaceKits": [
           {
             "Name": "InterfaceKit 1",
@@ -26,18 +15,7 @@
             "Embedded": false
           }
         ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
+        "Steppers": null
       },
       "Name": "localhost_SequenceIK 1",
       "Description": "SEQUENCE DESCRIPTION",
@@ -83,18 +61,7 @@
         "IPAddress": "192.168.150.11",
         "Port": 5001,
         "Enable": true,
-        "AdvancedServos": [
-          {
-            "Name": "ADVANCEDSERVO NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "ADVANCEDSERVO NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ],
+        "AdvancedServos": null,
         "InterfaceKits": [
           {
             "Name": "psbc11 InterfaceKit",
@@ -103,18 +70,7 @@
             "Embedded": true
           }
         ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
+        "Steppers": null
       },
       "Name": "psbc11_SequenceIK 1",
       "Description": "SEQUENCE DESCRIPTION",
@@ -160,18 +116,7 @@
         "IPAddress": "192.168.150.21",
         "Port": 5001,
         "Enable": true,
-        "AdvancedServos": [
-          {
-            "Name": "ADVANCEDSERVO NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "ADVANCEDSERVO NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ],
+        "AdvancedServos": null,
         "InterfaceKits": [
           {
             "Name": "psbc21 InterfaceKit",
@@ -180,18 +125,7 @@
             "Embedded": true
           }
         ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
+        "Steppers": null
       },
       "Name": "psbc21_SequenceIK 1",
       "Description": "SEQUENCE DESCRIPTION",
@@ -241,18 +175,7 @@
         "IPAddress": "192.168.150.21",
         "Port": 5001,
         "Enable": true,
-        "AdvancedServos": [
-          {
-            "Name": "ADVANCEDSERVO NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "ADVANCEDSERVO NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ],
+        "AdvancedServos": null,
         "InterfaceKits": [
           {
             "Name": "psbc21 InterfaceKit",
@@ -261,18 +184,7 @@
             "Embedded": true
           }
         ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
+        "Steppers": null
       },
       "Name": "psbc21_SequenceIK 1 Parallel",
       "Description": "SEQUENCE DESCRIPTION",
@@ -318,18 +230,7 @@
         "IPAddress": "192.168.150.22",
         "Port": 5001,
         "Enable": true,
-        "AdvancedServos": [
-          {
-            "Name": "ADVANCEDSERVO NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "ADVANCEDSERVO NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ],
+        "AdvancedServos": null,
         "InterfaceKits": [
           {
             "Name": "psbc22 InterfaceKit",
@@ -338,18 +239,7 @@
             "Embedded": true
           }
         ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
+        "Steppers": null
       },
       "Name": "psbc22_SequenceIK 1",
       "Description": "SEQUENCE DESCRIPTION",
@@ -399,18 +289,7 @@
         "IPAddress": "192.168.150.23",
         "Port": 5001,
         "Enable": true,
-        "AdvancedServos": [
-          {
-            "Name": "ADVANCEDSERVO NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "ADVANCEDSERVO NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ],
+        "AdvancedServos": null,
         "InterfaceKits": [
           {
             "Name": "psbc23 InterfaceKit",
@@ -419,18 +298,7 @@
             "Embedded": true
           }
         ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
+        "Steppers": null
       },
       "Name": "psbc23_SequenceIK 1",
       "Description": "SEQUENCE DESCRIPTION",

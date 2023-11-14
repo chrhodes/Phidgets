@@ -5,22 +5,7 @@ namespace VNCPhidgets21Explorer.Resources
 
     public class StepperSequence
     {
-        public Host Host { get; set; }
-            = new Host
-            {
-                Name = "localhost",
-                IPAddress = "127.0.0.1",
-                Port = 5001,
-                InterfaceKits = new[]
-                {
-                    new InterfaceKit 
-                    { 
-                        Name = "Steper 1", 
-                        SerialNumber = 99415,                         
-                        Open = true
-                    }
-                }
-            };
+        public Host? Host { get; set; }
 
         /// <summary>
         /// Name of performance
@@ -43,21 +28,14 @@ namespace VNCPhidgets21Explorer.Resources
         public Boolean PlayInParallel { get; set; } = false;
 
         /// <summary>
-        /// Name of performance to invoke at end of performance (optional)
+        /// Name of StepperSequence to invoke at end of sequence (optional)
         /// none, null, or empty string to stop
         /// </summary>
         public string? ContinueWith { get; set; } = "";
 
         /// <summary>
-        /// Array of steps in performance
+        /// Array of actions in sequence
         /// </summary>
-        public StepperAction[] StepperActions { get; set; } = new[] // StepperAction[0];
-        {
-            new StepperAction { ServoIndex = 0, Engaged = true, TargetPosition = 90, Duration=1000 },
-            new StepperAction { ServoIndex = 0, Engaged = true, TargetPosition = 95, Duration=1000 },
-            new StepperAction { ServoIndex = 0, Engaged = true, TargetPosition = 100, Duration = 2000 },
-            new StepperAction { ServoIndex = 0, Engaged = true, TargetPosition = 95, Duration = 500 },
-            new StepperAction { ServoIndex = 0, Engaged = true, TargetPosition = 90, Duration = 500 }
-        };
+        public StepperAction[]? StepperActions { get; set; }
     }
 }

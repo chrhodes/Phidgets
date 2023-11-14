@@ -13,32 +13,8 @@
             "Open": true
           }
         ],
-        "InterfaceKits": [
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 1234,
-            "Open": true,
-            "Embedded": true
-          },
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 5678,
-            "Open": false,
-            "Embedded": false
-          }
-        ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
+        "InterfaceKits": null,
+        "Steppers": null
       },
       "Name": "localhost_SequenceServo0",
       "Description": "SEQUENCE DESCRIPTION",
@@ -123,45 +99,7 @@
       ]
     },
     {
-      "Host": {
-        "Name": "localhost",
-        "IPAddress": "127.0.0.1",
-        "Port": 5001,
-        "Enable": true,
-        "AdvancedServos": [
-          {
-            "Name": "AdvancedServo 1",
-            "SerialNumber": 99415,
-            "Open": true
-          }
-        ],
-        "InterfaceKits": [
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 1234,
-            "Open": true,
-            "Embedded": true
-          },
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 5678,
-            "Open": false,
-            "Embedded": false
-          }
-        ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
-      },
+      "Host": null,
       "Name": "localhost_SequenceServo1",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
@@ -245,45 +183,7 @@
       ]
     },
     {
-      "Host": {
-        "Name": "localhost",
-        "IPAddress": "127.0.0.1",
-        "Port": 5001,
-        "Enable": true,
-        "AdvancedServos": [
-          {
-            "Name": "AdvancedServo 1",
-            "SerialNumber": 99415,
-            "Open": true
-          }
-        ],
-        "InterfaceKits": [
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 1234,
-            "Open": true,
-            "Embedded": true
-          },
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 5678,
-            "Open": false,
-            "Embedded": false
-          }
-        ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
-      },
+      "Host": null,
       "Name": "localhost_SequenceServo2",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
@@ -367,45 +267,7 @@
       ]
     },
     {
-      "Host": {
-        "Name": "localhost",
-        "IPAddress": "127.0.0.1",
-        "Port": 5001,
-        "Enable": true,
-        "AdvancedServos": [
-          {
-            "Name": "AdvancedServo 1",
-            "SerialNumber": 99415,
-            "Open": true
-          }
-        ],
-        "InterfaceKits": [
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 1234,
-            "Open": true,
-            "Embedded": true
-          },
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 5678,
-            "Open": false,
-            "Embedded": false
-          }
-        ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
-      },
+      "Host": null,
       "Name": "localhost_SequenceServoFin",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
@@ -457,32 +319,8 @@
             "Open": true
           }
         ],
-        "InterfaceKits": [
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 1234,
-            "Open": true,
-            "Embedded": true
-          },
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 5678,
-            "Open": false,
-            "Embedded": false
-          }
-        ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
+        "InterfaceKits": null,
+        "Steppers": null
       },
       "Name": "psbc11_SequenceServo0",
       "Description": "SEQUENCE DESCRIPTION",
@@ -567,45 +405,7 @@
       ]
     },
     {
-      "Host": {
-        "Name": "localhost",
-        "IPAddress": "127.0.0.1",
-        "Port": 5001,
-        "Enable": true,
-        "AdvancedServos": [
-          {
-            "Name": "AdvancedServo 1",
-            "SerialNumber": 99415,
-            "Open": true
-          }
-        ],
-        "InterfaceKits": [
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 1234,
-            "Open": true,
-            "Embedded": true
-          },
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 5678,
-            "Open": false,
-            "Embedded": false
-          }
-        ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
-      },
+      "Host": null,
       "Name": "psbc11_SequenceServo1",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
@@ -689,45 +489,7 @@
       ]
     },
     {
-      "Host": {
-        "Name": "localhost",
-        "IPAddress": "127.0.0.1",
-        "Port": 5001,
-        "Enable": true,
-        "AdvancedServos": [
-          {
-            "Name": "AdvancedServo 1",
-            "SerialNumber": 99415,
-            "Open": true
-          }
-        ],
-        "InterfaceKits": [
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 1234,
-            "Open": true,
-            "Embedded": true
-          },
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 5678,
-            "Open": false,
-            "Embedded": false
-          }
-        ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
-      },
+      "Host": null,
       "Name": "psbc11_SequenceServo2",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
@@ -811,45 +573,7 @@
       ]
     },
     {
-      "Host": {
-        "Name": "localhost",
-        "IPAddress": "127.0.0.1",
-        "Port": 5001,
-        "Enable": true,
-        "AdvancedServos": [
-          {
-            "Name": "AdvancedServo 1",
-            "SerialNumber": 99415,
-            "Open": true
-          }
-        ],
-        "InterfaceKits": [
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 1234,
-            "Open": true,
-            "Embedded": true
-          },
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 5678,
-            "Open": false,
-            "Embedded": false
-          }
-        ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
-      },
+      "Host": null,
       "Name": "psbc11_SequenceServoFin",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
@@ -901,32 +625,8 @@
             "Open": true
           }
         ],
-        "InterfaceKits": [
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 1234,
-            "Open": true,
-            "Embedded": true
-          },
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 5678,
-            "Open": false,
-            "Embedded": false
-          }
-        ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
+        "InterfaceKits": null,
+        "Steppers": null
       },
       "Name": "psbc21_SequenceServo0",
       "Description": "SEQUENCE DESCRIPTION",
@@ -1011,45 +711,7 @@
       ]
     },
     {
-      "Host": {
-        "Name": "localhost",
-        "IPAddress": "127.0.0.1",
-        "Port": 5001,
-        "Enable": true,
-        "AdvancedServos": [
-          {
-            "Name": "AdvancedServo 1",
-            "SerialNumber": 99415,
-            "Open": true
-          }
-        ],
-        "InterfaceKits": [
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 1234,
-            "Open": true,
-            "Embedded": true
-          },
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 5678,
-            "Open": false,
-            "Embedded": false
-          }
-        ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
-      },
+      "Host": null,
       "Name": "psbc21_SequenceServo1",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
@@ -1133,45 +795,7 @@
       ]
     },
     {
-      "Host": {
-        "Name": "localhost",
-        "IPAddress": "127.0.0.1",
-        "Port": 5001,
-        "Enable": true,
-        "AdvancedServos": [
-          {
-            "Name": "AdvancedServo 1",
-            "SerialNumber": 99415,
-            "Open": true
-          }
-        ],
-        "InterfaceKits": [
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 1234,
-            "Open": true,
-            "Embedded": true
-          },
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 5678,
-            "Open": false,
-            "Embedded": false
-          }
-        ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
-      },
+      "Host": null,
       "Name": "psbc21_SequenceServo2",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
@@ -1267,32 +891,8 @@
             "Open": true
           }
         ],
-        "InterfaceKits": [
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 1234,
-            "Open": true,
-            "Embedded": true
-          },
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 5678,
-            "Open": false,
-            "Embedded": false
-          }
-        ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
+        "InterfaceKits": null,
+        "Steppers": null
       },
       "Name": "psbc21_SequenceServo0P Configure and Engage",
       "Description": "SEQUENCE DESCRIPTION",
@@ -1337,45 +937,7 @@
       ]
     },
     {
-      "Host": {
-        "Name": "localhost",
-        "IPAddress": "127.0.0.1",
-        "Port": 5001,
-        "Enable": true,
-        "AdvancedServos": [
-          {
-            "Name": "AdvancedServo 1",
-            "SerialNumber": 99415,
-            "Open": true
-          }
-        ],
-        "InterfaceKits": [
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 1234,
-            "Open": true,
-            "Embedded": true
-          },
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 5678,
-            "Open": false,
-            "Embedded": false
-          }
-        ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
-      },
+      "Host": null,
       "Name": "psbc21_SequenceServo1P",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
@@ -1419,45 +981,7 @@
       ]
     },
     {
-      "Host": {
-        "Name": "localhost",
-        "IPAddress": "127.0.0.1",
-        "Port": 5001,
-        "Enable": true,
-        "AdvancedServos": [
-          {
-            "Name": "AdvancedServo 1",
-            "SerialNumber": 99415,
-            "Open": true
-          }
-        ],
-        "InterfaceKits": [
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 1234,
-            "Open": true,
-            "Embedded": true
-          },
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 5678,
-            "Open": false,
-            "Embedded": false
-          }
-        ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
-      },
+      "Host": null,
       "Name": "psbc21_SequenceServo2P",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
@@ -1501,45 +1025,7 @@
       ]
     },
     {
-      "Host": {
-        "Name": "localhost",
-        "IPAddress": "127.0.0.1",
-        "Port": 5001,
-        "Enable": true,
-        "AdvancedServos": [
-          {
-            "Name": "AdvancedServo 1",
-            "SerialNumber": 99415,
-            "Open": true
-          }
-        ],
-        "InterfaceKits": [
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 1234,
-            "Open": true,
-            "Embedded": true
-          },
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 5678,
-            "Open": false,
-            "Embedded": false
-          }
-        ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
-      },
+      "Host": null,
       "Name": "psbc21_SequenceServo3P",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
@@ -1583,45 +1069,7 @@
       ]
     },
     {
-      "Host": {
-        "Name": "localhost",
-        "IPAddress": "127.0.0.1",
-        "Port": 5001,
-        "Enable": true,
-        "AdvancedServos": [
-          {
-            "Name": "AdvancedServo 1",
-            "SerialNumber": 99415,
-            "Open": true
-          }
-        ],
-        "InterfaceKits": [
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 1234,
-            "Open": true,
-            "Embedded": true
-          },
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 5678,
-            "Open": false,
-            "Embedded": false
-          }
-        ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
-      },
+      "Host": null,
       "Name": "psbc21_SequenceServo4P",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
@@ -1665,45 +1113,7 @@
       ]
     },
     {
-      "Host": {
-        "Name": "localhost",
-        "IPAddress": "127.0.0.1",
-        "Port": 5001,
-        "Enable": true,
-        "AdvancedServos": [
-          {
-            "Name": "AdvancedServo 1",
-            "SerialNumber": 99415,
-            "Open": true
-          }
-        ],
-        "InterfaceKits": [
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 1234,
-            "Open": true,
-            "Embedded": true
-          },
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 5678,
-            "Open": false,
-            "Embedded": false
-          }
-        ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
-      },
+      "Host": null,
       "Name": "psbc21_SequenceServo5P",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
@@ -1747,45 +1157,7 @@
       ]
     },
     {
-      "Host": {
-        "Name": "localhost",
-        "IPAddress": "127.0.0.1",
-        "Port": 5001,
-        "Enable": true,
-        "AdvancedServos": [
-          {
-            "Name": "AdvancedServo 1",
-            "SerialNumber": 99415,
-            "Open": true
-          }
-        ],
-        "InterfaceKits": [
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 1234,
-            "Open": true,
-            "Embedded": true
-          },
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 5678,
-            "Open": false,
-            "Embedded": false
-          }
-        ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
-      },
+      "Host": null,
       "Name": "psbc21_SequenceServoFin",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
@@ -1837,32 +1209,8 @@
             "Open": true
           }
         ],
-        "InterfaceKits": [
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 1234,
-            "Open": true,
-            "Embedded": true
-          },
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 5678,
-            "Open": false,
-            "Embedded": false
-          }
-        ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
+        "InterfaceKits": null,
+        "Steppers": null
       },
       "Name": "psbc22_SequenceServo0",
       "Description": "SEQUENCE DESCRIPTION",
@@ -1947,45 +1295,7 @@
       ]
     },
     {
-      "Host": {
-        "Name": "localhost",
-        "IPAddress": "127.0.0.1",
-        "Port": 5001,
-        "Enable": true,
-        "AdvancedServos": [
-          {
-            "Name": "AdvancedServo 1",
-            "SerialNumber": 99415,
-            "Open": true
-          }
-        ],
-        "InterfaceKits": [
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 1234,
-            "Open": true,
-            "Embedded": true
-          },
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 5678,
-            "Open": false,
-            "Embedded": false
-          }
-        ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
-      },
+      "Host": null,
       "Name": "psbc22_SequenceServo1",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
@@ -2069,45 +1379,7 @@
       ]
     },
     {
-      "Host": {
-        "Name": "localhost",
-        "IPAddress": "127.0.0.1",
-        "Port": 5001,
-        "Enable": true,
-        "AdvancedServos": [
-          {
-            "Name": "AdvancedServo 1",
-            "SerialNumber": 99415,
-            "Open": true
-          }
-        ],
-        "InterfaceKits": [
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 1234,
-            "Open": true,
-            "Embedded": true
-          },
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 5678,
-            "Open": false,
-            "Embedded": false
-          }
-        ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
-      },
+      "Host": null,
       "Name": "psbc22_SequenceServo2",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
@@ -2191,45 +1463,7 @@
       ]
     },
     {
-      "Host": {
-        "Name": "localhost",
-        "IPAddress": "127.0.0.1",
-        "Port": 5001,
-        "Enable": true,
-        "AdvancedServos": [
-          {
-            "Name": "AdvancedServo 1",
-            "SerialNumber": 99415,
-            "Open": true
-          }
-        ],
-        "InterfaceKits": [
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 1234,
-            "Open": true,
-            "Embedded": true
-          },
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 5678,
-            "Open": false,
-            "Embedded": false
-          }
-        ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
-      },
+      "Host": null,
       "Name": "psbc22_SequenceServoFin",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
@@ -2281,32 +1515,8 @@
             "Open": true
           }
         ],
-        "InterfaceKits": [
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 1234,
-            "Open": true,
-            "Embedded": true
-          },
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 5678,
-            "Open": false,
-            "Embedded": false
-          }
-        ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
+        "InterfaceKits": null,
+        "Steppers": null
       },
       "Name": "psbc23_SequenceServo0",
       "Description": "SEQUENCE DESCRIPTION",
@@ -2391,45 +1601,7 @@
       ]
     },
     {
-      "Host": {
-        "Name": "localhost",
-        "IPAddress": "127.0.0.1",
-        "Port": 5001,
-        "Enable": true,
-        "AdvancedServos": [
-          {
-            "Name": "AdvancedServo 1",
-            "SerialNumber": 99415,
-            "Open": true
-          }
-        ],
-        "InterfaceKits": [
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 1234,
-            "Open": true,
-            "Embedded": true
-          },
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 5678,
-            "Open": false,
-            "Embedded": false
-          }
-        ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
-      },
+      "Host": null,
       "Name": "psbc23_SequenceServo1",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
@@ -2513,45 +1685,7 @@
       ]
     },
     {
-      "Host": {
-        "Name": "localhost",
-        "IPAddress": "127.0.0.1",
-        "Port": 5001,
-        "Enable": true,
-        "AdvancedServos": [
-          {
-            "Name": "AdvancedServo 1",
-            "SerialNumber": 99415,
-            "Open": true
-          }
-        ],
-        "InterfaceKits": [
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 1234,
-            "Open": true,
-            "Embedded": true
-          },
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 5678,
-            "Open": false,
-            "Embedded": false
-          }
-        ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
-      },
+      "Host": null,
       "Name": "psbc23_SequenceServo2",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
@@ -2635,45 +1769,7 @@
       ]
     },
     {
-      "Host": {
-        "Name": "localhost",
-        "IPAddress": "127.0.0.1",
-        "Port": 5001,
-        "Enable": true,
-        "AdvancedServos": [
-          {
-            "Name": "AdvancedServo 1",
-            "SerialNumber": 99415,
-            "Open": true
-          }
-        ],
-        "InterfaceKits": [
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 1234,
-            "Open": true,
-            "Embedded": true
-          },
-          {
-            "Name": "INTERFACEKIT NAME",
-            "SerialNumber": 5678,
-            "Open": false,
-            "Embedded": false
-          }
-        ],
-        "Steppers": [
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 1234,
-            "Open": true
-          },
-          {
-            "Name": "STEPPER NAME",
-            "SerialNumber": 5678,
-            "Open": false
-          }
-        ]
-      },
+      "Host": null,
       "Name": "psbc23_SequenceServoFin",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,

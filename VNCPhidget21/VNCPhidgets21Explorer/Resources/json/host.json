@@ -1,44 +1,9 @@
 {
   "Name": "HOST NAME",
-  "IPAddress": "192.168.150.1",
+  "IPAddress": "127.0.0.1",
   "Port": 5001,
   "Enable": true,
-  "AdvancedServos": [
-    {
-      "Name": "ADVANCEDSERVO NAME",
-      "SerialNumber": 1234,
-      "Open": true
-    },
-    {
-      "Name": "ADVANCEDSERVO NAME",
-      "SerialNumber": 5678,
-      "Open": false
-    }
-  ],
-  "InterfaceKits": [
-    {
-      "Name": "INTERFACEKIT NAME",
-      "SerialNumber": 1234,
-      "Open": true,
-      "Embedded": true
-    },
-    {
-      "Name": "INTERFACEKIT NAME",
-      "SerialNumber": 5678,
-      "Open": false,
-      "Embedded": false
-    }
-  ],
-  "Steppers": [
-    {
-      "Name": "STEPPER NAME",
-      "SerialNumber": 1234,
-      "Open": true
-    },
-    {
-      "Name": "STEPPER NAME",
-      "SerialNumber": 5678,
-      "Open": false
-    }
-  ]
+  "AdvancedServos": null,
+  "InterfaceKits": null,
+  "Steppers": null
 }

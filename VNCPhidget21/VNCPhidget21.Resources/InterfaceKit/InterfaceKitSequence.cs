@@ -5,17 +5,7 @@ namespace VNCPhidgets21Explorer.Resources
 
     public class InterfaceKitSequence
     {
-        public Host Host { get; set; }
-            = new Host
-            {
-                Name = "localhost",
-                IPAddress = "127.0.0.1",
-                Port = 5001,
-                InterfaceKits = new[]
-                {
-                    new InterfaceKit { Name = "InterfaceKit 1", SerialNumber = 124744, Embedded = false, Open = true }
-                },
-            };
+        public Host? Host { get; set; }
 
         /// <summary>
         /// Name of sequence

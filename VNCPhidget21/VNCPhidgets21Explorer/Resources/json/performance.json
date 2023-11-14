@@ -3,6 +3,6 @@
   "Description": "PERFORMANCE DESCRIPTION",
   "Loops": 1,
   "PlayInParallel": false,
-  "NextPerformance": null,
-  "PerformanceSequences": null
+  "PerformanceSequences": null,
+  "NextPerformance": null
 }

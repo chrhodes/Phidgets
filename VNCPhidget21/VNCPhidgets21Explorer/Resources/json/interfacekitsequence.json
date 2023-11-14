@@ -1,77 +1,9 @@
 {
-  "Host": {
-    "Name": "localhost",
-    "IPAddress": "127.0.0.1",
-    "Port": 5001,
-    "Enable": true,
-    "AdvancedServos": [
-      {
-        "Name": "ADVANCEDSERVO NAME",
-        "SerialNumber": 1234,
-        "Open": true
-      },
-      {
-        "Name": "ADVANCEDSERVO NAME",
-        "SerialNumber": 5678,
-        "Open": false
-      }
-    ],
-    "InterfaceKits": [
-      {
-        "Name": "InterfaceKit 1",
-        "SerialNumber": 124744,
-        "Open": true,
-        "Embedded": false
-      }
-    ],
-    "Steppers": [
-      {
-        "Name": "STEPPER NAME",
-        "SerialNumber": 1234,
-        "Open": true
-      },
-      {
-        "Name": "STEPPER NAME",
-        "SerialNumber": 5678,
-        "Open": false
-      }
-    ]
-  },
+  "Host": null,
   "Name": "SEQUENCE NAME",
   "Description": "SEQUENCE DESCRIPTION",
   "Loops": 1,
   "PlayActionsInParallel": false,
   "NextSequence": null,
-  "InterfaceKitActions": [
-    {
-      "DigitalOutIndex": 0,
-      "DigitalOut": true,
-      "Duration": 500
-    },
-    {
-      "DigitalOutIndex": 0,
-      "DigitalOut": false,
-      "Duration": 500
-    },
-    {
-      "DigitalOutIndex": 1,
-      "DigitalOut": true,
-      "Duration": 500
-    },
-    {
-      "DigitalOutIndex": 1,
-      "DigitalOut": false,
-      "Duration": 500
-    },
-    {
-      "DigitalOutIndex": 2,
-      "DigitalOut": true,
-      "Duration": 500
-    },
-    {
-      "DigitalOutIndex": 2,
-      "DigitalOut": false,
-      "Duration": 500
-    }
-  ]
+  "InterfaceKitActions": null
 }

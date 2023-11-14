@@ -20,18 +20,7 @@
           "Embedded": false
         }
       ],
-      "Steppers": [
-        {
-          "Name": "STEPPER NAME",
-          "SerialNumber": 1234,
-          "Open": true
-        },
-        {
-          "Name": "STEPPER NAME",
-          "SerialNumber": 5678,
-          "Open": false
-        }
-      ]
+      "Steppers": null
     },
     {
       "Name": "psbc11",
@@ -53,18 +42,7 @@
           "Embedded": true
         }
       ],
-      "Steppers": [
-        {
-          "Name": "STEPPER NAME",
-          "SerialNumber": 1234,
-          "Open": true
-        },
-        {
-          "Name": "STEPPER NAME",
-          "SerialNumber": 5678,
-          "Open": false
-        }
-      ]
+      "Steppers": null
     },
     {
       "Name": "psbc21",
@@ -86,18 +64,7 @@
           "Embedded": true
         }
       ],
-      "Steppers": [
-        {
-          "Name": "STEPPER NAME",
-          "SerialNumber": 1234,
-          "Open": true
-        },
-        {
-          "Name": "STEPPER NAME",
-          "SerialNumber": 5678,
-          "Open": false
-        }
-      ]
+      "Steppers": null
     },
     {
       "Name": "psbc22",
@@ -119,18 +86,7 @@
           "Embedded": true
         }
       ],
-      "Steppers": [
-        {
-          "Name": "STEPPER NAME",
-          "SerialNumber": 1234,
-          "Open": true
-        },
-        {
-          "Name": "STEPPER NAME",
-          "SerialNumber": 5678,
-          "Open": false
-        }
-      ]
+      "Steppers": null
     },
     {
       "Name": "psbc23",
@@ -152,18 +108,7 @@
           "Embedded": true
         }
       ],
-      "Steppers": [
-        {
-          "Name": "STEPPER NAME",
-          "SerialNumber": 1234,
-          "Open": true
-        },
-        {
-          "Name": "STEPPER NAME",
-          "SerialNumber": 5678,
-          "Open": false
-        }
-      ]
+      "Steppers": null
     }
   ],
   "Sensors": [
