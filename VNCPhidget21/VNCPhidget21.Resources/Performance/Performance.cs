@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace VNCPhidgets21Explorer.Resources
+﻿namespace VNCPhidgets21Explorer.Resources
 {
     public class Performance
     {
@@ -20,16 +18,16 @@ namespace VNCPhidgets21Explorer.Resources
         public Int32 Loops { get; set; } = 1;
 
         /// <summary>
-        /// Play PerformanceSequence[] in Parallel or Sequential (false)
+        /// Play PerformanceSequences in Parallel or Sequential (false)
         /// </summary>
         public Boolean PlayInParallel { get; set; } = false;
 
+        public PerformanceSequence[] PerformanceSequences { get; set; }
+
         /// <summary>
-        /// Name of performanceSequence to invoke at end of performanceSequence (optional)
+        /// Performance to invoke at end of Loops of PerformanceSequences (optional)
         /// none or null to stop
         /// </summary>
         public Performance? NextPerformance { get; set; }
-
-        public PerformanceSequence[] PerformanceSequences { get; set; }
     }
 }

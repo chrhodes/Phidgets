@@ -181,13 +181,19 @@
                             <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.Loops }" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="PlayInParallel" HorizontalAlignment="Left" Background="Wheat" >
-                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.PlayInParallel }" />
+                        <dxlc:LayoutItem Label="PlayActionsInParallel" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.PlayActionsInParallel }" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="ContinueWith" HorizontalAlignment="Left" Background="Wheat" >
-                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.ContinueWith }" />
+                        <dxlc:LayoutItem Label="NextSequence" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.NextSequence.Name }" />
                         </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="NextSequence Type" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.NextSequence.SequenceType }" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="NextSequence Loops" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.NextSequence.Loops }" />
+                        </dxlc:LayoutItem>                        
 
                     </dxlc:LayoutGroup>
 
@@ -277,12 +283,18 @@
                             <dxe:TextEdit Text="{Binding SelectedInterfaceKitSequence.Loops }" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="PlayInParallel" HorizontalAlignment="Left" Background="Wheat" >
-                            <dxe:TextEdit Text="{Binding SelectedInterfaceKitSequence.PlayInParallel }" />
+                        <dxlc:LayoutItem Label="PlayActionsInParallel" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedInterfaceKitSequence.PlayActionsInParallel }" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="ContinueWith" HorizontalAlignment="Left" Background="Wheat" >
-                            <dxe:TextEdit Text="{Binding SelectedInterfaceKitSequence.ContinueWith }" />
+                        <dxlc:LayoutItem Label="NextSequence" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedInterfaceKitSequence.NextSequence.Name }" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="NextSequence Type" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedInterfaceKitSequence.NextSequence.SequenceType }" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="NextSequence Loops" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedInterfaceKitSequence.NextSequence.Loops }" />
                         </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>
