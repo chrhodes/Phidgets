@@ -41,7 +41,7 @@
             new Performance
             {
                 Name = "AS and IK",
-                Description = "",
+                Description = "psbc21_{SequenceServo0,SequenceIK 1} in Sequence",
 
                 PerformanceSequences = new[]
                 {
@@ -51,8 +51,8 @@
             },
             new Performance
             {
-                Name = "AS and IK",
-                Description = "",
+                Name = "AS and IK Parallel",
+                Description = "psbc21_{SequenceServo0,SequenceIK 1} in Parallel",
                 PlayInParallel = true,
 
                 PerformanceSequences = new[]

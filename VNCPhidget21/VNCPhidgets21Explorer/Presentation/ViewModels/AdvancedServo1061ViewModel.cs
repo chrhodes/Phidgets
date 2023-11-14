@@ -5043,7 +5043,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                         // NOTE(crhodes)
                         // Should be safe to get Acceleration, Velocity, and Position here
-                        // Device is Engaged
+                        // if Device is Engaged, otherwise set to null
 
                         switch (i)
                         {
@@ -5060,7 +5060,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                                 Current_S0 = servo.Current;
 
                                 AccelerationMin_S0 = servo.AccelerationMin;
-                                Acceleration_S0 = servo.Acceleration;
+                                Acceleration_S0 = servo.Engaged ? servo.Acceleration : null;
                                 AccelerationMax_S0 = servo.AccelerationMax;
 
                                 VelocityMin_S0 = servo.VelocityMin;
@@ -5069,7 +5069,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                                 VelocityMax_S0 = servo.VelocityMax;
 
                                 PositionMin_S0 = servo.PositionMin;
-                                Position_S0 = servo.Position;
+                                Position_S0 = servo.Engaged ? servo.Position : null;                                 
                                 PositionMax_S0 = servo.PositionMax;
 
                                 break;
@@ -5087,7 +5087,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                                 Current_S1 = servo.Current;
 
                                 AccelerationMin_S1 = servo.AccelerationMin;
-                                Acceleration_S1 = servo.Acceleration;
+                                Acceleration_S1 = servo.Engaged ? servo.Acceleration : null;
                                 AccelerationMax_S1 = servo.AccelerationMax;
 
                                 VelocityMin_S1 = servo.VelocityMin;
@@ -5096,7 +5096,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                                 VelocityMax_S1 = servo.VelocityMax;
 
                                 PositionMin_S1 = servo.PositionMin;
-                                Position_S1 = servo.Position;
+                                Position_S1 = servo.Engaged ? servo.Position : null;
                                 PositionMax_S1 = servo.PositionMax;
 
                                 break;
@@ -5114,7 +5114,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                                 Current_S2 = servo.Current;
 
                                 AccelerationMin_S2 = servo.AccelerationMin;
-                                Acceleration_S2 = servo.Acceleration;
+                                Acceleration_S2 = servo.Engaged ? servo.Acceleration : null;
                                 AccelerationMax_S2 = servo.AccelerationMax;
 
                                 VelocityMin_S2 = servo.VelocityMin;
@@ -5123,7 +5123,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                                 VelocityMax_S2 = servo.VelocityMax;
 
                                 PositionMin_S2 = servo.PositionMin;
-                                Position_S2 = servo.Position;
+                                Position_S2 = servo.Engaged ? servo.Position : null;
                                 PositionMax_S2 = servo.PositionMax;
 
                                 break;
@@ -5141,7 +5141,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                                 Current_S3 = servo.Current;
 
                                 AccelerationMin_S3 = servo.AccelerationMin;
-                                Acceleration_S3 = servo.Acceleration;
+                                Acceleration_S3 = servo.Engaged ? servo.Acceleration : null;
                                 AccelerationMax_S3 = servo.AccelerationMax;
 
                                 VelocityMin_S3 = servo.VelocityMin;
@@ -5150,7 +5150,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                                 VelocityMax_S3 = servo.VelocityMax;
 
                                 PositionMin_S3 = servo.PositionMin;
-                                Position_S3 = servo.Position;
+                                Position_S3 = servo.Engaged ? servo.Position : null;
                                 PositionMax_S3 = servo.PositionMax;
 
                                 break;
@@ -5168,7 +5168,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                                 Current_S4 = servo.Current;
 
                                 AccelerationMin_S4 = servo.AccelerationMin;
-                                Acceleration_S4 = servo.Acceleration;
+                                Acceleration_S4 = servo.Engaged ? servo.Acceleration : null;
                                 AccelerationMax_S4 = servo.AccelerationMax;
 
                                 VelocityMin_S4 = servo.VelocityMin;
@@ -5177,7 +5177,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                                 VelocityMax_S4 = servo.VelocityMax;
 
                                 PositionMin_S4 = servo.PositionMin;
-                                Position_S4 = servo.Position;
+                                Position_S4 = servo.Engaged ? servo.Position : null;
                                 PositionMax_S4 = servo.PositionMax;
 
                                 break;
@@ -5195,7 +5195,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                                 Current_S5 = servo.Current;
 
                                 AccelerationMin_S5 = servo.AccelerationMin;
-                                Acceleration_S5 = servo.Acceleration;
+                                Acceleration_S5 = servo.Engaged ? servo.Acceleration : null;
                                 AccelerationMax_S5 = servo.AccelerationMax;
 
                                 VelocityMin_S5 = servo.VelocityMin;
@@ -5204,7 +5204,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                                 VelocityMax_S5 = servo.VelocityMax;
 
                                 PositionMin_S5 = servo.PositionMin;
-                                Position_S5 = servo.Position;
+                                Position_S5 = servo.Engaged ? servo.Position : null;
                                 PositionMax_S5 = servo.PositionMax;
 
                                 break;
@@ -5222,7 +5222,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                                 Current_S6 = servo.Current;
 
                                 AccelerationMin_S6 = servo.AccelerationMin;
-                                Acceleration_S6 = servo.Acceleration;
+                                Acceleration_S6 = servo.Engaged ? servo.Acceleration : null;
                                 AccelerationMax_S6 = servo.AccelerationMax;
 
                                 VelocityMin_S6 = servo.VelocityMin;
@@ -5231,7 +5231,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                                 VelocityMax_S6 = servo.VelocityMax;
 
                                 PositionMin_S6 = servo.PositionMin;
-                                Position_S6 = servo.Position;
+                                Position_S6 = servo.Engaged ? servo.Position : null;
                                 PositionMax_S6 = servo.PositionMax;
 
                                 break;
@@ -5249,7 +5249,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                                 Current_S7 = servo.Current;
 
                                 AccelerationMin_S7 = servo.AccelerationMin;
-                                Acceleration_S7 = servo.Acceleration;
+                                Acceleration_S7 = servo.Engaged ? servo.Acceleration : null;
                                 AccelerationMax_S7 = servo.AccelerationMax;
 
                                 VelocityMin_S7 = servo.VelocityMin;
@@ -5258,7 +5258,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                                 VelocityMax_S7 = servo.VelocityMax;
 
                                 PositionMin_S7 = servo.PositionMin;
-                                Position_S7 = servo.Position;
+                                Position_S7 = servo.Engaged ? servo.Position : null;
                                 PositionMax_S7 = servo.PositionMax;
 
                                 break;

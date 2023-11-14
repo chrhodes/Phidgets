@@ -47,7 +47,7 @@
     },
     {
       "Name": "AS and IK",
-      "Description": "",
+      "Description": "psbc21_{SequenceServo0,SequenceIK 1} in Sequence",
       "Loops": 1,
       "PlayInParallel": false,
       "PerformanceSequences": [
@@ -65,8 +65,8 @@
       "NextPerformance": null
     },
     {
-      "Name": "AS and IK",
-      "Description": "",
+      "Name": "AS and IK Parallel",
+      "Description": "psbc21_{SequenceServo0,SequenceIK 1} in Parallel",
       "Loops": 1,
       "PlayInParallel": true,
       "PerformanceSequences": [

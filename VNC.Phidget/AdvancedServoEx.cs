@@ -264,7 +264,7 @@ namespace VNC.Phidget
             {
                 startTicks = Log.Trace($"Enter servo:{index} engaged:{action.Engaged}"
                     + $" acceleration:{action.Acceleration} velocityLimit:{action.VelocityLimit}"
-                    + $" postionMax:{action.PositionMax} positionMin:{action.PositionMin} targetAction:{action.TargetPosition}"
+                    + $" postionMax:{action.PositionMax} positionMin:{action.PositionMin} targetPosition:{action.TargetPosition}"
                     + $" duration:{action.Duration}", Common.LOG_CATEGORY);
             }
             

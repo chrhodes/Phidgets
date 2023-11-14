@@ -707,10 +707,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
         private async void PlayPerformanceSequencesInParallel(PerformanceSequence[] performanceSequences)
         {
-            // TODO(crhodes)
-            // Figure out what this should do
+            Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
 
-            Parallel.ForEach(performanceSequences, sequence =>
+            Parallel.ForEach(performanceSequences, async sequence =>
             {
                 if (LogPerformanceStep)
                 {
@@ -719,18 +718,22 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 try
                 {
-
+                    await ExecutePerformanceSequence(sequence);
                 }
                 catch (Exception ex)
                 {
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
             });
+
+            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private async void PlayPerformanceSequencesInSequence(PerformanceSequence[] performanceSequences)
         {
-            foreach (Resources.PerformanceSequence sequence in performanceSequences)
+            Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
+
+            foreach (PerformanceSequence sequence in performanceSequences)
             {
                 if (LogPerformanceStep)
                 {
@@ -739,121 +742,15 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 try
                 {
-                    //    string name = "";
-                    //    PerformanceSequence? nextSequence = sequence;
-
-                    //    do
-                    //    {
-                    //        Log.Trace($"  Playing Sequence:{nextSequence.Name} NextSequence:{nextSequence?.Name}", Common.LOG_CATEGORY);
-
-                    //        switch (nextSequence.SequenceType)
-                    //        {
-                    //            case "AS":
-                    //                var advancedServoSequence = AvailableAdvancedServoSequences[nextSequence.Name];
-                    //                var advancedServoHost = advancedServoSequence.Host;
-                    //                string? asContinueWith = "";
-
-                    //                // TODO(crhodes)
-                    //                // Think about Open/Close.  Do we do it heare or inside Loops
-
-                    //                var advancedServo = OpenAdvancedServoHost(advancedServoHost);
-                    //                AdvancedServoSequence asNextSequence = advancedServoSequence;
-
-                    //                do
-                    //                {
-                    //                    name = nextSequence.Name;
-                    //                    asContinueWith = advancedServoSequence.ContinueWith;
-                    //                    Log.Trace($"  Playing sequence:{name} NextSequence:{advancedServoSequence.ContinueWith?.Name}", Common.LOG_CATEGORY);
-
-                    //                    await advancedServo.PlayAdvancedServoSequenceLoops(advancedServo, asNextSequence);
-
-                    //                    // NOTE(crhodes)
-                    //                    // If there is a NextSequence, figure out how to play it
-
-                    //                    asNextSequence.NextSequence.Name;
-
-                    //                    if (AvailableAdvancedServoSequences.ContainsKey(asNextSequence.NextSequence.Name ?? ""))
-                    //                    {
-                    //                        nextSequence = AvailableAdvancedServoSequences[asNextSequence.NextSequence.Name].NextSequence;
-                    //                    }
-                    //                    else
-                    //                    {
-                    //                        nextSequence = null;
-                    //                    }
-
-                    //                } while (!string.IsNullOrEmpty(asContinueWith));
-
-                    //                // TODO(crhodes)
-                    //                // Think about Open/Close.  Do we do it heare or inside Loops
-
-                    //                advancedServo.Close();
-
-                    //                break;
-
-                    //            case "IK":
-                    //                var interfaceKitSequence = AvailableInterfaceKitSequences[nextSequence.Name];
-                    //                var ikHost = interfaceKitSequence.Host;
-                    //                string? ikContinueWith = "";
-
-                    //                // TODO(crhodes)
-                    //                // Think about Open/Close.  Do we do it heare or inside Loops
-
-                    //                var interfaceKit = OpenInterfaceKitHost(ikHost);
-                    //                InterfaceKitSequence ikNextSequence = interfaceKitSequence;
-
-                    //                do
-                    //                {
-                    //                    name = ikNextSequence.Name;
-                    //                    ikContinueWith = ikNextSequence.ContinueWith;
-                    //                    Log.Trace($"  Playing sequence:{name} NextPerformance:{nextSequence.NextPerformance?.Name}", Common.LOG_CATEGORY);
-
-                    //                    await PlayInterfaceKitSequenceLoops(interfaceKit, ikNextSequence);
-
-                    //                    if (AvailableInterfaceKitSequences.ContainsKey(ikContinueWith ?? ""))
-                    //                    {
-                    //                        ikNextSequence = AvailableInterfaceKitSequences[ikContinueWith];
-                    //                    }
-                    //                    else
-                    //                    {
-                    //                        ikContinueWith = "";
-                    //                    }
-
-                    //                } while (!string.IsNullOrEmpty(ikContinueWith));
-
-                    //                // TODO(crhodes)
-                    //                // Think about Open/Close.  Do we do it heare or inside Loops
-
-                    //                interfaceKit.Close();
-                    //                break;
-
-                    //            case "ST":
-
-                    //                break;
-
-                    //            default:
-                    //                Log.Trace($"Unexpected SequenceType:{nextPerformance.SequenceType}", Common.LOG_CATEGORY);
-                    //                break;
-                    //        }
-
-                    //        nextPerformance = nextPerformance.NextPerformance;
-                    //        //await PlayPerformanceLoops(nextPerformance);
-
-                    //        //if (AvailableAdvancedServoPerformances.ContainsKey(continueWith.Name ?? ""))
-                    //        //{
-                    //        //    nextPerformance = AvailableAdvancedServoPerformances[continueWith];
-                    //        //}
-                    //        //else
-                    //        //{
-                    //        //    continueWith = "";
-                    //        //}
-
-                    //    } while (nextPerformance is not null);
+                    ExecutePerformanceSequence(sequence);
                 }
                 catch (Exception ex)
                 {
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
             }
+
+            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         //private void PerformServoAction(AdvancedServoServo servo, AdvancedServoServoAction action, Int32 index)
@@ -1014,6 +911,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             if (advancedServoSequence.Host is not null)
                             {
                                 var advancedServoHost = OpenAdvancedServoHost(advancedServoSequence.Host);
+                                advancedServoHost.LogPerformanceStep = LogPerformanceStep;
 
                                 //nextPerformanceSequence = await advancedServo.PlayAdvancedServoSequenceLoops(advancedServoSequence);
                                 await advancedServoHost.PlaySequenceLoops(advancedServoSequence);
@@ -1060,6 +958,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             if (interfaceKitSequence.Host is not null)
                             {
                                 var interfaceKitHost = OpenInterfaceKitHost(interfaceKitSequence.Host);
+                                interfaceKitHost.LogPerformanceStep = LogPerformanceStep;
 
                                 //nextPerformanceSequence = await advancedServo.PlayAdvancedServoSequenceLoops(advancedServoSequence);
                                 await interfaceKitHost.PlaySequenceLoops(interfaceKitSequence);
@@ -1246,169 +1145,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             return interfaceKit;
         }
-
-        //private async Task PlayInterfaceKitSequenceLoops(InterfaceKitEx interfaceKit, Resources.InterfaceKitSequence interfaceKitSequence)
-        //{
-        //    Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
-
-        //    for (int i = 0; i < interfaceKitSequence.Loops; i++)
-        //    {
-        //        Log.Trace($"Loop:{i + 1}", Common.LOG_CATEGORY);
-
-        //        if (interfaceKitSequence.PlayActionsInParallel)
-        //        {
-        //            PlayInterfaceKitSequenceActionsInParallel(interfaceKit, interfaceKitSequence);
-        //        }
-        //        else
-        //        {
-        //            PlayInterfaceKitSequenceActionsInSequence(interfaceKit, interfaceKitSequence);
-        //        }
-        //    }
-
-        //    Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
-        //}
-
-        //private async void PlayInterfaceKitSequenceActionsInParallel(InterfaceKitEx interfaceKit, Resources.InterfaceKitSequence interfaceKitSequence)
-        //{
-        //    Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
-
-        //    // TODO(crhodes)
-        //    // Maybe just pass the interfaceKit into Action and get this there
-
-        //    InterfaceKitDigitalOutputCollection ifkDigitalOutputs = interfaceKit.InterfaceKit.outputs;
-
-        //    Parallel.ForEach(interfaceKitSequence.InterfaceKitActions, action =>
-        //    {
-        //        if (LogPerformanceStep)
-        //        {
-        //            Log.Trace($"DigitalOut Index:{action.DigitalOutIndex} DigitalOut:{action.DigitalOut} Duration:{action.Duration}", Common.LOG_CATEGORY);
-        //        }
-
-        //        try
-        //        {
-        //            switch (action.DigitalOutIndex)
-        //            {
-        //                case 0:
-        //                    PerformInterfaceKitAction(ifkDigitalOutputs, action, 0);
-        //                    break;
-
-        //                case 1:
-        //                    PerformInterfaceKitAction(ifkDigitalOutputs, action, 1);
-        //                    break;
-
-        //                case 2:
-        //                    PerformInterfaceKitAction(ifkDigitalOutputs, action, 2);
-        //                    break;
-
-        //                case 3:
-        //                    PerformInterfaceKitAction(ifkDigitalOutputs, action, 30);
-        //                    break;
-
-        //                case 4:
-        //                    PerformInterfaceKitAction(ifkDigitalOutputs, action, 4);
-        //                    break;
-
-        //                case 5:
-        //                    PerformInterfaceKitAction(ifkDigitalOutputs, action, 50);
-        //                    break;
-
-        //                case 6:
-        //                    PerformInterfaceKitAction(ifkDigitalOutputs, action, 60);
-        //                    break;
-
-        //                case 7:
-        //                    PerformInterfaceKitAction(ifkDigitalOutputs, action, 7);
-        //                    break;
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Log.Error(ex, Common.LOG_CATEGORY);
-        //        }
-        //    });
-
-        //    Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
-        //}
-
-        //private void PlayInterfaceKitSequenceActionsInSequence(InterfaceKitEx interfaceKit, Resources.InterfaceKitSequence interfaceKitSequence)
-        //{
-        //    Int64 startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
-
-        //    // TODO(crhodes)
-        //    // Maybe just pass the interfaceKit into Action and get this there
-
-        //    InterfaceKitDigitalOutputCollection ifkDigitalOutputs = interfaceKit.InterfaceKit.outputs;
-
-        //    foreach (Resources.InterfaceKitAction action in interfaceKitSequence.InterfaceKitActions)
-        //    {
-        //        if (LogPerformanceStep)
-        //        {
-        //            Log.Trace($"DigitalOut Index:{action.DigitalOutIndex} DigitalOut:{action.DigitalOut} Duration:{action.Duration}", Common.LOG_CATEGORY);
-        //        }
-
-        //        try
-        //        {
-        //            switch (action.DigitalOutIndex)
-        //            {
-        //                case 0:
-        //                    PerformInterfaceKitAction(ifkDigitalOutputs, action, 0);
-        //                    break;
-
-        //                case 1:
-        //                    PerformInterfaceKitAction(ifkDigitalOutputs, action, 1);
-        //                    break;
-
-        //                case 2:
-        //                    PerformInterfaceKitAction(ifkDigitalOutputs, action, 2);
-        //                    break;
-
-        //                case 3:
-        //                    PerformInterfaceKitAction(ifkDigitalOutputs, action, 30);
-        //                    break;
-
-        //                case 4:
-        //                    PerformInterfaceKitAction(ifkDigitalOutputs, action, 4);
-        //                    break;
-
-        //                case 5:
-        //                    PerformInterfaceKitAction(ifkDigitalOutputs, action, 50);
-        //                    break;
-
-        //                case 6:
-        //                    PerformInterfaceKitAction(ifkDigitalOutputs, action, 60);
-        //                    break;
-
-        //                case 7:
-        //                    PerformInterfaceKitAction(ifkDigitalOutputs, action, 7);
-        //                    break;
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Log.Error(ex, Common.LOG_CATEGORY);
-        //        }
-        //    }
-
-        //    Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
-        //}
-
-        //private void PerformInterfaceKitAction(InterfaceKitDigitalOutputCollection ifkDigitalOutputs, Resources.InterfaceKitAction action, Int32 index)
-        //{
-        //    Int64 startTicks = Log.Trace($"Enter servo:{index}", Common.LOG_CATEGORY);
-
-        //    try
-        //    {
-        //        if (action.DigitalOut is not null) ifkDigitalOutputs[index] = (Boolean)action.DigitalOut;
-
-        //        if (action.Duration > 0) Thread.Sleep((Int32)action.Duration);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Log.Error(ex, Common.LOG_CATEGORY);
-        //    }
-
-        //    Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
-        //}
 
         // If using CommandParameter, figure out TYPE and fix above
         //public bool PlayPerformanceCanExecute(TYPE value)
