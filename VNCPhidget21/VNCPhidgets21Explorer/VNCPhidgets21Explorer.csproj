@@ -35,6 +35,7 @@
     <None Remove="Resources\json\advancedservo.json" />
     <None Remove="Resources\json\advancedservoperformancesconfig-orig.json" />
     <None Remove="Resources\json\advancedservosequence.json" />
+    <None Remove="Resources\json\advancedservosequenceconfig - Copy.json" />
     <None Remove="Resources\json\advancedservosequenceconfig.json" />
     <None Remove="Resources\json\advancedservoservoaction.json" />
     <None Remove="Resources\json\advancedservostep.json" />
@@ -45,6 +46,7 @@
     <None Remove="Resources\json\interfacekitsequence.json" />
     <None Remove="Resources\json\interfacekitsequenceconfig.json" />
     <None Remove="Resources\json\performance.json" />
+    <None Remove="Resources\json\performanceconfig - Copy.json" />
     <None Remove="Resources\json\performanceconfig.json" />
     <None Remove="Resources\json\performancesequence.json" />
     <None Remove="Resources\json\sensor.json" />
@@ -63,6 +65,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\json\advancedservosequence.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\advancedservosequenceconfig - Copy.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\json\advancedservosequenceconfig.json">
@@ -93,6 +98,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\json\performance.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\performanceconfig - Copy.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\json\performanceconfig.json">
