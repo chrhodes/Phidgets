@@ -3,20 +3,25 @@
   "Description": "PerformanceConfig DESCRIPTION",
   "Performances": [
     {
-      "Name": "psbc21_AS Performance 1",
+      "Name": "psbc21_AS Performance 0-1-2 4-5-6",
       "Description": "psbc21_AS Performance 1 Description",
-      "Loops": 1,
+      "Loops": 2,
       "PlayInParallel": false,
       "PerformanceSequences": [
         {
           "Name": "psbc21_SequenceServo0",
           "SequenceType": "AS",
-          "Loops": 1
+          "Loops": 3
         },
         {
           "Name": "psbc21_SequenceServo0P Configure and Engage",
           "SequenceType": "AS",
           "Loops": 1
+        },
+        {
+          "Name": "psbc21_SequenceServo4",
+          "SequenceType": "AS",
+          "Loops": 3
         }
       ],
       "NextPerformance": null

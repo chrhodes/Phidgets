@@ -737,12 +737,15 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             {
                 if (LogPerformanceStep)
                 {
-                    Log.Trace($"Running sequence:{sequence.Name} type:{sequence.SequenceType}", Common.LOG_CATEGORY);
+                    Log.Trace($"Running sequence:{sequence.Name} type:{sequence.SequenceType} loops:{sequence.Loops}", Common.LOG_CATEGORY);
                 }
 
                 try
                 {
-                    ExecutePerformanceSequence(sequence);
+                    for (int i = 0; i < sequence.Loops; i++)
+                    {
+                        ExecutePerformanceSequence(sequence);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -852,20 +855,27 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         Loops = sequence.Loops
                     };
 
-                    do
+                    // TODO(crhodes)
+                    // Need to handle looping
+
+                    for (int i = 0; i < sequence.Loops; i++)
                     {
-                        await Task.Run(async () =>
+                        do
                         {
-                            nextPerformanceSequence = await ExecutePerformanceSequence(nextPerformanceSequence);
-                            //Parallel.Invoke(
-                            //     () => InterfaceKitParty2(ifkEx21, 500, 5 * Repeats),
-                            //     () => InterfaceKitParty2(ifkEx22, 250, 10 * Repeats),
-                            //     () => InterfaceKitParty2(ifkEx23, 125, 20 * Repeats),
-                            //     () => InterfaceKitParty2(ifkEx11, 333, 8 * Repeats)
-                            // );
-                        });
-                        //nextPerformanceSequence = await ExecutePerformanceSequence(nextPerformanceSequence);
-                    } while (nextPerformanceSequence is not null);
+                            await Task.Run(async () =>
+                            {
+                                nextPerformanceSequence = await ExecutePerformanceSequence(nextPerformanceSequence);
+                                //Parallel.Invoke(
+                                //     () => InterfaceKitParty2(ifkEx21, 500, 5 * Repeats),
+                                //     () => InterfaceKitParty2(ifkEx22, 250, 10 * Repeats),
+                                //     () => InterfaceKitParty2(ifkEx23, 125, 20 * Repeats),
+                                //     () => InterfaceKitParty2(ifkEx11, 333, 8 * Repeats)
+                                // );
+                            });
+                            //nextPerformanceSequence = await ExecutePerformanceSequence(nextPerformanceSequence);
+                        } while (nextPerformanceSequence is not null);
+                    }
+
                 }
                 catch (Exception ex)
                 {
@@ -903,7 +913,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private async Task<PerformanceSequence?> ExecutePerformanceSequence(PerformanceSequence? nextPerformanceSequence)
         {
-            Log.Trace($"  Playing sequence:{nextPerformanceSequence?.Name} type:{nextPerformanceSequence?.SequenceType}", Common.LOG_CATEGORY);
+            Log.Trace($"Playing sequence:{nextPerformanceSequence?.Name} type:{nextPerformanceSequence?.SequenceType}", Common.LOG_CATEGORY);
 
             // TODO(crhodes)
             // Think about Open/Close more.  Maybe config.
@@ -948,13 +958,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             }
                             else
                             {
-                                Log.Trace($"    Host is null", Common.LOG_CATEGORY);
+                                Log.Trace($"Host is null", Common.LOG_CATEGORY);
                                 nextPerformanceSequence = null;
                             }
                         }
                         else
                         {
-                            Log.Trace($"    Cannot find sequence:{nextPerformanceSequence.Name}", Common.LOG_CATEGORY);
+                            Log.Trace($"Cannot find sequence:{nextPerformanceSequence.Name}", Common.LOG_CATEGORY);
                             nextPerformanceSequence = null;
                         }
 
@@ -995,13 +1005,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             }
                             else
                             {
-                                Log.Trace($"    Host is null", Common.LOG_CATEGORY);
+                                Log.Trace($"Host is null", Common.LOG_CATEGORY);
                                 nextPerformanceSequence = null;
                             }
                         }
                         else
                         {
-                            Log.Trace($"    Cannot find sequence:{nextPerformanceSequence.Name}", Common.LOG_CATEGORY);
+                            Log.Trace($"Cannot find sequence:{nextPerformanceSequence.Name}", Common.LOG_CATEGORY);
                             nextPerformanceSequence = null;
                         }
 
