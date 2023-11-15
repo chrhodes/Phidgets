@@ -11,12 +11,12 @@
         {
           "Name": "psbc21_SequenceServo0",
           "SequenceType": "AS",
-          "Loops": 3
+          "Loops": 1
         },
         {
           "Name": "psbc21_SequenceServo0P Configure and Engage",
           "SequenceType": "AS",
-          "Loops": 1
+          "Loops": 2
         },
         {
           "Name": "psbc21_SequenceServo4",

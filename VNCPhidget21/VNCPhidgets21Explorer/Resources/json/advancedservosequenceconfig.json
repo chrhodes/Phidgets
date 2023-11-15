@@ -379,7 +379,7 @@
       "PlayActionsInParallel": false,
       "NextSequence": { "Name": "psbc21_SequenceServo1", "SequenceType": "AS", "Loops": 1 },
       "AdvancedServoServoActions": [
-        { "ServoIndex": 0, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 200, "PositionMin": null, "TargetPosition": null, "PositionMax": null, "Duration": null },
+        { "ServoIndex": 0, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 50, "PositionMin": null, "TargetPosition": null, "PositionMax": null, "Duration": null },
         { "ServoIndex": 0, "Engaged": null, "Acceleration": null, "VelocityLimit": null, "PositionMin": null, "TargetPosition": 100, "PositionMax": null, "Duration": null },
         { "ServoIndex": 0, "Engaged": null, "Acceleration": null, "VelocityLimit": null, "PositionMin": null, "TargetPosition": 120, "PositionMax": null, "Duration": null },
         { "ServoIndex": 0, "Engaged": null, "Acceleration": null, "VelocityLimit": null, "PositionMin": null, "TargetPosition": 140, "PositionMax": null, "Duration": null },
@@ -394,13 +394,9 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": false,
-      "NextSequence": {
-        "Name": "psbc21_SequenceServo2",
-        "SequenceType": "AS",
-        "Loops": 1
-      },
+      "NextSequence": { "Name": "psbc21_SequenceServo2", "SequenceType": "AS", "Loops": 1 },
       "AdvancedServoServoActions": [
-        { "ServoIndex": 1, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 100, "PositionMin": null, "TargetPosition": null, "PositionMax": null, "Duration": null },
+        { "ServoIndex": 1, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 200, "PositionMin": null, "TargetPosition": null, "PositionMax": null, "Duration": null },
         { "ServoIndex": 1, "Engaged": null, "Acceleration": null, "VelocityLimit": null, "PositionMin": null, "TargetPosition": 100, "PositionMax": null, "Duration": null },
         { "ServoIndex": 1, "Engaged": null, "Acceleration": null, "VelocityLimit": null, "PositionMin": null, "TargetPosition": 130, "PositionMax": null, "Duration": null },
         { "ServoIndex": 1, "Engaged": null, "Acceleration": null, "VelocityLimit": null, "PositionMin": null, "TargetPosition": 160, "PositionMax": null, "Duration": null },
@@ -417,7 +413,7 @@
       "PlayActionsInParallel": false,
       "NextSequence": { "Name": "psbc21_SequenceServoFin", "SequenceType": "AS", "Loops": 1 },
       "AdvancedServoServoActions": [
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 50, "PositionMin": null, "TargetPosition": null, "PositionMax": null, "Duration": null },
+        { "ServoIndex": 2, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 800, "PositionMin": null, "TargetPosition": null, "PositionMax": null, "Duration": null },
         { "ServoIndex": 2, "Engaged": null, "Acceleration": null, "VelocityLimit": null, "PositionMin": null, "TargetPosition": 100, "PositionMax": null, "Duration": null },
         { "ServoIndex": 2, "Engaged": null, "Acceleration": null, "VelocityLimit": null, "PositionMin": null, "TargetPosition": 140, "PositionMax": null, "Duration": null },
         { "ServoIndex": 2, "Engaged": null, "Acceleration": null, "VelocityLimit": null, "PositionMin": null, "TargetPosition": 180, "PositionMax": null, "Duration": null },
@@ -442,11 +438,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": false,
-      "NextSequence": {
-        "Name": "psbc21_SequenceServo5",
-        "SequenceType": "AS",
-        "Loops": 1
-      },
+      "NextSequence": { "Name": "psbc21_SequenceServo5", "SequenceType": "AS", "Loops": 1 },
       "AdvancedServoServoActions": [ 
         { "ServoIndex": 4, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 200, "PositionMin": null, "TargetPosition": null, "PositionMax": null, "Duration": null },
         { "ServoIndex": 4, "Engaged": null, "Acceleration": null, "VelocityLimit": null, "PositionMin": null, "TargetPosition": 100, "PositionMax": null, "Duration": null },
@@ -464,7 +456,7 @@
       "Loops": 1,
       "PlayActionsInParallel": false, "NextSequence": { "Name": "psbc21_SequenceServo6", "SequenceType": "AS", "Loops": 1 },
       "AdvancedServoServoActions": [
-        { "ServoIndex": 5, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 400, "PositionMin": null, "TargetPosition": null, "PositionMax": null, "Duration": null },
+        { "ServoIndex": 5, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 100, "PositionMin": null, "TargetPosition": null, "PositionMax": null, "Duration": null },
         { "ServoIndex": 5, "Engaged": null, "Acceleration": null, "VelocityLimit": null, "PositionMin": null, "TargetPosition": 100, "PositionMax": null, "Duration": null },
         { "ServoIndex": 5, "Engaged": null, "Acceleration": null, "VelocityLimit": null, "PositionMin": null, "TargetPosition": 70, "PositionMax": null, "Duration": null },
         { "ServoIndex": 5, "Engaged": null, "Acceleration": null, "VelocityLimit": null, "PositionMin": null, "TargetPosition": 40, "PositionMax": null, "Duration": null },
@@ -481,7 +473,7 @@
       "PlayActionsInParallel": false,
       "NextSequence": { "Name": "psbc21_SequenceServoFin", "SequenceType": "AS", "Loops": 1 },
       "AdvancedServoServoActions": [
-        { "ServoIndex": 6, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 800, "PositionMin": null, "TargetPosition": null, "PositionMax": null, "Duration": null },
+        { "ServoIndex": 6, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 50, "PositionMin": null, "TargetPosition": null, "PositionMax": null, "Duration": null },
         { "ServoIndex": 6, "Engaged": null, "Acceleration": null, "VelocityLimit": null, "PositionMin": null, "TargetPosition": 100, "PositionMax": null, "Duration": null },
         { "ServoIndex": 6, "Engaged": null, "Acceleration": null, "VelocityLimit": null, "PositionMin": null, "TargetPosition": 60, "PositionMax": null, "Duration": null },
         { "ServoIndex": 6, "Engaged": null, "Acceleration": null, "VelocityLimit": null, "PositionMin": null, "TargetPosition": 20, "PositionMax": null, "Duration": null },
