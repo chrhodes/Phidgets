@@ -157,7 +157,7 @@
     
     <ItemGroup>
       <ProjectReference Include="..\..\VNC.Phidget\VNC.Phidget.csproj" />
-      <ProjectReference Include="..\VNCPhidget21.Resources\VNCPhidget21.Resources.csproj" />
+      <ProjectReference Include="..\VNCPhidget21.Resources\VNCPhidget21.Configuration.csproj" />
       <ProjectReference Include="..\VNCPhidgets21Explorer.Core\VNCPhidgets21Explorer.Core.csproj" />
     </ItemGroup>
  

@@ -1,4 +1,4 @@
-﻿namespace VNCPhidgets21Explorer.Resources
+﻿namespace VNCPhidgets21Explorer.Configuration
 {
     public class AdvancedServoSequenceConfig
     {
@@ -19,7 +19,7 @@
                 Name="localhost_SequenceServo0",
                 NextSequence = new PerformanceSequence { Name = "localhost_SequenceServo1", SequenceType = "AS", Loops = 1 },
 
-                AdvancedServoServoActions = new[]
+                Actions = new[]
                 {
                     new AdvancedServoServoAction { ServoIndex = 0, Acceleration = 5000, VelocityLimit = 200, Engaged = true },
                     new AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 90 },
@@ -35,7 +35,7 @@
                 Name="localhost_SequenceServo1",
                 NextSequence = new PerformanceSequence { Name = "localhost_SequenceServo2", SequenceType = "AS", Loops = 1 },
 
-                AdvancedServoServoActions = new[]
+                Actions = new[]
                 {
                     new AdvancedServoServoAction { ServoIndex = 1, Acceleration = 5000, VelocityLimit = 200, Engaged = true },
                     new AdvancedServoServoAction { ServoIndex = 1, TargetPosition = 90 },
@@ -51,7 +51,7 @@
                 Name="localhost_SequenceServo2",
                 NextSequence = new PerformanceSequence { Name = "localhost_SequenceServoFin", SequenceType = "AS", Loops = 1 },
 
-                AdvancedServoServoActions = new[]
+                Actions = new[]
                 {
                     new AdvancedServoServoAction { ServoIndex = 2, Acceleration = 5000, VelocityLimit = 200, Engaged = true },
                     new AdvancedServoServoAction { ServoIndex = 2, TargetPosition = 90 },
@@ -66,7 +66,7 @@
             {
                 Name="localhost_SequenceServoFin",
 
-                AdvancedServoServoActions = new[]
+                Actions = new[]
                 {
                     new AdvancedServoServoAction { ServoIndex = 0, Engaged = false },
                     new AdvancedServoServoAction { ServoIndex = 1, Engaged = false },
@@ -88,7 +88,7 @@
                 Name="psbc11_SequenceServo0",
                 NextSequence = new PerformanceSequence { Name = "psbc11_SequenceServo1", SequenceType = "AS", Loops = 1 },
 
-                AdvancedServoServoActions = new[]
+                Actions = new[]
                 {
                     new AdvancedServoServoAction { ServoIndex = 0, Acceleration = 5000, VelocityLimit = 200, Engaged = true },
                     new AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 90 },
@@ -104,7 +104,7 @@
                 Name="psbc11_SequenceServo1",
                 NextSequence = new PerformanceSequence { Name = "psbc11_SequenceServo2", SequenceType = "AS", Loops = 1 },
 
-                AdvancedServoServoActions = new[]
+                Actions = new[]
                 {
                     new AdvancedServoServoAction { ServoIndex = 1, Acceleration = 5000, VelocityLimit = 200, Engaged = true },
                     new AdvancedServoServoAction { ServoIndex = 1, TargetPosition = 90 },
@@ -120,7 +120,7 @@
                 Name="psbc11_SequenceServo2",
                 NextSequence = new PerformanceSequence { Name = "psbc11_SequenceServoFin", SequenceType = "AS", Loops = 1 },
 
-                AdvancedServoServoActions = new[]
+                Actions = new[]
                 {
                     new AdvancedServoServoAction { ServoIndex = 2, Acceleration = 5000, VelocityLimit = 200, Engaged = true },
                     new AdvancedServoServoAction { ServoIndex = 2, TargetPosition = 90 },
@@ -135,7 +135,7 @@
             {
                 Name="psbc11_SequenceServoFin",
 
-                AdvancedServoServoActions = new[]
+                Actions = new[]
                 {
                     new AdvancedServoServoAction { ServoIndex = 0, Engaged = false },
                     new AdvancedServoServoAction { ServoIndex = 1, Engaged = false },
@@ -157,7 +157,7 @@
                 Name="psbc21_SequenceServo0",
                 NextSequence = new PerformanceSequence { Name = "psbc21_SequenceServo1", SequenceType = "AS", Loops = 1 },
 
-                AdvancedServoServoActions = new[]
+                Actions = new[]
                 {
                     new AdvancedServoServoAction { ServoIndex = 0, Acceleration = 5000, VelocityLimit = 200, Engaged = true },
                     new AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 90 },
@@ -173,7 +173,7 @@
                 Name="psbc21_SequenceServo1",
                 NextSequence = new PerformanceSequence { Name = "psbc21_SequenceServo2", SequenceType = "AS", Loops = 1 },
 
-                AdvancedServoServoActions = new[]
+                Actions = new[]
                 {
                     new AdvancedServoServoAction { ServoIndex = 1, Acceleration = 5000, VelocityLimit = 200, Engaged = true },
                     new AdvancedServoServoAction { ServoIndex = 1, TargetPosition = 90 },
@@ -189,7 +189,7 @@
                 Name="psbc21_SequenceServo2",
                 NextSequence = new PerformanceSequence { Name = "psbc21_SequenceServoFin", SequenceType = "AS", Loops = 1 },
 
-                AdvancedServoServoActions = new[]
+                Actions = new[]
                 {
                     new AdvancedServoServoAction { ServoIndex = 2, Acceleration = 5000, VelocityLimit = 200, Engaged = true },
                     new AdvancedServoServoAction { ServoIndex = 2, TargetPosition = 90 },
@@ -217,7 +217,7 @@
                 PlayActionsInParallel = true,
                 NextSequence = new PerformanceSequence { Name = "psbc21_SequenceServo1P", SequenceType = "AS", Loops = 1 },
 
-                AdvancedServoServoActions = new[]
+                Actions = new[]
                 {
                     new AdvancedServoServoAction { ServoIndex = 0, Acceleration = 5000, VelocityLimit = 200, Engaged = true },
                     new AdvancedServoServoAction { ServoIndex = 1, Acceleration = 5000, VelocityLimit = 200, Engaged = true },
@@ -230,7 +230,7 @@
                 PlayActionsInParallel = true,
                 NextSequence = new PerformanceSequence { Name = "psbc21_SequenceServo2P", SequenceType = "AS", Loops = 1 },
 
-                AdvancedServoServoActions = new[]
+                Actions = new[]
                 {
                     new AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 90 },
                     new AdvancedServoServoAction { ServoIndex = 1, TargetPosition = 90 },
@@ -244,7 +244,7 @@
                 PlayActionsInParallel = true,
                 NextSequence = new PerformanceSequence { Name = "psbc21_SequenceServo3P", SequenceType = "AS", Loops = 1 },
 
-                AdvancedServoServoActions = new[]
+                Actions = new[]
                 {
                     new AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 100 },
                     new AdvancedServoServoAction { ServoIndex = 1, TargetPosition = 100 },
@@ -258,7 +258,7 @@
                 PlayActionsInParallel = true,
                 NextSequence = new PerformanceSequence { Name = "psbc21_SequenceServo4P", SequenceType = "AS", Loops = 1 },
 
-                AdvancedServoServoActions = new[]
+                Actions = new[]
                 {
                     new AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 110 },
                     new AdvancedServoServoAction { ServoIndex = 1, TargetPosition = 110 },
@@ -272,7 +272,7 @@
                 PlayActionsInParallel = true,
                 NextSequence = new PerformanceSequence { Name = "psbc21_SequenceServo5P", SequenceType = "AS", Loops = 1 },
 
-                AdvancedServoServoActions = new[]
+                Actions = new[]
                 {
                     new AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 100 },
                     new AdvancedServoServoAction { ServoIndex = 1, TargetPosition = 100 },
@@ -285,7 +285,7 @@
                 PlayActionsInParallel = true,
                 NextSequence = new PerformanceSequence { Name = "psbc21_SequenceServoFin", SequenceType = "AS", Loops = 1 },
 
-                AdvancedServoServoActions = new[]
+                Actions = new[]
                 {
                     new AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 90 },
                     new AdvancedServoServoAction { ServoIndex = 1, TargetPosition = 90 },
@@ -296,7 +296,7 @@
             {
                 Name="psbc21_SequenceServoFin",
 
-                AdvancedServoServoActions = new[]
+                Actions = new[]
                 {
                     new AdvancedServoServoAction { ServoIndex = 0, Engaged = false },
                     new AdvancedServoServoAction { ServoIndex = 1, Engaged = false },
@@ -318,7 +318,7 @@
                 Name="psbc22_SequenceServo0",
                 NextSequence = new PerformanceSequence { Name = "psbc22_SequenceServo1", SequenceType = "AS", Loops = 1 },
 
-                AdvancedServoServoActions = new[]
+                Actions = new[]
                 {
                     new AdvancedServoServoAction { ServoIndex = 0, Acceleration = 5000, VelocityLimit = 200, Engaged = true },
                     new AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 90 },
@@ -334,7 +334,7 @@
                 Name="psbc22_SequenceServo1",
                 NextSequence = new PerformanceSequence { Name = "psbc22_SequenceServo2", SequenceType = "AS", Loops = 1 },
 
-                AdvancedServoServoActions = new[]
+                Actions = new[]
                 {
                     new AdvancedServoServoAction { ServoIndex = 1, Acceleration = 5000, VelocityLimit = 200, Engaged = true },
                     new AdvancedServoServoAction { ServoIndex = 1, TargetPosition = 90 },
@@ -350,7 +350,7 @@
                 Name="psbc22_SequenceServo2",
                 NextSequence = new PerformanceSequence { Name = "psbc22_SequenceServoFin", SequenceType = "AS", Loops = 1 },
 
-                AdvancedServoServoActions = new[]
+                Actions = new[]
                 {
                     new AdvancedServoServoAction { ServoIndex = 2, Acceleration = 5000, VelocityLimit = 200, Engaged = true },
                     new AdvancedServoServoAction { ServoIndex = 2, TargetPosition = 90 },
@@ -365,7 +365,7 @@
             {
                 Name="psbc22_SequenceServoFin",
 
-                AdvancedServoServoActions = new[]
+                Actions = new[]
                 {
                     new AdvancedServoServoAction { ServoIndex = 0, Engaged = false },
                     new AdvancedServoServoAction { ServoIndex = 1, Engaged = false },
@@ -387,7 +387,7 @@
                 Name="psbc23_SequenceServo0",
                 NextSequence = new PerformanceSequence { Name = "psbc23_SequenceServo1", SequenceType = "AS", Loops = 1 },
 
-                AdvancedServoServoActions = new[]
+                Actions = new[]
                 {
                     new AdvancedServoServoAction { ServoIndex = 0, Acceleration = 5000, VelocityLimit = 200, Engaged = true },
                     new AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 90 },
@@ -403,7 +403,7 @@
                 Name="psbc23_SequenceServo1",
                 NextSequence = new PerformanceSequence { Name = "psbc23_SequenceServo2", SequenceType = "AS", Loops = 1 },
 
-                AdvancedServoServoActions = new[]
+                Actions = new[]
                 {
                     new AdvancedServoServoAction { ServoIndex = 1, Acceleration = 5000, VelocityLimit = 200, Engaged = true },
                     new AdvancedServoServoAction { ServoIndex = 1, TargetPosition = 90 },
@@ -419,7 +419,7 @@
                 Name="psbc23_SequenceServo2",
                 NextSequence = new PerformanceSequence { Name = "psbc23_SequenceServoFin", SequenceType = "AS", Loops = 1 },
 
-                AdvancedServoServoActions = new[]
+                Actions = new[]
                 {
                     new AdvancedServoServoAction { ServoIndex = 2, Acceleration = 5000, VelocityLimit = 200, Engaged = true },
                     new AdvancedServoServoAction { ServoIndex = 2, TargetPosition = 90 },
@@ -434,7 +434,7 @@
             {
                 Name="psbc23_SequenceServoFin",
 
-                AdvancedServoServoActions = new[]
+                Actions = new[]
                 {
                     new AdvancedServoServoAction { ServoIndex = 0, Engaged = false },
                     new AdvancedServoServoAction { ServoIndex = 1, Engaged = false },

@@ -16,6 +16,8 @@ using VNC;
 using VNC.Core.Mvvm;
 using VNC.Phidget;
 
+using VNCPhidgets21Explorer.Configuration;
+
 namespace VNCPhidgets21Explorer.Presentation.ViewModels
 {
     public enum ServoType
@@ -116,8 +118,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             string jsonString = File.ReadAllText(ConfigFileName);
 
-            Resources.HostConfig? hostConfig 
-                = JsonSerializer.Deserialize<Resources.HostConfig>(jsonString, jsonOptions);
+            Configuration.HostConfig? hostConfig 
+                = JsonSerializer.Deserialize<Configuration.HostConfig>(jsonString, jsonOptions);
 
             this.Hosts = hostConfig.Hosts.ToList();
 
@@ -186,8 +188,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public string PerformanceFileNameToolTip { get; set; } = "DoubleClick to select new file";
 
-        private Resources.HostConfig _hostConfig;
-        public Resources.HostConfig HostConfig
+        private Configuration.HostConfig _hostConfig;
+        public Configuration.HostConfig HostConfig
         {
             get => _hostConfig;
             set
@@ -199,8 +201,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private IEnumerable<Resources.Host> _Hosts;
-        public IEnumerable<Resources.Host> Hosts
+        private IEnumerable<Configuration.Host> _Hosts;
+        public IEnumerable<Configuration.Host> Hosts
         {
             get => _Hosts;
             set
@@ -210,8 +212,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Resources.Host _selectedHost;
-        public Resources.Host SelectedHost
+        private Configuration.Host _selectedHost;
+        public Configuration.Host SelectedHost
         {
             get => _selectedHost;
             set
@@ -219,7 +221,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_selectedHost == value)
                     return;
                 _selectedHost = value;
-                AdvancedServos = _selectedHost.AdvancedServos.ToList<Resources.AdvancedServo>();
+                AdvancedServos = _selectedHost.AdvancedServos.ToList<Configuration.AdvancedServo>();
                 OnPropertyChanged();
             }
         }
@@ -431,8 +433,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region AdvancedServo Properties
 
-        private IEnumerable<Resources.AdvancedServo> _AdvancedServos;
-        public IEnumerable<Resources.AdvancedServo> AdvancedServos
+        private IEnumerable<Configuration.AdvancedServo> _AdvancedServos;
+        public IEnumerable<Configuration.AdvancedServo> AdvancedServos
         {
             get
             {
@@ -463,8 +465,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         //public Phidgets.ServoServo.ServoType ServoTypeEnum;
 
-        private IEnumerable<Resources.AdvancedServo> _AdvancedServoTypes;
-        public IEnumerable<Resources.AdvancedServo> AdvancedServoTypes
+        private IEnumerable<Configuration.AdvancedServo> _AdvancedServoTypes;
+        public IEnumerable<Configuration.AdvancedServo> AdvancedServoTypes
         {
             get
             {
@@ -509,8 +511,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         //    }
         //}
 
-        private Resources.AdvancedServo _selectedAdvancedServo;
-        public Resources.AdvancedServo SelectedAdvancedServo
+        private Configuration.AdvancedServo _selectedAdvancedServo;
+        public Configuration.AdvancedServo SelectedAdvancedServo
         {
             get => _selectedAdvancedServo;
             set

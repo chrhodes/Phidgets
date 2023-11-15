@@ -15,7 +15,7 @@ using VNC;
 using VNC.Core.Mvvm;
 using VNC.Phidget;
 
-using VNCPhidgets21Explorer.Resources;
+using VNCPhidgets21Explorer.Configuration;
 
 namespace VNCPhidgets21Explorer.Presentation.ViewModels
 {
@@ -74,7 +74,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             string jsonString = File.ReadAllText(ConfigFileName);
 
-            Resources.HostConfig? hostConfig = JsonSerializer.Deserialize<Resources.HostConfig>(jsonString);
+            Configuration.HostConfig? hostConfig = JsonSerializer.Deserialize<Configuration.HostConfig>(jsonString);
             this.Hosts = hostConfig.Hosts.ToList();
             //this.Sensors2 = phidgetConfig.Sensors.ToList();
 
@@ -109,8 +109,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public string ConfigFileNameToolTip { get; set; } = "DoubleClick to select new file";
 
-        private Resources.HostConfig _hostConfig;
-        public Resources.HostConfig HostConfig
+        private Configuration.HostConfig _hostConfig;
+        public Configuration.HostConfig HostConfig
         {
             get => _hostConfig;
             set
@@ -122,8 +122,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private IEnumerable<Resources.Host> _Hosts;
-        public IEnumerable<Resources.Host> Hosts
+        private IEnumerable<Configuration.Host> _Hosts;
+        public IEnumerable<Configuration.Host> Hosts
         {
             get
             {
@@ -152,8 +152,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Resources.Host _selectedHost;
-        public Resources.Host SelectedHost
+        private Configuration.Host _selectedHost;
+        public Configuration.Host SelectedHost
         {
             get => _selectedHost;
             set
@@ -161,13 +161,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_selectedHost == value)
                     return;
                 _selectedHost = value;
-                Steppers = _selectedHost.Steppers.ToList<Resources.Stepper>();
+                Steppers = _selectedHost.Steppers.ToList<Configuration.Stepper>();
                 OnPropertyChanged();
             }
         }
 
-        private IEnumerable<Resources.Stepper> _Steppers;
-        public IEnumerable<Resources.Stepper> Steppers
+        private IEnumerable<Configuration.Stepper> _Steppers;
+        public IEnumerable<Configuration.Stepper> Steppers
         {
             get
             {
@@ -196,8 +196,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Resources.Stepper _selectedStepper;
-        public Resources.Stepper SelectedStepper
+        private Configuration.Stepper _selectedStepper;
+        public Configuration.Stepper SelectedStepper
         {
             get => _selectedStepper;
             set

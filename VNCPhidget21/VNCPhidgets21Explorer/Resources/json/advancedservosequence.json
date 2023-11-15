@@ -1,9 +1,9 @@
 {
+  "Actions": null,
   "Host": null,
   "Name": "SEQUENCE NAME",
   "Description": "SEQUENCE DESCRIPTION",
   "Loops": 1,
   "PlayActionsInParallel": false,
-  "NextSequence": null,
-  "AdvancedServoServoActions": null
+  "NextSequence": null
 }

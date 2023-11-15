@@ -8,7 +8,7 @@ using System.Windows.Markup;
 
 using DevExpress.CodeParser;
 
-using VNCPhidgets21Explorer.Resources;
+using VNCPhidgets21Explorer.Configuration;
 
 namespace VNCPhidgets21Explorer.Presentation.Converters
 {

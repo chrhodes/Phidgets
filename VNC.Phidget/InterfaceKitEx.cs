@@ -5,7 +5,7 @@ using System.Threading;
 
 using Phidgets;
 using Phidgets.Events;
-using VNCPhidgets21Explorer.Resources;
+using VNCPhidgets21Explorer.Configuration;
 
 namespace VNC.Phidget
 {
@@ -218,7 +218,7 @@ namespace VNC.Phidget
 
             InterfaceKitDigitalOutputCollection ifkDigitalOutputs = InterfaceKit.outputs;
 
-            Parallel.ForEach(interfaceKitSequence.InterfaceKitActions, action =>
+            Parallel.ForEach(interfaceKitSequence.Actions, action =>
             {
                 if (LogPerformanceStep)
                 {
@@ -280,7 +280,7 @@ namespace VNC.Phidget
 
             InterfaceKitDigitalOutputCollection ifkDigitalOutputs = InterfaceKit.outputs;
 
-            foreach (InterfaceKitAction action in interfaceKitSequence.InterfaceKitActions)
+            foreach (InterfaceKitAction action in interfaceKitSequence.Actions)
             {
                 if (LogPerformanceStep)
                 {

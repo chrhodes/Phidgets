@@ -1,9 +1,9 @@
 {
+  "Actions": null,
   "Host": null,
   "Name": "SEQUENCE NAME",
   "Description": "SEQUENCE DESCRIPTION",
   "Loops": 1,
-  "PlayInParallel": false,
-  "ContinueWith": "",
-  "StepperActions": null
+  "PlayActionsInParallel": false,
+  "NextSequence": null
 }

@@ -1,4 +1,4 @@
-﻿namespace VNCPhidgets21Explorer.Resources
+﻿namespace VNCPhidgets21Explorer.Configuration
 {
     public class InterfaceKitSequenceConfig
     {
@@ -18,7 +18,7 @@
                 },
                 Name="localhost_SequenceIK 1",
 
-                InterfaceKitActions = new[]
+                Actions = new[]
                 {
                     new InterfaceKitAction { DigitalOutIndex = 0, DigitalOut = true, Duration=500 },
                     new InterfaceKitAction { DigitalOutIndex = 0, DigitalOut = false, Duration=500 },
@@ -42,7 +42,7 @@
                 },
                 Name="psbc11_SequenceIK 1",
 
-                InterfaceKitActions = new[]
+                Actions = new[]
                 {
                     new InterfaceKitAction { DigitalOutIndex = 0, DigitalOut = true, Duration=500 },
                     new InterfaceKitAction { DigitalOutIndex = 0, DigitalOut = false, Duration=500 },
@@ -67,7 +67,7 @@
                 Name="psbc21_SequenceIK 1",
                 NextSequence = new PerformanceSequence { Name = "psbc22_SequenceIK 1", SequenceType = "IK", Loops = 1 },
 
-                InterfaceKitActions = new[]
+                Actions = new[]
                 {
                     new InterfaceKitAction { DigitalOutIndex = 0, DigitalOut = true, Duration=500 },
                     new InterfaceKitAction { DigitalOutIndex = 0, DigitalOut = false, Duration=500 },
@@ -92,7 +92,7 @@
                 Name="psbc21_SequenceIK 1 Parallel",
                 PlayActionsInParallel = true,
 
-                InterfaceKitActions = new[]
+                Actions = new[]
                 {
                     new InterfaceKitAction { DigitalOutIndex = 0, DigitalOut = true, Duration=500 },
                     new InterfaceKitAction { DigitalOutIndex = 0, DigitalOut = false, Duration=500 },
@@ -117,7 +117,7 @@
                 Name="psbc22_SequenceIK 1",
                 NextSequence = new PerformanceSequence { Name = "psbc23_SequenceIK 1", SequenceType = "IK", Loops = 1 },
 
-                InterfaceKitActions = new[]
+                Actions = new[]
                 {
                     new InterfaceKitAction { DigitalOutIndex = 0, DigitalOut = true, Duration=500 },
                     new InterfaceKitAction { DigitalOutIndex = 0, DigitalOut = false, Duration=500 },
@@ -141,7 +141,7 @@
                 },
                 Name="psbc23_SequenceIK 1",
 
-                InterfaceKitActions = new[]
+                Actions = new[]
                 {
                     new InterfaceKitAction { DigitalOutIndex = 0, DigitalOut = true, Duration=500 },
                     new InterfaceKitAction { DigitalOutIndex = 0, DigitalOut = false, Duration=500 },

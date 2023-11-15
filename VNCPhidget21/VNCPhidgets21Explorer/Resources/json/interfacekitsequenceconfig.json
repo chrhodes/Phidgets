@@ -1,6 +1,38 @@
 {
   "InterfaceKitSequences": [
     {
+      "Actions": [
+        {
+          "DigitalOutIndex": 0,
+          "DigitalOut": true,
+          "Duration": 500
+        },
+        {
+          "DigitalOutIndex": 0,
+          "DigitalOut": false,
+          "Duration": 500
+        },
+        {
+          "DigitalOutIndex": 1,
+          "DigitalOut": true,
+          "Duration": 500
+        },
+        {
+          "DigitalOutIndex": 1,
+          "DigitalOut": false,
+          "Duration": 500
+        },
+        {
+          "DigitalOutIndex": 2,
+          "DigitalOut": true,
+          "Duration": 500
+        },
+        {
+          "DigitalOutIndex": 2,
+          "DigitalOut": false,
+          "Duration": 500
+        }
+      ],
       "Host": {
         "Name": "localhost",
         "IPAddress": "127.0.0.1",
@@ -21,8 +53,10 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": false,
-      "NextSequence": null,
-      "InterfaceKitActions": [
+      "NextSequence": null
+    },
+    {
+      "Actions": [
         {
           "DigitalOutIndex": 0,
           "DigitalOut": true,
@@ -53,9 +87,7 @@
           "DigitalOut": false,
           "Duration": 500
         }
-      ]
-    },
-    {
+      ],
       "Host": {
         "Name": "psbc11",
         "IPAddress": "192.168.150.11",
@@ -76,8 +108,10 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": false,
-      "NextSequence": null,
-      "InterfaceKitActions": [
+      "NextSequence": null
+    },
+    {
+      "Actions": [
         {
           "DigitalOutIndex": 0,
           "DigitalOut": true,
@@ -108,9 +142,7 @@
           "DigitalOut": false,
           "Duration": 500
         }
-      ]
-    },
-    {
+      ],
       "Host": {
         "Name": "psbc21",
         "IPAddress": "192.168.150.21",
@@ -135,8 +167,10 @@
         "Name": "psbc22_SequenceIK 1",
         "SequenceType": "IK",
         "Loops": 1
-      },
-      "InterfaceKitActions": [
+      }
+    },
+    {
+      "Actions": [
         {
           "DigitalOutIndex": 0,
           "DigitalOut": true,
@@ -167,9 +201,7 @@
           "DigitalOut": false,
           "Duration": 500
         }
-      ]
-    },
-    {
+      ],
       "Host": {
         "Name": "psbc21",
         "IPAddress": "192.168.150.21",
@@ -190,8 +222,10 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": true,
-      "NextSequence": null,
-      "InterfaceKitActions": [
+      "NextSequence": null
+    },
+    {
+      "Actions": [
         {
           "DigitalOutIndex": 0,
           "DigitalOut": true,
@@ -222,9 +256,7 @@
           "DigitalOut": false,
           "Duration": 500
         }
-      ]
-    },
-    {
+      ],
       "Host": {
         "Name": "psbc22",
         "IPAddress": "192.168.150.22",
@@ -249,8 +281,10 @@
         "Name": "psbc23_SequenceIK 1",
         "SequenceType": "IK",
         "Loops": 1
-      },
-      "InterfaceKitActions": [
+      }
+    },
+    {
+      "Actions": [
         {
           "DigitalOutIndex": 0,
           "DigitalOut": true,
@@ -281,9 +315,7 @@
           "DigitalOut": false,
           "Duration": 500
         }
-      ]
-    },
-    {
+      ],
       "Host": {
         "Name": "psbc23",
         "IPAddress": "192.168.150.23",
@@ -304,39 +336,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": false,
-      "NextSequence": null,
-      "InterfaceKitActions": [
-        {
-          "DigitalOutIndex": 0,
-          "DigitalOut": true,
-          "Duration": 500
-        },
-        {
-          "DigitalOutIndex": 0,
-          "DigitalOut": false,
-          "Duration": 500
-        },
-        {
-          "DigitalOutIndex": 1,
-          "DigitalOut": true,
-          "Duration": 500
-        },
-        {
-          "DigitalOutIndex": 1,
-          "DigitalOut": false,
-          "Duration": 500
-        },
-        {
-          "DigitalOutIndex": 2,
-          "DigitalOut": true,
-          "Duration": 500
-        },
-        {
-          "DigitalOutIndex": 2,
-          "DigitalOut": false,
-          "Duration": 500
-        }
-      ]
+      "NextSequence": null
     }
   ]
 }

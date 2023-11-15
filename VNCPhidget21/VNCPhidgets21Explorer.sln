@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.Core", "..\..\VNC\VNC.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JSONConsoleApp", "..\..\JSONConsoleApp\JSONConsoleApp.csproj", "{75F4A35C-D0DE-4D2C-BE68-94610690D206}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VNCPhidget21.Resources", "VNCPhidget21.Resources\VNCPhidget21.Resources.csproj", "{95A3C694-B058-43DD-9253-2D04253749F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNCPhidget21.Configuration", "VNCPhidget21.Resources\VNCPhidget21.Configuration.csproj", "{95A3C694-B058-43DD-9253-2D04253749F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

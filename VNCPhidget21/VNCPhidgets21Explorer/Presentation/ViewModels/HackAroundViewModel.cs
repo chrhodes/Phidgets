@@ -20,9 +20,9 @@ using VNC;
 using VNC.Core.Mvvm;
 using VNC.Phidget;
 
-//using VNCPhidgets21Explorer.Resources;
+//using VNCPhidgets21Explorer.Configuration;
 using VNCPhidgets21Explorer;
-using VNCPhidgets21Explorer.Resources;
+using VNCPhidgets21Explorer.Configuration;
 
 namespace VNCPhidgets21Explorer.Presentation.ViewModels
 {
@@ -85,8 +85,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             var jsonOptions = new JsonSerializerOptions { ReadCommentHandling = JsonCommentHandling.Skip };
             string jsonString = File.ReadAllText(PerformanceConfigFileName);
 
-            Resources.PerformanceConfig? performanceConfig
-                = JsonSerializer.Deserialize<Resources.PerformanceConfig>(jsonString, jsonOptions);
+            Configuration.PerformanceConfig? performanceConfig
+                = JsonSerializer.Deserialize<Configuration.PerformanceConfig>(jsonString, jsonOptions);
 
             Performances = performanceConfig.Performances.ToList();
 
@@ -105,8 +105,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             string jsonString = File.ReadAllText(AdvancedServoConfigFileName);
 
-            Resources.AdvancedServoSequenceConfig? sequenceConfig
-                = JsonSerializer.Deserialize<Resources.AdvancedServoSequenceConfig>(jsonString, jsonOptions);
+            Configuration.AdvancedServoSequenceConfig? sequenceConfig
+                = JsonSerializer.Deserialize<Configuration.AdvancedServoSequenceConfig>(jsonString, jsonOptions);
 
             this.AdvancedServoSequences = sequenceConfig.AdvancedServoSequences.ToList();
 
@@ -119,8 +119,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             string jsonString = File.ReadAllText(InterfaceKitConfigFileName);
 
-            Resources.InterfaceKitSequenceConfig? sequenceConfig
-                = JsonSerializer.Deserialize<Resources.InterfaceKitSequenceConfig>(jsonString, jsonOptions);
+            Configuration.InterfaceKitSequenceConfig? sequenceConfig
+                = JsonSerializer.Deserialize<Configuration.InterfaceKitSequenceConfig>(jsonString, jsonOptions);
 
             InterfaceKitSequences = sequenceConfig.InterfaceKitSequences.ToList();
 
@@ -133,8 +133,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             string jsonString = File.ReadAllText(StepperConfigFileName);
 
-            Resources.StepperSequenceConfig? sequenceConfig
-                = JsonSerializer.Deserialize<Resources.StepperSequenceConfig>(jsonString, jsonOptions);
+            Configuration.StepperSequenceConfig? sequenceConfig
+                = JsonSerializer.Deserialize<Configuration.StepperSequenceConfig>(jsonString, jsonOptions);
 
             StepperSequences = sequenceConfig.StepperSequences.ToList();
 
@@ -300,8 +300,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public string PerformanceFileNameToolTip { get; set; } = "DoubleClick to select new file";
 
-        //private Resources.PerformanceConfig _performanceConfig;
-        //public Resources.PerformanceConfig PerformanceConfig
+        //private Configuration.PerformanceConfig _performanceConfig;
+        //public Configuration.PerformanceConfig PerformanceConfig
         //{
         //    get => _performanceConfig;
         //    set
@@ -313,8 +313,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         //    }
         //}
 
-        private IEnumerable<Resources.Performance> _performances;
-        public IEnumerable<Resources.Performance> Performances
+        private IEnumerable<Configuration.Performance> _performances;
+        public IEnumerable<Configuration.Performance> Performances
         {
             get => _performances;
             set
@@ -324,8 +324,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Resources.Performance? _selectedPerformance;
-        public Resources.Performance? SelectedPerformance
+        private Configuration.Performance? _selectedPerformance;
+        public Configuration.Performance? SelectedPerformance
         {
             get => _selectedPerformance;
             set
@@ -344,8 +344,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Dictionary<string, Resources.Performance> _availablePerformances;
-        public Dictionary<string, Resources.Performance> AvailablePerformances
+        private Dictionary<string, Configuration.Performance> _availablePerformances;
+        public Dictionary<string, Configuration.Performance> AvailablePerformances
         {
             get => _availablePerformances;
             set
@@ -355,8 +355,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private List<Resources.Performance> _selectedPerformances;
-        public List<Resources.Performance> SelectedPerformances
+        private List<Configuration.Performance> _selectedPerformances;
+        public List<Configuration.Performance> SelectedPerformances
         {
             get => _selectedPerformances;
             set
@@ -390,8 +390,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private IEnumerable<Resources.AdvancedServoSequence> _advancedServoSequences;
-        public IEnumerable<Resources.AdvancedServoSequence> AdvancedServoSequences
+        private IEnumerable<Configuration.AdvancedServoSequence> _advancedServoSequences;
+        public IEnumerable<Configuration.AdvancedServoSequence> AdvancedServoSequences
         {
             get => _advancedServoSequences;
             set
@@ -401,8 +401,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Resources.AdvancedServoSequence? _selectedAdvancedServoSequence;
-        public Resources.AdvancedServoSequence? SelectedAdvancedServoSequence
+        private Configuration.AdvancedServoSequence? _selectedAdvancedServoSequence;
+        public Configuration.AdvancedServoSequence? SelectedAdvancedServoSequence
         {
             get => _selectedAdvancedServoSequence;
             set
@@ -416,8 +416,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Dictionary<string, Resources.AdvancedServoSequence> _availableAdvancedServoSequences;
-        public Dictionary<string, Resources.AdvancedServoSequence> AvailableAdvancedServoSequences
+        private Dictionary<string, Configuration.AdvancedServoSequence> _availableAdvancedServoSequences;
+        public Dictionary<string, Configuration.AdvancedServoSequence> AvailableAdvancedServoSequences
         {
             get => _availableAdvancedServoSequences;
             set
@@ -427,8 +427,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private List<Resources.AdvancedServoSequence> _selectedAdvancedServoSequences;
-        public List<Resources.AdvancedServoSequence> SelectedAdvancedServoSequences
+        private List<Configuration.AdvancedServoSequence> _selectedAdvancedServoSequences;
+        public List<Configuration.AdvancedServoSequence> SelectedAdvancedServoSequences
         {
             get => _selectedAdvancedServoSequences;
             set
@@ -461,8 +461,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private IEnumerable<Resources.InterfaceKitSequence> _interfaceKitSequences;
-        public IEnumerable<Resources.InterfaceKitSequence> InterfaceKitSequences
+        private IEnumerable<Configuration.InterfaceKitSequence> _interfaceKitSequences;
+        public IEnumerable<Configuration.InterfaceKitSequence> InterfaceKitSequences
         {
             get => _interfaceKitSequences;
             set
@@ -472,8 +472,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Resources.InterfaceKitSequence? _selectedInterfaceKitSequence;
-        public Resources.InterfaceKitSequence? SelectedInterfaceKitSequence
+        private Configuration.InterfaceKitSequence? _selectedInterfaceKitSequence;
+        public Configuration.InterfaceKitSequence? SelectedInterfaceKitSequence
         {
             get => _selectedInterfaceKitSequence;
             set
@@ -487,8 +487,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Dictionary<string, Resources.InterfaceKitSequence> _availableInterfaceKitSequences;
-        public Dictionary<string, Resources.InterfaceKitSequence> AvailableInterfaceKitSequences
+        private Dictionary<string, Configuration.InterfaceKitSequence> _availableInterfaceKitSequences;
+        public Dictionary<string, Configuration.InterfaceKitSequence> AvailableInterfaceKitSequences
         {
             get => _availableInterfaceKitSequences;
             set
@@ -498,8 +498,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private List<Resources.InterfaceKitSequence> _selectedInterfaceKitSequences;
-        public List<Resources.InterfaceKitSequence> SelectedInterfaceKitSequences
+        private List<Configuration.InterfaceKitSequence> _selectedInterfaceKitSequences;
+        public List<Configuration.InterfaceKitSequence> SelectedInterfaceKitSequences
         {
             get => _selectedInterfaceKitSequences;
             set
@@ -532,8 +532,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private IEnumerable<Resources.StepperSequence> _stepperSequences;
-        public IEnumerable<Resources.StepperSequence> StepperSequences
+        private IEnumerable<Configuration.StepperSequence> _stepperSequences;
+        public IEnumerable<Configuration.StepperSequence> StepperSequences
         {
             get => _stepperSequences;
             set
@@ -543,8 +543,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Resources.StepperSequence? _selectedStepperSequence;
-        public Resources.StepperSequence? SelectedStepperSequence
+        private Configuration.StepperSequence? _selectedStepperSequence;
+        public Configuration.StepperSequence? SelectedStepperSequence
         {
             get => _selectedStepperSequence;
             set
@@ -558,8 +558,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Dictionary<string, Resources.StepperSequence> _availableStepperSequences;
-        public Dictionary<string, Resources.StepperSequence> AvailableStepperSequences
+        private Dictionary<string, Configuration.StepperSequence> _availableStepperSequences;
+        public Dictionary<string, Configuration.StepperSequence> AvailableStepperSequences
         {
             get => _availableStepperSequences;
             set
@@ -569,8 +569,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private List<Resources.StepperSequence> _selectedStepperSequences;
-        public List<Resources.StepperSequence> SelectedStepperSequences
+        private List<Configuration.StepperSequence> _selectedStepperSequences;
+        public List<Configuration.StepperSequence> SelectedStepperSequences
         {
             get => _selectedStepperSequences;
             set
@@ -647,7 +647,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Do something amazing.
             Message = "Cool, you called PlayPerformance";
 
-            foreach (Resources.Performance performance in SelectedPerformances)
+            foreach (Configuration.Performance performance in SelectedPerformances)
             {
                 Log.Trace($"Running performance:{performance.Name} description:{performance.Description}", Common.LOG_CATEGORY);
 
@@ -685,7 +685,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private async Task PlayPerformanceLoops(Resources.Performance performance)
+        private async Task PlayPerformanceLoops(Configuration.Performance performance)
         {
             Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
 
@@ -1037,7 +1037,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             return nextPerformanceSequence;
         }
 
-        private AdvancedServoEx OpenAdvancedServoHost(Resources.Host host)
+        private AdvancedServoEx OpenAdvancedServoHost(Configuration.Host host)
         { 
             AdvancedServoEx advancedServo;
 
@@ -1152,7 +1152,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private InterfaceKitEx OpenInterfaceKitHost(Resources.Host host)
+        private InterfaceKitEx OpenInterfaceKitHost(Configuration.Host host)
         {
             InterfaceKitEx interfaceKit;
 

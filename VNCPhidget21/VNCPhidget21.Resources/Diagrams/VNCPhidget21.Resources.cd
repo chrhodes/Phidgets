@@ -1,129 +1,136 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
-  <Class Name="VNCPhidgets21Explorer.Resources.AdvancedServo" Collapsed="true">
-    <Position X="2.5" Y="3.25" Width="1.5" />
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="VNCPhidgets21Explorer.Configuration.AdvancedServo">
+    <Position X="4" Y="2" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAIAAAAAAAAAQAAAEAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>AdvancedServo\AdvancedServo.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNCPhidgets21Explorer.Resources.AdvancedServoSequence" Collapsed="true">
-    <Position X="0.5" Y="4.75" Width="1.5" />
+  <Class Name="VNCPhidgets21Explorer.Configuration.AdvancedServoSequence">
+    <Position X="0.5" Y="16.5" Width="3.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAIAAAAAwAAAAACAAAAQAAAAACAAAAAQAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>AdvancedServo\AdvancedServoSequence.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNCPhidgets21Explorer.Resources.AdvancedServoSequenceConfig" Collapsed="true">
-    <Position X="2.5" Y="4" Width="1.5" />
+  <Class Name="VNCPhidgets21Explorer.Configuration.AdvancedServoSequenceConfig">
+    <Position X="0.5" Y="12.25" Width="4.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>AdvancedServo\AdvancedServoSequenceConfig.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNCPhidgets21Explorer.Resources.AdvancedServoServoAction" Collapsed="true">
-    <Position X="5.75" Y="4" Width="1.5" />
+  <Class Name="VNCPhidgets21Explorer.Configuration.AdvancedServoServoAction">
+    <Position X="5.25" Y="16.5" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAEAAAIACAAAAAAABAQAAAAAAAAAQACAEAAAAAAA=</HashCode>
       <FileName>AdvancedServo\AdvancedServoServoAction.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNCPhidgets21Explorer.Resources.Host">
-    <Position X="0.5" Y="0.5" Width="2.75" />
+  <Class Name="VNCPhidgets21Explorer.Configuration.Host">
+    <Position X="0.5" Y="2" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAQAAAACAQACAAAAAAAAEACAAACAAA=</HashCode>
       <FileName>Host\Host.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNCPhidgets21Explorer.Resources.HostConfig">
-    <Position X="4.25" Y="0.5" Width="2" />
+  <Class Name="VNCPhidgets21Explorer.Configuration.HostConfig">
+    <Position X="0.5" Y="0.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Host\HostConfig.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNCPhidgets21Explorer.Resources.InterfaceKit" Collapsed="true">
-    <Position X="0.5" Y="6.5" Width="1.5" />
+  <Class Name="VNCPhidgets21Explorer.Configuration.InterfaceKit">
+    <Position X="4" Y="3.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAIAABAAAAAAQAAAEAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>InterfaceKit\InterfaceKit.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNCPhidgets21Explorer.Resources.InterfaceKitAction" Collapsed="true">
-    <Position X="2.25" Y="6.25" Width="1.5" />
+  <Class Name="VNCPhidgets21Explorer.Configuration.InterfaceKitAction">
+    <Position X="5.25" Y="19.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAACAAAIAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
       <FileName>InterfaceKit\InterfaceKitAction.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNCPhidgets21Explorer.Resources.InterfaceKitSequence" Collapsed="true">
-    <Position X="3.75" Y="5.5" Width="1.5" />
+  <Class Name="VNCPhidgets21Explorer.Configuration.InterfaceKitSequence">
+    <Position X="0.5" Y="19.25" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAIAgAAAwAAAAAAAAAAQAAAAACAAAAAQAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>InterfaceKit\InterfaceKitSequence.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNCPhidgets21Explorer.Resources.InterfaceKitSequenceConfig" Collapsed="true">
-    <Position X="5.25" Y="5.75" Width="1.5" />
+  <Class Name="VNCPhidgets21Explorer.Configuration.InterfaceKitSequenceConfig">
+    <Position X="0.5" Y="13.5" Width="4" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>InterfaceKit\InterfaceKitSequenceConfig.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNCPhidgets21Explorer.Resources.Performance" Collapsed="true">
-    <Position X="0.5" Y="7.75" Width="1.5" />
+  <Class Name="VNCPhidgets21Explorer.Configuration.Performance">
+    <Position X="0.5" Y="9" Width="4" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAoAAAAAAAAACQAAAAAAAAAAAQAAAACAAA=</HashCode>
       <FileName>Performance\Performance.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNCPhidgets21Explorer.Resources.PerformanceConfig" Collapsed="true">
-    <Position X="2" Y="7.5" Width="1.5" />
+  <Class Name="VNCPhidgets21Explorer.Configuration.PerformanceConfig">
+    <Position X="0.5" Y="7" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAAAABAAAAAAAAAAAAA=</HashCode>
       <FileName>Performance\PerformanceConfig.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNCPhidgets21Explorer.Resources.PerformanceSequence" Collapsed="true">
-    <Position X="4.25" Y="7.25" Width="1.5" />
+  <Class Name="VNCPhidgets21Explorer.Configuration.PerformanceSequence">
+    <Position X="4.75" Y="9" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAYAAAAAAAA=</HashCode>
       <FileName>Performance\PerformanceSequence.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNCPhidgets21Explorer.Resources.Sensor" Collapsed="true">
-    <Position X="0.5" Y="10" Width="1.5" />
+  <Class Name="VNCPhidgets21Explorer.Configuration.Sensor">
+    <Position X="4" Y="0.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Sensor.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNCPhidgets21Explorer.Resources.Stepper" Collapsed="true">
-    <Position X="2.25" Y="9" Width="1.5" />
+  <Class Name="VNCPhidgets21Explorer.Configuration.Stepper">
+    <Position X="4" Y="5.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAIAAAAAAAAAQAAAEAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Stepper\Stepper.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNCPhidgets21Explorer.Resources.StepperAction" Collapsed="true">
-    <Position X="4.75" Y="8.75" Width="1.5" />
+  <Class Name="VNCPhidgets21Explorer.Configuration.StepperAction">
+    <Position X="5.25" Y="21.75" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAEAAAIACAAAAAAABAQAAAAAAAAAQACAEAAAAAAA=</HashCode>
       <FileName>Stepper\StepperAction.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNCPhidgets21Explorer.Resources.StepperSequence" Collapsed="true">
-    <Position X="2.5" Y="10.5" Width="1.5" />
+  <Class Name="VNCPhidgets21Explorer.Configuration.StepperSequence">
+    <Position X="0.5" Y="21.75" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAoAAAAAAAAAAQAAQAACAABAAQAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Stepper\StepperSequence.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNCPhidgets21Explorer.Resources.StepperSequenceConfig" Collapsed="true">
-    <Position X="5" Y="10.25" Width="1.5" />
+  <Class Name="VNCPhidgets21Explorer.Configuration.StepperSequenceConfig">
+    <Position X="0.5" Y="14.75" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Stepper\StepperSequenceConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNCPhidgets21Explorer.Configuration.PhidgetSequenceBase">
+    <Position X="2" Y="24" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAwAAAAAAAAAAQAAAAACAAAAAQAAAAAAAA=</HashCode>
+      <FileName>PhidgetSequenceBase.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

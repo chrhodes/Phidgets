@@ -1,4 +1,4 @@
-﻿namespace VNCPhidgets21Explorer.Resources
+﻿namespace VNCPhidgets21Explorer.Configuration
 {
     public class AdvancedServo
     {

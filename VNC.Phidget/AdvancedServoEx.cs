@@ -6,7 +6,7 @@ using Microsoft.SqlServer.Server;
 
 using Phidgets;
 
-using VNCPhidgets21Explorer.Resources;
+using VNCPhidgets21Explorer.Configuration;
 
 namespace VNC.Phidget
 {
@@ -151,7 +151,7 @@ namespace VNC.Phidget
         {
             Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
 
-            Parallel.ForEach(advancedServoSequence.AdvancedServoServoActions, action =>
+            Parallel.ForEach(advancedServoSequence.Actions, action =>
             {
                 if (LogPerformanceStep)
                 {
@@ -209,7 +209,7 @@ namespace VNC.Phidget
         {
             Int64 startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
 
-            foreach (AdvancedServoServoAction action in advancedServoSequence.AdvancedServoServoActions)
+            foreach (AdvancedServoServoAction action in advancedServoSequence.Actions)
             {
                 if (LogPerformanceStep)
                 {
