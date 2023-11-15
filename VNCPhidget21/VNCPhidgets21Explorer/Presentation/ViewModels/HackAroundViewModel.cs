@@ -1316,7 +1316,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             try
             {
-                Log.Debug($"InterfaceKitParty2 {ifkEx.HostIPAddress},{ifkEx.HostPort} {ifkEx.HostSerialNumber} sleep:{sleep} loops:{loops}", Common.LOG_CATEGORY);
+                Log.Debug($"InterfaceKitParty2 {ifkEx.Host.IPAddress},{ifkEx.Host.Port} {ifkEx.SerialNumber} sleep:{sleep} loops:{loops}", Common.LOG_CATEGORY);
 
                 //ifkEx.InterfaceKit.OutputChange += Ifk_OutputChange;
 

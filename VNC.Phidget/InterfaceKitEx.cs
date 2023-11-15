@@ -19,7 +19,7 @@ namespace VNC.Phidget
         /// <param name="embedded"></param>
         /// <param name="enabled"></param>
         public InterfaceKitEx(string ipAddress, int port, int serialNumber, bool embedded) 
-            : base(ipAddress, port, serialNumber, true, embedded)
+            : base(ipAddress, port, serialNumber)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
@@ -140,19 +140,20 @@ namespace VNC.Phidget
 
         #region Public Methods
 
-        public void Open()
+        /// <summary>
+        /// Open Phidget and waitForAttachment
+        /// </summary>
+        /// <param name="timeOut">Optionally time out after timeOut(ms)</param>
+        public new void Open(Int32? timeOut = null)
         {
             Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
 
             try
             {
-                this.InterfaceKit.open(HostSerialNumber, HostIPAddress, HostPort);
+                InterfaceKit.open(SerialNumber, Host.IPAddress, Host.Port);
 
-                // TDO(crhodes)
-                // This will hang if AdvancedServo no attached.
-                // How to handle this
-
-                this.InterfaceKit.waitForAttachment();
+                if (timeOut is not null) { InterfaceKit.waitForAttachment((Int32)timeOut); }
+                else { InterfaceKit.waitForAttachment(); }
             }
             catch (Exception ex)
             {

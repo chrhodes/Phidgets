@@ -20,7 +20,7 @@ namespace VNC.Phidget
         /// <param name="embedded"></param>
         /// <param name="enabled"></param>
         public AdvancedServoEx(string ipAddress, int port, int serialNumber)
-            : base(ipAddress, port, serialNumber, true, false)
+            : base(ipAddress, port, serialNumber)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
@@ -62,7 +62,7 @@ namespace VNC.Phidget
 
         #region Event Handlers
 
-       
+
         #endregion
 
         #region Commands (None)
@@ -71,19 +71,26 @@ namespace VNC.Phidget
 
         #region Public Methods
 
-        public void Open()
+        /// <summary>
+        /// Open Phidget and waitForAttachment
+        /// </summary>
+        /// <param name="timeOut">Optionally time out after timeOut(ms)</param>
+        public new void Open(Int32? timeOut = null)
         {
             Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
 
             try
             {
-                this.AdvancedServo.open(HostSerialNumber, HostIPAddress, HostPort);
+                AdvancedServo.open(SerialNumber, Host.IPAddress, Host.Port);
 
-                // TDO(crhodes)
-                // This will hang if AdvancedServo no attached.
-                // How to handle this
+                if (timeOut is not null) { AdvancedServo.waitForAttachment((Int32)timeOut); }
+                else { AdvancedServo.waitForAttachment(); }
 
-                AdvancedServo.waitForAttachment();
+                //// TDO(crhodes)
+                //// This will hang if AdvancedServo no attached.
+                //// How to handle this
+
+                //AdvancedServo.waitForAttachment();
             }
             catch (Exception ex)
             {

@@ -12,7 +12,7 @@ namespace VNC.Phidget
         /// <param name="embedded"></param>
         /// <param name="enabled"></param>
         public StepperEx(string ipAddress, int port, int serialNumber)
-            : base(ipAddress, port, serialNumber, true, true)
+            : base(ipAddress, port, serialNumber)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
@@ -122,22 +122,33 @@ namespace VNC.Phidget
 
         #region Public Methods
 
-        public void Open()
+        /// <summary>
+        /// Open Phidget and waitForAttachment
+        /// </summary>
+        /// <param name="timeOut">Optionally time out after timeOut(ms)</param>
+        public new void Open(Int32? timeOut = null)
         {
+            Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
+
             try
             {
-                this.Stepper.open(HostSerialNumber, HostIPAddress, HostPort);
+                Stepper.open(SerialNumber, Host.IPAddress, Host.Port);
 
-                this.Stepper.waitForAttachment();
+                if (timeOut is not null) { Stepper.waitForAttachment((Int32)timeOut); }
+                else { Stepper.waitForAttachment(); }
             }
             catch (Exception ex)
             {
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
+
+            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public void Close()
         {
+            Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
+
             try
             {
                 this.Stepper.close();
@@ -146,7 +157,8 @@ namespace VNC.Phidget
             {
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
-           
+
+            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion

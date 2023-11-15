@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Documents;
 
 using Phidgets;
 using Phidgets.Events;
@@ -12,17 +13,19 @@ namespace VNC.Phidget
         /// <summary>
         /// Initializes a new instance of the InterfaceKit class.
         /// </summary>
-        /// <param name="embedded"></param>
-        /// <param name="enabled"></param>
-        public PhidgetEx(string ipAddress, int port, int serialNumber, bool enable, bool embedded)
+        /// <param name="ipAddress">IP Address of Host</param>
+        /// <param name="port">Port number of Host</param>
+        public PhidgetEx(string ipAddress, int port, int serialNumber)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
-            _hostIPAddress = ipAddress;
-            _hostPort = port;
-            _hostSerialNumber = serialNumber;
-            _Embedded = embedded;
-            _Enable = enable;
+            Host = new Host { IPAddress = ipAddress, Port = port };
+            
+            //_hostIPAddress = ipAddress;
+            //_hostPort = port;
+            _serialNumber = serialNumber;
+            //_Embedded = embedded;
+            //_Enable = enable;
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -40,61 +43,65 @@ namespace VNC.Phidget
         #endregion
 
         #region Fields and Properties
-      
-        private bool _Embedded;
 
-        public bool Embedded
+        public Host Host { get; set; }
+
+        //private bool _Embedded;
+
+        //public bool Embedded
+        //{
+        //    get { return _Embedded; }
+        //    set
+        //    {
+        //        _Embedded = value;
+        //    }
+        //}
+
+        //private bool _Enable;
+
+        //public bool Enable
+        //{
+        //    get { return _Enable; }
+        //    set
+        //    {
+        //        _Enable = value;
+        //    }
+        //}
+
+        private int _serialNumber;
+
+        public int SerialNumber
         {
-            get { return _Embedded; }
+            get { return _serialNumber; }
             set
             {
-                _Embedded = value;
+                _serialNumber = value;
             }
         }
 
-        private bool _Enable;
+        //private string _hostIPAddress;
 
-        public bool Enable
-        {
-            get { return _Enable; }
-            set
-            {
-                _Enable = value;
-            }
-        }
+        //public string HostIPAddress
+        //{
+        //    get { return _hostIPAddress; }
+        //    set
+        //    {
+        //        _hostIPAddress = value;
+        //    }
+        //}
 
-        private int _hostSerialNumber;
+        //private int _hostPort;
 
-        public int HostSerialNumber
-        {
-            get { return _hostSerialNumber; }
-            set
-            {
-                _hostSerialNumber = value;
-            }
-        }
+        //public int HostPort
+        //{
+        //    get { return _hostPort; }
+        //    set
+        //    {
+        //        _hostPort = value;
+        //    }
+        //}
 
-        private string _hostIPAddress;
-
-        public string HostIPAddress
-        {
-            get { return _hostIPAddress; }
-            set
-            {
-                _hostIPAddress = value;
-            }
-        }
-
-        private int _hostPort;
-
-        public int HostPort
-        {
-            get { return _hostPort; }
-            set
-            {
-                _hostPort = value;
-            }
-        }
+        public bool LogEvents { get; set; }
 
         #endregion
 
@@ -102,57 +109,69 @@ namespace VNC.Phidget
 
         public void Phidget_ServerDisconnect(object sender, Phidgets.Events.ServerDisconnectEventArgs e)
         {
-            try
+            if (LogEvents)
             {
-                Phidgets.Phidget device = (Phidgets.Phidget)e.Device;
+                try
+                {
+                    Phidgets.Phidget device = (Phidgets.Phidget)e.Device;
 
-                Log.Trace("Phidget_ServerDisconnect {device.Address}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                    Log.Trace($"Phidget_ServerDisconnect {device.Address}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
             }
         }
 
         public void Phidget_ServerConnect(object sender, ServerConnectEventArgs e)
         {
-            try
+            if (LogEvents)
             {
-                Phidgets.Phidget device = (Phidgets.Phidget)e.Device;
+                try
+                {
+                    Phidgets.Phidget device = (Phidgets.Phidget)e.Device;
 
-                Log.Trace($"Phidget_ServerConnect {device.Address},{device.Port}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                    Log.Trace($"Phidget_ServerConnect {device.Address},{device.Port}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
             }
         }
 
         public void Phidget_Attach(object sender, Phidgets.Events.AttachEventArgs e)
         {
-            try
+            if (LogEvents)
             {
-                Phidgets.Phidget device = (Phidgets.Phidget)e.Device;
+                try
+                {
+                    Phidgets.Phidget device = (Phidgets.Phidget)e.Device;
 
-                Log.Trace($"Phidget_Attach {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                    Log.Trace($"Phidget_Attach {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
             }
         }
 
         public void Phidget_Detach(object sender, Phidgets.Events.DetachEventArgs e)
         {
-            try
+            if (LogEvents)
             {
-                Phidgets.Phidget device = (Phidgets.Phidget)e.Device;
+                try
+                {
+                    Phidgets.Phidget device = (Phidgets.Phidget)e.Device;
 
-                Log.Trace($"Phidget_Detach {device.Address},{device.SerialNumber}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                    Log.Trace($"Phidget_Detach {device.Address},{device.SerialNumber}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
             }
         }
 
@@ -177,6 +196,47 @@ namespace VNC.Phidget
         #endregion
 
         #region Public Methods (None)
+
+        // NOTE(crhodes)
+        // This did not work.  Had to go back to opening type'd Phidget.  See AdvancedServoEx, InterfaceKitEx, StepperEx
+        ///// <summary>
+        ///// Open Phidget and waitForAttachment
+        ///// </summary>
+        ///// <param name="timeOut">Optionally time out after timeOut(ms)</param>
+        //public void Open(Int32? timeOut = null)
+        //{
+        //    Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
+
+        //    try
+        //    {
+        //        open(SerialNumber, Host.IPAddress, Host.Port);
+
+        //        if (timeOut is not null) { waitForAttachment((Int32)timeOut); }
+        //        else { waitForAttachment(); }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.Error(ex, Common.LOG_CATEGORY);
+        //    }
+
+        //    Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+        //}
+
+        //public void Close()
+        //{
+        //    Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
+
+        //    try
+        //    {
+        //        close();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.Error(ex, Common.LOG_CATEGORY);
+        //    }
+
+        //    Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+        //}
 
         #endregion
 
