@@ -87,7 +87,7 @@ namespace VNC.Phidget
                     Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
                     var a = e;
                     var b = e.GetType();
-                    Log.Trace($"InterfaceKitk_SensorChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
+                    Log.Trace($"InterfaceKit_SensorChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -105,7 +105,7 @@ namespace VNC.Phidget
                     Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
                     var a = e;
                     var b = e.GetType();
-                    Log.Trace($"InterfaceKitk_OutputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
+                    Log.Trace($"InterfaceKit_OutputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -123,7 +123,7 @@ namespace VNC.Phidget
                     Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
                     var a = e;
                     var b = e.GetType();
-                    Log.Trace($"InterfaceKitk_InputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
+                    Log.Trace($"InterfaceKit_InputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -188,11 +188,11 @@ namespace VNC.Phidget
 
                 if (interfaceKitSequence.PlayActionsInParallel)
                 {
-                    PlaySequenceActionsInParallel(interfaceKitSequence);
+                    await PlaySequenceActionsInParallel(interfaceKitSequence);
                 }
                 else
                 {
-                    PlaySequenceActionsInSequence(interfaceKitSequence);
+                    await PlaySequenceActionsInSequence(interfaceKitSequence);
                 }
             }
 
@@ -208,7 +208,7 @@ namespace VNC.Phidget
 
         #region Private Methods (None)
 
-        private async void PlaySequenceActionsInParallel(InterfaceKitSequence interfaceKitSequence)
+        private async Task PlaySequenceActionsInParallel(InterfaceKitSequence interfaceKitSequence)
         {
             Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
 
@@ -270,7 +270,7 @@ namespace VNC.Phidget
             Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void PlaySequenceActionsInSequence(InterfaceKitSequence interfaceKitSequence)
+        private async Task PlaySequenceActionsInSequence(InterfaceKitSequence interfaceKitSequence)
         {
             Int64 startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
 

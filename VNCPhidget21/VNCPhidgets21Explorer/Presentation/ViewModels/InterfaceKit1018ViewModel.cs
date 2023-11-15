@@ -267,6 +267,45 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        private bool _logInputChangeEvents = false;
+        public bool LogInputChangeEvents
+        {
+            get => _logInputChangeEvents;
+            set
+            {
+                if (_logInputChangeEvents == value)
+                    return;
+                _logInputChangeEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _logOutputChangeEvents = false;
+        public bool LogOutputChangeEvents
+        {
+            get => _logOutputChangeEvents;
+            set
+            {
+                if (_logOutputChangeEvents == value)
+                    return;
+                _logOutputChangeEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _logSensorChangeEvents = false;
+        public bool LogSensorChangeEvents
+        {
+            get => _logSensorChangeEvents;
+            set
+            {
+                if (_logSensorChangeEvents == value)
+                    return;
+                _logSensorChangeEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
         #region InterfaceKit Phidget Properties
 
         //private string _iKAddress;
@@ -1923,7 +1962,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // NOTE(crhodes)
             // Capture Digital Input and Output changes so we can update the UI
             // The InterfaceKitEx attaches to these events also.
-            // Itlogs the changes if xxx is set to true.
+            // It logs the changes if Log{Input,Output,Sensor}ChangeEvents are set to true.
 
             ActiveInterfaceKit.InterfaceKit.OutputChange += ActiveInterfaceKit_OutputChange;
             ActiveInterfaceKit.InterfaceKit.InputChange += ActiveInterfaceKit_InputChange;
@@ -1934,6 +1973,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             ActiveInterfaceKit.InterfaceKit.SensorChange += ActiveInterfaceKit_SensorChange;
 
             ActiveInterfaceKit.Open();
+
+            ActiveInterfaceKit.LogInputChangeEvents = LogInputChangeEvents;
+            ActiveInterfaceKit.LogOutputChangeEvents = LogOutputChangeEvents;
+            ActiveInterfaceKit.LogSensorChangeEvents = LogSensorChangeEvents;
+
 
             // Uncomment this if you are telling someone else to handle this
 

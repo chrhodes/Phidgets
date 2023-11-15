@@ -55,8 +55,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             InstanceCountVM++;
 
             Button1Command = new DelegateCommand(Button1Execute);
-            //Button2Command = new DelegateCommand(Button2Execute);
-            //Button3Command = new DelegateCommand(Button3Execute);
+            Button2Command = new DelegateCommand(Button2Execute);
+            Button3Command = new DelegateCommand(Button3Execute);
 
             PlayPerformanceCommand = new DelegateCommand (PlayPerformance, PlayPerformanceCanExecute);
             PlayAdvancedServoSequenceCommand = new DelegateCommand(PlayAdvancedServoSequence, PlayAdvancedServoSequenceCanExecute);
@@ -854,7 +854,17 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                     do
                     {
-                        nextPerformanceSequence = await ExecutePerformanceSequence(nextPerformanceSequence);
+                        await Task.Run(async () =>
+                        {
+                            nextPerformanceSequence = await ExecutePerformanceSequence(nextPerformanceSequence);
+                            //Parallel.Invoke(
+                            //     () => InterfaceKitParty2(ifkEx21, 500, 5 * Repeats),
+                            //     () => InterfaceKitParty2(ifkEx22, 250, 10 * Repeats),
+                            //     () => InterfaceKitParty2(ifkEx23, 125, 20 * Repeats),
+                            //     () => InterfaceKitParty2(ifkEx11, 333, 8 * Repeats)
+                            // );
+                        });
+                        //nextPerformanceSequence = await ExecutePerformanceSequence(nextPerformanceSequence);
                     } while (nextPerformanceSequence is not null);
                 }
                 catch (Exception ex)
@@ -981,7 +991,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                                     nextPerformanceSequence = interfaceKitSequence.NextSequence;
                                 }
 
-                                interfaceKitHost.Close();
+                                //interfaceKitHost.Close();
                             }
                             else
                             {
@@ -1183,7 +1193,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Private Methods
 
-        private async Task OpenSBCInterfaceKit()
+        private async Task PlayParty()
         {
 
             InterfaceKitEx ifkEx11 = new InterfaceKitEx("192.168.150.11", 5001, sbc11SerialNumber, embedded: true);
@@ -1319,7 +1329,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     Thread.Sleep(sleep);
                 }
 
-                ifkEx.Close();
+                //ifkEx.Close();
             }
             catch (Exception ex)
             {
@@ -1475,7 +1485,92 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             Message = "Button1 Clicked";
 
-            OpenSBCInterfaceKit();
+            PlayParty();
+
+            Log.Info("End", "WHOISTHIS", startTicks);
+        }
+
+        private async void Button2Execute()
+        {
+            Int64 startTicks = Log.Info("Enter", "WHOISTHIS");
+
+            Message = "Button2 Clicked";
+
+            InterfaceKitEx ifkEx21 = new InterfaceKitEx("192.168.150.21", 5001, sbc21SerialNumber, embedded: true);
+
+
+            ifkEx21.Open();
+
+            //ifk.Attach += Ifk_Attach;
+            //ifk.Detach += Ifk_Detach;
+            //ifk.Error += Ifk_Error;
+            //ifk.InputChange += Ifk_InputChange;
+
+            ifkEx21.InterfaceKit.OutputChange += Ifk_OutputChange;
+            //ifkEx.OutputChange += Ifk_OutputChange;
+
+            //ifk.SensorChange += Ifk_SensorChange;
+            //ifk.ServerConnect += Ifk_ServerConnect;
+            //ifk.ServerDisconnect += Ifk_ServerDisconnect;
+
+            //ifk.open(serialNumber, hostName, port);
+            //ifk.waitForAttachment();
+
+            InterfaceKitDigitalOutputCollection ifkdoc = ifkEx21.InterfaceKit.outputs;
+            //InterfaceKitDigitalOutputCollection ifkdoc = ifkEx.outputs;
+
+            await Task.Run(() =>
+            {
+                Parallel.Invoke(() =>
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
+                        ifkdoc[0] = true;
+                        Thread.Sleep(500);
+                        ifkdoc[0] = false;
+                        Thread.Sleep(500);
+                    }
+                });
+            });
+ 
+            ifkEx21.Close();
+
+            Log.Info("End", "WHOISTHIS", startTicks);
+        }
+
+        private void Button3Execute()
+        {
+            Int64 startTicks = Log.Info("Enter", "WHOISTHIS");
+
+            Message = "Button3 Clicked";
+
+
+            InterfaceKitEx ifkEx21 = new InterfaceKitEx("192.168.150.21", 5001, sbc21SerialNumber, embedded: true);
+
+            ifkEx21.Open();
+
+            //ifkEx21.InterfaceKit.OutputChange += Ifk_OutputChange;
+
+            //InterfaceKitDigitalOutputCollection ifkdoc = ifkEx21.InterfaceKit.outputs;
+            //InterfaceKitDigitalOutputCollection ifkdoc = ifkEx.outputs;
+
+            Task.Run(() =>
+            {
+                InterfaceKitDigitalOutputCollection ifkdoc = ifkEx21.InterfaceKit.outputs;
+
+                for (int i = 0; i < 5; i++)
+                {
+                    ifkdoc[0] = true;
+                    Thread.Sleep(500);
+                    ifkdoc[0] = false;
+                    Thread.Sleep(500);
+                }
+                //Parallel.Invoke(
+                //    () => InterfaceKitParty2(ifkEx21, 500, 5 * Repeats)
+                //);
+            });
+
+            ifkEx21.Close();
 
             Log.Info("End", "WHOISTHIS", startTicks);
         }

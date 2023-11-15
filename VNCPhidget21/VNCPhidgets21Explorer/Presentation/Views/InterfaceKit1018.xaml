@@ -153,13 +153,27 @@
                     </dxlc:LayoutItem>
                     
                 </dxlc:LayoutGroup>
-        
-                <dxlc:LayoutGroup Name="lgPhidgetStatus" Orientation="Vertical" View="GroupBox" Header="PhidgetDevice Status" 
+
+                <dxlc:LayoutGroup Name="lgPhidgetStatus" Header="PhidgetDevice Status" Orientation="Vertical" View="GroupBox" 
                                   IsCollapsible="True" IsCollapsed="True"  >
 
-                    <controls:PhidgetDevice x:Name="Phidget1" Margin="-10" 
+                    <controls:PhidgetDevice x:Name="Phidget1" Margin="-10,-10,-10,0" 
                                AttachedPhidgetDevice="{Binding PhidgetDevice, Mode=TwoWay}"
                                DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}"/>
+
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+
+                        <dxe:CheckEdit
+                            Content="Log InputChange Events"
+                            IsChecked="{Binding LogInputChangeEvents, Mode=TwoWay}" />
+                        <dxe:CheckEdit
+                            Content="Log OutputChange Events"
+                            IsChecked="{Binding LogOutputChangeEvents, Mode=TwoWay}" />
+                        <dxe:CheckEdit
+                            Content="Log SensorChange Events"
+                            IsChecked="{Binding LogSensorChangeEvents, Mode=TwoWay}" />
+                        
+                    </dxlc:LayoutGroup>
 
                 </dxlc:LayoutGroup>
 
