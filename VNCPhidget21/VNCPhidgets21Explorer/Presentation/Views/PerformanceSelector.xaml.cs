@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Windows;
-
-using VNCPhidgets21Explorer.Presentation.ViewModels;
 
 using VNC;
 using VNC.Core.Mvvm;
@@ -18,15 +15,17 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 
             InstanceCountV++;
             InitializeComponent();
-            
-			// Expose ViewModel
-						
+
+            // Expose ViewModel
+
             // If View First with ViewModel in Xaml
 
             // ViewModel = (IHostSelectorViewModel)DataContext;
 
             // Can create directly
             // ViewModel = HostSelectorViewModel();
+
+            InitializeView();
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -48,9 +47,13 @@ namespace VNCPhidgets21Explorer.Presentation.Views
         private void InitializeView()
         {
             Int64 startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
-            
+
             // NOTE(crhodes)
             // Put things here that initialize the View
+
+            lgAdvancedServoSequences.IsCollapsed = true;
+            lgInterfaceKitSequences.IsCollapsed = true;
+            lgStepperSequences.IsCollapsed = true;
             
             Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
