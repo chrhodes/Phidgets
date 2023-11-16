@@ -1,5 +1,6 @@
 {
   "Name": "SEQUENCE NAME",
   "SequenceType": null,
-  "Loops": 1
+  "Loops": 1,
+  "ClosePhidget": false
 }

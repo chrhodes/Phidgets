@@ -4,81 +4,101 @@
   "Performances": [
     {
       "Name": "psbc21_AS Parallel All (PA)",
-      "Description": "Different Acceleration and VelocityLimitn",
+      "Description": "Different Acceleration and VelocityLimits",
       "Loops": 1,
       "PlayInParallel": false,
       "PerformanceSequences": [
-        { "Name": "Reset Position Limits (RPL)", "SequenceType": "AS", "Loops": 1 },
-        //{ "Name": "Acceleration(6000) VelocityLimit(3125)", "SequenceType": "AS", "Loops": 1 },
-        //{ "Name": "Parallel All (PA)", "SequenceType": "AS", "Loops": 1 },
-        //{ "Name": "Acceleration(1250) VelocityLimit(625)", "SequenceType": "AS", "Loops": 1 },
-        //{ "Name": "Parallel All (PA)", "SequenceType": "AS", "Loops": 1 },
-        //{ "Name": "Acceleration(250) VelocityLimit(125)", "SequenceType": "AS", "Loops": 1 },
-        //{ "Name": "Parallel All (PA)", "SequenceType": "AS", "Loops": 1 },
-        //{ "Name": "Acceleration(50) VelocityLimit(25)", "SequenceType": "AS", "Loops": 1 },
-        //{ "Name": "Parallel All (PA)", "SequenceType": "AS", "Loops": 1 },
-        { "Name": "Acceleration(25) VelocityLimit(10)", "SequenceType": "AS", "Loops": 1 },
-        { "Name": "Parallel All (PA)", "SequenceType": "AS", "Loops": 1 },
+        { "Name": "Reset Position Limits (RPL)", "SequenceType": "AS"},
+
+        { "Name": "Acceleration(25) VelocityLimit(10)", "SequenceType": "AS" },
+        { "Name": "Parallel All (PA)", "SequenceType": "AS" },
+
+        { "Name": "Acceleration(50) VelocityLimit(25)", "SequenceType": "AS" },
+        { "Name": "Parallel All (PA)", "SequenceType": "AS" },
+
+        { "Name": "Acceleration(250) VelocityLimit(125)", "SequenceType": "AS" },
+        { "Name": "Parallel All (PA)", "SequenceType": "AS" },
+
+        { "Name": "Acceleration(1250) VelocityLimit(625)", "SequenceType": "AS" },
+        { "Name": "Parallel All (PA)", "SequenceType": "AS" },
+
+        { "Name": "Acceleration(6000) VelocityLimit(3125)", "SequenceType": "AS" },
+        { "Name": "Parallel All (PA)", "SequenceType": "AS", "ClosePhidget": true },
       ],
       "NextPerformance": null
     },
     {
       "Name": "psbc21_AS Parallel Pairs 1",
-      "Description": "Different Acceleration and VelocityLimitn",
+      "Description": "Different Acceleration and VelocityLimits",
       "Loops": 1,
       "PlayInParallel": false,
       "PerformanceSequences": [
-        { "Name": "Reset Position Limits (RPL)", "SequenceType": "AS", "Loops": 1 },
-        //{ "Name": "Acceleration(6000) VelocityLimit(3125)", "SequenceType": "AS", "Loops": 1 },
-        //{ "Name": "Parallel Pairs 1 (PP1)", "SequenceType": "AS", "Loops": 1 },
-        //{ "Name": "Acceleration(1250) VelocityLimit(625)", "SequenceType": "AS", "Loops": 1 },
-        //{ "Name": "Parallel Pairs 1 (PP1)", "SequenceType": "AS", "Loops": 1 },
-        //{ "Name": "Acceleration(250) VelocityLimit(125)", "SequenceType": "AS", "Loops": 1 },
-        //{ "Name": "Parallel Pairs 1 (PP1)", "SequenceType": "AS", "Loops": 1 },
-        //{ "Name": "Acceleration(50) VelocityLimit(25)", "SequenceType": "AS", "Loops": 1 },
-        //{ "Name": "Parallel Pairs 1 (PP1)", "SequenceType": "AS", "Loops": 1 },
-        { "Name": "Acceleration(25) VelocityLimit(10)", "SequenceType": "AS", "Loops": 1 },
-        { "Name": "Parallel All (PA)", "SequenceType": "AS", "Loops": 1 },
+        { "Name": "Reset Position Limits (RPL)", "SequenceType": "AS"},
+
+        { "Name": "Acceleration(25) VelocityLimit(10)", "SequenceType": "AS" },
+        { "Name": "Parallel Pairs 1 (PP1)", "SequenceType": "AS" },
+
+        { "Name": "Acceleration(50) VelocityLimit(25)", "SequenceType": "AS" },
+        { "Name": "Parallel Pairs 1 (PP1)", "SequenceType": "AS" },
+
+        { "Name": "Acceleration(250) VelocityLimit(125)", "SequenceType": "AS" },
+        { "Name": "Parallel Pairs 1 (PP1)", "SequenceType": "AS" },
+
+        { "Name": "Acceleration(1250) VelocityLimit(625)", "SequenceType": "AS" },
+        { "Name": "Parallel Pairs 1 (PP1)", "SequenceType": "AS" },
+
+        { "Name": "Acceleration(6000) VelocityLimit(3125)", "SequenceType": "AS" },
+        { "Name": "Parallel Pairs 1 (PP1)", "SequenceType": "AS", "ClosePhidget": true },
       ],
       "NextPerformance": null
     },
     {
       "Name": "psbc21_AS Parallel Pairs 2",
-      "Description": "Different Acceleration and VelocityLimitn",
+      "Description": "Different Acceleration and VelocityLimits",
       "Loops": 1,
       "PlayInParallel": false,
       "PerformanceSequences": [
-        { "Name": "Reset Position Limits (RPL)", "SequenceType": "AS", "Loops": 1 },
-        //{ "Name": "Acceleration(6000) VelocityLimit(3125)", "SequenceType": "AS", "Loops": 1 },
-        //{ "Name": "Parallel Pairs 2 (PP2)", "SequenceType": "AS", "Loops": 1 },
-        //{ "Name": "Acceleration(1250) VelocityLimit(625)", "SequenceType": "AS", "Loops": 1 },
-        //{ "Name": "Parallel Pairs 2 (PP2)", "SequenceType": "AS", "Loops": 1 },
-        //{ "Name": "Acceleration(250) VelocityLimit(125)", "SequenceType": "AS", "Loops": 1 },
-        //{ "Name": "Parallel Pairs 2 (PP2)", "SequenceType": "AS", "Loops": 1 },
-        //{ "Name": "Acceleration(50) VelocityLimit(25)", "SequenceType": "AS", "Loops": 1 },
-        //{ "Name": "Parallel Pairs 2 (PP2)", "SequenceType": "AS", "Loops": 1 },
-        { "Name": "Acceleration(25) VelocityLimit(10)", "SequenceType": "AS", "Loops": 1 },
-        { "Name": "Parallel All (PA)", "SequenceType": "AS", "Loops": 1 },
+        { "Name": "Reset Position Limits (RPL)", "SequenceType": "AS" },
+
+        { "Name": "Acceleration(6000) VelocityLimit(3125)", "SequenceType": "AS" },
+        { "Name": "Parallel Pairs 2 (PP2)", "SequenceType": "AS" },
+
+        { "Name": "Acceleration(1250) VelocityLimit(625)", "SequenceType": "AS" },
+        { "Name": "Parallel Pairs 2 (PP2)", "SequenceType": "AS" },
+
+        { "Name": "Acceleration(250) VelocityLimit(125)", "SequenceType": "AS" },
+        { "Name": "Parallel Pairs 2 (PP2)", "SequenceType": "AS" },
+
+        { "Name": "Acceleration(50) VelocityLimit(25)", "SequenceType": "AS" },
+        { "Name": "Parallel Pairs 2 (PP2)", "SequenceType": "AS" },
+
+        { "Name": "Acceleration(25) VelocityLimit(10)", "SequenceType": "AS" },
+        { "Name": "Parallel Pairs 2 (PP2)", "SequenceType": "AS", "ClosePhidget": true },
       ],
       "NextPerformance": null
     },
     {
       "Name": "psbc21_AS Parallel Pairs 3",
-      "Description": "Different Acceleration and VelocityLimitn",
+      "Description": "Different Acceleration and VelocityLimits",
       "Loops": 1,
       "PlayInParallel": false,
       "PerformanceSequences": [
         { "Name": "Reset Position Limits (RPL)", "SequenceType": "AS", "Loops": 1 },
-        { "Name": "Acceleration(6000) VelocityLimit(3125)", "SequenceType": "AS", "Loops": 1 },
-        //{ "Name": "Parallel Pairs 3 (PP3)", "SequenceType": "AS", "Loops": 1 },
-        //{ "Name": "Acceleration(1250) VelocityLimit(625)", "SequenceType": "AS", "Loops": 1 },
-        //{ "Name": "Parallel Pairs 3 (PP3)", "SequenceType": "AS", "Loops": 1 },
-        //{ "Name": "Acceleration(250) VelocityLimit(125)", "SequenceType": "AS", "Loops": 1 },
-        //{ "Name": "Parallel Pairs 3 (PP3)", "SequenceType": "AS", "Loops": 1 },
-        //{ "Name": "Acceleration(50) VelocityLimit(25)", "SequenceType": "AS", "Loops": 1 }, 
-        //{ "Name": "Parallel Pairs 3 (PP3)", "SequenceType": "AS", "Loops": 1 },
-        { "Name": "Acceleration(25) VelocityLimit(10)", "SequenceType": "AS", "Loops": 1 },
-        { "Name": "Parallel All (PA)", "SequenceType": "AS", "Loops": 1 },
+
+        { "Name": "Acceleration(6000) VelocityLimit(3125)", "SequenceType": "AS" },
+        { "Name": "Parallel Pairs 3 (PP3)", "SequenceType": "AS" },
+
+        { "Name": "Acceleration(1250) VelocityLimit(625)", "SequenceType": "AS" },
+        { "Name": "Parallel Pairs 3 (PP3)", "SequenceType": "AS" },
+
+        { "Name": "Acceleration(250) VelocityLimit(125)", "SequenceType": "AS" },
+        { "Name": "Parallel Pairs 3 (PP3)", "SequenceType": "AS" },
+
+        { "Name": "Acceleration(50) VelocityLimit(25)", "SequenceType": "AS" },
+        { "Name": "Parallel Pairs 3 (PP3)", "SequenceType": "AS" },
+
+        { "Name": "Acceleration(25) VelocityLimit(10)", "SequenceType": "AS" },
+        { "Name": "Parallel Pairs 3 (PP3)", "SequenceType": "AS", "ClosePhidget": true },
       ],
       "NextPerformance": null
     },
