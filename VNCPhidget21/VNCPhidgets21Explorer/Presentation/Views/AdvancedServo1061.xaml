@@ -164,6 +164,12 @@
                                   Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                 </dxlc:LayoutItem>
 
+                <dxlc:LayoutItem Label="Log Phidget Events" HorizontalAlignment="Right" >
+
+                    <dxe:CheckEdit IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}" />
+
+                </dxlc:LayoutItem>
+                
                 <dxlc:LayoutItem HorizontalAlignment="Right">
                     <Button 
 		                    Command="{Binding OpenAdvancedServoCommand }"

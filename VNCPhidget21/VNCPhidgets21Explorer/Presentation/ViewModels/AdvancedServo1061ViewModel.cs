@@ -366,6 +366,21 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        private bool _logPhidgetEvents = false;
+        public bool LogPhidgetEvents
+        {
+            get => _logPhidgetEvents;
+            set
+            {
+                if (_logPhidgetEvents == value)
+                    return;
+                _logPhidgetEvents = value;
+                OnPropertyChanged();
+
+                if (ActiveAdvancedServo is not null) ActiveAdvancedServo.LogPhidgetEvents = value;
+            }
+        }
+
         private bool? _deviceAttached;
         public bool? DeviceAttached
         {
@@ -3218,21 +3233,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             ActiveAdvancedServo.AdvancedServo.PositionChange += ActiveAdvancedServo_PositionChange;
             ActiveAdvancedServo.AdvancedServo.VelocityChange += ActiveAdvancedServo_VelocityChange;
 
-            //PlayPerformanceCommand.RaiseCanExecuteChanged();
-            //PlaySequenceCommand.RaiseCanExecuteChanged();
-
-            // NOTE(crhodes)
-            // Capture Digital Input and Output changes so we can update the UI
-            // The AdvancedServoEx attaches to these events also.
-            // Itlogs the changes if xxx is set to true.
-
-            //ActiveAdvancedServo.OutputChange += ActiveAdvancedServo_OutputChange;
-            //ActiveAdvancedServo.InputChange += ActiveAdvancedServo_InputChange;
-
-            //// NOTE(crhodes)
-            //// Let's do see if we can watch some analog data stream in.
-
-            //ActiveAdvancedServo.SensorChange += ActiveAdvancedServo_SensorChange;
+            ActiveAdvancedServo.LogPhidgetEvents = LogPhidgetEvents;
 
             ActiveAdvancedServo.Open();
 

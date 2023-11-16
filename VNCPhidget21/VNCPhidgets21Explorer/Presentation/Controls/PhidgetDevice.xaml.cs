@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Windows;
 
-using VNCPhidgets21Explorer.Presentation.ViewModels;
-
 using VNC;
 using VNC.Core.Mvvm;
+
 using VNCPhidgets21Explorer.Presentation.Views;
 
 namespace VNCPhidgets21Explorer.Presentation.Controls
@@ -48,6 +47,43 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         //    Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         //}
 
+        private static object OnCoerceLogPhidgetEvents(DependencyObject o, object value)
+        {
+            PhidgetDevice phidgetDevice = o as PhidgetDevice;
+            if (phidgetDevice != null)
+                return phidgetDevice.OnCoerceLogPhidgetEvents((Boolean)value);
+            else
+                return value;
+        }
+
+        private static void OnLogPhidgetEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            PhidgetDevice phidgetDevice = o as PhidgetDevice;
+            if (phidgetDevice != null)
+                phidgetDevice.OnLogPhidgetEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
+        }
+
+        protected virtual Boolean OnCoerceLogPhidgetEvents(Boolean value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnLogPhidgetEventsChanged(Boolean oldValue, Boolean newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+        protected virtual string OnCoerceDeviceLibraryVersion(string value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnDeviceLibraryVersionChanged(string oldValue, string newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
         private static object OnCoerceDeviceLibraryVersion(DependencyObject o, object value)
         {
             PhidgetDevice phidget = o as PhidgetDevice;
@@ -64,16 +100,6 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
                 phidget.OnDeviceLibraryVersionChanged((string)e.OldValue, (string)e.NewValue);
         }
 
-        protected virtual string OnCoerceDeviceLibraryVersion(string value)
-        {
-            // TODO: Keep the proposed value within the desired range.
-            return value;
-        }
-
-        protected virtual void OnDeviceLibraryVersionChanged(string oldValue, string newValue)
-        {
-            // TODO: Add your property changed side-effects. Descendants can override as well.
-        }
         private void InitializeView()
         {
             Int64 startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
@@ -83,7 +109,6 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 
             Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
-
         #endregion
 
         #region Enums (None)
@@ -100,6 +125,12 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 
         //public static readonly DependencyProperty PhidgetProperty = DependencyProperty.Register("Phidget", typeof(Phidgets.Phidget), typeof(Phidget), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnPhidgetChanged), new CoerceValueCallback(OnCoercePhidget)));
 
+        public Boolean LogPhidgetEvents
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Boolean)GetValue(LogPhidgetEventsProperty);
+            set => SetValue(LogPhidgetEventsProperty, value);
+        }
         public Phidgets.Phidget AttachedPhidgetDevice
         {
             // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
@@ -107,33 +138,6 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
             set => SetValue(AttachedPhidgetDeviceProperty, value);
         }
 
-        public string DeviceLibraryVersion
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (string)GetValue(DeviceLibraryVersionProperty);
-            set => SetValue(DeviceLibraryVersionProperty, value);
-        }
-
-        public string DeviceLabel
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (string)GetValue(DeviceLabelProperty);
-            set => SetValue(DeviceLabelProperty, value);
-        }
-
-        public string DeviceID
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (string)GetValue(DeviceIDProperty);
-            set => SetValue(DeviceIDProperty, value);
-        }
-
-        public Boolean? DeviceAttachedToServer
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Boolean?)GetValue(DeviceAttachedToServerProperty);
-            set => SetValue(DeviceAttachedToServerProperty, value);
-        }
         public string DeviceAddress
         {
             // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
@@ -148,6 +152,13 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
             set => SetValue(DeviceAttachedProperty, value);
         }
 
+        public Boolean? DeviceAttachedToServer
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Boolean?)GetValue(DeviceAttachedToServerProperty);
+            set => SetValue(DeviceAttachedToServerProperty, value);
+        }
+
         public string DeviceClass
         {
             // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
@@ -155,6 +166,26 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
             set => SetValue(DeviceClassProperty, value);
         }
 
+        public string DeviceID
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (string)GetValue(DeviceIDProperty);
+            set => SetValue(DeviceIDProperty, value);
+        }
+
+        public string DeviceLabel
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (string)GetValue(DeviceLabelProperty);
+            set => SetValue(DeviceLabelProperty, value);
+        }
+
+        public string DeviceLibraryVersion
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (string)GetValue(DeviceLibraryVersionProperty);
+            set => SetValue(DeviceLibraryVersionProperty, value);
+        }
         public string DeviceName
         {
             // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
@@ -207,83 +238,18 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         public static readonly DependencyProperty DeviceTypeProperty = DependencyProperty.Register("DeviceType", typeof(string), typeof(PhidgetDevice), new FrameworkPropertyMetadata("", new PropertyChangedCallback(OnDeviceTypeChanged), new CoerceValueCallback(OnCoerceDeviceType)));
         public static readonly DependencyProperty DeviceVersionProperty = DependencyProperty.Register("DeviceVersion", typeof(Int32?), typeof(PhidgetDevice), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnDeviceVersionChanged), new CoerceValueCallback(OnCoerceDeviceVersion)));
 
-        private static object OnCoerceDeviceLabel(DependencyObject o, object value)
-        {
-            PhidgetDevice phidget = o as PhidgetDevice;
-            if (phidget != null)
-                return phidget.OnCoerceDeviceLabel((string)value);
-            else
-                return value;
-        }
+        public static readonly DependencyProperty LogPhidgetEventsProperty = DependencyProperty.Register("LogPhidgetEvents", typeof(Boolean), typeof(PhidgetDevice), new FrameworkPropertyMetadata(false, new PropertyChangedCallback(OnLogPhidgetEventsChanged), new CoerceValueCallback(OnCoerceLogPhidgetEvents)));
 
-        private static void OnDeviceLabelChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            PhidgetDevice phidget = o as PhidgetDevice;
-            if (phidget != null)
-                phidget.OnDeviceLabelChanged((string)e.OldValue, (string)e.NewValue);
-        }
 
-        protected virtual string OnCoerceDeviceLabel(string value)
-        {
-            // TODO: Keep the proposed value within the desired range.
-            return value;
-        }
-
-        protected virtual void OnDeviceLabelChanged(string oldValue, string newValue)
+        protected virtual void OnAttachedPhidgetDeviceChanged(Phidgets.Phidget oldValue, Phidgets.Phidget newValue)
         {
             // TODO: Add your property changed side-effects. Descendants can override as well.
         }
-        private static object OnCoerceDeviceID(DependencyObject o, object value)
-        {
-            PhidgetDevice phidget = o as PhidgetDevice;
-            if (phidget != null)
-                return phidget.OnCoerceDeviceID((string)value);
-            else
-                return value;
-        }
 
-        private static void OnDeviceIDChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            PhidgetDevice phidget = o as PhidgetDevice;
-            if (phidget != null)
-                phidget.OnDeviceIDChanged((string)e.OldValue, (string)e.NewValue);
-        }
-
-        protected virtual string OnCoerceDeviceID(string value)
+        protected virtual Phidgets.Phidget OnCoerceAttachedPhidgetDevice(Phidgets.Phidget value)
         {
             // TODO: Keep the proposed value within the desired range.
             return value;
-        }
-
-        protected virtual void OnDeviceIDChanged(string oldValue, string newValue)
-        {
-            // TODO: Add your property changed side-effects. Descendants can override as well.
-        }
-        private static object OnCoerceDeviceAttachedToServer(DependencyObject o, object value)
-        {
-            PhidgetDevice phidget = o as PhidgetDevice;
-            if (phidget != null)
-                return phidget.OnCoerceDeviceAttachedToServer((Boolean?)value);
-            else
-                return value;
-        }
-
-        private static void OnDeviceAttachedToServerChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            PhidgetDevice phidget = o as PhidgetDevice;
-            if (phidget != null)
-                phidget.OnDeviceAttachedToServerChanged((Boolean?)e.OldValue, (Boolean?)e.NewValue);
-        }
-
-        protected virtual Boolean? OnCoerceDeviceAttachedToServer(Boolean? value)
-        {
-            // TODO: Keep the proposed value within the desired range.
-            return value;
-        }
-
-        protected virtual void OnDeviceAttachedToServerChanged(Boolean? oldValue, Boolean? newValue)
-        {
-            // TODO: Add your property changed side-effects. Descendants can override as well.
         }
 
         protected virtual string OnCoerceDeviceAddress(string value)
@@ -298,7 +264,25 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
             return value;
         }
 
+        protected virtual Boolean? OnCoerceDeviceAttachedToServer(Boolean? value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
         protected virtual string OnCoerceDeviceClass(string value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual string OnCoerceDeviceID(string value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual string OnCoerceDeviceLabel(string value)
         {
             // TODO: Keep the proposed value within the desired range.
             return value;
@@ -329,12 +313,6 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         }
 
         protected virtual Int32? OnCoerceDeviceVersion(Int32? value)
-        {
-            // TODO: Keep the proposed value within the desired range.
-            return value;
-        }
-
-        protected virtual Phidgets.Phidget OnCoerceAttachedPhidgetDevice(Phidgets.Phidget value)
         {
             // TODO: Keep the proposed value within the desired range.
             return value;
@@ -379,7 +357,22 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
             // TODO: Add your property changed side-effects. Descendants can override as well.
         }
 
+        protected virtual void OnDeviceAttachedToServerChanged(Boolean? oldValue, Boolean? newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
         protected virtual void OnDeviceClassChanged(string oldValue, string newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        protected virtual void OnDeviceIDChanged(string oldValue, string newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        protected virtual void OnDeviceLabelChanged(string oldValue, string newValue)
         {
             // TODO: Add your property changed side-effects. Descendants can override as well.
         }
@@ -409,9 +402,20 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
             // TODO: Add your property changed side-effects. Descendants can override as well.
         }
 
-        protected virtual void OnAttachedPhidgetDeviceChanged(Phidgets.Phidget oldValue, Phidgets.Phidget newValue)
+        private static void OnAttachedPhidgetDeviceChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            // TODO: Add your property changed side-effects. Descendants can override as well.
+            PhidgetDevice phidget = o as PhidgetDevice;
+            if (phidget != null)
+                phidget.OnAttachedPhidgetDeviceChanged((Phidgets.Phidget)e.OldValue, (Phidgets.Phidget)e.NewValue);
+        }
+
+        private static object OnCoerceAttachedPhidgetDevice(DependencyObject o, object value)
+        {
+            PhidgetDevice phidget = o as PhidgetDevice;
+            if (phidget != null)
+                return phidget.OnCoerceAttachedPhidgetDevice((Phidgets.Phidget)value);
+            else
+                return value;
         }
 
         private static object OnCoerceDeviceAddress(DependencyObject o, object value)
@@ -432,11 +436,38 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
                 return value;
         }
 
+        private static object OnCoerceDeviceAttachedToServer(DependencyObject o, object value)
+        {
+            PhidgetDevice phidget = o as PhidgetDevice;
+            if (phidget != null)
+                return phidget.OnCoerceDeviceAttachedToServer((Boolean?)value);
+            else
+                return value;
+        }
+
         private static object OnCoerceDeviceClass(DependencyObject o, object value)
         {
             PhidgetDevice phidget = o as PhidgetDevice;
             if (phidget != null)
                 return phidget.OnCoerceDeviceClass((string)value);
+            else
+                return value;
+        }
+
+        private static object OnCoerceDeviceID(DependencyObject o, object value)
+        {
+            PhidgetDevice phidget = o as PhidgetDevice;
+            if (phidget != null)
+                return phidget.OnCoerceDeviceID((string)value);
+            else
+                return value;
+        }
+
+        private static object OnCoerceDeviceLabel(DependencyObject o, object value)
+        {
+            PhidgetDevice phidget = o as PhidgetDevice;
+            if (phidget != null)
+                return phidget.OnCoerceDeviceLabel((string)value);
             else
                 return value;
         }
@@ -486,15 +517,6 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
                 return value;
         }
 
-        private static object OnCoerceAttachedPhidgetDevice(DependencyObject o, object value)
-        {
-            PhidgetDevice phidget = o as PhidgetDevice;
-            if (phidget != null)
-                return phidget.OnCoerceAttachedPhidgetDevice((Phidgets.Phidget)value);
-            else
-                return value;
-        }
-
         private static void OnDeviceAddressChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             PhidgetDevice phidget = o as PhidgetDevice;
@@ -509,6 +531,13 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
                 phidget.OnDeviceAttachedChanged((Boolean?)e.OldValue, (Boolean?)e.NewValue);
         }
 
+        private static void OnDeviceAttachedToServerChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            PhidgetDevice phidget = o as PhidgetDevice;
+            if (phidget != null)
+                phidget.OnDeviceAttachedToServerChanged((Boolean?)e.OldValue, (Boolean?)e.NewValue);
+        }
+
         private static void OnDeviceClassChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             PhidgetDevice phidget = o as PhidgetDevice;
@@ -516,6 +545,19 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
                 phidget.OnDeviceClassChanged((string)e.OldValue, (string)e.NewValue);
         }
 
+        private static void OnDeviceIDChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            PhidgetDevice phidget = o as PhidgetDevice;
+            if (phidget != null)
+                phidget.OnDeviceIDChanged((string)e.OldValue, (string)e.NewValue);
+        }
+
+        private static void OnDeviceLabelChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            PhidgetDevice phidget = o as PhidgetDevice;
+            if (phidget != null)
+                phidget.OnDeviceLabelChanged((string)e.OldValue, (string)e.NewValue);
+        }
         private static void OnDeviceNameChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             PhidgetDevice phidget = o as PhidgetDevice;
@@ -549,14 +591,9 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
             if (phidget != null)
                 phidget.OnDeviceVersionChanged((Int32?)e.OldValue, (Int32?)e.NewValue);
         }
-        private static void OnAttachedPhidgetDeviceChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            PhidgetDevice phidget = o as PhidgetDevice;
-            if (phidget != null)
-                phidget.OnAttachedPhidgetDeviceChanged((Phidgets.Phidget)e.OldValue, (Phidgets.Phidget)e.NewValue);
-        }
 
         #endregion
+
 
 
         #endregion

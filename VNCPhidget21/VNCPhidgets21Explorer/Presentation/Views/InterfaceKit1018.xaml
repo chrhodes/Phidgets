@@ -138,6 +138,12 @@
                                       Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
 
+                    <dxlc:LayoutItem Label="Log Phidget Events" HorizontalAlignment="Right" >
+                        
+                        <dxe:CheckEdit IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}" />
+                        
+                    </dxlc:LayoutItem>
+
                     <dxlc:LayoutItem HorizontalAlignment="Right">
                         <Button 
 		                    Command="{Binding OpenInterfaceKitCommand }"
@@ -159,7 +165,8 @@
 
                     <controls:PhidgetDevice x:Name="Phidget1" Margin="-10,-10,-10,0" 
                                AttachedPhidgetDevice="{Binding PhidgetDevice, Mode=TwoWay}"
-                               DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}"/>
+                               DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}"
+                               LogPhidgetEvents="{Binding LogPhidgetEvents, Mode=TwoWay}"/>
 
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left">
 

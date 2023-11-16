@@ -254,6 +254,22 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+
+        private bool _logPhidgetEvents = false;
+        public bool LogPhidgetEvents
+        {
+            get => _logPhidgetEvents;
+            set
+            {
+                if (_logPhidgetEvents == value)
+                    return;
+                _logPhidgetEvents = value;
+                OnPropertyChanged();
+
+                if (ActiveInterfaceKit is not null) ActiveInterfaceKit.LogPhidgetEvents = value;
+            }
+        }
+
         private string _message;
         public string Message
         {
@@ -1972,11 +1988,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             ActiveInterfaceKit.InterfaceKit.SensorChange += ActiveInterfaceKit_SensorChange;
 
-            ActiveInterfaceKit.Open();
+            ActiveInterfaceKit.LogPhidgetEvents = LogPhidgetEvents;
 
             ActiveInterfaceKit.LogInputChangeEvents = LogInputChangeEvents;
             ActiveInterfaceKit.LogOutputChangeEvents = LogOutputChangeEvents;
             ActiveInterfaceKit.LogSensorChangeEvents = LogSensorChangeEvents;
+
+            ActiveInterfaceKit.Open();
+
+            //ActiveInterfaceKit.LogPhidgetEvents = LogPhidgetEvents;
+
+            //ActiveInterfaceKit.LogInputChangeEvents = LogInputChangeEvents;
+            //ActiveInterfaceKit.LogOutputChangeEvents = LogOutputChangeEvents;
+            //ActiveInterfaceKit.LogSensorChangeEvents = LogSensorChangeEvents;
 
 
             // Uncomment this if you are telling someone else to handle this

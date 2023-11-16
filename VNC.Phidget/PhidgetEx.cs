@@ -46,28 +46,6 @@ namespace VNC.Phidget
 
         public Host Host { get; set; }
 
-        //private bool _Embedded;
-
-        //public bool Embedded
-        //{
-        //    get { return _Embedded; }
-        //    set
-        //    {
-        //        _Embedded = value;
-        //    }
-        //}
-
-        //private bool _Enable;
-
-        //public bool Enable
-        //{
-        //    get { return _Enable; }
-        //    set
-        //    {
-        //        _Enable = value;
-        //    }
-        //}
-
         private int _serialNumber;
 
         public int SerialNumber
@@ -79,29 +57,7 @@ namespace VNC.Phidget
             }
         }
 
-        //private string _hostIPAddress;
-
-        //public string HostIPAddress
-        //{
-        //    get { return _hostIPAddress; }
-        //    set
-        //    {
-        //        _hostIPAddress = value;
-        //    }
-        //}
-
-        //private int _hostPort;
-
-        //public int HostPort
-        //{
-        //    get { return _hostPort; }
-        //    set
-        //    {
-        //        _hostPort = value;
-        //    }
-        //}
-
-        public bool LogEvents { get; set; }
+        public bool LogPhidgetEvents { get; set; }
 
         #endregion
 
@@ -109,7 +65,7 @@ namespace VNC.Phidget
 
         public void Phidget_ServerDisconnect(object sender, Phidgets.Events.ServerDisconnectEventArgs e)
         {
-            if (LogEvents)
+            if (LogPhidgetEvents)
             {
                 try
                 {
@@ -126,7 +82,7 @@ namespace VNC.Phidget
 
         public void Phidget_ServerConnect(object sender, ServerConnectEventArgs e)
         {
-            if (LogEvents)
+            if (LogPhidgetEvents)
             {
                 try
                 {
@@ -143,7 +99,7 @@ namespace VNC.Phidget
 
         public void Phidget_Attach(object sender, Phidgets.Events.AttachEventArgs e)
         {
-            if (LogEvents)
+            if (LogPhidgetEvents)
             {
                 try
                 {
@@ -160,7 +116,7 @@ namespace VNC.Phidget
 
         public void Phidget_Detach(object sender, Phidgets.Events.DetachEventArgs e)
         {
-            if (LogEvents)
+            if (LogPhidgetEvents)
             {
                 try
                 {
