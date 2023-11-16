@@ -36,9 +36,6 @@
     <None Remove="Resources\json\advancedservoperformancesconfig-orig.json" />
     <None Remove="Resources\json\advancedservosequence.json" />
     <None Remove="Resources\json\advancedservosequenceconfig.json" />
-    <None Remove="Resources\json\advancedservosequenceconfig1.json" />
-    <None Remove="Resources\json\advancedservosequenceconfig2.json" />
-    <None Remove="Resources\json\advancedservosequenceconfig3.json" />
     <None Remove="Resources\json\advancedservoservoaction.json" />
     <None Remove="Resources\json\advancedservostep.json" />
     <None Remove="Resources\json\host.json" />
@@ -47,23 +44,32 @@
     <None Remove="Resources\json\interfacekitaction.json" />
     <None Remove="Resources\json\interfacekitsequence.json" />
     <None Remove="Resources\json\interfacekitsequenceconfig.json" />
-    <None Remove="Resources\json\interfacekitsequenceconfig1.json" />
-    <None Remove="Resources\json\interfacekitsequenceconfig2.json" />
-    <None Remove="Resources\json\interfacekitsequenceconfig3.json" />
+    <None Remove="Resources\json\localhost_advancedservosequenceconfig_1.json" />
+    <None Remove="Resources\json\localhost_InterfaceKitSequenceConfig_1.json" />
+    <None Remove="Resources\json\localhost_StepperSequenceConfig_!.json" />
     <None Remove="Resources\json\performance.json" />
     <None Remove="Resources\json\performanceconfig.json" />
-    <None Remove="Resources\json\performanceconfig1.json" />
-    <None Remove="Resources\json\performanceconfig2.json" />
-    <None Remove="Resources\json\performanceconfig3.json" />
     <None Remove="Resources\json\performancesequence.json" />
+    <None Remove="Resources\json\Performances\PerformanceConfig_1.json" />
+    <None Remove="Resources\json\Performances\PerformanceConfig_2.json" />
+    <None Remove="Resources\json\Performances\PerformanceConfig_3.json" />
+    <None Remove="Resources\json\psbc11 - Copy (2)\psbc11_AdvancedServoSequenceConfig_1.json" />
+    <None Remove="Resources\json\psbc11 - Copy (2)\psbc11_InterfaceKitSequenceConfig_1.json" />
+    <None Remove="Resources\json\psbc11 - Copy (2)\psbc11_StepperSequenceConfig_!.json" />
+    <None Remove="Resources\json\psbc11 - Copy (3)\psbc11_AdvancedServoSequenceConfig_1.json" />
+    <None Remove="Resources\json\psbc11 - Copy (3)\psbc11_InterfaceKitSequenceConfig_1.json" />
+    <None Remove="Resources\json\psbc11 - Copy (3)\psbc11_StepperSequenceConfig_!.json" />
+    <None Remove="Resources\json\psbc11\psbc11_AdvancedServoSequenceConfig_1.json" />
+    <None Remove="Resources\json\psbc11\psbc11_InterfaceKitSequenceConfig_1.json" />
+    <None Remove="Resources\json\psbc11\psbc11_StepperSequenceConfig_1.json" />
+    <None Remove="Resources\json\psbc21\psbc21_AdvancedServoSequenceConfig_1.json" />
+    <None Remove="Resources\json\psbc21\psbc21_InterfaceKitSequenceConfig_1.json" />
+    <None Remove="Resources\json\psbc21\psbc21_StepperSequenceConfig_1.json" />
     <None Remove="Resources\json\sensor.json" />
     <None Remove="Resources\json\stepper.json" />
     <None Remove="Resources\json\stepperaction.json" />
     <None Remove="Resources\json\steppersequence.json" />
     <None Remove="Resources\json\steppersequenceconfig.json" />
-    <None Remove="Resources\json\steppersequenceconfig1.json" />
-    <None Remove="Resources\json\steppersequenceconfig2.json" />
-    <None Remove="Resources\json\steppersequenceconfig3.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -77,13 +83,52 @@
     <Content Include="Resources\json\advancedservosequence.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\json\advancedservosequenceconfig1.json">
+    <Content Include="Resources\json\Performances\PerformanceConfig_1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\json\advancedservosequenceconfig2.json">
+    <Content Include="Resources\json\Performances\PerformanceConfig_2.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\json\advancedservosequenceconfig3.json">
+    <Content Include="Resources\json\Performances\PerformanceConfig_3.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\psbc23\psbc23_AdvancedServoSequenceConfig_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\psbc23\psbc23_InterfaceKitSequenceConfig_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\psbc23\psbc23_StepperSequenceConfig_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\psbc22\psbc22_AdvancedServoSequenceConfig_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\psbc22\psbc21_InterfaceKitSequenceConfig_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\psbc22\psbc22_StepperSequenceConfig_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\psbc21\psbc21_AdvancedServoSequenceConfig_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\psbc21\psbc21_InterfaceKitSequenceConfig_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\psbc21\psbc21_StepperSequenceConfig_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\psbc11\psbc11_AdvancedServoSequenceConfig_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\psbc11\psbc11_InterfaceKitSequenceConfig_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\psbc11\psbc11_StepperSequenceConfig_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\localhost\localhost_AdvancedServoSequenceConfig_1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\json\advancedservosequenceconfig.json">
@@ -110,28 +155,13 @@
     <Content Include="Resources\json\interfacekitsequence.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\json\interfacekitsequenceconfig1.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\json\interfacekitsequenceconfig2.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\json\interfacekitsequenceconfig3.json">
+    <Content Include="Resources\json\localhost\localhost_InterfaceKitSequenceConfig_1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\json\interfacekitsequenceconfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\json\performance.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\json\performanceconfig3.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\json\performanceconfig2.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\json\performanceconfig1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\json\performanceconfig.json">
@@ -152,13 +182,7 @@
     <Content Include="Resources\json\steppersequence.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\json\steppersequenceconfig1.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\json\steppersequenceconfig2.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\json\steppersequenceconfig3.json">
+    <Content Include="Resources\json\localhost\localhost_StepperSequenceConfig_1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\json\steppersequenceconfig.json">

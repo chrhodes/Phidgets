@@ -48,9 +48,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             List<string> files = new List<string>
             {
-                "performanceconfig1.json", 
-                "performanceconfig2.json",  
-                "performanceconfig3.json"
+                @"Performances\PerformanceConfig_1.json",  
+                @"Performances\PerformanceConfig_2.json",
+                @"Performances\PerformanceConfig_3.json", 
             };
 
             return files;
@@ -63,9 +63,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             List<string> files = new List<string>
             { 
-                "advancedservosequenceconfig1.json", 
-                "advancedservosequenceconfig2.json",
-                "advancedservosequenceconfig3.json"
+                @"localhost\localhost_AdvancedServoSequenceConfig_1.json", 
+                @"psbc11\psbc11_AdvancedServoSequenceConfig_1.json",
+                @"psbc21\psbc21_AdvancedServoSequenceConfig_1.json",
+                @"psbc22\psbc22_AdvancedServoSequenceConfig_1.json",
+                @"psbc23\psbc23_AdvancedServoSequenceConfig_1.json"
             };
 
             return files;
@@ -78,9 +80,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             List<string> files = new List<string>
             { 
-                "interfacekitsequenceconfig1.json", 
-                "interfacekitsequenceconfig2.json",
-                "interfacekitsequenceconfig3.json"
+                @"localhost\localhost_InterfaceKitSequenceConfig_1.json", 
+                @"psbc11\psbc11_InterfaceKitSequenceConfig_1.json",
+                @"psbc21\psbc21_InterfaceKitSequenceConfig_1.json",
+                @"psbc22\psbc22_InterfaceKitSequenceConfig_1.json",
+                @"psbc23\psbc23_InterfaceKitSequenceConfig_1.json"
             };
 
             return files;
@@ -93,9 +97,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             List<string> files = new List<string>
             { 
-                "steppersequenceconfig.json", 
-                "steppersequenceconfig2.json",
-                "steppersequenceconfig3.json"
+                @"localhost\localhost_StepperSequenceConfig_1.json", 
+                @"psbc11\psbc11_StepperSequenceConfig_1.json",
+                @"psbc21\psbc21_StepperSequenceConfig_1.json",
+                @"psbc22\psbc22_StepperSequenceConfig_1.json",
+                @"psbc23\psbc23_StepperSequenceConfig_1.json" 
             };
 
             return files;
@@ -932,7 +938,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         // and remove above declaration
         //public DelegateCommand<TYPE> PlaySequenceCommand { get; set; }
         //public TYPE PlaySequenceCommandParameter;
-        public string PlayAdvancedServoSequenceContent { get; set; } = "PlayAdvancedServoSequence";
+        public string PlayAdvancedServoSequenceContent { get; set; } = "Play Sequence";
         public string PlayAdvancedServoSequenceToolTip { get; set; } = "PlayAdvancedServoSequence ToolTip";
 
         // Can get fancy and use Resources
@@ -1188,7 +1194,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         // and remove above declaration
         //public DelegateCommand<TYPE> PlaySequenceCommand { get; set; }
         //public TYPE PlaySequenceCommandParameter;
-        public string PlayInterfaceKitSequenceContent { get; set; } = "PlayInterfaceKitSequence";
+        public string PlayInterfaceKitSequenceContent { get; set; } = "Play Sequence";
         public string PlayInterfaceKitSequenceToolTip { get; set; } = "PlayInterfaceKitSequence ToolTip";
 
         // Can get fancy and use Resources
