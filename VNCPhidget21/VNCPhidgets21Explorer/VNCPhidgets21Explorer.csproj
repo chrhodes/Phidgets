@@ -63,7 +63,7 @@
     <Content Include="Resources\json\psbc22\psbc22_AdvancedServoSequenceConfig_1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\json\psbc22\psbc21_InterfaceKitSequenceConfig_1.json">
+    <Content Include="Resources\json\psbc22\psbc22_InterfaceKitSequenceConfig_1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\json\psbc22\psbc22_StepperSequenceConfig_1.json">

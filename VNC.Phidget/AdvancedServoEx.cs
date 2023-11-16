@@ -277,8 +277,27 @@ namespace VNC.Phidget
             {
                 if (action.Acceleration is not null) servo.Acceleration = (Double)action.Acceleration;
                 if (action.VelocityLimit is not null) servo.VelocityLimit = (Double)action.VelocityLimit;
-                if (action.PositionMin is not null) servo.PositionMin = (Double)action.PositionMin;
-                if (action.PositionMax is not null) servo.PositionMax = (Double)action.PositionMax;
+
+                if (action.PositionMin is not null)
+                {
+                    // TODO(crhodes)
+                    // Need to save initial low limit based on ServoType
+                    // Hard code for now
+
+                    if (action.PositionMin < 0) { servo.PositionMin = 0; }
+                    else { servo.PositionMin = (Double)action.PositionMin; }         
+                }
+
+                if (action.PositionMax is not null)
+                {
+                    // TODO(crhodes)
+                    // Need to save initial upper limit based on ServoType
+                    // Hard code for now
+
+                    if (action.PositionMax < 0) { servo.PositionMax = 220; }
+                    else { servo.PositionMax = (Double)action.PositionMax; }
+                }
+
                 if (action.Engaged is not null) servo.Engaged = (Boolean)action.Engaged;
 
                 // TODO(crhodes)
@@ -296,9 +315,18 @@ namespace VNC.Phidget
                     Thread.Sleep(1);
 
                     VerifyNewPositionAchieved(servo, (Double)action.TargetPosition);
-
-                    if (action.Duration > 0) Thread.Sleep((Int32)action.Duration);
                 }
+
+                if (action.RelativePosition is not null)
+                {
+                    var newPosition = servo.Position += (Double)action.RelativePosition;
+                    servo.Position = newPosition;
+                    Thread.Sleep(1);
+
+                    VerifyNewPositionAchieved(servo, newPosition);                
+                }
+
+                if (action.Duration > 0) Thread.Sleep((Int32)action.Duration);
             }
             catch (Exception ex)
             {

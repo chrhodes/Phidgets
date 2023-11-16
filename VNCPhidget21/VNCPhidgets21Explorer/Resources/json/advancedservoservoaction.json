@@ -5,6 +5,7 @@
   "VelocityLimit": null,
   "PositionMin": null,
   "TargetPosition": null,
+  "RelativePosition": null,
   "PositionMax": null,
   "Duration": null
 }

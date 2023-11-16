@@ -175,16 +175,15 @@
                                 </dxe:ComboBoxEdit.StyleSettings>
                             </dxe:ComboBoxEdit>
                         </dxlc:LayoutItem>
-                    
-                    </dxlc:LayoutGroup>
-
-                    <dxlc:LayoutItem VerticalAlignment="Stretch" HorizontalAlignment="Right">
-                        <Button 
+                        
+                        <dxlc:LayoutItem VerticalAlignment="Stretch" >
+                            <Button 
 		                        Command="{Binding PlayAdvancedServoSequenceCommand }"
                                 CommandParameter="false"
 		                        Content="{Binding PlayAdvanceddServoSequenceContent, FallbackValue='PlaySequence' }"
 		                        ToolTip="{Binding PlayAdvanceddServoSequenceToolTip, FallbackValue='PlayAdvancedServoSequence ToolTip' }" />
-                    </dxlc:LayoutItem>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
 
                 </dxlc:LayoutGroup>
                              
