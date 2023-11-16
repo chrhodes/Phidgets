@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace VNCPhidgets21Explorer.Configuration
+namespace VNCPhidget21.Configuration
 {
-    public class AdvancedServoServoAction
+    public class StepperAction
     {
         /// <summary>
         /// Index of servo on board 

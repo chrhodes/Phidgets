@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VNCPhidgets21Explorer.Configuration
+namespace VNCPhidget21.Configuration
 {
     public class PerformanceSequence
     {

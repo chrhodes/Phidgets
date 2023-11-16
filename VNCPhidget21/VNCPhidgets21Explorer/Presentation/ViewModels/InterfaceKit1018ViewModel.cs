@@ -14,7 +14,7 @@ using VNC;
 using VNC.Core.Mvvm;
 using VNC.Phidget;
 
-//using VNCPhidgets21Explorer.Configuration;
+using VNCPhidgetConfig = VNCPhidget21.Configuration;
 
 namespace VNCPhidgets21Explorer.Presentation.ViewModels
 {
@@ -73,7 +73,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             string jsonString = File.ReadAllText(ConfigFileName);
 
-            Configuration.HostConfig? hostConfig = JsonSerializer.Deserialize<Configuration.HostConfig>(jsonString);
+            VNCPhidgetConfig.HostConfig ? hostConfig = JsonSerializer.Deserialize< VNCPhidgetConfig.HostConfig >(jsonString);
             this.Hosts = hostConfig.Hosts.ToList();
             this.Sensors2 = hostConfig.Sensors.ToList();
 
@@ -109,8 +109,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public string ConfigFileNameToolTip { get; set; } = "DoubleClick to select new file";
 
-        private Configuration.HostConfig _hostConfig;
-        public Configuration.HostConfig HostConfig
+        private VNCPhidgetConfig.HostConfig _hostConfig;
+        public VNCPhidgetConfig.HostConfig HostConfig
         {
             get => _hostConfig;
             set
@@ -122,8 +122,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private IEnumerable<Configuration.Host> _Hosts;
-        public IEnumerable<Configuration.Host> Hosts
+        private IEnumerable<VNCPhidgetConfig.Host> _Hosts;
+        public IEnumerable<VNCPhidgetConfig.Host> Hosts
         {
             get
             {
@@ -152,8 +152,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Configuration.Host _selectedHost;
-        public Configuration.Host SelectedHost
+        private VNCPhidgetConfig.Host _selectedHost;
+        public VNCPhidgetConfig.Host SelectedHost
         {
             get => _selectedHost;
             set
@@ -161,13 +161,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_selectedHost == value)
                     return;
                 _selectedHost = value;
-                InterfaceKits = _selectedHost.InterfaceKits.ToList<Configuration.InterfaceKit>();
+                InterfaceKits = _selectedHost.InterfaceKits.ToList<VNCPhidgetConfig.InterfaceKit>();
                 OnPropertyChanged();
             }
         }
 
-        private IEnumerable<Configuration.InterfaceKit> _InterfaceKits;
-        public IEnumerable<Configuration.InterfaceKit> InterfaceKits
+        private IEnumerable<VNCPhidgetConfig.InterfaceKit> _InterfaceKits;
+        public IEnumerable<VNCPhidgetConfig.InterfaceKit> InterfaceKits
         {
             get
             {
@@ -196,8 +196,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Configuration.InterfaceKit _selectedInterfaceKit;
-        public Configuration.InterfaceKit SelectedInterfaceKit
+        private VNCPhidgetConfig.InterfaceKit _selectedInterfaceKit;
+        public VNCPhidgetConfig.InterfaceKit SelectedInterfaceKit
         {
             get => _selectedInterfaceKit;
             set
@@ -1781,8 +1781,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
-        private IEnumerable<Configuration.Sensor> _Sensors2;
-        public IEnumerable<Configuration.Sensor> Sensors2
+        private IEnumerable<VNCPhidgetConfig.Sensor> _Sensors2;
+        public IEnumerable<VNCPhidgetConfig.Sensor> Sensors2
         {
             get
             {

@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Markup;
 
-using VNCPhidgets21Explorer.Configuration;
+using VNCPhidget21.Configuration;
 
 namespace VNCPhidgets21Explorer.Presentation.Converters
 {

@@ -2,11 +2,9 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-using Microsoft.SqlServer.Server;
-
 using Phidgets;
 
-using VNCPhidgets21Explorer.Configuration;
+using VNCPhidget21.Configuration;
 
 namespace VNC.Phidget
 {

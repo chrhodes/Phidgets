@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Reflection;
 using System.Threading;
 using System.Windows;
 
@@ -8,14 +10,10 @@ using Prism.Regions;
 using Prism.Unity;
 
 using VNC;
-using VNC.Logging;
 using VNC.Core.Presentation.ViewModels;
 using VNC.Core.Presentation.Views;
 
 using VNCPhidgets21Explorer.Presentation.Views;
-using DevExpress.CodeParser;
-using System.Reflection;
-using System.IO;
 
 namespace VNCPhidgets21Explorer
 {

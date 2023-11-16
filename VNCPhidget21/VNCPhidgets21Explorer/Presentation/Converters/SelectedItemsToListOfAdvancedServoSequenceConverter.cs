@@ -1,18 +1,14 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Globalization;
-using System.Windows;
 using System.Windows.Data;
 using System.Windows.Markup;
 
-using DevExpress.CodeParser;
-
-using VNCPhidgets21Explorer.Configuration;
+using VNCPhidget21.Configuration;
 
 namespace VNCPhidgets21Explorer.Presentation.Converters
 {
-    
+
     /// <summary>
     /// Converts to and from a MultiItem Select ComboBox Control
     /// </summary>

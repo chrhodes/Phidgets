@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.Threading;
-
+using System.Threading.Tasks;
 
 using Phidgets;
 using Phidgets.Events;
-using VNCPhidgets21Explorer.Configuration;
+
+using VNCPhidget21.Configuration;
 
 namespace VNC.Phidget
 {
