@@ -41,6 +41,67 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         const Int32 sbc22SerialNumber = 251831;
         const Int32 sbc23SerialNumber = 48284;
 
+        private IEnumerable<string> GetListOfPerformanceConfigFiles()
+        {
+            // TODO(crhodes)
+            // Read a directory and return files, perhaps with RegEx name match
+
+            List<string> files = new List<string>
+            {
+                "performanceconfig1.json", 
+                "performanceconfig2.json",  
+                "performanceconfig3.json"
+            };
+
+            return files;
+        }
+
+        private IEnumerable<string> GetListOfAdvancedServoConfigFiles()
+        {
+            // TODO(crhodes)
+            // Read a directory and return files, perhaps with RegEx name match
+
+            List<string> files = new List<string>
+            { 
+                "advancedservosequenceconfig1.json", 
+                "advancedservosequenceconfig2.json",
+                "advancedservosequenceconfig3.json"
+            };
+
+            return files;
+        }
+
+        private IEnumerable<string> GetListOfInterfaceKitConfigFiles()
+        {
+            // TODO(crhodes)
+            // Read a directory and return files, perhaps with RegEx name match
+
+            List<string> files = new List<string>
+            { 
+                "interfacekitsequenceconfig1.json", 
+                "interfacekitsequenceconfig2.json",
+                "interfacekitsequenceconfig3.json"
+            };
+
+            return files;
+        }
+
+        private IEnumerable<string> GetListOfSteppereConfigFiles()
+        {
+            // TODO(crhodes)
+            // Read a directory and return files, perhaps with RegEx name match
+
+            List<string> files = new List<string>
+            { 
+                "steppersequenceconfig.json", 
+                "steppersequenceconfig2.json",
+                "steppersequenceconfig3.json"
+            };
+
+            return files;
+        }
+
+
         private void InitializeViewModel()
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
@@ -55,16 +116,24 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             PlayAdvancedServoSequenceCommand = new DelegateCommand(PlayAdvancedServoSequence, PlayAdvancedServoSequenceCanExecute);
             PlayInterfaceKitSequenceCommand = new DelegateCommand(PlayInterfaceKitSequence, PlayInterfaceKitSequenceCanExecute);
 
-            PerformanceConfigFileName = "performanceconfig.json";
+            PerformanceConfigFiles = GetListOfPerformanceConfigFiles();
+            AdvancedServoSequenceConfigFiles = GetListOfAdvancedServoConfigFiles();
+            InterfaceKitSequenceConfigFiles = GetListOfInterfaceKitConfigFiles();
+            StepperSequenceConfigFiles = GetListOfSteppereConfigFiles();
 
-            AdvancedServoConfigFileName = "advancedservosequenceconfig.json";
-            InterfaceKitConfigFileName = "interfacekitsequenceconfig.json";
-            StepperConfigFileName = "steppersequenceconfig.json";
+            //PerformanceConfigFileName = "performanceconfig.json";
 
-            LoadPerformancesConfig();
+            //AdvancedServoConfigFileName = "advancedservosequenceconfig.json";
+            //InterfaceKitConfigFileName = "interfacekitsequenceconfig.json";
+            //StepperConfigFileName = "steppersequenceconfig.json";
+
+            //LoadPerformancesConfig();
+            //LoadAdvanceServoConfig();
+            //LoadInterfaceKitConfig();
+            //LoadStepperConfig();
 
             // Turn on logging of PropertyChanged from VNC.Core
-            LogOnPropertyChanged = true;
+            LogOnPropertyChanged = false;
 
             Message = "HackAroundViewModel says hello";
 
@@ -87,16 +156,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 performanceConfig.Performances
                 .ToDictionary(k => k.Name, v => v);
 
-            LoadAdvanceServoConfig(jsonOptions);
-            LoadInterfaceKitConfig(jsonOptions);
-            LoadStepperConfig(jsonOptions);
-
             Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void LoadAdvanceServoConfig(JsonSerializerOptions jsonOptions)
+        private void LoadAdvanceServoConfig()
         {
-            string jsonString = File.ReadAllText(AdvancedServoConfigFileName);
+            var jsonOptions = new JsonSerializerOptions { ReadCommentHandling = JsonCommentHandling.Skip };
+            string jsonString = File.ReadAllText(AdvancedServoSequenceConfigFileName);
 
             VNCPhidgetConfig.AdvancedServoSequenceConfig? sequenceConfig
                 = JsonSerializer.Deserialize<VNCPhidgetConfig.AdvancedServoSequenceConfig>(jsonString, jsonOptions);
@@ -108,9 +174,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 .ToDictionary(k => k.Name, v => v);
         }
 
-        private void LoadInterfaceKitConfig(JsonSerializerOptions jsonOptions)
+        private void LoadInterfaceKitConfig()
         {
-            string jsonString = File.ReadAllText(InterfaceKitConfigFileName);
+            var jsonOptions = new JsonSerializerOptions { ReadCommentHandling = JsonCommentHandling.Skip };
+            string jsonString = File.ReadAllText(InterfaceKitSequenceConfigFileName);
 
             VNCPhidgetConfig.InterfaceKitSequenceConfig? sequenceConfig
                 = JsonSerializer.Deserialize<VNCPhidgetConfig.InterfaceKitSequenceConfig>(jsonString, jsonOptions);
@@ -122,9 +189,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 .ToDictionary(k => k.Name, v => v);
         }
 
-        private void LoadStepperConfig(JsonSerializerOptions jsonOptions)
+        private void LoadStepperConfig()
         {
-            string jsonString = File.ReadAllText(StepperConfigFileName);
+            var jsonOptions = new JsonSerializerOptions { ReadCommentHandling = JsonCommentHandling.Skip };
+            string jsonString = File.ReadAllText(StepperSequenceConfigFileName);
 
             VNCPhidgetConfig.StepperSequenceConfig? sequenceConfig
                 = JsonSerializer.Deserialize<VNCPhidgetConfig.StepperSequenceConfig>(jsonString, jsonOptions);
@@ -149,7 +217,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         #endregion
 
         #region Fields and Properties
-
 
         public ICommand Button1Command { get; private set; }
         public ICommand Button2Command { get; private set; }
@@ -279,6 +346,17 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Performances
 
+        private IEnumerable<string> _performanceConfigFiles;
+        public IEnumerable<string> PerformanceConfigFiles
+        {
+            get => _performanceConfigFiles;
+            set
+            {
+                _performanceConfigFiles = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string _performanceConfigFileName;
         public string PerformanceConfigFileName
         {
@@ -288,6 +366,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_performanceConfigFileName == value) return;
                 _performanceConfigFileName = value;
                 OnPropertyChanged();
+
+                LoadPerformancesConfig();
             }
         }
 
@@ -371,15 +451,28 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region AdvancedServo
 
-        private string _advancedServoConfigFileName;
-        public string AdvancedServoConfigFileName
+        private IEnumerable<string> _advancedServoSequenceConfigFiles;
+        public IEnumerable<string> AdvancedServoSequenceConfigFiles
         {
-            get => _advancedServoConfigFileName;
+            get => _advancedServoSequenceConfigFiles;
             set
             {
-                if (_advancedServoConfigFileName == value) return;
-                _advancedServoConfigFileName = value;
+                _advancedServoSequenceConfigFiles = value;
                 OnPropertyChanged();
+            }
+        }
+
+        private string _advancedServoSequenceConfigFileName;
+        public string AdvancedServoSequenceConfigFileName
+        {
+            get => _advancedServoSequenceConfigFileName;
+            set
+            {
+                if (_advancedServoSequenceConfigFileName == value) return;
+                _advancedServoSequenceConfigFileName = value;
+                OnPropertyChanged();
+
+                LoadAdvanceServoConfig();
             }
         }
 
@@ -442,15 +535,28 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region InterfaceKit
 
-        private string _interfaceKitConfigFileName;
-        public string InterfaceKitConfigFileName
+        private IEnumerable<string> _interfaceKitSequenceConfigFiles;
+        public IEnumerable<string> InterfaceKitSequenceConfigFiles
         {
-            get => _interfaceKitConfigFileName;
+            get => _interfaceKitSequenceConfigFiles;
             set
             {
-                if (_interfaceKitConfigFileName == value) return;
-                _interfaceKitConfigFileName = value;
+                _interfaceKitSequenceConfigFiles = value;
                 OnPropertyChanged();
+            }
+        }
+
+        private string _interfaceKitSequenceConfigFileName;
+        public string InterfaceKitSequenceConfigFileName
+        {
+            get => _interfaceKitSequenceConfigFileName;
+            set
+            {
+                if (_interfaceKitSequenceConfigFileName == value) return;
+                _interfaceKitSequenceConfigFileName = value;
+                OnPropertyChanged();
+
+                LoadInterfaceKitConfig();
             }
         }
 
@@ -513,15 +619,28 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Stepper
 
-        private string _stepperConfigFileName;
-        public string StepperConfigFileName
+        private IEnumerable<string> _stepperSequenceConfigFiles;
+        public IEnumerable<string> StepperSequenceConfigFiles
         {
-            get => _stepperConfigFileName;
+            get => _stepperSequenceConfigFiles;
             set
             {
-                if (_stepperConfigFileName == value) return;
-                _stepperConfigFileName = value;
+                _stepperSequenceConfigFiles = value;
                 OnPropertyChanged();
+            }
+        }
+
+        private string _stepperSequenceConfigFileName;
+        public string StepperSequenceConfigFileName
+        {
+            get => _stepperSequenceConfigFileName;
+            set
+            {
+                if (_stepperSequenceConfigFileName == value) return;
+                _stepperSequenceConfigFileName = value;
+                OnPropertyChanged();
+
+                LoadStepperConfig();
             }
         }
 

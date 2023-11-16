@@ -1,0 +1,30 @@
+{
+  "Name": "PerformanceConfig InterfaceKit",
+  "Description": "PerformanceConfig InterfaceKit Performances",
+  "Performances": [
+    {
+      "Name": "IK Performance 1",
+      "Description": "psbc{21,22,23}_SequenceIK 1 in Parallel",
+      "Loops": 1,
+      "PlayInParallel": true,
+      "PerformanceSequences": [
+        {
+          "Name": "psbc21_SequenceIK 1",
+          "SequenceType": "IK",
+          "Loops": 1
+        },
+        {
+          "Name": "psbc22_SequenceIK 1",
+          "SequenceType": "IK",
+          "Loops": 1
+        },
+        {
+          "Name": "psbc23_SequenceIK 1",
+          "SequenceType": "IK",
+          "Loops": 1
+        }
+      ],
+      "NextPerformance": null
+    }
+  ]
+}

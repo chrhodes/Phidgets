@@ -165,8 +165,7 @@
 
                     <controls:PhidgetDevice x:Name="Phidget1" Margin="-10,-10,-10,0" 
                                AttachedPhidgetDevice="{Binding PhidgetDevice, Mode=TwoWay}"
-                               DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}"
-                               LogPhidgetEvents="{Binding LogPhidgetEvents, Mode=TwoWay}"/>
+                               DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}" />
 
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left">
 

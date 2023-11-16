@@ -70,7 +70,15 @@
     
     <dxlc:LayoutControl View="Group" Orientation="Vertical" >
         
-        <dxlc:LayoutItem Label="PerformanceConfig FileName" Background="Wheat">
+
+            <dxlc:LayoutItem Label="PerformanceConfig Files" HorizontalAlignment="Left" >
+                <dxe:ComboBoxEdit Width="250" 
+                                    ItemsSource="{Binding PerformanceConfigFiles}"
+                                    SelectedItem="{Binding PerformanceConfigFileName}" >
+                </dxe:ComboBoxEdit>
+            </dxlc:LayoutItem>
+        
+        <!--<dxlc:LayoutItem Label="PerformanceConfig FileName" Background="Wheat">
             <dxe:TextEdit
             		    Text="{Binding PerformanceConfigFileName }"
                 	    ToolTip="{Binding PerformanceConfigFileNameToolTip }">
@@ -80,7 +88,7 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </dxe:TextEdit>
-        </dxlc:LayoutItem>
+        </dxlc:LayoutItem>-->
 
         <dxlc:LayoutGroup Header="Performances" View="GroupBox" Orientation="Vertical" >
 
@@ -142,7 +150,14 @@
             <dxlc:LayoutGroup Header="AdvancedServo Sequences" View="GroupBox" Orientation="Vertical" 
                               IsCollapsible="True" IsCollapsed="False" >
 
-                <dxlc:LayoutItem Label="AdvancdeServoConfig FileName" Background="Wheat">
+                <dxlc:LayoutItem Label="PerformanceConfig Files" HorizontalAlignment="Left" >
+                    <dxe:ComboBoxEdit Width="250" 
+                                    ItemsSource="{Binding AdvancedServoSequenceConfigFiles}"
+                                    SelectedItem="{Binding AdvancedServoSequenceConfigFileName}" >
+                    </dxe:ComboBoxEdit>
+                </dxlc:LayoutItem>
+                
+                <!--<dxlc:LayoutItem Label="AdvancdeServoConfig FileName" Background="Wheat">
                     <dxe:TextEdit
             		    Text="{Binding AdvancedServoConfigFileName }"
                 	    ToolTip="{Binding AdvancedServoConfigFileNameToolTip }">
@@ -152,7 +167,7 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </dxe:TextEdit>
-                </dxlc:LayoutItem>
+                </dxlc:LayoutItem>-->
                 
                 <dxlc:LayoutItem HorizontalAlignment="Left" >
                     <dxe:ComboBoxEdit Width="250" 
@@ -244,7 +259,14 @@
             <dxlc:LayoutGroup Header="InterfaceKit Sequences" View="GroupBox" Orientation="Vertical" 
                               IsCollapsible="True" IsCollapsed="False" >
 
-                <dxlc:LayoutItem Label="InterfaceKitConfig FileName" Background="Wheat">
+                <dxlc:LayoutItem Label="InterfaceKit Sequence Files" HorizontalAlignment="Left" >
+                    <dxe:ComboBoxEdit Width="250" 
+                                    ItemsSource="{Binding InterfaceKitSequenceConfigFiles}"
+                                    SelectedItem="{Binding InterfaceKitSequenceConfigFileName}" >
+                    </dxe:ComboBoxEdit>
+                </dxlc:LayoutItem>
+                
+                <!--<dxlc:LayoutItem Label="InterfaceKitConfig FileName" Background="Wheat">
                     <dxe:TextEdit
             		    Text="{Binding InterfaceKitConfigFileName }"
                 	    ToolTip="{Binding InterfaceKitConfigFileNameToolTip }">
@@ -254,7 +276,7 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </dxe:TextEdit>
-                </dxlc:LayoutItem>
+                </dxlc:LayoutItem>-->
                 
                 <dxlc:LayoutItem HorizontalAlignment="Left" >
                     <dxe:ComboBoxEdit Width="250" 
@@ -343,9 +365,15 @@
 
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup Header="Stepper Sequences" View="GroupBox" Orientation="Vertical" IsCollapsible="True" IsCollapsed="False" >
+            <dxlc:LayoutGroup Header="Stepper Sequences" View="GroupBox" Orientation="Vertical" IsCollapsible="True" IsCollapsed="True" >
 
-                <dxlc:LayoutItem Label="StepperConfig FileName" Background="Wheat">
+                <dxlc:LayoutItem Label="Stepper Sequence ConfigFiles" HorizontalAlignment="Left" >
+                    <dxe:ComboBoxEdit Width="250" 
+                                    ItemsSource="{Binding StepperSequenceConfigFiles}"
+                                    SelectedItem="{Binding StepperSequenceConfigFileName}" >
+                    </dxe:ComboBoxEdit>
+                </dxlc:LayoutItem>
+                <!--<dxlc:LayoutItem Label="StepperConfig FileName" Background="Wheat">
                     <dxe:TextEdit
             		    Text="{Binding StepperConfigFileName }"
                 	    ToolTip="{Binding StepperConfigFileNameToolTip }">
@@ -355,7 +383,7 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </dxe:TextEdit>
-                </dxlc:LayoutItem>
+                </dxlc:LayoutItem>-->
                 
                 <dxlc:LayoutItem HorizontalAlignment="Left" >
                     <dxe:ComboBoxEdit Width="250" 

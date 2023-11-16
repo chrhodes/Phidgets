@@ -47,32 +47,6 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         //    Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         //}
 
-        private static object OnCoerceLogPhidgetEvents(DependencyObject o, object value)
-        {
-            PhidgetDevice phidgetDevice = o as PhidgetDevice;
-            if (phidgetDevice != null)
-                return phidgetDevice.OnCoerceLogPhidgetEvents((Boolean)value);
-            else
-                return value;
-        }
-
-        private static void OnLogPhidgetEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            PhidgetDevice phidgetDevice = o as PhidgetDevice;
-            if (phidgetDevice != null)
-                phidgetDevice.OnLogPhidgetEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
-        }
-
-        protected virtual Boolean OnCoerceLogPhidgetEvents(Boolean value)
-        {
-            // TODO: Keep the proposed value within the desired range.
-            return value;
-        }
-
-        protected virtual void OnLogPhidgetEventsChanged(Boolean oldValue, Boolean newValue)
-        {
-            // TODO: Add your property changed side-effects. Descendants can override as well.
-        }
         protected virtual string OnCoerceDeviceLibraryVersion(string value)
         {
             // TODO: Keep the proposed value within the desired range.
@@ -125,12 +99,6 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 
         //public static readonly DependencyProperty PhidgetProperty = DependencyProperty.Register("Phidget", typeof(Phidgets.Phidget), typeof(Phidget), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnPhidgetChanged), new CoerceValueCallback(OnCoercePhidget)));
 
-        public Boolean LogPhidgetEvents
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Boolean)GetValue(LogPhidgetEventsProperty);
-            set => SetValue(LogPhidgetEventsProperty, value);
-        }
         public Phidgets.Phidget AttachedPhidgetDevice
         {
             // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
@@ -237,9 +205,6 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         public static readonly DependencyProperty DeviceSerialNumberProperty = DependencyProperty.Register("DeviceSerialNumber", typeof(Int32?), typeof(PhidgetDevice), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnDeviceSerialNumberChanged), new CoerceValueCallback(OnCoerceDeviceSerialNumber)));
         public static readonly DependencyProperty DeviceTypeProperty = DependencyProperty.Register("DeviceType", typeof(string), typeof(PhidgetDevice), new FrameworkPropertyMetadata("", new PropertyChangedCallback(OnDeviceTypeChanged), new CoerceValueCallback(OnCoerceDeviceType)));
         public static readonly DependencyProperty DeviceVersionProperty = DependencyProperty.Register("DeviceVersion", typeof(Int32?), typeof(PhidgetDevice), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnDeviceVersionChanged), new CoerceValueCallback(OnCoerceDeviceVersion)));
-
-        public static readonly DependencyProperty LogPhidgetEventsProperty = DependencyProperty.Register("LogPhidgetEvents", typeof(Boolean), typeof(PhidgetDevice), new FrameworkPropertyMetadata(false, new PropertyChangedCallback(OnLogPhidgetEventsChanged), new CoerceValueCallback(OnCoerceLogPhidgetEvents)));
-
 
         protected virtual void OnAttachedPhidgetDeviceChanged(Phidgets.Phidget oldValue, Phidgets.Phidget newValue)
         {

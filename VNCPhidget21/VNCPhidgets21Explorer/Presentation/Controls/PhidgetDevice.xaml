@@ -16,7 +16,7 @@
     Background="{StaticResource PhidgetBackground}"
 
     d:DesignStyle="{StaticResource vncDesignStyleUC}"
-    Height="350"
+    Height="280"
 >
 <!-- NOTE(crhodes)
     Have to set the Height manually above to get the control to behave when embedded in another Xaml file.
@@ -90,8 +90,6 @@
                 
             </dxlc:LayoutGroup>
 
-            
-
             <dxlc:LayoutItem Label="Attached">
                 <dxe:TextEdit EditValue="{Binding DeviceAttached, Mode=OneWay}" IsReadOnly="True"
                                      Background="White" Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
@@ -159,14 +157,6 @@
                               Background="White"
                               Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
             </dxlc:LayoutItem>
-
-            <!--<dxlc:LayoutGroup View="Group" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left">
-
-                <dxe:CheckEdit
-                            Content="Log Phidget Events"
-                            IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}" />
-
-            </dxlc:LayoutGroup>-->
 
         </dxlc:LayoutGroup>
         
