@@ -13,7 +13,8 @@
                 },
                 AdvancedServos = new[]
                 {
-                    new AdvancedServo { Name = "AdvancedServo1", SerialNumber = 99415, Open = true }
+                    new AdvancedServo { Name = "AdvancedServo 99415", SerialNumber = 99415, Open = true },
+                    new AdvancedServo { Name = "AdvancedServo 593480", SerialNumber = 593480, Open = true }
                 }
             },
             new Host
@@ -25,7 +26,8 @@
                 },
                 AdvancedServos = new[]
                 {
-                    new AdvancedServo { Name = "AdvancedServo1", SerialNumber = 99415, Open = true }
+                    new AdvancedServo { Name = "AdvancedServo 99415", SerialNumber = 99415, Open = true },
+                    new AdvancedServo { Name = "AdvancedServo 593480", SerialNumber = 593480, Open = true }
                 }
             },
             new Host
@@ -37,7 +39,8 @@
                 },
                 AdvancedServos = new[]
                 {
-                    new AdvancedServo { Name = "AdvancedServo1", SerialNumber = 99415, Open = true }
+                    new AdvancedServo { Name = "AdvancedServo 99415", SerialNumber = 99415, Open = true },
+                    new AdvancedServo { Name = "AdvancedServo 593480", SerialNumber = 593480, Open = true }
                 }
             },
             new Host
@@ -49,7 +52,8 @@
                 },
                 AdvancedServos = new[]
                 {
-                    new AdvancedServo { Name = "AdvancedServo1", SerialNumber = 99415, Open = true }
+                    new AdvancedServo { Name = "AdvancedServo 99415", SerialNumber = 99415, Open = true },
+                    new AdvancedServo { Name = "AdvancedServo 593480", SerialNumber = 593480, Open = true }
                 }
             },
             new Host
@@ -61,7 +65,8 @@
                 },
                 AdvancedServos = new[]
                 {
-                    new AdvancedServo { Name = "AdvancedServo1", SerialNumber = 99415, Open = true }
+                    new AdvancedServo { Name = "AdvancedServo 99415", SerialNumber = 99415, Open = true },
+                    new AdvancedServo { Name = "AdvancedServo 593480", SerialNumber = 593480, Open = true }
                 }
             }
 

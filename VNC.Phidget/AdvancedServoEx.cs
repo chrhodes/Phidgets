@@ -79,8 +79,14 @@ namespace VNC.Phidget
 
             try
             {
-                AdvancedServo.open(SerialNumber);
-                //AdvancedServo.open(SerialNumber, Host.IPAddress, Host.Port);
+                // HACK(crhodes)
+                // Trying to get new RCC0004_0 AdvancedServo board to work with
+                // Legacy SBC1 or SBC2.  No luck.
+                // Only seems to work it directly attached, sigh.
+                //AdvancedServo.open(SerialNumber);
+                //AdvancedServo.open(-1);
+
+                AdvancedServo.open(SerialNumber, Host.IPAddress, Host.Port);
 
                 if (timeOut is not null)
                 {
@@ -91,11 +97,6 @@ namespace VNC.Phidget
                     AdvancedServo.waitForAttachment();
                 }
 
-                //// TDO(crhodes)
-                //// This will hang if AdvancedServo no attached.
-                //// How to handle this
-
-                //AdvancedServo.waitForAttachment();
             }
             catch (Exception ex)
             {
@@ -283,7 +284,22 @@ namespace VNC.Phidget
             try
             {
                 if (action.Acceleration is not null) servo.Acceleration = (Double)action.Acceleration;
+
+                if (action.RelativeAcceleration is not null)
+                {
+                    var newAcceleration = servo.Acceleration += (Double)action.RelativeAcceleration;
+                    servo.Acceleration = newAcceleration;
+                    Thread.Sleep(1);
+                }
+
                 if (action.VelocityLimit is not null) servo.VelocityLimit = (Double)action.VelocityLimit;
+
+                if (action.RelativeVelocityLimit is not null)
+                {
+                    var newVelocityLimit = servo.VelocityLimit += (Double)action.RelativeVelocityLimit;
+                    servo.VelocityLimit = newVelocityLimit;
+                    Thread.Sleep(1);
+                }
 
                 if (action.PositionMin is not null)
                 {

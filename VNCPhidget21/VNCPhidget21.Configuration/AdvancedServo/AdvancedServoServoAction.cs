@@ -20,9 +20,19 @@ namespace VNCPhidget21.Configuration
         public Double? Acceleration { get; set; }
 
         /// <summary>
+        /// Acceleration (+/-) from current Acceleration (optional)
+        /// </summary>
+        public Double? RelativeAcceleration { get; set; }
+
+        /// <summary>
         /// Servo Velocity (optional)
         /// </summary>
         public Double? VelocityLimit { get; set; }
+
+        /// <summary>
+        /// VelocityLimit (+/-) from current VelocityLimit (optional)
+        /// </summary>
+        public Double? RelativeVelocityLimit { get; set; }
 
         /// <summary>
         /// TargetPosition (optional)
@@ -35,7 +45,7 @@ namespace VNCPhidget21.Configuration
         public double? TargetPosition { get; set; }
 
         /// <summary>
-        /// RelativePosition from current position (optional)
+        /// Position (+/-)  from current Position (optional)
         /// </summary>
         public double? RelativePosition { get; set; }
 
