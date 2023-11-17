@@ -4755,7 +4755,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             try
             {
                 Phidgets.Phidget device = (Phidgets.Phidget)sender;
-                Log.Trace($"ActiveAdvancedServo_Attach {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
+                //Log.Trace($"ActiveAdvancedServo_Attach {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
                 
                 DeviceAttached = ActiveAdvancedServo.AdvancedServo.Attached;
                 UpdateAdvancedServoProperties();

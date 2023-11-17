@@ -79,10 +79,17 @@ namespace VNC.Phidget
 
             try
             {
-                AdvancedServo.open(SerialNumber, Host.IPAddress, Host.Port);
+                AdvancedServo.open(SerialNumber);
+                //AdvancedServo.open(SerialNumber, Host.IPAddress, Host.Port);
 
-                if (timeOut is not null) { AdvancedServo.waitForAttachment((Int32)timeOut); }
-                else { AdvancedServo.waitForAttachment(); }
+                if (timeOut is not null)
+                {
+                    AdvancedServo.waitForAttachment((Int32)timeOut); 
+                }
+                else 
+                { 
+                    AdvancedServo.waitForAttachment();
+                }
 
                 //// TDO(crhodes)
                 //// This will hang if AdvancedServo no attached.
