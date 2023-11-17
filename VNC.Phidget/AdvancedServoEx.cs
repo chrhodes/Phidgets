@@ -83,12 +83,6 @@ namespace VNC.Phidget
 
                 if (timeOut is not null) { AdvancedServo.waitForAttachment((Int32)timeOut); }
                 else { AdvancedServo.waitForAttachment(); }
-
-                //// TDO(crhodes)
-                //// This will hang if AdvancedServo no attached.
-                //// How to handle this
-
-                //AdvancedServo.waitForAttachment();
             }
             catch (Exception ex)
             {
