@@ -150,11 +150,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
-            var jsonOptions = new JsonSerializerOptions { ReadCommentHandling = JsonCommentHandling.Skip };
             string jsonString = File.ReadAllText(PerformanceConfigFileName);
 
             VNCPhidgetConfig.PerformanceConfig? performanceConfig
-                = JsonSerializer.Deserialize<VNCPhidgetConfig.PerformanceConfig>(jsonString, jsonOptions);
+                = JsonSerializer.Deserialize<VNCPhidgetConfig.PerformanceConfig>
+                (jsonString, GetJsonSerializerOptions());
 
             Performances = performanceConfig.Performances.ToList();
 
@@ -167,13 +167,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private void LoadAdvanceServoConfig()
         {
-            var jsonOptions = new JsonSerializerOptions { ReadCommentHandling = JsonCommentHandling.Skip };
             string jsonString = File.ReadAllText(AdvancedServoSequenceConfigFileName);
 
             VNCPhidgetConfig.AdvancedServoSequenceConfig? sequenceConfig
-                = JsonSerializer.Deserialize<VNCPhidgetConfig.AdvancedServoSequenceConfig>(jsonString, jsonOptions);
+                = JsonSerializer.Deserialize<VNCPhidgetConfig.AdvancedServoSequenceConfig>
+                (jsonString, GetJsonSerializerOptions());
 
-            this.AdvancedServoSequences = sequenceConfig.AdvancedServoSequences.ToList();
+            AdvancedServoSequences = sequenceConfig.AdvancedServoSequences.ToList();
 
             AvailableAdvancedServoSequences =
                 sequenceConfig.AdvancedServoSequences
@@ -182,11 +182,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private void LoadInterfaceKitConfig()
         {
-            var jsonOptions = new JsonSerializerOptions { ReadCommentHandling = JsonCommentHandling.Skip };
             string jsonString = File.ReadAllText(InterfaceKitSequenceConfigFileName);
 
             VNCPhidgetConfig.InterfaceKitSequenceConfig? sequenceConfig
-                = JsonSerializer.Deserialize<VNCPhidgetConfig.InterfaceKitSequenceConfig>(jsonString, jsonOptions);
+                = JsonSerializer.Deserialize<VNCPhidgetConfig.InterfaceKitSequenceConfig>
+                (jsonString, GetJsonSerializerOptions());
 
             InterfaceKitSequences = sequenceConfig.InterfaceKitSequences.ToList();
 
@@ -197,17 +197,25 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private void LoadStepperConfig()
         {
-            var jsonOptions = new JsonSerializerOptions { ReadCommentHandling = JsonCommentHandling.Skip };
             string jsonString = File.ReadAllText(StepperSequenceConfigFileName);
 
             VNCPhidgetConfig.StepperSequenceConfig? sequenceConfig
-                = JsonSerializer.Deserialize<VNCPhidgetConfig.StepperSequenceConfig>(jsonString, jsonOptions);
+                = JsonSerializer.Deserialize<VNCPhidgetConfig.StepperSequenceConfig>
+                (jsonString, GetJsonSerializerOptions());
 
             StepperSequences = sequenceConfig.StepperSequences.ToList();
 
             AvailableStepperSequences =
                 sequenceConfig.StepperSequences
                 .ToDictionary(k => k.Name, v => v);
+        }
+
+        JsonSerializerOptions GetJsonSerializerOptions()
+        {
+            var jsonOptions = new JsonSerializerOptions
+            { ReadCommentHandling = JsonCommentHandling.Skip, AllowTrailingCommas = true };
+
+            return jsonOptions;
         }
 
         #endregion
@@ -1031,11 +1039,14 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private async Task<VNCPhidgetConfig.PerformanceSequence?> ExecutePerformanceSequence(VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence)
         {
-            Log.Trace($"Playing sequence:{nextPerformanceSequence?.Name} type:{nextPerformanceSequence?.SequenceType}", Common.LOG_CATEGORY);
+            Log.Trace($"Playing sequence:{nextPerformanceSequence?.Name} type:{nextPerformanceSequence?.SequenceType}" +
+                $" loops:{nextPerformanceSequence?.Loops} closePhidget:{nextPerformanceSequence?.ClosePhidget}", Common.LOG_CATEGORY);
 
             // TODO(crhodes)
             // Think about Open/Close more.  Maybe config.
             // What happens if nextSequence.Host is null    
+
+            var startingPerormanceSequence = nextPerformanceSequence;
 
             if (nextPerformanceSequence is not null)
             {
@@ -1072,7 +1083,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                                     nextPerformanceSequence = advancedServoSequence.NextSequence;
                                 }
 
-                                advancedServoHost.Close();
+                                if (startingPerormanceSequence.ClosePhidget)
+                                {
+                                    advancedServoHost.Close();
+                                }            
                             }
                             else
                             {
@@ -1119,7 +1133,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                                     nextPerformanceSequence = interfaceKitSequence.NextSequence;
                                 }
 
-                                //interfaceKitHost.Close();
+                                if (startingPerormanceSequence.ClosePhidget)
+                                {
+                                    interfaceKitHost.Close();
+                                }
                             }
                             else
                             {

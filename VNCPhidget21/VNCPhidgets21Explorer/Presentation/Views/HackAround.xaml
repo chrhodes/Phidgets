@@ -42,14 +42,14 @@
     <UserControl.Resources>
 
     </UserControl.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
-            <RowDefinition Height="150" />
+            <RowDefinition Height="130" />
             <!--<RowDefinition Height="100" />
             <RowDefinition Height="100" />-->
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
@@ -109,7 +109,7 @@
         
         <!-- This is useful for debugging V VM constructor issues -->
 
-        <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Bottom">
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label Content="V:" />
                 <Label Content="{Binding ElementName=thisControl, Path=InstanceCountV}" />

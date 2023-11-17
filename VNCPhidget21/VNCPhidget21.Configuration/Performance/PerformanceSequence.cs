@@ -19,5 +19,10 @@ namespace VNCPhidget21.Configuration
         /// Number of loops of Sequence
         /// </summary>
         public Int32 Loops { get; set; } = 1;
+
+        /// <summary>
+        /// Close Phidget at end of sequence loops
+        /// </summary>
+        public Boolean ClosePhidget { get; set; } = false;
     }
 }

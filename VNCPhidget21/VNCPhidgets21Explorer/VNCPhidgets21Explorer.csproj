@@ -9,7 +9,7 @@
     <!--<Nullable>enable</Nullable>-->
 	  <VersionPrefix>1.0.0</VersionPrefix>
 	  <VersionSuffix>indevelopment-v8</VersionSuffix>
-      <FileVersion>2023.11.15A</FileVersion>
+      <FileVersion>2023.11.16A</FileVersion>
       <Company>VNC</Company>
 	  <Description>Phidget21 Explorer</Description>
   </PropertyGroup>
@@ -30,47 +30,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="Resources\json\advancedservo.json" />
-    <None Remove="Resources\json\advancedservoperformancesconfig-orig.json" />
-    <None Remove="Resources\json\advancedservosequence.json" />
-    <None Remove="Resources\json\advancedservosequenceconfig.json" />
-    <None Remove="Resources\json\advancedservoservoaction.json" />
-    <None Remove="Resources\json\advancedservostep.json" />
-    <None Remove="Resources\json\host.json" />
-    <None Remove="Resources\json\hostconfig.json" />
-    <None Remove="Resources\json\interfacekit.json" />
-    <None Remove="Resources\json\interfacekitaction.json" />
-    <None Remove="Resources\json\interfacekitsequence.json" />
-    <None Remove="Resources\json\interfacekitsequenceconfig.json" />
-    <None Remove="Resources\json\localhost_advancedservosequenceconfig_1.json" />
-    <None Remove="Resources\json\localhost_InterfaceKitSequenceConfig_1.json" />
-    <None Remove="Resources\json\localhost_StepperSequenceConfig_!.json" />
-    <None Remove="Resources\json\performance.json" />
-    <None Remove="Resources\json\performanceconfig.json" />
-    <None Remove="Resources\json\performancesequence.json" />
-    <None Remove="Resources\json\Performances\PerformanceConfig_1.json" />
-    <None Remove="Resources\json\Performances\PerformanceConfig_2.json" />
-    <None Remove="Resources\json\Performances\PerformanceConfig_3.json" />
-    <None Remove="Resources\json\psbc11 - Copy (2)\psbc11_AdvancedServoSequenceConfig_1.json" />
-    <None Remove="Resources\json\psbc11 - Copy (2)\psbc11_InterfaceKitSequenceConfig_1.json" />
-    <None Remove="Resources\json\psbc11 - Copy (2)\psbc11_StepperSequenceConfig_!.json" />
-    <None Remove="Resources\json\psbc11 - Copy (3)\psbc11_AdvancedServoSequenceConfig_1.json" />
-    <None Remove="Resources\json\psbc11 - Copy (3)\psbc11_InterfaceKitSequenceConfig_1.json" />
-    <None Remove="Resources\json\psbc11 - Copy (3)\psbc11_StepperSequenceConfig_!.json" />
-    <None Remove="Resources\json\psbc11\psbc11_AdvancedServoSequenceConfig_1.json" />
-    <None Remove="Resources\json\psbc11\psbc11_InterfaceKitSequenceConfig_1.json" />
-    <None Remove="Resources\json\psbc11\psbc11_StepperSequenceConfig_1.json" />
-    <None Remove="Resources\json\psbc21\psbc21_AdvancedServoSequenceConfig_1.json" />
-    <None Remove="Resources\json\psbc21\psbc21_InterfaceKitSequenceConfig_1.json" />
-    <None Remove="Resources\json\psbc21\psbc21_StepperSequenceConfig_1.json" />
-    <None Remove="Resources\json\sensor.json" />
-    <None Remove="Resources\json\stepper.json" />
-    <None Remove="Resources\json\stepperaction.json" />
-    <None Remove="Resources\json\steppersequence.json" />
-    <None Remove="Resources\json\steppersequenceconfig.json" />
-  </ItemGroup>
 
   <ItemGroup>
     <Content Include="Resources\Icons\ApplicationIcon-Right-Red.ico" />
@@ -107,7 +66,7 @@
     <Content Include="Resources\json\psbc22\psbc22_AdvancedServoSequenceConfig_1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\json\psbc22\psbc21_InterfaceKitSequenceConfig_1.json">
+    <Content Include="Resources\json\psbc22\psbc22_InterfaceKitSequenceConfig_1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\json\psbc22\psbc22_StepperSequenceConfig_1.json">
