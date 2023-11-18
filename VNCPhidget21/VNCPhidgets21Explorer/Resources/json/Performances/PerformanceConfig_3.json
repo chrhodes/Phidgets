@@ -77,7 +77,14 @@
         { "Name": "Acceleration(6000) VelocityLimit(3125)", "SequenceType": "AS" },
         { "Name": "Parallel Pairs 1 (PP1)", "SequenceType": "AS" }
       ],
-      "NextPerformance": { "Name": "DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
+     "NextPerformance":
+     { 
+        "Name": "Disengage All Servos and Close Phidget",
+        "Description": "Play All the Performances",
+        "PerformanceSequences": [
+            { "Name": "DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
+        ]
+      }
     },
     //
     // psbc21_AS Parallel Pairs 2
@@ -94,7 +101,14 @@
         { "Name": "Acceleration(6000) VelocityLimit(3125)", "SequenceType": "AS" },
         { "Name": "Parallel Pairs 2 (PP2)", "SequenceType": "AS" }
       ],
-      "NextPerformance": { "Name": "DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
+     "NextPerformance":
+     { 
+        "Name": "Disengage All Servos and Close Phidget",
+        "Description": "Play All the Performances",
+        "PerformanceSequences": [
+            { "Name": "DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
+        ]
+      }
     },
     //
     // psbc21_AS Parallel Pairs 3
@@ -111,12 +125,15 @@
         { "Name": "Acceleration(6000) VelocityLimit(3125)", "SequenceType": "AS" },
         { "Name": "Parallel Pairs 3 (PP3)", "SequenceType": "AS" }
       ],
-      "NextPerformance": 
-      { 
-          "PerformanceSequences": [
-              {"Name": "DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
-           ]
-      },
+     "NextPerformance":
+     { 
+        "Name": "Disengage All Servos and Close Phidget",
+        "Description": "Play All the Performances",
+        "PerformanceSequences": [
+            { "Name": "DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
+        ]
+      }
+    },
     //
     // psbc21_AS Parallel Pairs 4
     //
@@ -132,10 +149,13 @@
         { "Name": "Acceleration(6000) VelocityLimit(3125)", "SequenceType": "AS" },
         { "Name": "Parallel Pairs 3 (PP3)", "SequenceType": "AS" }
       ],
-      "NextPerformance": "4 Act 1"
-      { 
-          "Name": "Parallel Pairs 4A", "SequenceType": "AS", "ClosePhidget": true
-
+     "NextPerformance":
+     { 
+        "Name": "Parallel Pairs 4A",
+        "Description": "Play All the Performances",
+        "PerformanceSequences": [
+            { "Name": "DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
+        ]
       }
     },
     //
@@ -153,7 +173,14 @@
         { "Name": "Acceleration(6000) VelocityLimit(3125)", "SequenceType": "AS" },
         { "Name": "Parallel Pairs 3 (PP3)", "SequenceType": "AS" }
       ],
-      "NextPerformance": { "Name": "DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
+     "NextPerformance":
+     { 
+        "Name": "Disengage All Servos and Close Phidget",
+        "Description": "Play All the Performances",
+        "PerformanceSequences": [
+            { "Name": "DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
+        ]
+      }
     },
   ]
 }
