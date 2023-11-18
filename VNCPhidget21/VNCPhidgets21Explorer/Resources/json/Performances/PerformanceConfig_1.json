@@ -1,71 +1,26 @@
 {
-  "Name": "PerformanceConfig NAME",
-  "Description": "PerformanceConfig DESCRIPTION",
+  "Name": "PerformanceConfig_1",
+  "Description": "Simple AS and IK routines",
   "Performances": [
     {
-      "Name": "psbc21_AS Performance 0-1-2 P0,1,2 P4,5,6 4-5-6",
-      "Description": "psbc21_AS Performance 1 Description",
+      "Name": "AS 0-1-2 4-5-6 Sequential",
+      "Description": "Servo 0,1,2 and Servo 4,5,6 in Sequence",
       "Loops": 2,
       "PlayInParallel": false,
       "PerformanceSequences": [
-        {
-          "Name": "psbc21_SequenceServo0",
-          "SequenceType": "AS",
-          "Loops": 1
-        },
-        {
-          "Name": "psbc21_SequenceServo0P Configure and Engage",
-          "SequenceType": "AS",
-          "Loops": 2
-        },
-        {
-          "Name": "psbc21_SequenceServo4P Configure and Engage",
-          "SequenceType": "AS",
-          "Loops": 2
-        },
-        {
-          "Name": "psbc21_SequenceServo4",
-          "SequenceType": "AS",
-          "Loops": 3
-        }
+        { "Name": "Servo0", "SequenceType": "AS" },
+        { "Name": "Servo4", "SequenceType": "AS"}
       ],
       "NextPerformance": null
     },
     {
-      "Name": "psbc21_AS Performance 0-1-2 4-5-6 Parallel",
-      "Description": "psbc21_AS Performance 1 Description",
+      "Name": "AS 0-1-2 4-5-6 Parallel",
+      "Description": "Servo 0,1,2 and Servo 4,5,6 in Parallel",
       "Loops": 2,
       "PlayInParallel": true,
       "PerformanceSequences": [
-        {
-          "Name": "psbc21_SequenceServo0",
-          "SequenceType": "AS",
-          "Loops": 2
-        },
-        {
-          "Name": "psbc21_SequenceServo4",
-          "SequenceType": "AS",
-          "Loops": 3
-        }
-      ],
-      "NextPerformance": null
-    },
-    {
-      "Name": "psbc21_AS 012 456 Parallel",
-      "Description": "psbc21_AS Performance 1 Description",
-      "Loops": 2,
-      "PlayInParallel": true,
-      "PerformanceSequences": [
-        {
-          "Name": "psbc21_SequenceServo0P Configure and Engage",
-          "SequenceType": "AS",
-          "Loops": 2
-        },
-        {
-          "Name": "psbc21_SequenceServo4P Configure and Engage",
-          "SequenceType": "AS",
-          "Loops": 2
-        }
+        { "Name": "Servo0", "SequenceType": "AS" },
+        { "Name": "Servo4", "SequenceType": "AS" }
       ],
       "NextPerformance": null
     },

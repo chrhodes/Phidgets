@@ -51,6 +51,7 @@
       },
       "Name": "localhost_SequenceIK 1",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": false,
       "NextSequence": null
@@ -106,6 +107,7 @@
       },
       "Name": "psbc11_SequenceIK 1",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": false,
       "NextSequence": null
@@ -161,12 +163,14 @@
       },
       "Name": "psbc21_SequenceIK 1",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": false,
       "NextSequence": {
         "Name": "psbc22_SequenceIK 1",
         "SequenceType": "IK",
-        "Loops": 1
+        "Loops": 1,
+        "ClosePhidget": false
       }
     },
     {
@@ -220,6 +224,7 @@
       },
       "Name": "psbc21_SequenceIK 1 Parallel",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": true,
       "NextSequence": null
@@ -275,12 +280,14 @@
       },
       "Name": "psbc22_SequenceIK 1",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": false,
       "NextSequence": {
         "Name": "psbc23_SequenceIK 1",
         "SequenceType": "IK",
-        "Loops": 1
+        "Loops": 1,
+        "ClosePhidget": false
       }
     },
     {
@@ -334,6 +341,7 @@
       },
       "Name": "psbc23_SequenceIK 1",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": false,
       "NextSequence": null

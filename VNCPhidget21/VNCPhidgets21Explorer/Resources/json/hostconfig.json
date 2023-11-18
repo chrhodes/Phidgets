@@ -60,8 +60,16 @@
       "Port": 5001,
       "Enable": true,
       "AdvancedServos": [
-        { "Name": "AdvancedServo1", "SerialNumber": 99415, "Open": true },
-        { "Name": "AdvancedServo2", "SerialNumber": 593480, "Open": true }
+        {
+          "Name": "AdvancedServo 99415",
+          "SerialNumber": 99415,
+          "Open": true
+        },
+        {
+          "Name": "AdvancedServo 593480",
+          "SerialNumber": 593480,
+          "Open": true
+        }
       ],
       "InterfaceKits": [
         {

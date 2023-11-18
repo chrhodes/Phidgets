@@ -111,6 +111,7 @@
       },
       "Name": "localhost_SequenceServo0",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": false,
       "NextSequence": {
@@ -217,6 +218,7 @@
       "Host": null,
       "Name": "localhost_SequenceServo1",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": false,
       "NextSequence": {
@@ -323,6 +325,7 @@
       "Host": null,
       "Name": "localhost_SequenceServo2",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": false,
       "NextSequence": {
@@ -377,6 +380,7 @@
       "Host": null,
       "Name": "localhost_SequenceServoFin",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": false,
       "NextSequence": null
@@ -492,6 +496,7 @@
       },
       "Name": "psbc11_SequenceServo0",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": false,
       "NextSequence": {
@@ -598,6 +603,7 @@
       "Host": null,
       "Name": "psbc11_SequenceServo1",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": false,
       "NextSequence": {
@@ -704,6 +710,7 @@
       "Host": null,
       "Name": "psbc11_SequenceServo2",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": false,
       "NextSequence": {
@@ -758,6 +765,7 @@
       "Host": null,
       "Name": "psbc11_SequenceServoFin",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": false,
       "NextSequence": null
@@ -873,6 +881,7 @@
       },
       "Name": "psbc21_SequenceServo0",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": false,
       "NextSequence": {
@@ -979,6 +988,7 @@
       "Host": null,
       "Name": "psbc21_SequenceServo1",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": false,
       "NextSequence": {
@@ -1085,6 +1095,7 @@
       "Host": null,
       "Name": "psbc21_SequenceServo2",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": false,
       "NextSequence": {
@@ -1153,6 +1164,7 @@
       },
       "Name": "psbc21_SequenceServo0P Configure and Engage",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 5,
       "PlayActionsInParallel": true,
       "NextSequence": {
@@ -1207,6 +1219,7 @@
       "Host": null,
       "Name": "psbc21_SequenceServo1P",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": true,
       "NextSequence": {
@@ -1261,6 +1274,7 @@
       "Host": null,
       "Name": "psbc21_SequenceServo2P",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": true,
       "NextSequence": {
@@ -1315,6 +1329,7 @@
       "Host": null,
       "Name": "psbc21_SequenceServo3P",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": true,
       "NextSequence": {
@@ -1369,6 +1384,7 @@
       "Host": null,
       "Name": "psbc21_SequenceServo4P",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": true,
       "NextSequence": {
@@ -1423,6 +1439,7 @@
       "Host": null,
       "Name": "psbc21_SequenceServo5P",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": true,
       "NextSequence": {
@@ -1477,6 +1494,7 @@
       "Host": null,
       "Name": "psbc21_SequenceServoFin",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": false,
       "NextSequence": null
@@ -1592,6 +1610,7 @@
       },
       "Name": "psbc22_SequenceServo0",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": false,
       "NextSequence": {
@@ -1698,6 +1717,7 @@
       "Host": null,
       "Name": "psbc22_SequenceServo1",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": false,
       "NextSequence": {
@@ -1804,6 +1824,7 @@
       "Host": null,
       "Name": "psbc22_SequenceServo2",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": false,
       "NextSequence": {
@@ -1858,6 +1879,7 @@
       "Host": null,
       "Name": "psbc22_SequenceServoFin",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": false,
       "NextSequence": null
@@ -1973,6 +1995,7 @@
       },
       "Name": "psbc23_SequenceServo0",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": false,
       "NextSequence": {
@@ -2079,6 +2102,7 @@
       "Host": null,
       "Name": "psbc23_SequenceServo1",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": false,
       "NextSequence": {
@@ -2185,6 +2209,7 @@
       "Host": null,
       "Name": "psbc23_SequenceServo2",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": false,
       "NextSequence": {
@@ -2239,6 +2264,7 @@
       "Host": null,
       "Name": "psbc23_SequenceServoFin",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": false,
       "NextSequence": null

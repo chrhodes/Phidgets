@@ -783,8 +783,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     PlayPerformanceLoops(performance.NextPerformance);
                 }
-                // TODO(crhodes)
-                // I think this is where we look for NextPerformance is not null and call that
             }
 
             // Uncomment this if you are telling someone else to handle this
@@ -969,9 +967,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             Message = "Cool, you called PlayAdvancedServoSequence";
 
-            //var runAllThese = SelectedAdvancedServoSequences;
-            //var allSequences = AvailableAdvancedServoSequences;
-
             foreach (VNCPhidgetConfig.AdvancedServoSequence sequence in SelectedAdvancedServoSequences)
             {
                 Log.Trace($"Running sequence:{sequence.Name}", Common.LOG_CATEGORY);
@@ -985,9 +980,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         Loops = sequence.Loops
                     };
 
-                    // TODO(crhodes)
-                    // Need to handle looping
-
                     for (int i = 0; i < sequence.Loops; i++)
                     {
                         do
@@ -995,14 +987,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             await Task.Run(async () =>
                             {
                                 nextPerformanceSequence = await ExecutePerformanceSequence(nextPerformanceSequence);
-                                //Parallel.Invoke(
-                                //     () => InterfaceKitParty2(ifkEx21, 500, 5 * Repeats),
-                                //     () => InterfaceKitParty2(ifkEx22, 250, 10 * Repeats),
-                                //     () => InterfaceKitParty2(ifkEx23, 125, 20 * Repeats),
-                                //     () => InterfaceKitParty2(ifkEx11, 333, 8 * Repeats)
-                                // );
                             });
-                            //nextPerformanceSequence = await ExecutePerformanceSequence(nextPerformanceSequence);
                         } while (nextPerformanceSequence is not null);
                     }
 

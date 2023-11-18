@@ -30,6 +30,7 @@
       },
       "Name": "SequenceStepper 1",
       "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "USAGE NOTES",
       "Loops": 1,
       "PlayActionsInParallel": false,
       "NextSequence": null

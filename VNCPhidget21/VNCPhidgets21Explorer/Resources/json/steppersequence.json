@@ -3,6 +3,7 @@
   "Host": null,
   "Name": "SEQUENCE NAME",
   "Description": "SEQUENCE DESCRIPTION",
+  "UsageNotes": "USAGE NOTES",
   "Loops": 1,
   "PlayActionsInParallel": false,
   "NextSequence": null
