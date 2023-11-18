@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -124,7 +125,7 @@ namespace VNC.Phidget
 
         public async Task PlaySequenceLoops(AdvancedServoSequence advancedServoSequence)
         {
-            Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = Log.Trace($"Enter loops:{advancedServoSequence.Loops}", Common.LOG_CATEGORY);
 
             for (int i = 0; i < advancedServoSequence.Loops; i++)
             {
@@ -159,11 +160,11 @@ namespace VNC.Phidget
 
             Parallel.ForEach(advancedServoSequence.Actions, action =>
             {
-                if (LogPerformanceStep)
-                {
-                    Log.Trace($"Servo:{action.ServoIndex} Acceleration:{action.Acceleration} VelocityLimit:{action.VelocityLimit}" +
-                        $" Engaged:{action.Engaged} TargetPosition:{action.TargetPosition} Duration:{action.Duration}", Common.LOG_CATEGORY);
-                }
+                //if (LogPerformanceStep)
+                //{
+                //    Log.Trace($"Servo:{action.ServoIndex} Acceleration:{action.Acceleration} VelocityLimit:{action.VelocityLimit}" +
+                //        $" Engaged:{action.Engaged} TargetPosition:{action.TargetPosition} Duration:{action.Duration}", Common.LOG_CATEGORY);
+                //}
 
                 try
                 {
@@ -217,11 +218,11 @@ namespace VNC.Phidget
 
             foreach (AdvancedServoServoAction action in advancedServoSequence.Actions)
             {
-                if (LogPerformanceStep)
-                {
-                    Log.Trace($"Servo:{action.ServoIndex} Acceleration:{action.Acceleration} VelocityLimit:{action.VelocityLimit}" +
-                        $" Engaged:{action.Engaged} TargetPosition:{action.TargetPosition} Duration:{action.Duration}", Common.LOG_CATEGORY);
-                }
+                //if (LogPerformanceStep)
+                //{
+                //    Log.Trace($"Servo:{action.ServoIndex} Acceleration:{action.Acceleration} VelocityLimit:{action.VelocityLimit}" +
+                //        $" Engaged:{action.Engaged} TargetPosition:{action.TargetPosition} Duration:{action.Duration}", Common.LOG_CATEGORY);
+                //}
 
                 try
                 {
@@ -273,30 +274,48 @@ namespace VNC.Phidget
         {
             Int64 startTicks = 0;
 
+            StringBuilder actionMessage = new StringBuilder();
+
             if (LogPerformanceStep)
             {
-                startTicks = Log.Trace($"Enter servo:{index} engaged:{action.Engaged}"
-                    + $" acceleration:{action.Acceleration} velocityLimit:{action.VelocityLimit}"
-                    + $" postionMax:{action.PositionMax} positionMin:{action.PositionMin} targetPosition:{action.TargetPosition}"
-                    + $" duration:{action.Duration}", Common.LOG_CATEGORY);
+                startTicks = Log.Trace($"Enter servo:{index}", Common.LOG_CATEGORY);
+                actionMessage.Append($"servo:{index}");
+                    //+ $" acceleration:>{action.Acceleration}< relativeAcceleration:>{action.RelativeAcceleration}<"
+                    //+ $" velocityLimit:>{action.VelocityLimit}< relativeVelocityLimit:>{action.RelativeVelocityLimit}<"
+                    //+ $" postionMax:>{action.PositionMax}< positionMin:>{action.PositionMin}<"
+                    //+ $" targetPosition:>{action.TargetPosition}< relativePosition:>{action.RelativePosition}<"
+                    //+ $" duration:>{action.Duration}<", Common.LOG_CATEGORY);
             }
             
             try
             {
-                if (action.Acceleration is not null) servo.Acceleration = (Double)action.Acceleration;
+                if (action.Acceleration is not null)
+                {
+                    actionMessage.Append($" acceleration:>{action.Acceleration}<");
+                    servo.Acceleration = (Double)action.Acceleration;
+                }
 
                 if (action.RelativeAcceleration is not null)
                 {
                     var newAcceleration = servo.Acceleration += (Double)action.RelativeAcceleration;
+                    actionMessage.Append($" relativeAcceleration:>{action.RelativeAcceleration}< ({newAcceleration})");
+
                     servo.Acceleration = newAcceleration;
                     Thread.Sleep(1);
                 }
 
-                if (action.VelocityLimit is not null) servo.VelocityLimit = (Double)action.VelocityLimit;
+                if (action.VelocityLimit is not null)
+                {
+                    actionMessage.Append($" velocityLimit:>{action.VelocityLimit}<");
+
+                    servo.VelocityLimit = (Double)action.VelocityLimit;
+                }
 
                 if (action.RelativeVelocityLimit is not null)
                 {
                     var newVelocityLimit = servo.VelocityLimit += (Double)action.RelativeVelocityLimit;
+                    actionMessage.Append($" relativeVelocityLimit:>{action.RelativeVelocityLimit}< ({newVelocityLimit})");
+
                     servo.VelocityLimit = newVelocityLimit;
                     Thread.Sleep(1);
                 }
@@ -306,9 +325,10 @@ namespace VNC.Phidget
                     // TODO(crhodes)
                     // Need to save initial low limit based on ServoType
                     // Hard code for now
+                    Double newPositionMin = action.PositionMin < 0 ? 0 : (Double)action.PositionMin;
+                    actionMessage.Append($" positionMin:>{action.PositionMin}<");
 
-                    if (action.PositionMin < 0) { servo.PositionMin = 0; }
-                    else { servo.PositionMin = (Double)action.PositionMin; }         
+                    servo.PositionMin = newPositionMin;         
                 }
 
                 if (action.PositionMax is not null)
@@ -317,59 +337,104 @@ namespace VNC.Phidget
                     // Need to save initial upper limit based on ServoType
                     // Hard code for now
 
-                    if (action.PositionMax < 0) { servo.PositionMax = 220; }
-                    else { servo.PositionMax = (Double)action.PositionMax; }
+                    Double newPositionMax = action.PositionMax < 0 ? 220 : (Double)action.PositionMax;
+                    actionMessage.Append($" positionMax:>{action.PositionMax}<");
+
+                    servo.PositionMax = newPositionMax;
                 }
 
-                if (action.Engaged is not null) servo.Engaged = (Boolean)action.Engaged;
-
-                // TODO(crhodes)
-                // Maybe wait for servo Engaged to complete if not currently engaged
-                // View logs and see how often exceptions thrown.
-
-                if (action?.Engaged ?? false)
+                if (action.Engaged is not null)
                 {
-                    VerifyServoEngaged(servo);
+                    actionMessage.Append($" engaged:>{action.Engaged}<");
+
+                    servo.Engaged = (Boolean)action.Engaged;
+
+                    VerifyServoEngaged(index, servo);
                 }
 
                 if (action.TargetPosition is not null)
                 {
-                    servo.Position = (Double)action.TargetPosition;
-                    Thread.Sleep(1);
+                    actionMessage.Append($" targetPosition:>{action.TargetPosition}<");
 
-                    VerifyNewPositionAchieved(servo, (Double)action.TargetPosition);
+                    servo.Position = (Double)action.TargetPosition;
+
+                    VerifyNewPositionAchieved(index, servo, (Double)action.TargetPosition);
                 }
 
                 if (action.RelativePosition is not null)
                 {
                     var newPosition = servo.Position += (Double)action.RelativePosition;
-                    servo.Position = newPosition;
-                    Thread.Sleep(1);
+                    actionMessage.Append($" relativePosition:>{action.RelativePosition}< ({newPosition})");
 
-                    VerifyNewPositionAchieved(servo, newPosition);                
+                    servo.Position = newPosition;
+
+                    VerifyNewPositionAchieved(index, servo, newPosition);                
                 }
 
-                if (action.Duration > 0) Thread.Sleep((Int32)action.Duration);
+                if (action.Duration > 0)
+                {
+                    actionMessage.Append($" duration:>{action.Duration}<");
+
+                    Thread.Sleep((Int32)action.Duration);
+                }
             }
             catch (Exception ex)
             {
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
+            finally
+            {
+                if (LogPerformanceStep)
+                {
+                    Log.Trace($"Exit {actionMessage}", Common.LOG_CATEGORY, startTicks);
+                }
+            }   
+        }
+
+        private void VerifyServoEngaged(Int32 index, AdvancedServoServo servo)
+        {
+            Int64 startTicks = 0;
+            var msSleep = 0;
 
             if (LogPerformanceStep)
             {
-                Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
-            }            
+                startTicks = Log.Trace($"Enter index:{index}", Common.LOG_CATEGORY);
+            }
+
+
+
+            while (servo.Engaged != true)
+            {
+                Thread.Sleep(1);
+                msSleep++;
+            }
+
+            if (LogPerformanceStep)
+            {
+                Log.Trace($"Exit index:{index} ms:{msSleep}", Common.LOG_CATEGORY, startTicks);
+            }
         }
 
-        private void VerifyServoEngaged(AdvancedServoServo servo)
+        private void VerifyNewPositionAchieved(Int32 index, AdvancedServoServo servo, double targetPosition)
         {
-            while (servo.Engaged != true) { Thread.Sleep(1); }
-        }
+            Int64 startTicks = 0;
+            var msSleep = 0;
 
-        private void VerifyNewPositionAchieved(AdvancedServoServo servo, double targetPosition)
-        {
-            while (servo.Position != targetPosition) { Thread.Sleep(1); }
+            if (LogPerformanceStep)
+            {
+                startTicks = Log.Trace($"Enter index:{index}", Common.LOG_CATEGORY);
+            }
+
+            while (servo.Position != targetPosition)
+            {
+                Thread.Sleep(1);
+                msSleep++;
+            }
+
+            if (LogPerformanceStep)
+            {
+                Log.Trace($"Exit index:{index} ms:{msSleep}", Common.LOG_CATEGORY, startTicks);
+            }
         }
 
         #endregion

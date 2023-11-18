@@ -779,6 +779,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 PlayPerformanceLoops(performance);
 
+                if (performance.NextPerformance is not null)
+                {
+                    PlayPerformanceLoops(performance.NextPerformance);
+                }
                 // TODO(crhodes)
                 // I think this is where we look for NextPerformance is not null and call that
             }
@@ -1039,8 +1043,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private async Task<VNCPhidgetConfig.PerformanceSequence?> ExecutePerformanceSequence(VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence)
         {
-            Log.Trace($"Playing sequence:{nextPerformanceSequence?.Name} type:{nextPerformanceSequence?.SequenceType}" +
-                $" loops:{nextPerformanceSequence?.Loops} closePhidget:{nextPerformanceSequence?.ClosePhidget}", Common.LOG_CATEGORY);
+            Log.Trace($"Executing sequence:>{nextPerformanceSequence?.Name}< type:>{nextPerformanceSequence?.SequenceType}<" +
+                $" loops:>{nextPerformanceSequence?.Loops}< closePhidget:>{nextPerformanceSequence?.ClosePhidget}<", Common.LOG_CATEGORY);
 
             // TODO(crhodes)
             // Think about Open/Close more.  Maybe config.
