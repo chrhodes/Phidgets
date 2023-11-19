@@ -25,11 +25,11 @@
         "Steppers": null
       },
       "Actions": [
-        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 133 },
-        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 115 },
+        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 117 },
+        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 113 },
         { "ServoIndex": 2, "Engaged": true, "TargetPosition": 123 },
-        { "ServoIndex": 4, "Engaged": true, "TargetPosition": 117 },
-        { "ServoIndex": 5, "Engaged": true, "TargetPosition": 116 },
+        { "ServoIndex": 4, "Engaged": true, "TargetPosition": 115 },
+        { "ServoIndex": 5, "Engaged": true, "TargetPosition": 114 },
         { "ServoIndex": 6, "Engaged": true, "TargetPosition": 119 }
       ]
     },

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -12,26 +13,6 @@ using VNCPhidget21.Configuration;
 
 namespace VNC.Phidget
 {
-    public struct ServoMinMax
-    {
-        public enum LimitType
-        {
-            AccelerationMin,
-            AccelerationMax,
-            PositionMin,
-            PositionMax,
-            VelocityMin,
-            VelocityMax,
-        }
-
-        public Double AccelerationMin;
-        public Double AccelerationMax;
-        public Double PositionMin;
-        public Double PositionMax;
-        public Double VelocityMin;
-        public Double VelocityMax;
-
-    }
     public class AdvancedServoEx : PhidgetEx // AdvancedServo
     {
         #region Constructors, Initialization, and Load
@@ -84,14 +65,14 @@ namespace VNC.Phidget
                     servo = servos[i];
 
                     // NOTE(crhodes)
-                    // Not sure we need to save Accleration and Velocity, they cannot change
+                    // We do not need to save Accleration and Velocity, they cannot change
 
-                    InitialServoLimits[i].AccelerationMin = servo.AccelerationMin;
-                    InitialServoLimits[i].AccelerationMax = servo.AccelerationMax;
+                    //InitialServoLimits[i].AccelerationMin = servo.AccelerationMin;
+                    //InitialServoLimits[i].AccelerationMax = servo.AccelerationMax;
                     InitialServoLimits[i].PositionMin = servo.PositionMin;
                     InitialServoLimits[i].PositionMax = servo.PositionMax;
-                    InitialServoLimits[i].VelocityMin = servo.VelocityMin;
-                    InitialServoLimits[i].VelocityMax = servo.VelocityMax;
+                    //InitialServoLimits[i].VelocityMin = servo.VelocityMin;
+                    //InitialServoLimits[i].VelocityMax = servo.VelocityMax;
                 }
 
             }
@@ -103,21 +84,21 @@ namespace VNC.Phidget
             Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private Double GetPositionLimit(Int32 index, ServoMinMax.LimitType positionType)
-        {
-            Double limit;
+        //private Double GetPositionLimit(Int32 index, ServoMinMax.LimitType positionType)
+        //{
+        //    Double limit;
 
-            if (positionType== ServoMinMax.LimitType.VelocityMin)
-            {
-                limit = InitialServoLimits[index].PositionMin;
-            }
-            else
-            {
-                limit = InitialServoLimits[index].PositionMax;
-            }  
+        //    if (positionType == ServoMinMax.LimitType.PositionMin)
+        //    {
+        //        limit = InitialServoLimits[index].PositionMin;
+        //    }
+        //    else
+        //    {
+        //        limit = InitialServoLimits[index].PositionMax;
+        //    }  
 
-            return limit;
-        }
+        //    return limit;
+        //}
 
         #endregion
 
@@ -126,8 +107,27 @@ namespace VNC.Phidget
 
         #endregion
 
-        #region Structures (None)
+        #region Structures
 
+        public struct ServoMinMax
+        {
+            public enum LimitType
+            {
+                //AccelerationMin,
+                //AccelerationMax,
+                PositionMin,
+                PositionMax,
+                //VelocityMin,
+                //VelocityMax,
+            }
+
+            //public Double AccelerationMin;
+            //public Double AccelerationMax;
+            public Double PositionMin;
+            public Double PositionMax;
+            //public Double VelocityMin;
+            //public Double VelocityMax;
+        }
 
         #endregion
 
@@ -137,12 +137,11 @@ namespace VNC.Phidget
 
         public bool LogPerformanceStep { get; set; }
 
-
         public ServoMinMax[] InitialServoLimits { get; set; } = new ServoMinMax[8];
 
         #endregion
 
-        #region Event Handlers
+        #region Event Handlers (None)
 
 
         #endregion
@@ -341,7 +340,7 @@ namespace VNC.Phidget
                 {
                     actionMessage.Append($" velocityLimit:>{action.VelocityLimit}<");
 
-                    SetVelocity((Double)action.VelocityLimit, servo);
+                    SetVelocityLimit((Double)action.VelocityLimit, servo);
                 }
 
                 if (action.RelativeVelocityLimit is not null)
@@ -349,24 +348,24 @@ namespace VNC.Phidget
                     var newVelocityLimit = servo.VelocityLimit += (Double)action.RelativeVelocityLimit;
                     actionMessage.Append($" relativeVelocityLimit:>{action.RelativeVelocityLimit}< ({newVelocityLimit})");
 
-                    SetVelocity(newVelocityLimit, servo);
+                    SetVelocityLimit(newVelocityLimit, servo);
                     //Thread.Sleep(1);
                 }
 
                 if (action.PositionMin is not null)
                 {
-                    Double newPositionMin = action.PositionMin < 0 ? InitialServoLimits[index].PositionMin : (Double)action.PositionMin;
+                    //Double newPositionMin = action.PositionMin < 0 ? InitialServoLimits[index].PositionMin : (Double)action.PositionMin;
                     actionMessage.Append($" positionMin:>{action.PositionMin}<");
 
-                    SetPositionMin(newPositionMin, servo);
+                    SetPositionMin((Double)action.PositionMin, servo, index);
                 }
 
                 if (action.PositionMax is not null)
                 {
-                    Double newPositionMax = action.PositionMax < 0 ? InitialServoLimits[index].PositionMax : (Double)action.PositionMax;
+                    //Double newPositionMax = action.PositionMax < 0 ? InitialServoLimits[index].PositionMax : (Double)action.PositionMax;
                     actionMessage.Append($" positionMax:>{action.PositionMax}<");
 
-                    SetPositionMax(newPositionMax, servo);
+                    SetPositionMax((Double)action.PositionMax, servo, index);
                 }
 
                 if (action.Engaged is not null)
@@ -431,7 +430,7 @@ namespace VNC.Phidget
         /// </summary>
         /// <param name="acceleration"></param>
         /// <param name="servo"></param>
-        private void SetAcceleration(Double acceleration, AdvancedServoServo servo)
+        public void SetAcceleration(Double acceleration, AdvancedServoServo servo)
         {
             try
             {
@@ -450,7 +449,7 @@ namespace VNC.Phidget
         /// </summary>
         /// <param name="velocity"></param>
         /// <param name="servo"></param>
-        private void SetVelocity(Double velocity, AdvancedServoServo servo)
+        public void SetVelocityLimit(Double velocity, AdvancedServoServo servo)
         {
             try
             {
@@ -469,13 +468,25 @@ namespace VNC.Phidget
         /// </summary>
         /// <param name="position"></param>
         /// <param name="servo"></param>
-        private void SetPositionMin(Double position, AdvancedServoServo servo)
+        public void SetPositionMin(Double position, AdvancedServoServo servo, Int32 index)
         {
             try
             {
-                if (position < servo.PositionMin) servo.Position = servo.PositionMin;
-                else if (position > servo.PositionMax) servo.Position = servo.PositionMax;
-                else servo.PositionMin = position;
+                //if (position < servo.PositionMin) servo.Position = servo.PositionMin;
+                //else if (position > servo.PositionMax) servo.Position = servo.PositionMax;
+                //else servo.PositionMin = position;
+                if (position < InitialServoLimits[index].PositionMin)
+                {
+                    servo.Position = InitialServoLimits[index].PositionMin;
+                }
+                else if (position > servo.PositionMax)
+                {
+                    servo.Position = servo.PositionMax;
+                }
+                else
+                {
+                    servo.PositionMin = position;
+                }
             }
             catch (Exception ex)
             {
@@ -488,7 +499,7 @@ namespace VNC.Phidget
         /// </summary>
         /// <param name="position"></param>
         /// <param name="servo"></param>
-        private Double SetPosition(Double position, AdvancedServoServo servo)
+        public Double SetPosition(Double position, AdvancedServoServo servo)
         {
             try
             {
@@ -510,13 +521,25 @@ namespace VNC.Phidget
         /// </summary>
         /// <param name="position"></param>
         /// <param name="servo"></param>
-        private void SetPositionMax(Double position, AdvancedServoServo servo)
+        public void SetPositionMax(Double position, AdvancedServoServo servo, Int32 index)
         {
             try
             {
-                if (position < servo.PositionMin) servo.Position = servo.PositionMin;
-                else if (position > servo.PositionMax) servo.Position = servo.PositionMax;
-                else servo.PositionMax = position;
+                //if (position < servo.PositionMin) servo.Position = servo.PositionMin;
+                //else if (position > servo.PositionMax) servo.Position = servo.PositionMax;
+                //else servo.PositionMax = position;
+                if (position < servo.PositionMin)
+                { 
+                    servo.Position = servo.PositionMin; 
+                }
+                else if (position > InitialServoLimits[index].PositionMax)
+                { 
+                    servo.Position = InitialServoLimits[index].PositionMax; 
+                }
+                else
+                {
+                    servo.PositionMax = position; 
+                }
             }
             catch (Exception ex)
             {
