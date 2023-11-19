@@ -40,7 +40,7 @@
 
     Background="{StaticResource AdvancedServo1061Background}"
     
-    d:DesignWidth="800" d:DesignHeight="550"
+    d:DesignWidth="800" 
     d:DesignStyle="{StaticResource vncDesignStyleUC}" 
 >
     <!--xmlns:phidgetServoServo="clr-namespace:Phidgets.ServoServo;assembly=Phidget21.NET"-->
@@ -147,19 +147,7 @@
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem Label="Serial #" HorizontalAlignment="Left" >
-                     <dxe:TextEdit EditValue="{Binding SelectedAdvancedServo.SerialNumber}" IsReadOnly="True" 
-                                  Background="White" 
-                                  Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Label="Embedded" HorizontalAlignment="Left" >
-                    <dxe:TextEdit EditValue="{Binding SelectedAdvancedServo.Embedded}" IsReadOnly="True" 
-                                  Background="White" 
-                                  Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Label="Enable" HorizontalAlignment="Left" >
-                    <dxe:TextEdit EditValue="{Binding SelectedAdvancedServo.Enable}" IsReadOnly="True" 
+                    <dxe:TextEdit EditValue="{Binding SelectedAdvancedServo.SerialNumber}" IsReadOnly="True" 
                                   Background="White" 
                                   Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                 </dxlc:LayoutItem>
@@ -201,7 +189,7 @@
                                DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}"/>
 
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
-                    <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">-->
+
                     <dxe:CheckEdit
                             Content="Log PositionChange Events"
                             IsChecked="{Binding LogPositionChangeEvents, Mode=TwoWay}" />
@@ -217,10 +205,6 @@
 
                 <dxlc:LayoutGroup View="GroupBox" Orientation="Vertical" Header="Servo S0" Padding="-5" >
 
-                    <!--<dxlc:LayoutItem Label="Servo Types" LabelPosition="Top">
-                        <dxe:ComboBoxEdit ItemsSource="{Binding AdvancedServoTypes}" DisplayMember="Name" />
-                    </dxlc:LayoutItem>-->
-
                     <dxlc:LayoutItem Label="Servo Types" LabelPosition="Top">
                         <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
                                           SelectedIndex="0"
@@ -228,21 +212,11 @@
                                             Mode=TwoWay,
                                             UpdateSourceTrigger=PropertyChanged,
                                             Converter={StaticResource SelectedItemToEnumConverter} }" />
-                        <!--<dxe:ComboBoxEdit ItemsSource="{Binding ServoTypeEnum}"/>-->
                     </dxlc:LayoutItem>
 
-                    <dxlc:LayoutItem Label="Type" LabelPosition="Top">
-                        <dxe:TextEdit Text="{Binding Type_S0, Mode=TwoWay}" />
+                    <dxlc:LayoutItem Label="Current" LabelPosition="Top">
+                        <dxe:TextEdit Text="{Binding Current_S0, Mode=OneWay}" IsReadOnly="True" />
                     </dxlc:LayoutItem>
-
-                    <dxlc:LayoutGroup 
-	                    View="Group" Orientation="Horizontal" >
-
-                        <dxlc:LayoutItem Label="Current" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding Current_S0, Mode=OneWay}" IsReadOnly="True" />
-                        </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>
 
                     <dxlc:LayoutItem>
                         <Button 
@@ -326,13 +300,6 @@
                             <dxe:TextEdit Text="{Binding VelocityMax_S0, Mode=TwoWay}" />
                         </dxlc:LayoutItem>
 
-                        <!--<dxlc:LayoutItem>
-                            <Button 
-                        		Command="{Binding ConfigureServoCommand }"
-                        		Content="{Binding ConfigureServoContent, FallbackValue='ConfigureServo' }"
-                        		ToolTip="{Binding ConfigureServoToolTip, FallbackValue='ConfigureServo ToolTip' }" />
-                        </dxlc:LayoutItem>-->
-
                         <dxlc:LayoutItem>
                             <Button 
                         		Command="{Binding ConfigureServo2Command }"
@@ -341,29 +308,24 @@
                         		ToolTip="{Binding ConfigureServo2ToolTip, FallbackValue='ConfigureServo2 ToolTip' }" />
                         </dxlc:LayoutItem>
 
-                        <!--CommandParameter="{Binding ConfigureServo2CommandParameter}"-->
                     </dxlc:LayoutGroup>
 
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup View="GroupBox" Orientation="Vertical" Header="Servo S1" Padding="-5" >
-
+                    
                     <dxlc:LayoutItem Label="Servo Types" LabelPosition="Top">
-                        <dxe:ComboBoxEdit ItemsSource="{Binding AdvancedServoTypes}" DisplayMember="Name" />
+                        <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
+                                          SelectedIndex="0"
+                                          EditValue="{ Binding Path=Type_S1,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={StaticResource SelectedItemToEnumConverter} }" />
                     </dxlc:LayoutItem>
 
-                    <dxlc:LayoutItem Label="Type" LabelPosition="Top">
-                        <dxe:TextEdit Text="{Binding Type_S1, Mode=TwoWay}" />
+                    <dxlc:LayoutItem Label="Current" LabelPosition="Top">
+                        <dxe:TextEdit Text="{Binding Current_S1, Mode=OneWay}" IsReadOnly="True" />
                     </dxlc:LayoutItem>
-
-                    <dxlc:LayoutGroup 
-	                    View="Group" Orientation="Horizontal" >
-
-                        <dxlc:LayoutItem Label="Current" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding Current_S1, Mode=OneWay}" IsReadOnly="True" />
-                        </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>
 
                     <dxlc:LayoutItem>
                         <Button 
@@ -428,26 +390,51 @@
 
                     </dxlc:LayoutGroup>
 
+                    <dxlc:LayoutGroup 
+	                    View="GroupBox" Orientation="Vertical"  Header="ConfigureServo">
+
+                        <dxlc:LayoutItem Label="MinimumPulseWidth" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding MinimumPulseWidth_S1, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="MaximumPulseWidth" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding MaximumPulseWidth_S1, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Degress" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding Degrees_S1, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="VelocityMax" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding VelocityMax_S1, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem>
+                            <Button 
+                        		Command="{Binding ConfigureServo2Command }"
+                        		CommandParameter="1"
+                        		Content="{Binding ConfigureServo2Content, FallbackValue='ConfigureServo2' }"
+                        		ToolTip="{Binding ConfigureServo2ToolTip, FallbackValue='ConfigureServo2 ToolTip' }" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup View="GroupBox" Orientation="Vertical" Header="Servo S2" Padding="-5" >
 
                     <dxlc:LayoutItem Label="Servo Types" LabelPosition="Top">
-                        <dxe:ComboBoxEdit ItemsSource="{Binding AdvancedServoTypes}" DisplayMember="Name" />
+                        <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
+                                          SelectedIndex="0"
+                                          EditValue="{ Binding Path=Type_S2,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={StaticResource SelectedItemToEnumConverter} }" />
                     </dxlc:LayoutItem>
 
-                    <dxlc:LayoutItem Label="Type" LabelPosition="Top">
-                        <dxe:TextEdit Text="{Binding Type_S2, Mode=TwoWay}" />
+                    <dxlc:LayoutItem Label="Current" LabelPosition="Top">
+                        <dxe:TextEdit Text="{Binding Current_S2, Mode=OneWay}" IsReadOnly="True" />
                     </dxlc:LayoutItem>
-
-                    <dxlc:LayoutGroup 
-	                    View="Group" Orientation="Horizontal" >
-
-                        <dxlc:LayoutItem Label="Current" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding Current_S2, Mode=OneWay}" IsReadOnly="True" />
-                        </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>
 
                     <dxlc:LayoutItem>
                         <Button 
@@ -512,26 +499,51 @@
 
                     </dxlc:LayoutGroup>
 
+                    <dxlc:LayoutGroup 
+	                    View="GroupBox" Orientation="Vertical"  Header="ConfigureServo">
+
+                        <dxlc:LayoutItem Label="MinimumPulseWidth" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding MinimumPulseWidth_S2, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="MaximumPulseWidth" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding MaximumPulseWidth_S2, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Degress" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding Degrees_S2, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="VelocityMax" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding VelocityMax_S2, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem>
+                            <Button 
+                        		Command="{Binding ConfigureServo2Command }"
+                        		CommandParameter="2"
+                        		Content="{Binding ConfigureServo2Content, FallbackValue='ConfigureServo2' }"
+                        		ToolTip="{Binding ConfigureServo2ToolTip, FallbackValue='ConfigureServo2 ToolTip' }" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup View="GroupBox" Orientation="Vertical" Header="Servo S3" Padding="-5">
 
                     <dxlc:LayoutItem Label="Servo Types" LabelPosition="Top">
-                        <dxe:ComboBoxEdit ItemsSource="{Binding AdvancedServoTypes}" DisplayMember="Name" />
+                        <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
+                                          SelectedIndex="0"
+                                          EditValue="{ Binding Path=Type_S3,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={StaticResource SelectedItemToEnumConverter} }" />
                     </dxlc:LayoutItem>
 
-                    <dxlc:LayoutItem Label="Type" LabelPosition="Top">
-                        <dxe:TextEdit Text="{Binding Type_S3, Mode=TwoWay}" />
+                    <dxlc:LayoutItem Label="Current" LabelPosition="Top">
+                        <dxe:TextEdit Text="{Binding Current_S3, Mode=OneWay}" IsReadOnly="True" />
                     </dxlc:LayoutItem>
-
-                    <dxlc:LayoutGroup 
-	                    View="Group" Orientation="Horizontal" >
-
-                        <dxlc:LayoutItem Label="Current" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding Current_S3, Mode=OneWay}" IsReadOnly="True" />
-                        </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>
 
                     <dxlc:LayoutItem>
                         <Button 
@@ -596,6 +608,35 @@
 
                     </dxlc:LayoutGroup>
 
+                    <dxlc:LayoutGroup 
+	                    View="GroupBox" Orientation="Vertical"  Header="ConfigureServo">
+
+                        <dxlc:LayoutItem Label="MinimumPulseWidth" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding MinimumPulseWidth_S3, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="MaximumPulseWidth" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding MaximumPulseWidth_S3, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Degress" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding Degrees_S3, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="VelocityMax" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding VelocityMax_S3, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem>
+                            <Button 
+                        		Command="{Binding ConfigureServo2Command }"
+                        		CommandParameter="3"
+                        		Content="{Binding ConfigureServo2Content, FallbackValue='ConfigureServo2' }"
+                        		ToolTip="{Binding ConfigureServo2ToolTip, FallbackValue='ConfigureServo2 ToolTip' }" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup View="GroupBox" Orientation="Vertical" Header="Servo S4" Padding="-5" >
@@ -609,18 +650,9 @@
                                             Converter={StaticResource SelectedItemToEnumConverter} }" />
                     </dxlc:LayoutItem>
 
-                    <dxlc:LayoutItem Label="Type" LabelPosition="Top">
-                        <dxe:TextEdit Text="{Binding Type_S4, Mode=TwoWay}" />
+                    <dxlc:LayoutItem Label="Current" LabelPosition="Top">
+                        <dxe:TextEdit Text="{Binding Current_S4, Mode=OneWay}" IsReadOnly="True" />
                     </dxlc:LayoutItem>
-
-                    <dxlc:LayoutGroup 
-	                    View="Group" Orientation="Horizontal" >
-
-                        <dxlc:LayoutItem Label="Current" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding Current_S4, Mode=OneWay}" IsReadOnly="True" />
-                        </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>
 
                     <dxlc:LayoutItem>
                         <Button 
@@ -717,8 +749,8 @@
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup View="GroupBox" Orientation="Vertical" Header="Servo S5" Padding="-5" >
-
-                     <dxlc:LayoutItem Label="Servo Types" LabelPosition="Top">
+                    
+                    <dxlc:LayoutItem Label="Servo Types" LabelPosition="Top">
                         <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
                                           SelectedIndex="0"
                                           EditValue="{ Binding Path=Type_S5,
@@ -727,18 +759,9 @@
                                             Converter={StaticResource SelectedItemToEnumConverter} }" />
                     </dxlc:LayoutItem>
 
-                    <dxlc:LayoutItem Label="Type" LabelPosition="Top">
-                        <dxe:TextEdit Text="{Binding Type_S5, Mode=TwoWay}" />
+                    <dxlc:LayoutItem Label="Current" LabelPosition="Top">
+                        <dxe:TextEdit Text="{Binding Current_S5, Mode=OneWay}" IsReadOnly="True" />
                     </dxlc:LayoutItem>
-
-                    <dxlc:LayoutGroup 
-	                    View="Group" Orientation="Horizontal" >
-
-                        <dxlc:LayoutItem Label="Current" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding Current_S5, Mode=OneWay}" IsReadOnly="True" />
-                        </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>
 
                     <dxlc:LayoutItem>
                         <Button 
@@ -835,7 +858,7 @@
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup View="GroupBox" Orientation="Vertical" Header="Servo S6" Padding="-5" >
-
+                    
                     <dxlc:LayoutItem Label="Servo Types" LabelPosition="Top">
                         <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
                                           SelectedIndex="0"
@@ -845,18 +868,9 @@
                                             Converter={StaticResource SelectedItemToEnumConverter} }" />
                     </dxlc:LayoutItem>
 
-                    <dxlc:LayoutItem Label="Type" LabelPosition="Top">
-                        <dxe:TextEdit Text="{Binding Type_S6, Mode=TwoWay}" />
+                    <dxlc:LayoutItem Label="Current" LabelPosition="Top">
+                        <dxe:TextEdit Text="{Binding Current_S6, Mode=OneWay}" IsReadOnly="True" />
                     </dxlc:LayoutItem>
-
-                    <dxlc:LayoutGroup 
-	                    View="Group" Orientation="Horizontal" >
-
-                        <dxlc:LayoutItem Label="Current" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding Current_S6, Mode=OneWay}" IsReadOnly="True" />
-                        </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>
 
                     <dxlc:LayoutItem>
                         <Button 
@@ -963,18 +977,9 @@
                                             Converter={StaticResource SelectedItemToEnumConverter} }" />
                     </dxlc:LayoutItem>
 
-                    <dxlc:LayoutItem Label="Type" LabelPosition="Top">
-                        <dxe:TextEdit Text="{Binding Type_S7, Mode=TwoWay}" />
+                    <dxlc:LayoutItem Label="Current" LabelPosition="Top">
+                        <dxe:TextEdit Text="{Binding Current_S7, Mode=OneWay}" IsReadOnly="True" />
                     </dxlc:LayoutItem>
-
-                    <dxlc:LayoutGroup 
-	                    View="Group" Orientation="Horizontal" >
-
-                        <dxlc:LayoutItem Label="Current" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding Current_S7, Mode=OneWay}" IsReadOnly="True" />
-                        </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>
 
                     <dxlc:LayoutItem>
                         <Button 

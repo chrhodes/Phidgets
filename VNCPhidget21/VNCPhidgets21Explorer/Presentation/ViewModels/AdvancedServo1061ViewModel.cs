@@ -518,6 +518,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         // TODO(crhodes)
                         // Break UpdateAdvancedServoProperties into pieces
                         // that can be called from here.
+                        //SetAdvancedServoDefaults("0");
                         UpdateAdvancedServoProperties();
                     }
                 }
@@ -3433,7 +3434,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     case 0:
                         Acceleration_S0 = AccelerationMin_S0;
                         VelocityLimit_S0 = VelocityMin_S0 == 0 ? 10 : VelocityMin_S0;
-                        halfRange = (PositionMax_S0 - PositionMin_S0) / 2;
+                        halfRange = (DevicePositionMax_S0 - DevicePositionMin_S0) / 2;
                         tenPercent = halfRange / 10;
                         PositionMin_S0 = halfRange - tenPercent;
                         Position_S0 = halfRange;
@@ -3444,7 +3445,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     case 1:
                         Acceleration_S1 = AccelerationMin_S1;
                         VelocityLimit_S1 = VelocityMin_S1 == 0 ? 10 : VelocityMin_S1;
-                        halfRange = (PositionMax_S1 - PositionMin_S1) / 2;
+                        halfRange = (DevicePositionMax_S1 - DevicePositionMin_S1) / 2;
                         tenPercent = halfRange / 10;
                         PositionMin_S1 = halfRange - tenPercent;
                         Position_S1 = halfRange;
@@ -3455,7 +3456,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     case 2:
                         Acceleration_S2 = AccelerationMin_S2;
                         VelocityLimit_S2 = VelocityMin_S2 == 0 ? 10 : VelocityMin_S2;
-                        halfRange = (PositionMax_S2 - PositionMin_S2) / 2;
+                        halfRange = (DevicePositionMax_S2 - DevicePositionMin_S2) / 2;
                         tenPercent = halfRange / 10;
                         PositionMin_S2 = halfRange - tenPercent;
                         Position_S2 = halfRange;
@@ -3466,7 +3467,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     case 3:
                         Acceleration_S3 = AccelerationMin_S3;
                         VelocityLimit_S3 = VelocityMin_S3 == 0 ? 10 : VelocityMin_S3;
-                        halfRange = (PositionMax_S3 - PositionMin_S3) / 2;
+                        halfRange = (DevicePositionMax_S3 - DevicePositionMin_S3) / 2;
                         tenPercent = halfRange / 10;
                         PositionMin_S3 = halfRange - tenPercent; ;
                         Position_S3 = halfRange;
@@ -3477,7 +3478,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     case 4:
                         Acceleration_S4 = AccelerationMin_S4;
                         VelocityLimit_S4 = VelocityMin_S4 == 0 ? 10 : VelocityMin_S4;
-                        halfRange = (PositionMax_S4 - PositionMin_S4) / 2;
+                        halfRange = (DevicePositionMax_S4 - DevicePositionMin_S4) / 2;
                         tenPercent = halfRange / 10;
                         PositionMin_S4 = halfRange - tenPercent;
                         Position_S4 = halfRange;
@@ -3488,7 +3489,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     case 5:
                         Acceleration_S5 = AccelerationMin_S5;
                         VelocityLimit_S5 = VelocityMin_S5 == 0 ? 10 : VelocityMin_S5;
-                        halfRange = (PositionMax_S5 - PositionMin_S5) / 2;
+                        halfRange = (DevicePositionMax_S5 - DevicePositionMin_S5) / 2;
                         tenPercent = halfRange / 10;
                         PositionMin_S5 = halfRange - tenPercent;
                         Position_S5 = halfRange;
@@ -3499,7 +3500,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     case 6:
                         Acceleration_S6 = AccelerationMin_S6;
                         VelocityLimit_S6 = VelocityMin_S6 == 0 ? 10 : VelocityMin_S6;
-                        halfRange = (PositionMax_S6 - PositionMin_S6) / 2;
+                        halfRange = (DevicePositionMax_S6 - DevicePositionMin_S6) / 2;
                         tenPercent = halfRange / 10;
                         PositionMin_S6 = halfRange - tenPercent;
                         Position_S6 = halfRange;
@@ -3510,7 +3511,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     case 7:
                         Acceleration_S7 = AccelerationMin_S7;
                         VelocityLimit_S7 = VelocityMin_S7 == 0 ? 10 : VelocityMin_S7;
-                        halfRange = (PositionMax_S7 - PositionMin_S7) / 2;
+                        halfRange = (DevicePositionMax_S7 - DevicePositionMin_S7) / 2;
                         tenPercent = halfRange / 10;
                         PositionMin_S7 = halfRange - tenPercent;
                         Position_S7 = halfRange;
