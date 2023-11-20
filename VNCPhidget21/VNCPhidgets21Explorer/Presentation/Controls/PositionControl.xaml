@@ -33,7 +33,7 @@
     Background="{StaticResource PositionControlBackground}"
     
     d:DesignStyle="{StaticResource vncDesignStyleUC}" 
-    Height="135"
+    Height="175"
 >  
 
     <!-- TODO:(crhodes)
@@ -84,7 +84,25 @@
             </dxlc:LayoutItem>
 
         </dxlc:LayoutGroup>
-        
+
+        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+            <dxlc:LayoutItem>
+                <Button 
+                    Command="{Binding SetPositionRangeCommand }"
+                    CommandParameter="{Binding ServoIndex}"
+                    Content="{Binding SetPositionRangeContent, FallbackValue='SetPositionRange' }"
+                    ToolTip="{Binding SetPositionRangeToolTip, FallbackValue='SetPositionRange ToolTip' }" />
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem HorizontalAlignment="Right">
+                <dxe:SpinEdit Value="{Binding PositionRange, Mode=TwoWay}" Increment="5"
+                                MinValue="0"
+                                MaxValue="100" 
+                                IsFloatValue="False" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
             <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Left">
@@ -119,6 +137,7 @@
         <dxe:TrackBarEdit Value="{Binding Current, Mode=TwoWay}" Minimum="{Binding Min}" Maximum="{Binding Max}"
                           MouseDoubleClick="TrackBarEdit_MouseDoubleClick" EditValueType="{x:Type sys:Decimal}"
                           ToolTip="Double Click to Center" />
+   
     </dxlc:LayoutGroup>
 
 </vncmvvm:ViewBase>

@@ -48,6 +48,58 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         // Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         // }
 
+        private static object OnCoercePositionRange(DependencyObject o, object value)
+        {
+            PositionControl positionControl = o as PositionControl;
+            if (positionControl != null)
+                return positionControl.OnCoercePositionRange((Int32)value);
+            else
+                return value;
+        }
+
+        private static void OnPositionRangeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            PositionControl positionControl = o as PositionControl;
+            if (positionControl != null)
+                positionControl.OnPositionRangeChanged((Int32)e.OldValue, (Int32)e.NewValue);
+        }
+
+        protected virtual Int32 OnCoercePositionRange(Int32 value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnPositionRangeChanged(Int32 oldValue, Int32 newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+        private static object OnCoerceServoIndex(DependencyObject o, object value)
+        {
+            PositionControl positionControl = o as PositionControl;
+            if (positionControl != null)
+                return positionControl.OnCoerceServoIndex((Int32?)value);
+            else
+                return value;
+        }
+
+        private static void OnServoIndexChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            PositionControl positionControl = o as PositionControl;
+            if (positionControl != null)
+                positionControl.OnServoIndexChanged((Int32?)e.OldValue, (Int32?)e.NewValue);
+        }
+
+        protected virtual Int32? OnCoerceServoIndex(Int32? value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnServoIndexChanged(Int32? oldValue, Int32? newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
         private static object OnCoerceDeviceMax(DependencyObject o, object value)
         {
             PositionControl positionControl = o as PositionControl;
@@ -124,6 +176,18 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 
         #region Fields and Properties (None)
 
+        public Int32 PositionRange
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Int32)GetValue(PositionRangeProperty);
+            set => SetValue(PositionRangeProperty, value);
+        }
+        public Int32? ServoIndex
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Int32?)GetValue(ServoIndexProperty);
+            set => SetValue(ServoIndexProperty, value);
+        }
         public Double? DeviceMax
         {
             // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
@@ -288,10 +352,16 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
             ((TrackBarEdit)sender).Value = (Double)centerPosition;
         }
 
-        public static readonly DependencyProperty DeviceMinProperty = DependencyProperty.Register("DeviceMin", typeof(Double?), typeof(PositionControl), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnDeviceMinChanged), new CoerceValueCallback(OnCoerceDeviceMin)));
-        public static readonly DependencyProperty DeviceMaxProperty = DependencyProperty.Register("DeviceMax", typeof(Double?), typeof(PositionControl), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnDeviceMaxChanged), new CoerceValueCallback(OnCoerceDeviceMax)));
-        
-        
+        public static readonly DependencyProperty DeviceMinProperty = DependencyProperty.Register("DeviceMin", typeof(Double?), typeof(PositionControl),
+            new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnDeviceMinChanged), new CoerceValueCallback(OnCoerceDeviceMin)));
+        public static readonly DependencyProperty DeviceMaxProperty = DependencyProperty.Register("DeviceMax", typeof(Double?), typeof(PositionControl),
+            new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnDeviceMaxChanged), new CoerceValueCallback(OnCoerceDeviceMax)));
 
+        public static readonly DependencyProperty ServoIndexProperty = DependencyProperty.Register("ServoIndex", typeof(Int32?), typeof(PositionControl),
+            new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnServoIndexChanged), new CoerceValueCallback(OnCoerceServoIndex)));
+
+        public static readonly DependencyProperty PositionRangeProperty = DependencyProperty.Register("PositionRange", typeof(Int32), typeof(PositionControl), 
+            new FrameworkPropertyMetadata(10, new PropertyChangedCallback(OnPositionRangeChanged), new CoerceValueCallback(OnCoercePositionRange)));
+        
     }
 }

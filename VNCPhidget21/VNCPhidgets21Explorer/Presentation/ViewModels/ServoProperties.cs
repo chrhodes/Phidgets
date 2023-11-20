@@ -52,14 +52,16 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 }
             }
 
-            private Phidgets.ServoServo.ServoType? _type;
-            public Phidgets.ServoServo.ServoType? Type
+            private Phidgets.ServoServo.ServoType? _servoType;
+            public Phidgets.ServoServo.ServoType? ServoType
             {
-                get => _type;
+                get => _servoType;
                 set
                 {
-                    if (_type == value) return;
-                    _type = value;
+                    // NOTE(crhodes)
+                    // We always want to call UpdateProperties
+                    //if (_servoType == value) return;
+                    _servoType = value;
                     OnPropertyChanged();
 
                     if (AdvancedServoEx is not null)
@@ -77,6 +79,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             private void UpdateProperties()
             {
+                Int64 startTicks = Log.Trace($"Enter servoIndex:{ServoIndex}", Common.LOG_CATEGORY);
+
                 try
                 {
                     var servo = AdvancedServoEx.AdvancedServo.servos[ServoIndex];
@@ -115,19 +119,23 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
+
+                Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
             }
 
-            public void InitialProperties()
+            public void SetInitialProperties()
             {
+                Int64 startTicks = Log.Trace($"Enter servoIndex:{ServoIndex}", Common.LOG_CATEGORY);
+
                 try
                 {
-                    var servo = AdvancedServoEx.AdvancedServo.servos[ServoIndex];
+                    //var servo = AdvancedServoEx.AdvancedServo.servos[ServoIndex];
+                    //ServoType = Phidgets.ServoServo.ServoType.DE;
 
                     Stopped = null;
                     Engaged = null;
                     SpeedRamping = null;
                     Current = null;
-
 
                     // NOTE(crhodes)
                     // Have to clear Acceleration before Min/Max as UI triggers an update
@@ -156,6 +164,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
+
+                Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
             }
 
             private Double? _current;

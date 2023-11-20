@@ -83,7 +83,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             OpenAdvancedServoCommand = new DelegateCommand(OpenAdvancedServo, OpenAdvancedServoCanExecute);
             RefreshAdvancedServoCommand = new DelegateCommand(RefreshAdvancedServo, RefreshAdvancedServoCanExecute);
-            SetAdvancedServoDefaultsCommand = new DelegateCommand<string>(SetAdvancedServoDefaults, SetAdvancedServoDefaultsCanExecute);
+            //SetAdvancedServoDefaultsCommand = new DelegateCommand<string>(SetAdvancedServoDefaults, SetAdvancedServoDefaultsCanExecute);
             CloseAdvancedServoCommand = new DelegateCommand(CloseAdvancedServo, CloseAdvancedServoCanExecute);
 
             //ConfigureServoCommand = new DelegateCommand(ConfigureServo, ConfigureServoCanExecute);
@@ -833,98 +833,98 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region SetAdvancedServoDefaults Command
 
-        public DelegateCommand<string> SetAdvancedServoDefaultsCommand { get; set; }
-        //public string SetAdvancedServoDefaultsCommandParameter;
-        public string SetAdvancedServoDefaultsContent { get; set; } = "SetAdvancedServoDefaults";
-        public string SetAdvancedServoDefaultsToolTip { get; set; } = "SetAdvancedServoDefaults ToolTip";
+        //public DelegateCommand<string> SetAdvancedServoDefaultsCommand { get; set; }
+        ////public string SetAdvancedServoDefaultsCommandParameter;
+        //public string SetAdvancedServoDefaultsContent { get; set; } = "SetAdvancedServoDefaults";
+        //public string SetAdvancedServoDefaultsToolTip { get; set; } = "SetAdvancedServoDefaults ToolTip";
 
-        // Can get fancy and use Resources
-        //public string SetAdvancedServoDefaultsContent { get; set; } = "ViewName_SetAdvancedServoDefaultsContent";
-        //public string SetAdvancedServoDefaultsToolTip { get; set; } = "ViewName_SetAdvancedServoDefaultsContentToolTip";
+        //// Can get fancy and use Resources
+        ////public string SetAdvancedServoDefaultsContent { get; set; } = "ViewName_SetAdvancedServoDefaultsContent";
+        ////public string SetAdvancedServoDefaultsToolTip { get; set; } = "ViewName_SetAdvancedServoDefaultsContentToolTip";
 
-        // Put these in Resource File
-        //    <system:String x:Key="ViewName_SetAdvancedServoDefaultsContent">SetAdvancedServoDefaults</system:String>
-        //    <system:String x:Key="ViewName_SetAdvancedServoDefaultsContentToolTip">SetAdvancedServoDefaults ToolTip</system:String>  
+        //// Put these in Resource File
+        ////    <system:String x:Key="ViewName_SetAdvancedServoDefaultsContent">SetAdvancedServoDefaults</system:String>
+        ////    <system:String x:Key="ViewName_SetAdvancedServoDefaultsContentToolTip">SetAdvancedServoDefaults ToolTip</system:String>  
 
-        public void SetAdvancedServoDefaults(string servoID)
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-            // TODO(crhodes)
-            // Do something amazing.
-            Message = $"Cool, you called SetAdvancedServoDefaults from servo {servoID}";
+        //public void SetAdvancedServoDefaults(string servoID)
+        //{
+        //    Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+        //    // TODO(crhodes)
+        //    // Do something amazing.
+        //    Message = $"Cool, you called SetAdvancedServoDefaults from servo {servoID}";
 
-            AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
-            Phidgets.AdvancedServoServo servo = null;
+        //    AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
+        //    Phidgets.AdvancedServoServo servo = null;
 
-            Int32 servoIndex = Int32.Parse(servoID);
-            servo = servos[servoIndex];
+        //    Int32 servoIndex = Int32.Parse(servoID);
+        //    servo = servos[servoIndex];
 
-            // NOTE(crhodes)
-            // Should be safe to get Acceleration, Velocity, and Position here
-            // Device is Engaged
+        //    // NOTE(crhodes)
+        //    // Should be safe to get Acceleration, Velocity, and Position here
+        //    // Device is Engaged
 
-            Double? halfRange;
-            Double? percent = .20;
-            Double? midPoint;
+        //    Double? halfRange;
+        //    Double? percent = .20;
+        //    Double? midPoint;
 
-            try
-            {
-                for (int i = 0; i < ActiveAdvancedServo.AdvancedServo.servos.Count; i++)
-                {
-                    AdvancedServoProperties[i].Acceleration = AdvancedServoProperties[i].AccelerationMin;
-                    AdvancedServoProperties[i].VelocityLimit = AdvancedServoProperties[i].VelocityMin == 0
-                        ? 10 : 
-                        AdvancedServoProperties[i].VelocityMin;
+        //    try
+        //    {
+        //        for (int i = 0; i < ActiveAdvancedServo.AdvancedServo.servos.Count; i++)
+        //        {
+        //            AdvancedServoProperties[i].Acceleration = AdvancedServoProperties[i].AccelerationMin;
+        //            AdvancedServoProperties[i].VelocityLimit = AdvancedServoProperties[i].VelocityMin == 0
+        //                ? 10 : 
+        //                AdvancedServoProperties[i].VelocityMin;
 
-                    midPoint = (AdvancedServoProperties[i].DevicePositionMax - AdvancedServoProperties[i].DevicePositionMin) / 2;
-                    halfRange = midPoint * percent;
-                    AdvancedServoProperties[i].PositionMin = midPoint - halfRange;
-                    AdvancedServoProperties[i].PositionMax = midPoint + halfRange;
-                    AdvancedServoProperties[i].Position = midPoint;
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
+        //            midPoint = (AdvancedServoProperties[i].DevicePositionMax - AdvancedServoProperties[i].DevicePositionMin) / 2;
+        //            halfRange = midPoint * percent;
+        //            AdvancedServoProperties[i].PositionMin = midPoint - halfRange;
+        //            AdvancedServoProperties[i].PositionMax = midPoint + halfRange;
+        //            AdvancedServoProperties[i].Position = midPoint;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.Error(ex, Common.LOG_CATEGORY);
+        //    }
 
-            // Uncomment this if you are telling someone else to handle this
+        //    // Uncomment this if you are telling someone else to handle this
 
-            // Common.EventAggregator.GetEvent<SetAdvancedServoDefaultsEvent>().Publish();
+        //    // Common.EventAggregator.GetEvent<SetAdvancedServoDefaultsEvent>().Publish();
 
-            // May want EventArgs
+        //    // May want EventArgs
 
-            //  EventAggregator.GetEvent<SetAdvancedServoDefaultsEvent>().Publish(
-            //      new SetAdvancedServoDefaultsEventArgs()
-            //      {
-            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-            //            Process = _contextMainViewModel.Context.SelectedProcess
-            //      });
+        //    //  EventAggregator.GetEvent<SetAdvancedServoDefaultsEvent>().Publish(
+        //    //      new SetAdvancedServoDefaultsEventArgs()
+        //    //      {
+        //    //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+        //    //            Process = _contextMainViewModel.Context.SelectedProcess
+        //    //      });
 
-            // Start Cut Three - Put this in PrismEvents
+        //    // Start Cut Three - Put this in PrismEvents
 
-            // public class SetAdvancedServoDefaultsEvent : PubSubEvent { }
+        //    // public class SetAdvancedServoDefaultsEvent : PubSubEvent { }
 
-            // End Cut Three
+        //    // End Cut Three
 
-            // Start Cut Four - Put this in places that listen for event
+        //    // Start Cut Four - Put this in places that listen for event
 
-            //Common.EventAggregator.GetEvent<SetAdvancedServoDefaultsEvent>().Subscribe(SetAdvancedServoDefaults);
+        //    //Common.EventAggregator.GetEvent<SetAdvancedServoDefaultsEvent>().Subscribe(SetAdvancedServoDefaults);
 
-            // End Cut Four
+        //    // End Cut Four
 
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
+        //    Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        //}
 
-        public bool SetAdvancedServoDefaultsCanExecute(string value)
-        {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-            if (DeviceAttached is not null)
-                return (Boolean)DeviceAttached;
-            else
-                return false;
-        }
+        //public bool SetAdvancedServoDefaultsCanExecute(string value)
+        //{
+        //    // TODO(crhodes)
+        //    // Add any before button is enabled logic.
+        //    if (DeviceAttached is not null)
+        //        return (Boolean)DeviceAttached;
+        //    else
+        //        return false;
+        //}
 
         #endregion
 
@@ -941,26 +941,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         // Put these in Resource File
         //    <system:String x:Key="ViewName_CloseAdvancedServoContent">CloseAdvancedServo</system:String>
         //    <system:String x:Key="ViewName_CloseAdvancedServoContentToolTip">CloseAdvancedServo ToolTip</system:String>  
-
-        private void ClearDigitalInputsAndOutputs()
-        {
-            //DI0 = DO0 = null;
-            //DI1 = DO1 = null;
-            //DI2 = DO2 = null;
-            //DI3 = DO3 = null;
-            //DI4 = DO4 = null;
-            //DI5 = DO5 = null;
-            //DI6 = DO6 = null;
-            //DI7 = DO7 = null;
-            //DI8 = DO8 = null;
-            //DI9 = DO9 = null;
-            //DI10 = DO10 = null;
-            //DI11 = DO11 = null;
-            //DI12 = DO12 = null;
-            //DI13 = DO13 = null;
-            //DI14 = DO14 = null;
-            //DI15 = DO15 = null;
-        }
 
         public void CloseAdvancedServo()
         {
@@ -992,7 +972,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             OpenAdvancedServoCommand.RaiseCanExecuteChanged();
             RefreshAdvancedServoCommand.RaiseCanExecuteChanged();
             CloseAdvancedServoCommand.RaiseCanExecuteChanged();
-            SetAdvancedServoDefaultsCommand.RaiseCanExecuteChanged();
+            //SetAdvancedServoDefaultsCommand.RaiseCanExecuteChanged();
             SetPositionRangeCommand.RaiseCanExecuteChanged();
 
             //PlayPerformanceCommand.RaiseCanExecuteChanged();
@@ -1385,12 +1365,14 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             RefreshAdvancedServoCommand.RaiseCanExecuteChanged();
             CloseAdvancedServoCommand.RaiseCanExecuteChanged();
 
-            SetAdvancedServoDefaultsCommand.RaiseCanExecuteChanged();
+            //SetAdvancedServoDefaultsCommand.RaiseCanExecuteChanged();
             SetPositionRangeCommand.RaiseCanExecuteChanged();
         }
 
         private void UpdateAdvancedServoProperties()
         {
+            Int64 startTicks = Log.Trace($"Enter deviceAttached:{DeviceAttached}", Common.LOG_CATEGORY);
+
             if ((Boolean)DeviceAttached)
             {
                 AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
@@ -1406,7 +1388,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                         // NOTE(crhodes)
                         // All the work is now done in Type.UpdateProperties()
-                        AdvancedServoProperties[i].Type = servo.Type;
+                        AdvancedServoProperties[i].ServoType = servo.Type;
                     }
 
                 }
@@ -1420,10 +1402,14 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 DeviceAttached = null;
                 InitializAdvancedServoUI();
             }
+
+            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void RefreshAdvancedServoUIProperties()
         {
+            Int64 startTicks = Log.Trace($"Enter deviceAttached:{DeviceAttached}", Common.LOG_CATEGORY);
+
             if ((Boolean)DeviceAttached)
             {
                 AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
@@ -1441,7 +1427,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         // Should be safe to get Acceleration, Velocity, and Position here
                         // if Device is Engaged, otherwise set to null
 
-                        AdvancedServoProperties[0].Type = servo.Type;
+                        AdvancedServoProperties[0].ServoType = servo.Type;
 
                         //DevicePositionMin = servo.PositionMin;
                         //DevicePositionMax = servo.PositionMax;
@@ -1476,6 +1462,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 DeviceAttached = null;
                 InitializAdvancedServoUI();
             }
+
+            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void ActiveAdvancedServo_Detach(object sender, Phidgets.Events.DetachEventArgs e)
@@ -1490,12 +1478,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 for (int i = 0; i < ServoCount; i++)
                 {
+                    AdvancedServoProperties[i].SetInitialProperties();
                     AdvancedServoProperties[i].AdvancedServoEx = null;
                 }
 
                 // TODO(crhodes)
                 // What kind of cleanup?  Maybe set ActiveAdvancedServo to null.  Clear UI
-                UpdateAdvancedServoProperties();
+                //UpdateAdvancedServoProperties();
             }
             catch (Exception ex)
             {
@@ -1537,7 +1526,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             for (int i = 0; i < 8; i++)
             {
-                AdvancedServoProperties[i].InitialProperties();
+                AdvancedServoProperties[i].SetInitialProperties();
                 //AdvancedServoProperties[i].Stopped = null;
                 //AdvancedServoProperties[i].Engaged = null;
                 //AdvancedServoProperties[i].SpeedRamping = null;
@@ -1568,34 +1557,34 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
-        private void SetServoValue(Double property, Double? value)
-        {
-            if (value is not null)
-            {
-                try
-                {
-                    property = (double)value;
-                }
-                catch (PhidgetException pex)
-                {
-                    Log.Error(pex, Common.LOG_CATEGORY);
-                    // NOTE(crhodes)
-                    // This throws exception  Humm
-                    try
-                    {
-                        property = (double)value;
-                    }
-                    catch (PhidgetException pex2)
-                    {
-                        Log.Error(pex2, Common.LOG_CATEGORY);
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.Error(ex, Common.LOG_CATEGORY);
-                    }
-                }
-            }
-        }
+        //private void SetServoValue(Double property, Double? value)
+        //{
+        //    if (value is not null)
+        //    {
+        //        try
+        //        {
+        //            property = (double)value;
+        //        }
+        //        catch (PhidgetException pex)
+        //        {
+        //            Log.Error(pex, Common.LOG_CATEGORY);
+        //            // NOTE(crhodes)
+        //            // This throws exception  Humm
+        //            try
+        //            {
+        //                property = (double)value;
+        //            }
+        //            catch (PhidgetException pex2)
+        //            {
+        //                Log.Error(pex2, Common.LOG_CATEGORY);
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                Log.Error(ex, Common.LOG_CATEGORY);
+        //            }
+        //        }
+        //    }
+        //}
 
         #endregion
 
