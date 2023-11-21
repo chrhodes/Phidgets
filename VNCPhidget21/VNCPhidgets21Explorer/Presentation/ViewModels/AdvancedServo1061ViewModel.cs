@@ -280,16 +280,21 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private bool _logVelocityChangeEvents = false;
-        public bool LogVelocityChangeEvents
+        private bool _logCurrentChangeEvents = false;
+        public bool LogCurrentChangeEvents
         {
-            get => _logVelocityChangeEvents;
+            get => _logCurrentChangeEvents;
             set
             {
-                if (_logVelocityChangeEvents == value)
+                if (_logCurrentChangeEvents == value)
                     return;
-                _logVelocityChangeEvents = value;
+                _logCurrentChangeEvents = value;
                 OnPropertyChanged();
+
+                if (ActiveAdvancedServo is not null)
+                {
+                    ActiveAdvancedServo.LogCurrentChangeEvents = _logCurrentChangeEvents;
+                }
             }
         }
 
@@ -303,6 +308,29 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _logPositionChangeEvents = value;
                 OnPropertyChanged();
+
+                if (ActiveAdvancedServo is not null)
+                {
+                    ActiveAdvancedServo.LogPositionChangeEvents = _logPositionChangeEvents;
+                }
+            }
+        }
+
+        private bool _logVelocityChangeEvents = false;
+        public bool LogVelocityChangeEvents
+        {
+            get => _logVelocityChangeEvents;
+            set
+            {
+                if (_logVelocityChangeEvents == value)
+                    return;
+                _logVelocityChangeEvents = value;
+                OnPropertyChanged();
+
+                if (ActiveAdvancedServo is not null)
+                {
+                    ActiveAdvancedServo.LogVelocityChangeEvents = _logVelocityChangeEvents;
+                }
             }
         }
 

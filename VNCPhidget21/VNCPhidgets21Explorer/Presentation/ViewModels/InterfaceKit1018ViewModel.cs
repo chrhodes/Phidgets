@@ -293,6 +293,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _logInputChangeEvents = value;
                 OnPropertyChanged();
+
+                if (ActiveInterfaceKit is not null)
+                {
+                    ActiveInterfaceKit.LogSensorChangeEvents = _logInputChangeEvents;
+                }
             }
         }
 
@@ -306,6 +311,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _logOutputChangeEvents = value;
                 OnPropertyChanged();
+
+                if (ActiveInterfaceKit is not null)
+                {
+                    ActiveInterfaceKit.LogOutputChangeEvents = _logOutputChangeEvents;
+                }
             }
         }
 
@@ -319,6 +329,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _logSensorChangeEvents = value;
                 OnPropertyChanged();
+
+                if (ActiveInterfaceKit is not null)
+                {
+                    ActiveInterfaceKit.LogSensorChangeEvents = _logSensorChangeEvents;
+                }
             }
         }
 

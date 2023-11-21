@@ -46,7 +46,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
-            <RowDefinition Height="130" />
+            <RowDefinition Height="240" />
             <!--<RowDefinition Height="100" />
             <RowDefinition Height="100" />-->
             <RowDefinition Height="*" />
@@ -79,17 +79,35 @@
                         Value="{Binding Repeats, Mode=TwoWay}"
                         MinValue="1" />
                 </dxlc:LayoutItem>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <dxe:CheckEdit x:Name="ceInputChangedEvents"
-                    Content="DisplayInputChangeEvents"
-                    IsChecked="{Binding DisplayInputChangeEvents, Mode=TwoWay}" />
-                    <dxe:CheckEdit x:Name="ceOutputChangedEvents"
-                    Content="DisplayOutputChangeEvents"
-                    IsChecked="{Binding DisplayOutputChangeEvents, Mode=TwoWay}" />
-                    <dxe:CheckEdit x:Name="ceSensorChangedEvents"
-                    Content="DisplaySensorChangeEvents"
-                    IsChecked="{Binding DisplaySensorChangeEvents, Mode=TwoWay}" />
-                </StackPanel>
+                
+                <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+                    
+                    <dxlc:LayoutGroup Header="AdvancedServo Events" View="GroupBox" Orientation="Horizontal" >
+                        <dxe:CheckEdit x:Name="ceCurrentChangedEvents"
+                            Content="Log CurrentChange Events"
+                            IsChecked="{Binding LogCurrentChangeEvents, Mode=TwoWay}" />
+                        <dxe:CheckEdit x:Name="cePositionChangedEvents"
+                            Content="Log PositionChange Events"
+                            IsChecked="{Binding LogPositionChangeEvents, Mode=TwoWay}" />
+                        <dxe:CheckEdit x:Name="ceVelocityChangedEvents"
+                            Content="Log VelocityChange Events"
+                            IsChecked="{Binding LogVelocityChangeEvents, Mode=TwoWay}" />
+                    </dxlc:LayoutGroup>
+                    
+                    <dxlc:LayoutGroup Header="InterfaceKit Events" View="GroupBox" Orientation="Horizontal" >
+                        <dxe:CheckEdit x:Name="ceInputChangedEvents"
+                                Content="Log InputChange Events"
+                                IsChecked="{Binding LogInputChangeEvents, Mode=TwoWay}" />
+                        <dxe:CheckEdit x:Name="ceOutputChangedEvents"
+                                Content="Log OutputChange Events"
+                                IsChecked="{Binding LogOutputChangeEvents, Mode=TwoWay}" />
+                        <dxe:CheckEdit x:Name="ceSensorChangedEvents"
+                                Content="Log SensorChange Events"
+                                IsChecked="{Binding LogSensorChangeEvents, Mode=TwoWay}" />
+                    </dxlc:LayoutGroup>
+                    
+                </dxlc:LayoutGroup>
+
             </StackPanel>
         </Grid>
 

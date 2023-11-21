@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 
 using Phidgets;
 using Phidgets.Events;
@@ -44,27 +46,13 @@ namespace VNC.Phidget
 
         private void InitializePhidget()
         {
-            //this.Attach += InterfaceKitk_Attach;
-            //this.Detach += InterfaceKitk_Detach;
-            //this.Error += InterfaceKitk_Error;
-            //this.ServerConnect += InterfaceKitk_ServerConnect;
-            //this.ServerDisconnect += InterfaceKitk_ServerDisconnect;
-
-            //this.InputChange += InterfaceKitk_InputChange;
-            //this.OutputChange += InterfaceKitk_OutputChange;
-            //this.SensorChange += InterfaceKitk_SensorChange;
-
             InterfaceKit = new Phidgets.InterfaceKit();
 
-            this.InterfaceKit.Attach += Phidget_Attach;
-            this.InterfaceKit.Detach += Phidget_Detach;
-            this.InterfaceKit.Error += Phidget_Error;
-            this.InterfaceKit.ServerConnect += Phidget_ServerConnect;
-            this.InterfaceKit.ServerDisconnect += Phidget_ServerDisconnect;
-
-            this.InterfaceKit.InputChange += InterfaceKitk_InputChange;
-            this.InterfaceKit.OutputChange += InterfaceKitk_OutputChange;
-            this.InterfaceKit.SensorChange += InterfaceKitk_SensorChange;
+            InterfaceKit.Attach += Phidget_Attach;
+            InterfaceKit.Detach += Phidget_Detach;
+            InterfaceKit.Error += Phidget_Error;
+            InterfaceKit.ServerConnect += Phidget_ServerConnect;
+            InterfaceKit.ServerDisconnect += Phidget_ServerDisconnect;
         }
 
         #endregion
@@ -82,10 +70,64 @@ namespace VNC.Phidget
         #region Fields and Properties
 
         public Phidgets.InterfaceKit InterfaceKit = null;
-            
-        public bool LogInputChangeEvents { get; set; }
-        public bool LogOutputChangeEvents { get; set; }
-        public bool LogSensorChangeEvents { get; set; }
+
+        private bool _logInputChangeEvents;
+        public bool LogInputChangeEvents 
+        { 
+            get => _logInputChangeEvents; 
+            set
+            {
+                if (_logInputChangeEvents == value) return;
+
+                if (_logInputChangeEvents = value)
+                {
+                    InterfaceKit.InputChange += InterfaceKitk_InputChange;
+                }
+                else
+                {
+                    InterfaceKit.InputChange -= InterfaceKitk_InputChange;
+                }
+            }
+        }
+
+        private bool _logOutputChangeEvents;
+        public bool LogOutputChangeEvents 
+        { 
+            get => _logOutputChangeEvents;
+            set
+            {
+                if (_logOutputChangeEvents == value) return;
+
+                if (_logOutputChangeEvents = value)
+                {
+                    InterfaceKit.OutputChange += InterfaceKitk_OutputChange;
+                }
+                else
+                {
+                    InterfaceKit.OutputChange -= InterfaceKitk_OutputChange;
+                }
+            }
+        }
+
+        private bool _logSensorChangeEvents;
+        public bool LogSensorChangeEvents 
+        {
+            get => _logSensorChangeEvents;
+            set
+            {
+                if (_logSensorChangeEvents == value) return;               
+
+                if (_logSensorChangeEvents = value)
+                {
+                    InterfaceKit.SensorChange += InterfaceKitk_SensorChange;
+                }
+                else
+                {
+                    InterfaceKit.SensorChange -= InterfaceKitk_SensorChange;
+                }
+            }
+        }
+        
         public bool LogPerformanceStep { get; set; }
 
         #endregion
@@ -94,56 +136,50 @@ namespace VNC.Phidget
 
         private void InterfaceKitk_SensorChange(object sender, SensorChangeEventArgs e)
         {
-            if (LogSensorChangeEvents)
-            {
+            //if (LogSensorChangeEvents)
+            //{
                 try
                 {
                     Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
-                    var a = e;
-                    var b = e.GetType();
-                    Log.Trace($"InterfaceKit_SensorChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"SensorChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
-            }
+            //}
         }
 
         private void InterfaceKitk_OutputChange(object sender, Phidgets.Events.OutputChangeEventArgs e)
         {
-            if (LogOutputChangeEvents)
-            {
+            //if (LogOutputChangeEvents)
+            //{
                 try
                 {
                     Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
-                    var a = e;
-                    var b = e.GetType();
-                    Log.Trace($"InterfaceKit_OutputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"OutputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
-            }
+            //}
         }
 
         private void InterfaceKitk_InputChange(object sender, Phidgets.Events.InputChangeEventArgs e)
         {
-            if (LogInputChangeEvents)
-            {
+            //if (LogInputChangeEvents)
+            //{
                 try
                 {
                     Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
-                    var a = e;
-                    var b = e.GetType();
-                    Log.Trace($"InterfaceKit_InputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"InputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
-            }
+            //}
         }
 
         #endregion
@@ -183,6 +219,13 @@ namespace VNC.Phidget
 
             try
             {
+                // NOTE(crhodes)
+                // We may be logging events.  Remove them before closing.
+
+                if (LogInputChangeEvents) LogInputChangeEvents = false;
+                if (LogOutputChangeEvents) LogOutputChangeEvents = false;
+                if (LogSensorChangeEvents) LogSensorChangeEvents = false;
+
                 this.InterfaceKit.close();
             }
             catch (Exception ex)
@@ -351,26 +394,40 @@ namespace VNC.Phidget
         {
             Int64 startTicks = 0;
 
+            StringBuilder actionMessage = new StringBuilder();
+
             if (LogPerformanceStep)
             {
-                startTicks = Log.Trace($"Enter index:{index} digitalOut:{action.DigitalOut}" +
-                    $" duration:{action.Duration}", Common.LOG_CATEGORY);
+                startTicks = Log.Trace($"Enter index:{index}", Common.LOG_CATEGORY);
+                actionMessage.Append($"index:{index}");
             }
 
             try
             {
-                if (action.DigitalOut is not null) ifkDigitalOutputs[index] = (Boolean)action.DigitalOut;
+                if (action.DigitalOut is not null)
+                { 
+                    if (LogPerformanceStep) actionMessage.Append($" digitalOut:{action.DigitalOut}");
 
-                if (action.Duration > 0) Thread.Sleep((Int32)action.Duration);
+                    ifkDigitalOutputs[index] = (Boolean)action.DigitalOut; 
+                }
+
+                if (action.Duration > 0)
+                {
+                    if (LogPerformanceStep) actionMessage.Append($" duration:>{action.Duration}<");
+
+                    Thread.Sleep((Int32)action.Duration);
+                }
             }
             catch (Exception ex)
             {
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
-
-            if (LogPerformanceStep)
+            finally
             {
-                Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+                if (LogPerformanceStep)
+                {
+                    Log.Trace($"Exit {actionMessage}", Common.LOG_CATEGORY, startTicks);
+                }
             }
         }
 

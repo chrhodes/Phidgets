@@ -100,6 +100,7 @@
                 <Label Content="V:" />
                 <Label Content="{Binding ElementName=thisControl, Path=InstanceCountV}" />
             </StackPanel>
+            
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" Margin="5">
                 <Label Content="VM:" />
                 <Label Content="{Binding InstanceCountVM}" />
@@ -140,8 +141,13 @@
 
                     <dxlc:LayoutItem Label="Log Phidget Events" HorizontalAlignment="Right" >
                         
-                        <dxe:CheckEdit IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}" />
-                        
+                        <!-- TODO(crhodes)
+                         Figure out how to bind to SelectedInterfaceKit is not null
+                        -->
+                        <dxe:CheckEdit IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}"/>
+                        <!--<dxe:CheckEdit IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}"
+                                       IsEnabled="{Binding SelectedInterfaceKit.Enable}"/>-->
+
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem HorizontalAlignment="Right">
@@ -167,7 +173,7 @@
                                AttachedPhidgetDevice="{Binding PhidgetDevice, Mode=TwoWay}"
                                DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}" />
 
-                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
 
                         <dxe:CheckEdit
                             Content="Log InputChange Events"

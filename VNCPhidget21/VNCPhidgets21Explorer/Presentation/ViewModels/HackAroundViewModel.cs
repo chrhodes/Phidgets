@@ -313,9 +313,69 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        #region AdvancedServ0
+
+        private bool _logCurrentChangeEvents = false;
+        public bool LogCurrentChangeEvents
+        {
+            get => _logCurrentChangeEvents;
+            set
+            {
+                if (_logCurrentChangeEvents == value)
+                    return;
+                _logCurrentChangeEvents = value;
+                OnPropertyChanged();
+
+                //if (ActiveAdvancedServo is not null)
+                //{
+                //    ActiveAdvancedServo.LogCurrentChangeEvents = _logCurrentChangeEvents;
+                //}
+            }
+        }
+
+        private bool _logPositionChangeEvents = false;
+        public bool LogPositionChangeEvents
+        {
+            get => _logPositionChangeEvents;
+            set
+            {
+                if (_logPositionChangeEvents == value)
+                    return;
+                _logPositionChangeEvents = value;
+                OnPropertyChanged();
+
+                //if (ActiveAdvancedServo is not null)
+                //{
+                //    ActiveAdvancedServo.LogPositionChangeEvents = _logPositionChangeEvents;
+                //}
+            }
+        }
+
+        private bool _logVelocityChangeEvents = false;
+        public bool LogVelocityChangeEvents
+        {
+            get => _logVelocityChangeEvents;
+            set
+            {
+                if (_logVelocityChangeEvents == value)
+                    return;
+                _logVelocityChangeEvents = value;
+                OnPropertyChanged();
+
+                //if (ActiveAdvancedServo is not null)
+                //{
+                //    ActiveAdvancedServo.LogVelocityChangeEvents = _logVelocityChangeEvents;
+                //}
+            }
+        }
+
+        #endregion
+
+        #region InterfaceKit
+
         private bool _displayInputChangeEvents = false;
 
-        public bool DisplayInputChangeEvents
+        public bool LogInputChangeEvents
         {
             get => _displayInputChangeEvents;
             set
@@ -329,7 +389,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private bool _displayOutputChangeEvents = false;
 
-        public bool DisplayOutputChangeEvents
+        public bool LogOutputChangeEvents
         {
             get => _displayOutputChangeEvents;
             set
@@ -343,7 +403,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private bool _sensorChangeEvents = false;
 
-        public bool DisplaySensorChangeEvents
+        public bool LogSensorChangeEvents
         {
             get => _sensorChangeEvents;
             set
@@ -354,6 +414,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        #endregion
+
 
         private int _repeats = 1;
         public int Repeats
@@ -1059,7 +1122,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             if (advancedServoSequence.Host is not null)
                             {
                                 var advancedServoHost = OpenAdvancedServoHost(advancedServoSequence.Host);
-                                advancedServoHost.LogPerformanceStep = LogPerformanceStep;
 
                                 //nextPerformanceSequence = await advancedServo.PlayAdvancedServoSequenceLoops(advancedServoSequence);
                                 await advancedServoHost.PlaySequenceLoops(advancedServoSequence);
@@ -1084,6 +1146,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                                 if (startingPerormanceSequence.ClosePhidget)
                                 {
+                                    //advancedServoHost.LogCurrentChangeEvents = false;
+                                    //advancedServoHost.LogPositionChangeEvents = false;
+                                    //advancedServoHost.LogVelocityChangeEvents = false;
+
+                                    //advancedServoHost.LogPerformanceStep = false;
+
                                     advancedServoHost.Close();
                                 }            
                             }
@@ -1109,7 +1177,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             if (interfaceKitSequence.Host is not null)
                             {
                                 var interfaceKitHost = OpenInterfaceKitHost(interfaceKitSequence.Host);
-                                interfaceKitHost.LogPerformanceStep = LogPerformanceStep;
+
+
 
                                 //nextPerformanceSequence = await advancedServo.PlayAdvancedServoSequenceLoops(advancedServoSequence);
                                 await interfaceKitHost.PlaySequenceLoops(interfaceKitSequence);
@@ -1173,19 +1242,23 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private AdvancedServoEx OpenAdvancedServoHost(VNCPhidgetConfig.Host host)
         { 
-            AdvancedServoEx advancedServo;
+            AdvancedServoEx advancedServoHost;
 
-            advancedServo = new AdvancedServoEx(
+            advancedServoHost = new AdvancedServoEx(
                 host.IPAddress,
                 host.Port,
                 host.AdvancedServos[0].SerialNumber,
                 EventAggregator);
 
-            //advancedServo.EventAggregator = 
+            advancedServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
+            advancedServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
+            advancedServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
 
-            advancedServo.Open();
+            advancedServoHost.LogPerformanceStep = LogPerformanceStep;
 
-            return advancedServo;
+            advancedServoHost.Open();
+
+            return advancedServoHost;
         }
 
         // If using CommandParameter, figure out TYPE and fix above
@@ -1291,17 +1364,23 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private InterfaceKitEx OpenInterfaceKitHost(VNCPhidgetConfig.Host host)
         {
-            InterfaceKitEx interfaceKit;
+            InterfaceKitEx interfaceKitHost;
 
-            interfaceKit = new InterfaceKitEx(
+            interfaceKitHost = new InterfaceKitEx(
                 host.IPAddress,
                 host.Port,
                 host.InterfaceKits[0].SerialNumber, true,
                 EventAggregator);
 
-            interfaceKit.Open();
+            interfaceKitHost.LogInputChangeEvents = LogInputChangeEvents;
+            interfaceKitHost.LogOutputChangeEvents = LogOutputChangeEvents;
+            interfaceKitHost.LogSensorChangeEvents = LogSensorChangeEvents;
 
-            return interfaceKit;
+            interfaceKitHost.LogPerformanceStep = LogPerformanceStep;
+
+            interfaceKitHost.Open();
+
+            return interfaceKitHost;
         }
 
         // If using CommandParameter, figure out TYPE and fix above
@@ -1516,7 +1595,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private void Ifk_SensorChange(object sender, Phidgets.Events.SensorChangeEventArgs e)
         {
-            if (DisplaySensorChangeEvents)
+            if (LogSensorChangeEvents)
             {
                 try
                 {
@@ -1534,7 +1613,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private void Ifk_OutputChange(object sender, Phidgets.Events.OutputChangeEventArgs e)
         {
-            if (DisplayOutputChangeEvents)
+            if (LogOutputChangeEvents)
             {
                 try
                 {
@@ -1552,7 +1631,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private void Ifk_InputChange(object sender, Phidgets.Events.InputChangeEventArgs e)
         {
-            if (DisplayInputChangeEvents)
+            if (LogInputChangeEvents)
             {
                 try
                 {

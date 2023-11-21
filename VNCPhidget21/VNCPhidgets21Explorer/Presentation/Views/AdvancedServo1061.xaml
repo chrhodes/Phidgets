@@ -191,6 +191,9 @@
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
 
                     <dxe:CheckEdit
+                            Content="Log CurrentChange Events"
+                            IsChecked="{Binding LogCurrentChangeEvents, Mode=TwoWay}" />
+                    <dxe:CheckEdit
                             Content="Log PositionChange Events"
                             IsChecked="{Binding LogPositionChangeEvents, Mode=TwoWay}" />
                     <dxe:CheckEdit

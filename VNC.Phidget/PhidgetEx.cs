@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Windows.Documents;
 
-using Phidgets;
 using Phidgets.Events;
 
 namespace VNC.Phidget
@@ -20,12 +18,7 @@ namespace VNC.Phidget
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             Host = new Host { IPAddress = ipAddress, Port = port };
-            
-            //_hostIPAddress = ipAddress;
-            //_hostPort = port;
-            _serialNumber = serialNumber;
-            //_Embedded = embedded;
-            //_Enable = enable;
+            SerialNumber = serialNumber;
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -45,17 +38,7 @@ namespace VNC.Phidget
         #region Fields and Properties
 
         public Host Host { get; set; }
-
-        private int _serialNumber;
-
-        public int SerialNumber
-        {
-            get { return _serialNumber; }
-            set
-            {
-                _serialNumber = value;
-            }
-        }
+        public int SerialNumber { get; set; }
 
         public bool LogPhidgetEvents { get; set; }
 
@@ -71,7 +54,7 @@ namespace VNC.Phidget
                 {
                     Phidgets.Phidget device = (Phidgets.Phidget)e.Device;
 
-                    Log.Trace($"Phidget_ServerDisconnect {device.Address}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"Phidget_ServerDisconnect {device.Address}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -88,7 +71,7 @@ namespace VNC.Phidget
                 {
                     Phidgets.Phidget device = (Phidgets.Phidget)e.Device;
 
-                    Log.Trace($"Phidget_ServerConnect {device.Address},{device.Port}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"Phidget_ServerConnect {device.Address},{device.Port}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -97,7 +80,7 @@ namespace VNC.Phidget
             }
         }
 
-        public void Phidget_Attach(object sender, Phidgets.Events.AttachEventArgs e)
+        internal virtual void Phidget_Attach(object sender, Phidgets.Events.AttachEventArgs e)
         {
             if (LogPhidgetEvents)
             {
@@ -105,7 +88,7 @@ namespace VNC.Phidget
                 {
                     Phidgets.Phidget device = (Phidgets.Phidget)e.Device;
 
-                    Log.Trace($"Phidget_Attach {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"Phidget_Attach {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -122,7 +105,7 @@ namespace VNC.Phidget
                 {
                     Phidgets.Phidget device = (Phidgets.Phidget)e.Device;
 
-                    Log.Trace($"Phidget_Detach {device.Address},{device.SerialNumber}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"Phidget_Detach {device.Address},{device.SerialNumber}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -137,7 +120,7 @@ namespace VNC.Phidget
             {
                 Phidgets.Phidget device = (Phidgets.Phidget)sender;
 
-                Log.Trace($"Phidget_Error {device.Address},{device.Attached} - {e.Type} {e.Code} {e.Description}", Common.LOG_CATEGORY);
+                Log.EVENT_HANDLER($"Phidget_Error {device.Address},{device.Attached} - {e.Type} {e.Code} {e.Description}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
