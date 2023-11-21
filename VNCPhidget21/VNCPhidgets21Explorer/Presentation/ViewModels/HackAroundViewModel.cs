@@ -10,20 +10,26 @@ using System.Windows.Input;
 using Phidgets;
 
 using Prism.Commands;
+using Prism.Events;
+using Prism.Services.Dialogs;
 
 using VNC;
 using VNC.Core.Mvvm;
 using VNC.Phidget;
+using VNC.Phidget.Events;
 
 using VNCPhidgetConfig = VNCPhidget21.Configuration;
 
 namespace VNCPhidgets21Explorer.Presentation.ViewModels
 {
-    public class HackAroundViewModel : ViewModelBase, IMainViewModel, IInstanceCountVM
+    public class HackAroundViewModel 
+        : EventViewModelBase, IMainViewModel, IInstanceCountVM
     {
         #region Constructors, Initialization, and Load
 
-        public HackAroundViewModel()
+        public HackAroundViewModel(
+            IEventAggregator eventAggregator,
+            IDialogService dialogService) : base(eventAggregator, dialogService)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
@@ -117,6 +123,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Button1Command = new DelegateCommand(Button1Execute);
             Button2Command = new DelegateCommand(Button2Execute);
             Button3Command = new DelegateCommand(Button3Execute);
+            Button4Command = new DelegateCommand(Button4Execute);
+            Button5Command = new DelegateCommand(Button5Execute);
 
             PlayPerformanceCommand = new DelegateCommand (PlayPerformance, PlayPerformanceCanExecute);
             PlayAdvancedServoSequenceCommand = new DelegateCommand(PlayAdvancedServoSequence, PlayAdvancedServoSequenceCanExecute);
@@ -235,6 +243,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         public ICommand Button1Command { get; private set; }
         public ICommand Button2Command { get; private set; }
         public ICommand Button3Command { get; private set; }
+        public ICommand Button4Command { get; private set; }
+        public ICommand Button5Command { get; private set; }
 
         private string _title = "VNCPhidgets21Explorer - Main";
 
@@ -1168,7 +1178,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             advancedServo = new AdvancedServoEx(
                 host.IPAddress,
                 host.Port,
-                host.AdvancedServos[0].SerialNumber);
+                host.AdvancedServos[0].SerialNumber,
+                EventAggregator);
+
+            //advancedServo.EventAggregator = 
 
             advancedServo.Open();
 
@@ -1283,7 +1296,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             interfaceKit = new InterfaceKitEx(
                 host.IPAddress,
                 host.Port,
-                host.InterfaceKits[0].SerialNumber, true);
+                host.InterfaceKits[0].SerialNumber, true,
+                EventAggregator);
 
             interfaceKit.Open();
 
@@ -1330,10 +1344,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         private async Task PlayParty()
         {
 
-            InterfaceKitEx ifkEx11 = new InterfaceKitEx("192.168.150.11", 5001, sbc11SerialNumber, embedded: true);
-            InterfaceKitEx ifkEx21 = new InterfaceKitEx("192.168.150.21", 5001, sbc21SerialNumber, embedded: true);
-            InterfaceKitEx ifkEx22 = new InterfaceKitEx("192.168.150.22", 5001, sbc22SerialNumber, embedded: true);
-            InterfaceKitEx ifkEx23 = new InterfaceKitEx("192.168.150.23", 5001, sbc23SerialNumber, embedded: true);
+            InterfaceKitEx ifkEx11 = new InterfaceKitEx("192.168.150.11", 5001, sbc11SerialNumber, embedded: true, EventAggregator);
+            InterfaceKitEx ifkEx21 = new InterfaceKitEx("192.168.150.21", 5001, sbc21SerialNumber, embedded: true, EventAggregator);
+            InterfaceKitEx ifkEx22 = new InterfaceKitEx("192.168.150.22", 5001, sbc22SerialNumber, embedded: true, EventAggregator);
+            InterfaceKitEx ifkEx23 = new InterfaceKitEx("192.168.150.23", 5001, sbc23SerialNumber, embedded: true, EventAggregator);
 
             try
             {
@@ -1392,49 +1406,49 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private void InterfaceKitParty(Int32 serialNumber, string hostName, Int32 port, Int32 sleep, Int32 loops)
-        {
-            try
-            {
-                Log.Debug($"InterfaceKitParty {hostName},{port} {serialNumber} sleep:{sleep} loops:{loops}", Common.LOG_CATEGORY);
+        //private void InterfaceKitParty(Int32 serialNumber, string hostName, Int32 port, Int32 sleep, Int32 loops)
+        //{
+        //    try
+        //    {
+        //        Log.Debug($"InterfaceKitParty {hostName},{port} {serialNumber} sleep:{sleep} loops:{loops}", Common.LOG_CATEGORY);
 
-                VNC.Phidget.InterfaceKitEx ifkEx = new VNC.Phidget.InterfaceKitEx(hostName, port, serialNumber, embedded: true);
+        //        VNC.Phidget.InterfaceKitEx ifkEx = new VNC.Phidget.InterfaceKitEx(hostName, port, serialNumber, embedded: true, EventAggregator);
 
-                ifkEx.Open();
+        //        ifkEx.Open();
 
-                //ifk.Attach += Ifk_Attach;
-                //ifk.Detach += Ifk_Detach;
-                //ifk.Error += Ifk_Error;
-                //ifk.InputChange += Ifk_InputChange;
+        //        //ifk.Attach += Ifk_Attach;
+        //        //ifk.Detach += Ifk_Detach;
+        //        //ifk.Error += Ifk_Error;
+        //        //ifk.InputChange += Ifk_InputChange;
 
-                ifkEx.InterfaceKit.OutputChange += Ifk_OutputChange;
-                //ifkEx.OutputChange += Ifk_OutputChange;
+        //        ifkEx.InterfaceKit.OutputChange += Ifk_OutputChange;
+        //        //ifkEx.OutputChange += Ifk_OutputChange;
 
-                //ifk.SensorChange += Ifk_SensorChange;
-                //ifk.ServerConnect += Ifk_ServerConnect;
-                //ifk.ServerDisconnect += Ifk_ServerDisconnect;
+        //        //ifk.SensorChange += Ifk_SensorChange;
+        //        //ifk.ServerConnect += Ifk_ServerConnect;
+        //        //ifk.ServerDisconnect += Ifk_ServerDisconnect;
 
-                //ifk.open(serialNumber, hostName, port);
-                //ifk.waitForAttachment();
+        //        //ifk.open(serialNumber, hostName, port);
+        //        //ifk.waitForAttachment();
 
-                InterfaceKitDigitalOutputCollection ifkdoc = ifkEx.InterfaceKit.outputs;
-                //InterfaceKitDigitalOutputCollection ifkdoc = ifkEx.outputs;
+        //        InterfaceKitDigitalOutputCollection ifkdoc = ifkEx.InterfaceKit.outputs;
+        //        //InterfaceKitDigitalOutputCollection ifkdoc = ifkEx.outputs;
 
-                for (int i = 0; i < loops; i++)
-                {
-                    ifkdoc[0] = true;
-                    Thread.Sleep(sleep);
-                    ifkdoc[0] = false;
-                    Thread.Sleep(sleep);
-                }
+        //        for (int i = 0; i < loops; i++)
+        //        {
+        //            ifkdoc[0] = true;
+        //            Thread.Sleep(sleep);
+        //            ifkdoc[0] = false;
+        //            Thread.Sleep(sleep);
+        //        }
 
-                ifkEx.Close();
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
+        //        ifkEx.Close();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.Error(ex, Common.LOG_CATEGORY);
+        //    }
+        //}
 
         private void InterfaceKitParty2(VNC.Phidget.InterfaceKitEx ifkEx, Int32 sleep, Int32 loops)
         {
@@ -1615,22 +1629,22 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private void Button1Execute()
         {
-            Int64 startTicks = Log.Info("Enter", "WHOISTHIS");
+            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
 
             Message = "Button1 Clicked";
 
             PlayParty();
 
-            Log.Info("End", "WHOISTHIS", startTicks);
+            Log.Info("End", Common.LOG_CATEGORY, startTicks);
         }
 
         private async void Button2Execute()
         {
-            Int64 startTicks = Log.Info("Enter", "WHOISTHIS");
+            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
 
             Message = "Button2 Clicked";
 
-            InterfaceKitEx ifkEx21 = new InterfaceKitEx("192.168.150.21", 5001, sbc21SerialNumber, embedded: true);
+            InterfaceKitEx ifkEx21 = new InterfaceKitEx("192.168.150.21", 5001, sbc21SerialNumber, embedded: true, EventAggregator);
 
 
             ifkEx21.Open();
@@ -1669,17 +1683,17 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
  
             ifkEx21.Close();
 
-            Log.Info("End", "WHOISTHIS", startTicks);
+            Log.Info("End", Common.LOG_CATEGORY, startTicks);
         }
 
         private void Button3Execute()
         {
-            Int64 startTicks = Log.Info("Enter", "WHOISTHIS");
+            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
 
             Message = "Button3 Clicked";
 
 
-            InterfaceKitEx ifkEx21 = new InterfaceKitEx("192.168.150.21", 5001, sbc21SerialNumber, embedded: true);
+            InterfaceKitEx ifkEx21 = new InterfaceKitEx("192.168.150.21", 5001, sbc21SerialNumber, embedded: true, EventAggregator);
 
             ifkEx21.Open();
 
@@ -1706,7 +1720,57 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             ifkEx21.Close();
 
-            Log.Info("End", "WHOISTHIS", startTicks);
+            Log.Info("End", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void Button4Execute()
+        {
+            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+
+            Message = "Button4 Clicked";
+
+            SequenceEventArgs sequenceEventArgs = new SequenceEventArgs();
+
+            sequenceEventArgs.AdvancedServoSequence = new VNCPhidgetConfig.AdvancedServoSequence
+            {
+                Host = new VNCPhidgetConfig.Host
+                {
+                    Name = "psbc21",
+                    IPAddress = "192.168.150.21",
+                    Port = 5001,
+                    AdvancedServos = new[]
+                    {
+                        new VNCPhidgetConfig.AdvancedServo { Name = "AdvancedServo 1", SerialNumber = 99415, Open = true }
+                    }
+                },
+                Name = "psbc21_SequenceServo0",
+
+                Actions = new[]
+                {
+                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, Acceleration = 5000, VelocityLimit = 200, Engaged = true },
+                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 90 },
+                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 100 },
+                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 110 },
+                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 100 },
+                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 90 },
+                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, Engaged = false },
+                }
+            };
+
+            EventAggregator.GetEvent<VNC.Phidget.Events.AdvancedServoSequenceEvent>().Publish(sequenceEventArgs);
+
+            Log.Info("End", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void Button5Execute()
+        {
+            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+
+            Message = "Button5 Clicked";
+
+            EventAggregator.GetEvent<VNC.Phidget.Events.InterfaceKitSequenceEvent>().Publish(new VNC.Phidget.Events.SequenceEventArgs());
+
+            Log.Info("End", Common.LOG_CATEGORY, startTicks);
         }
 
         private void LightAction1()

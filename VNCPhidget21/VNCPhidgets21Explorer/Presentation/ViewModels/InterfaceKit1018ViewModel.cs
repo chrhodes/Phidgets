@@ -1970,7 +1970,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 SelectedHost.IPAddress,
                 SelectedHost.Port,
                 SelectedInterfaceKit.SerialNumber,
-                SelectedInterfaceKit.Embedded);
+                SelectedInterfaceKit.Embedded, 
+                EventAggregator);
 
             ActiveInterfaceKit.InterfaceKit.Attach += ActiveInterfaceKit_Attach;
             ActiveInterfaceKit.InterfaceKit.Detach += ActiveInterfaceKit_Detach;

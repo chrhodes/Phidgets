@@ -5,6 +5,10 @@ using System.Threading.Tasks;
 using Phidgets;
 using Phidgets.Events;
 
+using Prism.Events;
+
+using VNC.Phidget.Events;
+
 using VNCPhidget21.Configuration;
 
 namespace VNC.Phidget
@@ -13,19 +17,29 @@ namespace VNC.Phidget
     {
         #region Constructors, Initialization, and Load
 
+        public readonly IEventAggregator EventAggregator;
+
         /// <summary>
         /// Initializes a new instance of the InterfaceKit class.
         /// </summary>
         /// <param name="embedded"></param>
         /// <param name="enabled"></param>
-        public InterfaceKitEx(string ipAddress, int port, int serialNumber, bool embedded) 
+        public InterfaceKitEx(string ipAddress, int port, int serialNumber, bool embedded, IEventAggregator eventAggregator) 
             : base(ipAddress, port, serialNumber)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
+            EventAggregator = eventAggregator;
             InitializePhidget();
 
+            EventAggregator.GetEvent<InterfaceKitSequenceEvent>().Subscribe(TriggerSequence);
+
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void TriggerSequence(SequenceEventArgs args)
+        {
+            Log.EVENT_HANDLER("Called", Common.LOG_CATEGORY);
         }
 
         private void InitializePhidget()

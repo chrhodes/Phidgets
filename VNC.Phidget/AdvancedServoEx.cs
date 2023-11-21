@@ -9,6 +9,10 @@ using System.Windows.Documents;
 using Phidgets;
 using Phidgets.Events;
 
+using Prism.Events;
+
+using VNC.Phidget.Events;
+
 using VNCPhidget21.Configuration;
 
 namespace VNC.Phidget
@@ -17,19 +21,35 @@ namespace VNC.Phidget
     {
         #region Constructors, Initialization, and Load
 
+        public IEventAggregator EventAggregator { get; set; }
+        
         /// <summary>
         /// Initializes a new instance of the InterfaceKit class.
         /// </summary>
         /// <param name="embedded"></param>
         /// <param name="enabled"></param>
-        public AdvancedServoEx(string ipAddress, int port, int serialNumber)
+        public AdvancedServoEx(string ipAddress, int port, int serialNumber, IEventAggregator eventAggregator)
             : base(ipAddress, port, serialNumber)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
+            EventAggregator = eventAggregator;
             InitializePhidget();
 
+            EventAggregator.GetEvent<AdvancedServoSequenceEvent>().Subscribe(TriggerSequence);
+
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+        private void TriggerSequence(SequenceEventArgs args)
+        {
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            var advancedServoSequence = args.AdvancedServoSequence;
+
+            PlaySequenceLoops(advancedServoSequence);
+
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void InitializePhidget()

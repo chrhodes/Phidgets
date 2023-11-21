@@ -5,8 +5,6 @@ using System.Linq;
 using System.Text.Json;
 using System.Windows.Input;
 
-using DevExpress.XtraRichEdit.API.Native;
-
 using Phidgets;
 using Phidgets.Events;
 
@@ -530,7 +528,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             ActiveAdvancedServo = new AdvancedServoEx(
                 SelectedHost.IPAddress,
                 SelectedHost.Port,
-                SelectedAdvancedServo.SerialNumber);
+                SelectedAdvancedServo.SerialNumber,
+                EventAggregator);
 
             ActiveAdvancedServo.AdvancedServo.Attach += ActiveAdvancedServo_Attach;
             ActiveAdvancedServo.AdvancedServo.Detach += ActiveAdvancedServo_Detach;
@@ -1384,13 +1383,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     for (int i = 0; i < ServoCount; i++)
                     {
-                        servo = servos[i];
-
                         // NOTE(crhodes)
                         // All the work is now done in Type.UpdateProperties()
-                        AdvancedServoProperties[i].ServoType = servo.Type;
+                        AdvancedServoProperties[i].ServoType = servos[i].Type;
                     }
-
                 }
                 catch (Exception ex)
                 {
@@ -1421,35 +1417,37 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     for (int i = 0; i < ServoCount; i++)
                     {
-                        servo = servos[i];
+                        AdvancedServoProperties[i].RefreshPropertiesFromServo();
+                        //servo = servos[i];
 
-                        // NOTE(crhodes)
-                        // Should be safe to get Acceleration, Velocity, and Position here
-                        // if Device is Engaged, otherwise set to null
+                        //// NOTE(crhodes)
+                        //// Should be safe to get Acceleration, Velocity, and Position here
+                        //// if Device is Engaged, otherwise set to null
 
-                        AdvancedServoProperties[0].ServoType = servo.Type;
+                        //AdvancedServoProperties[0].ServoType = servo.Type;
 
-                        //DevicePositionMin = servo.PositionMin;
-                        //DevicePositionMax = servo.PositionMax;
+                        //// DevicePosition{Min,Max} should only be set when ServoType changes
+                        ////DevicePositionMin = servo.PositionMin;
+                        ////DevicePositionMax = servo.PositionMax;
 
-                        AdvancedServoProperties[i].Stopped = servo.Stopped;
-                        AdvancedServoProperties[i].Engaged = servo.Engaged;
-                        AdvancedServoProperties[i].SpeedRamping = servo.SpeedRamping;
+                        //AdvancedServoProperties[i].Stopped = servo.Stopped;
+                        //AdvancedServoProperties[i].Engaged = servo.Engaged;
+                        //AdvancedServoProperties[i].SpeedRamping = servo.SpeedRamping;
 
-                        AdvancedServoProperties[i].Current = servo.Current;
+                        //AdvancedServoProperties[i].Current = servo.Current;
 
-                        AdvancedServoProperties[i].AccelerationMin = servo.AccelerationMin;
-                        AdvancedServoProperties[i].Acceleration = servo.Engaged ? servo.Acceleration : null;
-                        AdvancedServoProperties[i].AccelerationMax = servo.AccelerationMax;
+                        //AdvancedServoProperties[i].AccelerationMin = servo.AccelerationMin;
+                        //AdvancedServoProperties[i].Acceleration = servo.Engaged ? servo.Acceleration : null;
+                        //AdvancedServoProperties[i].AccelerationMax = servo.AccelerationMax;
 
-                        AdvancedServoProperties[i].VelocityMin = servo.VelocityMin;
-                        AdvancedServoProperties[i].Velocity = servo.Velocity;
-                        AdvancedServoProperties[i].VelocityLimit = servo.VelocityLimit;
-                        AdvancedServoProperties[i].VelocityMax = servo.VelocityMax;
+                        //AdvancedServoProperties[i].VelocityMin = servo.VelocityMin;
+                        //AdvancedServoProperties[i].Velocity = servo.Velocity;
+                        //AdvancedServoProperties[i].VelocityLimit = servo.VelocityLimit;
+                        //AdvancedServoProperties[i].VelocityMax = servo.VelocityMax;
 
-                        AdvancedServoProperties[i].PositionMin = servo.PositionMin;
-                        AdvancedServoProperties[i].Position = servo.Engaged ? servo.Position : null;
-                        AdvancedServoProperties[i].PositionMax = servo.PositionMax;
+                        //AdvancedServoProperties[i].PositionMin = servo.PositionMin;
+                        //AdvancedServoProperties[i].Position = servo.Engaged ? servo.Position : null;
+                        //AdvancedServoProperties[i].PositionMax = servo.PositionMax;
                     }
                 }
                 catch (Exception ex)
@@ -1478,7 +1476,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 for (int i = 0; i < ServoCount; i++)
                 {
-                    AdvancedServoProperties[i].SetInitialProperties();
+                    AdvancedServoProperties[i].InitializeProperties();
                     AdvancedServoProperties[i].AdvancedServoEx = null;
                 }
 
@@ -1526,32 +1524,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             for (int i = 0; i < 8; i++)
             {
-                AdvancedServoProperties[i].SetInitialProperties();
-                //AdvancedServoProperties[i].Stopped = null;
-                //AdvancedServoProperties[i].Engaged = null;
-                //AdvancedServoProperties[i].SpeedRamping = null;
-                //AdvancedServoProperties[i].Current = null;
-
-                //// NOTE(crhodes)
-                //// Have to clear Acceleration before Min/Max as UI triggers an update
-                //AdvancedServoProperties[i].Acceleration = null;
-                //AdvancedServoProperties[i].AccelerationMin = null;
-                //AdvancedServoProperties[i].AccelerationMax = null;
-
-                //// NOTE(crhodes)
-                //// Handle VelocityLimit same way as Acceleration
-                //// Have not confirmed this is an issue
-                //AdvancedServoProperties[i].VelocityLimit = null;
-                //AdvancedServoProperties[i].VelocityMin = null;
-                //AdvancedServoProperties[i].Velocity = null;
-                //AdvancedServoProperties[i].VelocityMax = null;
-
-                //AdvancedServoProperties[i].DevicePositionMin = null;
-                //AdvancedServoProperties[i].PositionMin = null;
-                //AdvancedServoProperties[i].Position = null;
-                //AdvancedServoProperties[i].PositionMax = null;
-                //AdvancedServoProperties[i].DevicePositionMax = null;
-
+                AdvancedServoProperties[i].InitializeProperties();
             }         
         }
 
