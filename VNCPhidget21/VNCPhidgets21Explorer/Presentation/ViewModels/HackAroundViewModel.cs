@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,6 +18,8 @@ using VNC;
 using VNC.Core.Mvvm;
 using VNC.Phidget;
 using VNC.Phidget.Events;
+
+//using VNCPhidget21.Configuration;
 
 using VNCPhidgetConfig = VNCPhidget21.Configuration;
 
@@ -130,6 +133,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             PlayAdvancedServoSequenceCommand = new DelegateCommand(PlayAdvancedServoSequence, PlayAdvancedServoSequenceCanExecute);
             PlayInterfaceKitSequenceCommand = new DelegateCommand(PlayInterfaceKitSequence, PlayInterfaceKitSequenceCanExecute);
 
+            HostConfigFileName = "hostconfig.json";
+
             PerformanceConfigFiles = GetListOfPerformanceConfigFiles();
             AdvancedServoSequenceConfigFiles = GetListOfAdvancedServoConfigFiles();
             InterfaceKitSequenceConfigFiles = GetListOfInterfaceKitConfigFiles();
@@ -141,6 +146,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //InterfaceKitConfigFileName = "interfacekitsequenceconfig.json";
             //StepperConfigFileName = "steppersequenceconfig.json";
 
+            LoadHostConfig();
+            BuildPhidgetDeviceDictionary();
             //LoadPerformancesConfig();
             //LoadAdvanceServoConfig();
             //LoadInterfaceKitConfig();
@@ -152,6 +159,71 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Message = "HackAroundViewModel says hello";
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+
+        private void BuildPhidgetDeviceDictionary()
+        {
+            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+
+            foreach (VNCPhidgetConfig.Host host in Hosts)
+            {
+                if (host.AdvancedServos is not null)
+                {
+                    foreach (VNCPhidgetConfig.AdvancedServo advancedServo in host.AdvancedServos)
+                    {
+                        AvailablePhidgets.Add(
+                            new VNCPhidgetConfig.SerialHost { IPAddress = host.IPAddress, SerialNumber = advancedServo.SerialNumber},
+                            new VNCPhidgetConfig.PhidgetDevice(
+                                host.IPAddress, host.Port,
+                                Phidget.PhidgetClass.ADVANCEDSERVO, advancedServo.SerialNumber));
+                    }
+                }
+
+                if (host.InterfaceKits is not null)
+                {
+                    foreach (VNCPhidgetConfig.InterfaceKit interfaceKit in host.InterfaceKits)
+                    {
+                        AvailablePhidgets.Add(
+                            new VNCPhidgetConfig.SerialHost { IPAddress = host.IPAddress, SerialNumber = interfaceKit.SerialNumber },
+                            new VNCPhidgetConfig.PhidgetDevice(
+                                host.IPAddress, host.Port,
+                                Phidget.PhidgetClass.INTERFACEKIT, interfaceKit.SerialNumber));
+                    }
+                }
+
+                if (host.Steppers is not null)
+                {
+                    foreach (VNCPhidgetConfig.Stepper stepper in host.Steppers)
+                    {
+                        AvailablePhidgets.Add(
+                            new VNCPhidgetConfig.SerialHost { IPAddress = host.IPAddress, SerialNumber = stepper.SerialNumber },
+                            new VNCPhidgetConfig.PhidgetDevice(
+                                host.IPAddress, host.Port,
+                                Phidget.PhidgetClass.STEPPER, stepper.SerialNumber));
+                    }
+                }
+            }
+
+            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        Dictionary<VNCPhidgetConfig.SerialHost, VNCPhidgetConfig.PhidgetDevice> AvailablePhidgets = new Dictionary<VNCPhidgetConfig.SerialHost, VNCPhidgetConfig.PhidgetDevice>();
+
+        private void LoadHostConfig()
+        {
+            Int64 startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
+
+            var jsonOptions = new JsonSerializerOptions { ReadCommentHandling = JsonCommentHandling.Skip };
+
+            string jsonString = File.ReadAllText(HostConfigFileName);
+
+            VNCPhidgetConfig.HostConfig? hostConfig
+                = JsonSerializer.Deserialize<VNCPhidgetConfig.HostConfig>(jsonString, jsonOptions);
+
+            Hosts = hostConfig.Hosts.ToList();
+
+            Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void LoadPerformancesConfig()
@@ -274,41 +346,38 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private int _numerator = 10;
-        public int Numerator
+        private string _hostConfigFileName;
+        public string HostConfigFileName
         {
-            get => _numerator;
+            get => _hostConfigFileName;
             set
             {
-                if (_numerator == value)
-                    return;
-                _numerator = value;
+                if (_hostConfigFileName == value) return;
+                _hostConfigFileName = value;
                 OnPropertyChanged();
             }
         }
 
-        private int _denominator = 2;
-        public int Denominator
+        private IEnumerable<VNCPhidgetConfig.Host> _Hosts;
+        public IEnumerable<VNCPhidgetConfig.Host> Hosts
         {
-            get => _denominator;
+            get => _Hosts;
             set
             {
-                if (_denominator == value)
-                    return;
-                _denominator = value;
+                _Hosts = value;
                 OnPropertyChanged();
             }
         }
 
-        private string _answer = "???";
-        public string Answer
+        private VNCPhidgetConfig.Host _selectedHost;
+        public VNCPhidgetConfig.Host SelectedHost
         {
-            get => _answer;
+            get => _selectedHost;
             set
             {
-                if (_answer == value)
+                if (_selectedHost == value)
                     return;
-                _answer = value;
+                _selectedHost = value;
                 OnPropertyChanged();
             }
         }
@@ -1692,20 +1761,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private void PhidgetManager_Detach(object sender, Phidgets.Events.DetachEventArgs e)
-        {
-            var a = e;
-            var b = e.GetType();
-            Log.Trace("PhidgetManager_Detach", Common.LOG_CATEGORY);
-        }
-
-        private void PhidgetManager_Attach(object sender, Phidgets.Events.AttachEventArgs e)
-        {
-            var a = e;
-            var b = e.GetType();
-            Log.Trace("PhidgetManager_Attach", Common.LOG_CATEGORY);
-        }
-
         private void Button1Execute()
         {
             Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
@@ -1721,83 +1776,126 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
 
-            Message = "Button2 Clicked";
+            Message = "Button2 Clicked - Opening PhidgetManager";
 
-            InterfaceKitEx ifkEx21 = new InterfaceKitEx("192.168.150.21", 5001, sbc21SerialNumber, embedded: true, EventAggregator);
+            Phidgets.Manager phidgetManager = new Phidgets.Manager();
 
+            phidgetManager.Attach += PhidgetManager_Attach;
+            phidgetManager.Detach += PhidgetManager_Detach;
+            phidgetManager.ServerConnect += PhidgetManager_ServerConnect;
+            phidgetManager.ServerDisconnect += PhidgetManager_ServerDisconnect;
+            phidgetManager.Error += PhidgetManager_Error;
 
-            ifkEx21.Open();
+            phidgetManager.open();
+            //phidgetManager.open("192.168.150.21", 5001);
 
-            //ifk.Attach += Ifk_Attach;
-            //ifk.Detach += Ifk_Detach;
-            //ifk.Error += Ifk_Error;
-            //ifk.InputChange += Ifk_InputChange;
+            phidgetManager.Attach -= PhidgetManager_Attach;
+            phidgetManager.Detach -= PhidgetManager_Detach;
+            phidgetManager.ServerConnect -= PhidgetManager_ServerConnect;
+            phidgetManager.ServerDisconnect -= PhidgetManager_ServerDisconnect;
+            phidgetManager.Error -= PhidgetManager_Error;
 
-            ifkEx21.InterfaceKit.OutputChange += Ifk_OutputChange;
-            //ifkEx.OutputChange += Ifk_OutputChange;
+            phidgetManager.close();
 
-            //ifk.SensorChange += Ifk_SensorChange;
-            //ifk.ServerConnect += Ifk_ServerConnect;
-            //ifk.ServerDisconnect += Ifk_ServerDisconnect;
+            //InterfaceKitEx ifkEx21 = new InterfaceKitEx("192.168.150.21", 5001, sbc21SerialNumber, embedded: true, EventAggregator);
 
-            //ifk.open(serialNumber, hostName, port);
-            //ifk.waitForAttachment();
+            //ifkEx21.Open();
 
-            InterfaceKitDigitalOutputCollection ifkdoc = ifkEx21.InterfaceKit.outputs;
-            //InterfaceKitDigitalOutputCollection ifkdoc = ifkEx.outputs;
+            ////ifk.Attach += Ifk_Attach;
+            ////ifk.Detach += Ifk_Detach;
+            ////ifk.Error += Ifk_Error;
+            ////ifk.InputChange += Ifk_InputChange;
 
-            await Task.Run(() =>
-            {
-                Parallel.Invoke(() =>
-                {
-                    for (int i = 0; i < 5; i++)
-                    {
-                        ifkdoc[0] = true;
-                        Thread.Sleep(500);
-                        ifkdoc[0] = false;
-                        Thread.Sleep(500);
-                    }
-                });
-            });
- 
-            ifkEx21.Close();
+            //ifkEx21.InterfaceKit.OutputChange += Ifk_OutputChange;
+            ////ifkEx.OutputChange += Ifk_OutputChange;
+
+            ////ifk.SensorChange += Ifk_SensorChange;
+            ////ifk.ServerConnect += Ifk_ServerConnect;
+            ////ifk.ServerDisconnect += Ifk_ServerDisconnect;
+
+            ////ifk.open(serialNumber, hostName, port);
+            ////ifk.waitForAttachment();
+
+            //InterfaceKitDigitalOutputCollection ifkdoc = ifkEx21.InterfaceKit.outputs;
+            ////InterfaceKitDigitalOutputCollection ifkdoc = ifkEx.outputs;
+
+            //await Task.Run(() =>
+            //{
+            //    Parallel.Invoke(() =>
+            //    {
+            //        for (int i = 0; i < 5; i++)
+            //        {
+            //            ifkdoc[0] = true;
+            //            Thread.Sleep(500);
+            //            ifkdoc[0] = false;
+            //            Thread.Sleep(500);
+            //        }
+            //    });
+            //});
+
+            //ifkEx21.Close();
 
             Log.Info("End", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void PhidgetManager_Error(object sender, Phidgets.Events.ErrorEventArgs e)
+        {
+            Log.Trace($"Error {e.Type} {e.Code}", Common.LOG_CATEGORY);
+        }
+
+        private void PhidgetManager_ServerDisconnect(object sender, Phidgets.Events.ServerDisconnectEventArgs e)
+        {
+            Log.Trace($"ServerDisconnect {e.Device}", Common.LOG_CATEGORY);
+        }
+
+        private void PhidgetManager_ServerConnect(object sender, Phidgets.Events.ServerConnectEventArgs e)
+        {
+            Log.Trace($"ServerConnect {e.Device}", Common.LOG_CATEGORY);
+        }
+
+        private void PhidgetManager_Detach(object sender, Phidgets.Events.DetachEventArgs e)
+        {
+            Log.Trace($"Detach {e.Device.Name} {e.Device.Address} {e.Device.ID} {e.Device.SerialNumber}", Common.LOG_CATEGORY);
+        }
+
+        private void PhidgetManager_Attach(object sender, Phidgets.Events.AttachEventArgs e)
+        {
+            Log.Trace($"Attach {e.Device.Name} {e.Device.Address} {e.Device.ID} {e.Device.SerialNumber}", Common.LOG_CATEGORY);
         }
 
         private void Button3Execute()
         {
             Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
 
-            Message = "Button3 Clicked";
+            Message = "Button3 Clicked - Loading PhidgetDevices";
 
 
-            InterfaceKitEx ifkEx21 = new InterfaceKitEx("192.168.150.21", 5001, sbc21SerialNumber, embedded: true, EventAggregator);
+            //InterfaceKitEx ifkEx21 = new InterfaceKitEx("192.168.150.21", 5001, sbc21SerialNumber, embedded: true, EventAggregator);
 
-            ifkEx21.Open();
+            //ifkEx21.Open();
 
-            //ifkEx21.InterfaceKit.OutputChange += Ifk_OutputChange;
+            ////ifkEx21.InterfaceKit.OutputChange += Ifk_OutputChange;
 
-            //InterfaceKitDigitalOutputCollection ifkdoc = ifkEx21.InterfaceKit.outputs;
-            //InterfaceKitDigitalOutputCollection ifkdoc = ifkEx.outputs;
+            ////InterfaceKitDigitalOutputCollection ifkdoc = ifkEx21.InterfaceKit.outputs;
+            ////InterfaceKitDigitalOutputCollection ifkdoc = ifkEx.outputs;
 
-            Task.Run(() =>
-            {
-                InterfaceKitDigitalOutputCollection ifkdoc = ifkEx21.InterfaceKit.outputs;
+            //Task.Run(() =>
+            //{
+            //    InterfaceKitDigitalOutputCollection ifkdoc = ifkEx21.InterfaceKit.outputs;
 
-                for (int i = 0; i < 5; i++)
-                {
-                    ifkdoc[0] = true;
-                    Thread.Sleep(500);
-                    ifkdoc[0] = false;
-                    Thread.Sleep(500);
-                }
-                //Parallel.Invoke(
-                //    () => InterfaceKitParty2(ifkEx21, 500, 5 * Repeats)
-                //);
-            });
+            //    for (int i = 0; i < 5; i++)
+            //    {
+            //        ifkdoc[0] = true;
+            //        Thread.Sleep(500);
+            //        ifkdoc[0] = false;
+            //        Thread.Sleep(500);
+            //    }
+            //    //Parallel.Invoke(
+            //    //    () => InterfaceKitParty2(ifkEx21, 500, 5 * Repeats)
+            //    //);
+            //});
 
-            ifkEx21.Close();
+            //ifkEx21.Close();
 
             Log.Info("End", Common.LOG_CATEGORY, startTicks);
         }

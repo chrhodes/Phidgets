@@ -1,4 +1,6 @@
-﻿namespace VNCPhidget21.Configuration
+﻿using Phidgets;
+
+namespace VNCPhidget21.Configuration
 {
     public class Host
     {

@@ -96,7 +96,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // For now just hard code this.  Can have UI let us choose later.
 
-            ConfigFileName = "hostconfig.json";
+            HostConfigFileName = "hostconfig.json";
             //PerformanceConfigFileName = "advancedservoperformancesconfig.json";
 
             LoadUIConfig();
@@ -116,12 +116,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             var jsonOptions = new JsonSerializerOptions { ReadCommentHandling = JsonCommentHandling.Skip };
 
-            string jsonString = File.ReadAllText(ConfigFileName);
+            string jsonString = File.ReadAllText(HostConfigFileName);
 
             VNCPhidgetConfig.HostConfig? hostConfig 
                 = JsonSerializer.Deserialize<VNCPhidgetConfig.HostConfig>(jsonString, jsonOptions);
 
-            this.Hosts = hostConfig.Hosts.ToList();
+            Hosts = hostConfig.Hosts.ToList();
 
             Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -160,14 +160,14 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        private string _ConfigFileName;
-        public string ConfigFileName
+        private string _hostConfigFileName;
+        public string HostConfigFileName
         {
-            get => _ConfigFileName;
+            get => _hostConfigFileName;
             set
             {
-                if (_ConfigFileName == value) return;
-                _ConfigFileName = value;
+                if (_hostConfigFileName == value) return;
+                _hostConfigFileName = value;
                 OnPropertyChanged();
             }
         }

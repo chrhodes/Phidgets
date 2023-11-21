@@ -316,7 +316,7 @@ namespace VNC.Phidget
             try
             {
                 // NOTE(crhodes)
-                // We may be logging events.  Remove them before closing.
+                // We may be logging events.  Remove them before closing
 
                 if (LogCurrentChangeEvents) LogCurrentChangeEvents = false;
                 if (LogPositionChangeEvents) LogPositionChangeEvents = false;

@@ -101,8 +101,8 @@
 
         <dxlc:LayoutItem Label="ConfigFileName" HorizontalAlignment="Right" Background="Wheat">
             <dxe:TextEdit
-            		Text="{Binding ConfigFileName }"
-                	ToolTip="{Binding ConfigFileNameToolTip }">
+            		Text="{Binding HostConfigFileName }"
+                	ToolTip="{Binding HostConfigFileNameToolTip }">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseDoubleClick">
                         <i:InvokeCommandAction Command="{Binding ConfigFileName_DoubleClick_Command}"/>
