@@ -153,7 +153,7 @@
       "Description": "Resets PositionMin and PositionMax to device defaults",
       "UsageNotes" : "Can be called with Servos not Engaged",
       "Loops": 1,
-      "PlayActionsInParallel": true,
+      "PlayActionsInParallel": false,
       "Host": {
         "Name": "psbc21", "IPAddress": "192.168.150.21", "Port": 5001, "Enable": true,
         "AdvancedServos": [
@@ -163,14 +163,14 @@
         "Steppers": null
       },
       "Actions": [
-        { "ServoIndex": 0, "PositionMin": -1, "PositionMax": -1 },
-        { "ServoIndex": 1, "PositionMin": -1, "PositionMax": -1 },
-        { "ServoIndex": 2, "PositionMin": -1, "PositionMax": -1 },
-        { "ServoIndex": 3, "PositionMin": -1, "PositionMax": -1 },
-        { "ServoIndex": 4, "PositionMin": -1, "PositionMax": -1 },
-        { "ServoIndex": 5, "PositionMin": -1, "PositionMax": -1 },
-        { "ServoIndex": 6, "PositionMin": -1, "PositionMax": -1 },
-        { "ServoIndex": 7, "PositionMin": -1, "PositionMax": -1 },
+        { "ServoIndex": 0, "ServoType": 0, "PositionMin": -1, "PositionMax": -1 },
+        { "ServoIndex": 1, "ServoType": 0, "PositionMin": -1, "PositionMax": -1 },
+        { "ServoIndex": 2, "ServoType": 0, "PositionMin": -1, "PositionMax": -1 },
+        { "ServoIndex": 3, "ServoType": 0, "PositionMin": -1, "PositionMax": -1 },
+        { "ServoIndex": 4, "ServoType": 0, "PositionMin": -1, "PositionMax": -1 },
+        { "ServoIndex": 5, "ServoType": 0, "PositionMin": -1, "PositionMax": -1 },
+        { "ServoIndex": 6, "ServoType": 0, "PositionMin": -1, "PositionMax": -1 },
+        { "ServoIndex": 7, "ServoType": 0, "PositionMin": -1, "PositionMax": -1 },
       ]
     },
     //
