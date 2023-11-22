@@ -1,14 +1,5 @@
-﻿using Phidgets;
-
-using static Phidgets.Phidget;
-
-namespace VNCPhidget21.Configuration
+﻿namespace VNC.Phidget
 {
-    public struct SerialHost
-    {
-        public string IPAddress;
-        public int SerialNumber;
-    }
 
     public class PhidgetDevice
     {
@@ -16,7 +7,7 @@ namespace VNCPhidget21.Configuration
         {
         }
 
-        public PhidgetDevice(string ipAddress, int port, PhidgetClass phidgetClass, int serialNumber)
+        public PhidgetDevice(string ipAddress, int port, Phidgets.Phidget.PhidgetClass phidgetClass, int serialNumber)
         {
             IPAddress = ipAddress;
             Port = port;
@@ -30,9 +21,11 @@ namespace VNCPhidget21.Configuration
 
         public int Port { get; set; } = 5001;
 
-        public Phidget.PhidgetClass PhidgetClass { get; set; } = Phidget.PhidgetClass.NOTHING;
+        public Phidgets.Phidget.PhidgetClass PhidgetClass { get; set; } = Phidgets.Phidget.PhidgetClass.NOTHING;
 
         public int SerialNumber { get; set; } = 0;
+
+        public PhidgetEx PhidgetEx {  get; set; }
     }
 
 }

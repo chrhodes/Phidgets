@@ -19,6 +19,9 @@ using VNC.Core.Mvvm;
 using VNC.Phidget;
 using VNC.Phidget.Events;
 
+using VNCPhidget21.Configuration;
+
+
 //using VNCPhidget21.Configuration;
 
 using VNCPhidgetConfig = VNCPhidget21.Configuration;
@@ -173,8 +176,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     foreach (VNCPhidgetConfig.AdvancedServo advancedServo in host.AdvancedServos)
                     {
                         AvailablePhidgets.Add(
-                            new VNCPhidgetConfig.SerialHost { IPAddress = host.IPAddress, SerialNumber = advancedServo.SerialNumber},
-                            new VNCPhidgetConfig.PhidgetDevice(
+                            new SerialHost { IPAddress = host.IPAddress, SerialNumber = advancedServo.SerialNumber},
+                            new PhidgetDevice(
                                 host.IPAddress, host.Port,
                                 Phidget.PhidgetClass.ADVANCEDSERVO, advancedServo.SerialNumber));
                     }
@@ -185,8 +188,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     foreach (VNCPhidgetConfig.InterfaceKit interfaceKit in host.InterfaceKits)
                     {
                         AvailablePhidgets.Add(
-                            new VNCPhidgetConfig.SerialHost { IPAddress = host.IPAddress, SerialNumber = interfaceKit.SerialNumber },
-                            new VNCPhidgetConfig.PhidgetDevice(
+                            new SerialHost { IPAddress = host.IPAddress, SerialNumber = interfaceKit.SerialNumber },
+                            new PhidgetDevice(
                                 host.IPAddress, host.Port,
                                 Phidget.PhidgetClass.INTERFACEKIT, interfaceKit.SerialNumber));
                     }
@@ -197,8 +200,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     foreach (VNCPhidgetConfig.Stepper stepper in host.Steppers)
                     {
                         AvailablePhidgets.Add(
-                            new VNCPhidgetConfig.SerialHost { IPAddress = host.IPAddress, SerialNumber = stepper.SerialNumber },
-                            new VNCPhidgetConfig.PhidgetDevice(
+                            new SerialHost { IPAddress = host.IPAddress, SerialNumber = stepper.SerialNumber },
+                            new PhidgetDevice(
                                 host.IPAddress, host.Port,
                                 Phidget.PhidgetClass.STEPPER, stepper.SerialNumber));
                     }
@@ -208,7 +211,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        Dictionary<VNCPhidgetConfig.SerialHost, VNCPhidgetConfig.PhidgetDevice> AvailablePhidgets = new Dictionary<VNCPhidgetConfig.SerialHost, VNCPhidgetConfig.PhidgetDevice>();
+        Dictionary<SerialHost, PhidgetDevice> AvailablePhidgets = new Dictionary<SerialHost, PhidgetDevice>();
 
         private void LoadHostConfig()
         {
@@ -1221,7 +1224,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                                     //advancedServoHost.LogPerformanceStep = false;
 
-                                    advancedServoHost.Close();
+                                    //advancedServoHost.Close();
                                 }            
                             }
                             else
@@ -1310,22 +1313,62 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
         private AdvancedServoEx OpenAdvancedServoHost(VNCPhidgetConfig.Host host)
-        { 
+        {
+            SerialHost serialHost = new SerialHost { IPAddress = host.IPAddress, SerialNumber = host.AdvancedServos[0].SerialNumber };
+
+            PhidgetDevice phidgetDevice = AvailablePhidgets[serialHost];
+
             AdvancedServoEx advancedServoHost;
 
-            advancedServoHost = new AdvancedServoEx(
-                host.IPAddress,
-                host.Port,
-                host.AdvancedServos[0].SerialNumber,
-                EventAggregator);
+            if (phidgetDevice?.PhidgetEx is not null)
+            {
+                advancedServoHost = (AdvancedServoEx)phidgetDevice.PhidgetEx;
 
-            advancedServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
-            advancedServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
-            advancedServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
+                advancedServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
+                advancedServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
+                advancedServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
 
-            advancedServoHost.LogPerformanceStep = LogPerformanceStep;
+                advancedServoHost.LogPerformanceStep = LogPerformanceStep;
 
-            advancedServoHost.Open();
+            }
+            else
+            {
+                phidgetDevice.PhidgetEx = new AdvancedServoEx(
+                    host.IPAddress,
+                    host.Port,
+                    host.AdvancedServos[0].SerialNumber,
+                    EventAggregator);
+
+                advancedServoHost = (AdvancedServoEx)phidgetDevice.PhidgetEx;
+
+                advancedServoHost = phidgetDevice.PhidgetEx as AdvancedServoEx;
+
+                advancedServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
+                advancedServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
+                advancedServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
+
+                advancedServoHost.LogPerformanceStep = LogPerformanceStep;
+
+                advancedServoHost.Open();
+            }
+
+            //advancedServoHost = new AdvancedServoEx(
+            //    host.IPAddress,
+            //    host.Port,
+            //    host.AdvancedServos[0].SerialNumber,
+            //    EventAggregator);
+
+            //advancedServoHost = (AdvancedServoEx)phidgetDevice.PhidgetEx;
+
+            //advancedServoHost = phidgetDevice.PhidgetEx as AdvancedServoEx;
+
+            //advancedServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
+            //advancedServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
+            //advancedServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
+
+            //advancedServoHost.LogPerformanceStep = LogPerformanceStep;
+
+            //advancedServoHost.Open();
 
             return advancedServoHost;
         }

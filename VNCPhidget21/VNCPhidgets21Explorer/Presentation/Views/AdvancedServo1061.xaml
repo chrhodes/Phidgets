@@ -211,7 +211,7 @@
                     <dxlc:LayoutItem Label="Type" LabelPosition="Top">
                         <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
                                           SelectedIndex="0"
-                                          EditValue="{ Binding Path=AdvancedServoProperties[0].Type,
+                                          EditValue="{ Binding Path=AdvancedServoProperties[0].ServoType,
                                             Mode=TwoWay,
                                             UpdateSourceTrigger=PropertyChanged,
                                             Converter={StaticResource SelectedItemToEnumConverter} }" />
@@ -291,7 +291,7 @@
                     <dxlc:LayoutItem Label="Type" LabelPosition="Top">
                         <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
                                           SelectedIndex="0"
-                                          EditValue="{ Binding Path=AdvancedServoProperties[1].Type,
+                                          EditValue="{ Binding Path=AdvancedServoProperties[1].ServoType,
                                             Mode=TwoWay,
                                             UpdateSourceTrigger=PropertyChanged,
                                             Converter={StaticResource SelectedItemToEnumConverter} }" />
@@ -371,7 +371,7 @@
                     <dxlc:LayoutItem Label="Type" LabelPosition="Top">
                         <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
                                           SelectedIndex="0"
-                                          EditValue="{ Binding Path=AdvancedServoProperties[2].Type,
+                                          EditValue="{ Binding Path=AdvancedServoProperties[2].ServoType,
                                             Mode=TwoWay,
                                             UpdateSourceTrigger=PropertyChanged,
                                             Converter={StaticResource SelectedItemToEnumConverter} }" />
@@ -451,7 +451,7 @@
                     <dxlc:LayoutItem Label="Type" LabelPosition="Top">
                         <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
                                           SelectedIndex="0"
-                                          EditValue="{ Binding Path=AdvancedServoProperties[3].Type,
+                                          EditValue="{ Binding Path=AdvancedServoProperties[3].ServoType,
                                             Mode=TwoWay,
                                             UpdateSourceTrigger=PropertyChanged,
                                             Converter={StaticResource SelectedItemToEnumConverter} }" />
@@ -531,7 +531,7 @@
                     <dxlc:LayoutItem Label="Type" LabelPosition="Top">
                         <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
                                           SelectedIndex="0"
-                                          EditValue="{ Binding Path=AdvancedServoProperties[4].Type,
+                                          EditValue="{ Binding Path=AdvancedServoProperties[4].ServoType,
                                             Mode=TwoWay,
                                             UpdateSourceTrigger=PropertyChanged,
                                             Converter={StaticResource SelectedItemToEnumConverter} }" />
@@ -611,7 +611,7 @@
                     <dxlc:LayoutItem Label="Type" LabelPosition="Top">
                         <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
                                           SelectedIndex="0"
-                                          EditValue="{ Binding Path=AdvancedServoProperties[5].Type,
+                                          EditValue="{ Binding Path=AdvancedServoProperties[5].ServoType,
                                             Mode=TwoWay,
                                             UpdateSourceTrigger=PropertyChanged,
                                             Converter={StaticResource SelectedItemToEnumConverter} }" />
@@ -691,7 +691,7 @@
                     <dxlc:LayoutItem Label="Type" LabelPosition="Top">
                         <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
                                           SelectedIndex="0"
-                                          EditValue="{ Binding Path=AdvancedServoProperties[6].Type,
+                                          EditValue="{ Binding Path=AdvancedServoProperties[6].ServoType,
                                             Mode=TwoWay,
                                             UpdateSourceTrigger=PropertyChanged,
                                             Converter={StaticResource SelectedItemToEnumConverter} }" />
@@ -771,7 +771,7 @@
                     <dxlc:LayoutItem Label="Type" LabelPosition="Top">
                         <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
                                           SelectedIndex="0"
-                                          EditValue="{ Binding Path=AdvancedServoProperties[7].Type,
+                                          EditValue="{ Binding Path=AdvancedServoProperties[7].ServoType,
                                             Mode=TwoWay,
                                             UpdateSourceTrigger=PropertyChanged,
                                             Converter={StaticResource SelectedItemToEnumConverter} }" />

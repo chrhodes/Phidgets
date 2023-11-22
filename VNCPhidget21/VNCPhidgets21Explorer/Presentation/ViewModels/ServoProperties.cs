@@ -1,7 +1,5 @@
 ﻿using System;
 
-using DevExpress.Drawing;
-
 using Phidgets;
 
 using VNC;
@@ -86,8 +84,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
         #endregion Configuration Properties
-
-
 
         #region Position
 

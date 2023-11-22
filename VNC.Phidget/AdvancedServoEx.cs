@@ -91,8 +91,10 @@ namespace VNC.Phidget
 
                     //InitialServoLimits[i].AccelerationMin = servo.AccelerationMin;
                     //InitialServoLimits[i].AccelerationMax = servo.AccelerationMax;
+                    InitialServoLimits[i].DevicePositionMin = servo.PositionMin;
                     InitialServoLimits[i].PositionMin = servo.PositionMin;
                     InitialServoLimits[i].PositionMax = servo.PositionMax;
+                    InitialServoLimits[i].DevicePositionMax = servo.PositionMax;
                     //InitialServoLimits[i].VelocityMin = servo.VelocityMin;
                     //InitialServoLimits[i].VelocityMax = servo.VelocityMax;
                 }
@@ -137,16 +139,20 @@ namespace VNC.Phidget
             {
                 //AccelerationMin,
                 //AccelerationMax,
+                DevicePositionMin,
                 PositionMin,
                 PositionMax,
+                DevicePositionMax
                 //VelocityMin,
                 //VelocityMax,
             }
 
             //public Double AccelerationMin;
             //public Double AccelerationMax;
+            public Double DevicePositionMin;
             public Double PositionMin;
             public Double PositionMax;
+            public Double DevicePositionMax;
             //public Double VelocityMin;
             //public Double VelocityMax;
         }
@@ -217,8 +223,6 @@ namespace VNC.Phidget
         public bool LogPerformanceStep { get; set; }
 
         public ServoMinMax[] InitialServoLimits { get; set; } = new ServoMinMax[8];
-
-
 
         #endregion
 
@@ -521,7 +525,7 @@ namespace VNC.Phidget
 
                 if (action.RelativePosition is not null)
                 {
-                    var newPosition = servo.Position += (Double)action.RelativePosition;
+                    var newPosition = servo.Position + (Double)action.RelativePosition;
                     if (LogPerformanceStep) actionMessage.Append($" relativePosition:>{action.RelativePosition}< ({newPosition})");
 
                     VerifyNewPositionAchieved(index, servo, SetPosition(newPosition, servo));                
@@ -597,13 +601,17 @@ namespace VNC.Phidget
                 //if (position < servo.PositionMin) servo.Position = servo.PositionMin;
                 //else if (position > servo.PositionMax) servo.Position = servo.PositionMax;
                 //else servo.PositionMin = position;
-                if (position < InitialServoLimits[index].PositionMin)
+                if (position < 0)
                 {
-                    servo.Position = InitialServoLimits[index].PositionMin;
+                    servo.PositionMin = InitialServoLimits[index].DevicePositionMin;
+                }
+                else if (position < InitialServoLimits[index].DevicePositionMin)
+                {
+                    servo.PositionMin = InitialServoLimits[index].DevicePositionMin;
                 }
                 else if (position > servo.PositionMax)
                 {
-                    servo.Position = servo.PositionMax;
+                    servo.PositionMin = servo.PositionMax;
                 }
                 else
                 {
@@ -650,13 +658,17 @@ namespace VNC.Phidget
                 //if (position < servo.PositionMin) servo.Position = servo.PositionMin;
                 //else if (position > servo.PositionMax) servo.Position = servo.PositionMax;
                 //else servo.PositionMax = position;
-                if (position < servo.PositionMin)
-                { 
-                    servo.Position = servo.PositionMin; 
+                if (position < 0)
+                {
+                    servo.PositionMax = InitialServoLimits[index].DevicePositionMax;
                 }
-                else if (position > InitialServoLimits[index].PositionMax)
+                else if (position < servo.PositionMin)
                 { 
-                    servo.Position = InitialServoLimits[index].PositionMax; 
+                    servo.PositionMax = servo.PositionMin; 
+                }
+                else if (position > InitialServoLimits[index].DevicePositionMax)
+                { 
+                    servo.PositionMax = InitialServoLimits[index].DevicePositionMax; 
                 }
                 else
                 {
