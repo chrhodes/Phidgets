@@ -14,6 +14,8 @@ using Prism.Commands;
 using Prism.Events;
 using Prism.Services.Dialogs;
 
+using Unity.Interception.Utilities;
+
 using VNC;
 using VNC.Core.Mvvm;
 using VNC.Phidget;
@@ -134,6 +136,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             PlayPerformanceCommand = new DelegateCommand (PlayPerformance, PlayPerformanceCanExecute);
             PlayAdvancedServoSequenceCommand = new DelegateCommand(PlayAdvancedServoSequence, PlayAdvancedServoSequenceCanExecute);
+            EngageAndCenterCommand = new DelegateCommand(EngageAndCenter, EngageAndCenterCanExecute);
+            // If using CommandParameter, figure out TYPE here and below
+            // and remove above declaration
+            //EngageAndCenterCommand = new DelegateCommand<TYPE>(EngageAndCenter, EngageAndCenterCanExecute);
+
+            // End Cut Two
             PlayInterfaceKitSequenceCommand = new DelegateCommand(PlayInterfaceKitSequence, PlayInterfaceKitSequenceCanExecute);
 
             HostConfigFileName = "hostconfig.json";
@@ -572,6 +580,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 PlayPerformanceCommand.RaiseCanExecuteChanged();
                 PlayAdvancedServoSequenceCommand.RaiseCanExecuteChanged();
+                EngageAndCenterCommand.RaiseCanExecuteChanged();
                 PlayInterfaceKitSequenceCommand.RaiseCanExecuteChanged();
             }
         }
@@ -601,8 +610,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 _selectedPerformances = value;
                 OnPropertyChanged();
 
-                PlayAdvancedServoSequenceCommand.RaiseCanExecuteChanged();
-                PlayInterfaceKitSequenceCommand.RaiseCanExecuteChanged();
+                //PlayAdvancedServoSequenceCommand.RaiseCanExecuteChanged();
+                //EngageAndCenterCommand.RaiseCanExecuteChanged();
+                //PlayInterfaceKitSequenceCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -632,6 +642,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
 
                 LoadAdvanceServoConfig();
+
+                EngageAndCenterCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -860,8 +872,21 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
+        private bool _logPerformanceSequence = false;
+        public bool LogPerformanceSequence
+        {
+            get => _logPerformanceSequence;
+            set
+            {
+                if (_logPerformanceSequence == value)
+                    return;
+                _logPerformanceSequence = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool _logPerformanceStep = false;
-        public bool LogPerformanceStep
+        public bool LogPerformanceAction
         {
             get => _logPerformanceStep;
             set
@@ -920,7 +945,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             foreach (VNCPhidgetConfig.Performance performance in SelectedPerformances)
             {
-                if (LogPerformanceStep) Log.Trace($"Running performance:{performance.Name} description:{performance.Description}", Common.LOG_CATEGORY);
+                if (LogPerformanceSequence) Log.Trace($"Running performance:{performance.Name} description:{performance.Description}", Common.LOG_CATEGORY);
 
                 PlayPerformanceLoops(performance);
 
@@ -964,7 +989,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             for (int i = 0; i < performance.Loops; i++)
             {
-                if (LogPerformanceStep) Log.Trace($"Loop:{i + 1}", Common.LOG_CATEGORY);
+                if (LogPerformanceSequence) Log.Trace($"Loop:{i + 1}", Common.LOG_CATEGORY);
 
                 if (performance.PlayInParallel)
                 {
@@ -984,7 +1009,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             Parallel.ForEach(performanceSequences, async sequence =>
             {
-                if (LogPerformanceStep)
+                if (LogPerformanceAction)
                 {
                     Log.Trace($"Running sequence:{sequence.Name} type:{sequence.SequenceType}", Common.LOG_CATEGORY);
                 }
@@ -1008,7 +1033,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             foreach (VNCPhidgetConfig.PerformanceSequence sequence in performanceSequences)
             {
-                if (LogPerformanceStep)
+                if (LogPerformanceSequence)
                 {
                     Log.Trace($"Running sequence:{sequence.Name} type:{sequence.SequenceType} loops:{sequence.Loops}", Common.LOG_CATEGORY);
                 }
@@ -1114,7 +1139,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             foreach (VNCPhidgetConfig.AdvancedServoSequence sequence in SelectedAdvancedServoSequences)
             {
-                Log.Trace($"Running sequence:{sequence.Name}", Common.LOG_CATEGORY);
+                Log.Trace($"Playing sequence:{sequence.Name}", Common.LOG_CATEGORY);
 
                 try
                 {
@@ -1131,6 +1156,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         {
                             await Task.Run(async () =>
                             {
+                                if (LogPerformanceSequence) Log.Trace($"Executing sequence:{nextPerformanceSequence.Name}", Common.LOG_CATEGORY);
                                 nextPerformanceSequence = await ExecutePerformanceSequence(nextPerformanceSequence);
                             });
                         } while (nextPerformanceSequence is not null);
@@ -1173,144 +1199,159 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private async Task<VNCPhidgetConfig.PerformanceSequence?> ExecutePerformanceSequence(VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence)
         {
-            if (LogPerformanceStep)
+            try
             {
-                Log.Trace($"Executing sequence:>{nextPerformanceSequence?.Name}< type:>{nextPerformanceSequence?.SequenceType}<" +
-                    $" loops:>{nextPerformanceSequence?.Loops}< closePhidget:>{nextPerformanceSequence?.ClosePhidget}<", Common.LOG_CATEGORY);
-            }
-
-
-            // TODO(crhodes)
-            // Think about Open/Close more.  Maybe config.
-            // What happens if nextSequence.Host is null    
-
-            var startingPerormanceSequence = nextPerformanceSequence;
-
-            if (nextPerformanceSequence is not null)
-            {
-                switch (nextPerformanceSequence.SequenceType)
+                if (LogPerformanceSequence)
                 {
-                    case "AS":
-                        if (AvailableAdvancedServoSequences.ContainsKey(nextPerformanceSequence.Name ?? ""))
-                        {
-                            var advancedServoSequence = AvailableAdvancedServoSequences[nextPerformanceSequence.Name];
+                    Log.Trace($"Executing sequence:>{nextPerformanceSequence?.Name}< type:>{nextPerformanceSequence?.SequenceType}<" +
+                        $" loops:>{nextPerformanceSequence?.Loops}< closePhidget:>{nextPerformanceSequence?.ClosePhidget}<", Common.LOG_CATEGORY);
+                }
 
-                            if (advancedServoSequence.Host is not null)
+                // TODO(crhodes)
+                // Think about Open/Close more.  Maybe config.
+                // What happens if nextSequence.Host is null    
+
+                var startingPerormanceSequence = nextPerformanceSequence;
+
+                if (nextPerformanceSequence is not null)
+                {
+                    switch (nextPerformanceSequence.SequenceType)
+                    {
+                        case "AS":
+                            if (AvailableAdvancedServoSequences.ContainsKey(nextPerformanceSequence.Name ?? ""))
                             {
-                                var advancedServoHost = OpenAdvancedServoHost(advancedServoSequence.Host);
+                                var advancedServoSequence = AvailableAdvancedServoSequences[nextPerformanceSequence.Name];
 
-                                //nextPerformanceSequence = await advancedServo.PlayAdvancedServoSequenceLoops(advancedServoSequence);
-                                await advancedServoHost.PlaySequenceLoops(advancedServoSequence);
-
-                                nextPerformanceSequence = advancedServoSequence.NextSequence;
-
-                                // NOTE(crhodes)
-                                // This should handle continuations without a Host.  
-                                // TODO(crhodes)
-                                // Do we need to handle continuations that have a Host?  I think so.
-                                // Play AS sequence on one Host and then a different AS sequence on a different host.
-                                // This would be dialog back and forth across hosts.
-
-                                while (nextPerformanceSequence is not null && nextPerformanceSequence.SequenceType == "AS")
+                                if (advancedServoSequence.Host is not null)
                                 {
-                                    advancedServoSequence = AvailableAdvancedServoSequences[nextPerformanceSequence.Name];
-   
+                                    var advancedServoHost = OpenAdvancedServoHost(advancedServoSequence.Host);
+
+                                    //nextPerformanceSequence = await advancedServo.PlayAdvancedServoSequenceLoops(advancedServoSequence);
                                     await advancedServoHost.PlaySequenceLoops(advancedServoSequence);
 
                                     nextPerformanceSequence = advancedServoSequence.NextSequence;
+
+                                    // NOTE(crhodes)
+                                    // This should handle continuations without a Host.  
+                                    // TODO(crhodes)
+                                    // Do we need to handle continuations that have a Host?  I think so.
+                                    // Play AS sequence on one Host and then a different AS sequence on a different host.
+                                    // This would be dialog back and forth across hosts.
+
+                                    while (nextPerformanceSequence is not null && nextPerformanceSequence.SequenceType == "AS")
+                                    {
+                                        if (LogPerformanceSequence)
+                                        {
+                                            Log.Trace($"Executing sequence:>{nextPerformanceSequence?.Name}< type:>{nextPerformanceSequence?.SequenceType}<" +
+                                                $" loops:>{nextPerformanceSequence?.Loops}< closePhidget:>{nextPerformanceSequence?.ClosePhidget}<", Common.LOG_CATEGORY);
+                                        }
+
+                                        advancedServoSequence = AvailableAdvancedServoSequences[nextPerformanceSequence.Name];
+   
+                                        await advancedServoHost.PlaySequenceLoops(advancedServoSequence);
+
+                                        nextPerformanceSequence = advancedServoSequence.NextSequence;
+                                    }
+
+                                    if (startingPerormanceSequence.ClosePhidget)
+                                    {
+                                        //advancedServoHost.LogCurrentChangeEvents = false;
+                                        //advancedServoHost.LogPositionChangeEvents = false;
+                                        //advancedServoHost.LogVelocityChangeEvents = false;
+
+                                        //advancedServoHost.LogPerformanceStep = false;
+
+                                        //advancedServoHost.Close();
+                                    }            
                                 }
-
-                                if (startingPerormanceSequence.ClosePhidget)
+                                else
                                 {
-                                    //advancedServoHost.LogCurrentChangeEvents = false;
-                                    //advancedServoHost.LogPositionChangeEvents = false;
-                                    //advancedServoHost.LogVelocityChangeEvents = false;
-
-                                    //advancedServoHost.LogPerformanceStep = false;
-
-                                    //advancedServoHost.Close();
-                                }            
+                                    Log.Trace($"Host is null", Common.LOG_CATEGORY);
+                                    nextPerformanceSequence = null;
+                                }
                             }
                             else
                             {
-                                Log.Trace($"Host is null", Common.LOG_CATEGORY);
+                                Log.Trace($"Cannot find sequence:{nextPerformanceSequence.Name}", Common.LOG_CATEGORY);
                                 nextPerformanceSequence = null;
                             }
-                        }
-                        else
-                        {
-                            Log.Trace($"Cannot find sequence:{nextPerformanceSequence.Name}", Common.LOG_CATEGORY);
-                            nextPerformanceSequence = null;
-                        }
 
-                        break;
+                            break;
 
-                    case "IK":
-                        if (AvailableInterfaceKitSequences.ContainsKey(nextPerformanceSequence.Name ?? ""))
-                        {
-                            var interfaceKitSequence = AvailableInterfaceKitSequences[nextPerformanceSequence.Name];
-
-                            if (interfaceKitSequence.Host is not null)
+                        case "IK":
+                            if (AvailableInterfaceKitSequences.ContainsKey(nextPerformanceSequence.Name ?? ""))
                             {
-                                var interfaceKitHost = OpenInterfaceKitHost(interfaceKitSequence.Host);
+                                var interfaceKitSequence = AvailableInterfaceKitSequences[nextPerformanceSequence.Name];
 
-
-
-                                //nextPerformanceSequence = await advancedServo.PlayAdvancedServoSequenceLoops(advancedServoSequence);
-                                await interfaceKitHost.PlaySequenceLoops(interfaceKitSequence);
-
-                                nextPerformanceSequence = interfaceKitSequence.NextSequence;
-
-                                // NOTE(crhodes)
-                                // This should handle continuations without a Host.  
-                                // TODO(crhodes)
-                                // Do we need to handle continuations that have a Host?  I think so.
-                                // Play AS sequence on one Host and then a different AS sequence on a different host.
-                                // This would be dialog back and forth across hosts.
-
-                                while (nextPerformanceSequence is not null && nextPerformanceSequence.SequenceType == "AS")
+                                if (interfaceKitSequence.Host is not null)
                                 {
-                                    interfaceKitSequence = AvailableInterfaceKitSequences[nextPerformanceSequence.Name];
+                                    var interfaceKitHost = OpenInterfaceKitHost(interfaceKitSequence.Host);
 
                                     await interfaceKitHost.PlaySequenceLoops(interfaceKitSequence);
 
                                     nextPerformanceSequence = interfaceKitSequence.NextSequence;
-                                }
 
-                                if (startingPerormanceSequence.ClosePhidget)
+                                    // NOTE(crhodes)
+                                    // This should handle continuations without a Host.  
+                                    // TODO(crhodes)
+                                    // Do we need to handle continuations that have a Host?  I think so.
+                                    // Play AS sequence on one Host and then a different AS sequence on a different host.
+                                    // This would be dialog back and forth across hosts.
+
+                                    while (nextPerformanceSequence is not null && nextPerformanceSequence.SequenceType == "AS")
+                                    {
+                                        if (LogPerformanceSequence)
+                                        {
+                                            Log.Trace($"Executing sequence:>{nextPerformanceSequence?.Name}< type:>{nextPerformanceSequence?.SequenceType}<" +
+                                                $" loops:>{nextPerformanceSequence?.Loops}< closePhidget:>{nextPerformanceSequence?.ClosePhidget}<", Common.LOG_CATEGORY);
+                                        }
+
+                                        interfaceKitSequence = AvailableInterfaceKitSequences[nextPerformanceSequence.Name];
+
+                                        await interfaceKitHost.PlaySequenceLoops(interfaceKitSequence);
+
+                                        nextPerformanceSequence = interfaceKitSequence.NextSequence;
+                                    }
+
+                                    if (startingPerormanceSequence.ClosePhidget)
+                                    {
+                                        interfaceKitHost.Close();
+                                    }
+                                }
+                                else
                                 {
-                                    interfaceKitHost.Close();
+                                    Log.Trace($"Host is null", Common.LOG_CATEGORY);
+                                    nextPerformanceSequence = null;
                                 }
                             }
                             else
                             {
-                                Log.Trace($"Host is null", Common.LOG_CATEGORY);
+                                Log.Trace($"Cannot find sequence:{nextPerformanceSequence.Name}", Common.LOG_CATEGORY);
                                 nextPerformanceSequence = null;
                             }
-                        }
-                        else
-                        {
-                            Log.Trace($"Cannot find sequence:{nextPerformanceSequence.Name}", Common.LOG_CATEGORY);
-                            nextPerformanceSequence = null;
-                        }
 
-                        break;
+                            break;
 
-                    case "ST":
-                        if (AvailableStepperSequences.ContainsKey(nextPerformanceSequence.Name ?? ""))
-                        {
-                            var stepperSequence = AvailableStepperSequences[nextPerformanceSequence.Name];
-                            //var stepper = OpenStepperHost(stepperSequence.Host);
-                            //await advancedServo.PlayAdvancedServoSequenceLoops(advancedServo, stepperSequence);
-                        }
+                        case "ST":
+                            if (AvailableStepperSequences.ContainsKey(nextPerformanceSequence.Name ?? ""))
+                            {
+                                var stepperSequence = AvailableStepperSequences[nextPerformanceSequence.Name];
 
-                        break;
+                            }
 
-                    default:
+                            break;
 
-                        break;
+                        default:
 
+                            break;
+
+                    }
                 }
+
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
             }
 
             return nextPerformanceSequence;
@@ -1332,8 +1373,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 advancedServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
                 advancedServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
 
-                advancedServoHost.LogPerformanceStep = LogPerformanceStep;
-
+                advancedServoHost.LogPerformanceSequence = LogPerformanceSequence;
+                advancedServoHost.LogPerformanceAction = LogPerformanceAction;
             }
             else
             {
@@ -1351,7 +1392,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 advancedServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
                 advancedServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
 
-                advancedServoHost.LogPerformanceStep = LogPerformanceStep;
+                advancedServoHost.LogPerformanceSequence = LogPerformanceSequence;
+                advancedServoHost.LogPerformanceAction = LogPerformanceAction;
 
                 advancedServoHost.Open();
             }
@@ -1384,6 +1426,87 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Add any before button is enabled logic.
             if (SelectedAdvancedServoSequences?.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        #endregion
+
+        #region EngageAndCenter Command
+
+        public DelegateCommand EngageAndCenterCommand { get; set; }
+        // If using CommandParameter, figure out TYPE here and above
+        // and remove above declaration
+        //public DelegateCommand<TYPE> EngageAndCenterCommand { get; set; }
+        //public TYPE EngageAndCenterCommandParameter;
+        public string EngageAndCenterContent { get; set; } = "EngageAndCenter";
+        public string EngageAndCenterToolTip { get; set; } = "EngageAndCenter ToolTip";
+
+        // Can get fancy and use Resources
+        //public string EngageAndCenterContent { get; set; } = "ViewName_EngageAndCenterContent";
+        //public string EngageAndCenterToolTip { get; set; } = "ViewName_EngageAndCenterContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_EngageAndCenterContent">EngageAndCenter</system:String>
+        //    <system:String x:Key="ViewName_EngageAndCenterContentToolTip">EngageAndCenter ToolTip</system:String>  
+
+        // If using CommandParameter, figure out TYPE and fix above
+        //public void EngageAndCenter(TYPE value)
+        public async void EngageAndCenter()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = "Cool, you called EngageAndCenter";
+
+            VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence = new VNCPhidgetConfig.PerformanceSequence
+            {
+                Name = "Engage and Center Servos",
+                SequenceType = "AS"
+            };
+
+            await ExecutePerformanceSequence(nextPerformanceSequence);
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<EngageAndCenterEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<EngageAndCenterEvent>().Publish(
+            //      new EngageAndCenterEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class EngageAndCenterEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<EngageAndCenterEvent>().Subscribe(EngageAndCenter);
+
+            // End Cut Four
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        // If using CommandParameter, figure out TYPE and fix above
+        //public bool EngageAndCenterCanExecute(TYPE value)
+        public bool EngageAndCenterCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            if (AdvancedServoSequenceConfigFileName is not null)
             {
                 return true;
             }
@@ -1492,7 +1615,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             interfaceKitHost.LogOutputChangeEvents = LogOutputChangeEvents;
             interfaceKitHost.LogSensorChangeEvents = LogSensorChangeEvents;
 
-            interfaceKitHost.LogPerformanceStep = LogPerformanceStep;
+            interfaceKitHost.LogPerformanceStep = LogPerformanceAction;
 
             interfaceKitHost.Open();
 

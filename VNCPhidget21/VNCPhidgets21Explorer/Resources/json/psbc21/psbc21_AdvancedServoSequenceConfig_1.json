@@ -38,7 +38,7 @@
     //
     { 
       "Name": "All Servos to PositionMin",
-      "Description": "Set all servos to PostionMin (based on TYPE)",
+      "Description": "Set all servos to PostionMin (-1) (based on TYPE)",
       "Loops": 1,
       "PlayActionsInParallel": true,
       "NextSequence": null,
@@ -66,7 +66,7 @@
     //
     { 
       "Name": "All Servos to PositionMax",
-      "Description": "Set all servos to PostionMax (based on TYPE)",
+      "Description": "Set all servos to PostionMax (-2) (based on TYPE)",
       "Loops": 1,
       "PlayActionsInParallel": false,
       "NextSequence": null,
@@ -207,7 +207,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": false,
-      //"NextSequence": { "Name": "Servo1", "SequenceType": "AS", "Loops": 1 },
+      //"NextSequence": { "Name": "Servo1", "SequenceType": "AS" },
       "Host": {
         "Name": "psbc21", "IPAddress": "192.168.150.21", "Port": 5001, "Enable": true,
         "AdvancedServos": [
@@ -232,7 +232,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": false,
-      "NextSequence": { "Name": "Servo1", "SequenceType": "AS", "Loops": 1 },
+      "NextSequence": { "Name": "Servo1", "SequenceType": "AS" },
       "Host": {
         "Name": "psbc21", "IPAddress": "192.168.150.21", "Port": 5001, "Enable": true,
         "AdvancedServos": [
@@ -257,7 +257,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": false,
-      "NextSequence": { "Name": "Servo2", "SequenceType": "AS", "Loops": 1 },
+      "NextSequence": { "Name": "Servo2", "SequenceType": "AS" },
       "Host": null,
       "Actions": [
         { "ServoIndex": 1, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 200 },
@@ -277,7 +277,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": false,
-      "NextSequence": { "Name": "psbc21_Sequence ServoFin", "SequenceType": "AS", "Loops": 1 },
+      "NextSequence": { "Name": "psbc21_Sequence ServoFin", "SequenceType": "AS" },
       "Host": null,
       "Actions": [
         { "ServoIndex": 2, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 200 },
@@ -313,7 +313,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": false,
-      "NextSequence": { "Name": "Servo5", "SequenceType": "AS", "Loops": 1 },
+      "NextSequence": { "Name": "Servo5", "SequenceType": "AS" },
       "Host": {
         "Name": "psbc21", "IPAddress": "192.168.150.21", "Port": 5001, "Enable": true,
         "AdvancedServos": [
@@ -338,7 +338,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": false,
-      "NextSequence": { "Name": "Servo6", "SequenceType": "AS", "Loops": 1 },
+      "NextSequence": { "Name": "Servo6", "SequenceType": "AS" },
       "Host": null,
       "Actions": [
         { "ServoIndex": 5, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 200 },
@@ -358,7 +358,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": false,
-      "NextSequence": { "Name": "psbc21_Sequence ServoFin", "SequenceType": "AS", "Loops": 1 },
+      "NextSequence": { "Name": "psbc21_Sequence ServoFin", "SequenceType": "AS" },
       "Host": null,
       "Actions": [
         { "ServoIndex": 6, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 200 },
@@ -381,7 +381,7 @@
       "UsageNotes": "Servos expected to be Centered and Engaged",
       "Loops": 1,
       "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "PA Step2", "SequenceType": "AS", "Loops": 1 },
+      "NextSequence": { "Name": "PA Step2", "SequenceType": "AS" },
       "Host": {
         "Name": "psbc21", "IPAddress": "192.168.150.21", "Port": 5001, "Enable": true,
         "AdvancedServos": [
@@ -404,7 +404,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "PA Step3", "SequenceType": "AS", "Loops": 1 },
+      "NextSequence": { "Name": "PA Step3", "SequenceType": "AS" },
       "Host": null,
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": -10 },
@@ -420,7 +420,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "PA Step4", "SequenceType": "AS", "Loops": 1 },
+      "NextSequence": { "Name": "PA Step4", "SequenceType": "AS" },
       "Host": null,
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": 10 },
@@ -436,7 +436,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": true,
-      //"NextSequence": { "Name": "psbc21_Sequence ServoFin", "SequenceType": "AS", "Loops": 1 },
+      //"NextSequence": { "Name": "psbc21_Sequence ServoFin", "SequenceType": "AS" },
       "Host": null,
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": 20 },
@@ -455,7 +455,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "Debug Sequence Step1", "SequenceType": "AS", "Loops": 1 },
+      "NextSequence": { "Name": "Debug Sequence Step1", "SequenceType": "AS" },
       "Host": {
         "Name": "psbc21", "IPAddress": "192.168.150.21", "Port": 5001, "Enable": true,
         "AdvancedServos": [
@@ -480,7 +480,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "Parallel Pairs 1 (PP1)", "SequenceType": "AS", "Loops": 1 },
+      "NextSequence": { "Name": "Parallel Pairs 1 (PP1)", "SequenceType": "AS" },
       "Host": {
         "Name": "psbc21", "IPAddress": "192.168.150.21", "Port": 5001, "Enable": true,
         "AdvancedServos": [
@@ -508,7 +508,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "PP1 Step2", "SequenceType": "AS", "Loops": 1 },
+      "NextSequence": { "Name": "PP1 Step2", "SequenceType": "AS" },
       "Host": {
         "Name": "psbc21", "IPAddress": "192.168.150.21", "Port": 5001, "Enable": true,
         "AdvancedServos": [
@@ -531,7 +531,7 @@
     //  "Description": "SEQUENCE DESCRIPTION",
     //  "Loops": 1,
     //  "PlayActionsInParallel": true,
-    //  "NextSequence": { "Name": "PP1 Step2", "SequenceType": "AS", "Loops": 1 },
+    //  "NextSequence": { "Name": "PP1 Step2", "SequenceType": "AS" },
     //  "Host": null,
     //  "Actions": [
     //    { "ServoIndex": 0, "TargetPosition": 133 },
@@ -547,7 +547,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "PP1 Step3", "SequenceType": "AS", "Loops": 1 },
+      "NextSequence": { "Name": "PP1 Step3", "SequenceType": "AS" },
       "Host": null,
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": -20 },
@@ -559,7 +559,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "PP1 Step4", "SequenceType": "AS", "Loops": 1 },
+      "NextSequence": { "Name": "PP1 Step4", "SequenceType": "AS" },
       "Host": null,
       "Actions": [
         { "ServoIndex": 1, "RelativePosition": -30 },
@@ -571,7 +571,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "PP1 Step5", "SequenceType": "AS", "Loops": 1 },
+      "NextSequence": { "Name": "PP1 Step5", "SequenceType": "AS" },
       "Host": null,
       "Actions": [
         { "ServoIndex": 2, "RelativePosition": -40 },
@@ -583,7 +583,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "PP1 Step6", "SequenceType": "AS", "Loops": 1 },
+      "NextSequence": { "Name": "PP1 Step6", "SequenceType": "AS" },
       "Host": null,
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": -10 },
@@ -595,7 +595,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "PP1 Step7", "SequenceType": "AS", "Loops": 1 },
+      "NextSequence": { "Name": "PP1 Step7", "SequenceType": "AS" },
       "Host": null,
       "Actions": [
         { "ServoIndex": 1, "RelativePosition": -15 },
@@ -607,7 +607,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "PP1 Step8", "SequenceType": "AS", "Loops": 1 },
+      "NextSequence": { "Name": "PP1 Step8", "SequenceType": "AS" },
       "Host": null,
       "Actions": [
         { "ServoIndex": 2, "RelativePosition": -20 },
@@ -619,7 +619,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "PP1 Step9", "SequenceType": "AS", "Loops": 1 },
+      "NextSequence": { "Name": "PP1 Step9", "SequenceType": "AS" },
       "Host": null,
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": -10 },
@@ -631,7 +631,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "PP1 Step10", "SequenceType": "AS", "Loops": 1 },
+      "NextSequence": { "Name": "PP1 Step10", "SequenceType": "AS" },
       "Host": null,
       "Actions": [
         { "ServoIndex": 1, "RelativePosition": -15 },
@@ -643,7 +643,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": true,
-      "NextSequence": null,
+      "NextSequence": { "Name": "Engage and Center Servos", "SequenceType": "AS" },
       "Host": null,
       "Actions": [
         { "ServoIndex": 2, "RelativePosition": -20 },
@@ -658,7 +658,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "PP2 Step2", "SequenceType": "AS", "Loops": 1 },
+      "NextSequence": { "Name": "PP2 Step2", "SequenceType": "AS" },
       "Host": {
         "Name": "psbc21", "IPAddress": "192.168.150.21", "Port": 5001, "Enable": true,
         "AdvancedServos": [
@@ -681,7 +681,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "PP2 Step3", "SequenceType": "AS", "Loops": 1 },
+      "NextSequence": { "Name": "PP2 Step3", "SequenceType": "AS" },
       "Host": null,
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": 20 },
@@ -693,7 +693,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "PP2 Step4", "SequenceType": "AS", "Loops": 1 },
+      "NextSequence": { "Name": "PP2 Step4", "SequenceType": "AS" },
       "Host": null,
       "Actions": [
         { "ServoIndex": 1, "RelativePosition": 30 },
@@ -705,7 +705,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "PP2 Step5", "SequenceType": "AS", "Loops": 1 },
+      "NextSequence": { "Name": "PP2 Step5", "SequenceType": "AS" },
       "Host": null,
       "Actions": [
         { "ServoIndex": 2, "RelativePosition": 40 },
@@ -717,7 +717,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "PP2 Step6", "SequenceType": "AS", "Loops": 1 },
+      "NextSequence": { "Name": "PP2 Step6", "SequenceType": "AS" },
       "Host": null,
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": 10 },
@@ -729,7 +729,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "PP2 Step7", "SequenceType": "AS", "Loops": 1 },
+      "NextSequence": { "Name": "PP2 Step7", "SequenceType": "AS" },
       "Host": null,
       "Actions": [
         { "ServoIndex": 1, "RelativePosition": 15 },
@@ -741,7 +741,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "PP2 Step8", "SequenceType": "AS", "Loops": 1 },
+      "NextSequence": { "Name": "PP2 Step8", "SequenceType": "AS" },
       "Host": null,
       "Actions": [
         { "ServoIndex": 2, "RelativePosition": 20 },
@@ -753,7 +753,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "PP2 Step9", "SequenceType": "AS", "Loops": 1 },
+      "NextSequence": { "Name": "PP2 Step9", "SequenceType": "AS" },
       "Host": null,
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": -10 },
@@ -765,7 +765,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "PP2 Step10", "SequenceType": "AS", "Loops": 1 },
+      "NextSequence": { "Name": "PP2 Step10", "SequenceType": "AS" },
       "Host": null,
       "Actions": [
         { "ServoIndex": 1, "RelativePosition": -15 },
@@ -777,7 +777,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": true,
-      "NextSequence": null,
+      "NextSequence": { "Name": "Engage and Center Servos", "SequenceType": "AS" },
       "Host": null,
       "Actions": [
         { "ServoIndex": 2, "RelativePosition": -20 },
@@ -792,7 +792,7 @@
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
       "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "PP3 Step2", "SequenceType": "AS", "Loops": 1 },
+      "NextSequence": { "Name": "PP3 Step2", "SequenceType": "AS" },
       "Host": {
         "Name": "psbc21", "IPAddress": "192.168.150.21", "Port": 5001, "Enable": true,
         "AdvancedServos": [
@@ -811,76 +811,222 @@
       ]
     },
     { 
-      "Name": "PP3 Step2",
-      "Description": "SEQUENCE DESCRIPTION",
-      "Loops": 1,
-      "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "PP3 Step3", "SequenceType": "AS", "Loops": 1 },
-      "Host": null,
+      "Name": "PP3 Step2", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PP3 Step3", "SequenceType": "AS" },
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": 20 },
         { "ServoIndex": 4, "RelativePosition": 20 }
       ]
     },
     { 
-      "Name": "PP3 Step3",
-      "Description": "SEQUENCE DESCRIPTION",
-      "Loops": 1,
-      "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "PP3 Step4", "SequenceType": "AS", "Loops": 1 },
-      "Host": null,
+      "Name": "PP3 Step3", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PP3 Step4", "SequenceType": "AS" },
       "Actions": [
         { "ServoIndex": 1, "RelativePosition": 30 },
         { "ServoIndex": 5, "RelativePosition": 30 }
       ]
     },
     { 
-      "Name": "PP3 Step4",
-      "Description": "SEQUENCE DESCRIPTION",
-      "Loops": 1,
-      "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "PP3 Step5", "SequenceType": "AS", "Loops": 1 },
-      "Host": null,
+      "Name": "PP3 Step4", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PP3 Step5", "SequenceType": "AS" },
       "Actions": [
         { "ServoIndex": 2, "RelativePosition": 40 },
         { "ServoIndex": 6, "RelativePosition": 40 }
       ]
     },
     { 
-      "Name": "PP3 Step6",
-      "Description": "SEQUENCE DESCRIPTION",
-      "Loops": 1,
-      "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "PP3 Step7", "SequenceType": "AS", "Loops": 1 },
-      "Host": null,
+      "Name": "PP3 Step5", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PP3 Step6", "SequenceType": "AS" },
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": -20 },
         { "ServoIndex": 4, "RelativePosition": -20 }
       ]
     },
-    { 
-      "Name": "PP3 Step7",
-      "Description": "SEQUENCE DESCRIPTION",
-      "Loops": 1,
-      "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "PP3 Step8", "SequenceType": "AS", "Loops": 1 },
-      "Host": null,
+    { "Name": "PP3 Step6", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PP3 Step7", "SequenceType": "AS" },
       "Actions": [
         { "ServoIndex": 1, "RelativePosition": -30 },
         { "ServoIndex": 5, "RelativePosition": -30 }
       ]
     },
     { 
-      "Name": "PP3 Step8",
-      "Description": "SEQUENCE DESCRIPTION",
-      "Loops": 1,
-      "PlayActionsInParallel": true,
-      "NextSequence": null,
-      "Host": null,
+      "Name": "PP3 Step7", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PP3 Step8", "SequenceType": "AS" },
       "Actions": [
         { "ServoIndex": 2, "RelativePosition": -40 },
         { "ServoIndex": 6, "RelativePosition": -40 }
       ]
+    },
+    { 
+      "Name": "PP3 Step8", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PP3 Step9", "SequenceType": "AS" },
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": 40 },
+        { "ServoIndex": 4, "RelativePosition": 40 }
+      ]
+    },
+    { 
+      "Name": "PP3 Step9", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PP3 Step10", "SequenceType": "AS" },
+      "Actions": [
+        { "ServoIndex": 1, "RelativePosition": 30 },
+        { "ServoIndex": 5, "RelativePosition": 30 }
+      ]
+    },
+    { 
+      "Name": "PP3 Step10", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PP3 Step11", "SequenceType": "AS" },
+      "Actions": [
+        { "ServoIndex": 2, "RelativePosition": 20 },
+        { "ServoIndex": 6, "RelativePosition": 20 }
+      ]
+    },
+    { 
+      "Name": "PP3 Step11", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PP3 Step12", "SequenceType": "AS" },
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": -40 },
+        { "ServoIndex": 4, "RelativePosition": -40 }
+      ]
+    },
+    { "Name": "PP3 Step12", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PP3 Step13", "SequenceType": "AS" },
+      "Actions": [
+        { "ServoIndex": 1, "RelativePosition": -30 },
+        { "ServoIndex": 5, "RelativePosition": -30 }
+      ]
+    },
+    { 
+      "Name": "PP3 Step13", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "Engage and Center Servos", "SequenceType": "AS" },
+      "Actions": [
+        { "ServoIndex": 2, "RelativePosition": -20 },
+        { "ServoIndex": 6, "RelativePosition": -20 }
+      ]
+    },
+    //
+    // Parallel Pairs 4 (PP4)
+    //
+    {
+      "Name": "Parallel Pairs 4 (PP4)",
+      "Description": "SEQUENCE DESCRIPTION",
+      "Loops": 1,
+      "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PP4 Step2", "SequenceType": "AS" },
+      "Host": {
+        "Name": "psbc21", "IPAddress": "192.168.150.21", "Port": 5001, "Enable": true,
+        "AdvancedServos": [
+          { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
+        ],
+        "InterfaceKits": null,
+        "Steppers": null
+      },
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true, "VelocityLimit": 75 },
+        { "ServoIndex": 1, "Engaged": true, "VelocityLimit": 150 },
+        { "ServoIndex": 2, "Engaged": true, "VelocityLimit": 300},
+        { "ServoIndex": 4, "Engaged": true, "VelocityLimit": 75 },
+        { "ServoIndex": 5, "Engaged": true, "VelocityLimit": 150 },
+        { "ServoIndex": 6, "Engaged": true, "VelocityLimit": 300 }
+      ]
+    },
+    { 
+      "Name": "PP4 Step2", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PP4 Step3", "SequenceType": "AS" },
+      "Actions": [
+        { "ServoIndex": 6, "TargetPosition": -1 },
+        { "ServoIndex": 2, "TargetPosition": -2 }
+      ]
+    },
+    { 
+      "Name": "PP4 Step3", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PP4 Step4", "SequenceType": "AS" },
+      "Actions": [
+        { "ServoIndex": 5, "TargetPosition": -1 },
+        { "ServoIndex": 1, "TargetPosition": -2 }
+      ]
+    },
+    { 
+      "Name": "PP4 Step4", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PP4 Step5", "SequenceType": "AS" },
+      "Actions": [
+        { "ServoIndex": 4, "TargetPosition": -1, "Duration": 500 },
+        { "ServoIndex": 0, "TargetPosition": -2, "Duration": 500}
+      ]
+    },
+    { 
+      "Name": "PP4 Step5", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PP4 Step6", "SequenceType": "AS" },
+      "Actions": [
+        { "ServoIndex": 2, "RelativePosition": -90},
+        { "ServoIndex": 6, "RelativePosition": 90 }
+      ]
+    },
+    { "Name": "PP4 Step6", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PP4 Step7", "SequenceType": "AS" },
+      "Actions": [
+        { "ServoIndex": 1, "RelativePosition": -90 },
+        { "ServoIndex": 5, "RelativePosition": 90 }
+      ]
+    },
+    { 
+      "Name": "PP4 Step7", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PP4 Step8", "SequenceType": "AS" },
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": -90 },
+        { "ServoIndex": 4, "RelativePosition": 90 }
+      ]
+    },
+    { 
+      "Name": "PP4 Step8", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PP4 Step9", "SequenceType": "AS" },
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": -90 },
+        { "ServoIndex": 4, "RelativePosition": 90 }
+      ]
+    },
+    { 
+      "Name": "PP4 Step9", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PP4 Step10", "SequenceType": "AS" },
+      "Actions": [
+        { "ServoIndex": 1, "RelativePosition": -90 },
+        { "ServoIndex": 5, "RelativePosition": 90 }
+      ]
+    },
+    { 
+      "Name": "PP4 Step10", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PP4 Step11", "SequenceType": "AS" },
+      "Actions": [
+        { "ServoIndex": 2, "RelativePosition": -95, "Duration": 1000 },
+        { "ServoIndex": 6, "RelativePosition": 95, "Duration": 1000 }
+      ]
+    },
+    { 
+      "Name": "PP4 Step11", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PP4 LastStep", "SequenceType": "AS" },
+      "Actions": [
+        { "ServoIndex": 0, "VelocityLimit": 50 },
+        { "ServoIndex": 1, "VelocityLimit": 100 },
+        { "ServoIndex": 2, "VelocityLimit": 200 },
+        { "ServoIndex": 4, "VelocityLimit": 200 },
+        { "ServoIndex": 5, "VelocityLimit": 100},
+        { "ServoIndex": 6, "VelocityLimit": 50 },
+      ]
+    },
+    //{ "Name": "PP4 Step12", "PlayActionsInParallel": true,
+    //  "NextSequence": { "Name": "PP4 Step13", "SequenceType": "AS" },
+    //  "Actions": [
+    //    { "ServoIndex": 1, "RelativePosition": -30 },
+    //    { "ServoIndex": 5, "RelativePosition": -30 }
+    //  ]
+    //},
+    { 
+      "Name": "PP4 LastStep", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "Engage and Center Servos", "SequenceType": "AS" },
+      //"Actions": [
+      //  { "ServoIndex": 2, "RelativePosition": -20 },
+      //  { "ServoIndex": 6, "RelativePosition": -20 }
+      //]
     },
     //
     // Acceleration(6000) VelocityLimit(3125)

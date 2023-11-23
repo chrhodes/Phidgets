@@ -69,7 +69,19 @@
     <!-- </UserControl.DataContext> -->
     
     <dxlc:LayoutControl View="Group" Orientation="Vertical" >
-        
+
+        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+            
+            <dxlc:LayoutItem Label="Log Performance Sequence" >
+                <dxe:CheckEdit IsChecked="{Binding LogPerformanceSequence}"/>
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem Label="Log Performance Action" >
+                <dxe:CheckEdit IsChecked="{Binding LogPerformanceAction}"/>
+            </dxlc:LayoutItem>
+            
+        </dxlc:LayoutGroup>
+
         <dxlc:LayoutGroup Header="Performances" View="GroupBox" Orientation="Vertical" >
 
             <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top">
@@ -128,11 +140,8 @@
                                 <dxe:TextEdit Text="{Binding SelectedPerformance.NextPerformance }" />
                             </dxlc:LayoutItem>
 
-                            <dxlc:LayoutItem Label="Log PerformanceStep" >
-                                <dxe:CheckEdit IsChecked="{Binding LogPerformanceStep}"/>
-                            </dxlc:LayoutItem>
-
                         </dxlc:LayoutGroup>
+                        
                     </dxlc:LayoutGroup>
 
                     <dxlc:LayoutItem VerticalAlignment="Stretch" HorizontalAlignment="Right">
@@ -233,13 +242,25 @@
                     
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutItem VerticalAlignment="Stretch" HorizontalAlignment="Right" >
-                    <Button 
+                <dxlc:LayoutGroup View="Group" Orientation="Vertical" HorizontalAlignment="Right" >
+
+                    <dxlc:LayoutItem>
+                        <Button 
+                		    Command="{Binding EngageAndCenterCommand }"
+                		    CommandParameter="{Binding EngageAndCenterCommandParameter}"
+                		    Content="{Binding EngageAndCenterContent, FallbackValue='EngageAndCenter' }"
+                		    ToolTip="{Binding EngageAndCenterToolTip, FallbackValue='EngageAndCenter ToolTip' }" />
+                    </dxlc:LayoutItem>
+                    
+                    <dxlc:LayoutItem  VerticalAlignment="Stretch" >
+                        <Button 
 		                        Command="{Binding PlayAdvancedServoSequenceCommand }"
                                 CommandParameter="false"
 		                        Content="{Binding PlayAdvanceddServoSequenceContent, FallbackValue='PlaySequence' }"
 		                        ToolTip="{Binding PlayAdvanceddServoSequenceToolTip, FallbackValue='PlayAdvancedServoSequence ToolTip' }" />
-                </dxlc:LayoutItem>
+                    </dxlc:LayoutItem>
+                  
+                </dxlc:LayoutGroup>
 
             </dxlc:LayoutGroup>
 
@@ -329,14 +350,18 @@
     
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutItem VerticalAlignment="Stretch" HorizontalAlignment="Right">
-                    <Button 
-		                    Command="{Binding PlayInterfaceKitSequenceCommand }"
-                            CommandParameter="false"
-		                    Content="{Binding PlayInterfaceKitSequenceContent, FallbackValue='PlaySequence' }"
-		                    ToolTip="{Binding PlayInterfaceKitSequenceToolTip, FallbackValue='PlayInterfaceKitSequence ToolTip' }" />
-                </dxlc:LayoutItem>
-                
+                <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+
+                    <dxlc:LayoutItem VerticalAlignment="Stretch" HorizontalAlignment="Right">
+                        <Button 
+		                        Command="{Binding PlayInterfaceKitSequenceCommand }"
+                                CommandParameter="false"
+		                        Content="{Binding PlayInterfaceKitSequenceContent, FallbackValue='PlaySequence' }"
+		                        ToolTip="{Binding PlayInterfaceKitSequenceToolTip, FallbackValue='PlayInterfaceKitSequence ToolTip' }" />
+                    </dxlc:LayoutItem>
+                    
+                </dxlc:LayoutGroup>
+
             </dxlc:LayoutGroup>
 
             <dxlc:LayoutGroup x:Name="lgStepperSequences" Header="Stepper Sequences" View="GroupBox" 
