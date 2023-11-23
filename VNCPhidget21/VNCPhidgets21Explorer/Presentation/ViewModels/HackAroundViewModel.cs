@@ -913,14 +913,14 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public async void PlayPerformance()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            //Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you called PlayPerformance";
 
             foreach (VNCPhidgetConfig.Performance performance in SelectedPerformances)
             {
-                Log.Trace($"Running performance:{performance.Name} description:{performance.Description}", Common.LOG_CATEGORY);
+                if (LogPerformanceStep) Log.Trace($"Running performance:{performance.Name} description:{performance.Description}", Common.LOG_CATEGORY);
 
                 PlayPerformanceLoops(performance);
 
@@ -955,16 +955,16 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             // End Cut Four
 
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+            //Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private async Task PlayPerformanceLoops(VNCPhidgetConfig.Performance performance)
         {
-            Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
+            //Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
 
             for (int i = 0; i < performance.Loops; i++)
             {
-                Log.Trace($"Loop:{i + 1}", Common.LOG_CATEGORY);
+                if (LogPerformanceStep) Log.Trace($"Loop:{i + 1}", Common.LOG_CATEGORY);
 
                 if (performance.PlayInParallel)
                 {
@@ -976,11 +976,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 }
             }
 
-            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+            //Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
         private async void PlayPerformanceSequencesInParallel(VNCPhidgetConfig.PerformanceSequence[] performanceSequences)
         {
-            Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
+            //Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
 
             Parallel.ForEach(performanceSequences, async sequence =>
             {
@@ -999,12 +999,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 }
             });
 
-            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+            //Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private async void PlayPerformanceSequencesInSequence(VNCPhidgetConfig.PerformanceSequence[] performanceSequences)
         {
-            Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
+            //Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
 
             foreach (VNCPhidgetConfig.PerformanceSequence sequence in performanceSequences)
             {
@@ -1026,7 +1026,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 }
             }
 
-            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+            //Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         //private void PerformServoAction(AdvancedServoServo servo, AdvancedServoServoAction action, Int32 index)
@@ -1173,8 +1173,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private async Task<VNCPhidgetConfig.PerformanceSequence?> ExecutePerformanceSequence(VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence)
         {
-            Log.Trace($"Executing sequence:>{nextPerformanceSequence?.Name}< type:>{nextPerformanceSequence?.SequenceType}<" +
-                $" loops:>{nextPerformanceSequence?.Loops}< closePhidget:>{nextPerformanceSequence?.ClosePhidget}<", Common.LOG_CATEGORY);
+            if (LogPerformanceStep)
+            {
+                Log.Trace($"Executing sequence:>{nextPerformanceSequence?.Name}< type:>{nextPerformanceSequence?.SequenceType}<" +
+                    $" loops:>{nextPerformanceSequence?.Loops}< closePhidget:>{nextPerformanceSequence?.ClosePhidget}<", Common.LOG_CATEGORY);
+            }
+
 
             // TODO(crhodes)
             // Think about Open/Close more.  Maybe config.

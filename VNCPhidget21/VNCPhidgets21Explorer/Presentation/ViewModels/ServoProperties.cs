@@ -42,6 +42,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        public bool LogPhidgetEvents { get; set; }
+
         #region Configuration Properties
 
         private double _minimumPulseWidth = 1000;
@@ -155,7 +157,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             {
                                 AdvancedServoEx.SetPosition(
                                     (Double)value,
-                                    AdvancedServoEx.AdvancedServo.servos[ServoIndex]);
+                                    AdvancedServoEx.AdvancedServo.servos[ServoIndex], ServoIndex);
                             }
                         }
                         catch (PhidgetException pex)
@@ -286,7 +288,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     AdvancedServoEx.SetVelocityLimit(
                         (Double)value,
-                        AdvancedServoEx.AdvancedServo.servos[ServoIndex]);
+                        AdvancedServoEx.AdvancedServo.servos[ServoIndex], ServoIndex);
                 }
             }
         }
@@ -332,7 +334,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     AdvancedServoEx.SetAcceleration(
                         (Double)value,
-                        AdvancedServoEx.AdvancedServo.servos[ServoIndex]);
+                        AdvancedServoEx.AdvancedServo.servos[ServoIndex], ServoIndex);
                 }
             }
         }
@@ -406,18 +408,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         /// </summary>
         private void GetPropertiesFromServo()
         {
-            Int64 startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
             AdvancedServoServo servo = null;
 
             try
             {
                 servo = AdvancedServoEx.AdvancedServo.servos[ServoIndex];
 
-                Log.Trace($"Begin servo:{ServoIndex} engaged:{servo.Engaged} stopped:{servo.Stopped} current:{servo.Current} speedRamping:{servo.SpeedRamping}" , Common.LOG_CATEGORY);
-                Log.Trace($"Begin servo:{ServoIndex} accelerationMin:{servo.AccelerationMin} acceleration:{(servo.Engaged ? servo.Acceleration : "??")} accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
-                Log.Trace($"Begin servo:{ServoIndex} velocityMin:{servo.VelocityMin} velocity:{servo.Velocity} velocityLimit:{servo.VelocityLimit} velocityMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
-                Log.Trace($"Begin servo:{ServoIndex} positionMin:{servo.PositionMin} position:{(servo.Engaged ? servo.Position : "??")} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
-                Log.Trace($"Begin servo:{ServoIndex} devicePositionMin{DevicePositionMin}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
+                if (LogPhidgetEvents)
+                {                  
+                    Log.Trace($"Begin servo:{ServoIndex} engaged:{servo.Engaged} stopped:{servo.Stopped} current:{servo.Current} speedRamping:{servo.SpeedRamping}" , Common.LOG_CATEGORY);
+                    Log.Trace($"Begin servo:{ServoIndex} accelerationMin:{servo.AccelerationMin} acceleration:{(servo.Engaged ? servo.Acceleration : "??")} accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
+                    Log.Trace($"Begin servo:{ServoIndex} velocityMin:{servo.VelocityMin} velocity:{servo.Velocity} velocityLimit:{servo.VelocityLimit} velocityMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
+                    Log.Trace($"Begin servo:{ServoIndex} positionMin:{servo.PositionMin} position:{(servo.Engaged ? servo.Position : "??")} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
+                    Log.Trace($"Begin servo:{ServoIndex} devicePositionMin:{DevicePositionMin}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
+                }
 
                 Engaged = servo.Engaged;
                 Stopped = servo.Stopped;
@@ -450,11 +454,14 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 PositionMax = midPoint + halfRange;
                 Position = midPoint;
 
-                Log.Trace($"End servo:{ServoIndex} engaged:{servo.Engaged} stopped:{servo.Stopped} current:{servo.Current} speedRamping:{servo.SpeedRamping}", Common.LOG_CATEGORY);
-                Log.Trace($"End servo:{ServoIndex} accelerationMin:{servo.AccelerationMin} acceleration:{(servo.Engaged ? servo.Acceleration : "??")} accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
-                Log.Trace($"End servo:{ServoIndex} velocityMin:{servo.VelocityMin} velocity:{servo.Velocity} velocityLimit:{servo.VelocityLimit} velocityMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
-                Log.Trace($"End servo:{ServoIndex} positionMin:{servo.PositionMin} position:{(servo.Engaged ? servo.Position : "??")} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
-                Log.Trace($"Begin servo:{ServoIndex} devicePositionMin{DevicePositionMin}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
+                if (LogPhidgetEvents)
+                {
+                    Log.Trace($"End servo:{ServoIndex} engaged:{servo.Engaged} stopped:{servo.Stopped} current:{servo.Current} speedRamping:{servo.SpeedRamping}", Common.LOG_CATEGORY);
+                    Log.Trace($"End servo:{ServoIndex} accelerationMin:{servo.AccelerationMin} acceleration:{(servo.Engaged ? servo.Acceleration : "??")} accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
+                    Log.Trace($"End servo:{ServoIndex} velocityMin:{servo.VelocityMin} velocity:{servo.Velocity} velocityLimit:{servo.VelocityLimit} velocityMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
+                    Log.Trace($"End servo:{ServoIndex} positionMin:{servo.PositionMin} position:{(servo.Engaged ? servo.Position : "??")} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
+                    Log.Trace($"End servo:{ServoIndex} devicePositionMin:{DevicePositionMin}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
+                }
 
             }
             catch (PhidgetException pex)
@@ -465,8 +472,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             {
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
-
-            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         /// <summary>
@@ -476,17 +481,18 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         /// </summary>
         public void RefreshPropertiesFromServo()
         {
-            Int64 startTicks = Log.Trace($"Enter servoIndex:{ServoIndex}", Common.LOG_CATEGORY);
-
             try
             {
                 var servo = AdvancedServoEx.AdvancedServo.servos[ServoIndex];
 
-                Log.Trace($"servo:{ServoIndex} engaged:{servo.Engaged} stopped:{servo.Stopped} current:{servo.Current} speedRamping:{servo.SpeedRamping}", Common.LOG_CATEGORY);
-                Log.Trace($"servo:{ServoIndex} accelerationMin:{servo.AccelerationMin} acceleration:{(servo.Engaged ? servo.Acceleration : "??")} accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
-                Log.Trace($"servo:{ServoIndex} velocityMin:{servo.VelocityMin} velocity:{servo.Velocity} velocityLimit:{servo.VelocityLimit} velocityMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
-                Log.Trace($"servo:{ServoIndex} positionMin:{servo.PositionMin} position:{(servo.Engaged ? servo.Position : "??")} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
-                Log.Trace($"servo:{ServoIndex} devicePositionMin{DevicePositionMin}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
+                if (LogPhidgetEvents)
+                {
+                    Log.Trace($"servo:{ServoIndex} engaged:{servo.Engaged} stopped:{servo.Stopped} current:{servo.Current} speedRamping:{servo.SpeedRamping}", Common.LOG_CATEGORY);
+                    Log.Trace($"servo:{ServoIndex} accelerationMin:{servo.AccelerationMin} acceleration:{(servo.Engaged ? servo.Acceleration : "??")} accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
+                    Log.Trace($"servo:{ServoIndex} velocityMin:{servo.VelocityMin} velocity:{servo.Velocity} velocityLimit:{servo.VelocityLimit} velocityMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
+                    Log.Trace($"servo:{ServoIndex} positionMin:{servo.PositionMin} position:{(servo.Engaged ? servo.Position : "??")} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
+                    Log.Trace($"servo:{ServoIndex} devicePositionMin:{DevicePositionMin}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
+                }
 
                 Engaged = servo.Engaged;
                 Stopped = servo.Stopped;
@@ -514,8 +520,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             {
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
-
-            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         /// <summary>
@@ -524,7 +528,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         /// </summary>
         public void InitializeProperties()
         {
-            Int64 startTicks = Log.Trace($"Enter servoIndex:{ServoIndex}", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+
+            if (LogPhidgetEvents)
+            {
+                startTicks = Log.Trace($"Enter servoIndex:{ServoIndex}", Common.LOG_CATEGORY);
+            }
 
             try
             {
@@ -564,7 +573,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
 
-            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+            if (LogPhidgetEvents)
+            {
+                Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+            }
         }
     }
 }

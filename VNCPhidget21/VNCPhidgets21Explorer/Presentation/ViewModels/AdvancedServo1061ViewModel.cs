@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text.Json;
 using System.Windows.Input;
 
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Fluent;
+
 using Phidgets;
 using Phidgets.Events;
 
@@ -1391,6 +1393,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     {
                         // NOTE(crhodes)
                         // All the work is now done in Type.UpdateProperties()
+                        AdvancedServoProperties[i].LogPhidgetEvents = LogPhidgetEvents;
                         AdvancedServoProperties[i].ServoType = servos[i].Type;
                     }
                 }

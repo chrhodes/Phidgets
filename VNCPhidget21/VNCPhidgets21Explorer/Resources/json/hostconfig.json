@@ -7,6 +7,11 @@
       "Enable": true,
       "AdvancedServos": [
         {
+          "Name": "AdvancedServo 99220",
+          "SerialNumber": 99220,
+          "Open": true
+        },
+        {
           "Name": "AdvancedServo 99415",
           "SerialNumber": 99415,
           "Open": true
@@ -33,6 +38,11 @@
       "Port": 5001,
       "Enable": true,
       "AdvancedServos": [
+        {
+          "Name": "AdvancedServo 99220",
+          "SerialNumber": 99220,
+          "Open": true
+        },
         {
           "Name": "AdvancedServo 99415",
           "SerialNumber": 99415,
@@ -61,6 +71,11 @@
       "Enable": true,
       "AdvancedServos": [
         {
+          "Name": "AdvancedServo 99220",
+          "SerialNumber": 99220,
+          "Open": true
+        },
+        {
           "Name": "AdvancedServo 99415",
           "SerialNumber": 99415,
           "Open": true
@@ -88,6 +103,11 @@
       "Enable": true,
       "AdvancedServos": [
         {
+          "Name": "AdvancedServo 99220",
+          "SerialNumber": 99220,
+          "Open": true
+        },
+        {
           "Name": "AdvancedServo 99415",
           "SerialNumber": 99415,
           "Open": true
@@ -114,6 +134,11 @@
       "Port": 5001,
       "Enable": true,
       "AdvancedServos": [
+        {
+          "Name": "AdvancedServo 99220",
+          "SerialNumber": 99220,
+          "Open": true
+        },
         {
           "Name": "AdvancedServo 99415",
           "SerialNumber": 99415,

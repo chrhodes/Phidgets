@@ -92,7 +92,7 @@
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="Selected Performance(s)" HorizontalAlignment="Left" >
-                            <dxe:ComboBoxEdit
+                            <dxe:ComboBoxEdit Width="250" TextWrapping="Wrap"
                                 ItemsSource="{Binding Performances}" DisplayMember="Name" 
                                 SelectedItem="{Binding SelectedPerformance}"
                                 EditValue="{ Binding 

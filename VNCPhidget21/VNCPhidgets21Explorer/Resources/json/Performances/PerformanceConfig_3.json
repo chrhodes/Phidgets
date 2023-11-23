@@ -13,13 +13,68 @@
         ]
     },
     {
-      "Name": "psbc21_AS Play All Performances",
-      "Description": "Play All the Performances",
+      "Name": "psbc21_AS Play All Performances A",
+      "Description": "Play All the Performances Acceleration(6000) VelocityLimit(3125)",
       "Loops": 1,
       "PlayInParallel": false,
       "PerformanceSequences": [
         { "Name": "Reset Position Limits (RPL)", "SequenceType": "AS"},
         { "Name": "Engage and Center Servos", "SequenceType": "AS" },
+        { "Name": "Acceleration(6000) VelocityLimit(3125)", "SequenceType": "AS" },
+
+        { "Name": "Parallel All (PA)", "SequenceType": "AS" },
+
+        { "Name": "Parallel Pairs 1 (PP1)", "SequenceType": "AS" },
+
+        { "Name": "Parallel Pairs 2 (PP2)", "SequenceType": "AS" },
+
+        { "Name": "Parallel Pairs 3 (PP3)", "SequenceType": "AS" }
+      ],
+     "NextPerformance":
+     { 
+        "Name": "Disengage All Servos and Close Phidget",
+        "Description": "Play All the Performances",
+        "PerformanceSequences": [
+            { "Name": "DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
+        ]
+      }
+    },
+    {
+      "Name": "psbc21_AS Play All Performances B",
+      "Description": "Play All the Performances Acceleration(250) VelocityLimit(125)",
+      "Loops": 1,
+      "PlayInParallel": false,
+      "PerformanceSequences": [
+        { "Name": "Reset Position Limits (RPL)", "SequenceType": "AS"},
+        { "Name": "Engage and Center Servos", "SequenceType": "AS" },
+        { "Name": "Acceleration(250) VelocityLimit(125)", "SequenceType": "AS" },
+
+        { "Name": "Parallel All (PA)", "SequenceType": "AS" },
+
+        { "Name": "Parallel Pairs 1 (PP1)", "SequenceType": "AS" },
+
+        { "Name": "Parallel Pairs 2 (PP2)", "SequenceType": "AS" },
+
+        { "Name": "Parallel Pairs 3 (PP3)", "SequenceType": "AS" }
+      ],
+     "NextPerformance":
+     { 
+        "Name": "Disengage All Servos and Close Phidget",
+        "Description": "Play All the Performances",
+        "PerformanceSequences": [
+            { "Name": "DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
+        ]
+      }
+    },
+    {
+      "Name": "psbc21_AS Play All Performances C",
+      "Description": "Play All the Performances Acceleration(50) VelocityLimit(25)",
+      "Loops": 1,
+      "PlayInParallel": false,
+      "PerformanceSequences": [
+        { "Name": "Reset Position Limits (RPL)", "SequenceType": "AS"},
+        { "Name": "Engage and Center Servos", "SequenceType": "AS" },
+        { "Name": "Acceleration(50) VelocityLimit(25)", "SequenceType": "AS" },
 
         { "Name": "Parallel All (PA)", "SequenceType": "AS" },
 
@@ -133,54 +188,6 @@
             { "Name": "DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
         ]
       }
-    },
-    //
-    // psbc21_AS Parallel Pairs 4
-    //
-    {
-      "Name": "psbc21_AS Parallel Pairs 4",
-      "Description": "",
-      "Loops": 1,
-      "PlayInParallel": false,
-      "PerformanceSequences": [
-        { "Name": "Reset Position Limits (RPL)", "SequenceType": "AS" },
-        { "Name": "Engage and Center Servos", "SequenceType": "AS" },
-
-        { "Name": "Acceleration(6000) VelocityLimit(3125)", "SequenceType": "AS" },
-        { "Name": "Parallel Pairs 3 (PP3)", "SequenceType": "AS" }
-      ],
-     "NextPerformance":
-     { 
-        "Name": "Parallel Pairs 4A",
-        "Description": "Play All the Performances",
-        "PerformanceSequences": [
-            { "Name": "DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
-        ]
-      }
-    },
-    //
-    // psbc21_AS Parallel Pairs 4
-    //
-    {
-      "Name": "Parallel Pairs 4A",
-      "Description": "",
-      "Loops": 1,
-      "PlayInParallel": false,
-      "PerformanceSequences": [
-        { "Name": "Reset Position Limits (RPL)", "SequenceType": "AS" },
-        { "Name": "Engage and Center Servos", "SequenceType": "AS" },
-
-        { "Name": "Acceleration(6000) VelocityLimit(3125)", "SequenceType": "AS" },
-        { "Name": "Parallel Pairs 3 (PP3)", "SequenceType": "AS" }
-      ],
-     "NextPerformance":
-     { 
-        "Name": "Disengage All Servos and Close Phidget",
-        "Description": "Play All the Performances",
-        "PerformanceSequences": [
-            { "Name": "DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
-        ]
-      }
-    },
+    }
   ]
 }
