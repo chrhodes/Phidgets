@@ -134,6 +134,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Button4Command = new DelegateCommand(Button4Execute);
             Button5Command = new DelegateCommand(Button5Execute);
 
+            ReloadPerformanceConfigFilesCommand = new DelegateCommand(ReloadPerformanceConfigFiles);
+            ReloadAdvancedServoSequenceConfigFilesCommand = new DelegateCommand(ReloadAdvancedServoSequenceConfigFiles);
+            ReloadInterfaceKitSequenceConfigFilesCommand = new DelegateCommand(ReloadInterfaceKitSequenceConfigFiles);
+            ReloadStepperSequenceConfigFilesCommand = new DelegateCommand(ReloadStepperSequenceConfigFiles);
+
             PlayPerformanceCommand = new DelegateCommand (PlayPerformance, PlayPerformanceCanExecute);
             PlayAdvancedServoSequenceCommand = new DelegateCommand(PlayAdvancedServoSequence, PlayAdvancedServoSequenceCanExecute);
             EngageAndCenterCommand = new DelegateCommand(EngageAndCenter, EngageAndCenterCanExecute);
@@ -328,6 +333,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         public ICommand Button3Command { get; private set; }
         public ICommand Button4Command { get; private set; }
         public ICommand Button5Command { get; private set; }
+
+        public ICommand ReloadPerformanceConfigFilesCommand { get; private set; }
+        public ICommand ReloadAdvancedServoSequenceConfigFilesCommand { get; private set; }
+        public ICommand ReloadInterfaceKitSequenceConfigFilesCommand { get; private set; }
+        public ICommand ReloadStepperSequenceConfigFilesCommand { get; private set; }
 
         private string _title = "VNCPhidgets21Explorer - Main";
 
@@ -2066,6 +2076,50 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //});
 
             //ifkEx21.Close();
+
+            Log.Info("End", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void ReloadPerformanceConfigFiles()
+        {
+            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+
+            Message = "ReloadPerformanceConfigFiles Clicked";
+
+            LoadPerformancesConfig();
+
+            Log.Info("End", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void ReloadAdvancedServoSequenceConfigFiles()
+        {
+            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+
+            Message = "ReloadAdvancedServoSequenceConfigFiles Clicked";
+
+            LoadAdvanceServoConfig();
+
+            Log.Info("End", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void ReloadInterfaceKitSequenceConfigFiles()
+        {
+            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+
+            Message = "ReloadInterfaceKitSequenceConfigFiles Clicked";
+
+            LoadInterfaceKitConfig();
+
+            Log.Info("End", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void ReloadStepperSequenceConfigFiles()
+        {
+            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+
+            Message = "ReloadStepperSequenceConfigFiles Clicked";
+
+            LoadStepperConfig();
 
             Log.Info("End", Common.LOG_CATEGORY, startTicks);
         }

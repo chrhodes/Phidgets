@@ -90,12 +90,20 @@
 
                     <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top" >
                     
-                        <dxlc:LayoutItem Label="Performance Config Files" HorizontalAlignment="Left" >
-                            <dxe:ComboBoxEdit 
+                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+
+                            <dxlc:LayoutItem Label="Performance Config Files" HorizontalAlignment="Left" >
+                                <dxe:ComboBoxEdit 
                                 ItemsSource="{Binding PerformanceConfigFiles}"
                                 SelectedItem="{Binding PerformanceConfigFileName}" >
-                            </dxe:ComboBoxEdit>
-                        </dxlc:LayoutItem>
+                                </dxe:ComboBoxEdit>
+                            </dxlc:LayoutItem>
+
+                            <Button Content="+" FontWeight="ExtraBlack" Padding="-5,-10,-5,-5" FontSize="20" Foreground="Red" 
+                                Command="{Binding ReloadPerformanceConfigFilesCommand}"
+                                ToolTip="Reload Config File" Width="20"/>
+
+                        </dxlc:LayoutGroup>
 
                         <dxlc:LayoutItem Label="Name" Background="Wheat">
                             <dxe:TextEdit
@@ -160,17 +168,25 @@
                               Orientation="Horizontal" VerticalAlignment="Top"
                               IsCollapsible="True" IsCollapsed="False" >
                 
-                <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     
-                    <dxlc:LayoutItem Label="Sequence Config Files" HorizontalAlignment="Left" >
-                        <dxe:ComboBoxEdit 
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+                        
+                        <dxlc:LayoutItem Label="Sequence Config Files" HorizontalAlignment="Left" >
+                            <dxe:ComboBoxEdit 
                             ItemsSource="{Binding AdvancedServoSequenceConfigFiles}"
                             SelectedItem="{Binding AdvancedServoSequenceConfigFileName}" >
-                        </dxe:ComboBoxEdit>
-                    </dxlc:LayoutItem>
+                            </dxe:ComboBoxEdit>
+                        </dxlc:LayoutItem>
+
+                        <Button Content="+" FontWeight="ExtraBlack" Padding="-5,-10,-5,-5" FontSize="20" Foreground="Red"
+                                Command="{Binding ReloadAdvancedServoSequenceConfigFilesCommand}"
+                                ToolTip="Reload Config File" Width="20"/>
+
+                    </dxlc:LayoutGroup>
 
                     <dxlc:LayoutItem Label="Selected Sequence(s)" HorizontalAlignment="Left" >
-                        <dxe:ComboBoxEdit 
+                        <dxe:ComboBoxEdit Width="250" TextWrapping="Wrap"
                             ItemsSource="{Binding AdvancedServoSequences}" DisplayMember="Name" 
                             SelectedItem="{Binding SelectedAdvancedServoSequence}"
                             EditValue="{ Binding 
@@ -265,20 +281,28 @@
             </dxlc:LayoutGroup>
 
             <dxlc:LayoutGroup x:Name="lgInterfaceKitSequences" Header="InterfaceKit Sequences" View="GroupBox" 
-                              Orientation="Horizontal" VerticalAlignment="Top"
+                              Orientation="Horizontal" VerticalAlignment="Top" 
                               IsCollapsible="True" IsCollapsed="False" >
 
-                <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+                <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch" >
 
-                    <dxlc:LayoutItem Label="Sequence Config File" HorizontalAlignment="Left" >
-                        <dxe:ComboBoxEdit
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+
+                        <dxlc:LayoutItem Label="Sequence Config File" HorizontalAlignment="Left" >
+                            <dxe:ComboBoxEdit
                             ItemsSource="{Binding InterfaceKitSequenceConfigFiles}"
                             SelectedItem="{Binding InterfaceKitSequenceConfigFileName}" >
-                        </dxe:ComboBoxEdit>
-                    </dxlc:LayoutItem>
+                            </dxe:ComboBoxEdit>
+                        </dxlc:LayoutItem>
+
+                        <Button Content="+" FontWeight="ExtraBlack" Padding="-5,-10,-5,-5" FontSize="20" Foreground="Red" 
+                                Command="{Binding ReloadInterfaceKitSequenceConfigFilesCommand}"
+                                ToolTip="Reload Config File" Width="20"/>
+
+                    </dxlc:LayoutGroup>
 
                     <dxlc:LayoutItem Label="Selected Sequence(s)" HorizontalAlignment="Left" >
-                        <dxe:ComboBoxEdit
+                        <dxe:ComboBoxEdit Width="250" TextWrapping="Wrap"
                             ItemsSource="{Binding InterfaceKitSequences}" DisplayMember="Name" 
                             SelectedItem="{Binding SelectedInterfaceKitSequence}"
                             EditValue="{ Binding 
@@ -354,10 +378,10 @@
 
                     <dxlc:LayoutItem VerticalAlignment="Stretch" HorizontalAlignment="Right">
                         <Button 
-		                        Command="{Binding PlayInterfaceKitSequenceCommand }"
-                                CommandParameter="false"
-		                        Content="{Binding PlayInterfaceKitSequenceContent, FallbackValue='PlaySequence' }"
-		                        ToolTip="{Binding PlayInterfaceKitSequenceToolTip, FallbackValue='PlayInterfaceKitSequence ToolTip' }" />
+		                    Command="{Binding PlayInterfaceKitSequenceCommand }"
+                            CommandParameter="false"
+		                    Content="{Binding PlayInterfaceKitSequenceContent, FallbackValue='PlaySequence' }"
+		                    ToolTip="{Binding PlayInterfaceKitSequenceToolTip, FallbackValue='PlayInterfaceKitSequence ToolTip' }" />
                     </dxlc:LayoutItem>
                     
                 </dxlc:LayoutGroup>
@@ -368,17 +392,25 @@
                               Orientation="Horizontal" VerticalAlignment="Top"
                               IsCollapsible="True" IsCollapsed="False" >
 
-                <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
-                        
-                    <dxlc:LayoutItem Label="Sequence Config File" HorizontalAlignment="Left" >
-                        <dxe:ComboBoxEdit
+                <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+
+                        <dxlc:LayoutItem Label="Sequence Config File" HorizontalAlignment="Left" >
+                            <dxe:ComboBoxEdit
                             ItemsSource="{Binding StepperSequenceConfigFiles}"
                             SelectedItem="{Binding StepperSequenceConfigFileName}" >
-                        </dxe:ComboBoxEdit>
-                    </dxlc:LayoutItem>
+                            </dxe:ComboBoxEdit>
+                        </dxlc:LayoutItem>
+
+                        <Button Content="+" FontWeight="ExtraBlack" Padding="-5,-10,-5,-5" FontSize="20" Foreground="Red" 
+                                Command="{Binding ReloadStepperSequenceConfigFilesCommand}"
+                                ToolTip="Reload Config File" Width="20"/>
+
+                    </dxlc:LayoutGroup>
 
                     <dxlc:LayoutItem Label="Selected Sequence(s)" HorizontalAlignment="Left" >
-                        <dxe:ComboBoxEdit
+                        <dxe:ComboBoxEdit Width="250" TextWrapping="Wrap"
                             ItemsSource="{Binding StepperSequences}" DisplayMember="Name" 
                             SelectedItem="{Binding SelectedStepperSequence}"
                             EditValue="{ Binding 
@@ -452,10 +484,10 @@
 
                 <dxlc:LayoutItem VerticalAlignment="Stretch" HorizontalAlignment="Right">
                     <Button 
-		                        Command="{Binding PlayStepperSequenceCommand }"
-                                CommandParameter="false"
-		                        Content="{Binding PlayStepperSequenceContent, FallbackValue='PlaySequence' }"
-		                        ToolTip="{Binding PlayStepperSequenceToolTip, FallbackValue='PlayStepperSequence ToolTip' }" />
+		                Command="{Binding PlayStepperSequenceCommand }"
+                        CommandParameter="false"
+		                Content="{Binding PlayStepperSequenceContent, FallbackValue='PlaySequence' }"
+		                ToolTip="{Binding PlayStepperSequenceToolTip, FallbackValue='PlayStepperSequence ToolTip' }" />
                 </dxlc:LayoutItem>
 
             </dxlc:LayoutGroup>
