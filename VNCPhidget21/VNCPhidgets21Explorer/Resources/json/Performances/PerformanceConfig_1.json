@@ -1,90 +1,74 @@
 {
-  "Name": "PerformanceConfig_1",
-  "Description": "Simple AS and IK routines",
+  "Name": "PerformanceConfig NAME",
+  "Description": "PerformanceConfig DESCRIPTION",
   "Performances": [
-    {
-      "Name": "AS 0-1-2 4-5-6 Sequential",
-      "Description": "Servo 0,1,2 and Servo 4,5,6 in Sequence",
-      "Loops": 2,
-      "PlayInParallel": false,
-      "PerformanceSequences": [
-        { "Name": "Servo0", "SequenceType": "AS" },
-        { "Name": "Servo4", "SequenceType": "AS"}
-      ],
-      "NextPerformance": null
+    //
+    // psbc2_AS DDog Skull
+    //
+    { 
+        "Name": "Disengage All Servos and Close Phidget",
+        "Description": "End the Show2",
+        "PerformanceSequences": [
+            { "Name": "DisEngage All Servos", "SequenceType": "AS" }
+        ]
     },
     {
-      "Name": "AS 0-1-2 4-5-6 Parallel",
-      "Description": "Servo 0,1,2 and Servo 4,5,6 in Parallel",
-      "Loops": 2,
-      "PlayInParallel": true,
-      "PerformanceSequences": [
-        { "Name": "Servo0", "SequenceType": "AS" },
-        { "Name": "Servo4", "SequenceType": "AS" }
-      ],
-      "NextPerformance": null
-    },
-    {
-      "Name": "IK Performance 1",
-      "Description": "psbc{21,22,23}_SequenceIK 1 in Parallel",
-      "Loops": 1,
-      "PlayInParallel": true,
-      "PerformanceSequences": [
-        {
-          "Name": "psbc21_SequenceIK 1",
-          "SequenceType": "IK",
-          "Loops": 1
-        },
-        {
-          "Name": "psbc22_SequenceIK 1",
-          "SequenceType": "IK",
-          "Loops": 1
-        },
-        {
-          "Name": "psbc23_SequenceIK 1",
-          "SequenceType": "IK",
-          "Loops": 1
-        }
-      ],
-      "NextPerformance": null
-    },
-    {
-      "Name": "AS and IK",
-      "Description": "psbc21_{SequenceServo0,SequenceIK 1} in Sequence",
+      "Name": "psbc22_AS Move Skull 1",
+      "Description": "",
       "Loops": 1,
       "PlayInParallel": false,
       "PerformanceSequences": [
-        {
-          "Name": "psbc21_SequenceServo0",
-          "SequenceType": "AS",
-          "Loops": 1
-        },
-        {
-          "Name": "psbc21_SequenceIK 1",
-          "SequenceType": "IK",
-          "Loops": 1
-        }
+        { "Name": "Center Skull", "SequenceType": "AS"},
+        { "Name": "Skull Look Up Right", "SequenceType": "AS" },
       ],
-      "NextPerformance": null
+     "NextPerformance":
+     { 
+        "Name": "Disengage All Servos and Close Phidget",
+        "Description": "Play All the Performances",
+        "PerformanceSequences": [
+            { "Name": "DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
+        ]
+      }
     },
     {
-      "Name": "AS and IK Parallel",
-      "Description": "psbc21_{SequenceServo0,SequenceIK 1} in Parallel",
+      "Name": "psbc22_AS Move Skull 2",
+      "Description": "",
       "Loops": 1,
-      "PlayInParallel": true,
+      "PlayInParallel": false,
       "PerformanceSequences": [
-        {
-          "Name": "psbc21_SequenceServo0",
-          "SequenceType": "AS",
-          "Loops": 1
-        },
-        {
-          "Name": "psbc21_SequenceIK 1",
-          "SequenceType": "IK",
-          "Loops": 1
-        }
+        { "Name": "Center Skull", "SequenceType": "AS"},
+        { "Name": "Skull Look Down Left", "SequenceType": "AS" },
       ],
-      "NextPerformance": null
-    }
+     "NextPerformance":
+     { 
+        "Name": "Disengage All Servos and Close Phidget",
+        "Description": "Play All the Performances",
+        "PerformanceSequences": [
+            { "Name": "DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
+        ]
+      }
+    },
+    {
+      "Name": "psbc22_AS Move Skull 3",
+      "Description": "",
+      "Loops": 1,
+      "PlayInParallel": false,
+      "PerformanceSequences": [
+        { "Name": "Center Skull", "SequenceType": "AS"},
+        { "Name": "Skull Look Up Right", "SequenceType": "AS" },
+        { "Name": "Skull Look Up Right", "SequenceType": "AS" },
+        { "Name": "Center Skull", "SequenceType": "AS"},
+        { "Name": "Skull Look Down Left", "SequenceType": "AS" },
+        { "Name": "Center Skull", "SequenceType": "AS"}
+      ],
+     "NextPerformance":
+     { 
+        "Name": "Disengage All Servos and Close Phidget",
+        "Description": "Play All the Performances",
+        "PerformanceSequences": [
+            { "Name": "DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
+        ]
+      }
+    },
   ]
 }

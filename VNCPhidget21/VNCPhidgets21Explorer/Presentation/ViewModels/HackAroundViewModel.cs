@@ -1831,9 +1831,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             try
             {
-                Log.Debug($"InterfaceKitParty2 {ifkEx.Host.IPAddress},{ifkEx.Host.Port} {ifkEx.SerialNumber} sleep:{sleep} loops:{loops}", Common.LOG_CATEGORY);
-
-                //ifkEx.InterfaceKit.OutputChange += Ifk_OutputChange;
+                Log.Debug($"InterfaceKitParty2 {ifkEx.Host.IPAddress},{ifkEx.Host.Port} {ifkEx.SerialNumber} " +
+                    $"sleep:{sleep} loops:{loops}", Common.LOG_CATEGORY);
 
                 InterfaceKitDigitalOutputCollection ifkDigitalOut = ifkEx.InterfaceKit.outputs;
 
@@ -1853,8 +1852,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     ifkDigitalOut[2] = false;
                     Thread.Sleep(sleep);
                 }
-
-                //ifkEx.Close();
             }
             catch (Exception ex)
             {

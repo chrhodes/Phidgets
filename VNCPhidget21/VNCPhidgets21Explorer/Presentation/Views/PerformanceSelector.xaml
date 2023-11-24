@@ -105,14 +105,14 @@
 
                         </dxlc:LayoutGroup>
 
-                        <dxlc:LayoutItem Label="Name" Background="Wheat" >
-                            <dxe:TextEdit Width="250"
+                        <dxlc:LayoutItem Label="Name" Background="Wheat" HorizontalAlignment="Left" >
+                            <dxe:TextEdit Width="300" HorizontalAlignment="Left"
             		            Text="{Binding SelectedPerFormance.Name }">
                             </dxe:TextEdit>
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="Selected Performance(s)" HorizontalAlignment="Left" >
-                            <dxe:ComboBoxEdit Width="250" TextWrapping="Wrap"
+                            <dxe:ComboBoxEdit Width="300" TextWrapping="Wrap"
                                 ItemsSource="{Binding Performances}" DisplayMember="Name" 
                                 SelectedItem="{Binding SelectedPerformance}"
                                 EditValue="{ Binding 
@@ -270,10 +270,10 @@
                     
                     <dxlc:LayoutItem  VerticalAlignment="Stretch" >
                         <Button 
-		                        Command="{Binding PlayAdvancedServoSequenceCommand }"
-                                CommandParameter="false"
-		                        Content="{Binding PlayAdvanceddServoSequenceContent, FallbackValue='PlaySequence' }"
-		                        ToolTip="{Binding PlayAdvanceddServoSequenceToolTip, FallbackValue='PlayAdvancedServoSequence ToolTip' }" />
+		                    Command="{Binding PlayAdvancedServoSequenceCommand }"
+                            CommandParameter="false"
+		                    Content="{Binding PlayAdvanceddServoSequenceContent, FallbackValue='PlaySequence' }"
+		                    ToolTip="{Binding PlayAdvanceddServoSequenceToolTip, FallbackValue='PlayAdvancedServoSequence ToolTip' }" />
                     </dxlc:LayoutItem>
                   
                 </dxlc:LayoutGroup>
@@ -289,9 +289,9 @@
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
                         <dxlc:LayoutItem Label="Sequence Config File" HorizontalAlignment="Left" >
-                            <dxe:ComboBoxEdit
-                            ItemsSource="{Binding InterfaceKitSequenceConfigFiles}"
-                            SelectedItem="{Binding InterfaceKitSequenceConfigFileName}" >
+                            <dxe:ComboBoxEdit Width="300"
+                                ItemsSource="{Binding InterfaceKitSequenceConfigFiles}"
+                                SelectedItem="{Binding InterfaceKitSequenceConfigFileName}" >
                             </dxe:ComboBoxEdit>
                         </dxlc:LayoutItem>
 
@@ -302,7 +302,7 @@
                     </dxlc:LayoutGroup>
 
                     <dxlc:LayoutItem Label="Selected Sequence(s)" HorizontalAlignment="Left" >
-                        <dxe:ComboBoxEdit Width="250" TextWrapping="Wrap"
+                        <dxe:ComboBoxEdit Width="300" TextWrapping="Wrap" 
                             ItemsSource="{Binding InterfaceKitSequences}" DisplayMember="Name" 
                             SelectedItem="{Binding SelectedInterfaceKitSequence}"
                             EditValue="{ Binding 
@@ -374,16 +374,18 @@
     
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+                <dxlc:LayoutGroup View="Group" Orientation="Vertical" HorizontalAlignment="Right" >
 
-                    <dxlc:LayoutItem VerticalAlignment="Stretch" HorizontalAlignment="Right">
+                    <!--Add other common action buttons here-->
+
+                    <dxlc:LayoutItem VerticalAlignment="Stretch">
                         <Button 
 		                    Command="{Binding PlayInterfaceKitSequenceCommand }"
                             CommandParameter="false"
 		                    Content="{Binding PlayInterfaceKitSequenceContent, FallbackValue='PlaySequence' }"
 		                    ToolTip="{Binding PlayInterfaceKitSequenceToolTip, FallbackValue='PlayInterfaceKitSequence ToolTip' }" />
                     </dxlc:LayoutItem>
-                    
+
                 </dxlc:LayoutGroup>
 
             </dxlc:LayoutGroup>
@@ -397,9 +399,9 @@
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
                         <dxlc:LayoutItem Label="Sequence Config File" HorizontalAlignment="Left" >
-                            <dxe:ComboBoxEdit
-                            ItemsSource="{Binding StepperSequenceConfigFiles}"
-                            SelectedItem="{Binding StepperSequenceConfigFileName}" >
+                            <dxe:ComboBoxEdit Width="300"
+                                ItemsSource="{Binding StepperSequenceConfigFiles}"
+                                SelectedItem="{Binding StepperSequenceConfigFileName}" >
                             </dxe:ComboBoxEdit>
                         </dxlc:LayoutItem>
 
@@ -410,7 +412,7 @@
                     </dxlc:LayoutGroup>
 
                     <dxlc:LayoutItem Label="Selected Sequence(s)" HorizontalAlignment="Left" >
-                        <dxe:ComboBoxEdit Width="250" TextWrapping="Wrap"
+                        <dxe:ComboBoxEdit Width="300" TextWrapping="Wrap" 
                             ItemsSource="{Binding StepperSequences}" DisplayMember="Name" 
                             SelectedItem="{Binding SelectedStepperSequence}"
                             EditValue="{ Binding 
@@ -482,15 +484,19 @@
 
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutItem VerticalAlignment="Stretch" HorizontalAlignment="Right">
-                    <Button 
-		                Command="{Binding PlayStepperSequenceCommand }"
-                        CommandParameter="false"
-		                Content="{Binding PlayStepperSequenceContent, FallbackValue='PlaySequence' }"
-		                ToolTip="{Binding PlayStepperSequenceToolTip, FallbackValue='PlayStepperSequence ToolTip' }" />
-                </dxlc:LayoutItem>
+                <dxlc:LayoutGroup View="Group" Orientation="Vertical" HorizontalAlignment="Right" >
 
-            </dxlc:LayoutGroup>
+                    <dxlc:LayoutItem VerticalAlignment="Stretch">
+                        <Button 
+		                    Command="{Binding PlayStepperSequenceCommand }"
+                            CommandParameter="false"
+		                    Content="{Binding PlayStepperSequenceContent, FallbackValue='PlaySequence' }"
+		                    ToolTip="{Binding PlayStepperSequenceToolTip, FallbackValue='PlayStepperSequence ToolTip' }" />
+                    </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
 
         </dxlc:LayoutGroup>
 
