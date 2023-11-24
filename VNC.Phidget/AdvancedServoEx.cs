@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.Serialization;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -46,7 +43,7 @@ namespace VNC.Phidget
 
             var advancedServoSequence = args.AdvancedServoSequence;
 
-            PlaySequenceLoops(advancedServoSequence);
+            RunSequenceLoops(advancedServoSequence);
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -229,7 +226,7 @@ namespace VNC.Phidget
 
         #endregion
 
-        #region Event Handlers (None)
+        #region Event Handlers
 
         private void AdvancedServo_CurrentChange(object sender, CurrentChangeEventArgs e)
         {
@@ -338,52 +335,36 @@ namespace VNC.Phidget
             Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public async Task PlaySequenceLoops(AdvancedServoSequence advancedServoSequence)
+        public async Task RunSequenceLoops(AdvancedServoSequence advancedServoSequence)
         {
             try
             {
                 Int64 startTicks = 0;
 
-                if (LogPerformanceSequence)
-                {
-                    startTicks = Log.Trace($"Enter loops:{advancedServoSequence.Loops}" +
-                        $" actions[]:{advancedServoSequence.Actions?.Count()}", Common.LOG_CATEGORY);
-                }
+                if (LogPerformanceSequence) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
 
                 if (advancedServoSequence.Actions is not null)
                 {
-                    for (int i = 0; i < advancedServoSequence.Loops; i++)
+                    for (int sequenceLoop = 0; sequenceLoop < advancedServoSequence.Loops; sequenceLoop++)
                     {
-                        if (LogPerformanceSequence) Log.Trace($"Loop:{i + 1}", Common.LOG_CATEGORY);
+                        //if (LogPerformanceSequence) Log.Trace($"Loop:{loop + 1}", Common.LOG_CATEGORY);
 
                         if (advancedServoSequence.PlayActionsInParallel)
                         {
-                            //PlaySequenceActionsInParallel(advancedServoSequence);
-                            Parallel.ForEach(advancedServoSequence.Actions, action =>
+                            if (LogPerformanceSequence) Log.Trace($"Parallel Actions Loop:{sequenceLoop + 1}", Common.LOG_CATEGORY);
+
+                            Parallel.ForEach(advancedServoSequence.Actions, async action =>
                             {
-                                try
-                                {
-                                    PerformAction(action);
-                                }
-                                catch (Exception ex)
-                                {
-                                    Log.Error(ex, Common.LOG_CATEGORY);
-                                }
+                                await PerformAction(action);
                             });
                         }
                         else
                         {
-                            //await PlaySequenceActionsInSequence(advancedServoSequence);
+                            if (LogPerformanceSequence) Log.Trace($"Sequential Actions Loop:{sequenceLoop + 1}", Common.LOG_CATEGORY);
+
                             foreach (AdvancedServoServoAction action in advancedServoSequence.Actions)
                             {
-                                try
-                                {
-                                    await PerformAction(action);
-                                }
-                                catch (Exception ex)
-                                {
-                                    Log.Error(ex, Common.LOG_CATEGORY);
-                                }
+                                await PerformAction(action);
                             }
                         }
                     }
@@ -396,7 +377,6 @@ namespace VNC.Phidget
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
         }
-
 
         #endregion
 

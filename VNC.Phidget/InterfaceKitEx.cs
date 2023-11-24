@@ -2,7 +2,6 @@
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Documents;
 
 using Phidgets;
 using Phidgets.Events;
@@ -127,8 +126,9 @@ namespace VNC.Phidget
                 }
             }
         }
-        
-        public bool LogPerformanceStep { get; set; }
+
+        public bool LogPerformanceSequence { get; set; }
+        public bool LogPerformanceAction { get; set; }
 
         #endregion
 
@@ -136,50 +136,41 @@ namespace VNC.Phidget
 
         private void InterfaceKitk_SensorChange(object sender, SensorChangeEventArgs e)
         {
-            //if (LogSensorChangeEvents)
-            //{
-                try
-                {
-                    Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
-                    Log.EVENT_HANDLER($"SensorChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
-                }
-            //}
+            try
+            {
+                Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
+                Log.EVENT_HANDLER($"SensorChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
         }
 
         private void InterfaceKitk_OutputChange(object sender, Phidgets.Events.OutputChangeEventArgs e)
         {
-            //if (LogOutputChangeEvents)
-            //{
-                try
-                {
-                    Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
-                    Log.EVENT_HANDLER($"OutputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
-                }
-            //}
+            try
+            {
+                Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
+                Log.EVENT_HANDLER($"OutputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
         }
 
         private void InterfaceKitk_InputChange(object sender, Phidgets.Events.InputChangeEventArgs e)
         {
-            //if (LogInputChangeEvents)
-            //{
-                try
-                {
-                    Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
-                    Log.EVENT_HANDLER($"InputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
-                }
-            //}
+            try
+            {
+                Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
+                Log.EVENT_HANDLER($"InputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
         }
 
         #endregion
@@ -202,8 +193,14 @@ namespace VNC.Phidget
             {
                 InterfaceKit.open(SerialNumber, Host.IPAddress, Host.Port);
 
-                if (timeOut is not null) { InterfaceKit.waitForAttachment((Int32)timeOut); }
-                else { InterfaceKit.waitForAttachment(); }
+                if (timeOut is not null)
+                { 
+                    InterfaceKit.waitForAttachment((Int32)timeOut); 
+                }
+                else 
+                { 
+                    InterfaceKit.waitForAttachment(); 
+                }
             }
             catch (Exception ex)
             {
@@ -236,25 +233,42 @@ namespace VNC.Phidget
             Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public async Task PlaySequenceLoops(InterfaceKitSequence interfaceKitSequence)
+        public async Task RunSequenceLoops(InterfaceKitSequence interfaceKitSequence)
         {
-            Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
-
-            for (int i = 0; i < interfaceKitSequence.Loops; i++)
+            try
             {
-                Log.Trace($"Loop:{i + 1}", Common.LOG_CATEGORY);
+                Int64 startTicks = 0;
 
-                if (interfaceKitSequence.PlayActionsInParallel)
+                if (LogPerformanceSequence) Log.Trace("Enter", Common.LOG_CATEGORY);
+
+
+                if (interfaceKitSequence.Actions is not null)
                 {
-                    await PlaySequenceActionsInParallel(interfaceKitSequence);
+                    for (int sequenceLoop = 0; sequenceLoop < interfaceKitSequence.Loops; sequenceLoop++)
+                    {
+                        Log.Trace($"Loop:{sequenceLoop + 1}", Common.LOG_CATEGORY);
+
+                        if (interfaceKitSequence.PlayActionsInParallel)
+                        {
+                            if (LogPerformanceSequence) Log.Trace($"Parallel Actions Loop:{sequenceLoop + 1}", Common.LOG_CATEGORY);
+
+                            await PlaySequenceActionsInParallel(interfaceKitSequence);
+                        }
+                        else
+                        {
+                            if (LogPerformanceSequence) Log.Trace($"Sequential Actions Loop:{sequenceLoop + 1}", Common.LOG_CATEGORY);
+
+                            await PlaySequenceActionsInSequence(interfaceKitSequence);
+                        }
+                    }
                 }
-                else
-                {
-                    await PlaySequenceActionsInSequence(interfaceKitSequence);
-                }
+
+                if (LogPerformanceSequence) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
             }
-
-            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
         }
 
         #endregion
@@ -265,6 +279,10 @@ namespace VNC.Phidget
         #endregion
 
         #region Private Methods (None)
+
+        // TODO(crhodes)
+        // Create Array of DigitalInputs, DigitalOutputs, SensorInputs
+        // Follow something like ServoMinMax and InitialServoLimits in AdvancedServoEX
 
         private async Task PlaySequenceActionsInParallel(InterfaceKitSequence interfaceKitSequence)
         {
@@ -277,7 +295,7 @@ namespace VNC.Phidget
 
             Parallel.ForEach(interfaceKitSequence.Actions, action =>
             {
-                if (LogPerformanceStep)
+                if (LogPerformanceSequence)
                 {
                     Log.Trace($"DigitalOut Index:{action.DigitalOutIndex} DigitalOut:{action.DigitalOut} Duration:{action.Duration}", Common.LOG_CATEGORY);
                 }
@@ -330,7 +348,8 @@ namespace VNC.Phidget
 
         private async Task PlaySequenceActionsInSequence(InterfaceKitSequence interfaceKitSequence)
         {
-            Int64 startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (LogPerformanceSequence) Log.Trace($"Enter", Common.LOG_CATEGORY);
 
             // TODO(crhodes)
             // Maybe just pass the interfaceKit into Action and get this there
@@ -339,7 +358,7 @@ namespace VNC.Phidget
 
             foreach (InterfaceKitAction action in interfaceKitSequence.Actions)
             {
-                if (LogPerformanceStep)
+                if (LogPerformanceSequence)
                 {
                     Log.Trace($"DigitalOut Index:{action.DigitalOutIndex} DigitalOut:{action.DigitalOut} Duration:{action.Duration}", Common.LOG_CATEGORY);
                 }
@@ -387,7 +406,7 @@ namespace VNC.Phidget
                 }
             }
 
-            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+            if (LogPerformanceSequence) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void PerformAction(InterfaceKitDigitalOutputCollection ifkDigitalOutputs, InterfaceKitAction action, Int32 index)
@@ -396,7 +415,7 @@ namespace VNC.Phidget
 
             StringBuilder actionMessage = new StringBuilder();
 
-            if (LogPerformanceStep)
+            if (LogPerformanceAction)
             {
                 startTicks = Log.Trace($"Enter index:{index}", Common.LOG_CATEGORY);
                 actionMessage.Append($"index:{index}");
@@ -406,14 +425,14 @@ namespace VNC.Phidget
             {
                 if (action.DigitalOut is not null)
                 { 
-                    if (LogPerformanceStep) actionMessage.Append($" digitalOut:{action.DigitalOut}");
+                    if (LogPerformanceAction) actionMessage.Append($" digitalOut:{action.DigitalOut}");
 
                     ifkDigitalOutputs[index] = (Boolean)action.DigitalOut; 
                 }
 
                 if (action.Duration > 0)
                 {
-                    if (LogPerformanceStep) actionMessage.Append($" duration:>{action.Duration}<");
+                    if (LogPerformanceAction) actionMessage.Append($" duration:>{action.Duration}<");
 
                     Thread.Sleep((Int32)action.Duration);
                 }
@@ -424,7 +443,7 @@ namespace VNC.Phidget
             }
             finally
             {
-                if (LogPerformanceStep)
+                if (LogPerformanceAction)
                 {
                     Log.Trace($"Exit {actionMessage}", Common.LOG_CATEGORY, startTicks);
                 }

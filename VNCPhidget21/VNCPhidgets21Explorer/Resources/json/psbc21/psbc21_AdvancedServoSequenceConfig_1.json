@@ -177,9 +177,7 @@
     // DisEngage All Servos
     //
     { 
-      "Name": "DisEngage All Servos",
-      "Description": "DisEngage 0,1,2,3,4,5,6,7",
-      "Loops": 1,
+      "Name": "DisEngage All Servos", "Description": "DisEngage 0,1,2,3,4,5,6,7", "Loops": 1,
       "PlayActionsInParallel": true,
       "NextSequence": null,
       "Host": {
@@ -284,9 +282,7 @@
     // Servo0
     //
     {
-      "Name": "Servo0",
-      "Description": "SEQUENCE DESCRIPTION",
-      "Loops": 1,
+      "Name": "Servo0", "Description": "SEQUENCE DESCRIPTION", "Loops": 1,
       "PlayActionsInParallel": false,
       "NextSequence": { "Name": "Servo1", "SequenceType": "AS" },
       "Host": {
@@ -309,9 +305,7 @@
     // Servo1
     //
     {
-      "Name": "Servo1",
-      "Description": "SEQUENCE DESCRIPTION",
-      "Loops": 1,
+      "Name": "Servo1", "Description": "SEQUENCE DESCRIPTION", "Loops": 1,
       "PlayActionsInParallel": false,
       "NextSequence": { "Name": "Servo2", "SequenceType": "AS" },
       "Host": null,

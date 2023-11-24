@@ -22,9 +22,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="VNCPhidget21.Configuration.AdvancedServoServoAction">
-    <Position X="5.25" Y="16.5" Width="2.75" />
+    <Position X="5.25" Y="16.5" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAIACAAAAAAABAQAAAAAAAAAQACAEAAAAAAA=</HashCode>
+      <HashCode>AAAQAkAAAIACAAAAAAABAQAAAAAAEAAQACAEAAAAAEA=</HashCode>
       <FileName>AdvancedServo\AdvancedServoServoAction.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -50,14 +50,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="VNCPhidget21.Configuration.InterfaceKitAction">
-    <Position X="5.25" Y="19.25" Width="2.5" />
+    <Position X="5.25" Y="20" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAACAAAIAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
       <FileName>InterfaceKit\InterfaceKitAction.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VNCPhidget21.Configuration.InterfaceKitSequence">
-    <Position X="0.5" Y="19.25" Width="2.75" />
+    <Position X="0.5" Y="19.75" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>InterfaceKit\InterfaceKitSequence.cs</FileName>
@@ -87,7 +87,7 @@
   <Class Name="VNCPhidget21.Configuration.PerformanceSequence">
     <Position X="4.75" Y="9" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAYAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAYAAAAAAAA=</HashCode>
       <FileName>Performance\PerformanceSequence.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -106,14 +106,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="VNCPhidget21.Configuration.StepperAction">
-    <Position X="5.25" Y="21.75" Width="2.75" />
+    <Position X="5.25" Y="22" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAEAAAIACAAAAAAABAQAAAAAAAAAQACAEAAAAAAA=</HashCode>
       <FileName>Stepper\StepperAction.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VNCPhidget21.Configuration.StepperSequence">
-    <Position X="0.5" Y="21.75" Width="2.75" />
+    <Position X="0.5" Y="22" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Stepper\StepperSequence.cs</FileName>
@@ -127,9 +127,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="VNCPhidget21.Configuration.PhidgetSequenceBase">
-    <Position X="2" Y="24" Width="3.5" />
+    <Position X="2" Y="25.25" Width="3.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAIAAAAAwAAAAAAAAAAQAAAAACAAAAAQAAAAAAAA=</HashCode>
+      <HashCode>AAAAAIAAAAAwAAAAAAAAAAQAAAAACAAAAEQAAAAAAAA=</HashCode>
       <FileName>PhidgetSequenceBase.cs</FileName>
     </TypeIdentifier>
   </Class>

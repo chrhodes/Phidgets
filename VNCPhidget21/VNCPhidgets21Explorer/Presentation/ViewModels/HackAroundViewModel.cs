@@ -955,13 +955,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             foreach (VNCPhidgetConfig.Performance performance in SelectedPerformances)
             {
-                if (LogPerformanceSequence) Log.Trace($"Running performance:{performance.Name} description:{performance.Description}", Common.LOG_CATEGORY);
+                if (LogPerformanceSequence) Log.Trace($"Playing performance:{performance.Name} description:{performance.Description}", Common.LOG_CATEGORY);
 
-                PlayPerformanceLoops(performance);
+                RunPerformanceLoops(performance);
 
                 if (performance.NextPerformance is not null)
                 {
-                    PlayPerformanceLoops(performance.NextPerformance);
+                    RunPerformanceLoops(performance.NextPerformance);
                 }
             }
 
@@ -993,76 +993,123 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private async Task PlayPerformanceLoops(VNCPhidgetConfig.Performance performance)
+        private async Task RunPerformanceLoops(VNCPhidgetConfig.Performance performance)
         {
-            //Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
 
-            for (int i = 0; i < performance.Loops; i++)
+            if (LogPerformanceSequence) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+
+            for (int performanceLoop = 0; performanceLoop < performance.Loops; performanceLoop++)
             {
-                if (LogPerformanceSequence) Log.Trace($"Loop:{i + 1}", Common.LOG_CATEGORY);
+                //if (LogPerformanceSequence) Log.Trace($"Running Loop:{i + 1}", Common.LOG_CATEGORY);
 
                 if (performance.PlayInParallel)
                 {
-                    PlayPerformanceSequencesInParallel(performance.PerformanceSequences);
+                    //if (LogPerformanceSequence) Log.Trace($"Loop:{loop + 1}", Common.LOG_CATEGORY);
+                    //RunPerformanceSequencesInParallel(performance.PerformanceSequences);
+                    Parallel.ForEach(performance.PerformanceSequences, async sequence =>
+                    {
+                        //if (LogPerformanceSequence)
+                        //{
+                        //    Log.Trace($"Running sequence:{sequence.Name} type:{sequence.SequenceType}", Common.LOG_CATEGORY);
+                        //}
+                        if (LogPerformanceSequence) Log.Trace($"Parallel Actions performanceLoop:{performanceLoop + 1}", Common.LOG_CATEGORY);
+                        //try
+                        //{
+                        for (int sequenceLoop = 0; sequenceLoop < sequence.Loops; sequenceLoop++)
+                        {
+                            if (LogPerformanceSequence) Log.Trace($"Sequential Actions Loop:{performanceLoop + 1}", Common.LOG_CATEGORY);
+
+                            await ExecutePerformanceSequence(sequence);
+                        }
+                        //}
+                        //catch (Exception ex)
+                        //{
+                        //    Log.Error(ex, Common.LOG_CATEGORY);
+                        //}
+                    });
                 }
                 else
                 {
-                    PlayPerformanceSequencesInSequence(performance.PerformanceSequences);
-                }
-            }
+                    
 
-            //Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-        private async void PlayPerformanceSequencesInParallel(VNCPhidgetConfig.PerformanceSequence[] performanceSequences)
-        {
-            //Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
-
-            Parallel.ForEach(performanceSequences, async sequence =>
-            {
-                if (LogPerformanceAction)
-                {
-                    Log.Trace($"Running sequence:{sequence.Name} type:{sequence.SequenceType}", Common.LOG_CATEGORY);
-                }
-
-                try
-                {
-                    await ExecutePerformanceSequence(sequence);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
-                }
-            });
-
-            //Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private async void PlayPerformanceSequencesInSequence(VNCPhidgetConfig.PerformanceSequence[] performanceSequences)
-        {
-            //Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
-
-            foreach (VNCPhidgetConfig.PerformanceSequence sequence in performanceSequences)
-            {
-                if (LogPerformanceSequence)
-                {
-                    Log.Trace($"Running sequence:{sequence.Name} type:{sequence.SequenceType} loops:{sequence.Loops}", Common.LOG_CATEGORY);
-                }
-
-                try
-                {
-                    for (int i = 0; i < sequence.Loops; i++)
+                    //RunPerformanceSequencesInSequence(performance.PerformanceSequences);
+                    foreach (VNCPhidgetConfig.PerformanceSequence sequence in performance.PerformanceSequences)
                     {
-                        ExecutePerformanceSequence(sequence);
-                    }
+                        //if (LogPerformanceSequence)
+                        //{
+                        //    Log.Trace($"Running sequence:{sequence.Name} type:{sequence.SequenceType} loops:{sequence.Loops}", Common.LOG_CATEGORY);
+                        //}
+
+                        //try
+                        //{
+                        for (int sequenceLoop = 0; sequenceLoop < sequence.Loops; sequenceLoop++)
+                        {
+                            if (LogPerformanceSequence) Log.Trace($"Sequential Actions Loop:{performanceLoop + 1}", Common.LOG_CATEGORY);
+
+                            await ExecutePerformanceSequence(sequence);
+                        }
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    Log.Error(ex, Common.LOG_CATEGORY);
+                    //}
                 }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
                 }
             }
 
-            //Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+            if (LogPerformanceSequence) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
+        //private async void RunPerformanceSequencesInParallel(VNCPhidgetConfig.PerformanceSequence[] performanceSequences)
+        //{
+        //    //Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
+
+        //    Parallel.ForEach(performanceSequences, async sequence =>
+        //    {
+        //        if (LogPerformanceSequence)
+        //        {
+        //            Log.Trace($"Running sequence:{sequence.Name} type:{sequence.SequenceType}", Common.LOG_CATEGORY);
+        //        }
+
+        //        try
+        //        {
+        //            await ExecutePerformanceSequence(sequence);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Log.Error(ex, Common.LOG_CATEGORY);
+        //        }
+        //    });
+
+        //    //Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+        //}
+
+        //private async void RunPerformanceSequencesInSequence(VNCPhidgetConfig.PerformanceSequence[] performanceSequences)
+        //{
+        //    //Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
+
+        //    foreach (VNCPhidgetConfig.PerformanceSequence sequence in performanceSequences)
+        //    {
+        //        if (LogPerformanceSequence)
+        //        {
+        //            Log.Trace($"Running sequence:{sequence.Name} type:{sequence.SequenceType} loops:{sequence.Loops}", Common.LOG_CATEGORY);
+        //        }
+
+        //        try
+        //        {
+        //            for (int i = 0; i < sequence.Loops; i++)
+        //            {
+        //                ExecutePerformanceSequence(sequence);
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Log.Error(ex, Common.LOG_CATEGORY);
+        //        }
+        //    }
+
+        //    //Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+        //}
 
         //private void PerformServoAction(AdvancedServoServo servo, AdvancedServoServoAction action, Int32 index)
         //{
@@ -1149,16 +1196,17 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             foreach (VNCPhidgetConfig.AdvancedServoSequence sequence in SelectedAdvancedServoSequences)
             {
-                Log.Trace($"Playing sequence:{sequence.Name}", Common.LOG_CATEGORY);
+                if (LogPerformanceSequence) Log.Trace($"Playing sequence:{sequence.Name}", Common.LOG_CATEGORY);
 
                 try
                 {
-                    VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence = new VNCPhidgetConfig.PerformanceSequence
-                    {
-                        Name = sequence.Name,
-                        SequenceType = "AS",
-                        Loops = sequence.Loops
-                    };
+                    VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence = 
+                        new VNCPhidgetConfig.PerformanceSequence
+                        {
+                            Name = sequence.Name,
+                            SequenceType = "AS",
+                            Loops = sequence.Loops
+                        };
 
                     for (int i = 0; i < sequence.Loops; i++)
                     {
@@ -1237,7 +1285,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                                     var advancedServoHost = OpenAdvancedServoHost(advancedServoSequence.Host);
 
                                     //nextPerformanceSequence = await advancedServo.PlayAdvancedServoSequenceLoops(advancedServoSequence);
-                                    await advancedServoHost.PlaySequenceLoops(advancedServoSequence);
+                                    await advancedServoHost.RunSequenceLoops(advancedServoSequence);
 
                                     nextPerformanceSequence = advancedServoSequence.NextSequence;
 
@@ -1258,7 +1306,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                                         advancedServoSequence = AvailableAdvancedServoSequences[nextPerformanceSequence.Name];
    
-                                        await advancedServoHost.PlaySequenceLoops(advancedServoSequence);
+                                        await advancedServoHost.RunSequenceLoops(advancedServoSequence);
 
                                         nextPerformanceSequence = advancedServoSequence.NextSequence;
                                     }
@@ -1297,7 +1345,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                                 {
                                     var interfaceKitHost = OpenInterfaceKitHost(interfaceKitSequence.Host);
 
-                                    await interfaceKitHost.PlaySequenceLoops(interfaceKitSequence);
+                                    await interfaceKitHost.RunSequenceLoops(interfaceKitSequence);
 
                                     nextPerformanceSequence = interfaceKitSequence.NextSequence;
 
@@ -1318,7 +1366,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                                         interfaceKitSequence = AvailableInterfaceKitSequences[nextPerformanceSequence.Name];
 
-                                        await interfaceKitHost.PlaySequenceLoops(interfaceKitSequence);
+                                        await interfaceKitHost.RunSequenceLoops(interfaceKitSequence);
 
                                         nextPerformanceSequence = interfaceKitSequence.NextSequence;
                                     }
@@ -1474,11 +1522,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Do something amazing.
             Message = "Cool, you called EngageAndCenter";
 
-            VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence = new VNCPhidgetConfig.PerformanceSequence
-            {
-                Name = "Engage and Center Servos",
-                SequenceType = "AS"
-            };
+            VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence = 
+                new VNCPhidgetConfig.PerformanceSequence
+                {
+                    Name = "Engage and Center Servos",
+                    SequenceType = "AS"
+                };
 
             await ExecutePerformanceSequence(nextPerformanceSequence);
 
@@ -1625,7 +1674,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             interfaceKitHost.LogOutputChangeEvents = LogOutputChangeEvents;
             interfaceKitHost.LogSensorChangeEvents = LogSensorChangeEvents;
 
-            interfaceKitHost.LogPerformanceStep = LogPerformanceAction;
+            interfaceKitHost.LogPerformanceAction = LogPerformanceAction;
 
             interfaceKitHost.Open();
 
