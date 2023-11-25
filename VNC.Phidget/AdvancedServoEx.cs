@@ -61,11 +61,11 @@ namespace VNC.Phidget
 
         internal override void Phidget_Attach(object sender, AttachEventArgs e)
         {
-            SaveInitialServoLimits();
+            SetInitialServoType();
             base.Phidget_Attach(sender, e);
         }
 
-        private void SaveInitialServoLimits()
+        private void SetInitialServoType()
         {
             try
             {
@@ -80,8 +80,15 @@ namespace VNC.Phidget
 
                     if (LogPerformanceAction)
                     {
-                        Log.Trace($"servo:{i} positionMin:{servo.PositionMin} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY); 
+                        Log.Trace($"servo:{i} type:{servo.Type} positionMin:{servo.PositionMin} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY); 
                     }
+
+                    // NOTE(crhodes)
+                    // Force the initial Servo Type to avoid opening something that has
+                    // been set to an unexpected Type, e.g. RAW_us_MODE
+
+                    servo.Type = ServoServo.ServoType.DEFAULT;
+
                     // NOTE(crhodes)
                     // We do not need to save Accleration and Velocity Min,Max,
                     // they cannot change
@@ -173,7 +180,7 @@ namespace VNC.Phidget
                 if (_logPositionChangeEvents = value)
                 {
                     AdvancedServo.PositionChange += AdvancedServo_PositionChange;
-                }
+                }   
                 else
                 {
                     AdvancedServo.PositionChange -= AdvancedServo_PositionChange;
@@ -233,7 +240,9 @@ namespace VNC.Phidget
             try
             {
                 Phidgets.AdvancedServo advancedServo = sender as Phidgets.AdvancedServo;
-                Log.EVENT_HANDLER($"CurrentChange {advancedServo.Address},{advancedServo.SerialNumber} - Index:{e.Index} Value:{e.Current}", Common.LOG_CATEGORY);
+                Phidgets.AdvancedServoServo servo = advancedServo.servos[e.Index];
+                Log.EVENT_HANDLER($"CurrentChange {advancedServo.Address},{advancedServo.SerialNumber},servo:{e.Index}" +
+                    $" - current:{e.Current:00.000} - stopped:{servo.Stopped}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
@@ -243,10 +252,14 @@ namespace VNC.Phidget
 
         private void AdvancedServo_PositionChange(object sender, PositionChangeEventArgs e)
         {
+
             try
             {
                 Phidgets.AdvancedServo advancedServo = sender as Phidgets.AdvancedServo;
-                Log.EVENT_HANDLER($"PositionChange {advancedServo.Address},{advancedServo.SerialNumber} - Index:{e.Index} Value:{e.Position}", Common.LOG_CATEGORY);
+                Phidgets.AdvancedServoServo servo = advancedServo.servos[e.Index];
+                Log.EVENT_HANDLER($"PositionChange {advancedServo.Address},{advancedServo.SerialNumber},servo:{e.Index}" +
+                    $" - velocity:{servo.Velocity,8:0.000} position:{e.Position,7:0.000} current:{servo.Current:00.000}" +
+                    $" - stopped:{servo.Stopped} ", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
@@ -259,7 +272,10 @@ namespace VNC.Phidget
             try
             {
                 Phidgets.AdvancedServo advancedServo = sender as Phidgets.AdvancedServo;
-                Log.EVENT_HANDLER($"VelocityChange {advancedServo.Address},{advancedServo.SerialNumber} - Index:{e.Index} Value:{e.Velocity}", Common.LOG_CATEGORY);
+                Phidgets.AdvancedServoServo servo = advancedServo.servos[e.Index];
+                Log.EVENT_HANDLER($"VelocityChange {advancedServo.Address},{advancedServo.SerialNumber},servo:{e.Index}" +
+                    $" - velocity:{e.Velocity,8:0.000} position:{servo.Position,7:0.000} current:{servo.Current:00.000}" +
+                    $" - stopped:{servo.Stopped}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
@@ -408,14 +424,6 @@ namespace VNC.Phidget
                 {
                     if (LogPerformanceAction) actionMessage.Append($" servoType:>{action.ServoType}<");
 
-                    // HACK(crhodes)
-                    // Setting the servo.Type does not change values if same type
-
-                    // First set to a differnt type and
-                    servo.Type = Phidgets.ServoServo.ServoType.RAW_us_MODE;
-                    // then wait for things to update and
-                    Thread.Sleep(1);
-                    // then back to desired type so we get fresh defaults.
                     servo.Type = (Phidgets.ServoServo.ServoType)action.ServoType;
 
                     // Save the refreshed values
@@ -692,26 +700,34 @@ namespace VNC.Phidget
             {
                 if (LogPerformanceAction)
                 {
-                    Log.Trace($"Begin index:{index} position:{position}" +
+                    Log.Trace($"Begin servo:{index} position:{position}" +
                         $" servo.PositionMin:{servo.PositionMin}" +
                         $" servo.PositionMax:{servo.PositionMax}" +
                         $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
                         $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
                 }
 
-                if (position < servo.PositionMin) position = servo.PositionMin;
-                else if (position > servo.PositionMax) position = servo.PositionMax;
-                    
+                if (position < servo.PositionMin)
+                {
+                    position = servo.PositionMin;
+                }
+                else if (position > servo.PositionMax)
+                {
+                    position = servo.PositionMax;
+                }
+
+                // TODO(crhodes)
+                // Maybe save last postion set and not bother checking servo.Position is same
                 if (servo.Position != position) servo.Position = position;
 
                 if (LogPerformanceAction)
                 {
-                    Log.Trace($"End index:{index} servo.Position:{position}", Common.LOG_CATEGORY);
+                    Log.Trace($"End servo:{index} servo.Position:{position}", Common.LOG_CATEGORY);
                 }
             }
             catch (PhidgetException pex)
             {
-                Log.Error(pex, Common.LOG_CATEGORY);
+                //Log.Error(pex, Common.LOG_CATEGORY);
                 Log.Error($"code:{pex.Code} description:{pex.Description} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
@@ -733,29 +749,12 @@ namespace VNC.Phidget
             {
                 if (LogPerformanceAction)
                 {
-                    Log.Trace($"Begin index:{index} position:{position}" +
+                    Log.Trace($"Begin servo:{index} position:{position}" +
                         $" servo.PositionMin:{servo.PositionMin}" +
                         $" servo.PositionMax:{servo.PositionMax}" +
                         $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
                         $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
                 }
-
-                //if (position < 0)
-                //{
-                //    servo.PositionMax = InitialServoLimits[index].DevicePositionMax;
-                //}
-                //else if (position < servo.PositionMin)
-                //{ 
-                //    servo.PositionMax = servo.PositionMin; 
-                //}
-                //else if (position > InitialServoLimits[index].DevicePositionMax)
-                //{ 
-                //    servo.PositionMax = InitialServoLimits[index].DevicePositionMax; 
-                //}
-                //else
-                //{
-                //    servo.PositionMax = position; 
-                //}
 
                 if (position < 0)
                 {
@@ -774,12 +773,12 @@ namespace VNC.Phidget
 
                 if (LogPerformanceAction)
                 {
-                    Log.Trace($"End index:{index} position:{position} servo.PositionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
+                    Log.Trace($"End servo:{index} position:{position} servo.PositionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
                 }
             }
             catch (PhidgetException pex)
             {
-                Log.Error(pex, Common.LOG_CATEGORY);
+                //Log.Error(pex, Common.LOG_CATEGORY);
                 Log.Error($"code:{pex.Code} description:{pex.Description} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
@@ -797,23 +796,23 @@ namespace VNC.Phidget
             {
                 if (LogPerformanceAction)
                 {
-                    startTicks = Log.Trace($"Enter index:{index}", Common.LOG_CATEGORY);
+                    startTicks = Log.Trace($"Enter servo:{index} engaged:{servo.Engaged}", Common.LOG_CATEGORY);
                 }
 
-                while (servo.Engaged != true)
+                do
                 {
                     Thread.Sleep(1);
                     msSleep++;
-                }
+                } while (servo.Engaged != true);
 
                 if (LogPerformanceAction)
                 {
-                    Log.Trace($"Exit index:{index} ms:{msSleep}", Common.LOG_CATEGORY, startTicks);
+                    Log.Trace($"Exit servo:{index} engaged:{servo.Engaged} ms:{msSleep}", Common.LOG_CATEGORY, startTicks);
                 }
             }
             catch (PhidgetException pex)
             {
-                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"code:{pex.Code} description:{pex.Description} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
@@ -830,7 +829,7 @@ namespace VNC.Phidget
             {
                 if (LogPerformanceAction)
                 {
-                    startTicks = Log.Trace($"Enter index:{index} targetPosition:{targetPosition}", Common.LOG_CATEGORY);
+                    startTicks = Log.Trace($"Enter servo:{index} targetPosition:{targetPosition}", Common.LOG_CATEGORY);
                 }
 
                 //while (servo.Position != targetPosition)
@@ -843,19 +842,25 @@ namespace VNC.Phidget
                 // Maybe poll velocity != 0
                 do
                 {
+                    if (LogPerformanceAction) Log.Trace($"servo:{index}" +
+                        $" - velocity:{servo.Velocity,8:0.000} position:{servo.Position,7:0.000}" +
+                        $" - stopped:{servo.Stopped}", Common.LOG_CATEGORY);
                     Thread.Sleep(1);
                     msSleep++;
                 }
                 while (servo.Position != targetPosition);
+                // NOTE(crhodes)
+                // Stopped does not mean we got there.
+                //while (! servo.Stopped ) ;
 
                 if (LogPerformanceAction)
                 {
-                    Log.Trace($"Exit index:{index} ms:{msSleep}", Common.LOG_CATEGORY, startTicks);
+                    Log.Trace($"Exit servo:{index} servoPosition:{servo.Position,7:0.000} ms:{msSleep}", Common.LOG_CATEGORY, startTicks);
                 }
             }
             catch (PhidgetException pex)
             {
-                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"code:{pex.Code} description:{pex.Description} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {

@@ -7,7 +7,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
     public enum ServoType
     {
         DEFAULT,
-        //RAW_us_MODE,
+        RAW_us_MODE,
         HITEC_HS322HD,
         HITEC_HS5245MG,
         HITEC_805BB,

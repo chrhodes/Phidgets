@@ -1740,11 +1740,16 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 await Task.Run(() =>
                 {
+                    //Parallel.Invoke(
+                    //     () => InterfaceKitParty2(ifkEx21, 500, 5 * Repeats),
+                    //     () => InterfaceKitParty2(ifkEx22, 250, 10 * Repeats),
+                    //     () => InterfaceKitParty2(ifkEx23, 125, 20 * Repeats),
+                    //     () => InterfaceKitParty2(ifkEx11, 333, 8 * Repeats)
                     Parallel.Invoke(
-                         () => InterfaceKitParty2(ifkEx21, 500, 5 * Repeats),
-                         () => InterfaceKitParty2(ifkEx22, 250, 10 * Repeats),
-                         () => InterfaceKitParty2(ifkEx23, 125, 20 * Repeats),
-                         () => InterfaceKitParty2(ifkEx11, 333, 8 * Repeats)
+                         () => InterfaceKitParty2(ifkEx21, 10, 5 * Repeats),
+                         () => InterfaceKitParty2(ifkEx22, 10, 10 * Repeats),
+                         () => InterfaceKitParty2(ifkEx23, 10, 20 * Repeats),
+                         () => InterfaceKitParty2(ifkEx11, 10, 8 * Repeats)
                      );
                 });
 

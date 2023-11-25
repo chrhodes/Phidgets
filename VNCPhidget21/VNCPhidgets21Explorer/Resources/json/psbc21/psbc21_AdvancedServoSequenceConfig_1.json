@@ -90,7 +90,7 @@
       ]
     },
     //
-    // All Servos to PositionMin Slowly
+    // All Servos to PositionMin Slow
     //
     { 
       "Name": "All Servos to PositionMin Slow",
@@ -118,7 +118,7 @@
       ]
     },
     //
-    // All Servos to PositionMax
+    // All Servos to PositionMax Slow
     //
     { 
       "Name": "All Servos to PositionMax Slow",
@@ -242,10 +242,11 @@
         ]
       },
       "Actions": [
-        { "ServoIndex": 0, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 200 },
-        { "ServoIndex": 0, "TargetPosition": 133 },
-        { "ServoIndex": 0, "RelativePosition": -20 },
-        { "ServoIndex": 0, "RelativePosition": -20 },
+        { "ServoIndex": 0, "Engaged": true, "Acceleration": 500, "VelocityLimit": 100 },
+        { "ServoIndex": 0, "RelativePosition": -30 },
+        { "ServoIndex": 0, "RelativePosition": -30 },
+        { "ServoIndex": 0, "RelativePosition": 10  },
+        { "ServoIndex": 0, "RelativePosition": 10  },
         { "ServoIndex": 0, "RelativePosition": 10  },
         { "ServoIndex": 0, "RelativePosition": 10  },
         { "ServoIndex": 0, "RelativePosition": 10  },

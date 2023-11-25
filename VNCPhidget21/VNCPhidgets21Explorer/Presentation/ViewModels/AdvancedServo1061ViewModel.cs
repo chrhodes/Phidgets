@@ -586,51 +586,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             var index = e.Index;
             var velocity = e.Velocity;
 
-            if (LogVelocityChangeEvents)
-            {
-                Log.Trace($"VelocityChange index:{index} velocity:{velocity} position:{servo.servos[index].Position}", Common.LOG_CATEGORY);
-            }
+            //if (LogVelocityChangeEvents)
+            //{
+            //    Log.Trace($"VelocityChange index:{index} velocity:{velocity} position:{servo.servos[index].Position}", Common.LOG_CATEGORY);
+            //}
 
             AdvancedServoProperties[e.Index].Velocity = e.Velocity;
-
-            //switch (e.Index)
-            //{
-            //    case 0:
-            //        AdvancedServoProperties[e.Index].Velocity = e.Velocity;
-            //        break;
-
-            //    case 1:
-            //        Velocity_S1 = e.Velocity;
-            //        break;
-
-            //    case 2:
-            //        Velocity_S2 = e.Velocity;
-            //        break;
-
-            //    case 3:
-            //        Velocity_S3 = e.Velocity;
-            //        break;
-
-            //    case 4:
-            //        Velocity_S4 = e.Velocity;
-            //        break;
-
-            //    case 5:
-            //        Velocity_S5 = e.Velocity;
-            //        break;
-
-            //    case 6:
-            //        Velocity_S6 = e.Velocity;
-            //        break;
-
-            //    case 7:
-            //        Velocity_S7 = e.Velocity;
-            //        break;
-
-            //    default:
-            //        Log.Trace($"VelocityChange index:{index} value:{velocity}", Common.LOG_CATEGORY);
-            //        break;
-            //}
         }
 
         private void ActiveAdvancedServo_PositionChange(object sender, PositionChangeEventArgs e)
@@ -639,60 +600,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             var index = e.Index;
             var position = e.Position;
 
-            if (LogPositionChangeEvents)
-            {
-                Log.Trace($"PositionChange index:{index} position:{position} velocity:{servo.servos[index].Velocity}", Common.LOG_CATEGORY);
-            }
+            //if (LogPositionChangeEvents)
+            //{
+            //    Log.Trace($"PositionChange index:{index} position:{position} velocity:{servo.servos[index].Velocity}", Common.LOG_CATEGORY);
+            //}
 
             AdvancedServoProperties[e.Index].Position = e.Position;
             AdvancedServoProperties[e.Index].Stopped = servo.servos[e.Index].Stopped;
-
-            //switch (e.Index)
-            //{
-            //    case 0:
-            //        AdvancedServoProperties[0].Position = e.Position;
-            //        AdvancedServoProperties[0].Stopped = servo.servos[e.Index].Stopped;
-            //        break;
-
-            //    case 1:
-            //        Position_S1 = e.Position;
-            //        Stopped_S1 = servo.servos[e.Index].Stopped;
-            //        break;
-
-            //    case 2:
-            //        Position_S2 = e.Position;
-            //        Stopped_S2 = servo.servos[e.Index].Stopped;
-            //        break;
-
-            //    case 3:
-            //        Position_S3 = e.Position;
-            //        Stopped_S3 = servo.servos[e.Index].Stopped;
-            //        break;
-
-            //    case 4:
-            //        Position_S4 = e.Position;
-            //        Stopped_S4 = servo.servos[e.Index].Stopped;
-            //        break;
-
-            //    case 5:
-            //        Position_S5 = e.Position;
-            //        Stopped_S5 = servo.servos[e.Index].Stopped;
-            //        break;
-
-            //    case 6:
-            //        Position_S6 = e.Position;
-            //        Stopped_S6 = servo.servos[e.Index].Stopped;
-            //        break;
-
-            //    case 7:
-            //        Position_S7 = e.Position;
-            //        Stopped_S7 = servo.servos[e.Index].Stopped;
-            //        break;
-
-            //    default:
-            //        Log.Trace($"PositionChange index:{index} value:{position}", Common.LOG_CATEGORY);
-            //        break;
-            //}
         }
 
         private void ActiveAdvancedServo_CurrentChange(object sender, CurrentChangeEventArgs e)
@@ -702,49 +616,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             var current = e.Current;
 
             AdvancedServoProperties[e.Index].Current = e.Current;
-
-            //switch (e.Index)
-            //{
-            //    case 0:
-            //        AdvancedServoProperties[0].Current = e.Current;
-            //        break;
-
-            //    case 1:
-            //        Current_S1 = e.Current;
-            //        break;
-
-            //    case 2:
-            //        Current_S2 = e.Current;
-            //        break;
-
-            //    case 3:
-            //        Current_S3 = e.Current;
-            //        break;
-
-            //    case 4:
-            //        Current_S4 = e.Current;
-            //        break;
-
-            //    case 5:
-            //        Current_S5 = e.Current;
-            //        break;
-
-            //    case 6:
-            //        Current_S6 = e.Current;
-            //        break;
-
-            //    case 7:
-            //        Current_S7 = e.Current;
-            //        break;
-
-            //    default:
-            //        // NOTE(crhodes)
-            //        // Constant stream of this.
-            //        // Do we really need to monitor current?
-
-            //        //Log.Trace($"CurrentChange index:{index} value:{current}", Common.LOG_CATEGORY);
-            //        break;
-            //}
         }
 
         public bool OpenAdvancedServoCanExecute()

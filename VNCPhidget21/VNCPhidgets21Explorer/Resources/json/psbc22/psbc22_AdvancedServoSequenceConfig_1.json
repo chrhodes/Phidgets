@@ -25,9 +25,9 @@
         "Steppers": null
       },
       "Actions": [
-        { "ServoIndex": 0, "ServoType": 4, "Engaged": true, "TargetPosition": 86, "Acceleration": 250, "VelocityLimit": 100 },
-        { "ServoIndex": 1, "ServoType": 4, "Engaged": true, "TargetPosition": 90, "Acceleration": 250, "VelocityLimit": 100 },
-        { "ServoIndex": 2, "ServoType": 4, "Engaged": true, "TargetPosition": 90, "Acceleration": 250, "VelocityLimit": 100 },
+        { "ServoIndex": 0, "ServoType": 5, "Engaged": true, "TargetPosition": 86, "Acceleration": 250, "VelocityLimit": 100 },
+        { "ServoIndex": 1, "ServoType": 5, "Engaged": true, "TargetPosition": 90, "Acceleration": 250, "VelocityLimit": 100 },
+        { "ServoIndex": 2, "ServoType": 5, "Engaged": true, "TargetPosition": 90, "Acceleration": 250, "VelocityLimit": 100 },
       ]
     },
     //
@@ -48,9 +48,9 @@
         "Steppers": null
       },
       "Actions": [
-        { "ServoIndex": 0, "ServoType": 4, "Engaged": true, "RelativePosition": 10, "Acceleration": 250, "VelocityLimit": 80 },
-        { "ServoIndex": 1, "ServoType": 4, "Engaged": true, "RelativePosition": 10, "Acceleration": 250, "VelocityLimit": 80 },
-        { "ServoIndex": 2, "ServoType": 4, "Engaged": true, "RelativePosition": 10, "Acceleration": 250, "VelocityLimit": 80 },
+        { "ServoIndex": 0, "Engaged": true, "RelativePosition": 5, "Acceleration": 250, "VelocityLimit": 80 },
+        { "ServoIndex": 1, "Engaged": true, "RelativePosition": 5, "Acceleration": 250, "VelocityLimit": 80 },
+        { "ServoIndex": 2, "Engaged": true, "RelativePosition": 5, "Acceleration": 250, "VelocityLimit": 80 },
       ]
     },   
         //
@@ -71,9 +71,9 @@
         "Steppers": null
       },
       "Actions": [
-        { "ServoIndex": 0, "ServoType": 4, "Engaged": true, "RelativePosition": -10, "Acceleration": 250, "VelocityLimit": 80 },
-        { "ServoIndex": 1, "ServoType": 4, "Engaged": true, "RelativePosition": -10, "Acceleration": 250, "VelocityLimit": 80 },
-        { "ServoIndex": 2, "ServoType": 4, "Engaged": true, "RelativePosition": -10, "Acceleration": 250, "VelocityLimit": 80 },
+        { "ServoIndex": 0, "Engaged": true, "RelativePosition": -5, "Acceleration": 250, "VelocityLimit": 80 },
+        { "ServoIndex": 1, "Engaged": true, "RelativePosition": -5, "Acceleration": 250, "VelocityLimit": 80 },
+        { "ServoIndex": 2, "Engaged": true, "RelativePosition": -5, "Acceleration": 250, "VelocityLimit": 80 },
       ]
     },    
     //
