@@ -8,93 +8,20 @@
     //     () => InterfaceKitParty2(ifkEx11, 333, 8 * Repeats)
     // );
     //
-    // Center Skull
-    //
-    { 
-      "Name": "Center Skull",
-      "Description": "Center Skull",
-      "Loops": 1,
-      "PlayActionsInParallel": true,
-      "NextSequence": null,
-      "Host": {
-        "Name": "psbc23", "IPAddress": "192.168.150.23", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ],
-        "InterfaceKits": null,
-        "Steppers": null
-      },
-      "Actions": [
-        { "ServoIndex": 0, "ServoType": 4, "Engaged": true, "TargetPosition": 86, "Acceleration": 250, "VelocityLimit": 100 },
-        { "ServoIndex": 1, "ServoType": 4, "Engaged": true, "TargetPosition": 90, "Acceleration": 250, "VelocityLimit": 100 },
-        { "ServoIndex": 2, "ServoType": 4, "Engaged": true, "TargetPosition": 90, "Acceleration": 250, "VelocityLimit": 100 },
-      ]
-    },
-    //
-    // Skull Look Up Right
-    //
-    { 
-      "Name": "Skull Look Up Right",
-      "Description": "Skull Look Up Right",
-      "Loops": 1,
-      "PlayActionsInParallel": true,
-      "NextSequence": null,
-      "Host": {
-        "Name": "psbc23", "IPAddress": "192.168.150.23", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ],
-        "InterfaceKits": null,
-        "Steppers": null
-      },
-      "Actions": [
-        { "ServoIndex": 0, "ServoType": 4, "Engaged": true, "RelativePosition": 10, "Acceleration": 250, "VelocityLimit": 80 },
-        { "ServoIndex": 1, "ServoType": 4, "Engaged": true, "RelativePosition": 10, "Acceleration": 250, "VelocityLimit": 80 },
-        { "ServoIndex": 2, "ServoType": 4, "Engaged": true, "RelativePosition": 10, "Acceleration": 250, "VelocityLimit": 80 },
-      ]
-    },   
-        //
-    // Skull Look Down Left
-    //
-    { 
-      "Name": "Skull Look Down Left",
-      "Description": "Skull Look Down Left",
-      "Loops": 1,
-      "PlayActionsInParallel": true,
-      "NextSequence": null,
-      "Host": {
-        "Name": "psbc23", "IPAddress": "192.168.150.23", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ],
-        "InterfaceKits": null,
-        "Steppers": null
-      },
-      "Actions": [
-        { "ServoIndex": 0, "ServoType": 4, "Engaged": true, "RelativePosition": -10, "Acceleration": 250, "VelocityLimit": 80 },
-        { "ServoIndex": 1, "ServoType": 4, "Engaged": true, "RelativePosition": -10, "Acceleration": 250, "VelocityLimit": 80 },
-        { "ServoIndex": 2, "ServoType": 4, "Engaged": true, "RelativePosition": -10, "Acceleration": 250, "VelocityLimit": 80 },
-      ]
-    },    
-    //
     // Center Servos
     //
     { 
-      "Name": "Engage and Center Servos",
-      "Description": "Engage and Center Servos 0,1,2 4,5,6",
-      "Loops": 1,
-      "PlayActionsInParallel": true,
+      "Name": "Engage and Center Servos", "Description": "Engage and Center Servos 0,1,2 4,5,6", 
+      "Loops": 1, "PlayActionsInParallel": true,
       "NextSequence": null,
       "Host": {
         "Name": "psbc23", "IPAddress": "192.168.150.23", "Port": 5001, "Enable": true,
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
-        ],
-        "InterfaceKits": null,
-        "Steppers": null
+        ]
       },
       "Actions": [
-        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 117 },
+        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 115 },
         { "ServoIndex": 1, "Engaged": true, "TargetPosition": 113 },
         { "ServoIndex": 2, "Engaged": true, "TargetPosition": 123 },
         { "ServoIndex": 4, "Engaged": true, "TargetPosition": 115 },
@@ -107,17 +34,14 @@
     //
     { 
       "Name": "All Servos to PositionMin",
-      "Description": "Parallel Set all servos to PostionMin (-1) (based on TYPE) VelocityLimit: 500",
-      "Loops": 1,
-      "PlayActionsInParallel": true,
+      "Description": "Parallel Set all servos to PostionMin (-1) (based on TYPE) in Parallel VelocityLimit: 500",
+      "Loops": 1, "PlayActionsInParallel": true,
       "NextSequence": null,
       "Host": {
         "Name": "psbc23", "IPAddress": "192.168.150.23", "Port": 5001, "Enable": true,
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
-        ],
-        "InterfaceKits": null,
-        "Steppers": null
+        ]
       },
       "Actions": [
         { "ServoIndex": 0, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 500 },
@@ -135,17 +59,14 @@
     //
     { 
       "Name": "All Servos to PositionMax",
-      "Description": "Set all servos to PostionMax (-2) (based on TYPE) VelocityLimit: 1000",
-      "Loops": 1,
-      "PlayActionsInParallel": false,
+      "Description": "Set all servos to PostionMax (-2) (based on TYPE) Sequentially VelocityLimit: 1000",
+      "Loops": 1, "PlayActionsInParallel": false,
       "NextSequence": null,
       "Host": {
         "Name": "psbc23", "IPAddress": "192.168.150.23", "Port": 5001, "Enable": true,
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
-        ],
-        "InterfaceKits": null,
-        "Steppers": null
+        ]
       },
       "Actions": [
         { "ServoIndex": 0, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 1000 },
@@ -159,21 +80,18 @@
       ]
     },
     //
-    // All Servos to PositionMin Slowly
+    // All Servos to PositionMin Slow
     //
     { 
       "Name": "All Servos to PositionMin Slow",
       "Description": "Parallel Set all servos to PostionMin Slowly (-1) (based on TYPE) VelocityLimit: 75",
-      "Loops": 1,
-      "PlayActionsInParallel": true,
+      "Loops": 1, "PlayActionsInParallel": true,
       "NextSequence": null,
       "Host": {
         "Name": "psbc23", "IPAddress": "192.168.150.23", "Port": 5001, "Enable": true,
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
-        ],
-        "InterfaceKits": null,
-        "Steppers": null
+        ]
       },
       "Actions": [
         { "ServoIndex": 0, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 75 },
@@ -187,21 +105,18 @@
       ]
     },
     //
-    // All Servos to PositionMax
+    // All Servos to PositionMax Slow
     //
     { 
       "Name": "All Servos to PositionMax Slow",
       "Description": "Set all servos to PostionMax Slowly (-2) (based on TYPE) VelocityLimit: 100",
-      "Loops": 1,
-      "PlayActionsInParallel": false,
+      "Loops": 1, "PlayActionsInParallel": false,
       "NextSequence": null,
       "Host": {
         "Name": "psbc23", "IPAddress": "192.168.150.23", "Port": 5001, "Enable": true,
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
-        ],
-        "InterfaceKits": null,
-        "Steppers": null
+        ]
       },
       "Actions": [
         { "ServoIndex": 0, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 100 },
@@ -218,18 +133,14 @@
     // Engage All Servos
     //
     { 
-      "Name": "Engage All Servos",
-      "Description": "Engage 0,1,2,3,4,5,6,7",
-      "Loops": 1,
-      "PlayActionsInParallel": true,
+      "Name": "Engage All Servos", "Description": "Engage 0,1,2,3,4,5,6,7",
+      "Loops": 1, "PlayActionsInParallel": true,
       "NextSequence": null,
       "Host": {
         "Name": "psbc23", "IPAddress": "192.168.150.23", "Port": 5001, "Enable": true,
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
-        ],
-        "InterfaceKits": null,
-        "Steppers": null
+        ]
       },
       "Actions": [
         { "ServoIndex": 0, "Engaged": true },
@@ -246,18 +157,14 @@
     // DisEngage All Servos
     //
     { 
-      "Name": "DisEngage All Servos",
-      "Description": "DisEngage 0,1,2,3,4,5,6,7",
-      "Loops": 1,
-      "PlayActionsInParallel": true,
+      "Name": "DisEngage All Servos", "Description": "DisEngage 0,1,2,3,4,5,6,7", 
+      "Loops": 1, "PlayActionsInParallel": true,
       "NextSequence": null,
       "Host": {
         "Name": "psbc23", "IPAddress": "192.168.150.23", "Port": 5001, "Enable": true,
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
-        ],
-        "InterfaceKits": null,
-        "Steppers": null
+        ]
       },
       "Actions": [
         { "ServoIndex": 0, "Engaged": false },
@@ -275,17 +182,14 @@
     //
     { 
       "Name": "Reset Position Limits (RPL)",
-      "Description": "Resets PositionMin and PositionMax to device defaults",
+      "Description": "Resets PositionMin and PositionMax to defaults for DEFAULT device",
       "UsageNotes" : "Can be called with Servos not Engaged",
-      "Loops": 1,
-      "PlayActionsInParallel": false,
+      "Loops": 1, "PlayActionsInParallel": false,
       "Host": {
         "Name": "psbc23", "IPAddress": "192.168.150.23", "Port": 5001, "Enable": true,
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
-        ],
-        "InterfaceKits": null,
-        "Steppers": null
+        ]
       },
       "Actions": [
         { "ServoIndex": 0, "ServoType": 0, "PositionMin": -1, "PositionMax": -1 },
@@ -302,10 +206,8 @@
     // Relative Test
     //
     {
-      "Name": "Relative Test",
-      "Description": "SEQUENCE DESCRIPTION",
-      "Loops": 1,
-      "PlayActionsInParallel": false,
+      "Name": "Relative Test", "Description": "Test Relative Position Action",
+      "Loops": 1, "PlayActionsInParallel": false,
       "Host": {
         "Name": "psbc23", "IPAddress": "192.168.150.23", "Port": 5001, "Enable": true,
         "AdvancedServos": [
@@ -313,39 +215,15 @@
         ]
       },
       "Actions": [
-        { "ServoIndex": 0, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 200 },
-        { "ServoIndex": 0, "TargetPosition": 133 },
-        { "ServoIndex": 0, "RelativePosition": -20 },
-        { "ServoIndex": 0, "RelativePosition": -20 },
+        { "ServoIndex": 0, "Engaged": true, "Acceleration": 500, "VelocityLimit": 100 },
+        { "ServoIndex": 0, "RelativePosition": -30 },
+        { "ServoIndex": 0, "RelativePosition": -30 },
         { "ServoIndex": 0, "RelativePosition": 10  },
         { "ServoIndex": 0, "RelativePosition": 10  },
         { "ServoIndex": 0, "RelativePosition": 10  },
         { "ServoIndex": 0, "RelativePosition": 10  },
-        { "ServoIndex": 0, "Engaged": false  }
-      ]
-    },
-    //
-    // Servo0B
-    //
-    {
-      "Name": "Servo0B",
-      "Description": "SEQUENCE DESCRIPTION",
-      "Loops": 1,
-      "PlayActionsInParallel": false,
-      //"NextSequence": { "Name": "Servo1", "SequenceType": "AS" },
-      "Host": {
-        "Name": "psbc23", "IPAddress": "192.168.150.23", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 593480, "Open": true }
-        ]
-      },
-      "Actions": [
-        { "ServoIndex": 0, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 200 },
-        { "ServoIndex": 0, "TargetPosition": 90 },
-        { "ServoIndex": 0, "TargetPosition": 100 },
-        { "ServoIndex": 0, "TargetPosition": 110 },
-        { "ServoIndex": 0, "TargetPosition": 100  },
-        { "ServoIndex": 0, "TargetPosition": 90 },
+        { "ServoIndex": 0, "RelativePosition": 10  },
+        { "ServoIndex": 0, "RelativePosition": 10  },
         { "ServoIndex": 0, "Engaged": false  }
       ]
     },
@@ -353,10 +231,8 @@
     // Servo0
     //
     {
-      "Name": "Servo0",
-      "Description": "SEQUENCE DESCRIPTION",
-      "Loops": 1,
-      "PlayActionsInParallel": false,
+      "Name": "Servo0", "Description": "SEQUENCE DESCRIPTION", 
+      "Loops": 1, "PlayActionsInParallel": false,
       "NextSequence": { "Name": "Servo1", "SequenceType": "AS" },
       "Host": {
         "Name": "psbc23", "IPAddress": "192.168.150.23", "Port": 5001, "Enable": true,
@@ -379,11 +255,7 @@
     //
     {
       "Name": "Servo1",
-      "Description": "SEQUENCE DESCRIPTION",
-      "Loops": 1,
-      "PlayActionsInParallel": false,
       "NextSequence": { "Name": "Servo2", "SequenceType": "AS" },
-      "Host": null,
       "Actions": [
         { "ServoIndex": 1, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 200 },
         { "ServoIndex": 1, "TargetPosition": 90 },
@@ -399,11 +271,7 @@
     //
     {
       "Name": "Servo2",
-      "Description": "SEQUENCE DESCRIPTION",
-      "Loops": 1,
-      "PlayActionsInParallel": false,
       "NextSequence": { "Name": "psbc23_Sequence ServoFin", "SequenceType": "AS" },
-      "Host": null,
       "Actions": [
         { "ServoIndex": 2, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 200 },
         { "ServoIndex": 2, "TargetPosition": 90 },
@@ -419,7 +287,7 @@
     //
     {
       "Name": "psbc23_Sequence ServoFin",
-      "Description": "SEQUENCE DESCRIPTION",
+      "Description": "Disenage Servos {0.1.2}",
       "Loops": 1,
       "PlayActionsInParallel": false,
       "NextSequence": null,
@@ -435,9 +303,7 @@
     //
     {
       "Name": "Servo4",
-      "Description": "SEQUENCE DESCRIPTION",
-      "Loops": 1,
-      "PlayActionsInParallel": false,
+      "Description": "Moves Servo 4, then 5, then 6 using NextSequence",
       "NextSequence": { "Name": "Servo5", "SequenceType": "AS" },
       "Host": {
         "Name": "psbc23", "IPAddress": "192.168.150.23", "Port": 5001, "Enable": true,
@@ -460,11 +326,7 @@
     //
     {
       "Name": "Servo5",
-      "Description": "SEQUENCE DESCRIPTION",
-      "Loops": 1,
-      "PlayActionsInParallel": false,
       "NextSequence": { "Name": "Servo6", "SequenceType": "AS" },
-      "Host": null,
       "Actions": [
         { "ServoIndex": 5, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 200 },
         { "ServoIndex": 5, "TargetPosition": 90 },
@@ -480,11 +342,7 @@
     //
     {
       "Name": "Servo6",
-      "Description": "SEQUENCE DESCRIPTION",
-      "Loops": 1,
-      "PlayActionsInParallel": false,
       "NextSequence": { "Name": "psbc23_Sequence ServoFin", "SequenceType": "AS" },
-      "Host": null,
       "Actions": [
         { "ServoIndex": 6, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 200 },
         { "ServoIndex": 6, "TargetPosition": 90 },
@@ -501,19 +359,15 @@
     //
     //********************************************************************************
     {
-      "Name": "Parallel All (PA)",
-      "Description": "SEQUENCE DESCRIPTION",
+      "Name": "Parallel All (PA)", "Description": "SEQUENCE DESCRIPTION",
       "UsageNotes": "Servos expected to be Centered and Engaged",
-      "Loops": 1,
-      "PlayActionsInParallel": true,
+      "Loops": 1, "PlayActionsInParallel": true,
       "NextSequence": { "Name": "PA Step2", "SequenceType": "AS" },
       "Host": {
         "Name": "psbc23", "IPAddress": "192.168.150.23", "Port": 5001, "Enable": true,
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
-        ],
-        "InterfaceKits": null,
-        "Steppers": null
+        ]
       },
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": -20 },
@@ -525,12 +379,56 @@
       ]
     },
     { 
-      "Name": "PA Step2",
-      "Description": "SEQUENCE DESCRIPTION",
-      "Loops": 1,
-      "PlayActionsInParallel": true,
+      "Name": "PA Step2", "PlayActionsInParallel": true,
       "NextSequence": { "Name": "PA Step3", "SequenceType": "AS" },
-      "Host": null,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": 5 },
+        { "ServoIndex": 1, "RelativePosition": 5 },
+        { "ServoIndex": 2, "RelativePosition": 5 },
+        { "ServoIndex": 4, "RelativePosition": -5 },
+        { "ServoIndex": 5, "RelativePosition": -5 },
+        { "ServoIndex": 6, "RelativePosition": -5 }
+      ]
+    },
+    { 
+      "Name": "PA Step3", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PA Step4", "SequenceType": "AS" },
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": -5 },
+        { "ServoIndex": 1, "RelativePosition": -5 },
+        { "ServoIndex": 2, "RelativePosition": -5 },
+        { "ServoIndex": 4, "RelativePosition": 5},
+        { "ServoIndex": 5, "RelativePosition": 5},
+        { "ServoIndex": 6, "RelativePosition": 5}
+      ]
+    },
+    { 
+      "Name": "PA Step4", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PA Step5", "SequenceType": "AS" },
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": 5 },
+        { "ServoIndex": 1, "RelativePosition": 5 },
+        { "ServoIndex": 2, "RelativePosition": 5 },
+        { "ServoIndex": 4, "RelativePosition": -5 },
+        { "ServoIndex": 5, "RelativePosition": -5 },
+        { "ServoIndex": 6, "RelativePosition": -5 }
+      ]
+    },
+    { 
+      "Name": "PA Step5", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PA Step6", "SequenceType": "AS" },
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": -5 },
+        { "ServoIndex": 1, "RelativePosition": -5 },
+        { "ServoIndex": 2, "RelativePosition": -5 },
+        { "ServoIndex": 4, "RelativePosition": 5},
+        { "ServoIndex": 5, "RelativePosition": 5},
+        { "ServoIndex": 6, "RelativePosition": 5}
+      ]
+    },
+    { 
+      "Name": "PA Step6", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PA Step7", "SequenceType": "AS" },
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": -10 },
         { "ServoIndex": 1, "RelativePosition": -20 },
@@ -541,12 +439,8 @@
       ]
     },
     {
-      "Name": "PA Step3",
-      "Description": "SEQUENCE DESCRIPTION",
-      "Loops": 1,
-      "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "PA Step4", "SequenceType": "AS" },
-      "Host": null,
+      "Name": "PA Step7", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PA Step8", "SequenceType": "AS" },
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": 10 },
         { "ServoIndex": 1, "RelativePosition": 20 },
@@ -557,10 +451,7 @@
       ]
     },
     {
-      "Name": "PA Step4",
-      "Description": "SEQUENCE DESCRIPTION",
-      "Loops": 1,
-      "PlayActionsInParallel": true,
+      "Name": "PA Step8", "PlayActionsInParallel": true,
       //"NextSequence": { "Name": "psbc23_Sequence ServoFin", "SequenceType": "AS" },
       "Host": null,
       "Actions": [
@@ -586,8 +477,6 @@
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
         ],
-        "InterfaceKits": null,
-        "Steppers": null
       },
       "Actions": [
         { "ServoIndex": 0, "PositionMin": -1, "PositionMax": -1 },
@@ -611,8 +500,6 @@
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
         ],
-        "InterfaceKits": null,
-        "Steppers": null
       },
       "Actions": [
         { "ServoIndex": 0, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 },
@@ -639,8 +526,8 @@
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
         ],
-        "InterfaceKits": null,
-        "Steppers": null
+
+
       },
       "Actions": [
         { "ServoIndex": 0, "Engaged": true },
@@ -789,8 +676,8 @@
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
         ],
-        "InterfaceKits": null,
-        "Steppers": null
+
+
       },
       "Actions": [
         { "ServoIndex": 0, "Engaged": true },
@@ -923,8 +810,8 @@
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
         ],
-        "InterfaceKits": null,
-        "Steppers": null
+
+
       },
       "Actions": [
         { "ServoIndex": 0, "Engaged": true },
@@ -1043,8 +930,6 @@
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
         ],
-        "InterfaceKits": null,
-        "Steppers": null
       },
       "Actions": [
         { "ServoIndex": 0, "Engaged": true, "VelocityLimit": 75 },
@@ -1154,156 +1039,62 @@
       //]
     },
     //
-    // Acceleration(6000) VelocityLimit(3125)
+    // Acceleration(10000) VelocityLimit(5000)
     //
     {
-      "Name": "Acceleration(6000) VelocityLimit(3125)",
-      "Description": "SEQUENCE DESCRIPTION",
+      "Name": "Acceleration(10000) VelocityLimit(5000)", "Description": "Set Initial Acceleration and VelocityLimit Servos 0-7",
       "PlayActionsInParallel": true,
-      "NextSequence": null,
       "Host": {
         "Name": "psbc23", "IPAddress": "192.168.150.23", "Port": 5001, "Enable": true,
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
         ],
-        "InterfaceKits": null,
-        "Steppers": null
       },
       "Actions": [
-        { "ServoIndex": 0, "Engaged": true, "Acceleration": 6000, "VelocityLimit": 3125 },
-        { "ServoIndex": 1, "Engaged": true, "Acceleration": 6000, "VelocityLimit": 3125 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 6000, "VelocityLimit": 3125 },
-        { "ServoIndex": 3, "Engaged": true, "Acceleration": 6000, "VelocityLimit": 3125 },
-        { "ServoIndex": 4, "Engaged": true, "Acceleration": 6000, "VelocityLimit": 3125 },
-        { "ServoIndex": 5, "Engaged": true, "Acceleration": 6000, "VelocityLimit": 3125 },
-        { "ServoIndex": 6, "Engaged": true, "Acceleration": 6000, "VelocityLimit": 3125 },
-        { "ServoIndex": 7, "Engaged": true, "Acceleration": 6000, "VelocityLimit": 3125 },
+        { "ServoIndex": 0, "Engaged": true, "Acceleration": 10000, "VelocityLimit": 5000 },
+        { "ServoIndex": 1, "Engaged": true, "Acceleration": 10000, "VelocityLimit": 5000 },
+        { "ServoIndex": 2, "Engaged": true, "Acceleration": 10000, "VelocityLimit": 5000 },
+        { "ServoIndex": 3, "Engaged": true, "Acceleration": 10000, "VelocityLimit": 5000 },
+        { "ServoIndex": 4, "Engaged": true, "Acceleration": 10000, "VelocityLimit": 5000 },
+        { "ServoIndex": 5, "Engaged": true, "Acceleration": 10000, "VelocityLimit": 5000 },
+        { "ServoIndex": 6, "Engaged": true, "Acceleration": 10000, "VelocityLimit": 5000 },
+        { "ServoIndex": 7, "Engaged": true, "Acceleration": 10000, "VelocityLimit": 5000 },
       ]
     },
     //
-    // Acceleration(1250) VelocityLimit(625)
+    // Acceleration(5000) VelocityLimit(1000)
     //
     {
-      "Name": "Acceleration(1250) VelocityLimit(625)",
-      "Description": "SEQUENCE DESCRIPTION",
+      "Name": "Acceleration(5000) VelocityLimit(1000)", "Description": "Set Initial Acceleration and VelocityLimit Servos 0-7",
       "PlayActionsInParallel": true,
-      "NextSequence": null,
       "Host": {
         "Name": "psbc23", "IPAddress": "192.168.150.23", "Port": 5001, "Enable": true,
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
         ],
-        "InterfaceKits": null,
-        "Steppers": null
       },
       "Actions": [
-        { "ServoIndex": 0, "Engaged": true, "Acceleration": 1250, "VelocityLimit": 625 },
-        { "ServoIndex": 1, "Engaged": true, "Acceleration": 1250, "VelocityLimit": 625 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 1250, "VelocityLimit": 625 },
-        { "ServoIndex": 3, "Engaged": true, "Acceleration": 1250, "VelocityLimit": 625 },
-        { "ServoIndex": 4, "Engaged": true, "Acceleration": 1250, "VelocityLimit": 625 },
-        { "ServoIndex": 5, "Engaged": true, "Acceleration": 1250, "VelocityLimit": 625 },
-        { "ServoIndex": 6, "Engaged": true, "Acceleration": 1250, "VelocityLimit": 625 },
-        { "ServoIndex": 7, "Engaged": true, "Acceleration": 1250, "VelocityLimit": 625 }
-      ]
-    },
-    //
-    // Acceleration(250) VelocityLimit(125)
-    //
-    {
-      "Name": "Acceleration(250) VelocityLimit(125)",
-      "Description": "SEQUENCE DESCRIPTION",
-      "PlayActionsInParallel": true,
-      "NextSequence": null,
-      "Host": {
-        "Name": "psbc23", "IPAddress": "192.168.150.23", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
-        ],
-        "InterfaceKits": null,
-        "Steppers": null
-      },
-      "Actions": [
-        { "ServoIndex": 0, "Engaged": true, "Acceleration": 250, "VelocityLimit": 125 },
-        { "ServoIndex": 1, "Engaged": true, "Acceleration": 250, "VelocityLimit": 125 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 250, "VelocityLimit": 125 },
-        { "ServoIndex": 3, "Engaged": true, "Acceleration": 250, "VelocityLimit": 125 },
-        { "ServoIndex": 4, "Engaged": true, "Acceleration": 250, "VelocityLimit": 125 },
-        { "ServoIndex": 5, "Engaged": true, "Acceleration": 250, "VelocityLimit": 125 },
-        { "ServoIndex": 6, "Engaged": true, "Acceleration": 250, "VelocityLimit": 125 },
-        { "ServoIndex": 7, "Engaged": true, "Acceleration": 250, "VelocityLimit": 125 }
-      ]
-    },
-    //
-    // Acceleration(50) VelocityLimit(25)
-    //
-    {
-      "Name": "Acceleration(50) VelocityLimit(25)",
-      "Description": "SEQUENCE DESCRIPTION",
-      "PlayActionsInParallel": true,
-      "NextSequence": null,
-      "Host": {
-        "Name": "psbc23", "IPAddress": "192.168.150.23", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
-        ],
-        "InterfaceKits": null,
-        "Steppers": null
-      },
-      "Actions": [
-        { "ServoIndex": 0, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 },
-        { "ServoIndex": 1, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 },
-        { "ServoIndex": 3, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 },
-        { "ServoIndex": 4, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 },
-        { "ServoIndex": 5, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 },
-        { "ServoIndex": 6, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 },
-        { "ServoIndex": 7, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 }
-      ]
-    },
-    //
-    // Acceleration(500) VelocityLimit(1000)
-    //
-    {
-      "Name": "Acceleration(500) VelocityLimit(1000)",
-      "Description": "Set Initial Acceleration and VelocityLimit 0-7 Servos",
-      "PlayActionsInParallel": true,
-      "NextSequence": null,
-      "Host": {
-        "Name": "psbc23", "IPAddress": "192.168.150.23", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
-        ],
-        "InterfaceKits": null,
-        "Steppers": null
-      },
-      "Actions": [
-        { "ServoIndex": 0, "Engaged": true, "Acceleration": 500, "VelocityLimit": 1000 },
-        { "ServoIndex": 1, "Engaged": true, "Acceleration": 500, "VelocityLimit": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 1000 },
-        { "ServoIndex": 3, "Engaged": true, "Acceleration": 500, "VelocityLimit": 1000 },
-        { "ServoIndex": 4, "Engaged": true, "Acceleration": 500, "VelocityLimit": 1000 },
-        { "ServoIndex": 5, "Engaged": true, "Acceleration": 500, "VelocityLimit": 1000 },
-        { "ServoIndex": 6, "Engaged": true, "Acceleration": 500, "VelocityLimit": 1000 },
-        { "ServoIndex": 7, "Engaged": true, "Acceleration": 500, "VelocityLimit": 1000 }
+        { "ServoIndex": 0, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
+        { "ServoIndex": 1, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
+        { "ServoIndex": 2, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
+        { "ServoIndex": 3, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
+        { "ServoIndex": 4, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
+        { "ServoIndex": 5, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
+        { "ServoIndex": 6, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
+        { "ServoIndex": 7, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
       ]
     },
     //
     // Acceleration(500) VelocityLimit(100)
     //
     {
-      "Name": "Acceleration(500) VelocityLimit(100)",
-      "Description": "Set Initial Acceleration and VelocityLimit 0-7 Servos",
-      "UsageNotes": "Servos must be Engaged before calling.",
+      "Name": "Acceleration(500) VelocityLimit(100)", "Description": "Set Initial Acceleration and VelocityLimit Servos 0-7",
       "PlayActionsInParallel": true,
-      "NextSequence": null,
       "Host": {
         "Name": "psbc23", "IPAddress": "192.168.150.23", "Port": 5001, "Enable": true,
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
         ],
-        "InterfaceKits": null,
-        "Steppers": null
       },
       "Actions": [
         { "ServoIndex": 0, "Engaged": true, "Acceleration": 500, "VelocityLimit": 100 },
@@ -1317,20 +1108,38 @@
       ]
     },
     //
-    // Acceleration(25) VelocityLimit(10)
+    // Acceleration(50) VelocityLimit(25)
     //
     {
-      "Name": "Acceleration(25) VelocityLimit(10)",
-      "Description": "SEQUENCE DESCRIPTION",
+      "Name": "Acceleration(50) VelocityLimit(25)", "Description": "Set Initial Acceleration and VelocityLimit Servos 0-7",
       "PlayActionsInParallel": true,
-      "NextSequence": null,
       "Host": {
         "Name": "psbc23", "IPAddress": "192.168.150.23", "Port": 5001, "Enable": true,
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
         ],
-        "InterfaceKits": null,
-        "Steppers": null
+      },
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 },
+        { "ServoIndex": 1, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 },
+        { "ServoIndex": 2, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 },
+        { "ServoIndex": 3, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 },
+        { "ServoIndex": 4, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 },
+        { "ServoIndex": 5, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 },
+        { "ServoIndex": 6, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 },
+        { "ServoIndex": 7, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 }
+      ]
+    },
+    //
+    // Acceleration(25) VelocityLimit(10)
+    //
+    { "Name": "Acceleration(25) VelocityLimit(10)", "Description": "Set Initial Acceleration and VelocityLimit Servos 0-7",
+      "PlayActionsInParallel": true,
+      "Host": {
+        "Name": "psbc23", "IPAddress": "192.168.150.23", "Port": 5001, "Enable": true,
+        "AdvancedServos": [
+          { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
+        ],
       },
       "Actions": [
         { "ServoIndex": 0, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 },
@@ -1356,8 +1165,8 @@
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
         ],
-        "InterfaceKits": null,
-        "Steppers": null
+
+
       },
       "Actions": [
         { "ServoIndex": 0, "RelativeAcceleration": 500 },
@@ -1383,8 +1192,8 @@
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
         ],
-        "InterfaceKits": null,
-        "Steppers": null
+
+
       },
       "Actions": [
         { "ServoIndex": 0, "RelativeAcceleration": 100 },
@@ -1410,8 +1219,8 @@
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
         ],
-        "InterfaceKits": null,
-        "Steppers": null
+
+
       },
       "Actions": [
         { "ServoIndex": 0, "RelativeAcceleration": 50 },
@@ -1437,8 +1246,8 @@
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
         ],
-        "InterfaceKits": null,
-        "Steppers": null
+
+
       },
       "Actions": [
         { "ServoIndex": 0, "RelativeAcceleration": 10 },
@@ -1464,8 +1273,8 @@
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
         ],
-        "InterfaceKits": null,
-        "Steppers": null
+
+
       },
       "Actions": [
         { "ServoIndex": 0, "RelativeAcceleration": -10 },
@@ -1491,8 +1300,8 @@
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
         ],
-        "InterfaceKits": null,
-        "Steppers": null
+
+
       },
       "Actions": [
         { "ServoIndex": 0, "RelativeAcceleration": -50 },
@@ -1518,8 +1327,8 @@
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
         ],
-        "InterfaceKits": null,
-        "Steppers": null
+
+
       },
       "Actions": [
         { "ServoIndex": 0, "RelativeAcceleration": -100 },
@@ -1545,8 +1354,8 @@
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
         ],
-        "InterfaceKits": null,
-        "Steppers": null
+
+
       },
       "Actions": [
         { "ServoIndex": 0, "RelativeAcceleration": -500 },
@@ -1572,8 +1381,8 @@
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
         ],
-        "InterfaceKits": null,
-        "Steppers": null
+
+
       },
       "Actions": [
         { "ServoIndex": 0, "RelativeVelocityLimit": 500 },
@@ -1599,8 +1408,8 @@
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
         ],
-        "InterfaceKits": null,
-        "Steppers": null
+
+
       },
       "Actions": [
         { "ServoIndex": 0, "RelativeVelocityLimit": 100 },
@@ -1626,8 +1435,8 @@
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
         ],
-        "InterfaceKits": null,
-        "Steppers": null
+
+
       },
       "Actions": [
         { "ServoIndex": 0, "RelativeVelocityLimit": 50 },
@@ -1653,8 +1462,8 @@
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
         ],
-        "InterfaceKits": null,
-        "Steppers": null
+
+
       },
       "Actions": [
         { "ServoIndex": 0, "RelativeVelocityLimit": 10 },
@@ -1680,8 +1489,8 @@
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
         ],
-        "InterfaceKits": null,
-        "Steppers": null
+
+
       },
       "Actions": [
         { "ServoIndex": 0, "RelativeVelocityLimit": -10 },
@@ -1707,8 +1516,8 @@
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
         ],
-        "InterfaceKits": null,
-        "Steppers": null
+
+
       },
       "Actions": [
         { "ServoIndex": 0, "RelativeVelocityLimit": -50 },
@@ -1734,8 +1543,8 @@
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
         ],
-        "InterfaceKits": null,
-        "Steppers": null
+
+
       },
       "Actions": [
         { "ServoIndex": 0, "RelativeVelocityLimit": -100 },
@@ -1761,8 +1570,8 @@
         "AdvancedServos": [
           { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
         ],
-        "InterfaceKits": null,
-        "Steppers": null
+
+
       },
       "Actions": [
         { "ServoIndex": 0, "RelativeVelocityLimit": -500 },

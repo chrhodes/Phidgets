@@ -334,7 +334,7 @@
                         </dxlc:LayoutItem>
 
                         <dxe:ComboBoxEdit x:Name="cbeRelativeAcceleration" 
-                                          HorizontalAlignment="Right" VerticalAlignment="Top"
+                                          HorizontalAlignment="Right" VerticalAlignment="Top" Width="55"
                                           ItemsSource="{Binding RelativeAccelerationAdjustment}">
                         </dxe:ComboBoxEdit>
 
@@ -350,7 +350,7 @@
                         </dxlc:LayoutItem>
 
                         <dxe:ComboBoxEdit x:Name="cbeRelativeVelocityLimit"
-                                          HorizontalAlignment="Right" VerticalAlignment="Top"
+                                          HorizontalAlignment="Right" VerticalAlignment="Top" Width="55"
                             ItemsSource="{Binding RelativeVelocityLimitAdjustment}">
                         </dxe:ComboBoxEdit>
                         

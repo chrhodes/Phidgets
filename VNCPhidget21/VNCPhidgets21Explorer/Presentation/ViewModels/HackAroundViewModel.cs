@@ -83,7 +83,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 @"psbc11\psbc11_AdvancedServoSequenceConfig_1.json",
                 @"psbc21\psbc21_AdvancedServoSequenceConfig_1.json",
                 @"psbc22\psbc22_AdvancedServoSequenceConfig_1.json",
-                @"psbc23\psbc23_AdvancedServoSequenceConfig_1.json"
+                @"psbc23\psbc23_AdvancedServoSequenceConfig_1.json",
+
+                @"localhost\localhost_AdvancedServoSequence_Skulls.json",
+                @"psbc11\psbc11_AdvancedServoSequence_Skulls.json",
+                @"psbc21\psbc21_AdvancedServoSequence_Skulls.json",
+                @"psbc22\psbc22_AdvancedServoSequence_Skulls.json",
+                @"psbc23\psbc23_AdvancedServoSequence_Skulls.json"
             };
 
             return files;
@@ -106,7 +112,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             return files;
         }
 
-        private IEnumerable<string> GetListOfSteppereConfigFiles()
+        private IEnumerable<string> GetListOfStepperConfigFiles()
         {
             // TODO(crhodes)
             // Read a directory and return files, perhaps with RegEx name match
@@ -157,7 +163,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             PerformanceConfigFiles = GetListOfPerformanceConfigFiles();
             AdvancedServoSequenceConfigFiles = GetListOfAdvancedServoConfigFiles();
             InterfaceKitSequenceConfigFiles = GetListOfInterfaceKitConfigFiles();
-            StepperSequenceConfigFiles = GetListOfSteppereConfigFiles();
+            StepperSequenceConfigFiles = GetListOfStepperConfigFiles();
 
             //PerformanceConfigFileName = "performanceconfig.json";
 
