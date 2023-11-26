@@ -25,7 +25,7 @@
         "Steppers": null
       },
       "Actions": [
-        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 117 },
+        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 115 },
         { "ServoIndex": 1, "Engaged": true, "TargetPosition": 113 },
         { "ServoIndex": 2, "Engaged": true, "TargetPosition": 123 },
         { "ServoIndex": 4, "Engaged": true, "TargetPosition": 115 },
@@ -451,11 +451,60 @@
       ]
     },
     { 
-      "Name": "PA Step2",
-      "Description": "SEQUENCE DESCRIPTION",
-      "Loops": 1,
-      "PlayActionsInParallel": true,
+      "Name": "PA Step2", "PlayActionsInParallel": true,
       "NextSequence": { "Name": "PA Step3", "SequenceType": "AS" },
+      "Host": null,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": 5 },
+        { "ServoIndex": 1, "RelativePosition": 5 },
+        { "ServoIndex": 2, "RelativePosition": 5 },
+        { "ServoIndex": 4, "RelativePosition": -5 },
+        { "ServoIndex": 5, "RelativePosition": -5 },
+        { "ServoIndex": 6, "RelativePosition": -5 }
+      ]
+    },
+    { 
+      "Name": "PA Step3", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PA Step4", "SequenceType": "AS" },
+      "Host": null,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": -5 },
+        { "ServoIndex": 1, "RelativePosition": -5 },
+        { "ServoIndex": 2, "RelativePosition": -5 },
+        { "ServoIndex": 4, "RelativePosition": 5},
+        { "ServoIndex": 5, "RelativePosition": 5},
+        { "ServoIndex": 6, "RelativePosition": 5}
+      ]
+    },
+    { 
+      "Name": "PA Step4", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PA Step5", "SequenceType": "AS" },
+      "Host": null,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": 5 },
+        { "ServoIndex": 1, "RelativePosition": 5 },
+        { "ServoIndex": 2, "RelativePosition": 5 },
+        { "ServoIndex": 4, "RelativePosition": -5 },
+        { "ServoIndex": 5, "RelativePosition": -5 },
+        { "ServoIndex": 6, "RelativePosition": -5 }
+      ]
+    },
+    { 
+      "Name": "PA Step5", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PA Step6", "SequenceType": "AS" },
+      "Host": null,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": -5 },
+        { "ServoIndex": 1, "RelativePosition": -5 },
+        { "ServoIndex": 2, "RelativePosition": -5 },
+        { "ServoIndex": 4, "RelativePosition": 5},
+        { "ServoIndex": 5, "RelativePosition": 5},
+        { "ServoIndex": 6, "RelativePosition": 5}
+      ]
+    },
+    { 
+      "Name": "PA Step6", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PA Step7", "SequenceType": "AS" },
       "Host": null,
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": -10 },
@@ -467,11 +516,8 @@
       ]
     },
     {
-      "Name": "PA Step3",
-      "Description": "SEQUENCE DESCRIPTION",
-      "Loops": 1,
-      "PlayActionsInParallel": true,
-      "NextSequence": { "Name": "PA Step4", "SequenceType": "AS" },
+      "Name": "PA Step7", "PlayActionsInParallel": true,
+      "NextSequence": { "Name": "PA Step8", "SequenceType": "AS" },
       "Host": null,
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": 10 },
@@ -483,10 +529,7 @@
       ]
     },
     {
-      "Name": "PA Step4",
-      "Description": "SEQUENCE DESCRIPTION",
-      "Loops": 1,
-      "PlayActionsInParallel": true,
+      "Name": "PA Step8", "PlayActionsInParallel": true,
       //"NextSequence": { "Name": "psbc21_Sequence ServoFin", "SequenceType": "AS" },
       "Host": null,
       "Actions": [

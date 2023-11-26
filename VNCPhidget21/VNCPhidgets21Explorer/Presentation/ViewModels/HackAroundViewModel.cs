@@ -8,6 +8,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
+using DevExpress.Office.Utils;
+
 using Phidgets;
 
 using Prism.Commands;
@@ -133,6 +135,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Button3Command = new DelegateCommand(Button3Execute);
             Button4Command = new DelegateCommand(Button4Execute);
             Button5Command = new DelegateCommand(Button5Execute);
+
+            SetMotionParametersCommand = new DelegateCommand<string>(SetMotionParameters);
+            RelativeAccelerationCommand = new DelegateCommand<Int32?>(RelativeAcceleration);
+            RelativeVelocityLimitCommand = new DelegateCommand<Int32?>(RelativeVelocityLimit);
 
             ReloadPerformanceConfigFilesCommand = new DelegateCommand(ReloadPerformanceConfigFiles);
             ReloadAdvancedServoSequenceConfigFilesCommand = new DelegateCommand(ReloadAdvancedServoSequenceConfigFiles);
@@ -458,6 +464,34 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 //}
             }
         }
+
+        public List<Int32> RelativeAccelerationAdjustment { get; } = new List<Int32>
+        {                
+            -1000
+            -500,
+            -100,
+            -50,
+            -10,
+            10,
+            50,
+            100,
+            500,
+            1000
+        };
+
+        public List<Int32> RelativeVelocityLimitAdjustment { get; } = new List<Int32>
+        {
+            -500,
+            -100,
+            -50,
+            -10,
+            -5,
+            5,
+            10,
+            50,
+            100,
+            500,
+        };
 
         #endregion
 
@@ -1576,6 +1610,155 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
         #endregion
+
+        #region SetMotionParameters Command
+
+        public DelegateCommand<string> SetMotionParametersCommand { get; set; }
+
+        public async void SetMotionParameters(string speed)
+        {
+            //Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = "Cool, you called SetMotionParameters";
+
+            VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence = null;
+
+            switch (speed)
+            {
+                case "Fast":
+
+                    nextPerformanceSequence =
+                        new VNCPhidgetConfig.PerformanceSequence
+                        {
+                            Name = "Acceleration(5000) VelocityLimit(1000)",
+                            SequenceType = "AS"
+                        };
+                    break;
+
+                case "Slow":
+
+                    nextPerformanceSequence =
+                        new VNCPhidgetConfig.PerformanceSequence
+                        {
+                            Name = "Acceleration(500) VelocityLimit(100)",
+                            SequenceType = "AS"
+                        };
+                    break;
+            }
+
+
+            await ExecutePerformanceSequence(nextPerformanceSequence);
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<SetMotionParametersEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<SetMotionParametersEvent>().Publish(
+            //      new SetMotionParametersEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            //Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion
+
+        #region RelativeAccelerationCommand Command
+
+        public DelegateCommand<Int32?> RelativeAccelerationCommand { get; set; }
+
+        public async void RelativeAcceleration(Int32? relativeAcceleration)
+        {
+            //Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = $"Cool, you called RelativeAcceleration {relativeAcceleration}";
+
+           //VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence = 
+           //     new PerformanceSequence 
+           //     { 
+           //         Name = $"Acceleraion {relativeAcceleration}", 
+           //         SequenceType = "AS"
+           //     };
+
+           // await ExecutePerformanceSequence(nextPerformanceSequence);
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<SetMotionParametersEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<SetMotionParametersEvent>().Publish(
+            //      new SetMotionParametersEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            //Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion
+
+        #region RelativeVelocityLimitCommand Command
+
+        public DelegateCommand<Int32?> RelativeVelocityLimitCommand { get; set; }
+
+        public async void RelativeVelocityLimit(Int32? relativeVelocityLimit)
+        {
+            //Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = $"Cool, you called RelativeVelocityLimit {relativeVelocityLimit}";
+
+            AdvancedServoSequence advancedServoSequence = new AdvancedServoSequence
+            { 
+                Actions = new[]
+                {
+                    new AdvancedServoServoAction { ServoIndex = 0, RelativeVelocityLimit = relativeVelocityLimit},
+                    new AdvancedServoServoAction { ServoIndex = 0, RelativeVelocityLimit = relativeVelocityLimit},
+                    new AdvancedServoServoAction { ServoIndex = 0, RelativeVelocityLimit = relativeVelocityLimit},
+                    new AdvancedServoServoAction { ServoIndex = 0, RelativeVelocityLimit = relativeVelocityLimit},
+                    new AdvancedServoServoAction { ServoIndex = 0, RelativeVelocityLimit = relativeVelocityLimit},
+                    new AdvancedServoServoAction { ServoIndex = 0, RelativeVelocityLimit = relativeVelocityLimit},
+                    new AdvancedServoServoAction { ServoIndex = 0, RelativeVelocityLimit = relativeVelocityLimit},
+                    new AdvancedServoServoAction { ServoIndex = 0, RelativeVelocityLimit = relativeVelocityLimit}
+                }
+                
+            };
+            //VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence =
+            //     new PerformanceSequence
+            //     {
+            //         Name = $"VelocityLimit {relativeVelocityLimit}",
+            //         SequenceType = "AS"
+            //     };
+
+            //await ExecutePerformanceSequence(nextPerformanceSequence);
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<SetMotionParametersEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<SetMotionParametersEvent>().Publish(
+            //      new SetMotionParametersEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            //Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion
+
 
         #region PlayInterfaceKitSequence Command
 

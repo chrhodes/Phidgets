@@ -267,7 +267,118 @@
                 		    Content="{Binding EngageAndCenterContent, FallbackValue='EngageAndCenter' }"
                 		    ToolTip="{Binding EngageAndCenterToolTip, FallbackValue='EngageAndCenter ToolTip' }" />
                     </dxlc:LayoutItem>
-                    
+
+                    <dxlc:LayoutItem>
+                        <Button 
+                        	Command="{Binding SetMotionParametersCommand }"
+                            CommandParameter="Slow"
+                        	Content="Set Motion Parameters (Slow)"
+                        	ToolTip="Set Acceleration (500) and VelocityLimit (100)" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem>
+                        <Button 
+                        	Command="{Binding SetMotionParametersCommand }"
+                            CommandParameter="Fast"
+                        	Content="Set Motion Parameters (Fast)"
+                        	ToolTip="Set Acceleration (5000) and VelocityLimit (1000)" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+
+                        <!--<dxlc:LayoutItem>
+                            <Button 
+                        	    Command="{Binding RelativeAccelerationCommand }"
+                                CommandParameter="-500"
+                        	    Content="A -500"
+                        	    ToolTip="Decrease Acceleration (-500)" />
+                        </dxlc:LayoutItem>-->
+                        
+                        <dxlc:LayoutItem>
+                            <Button 
+                        	    Command="{Binding RelativeAccelerationCommand }"
+                                CommandParameter="{Binding ElementName=cbeRelativeAcceleration, Path=SelectedItemValue}"
+                        	    Content="Acceleration -/+" />
+                        </dxlc:LayoutItem>
+
+                        <dxe:ComboBoxEdit x:Name="cbeRelativeAcceleration" Width="300" TextWrapping="Wrap" 
+                            ItemsSource="{Binding RelativeAccelerationAdjustment}">
+                        </dxe:ComboBoxEdit>
+                        <!--<dxe:SpinEdit x:Name="seRelativeAcceleration" 
+                                      Value="{Binding RelativeAccelerationAdjustment>, Mode=OneWay}"
+                            Mask="d"  MaskType="Numeric" MaskUseAsDisplayFormat="True"
+                            IsFloatValue="False"/>-->
+                        <!--<dxlc:LayoutItem>
+                            
+                            <Button 
+                        	    Command="{Binding RelativeAccelerationCommand }"
+                                CommandParameter="50"
+                        	    Content="A +50"
+                        	    ToolTip="Increase Acceleration (+50)" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem>
+                            <Button 
+                        	    Command="{Binding RelativeAccelerationCommand }"
+                                CommandParameter="500"
+                        	    Content="A +500"
+                        	    ToolTip="Increase Acceleration (+500)" />
+                        </dxlc:LayoutItem>-->
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+
+                        <dxlc:LayoutItem>
+                            <Button 
+                        	    Command="{Binding RelativeVelocityLimitCommand }"
+                                CommandParameter="{Binding ElementName=cbeRelativeVelocityLimit, Path=SelectedItemValue}"
+                        	    Content="VelocityLimit -/+" />
+                        </dxlc:LayoutItem>
+
+                        <dxe:ComboBoxEdit x:Name="cbeRelativeVelocityLimit" Width="300" TextWrapping="Wrap" 
+                            ItemsSource="{Binding RelativeVelocityLimitAdjustment}">
+                        </dxe:ComboBoxEdit>
+                        
+                        <!--<dxe:SpinEdit x:Name="seRelativeVelocityLimit" 
+                                      Value="{Binding RelativeVelocityLimitAdjustment.Value>, Mode=OneWay}"
+                            Mask="d"  MaskType="Numeric" MaskUseAsDisplayFormat="True"
+                            IsFloatValue="False"/>-->
+                            
+                        <!--<dxlc:LayoutItem>
+                            <Button 
+                        	    Command="{Binding RelativeVelocityCommand }"
+                                CommandParameter="-100"
+                        	    Content="V -100"
+                        	    ToolTip="Decrease VelocityLimit (-100)" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem>
+                            <Button 
+                        	    Command="{Binding RelativeVelocityCommand }"
+                                CommandParameter="-10"
+                        	    Content="V -10"
+                        	    ToolTip="Decrease VelocityLimit (-10)" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem>
+                            <Button 
+                        	    Command="{Binding RelativeVelocityCommand }"
+                                CommandParameter="10"
+                        	    Content="V +10"
+                        	    ToolTip="Increase VelocityLimit (+10)" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem>
+                            <Button 
+                        	    Command="{Binding RelativeVelocityCommand }"
+                                CommandParameter="100"
+                        	    Content="V +100"
+                        	    ToolTip="Increase VelocityLimit (+100)" />
+                        </dxlc:LayoutItem>-->
+
+                    </dxlc:LayoutGroup>
+
                     <dxlc:LayoutItem  VerticalAlignment="Stretch" >
                         <Button 
 		                    Command="{Binding PlayAdvancedServoSequenceCommand }"
