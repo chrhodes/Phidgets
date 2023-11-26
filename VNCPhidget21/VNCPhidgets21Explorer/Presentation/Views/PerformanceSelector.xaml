@@ -301,29 +301,9 @@
                         	    Content="Acceleration -/+" />
                         </dxlc:LayoutItem>
 
-                        <dxe:ComboBoxEdit x:Name="cbeRelativeAcceleration" Width="300" TextWrapping="Wrap" 
-                            ItemsSource="{Binding RelativeAccelerationAdjustment}">
+                        <dxe:ComboBoxEdit x:Name="cbeRelativeAcceleration" HorizontalAlignment="Right"
+                                          ItemsSource="{Binding RelativeAccelerationAdjustment}">
                         </dxe:ComboBoxEdit>
-                        <!--<dxe:SpinEdit x:Name="seRelativeAcceleration" 
-                                      Value="{Binding RelativeAccelerationAdjustment>, Mode=OneWay}"
-                            Mask="d"  MaskType="Numeric" MaskUseAsDisplayFormat="True"
-                            IsFloatValue="False"/>-->
-                        <!--<dxlc:LayoutItem>
-                            
-                            <Button 
-                        	    Command="{Binding RelativeAccelerationCommand }"
-                                CommandParameter="50"
-                        	    Content="A +50"
-                        	    ToolTip="Increase Acceleration (+50)" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem>
-                            <Button 
-                        	    Command="{Binding RelativeAccelerationCommand }"
-                                CommandParameter="500"
-                        	    Content="A +500"
-                        	    ToolTip="Increase Acceleration (+500)" />
-                        </dxlc:LayoutItem>-->
 
                     </dxlc:LayoutGroup>
 
@@ -336,7 +316,7 @@
                         	    Content="VelocityLimit -/+" />
                         </dxlc:LayoutItem>
 
-                        <dxe:ComboBoxEdit x:Name="cbeRelativeVelocityLimit" Width="300" TextWrapping="Wrap" 
+                        <dxe:ComboBoxEdit x:Name="cbeRelativeVelocityLimit" HorizontalAlignment="Right" 
                             ItemsSource="{Binding RelativeVelocityLimitAdjustment}">
                         </dxe:ComboBoxEdit>
                         

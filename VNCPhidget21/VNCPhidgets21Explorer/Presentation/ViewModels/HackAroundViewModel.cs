@@ -411,6 +411,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region AdvancedServ0
 
+        AdvancedServoEx ActiveAdvancedServoHost { get; set; }
+
         private bool _logCurrentChangeEvents = false;
         public bool LogCurrentChangeEvents
         {
@@ -421,11 +423,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _logCurrentChangeEvents = value;
                 OnPropertyChanged();
-
-                //if (ActiveAdvancedServo is not null)
-                //{
-                //    ActiveAdvancedServo.LogCurrentChangeEvents = _logCurrentChangeEvents;
-                //}
             }
         }
 
@@ -439,11 +436,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _logPositionChangeEvents = value;
                 OnPropertyChanged();
-
-                //if (ActiveAdvancedServo is not null)
-                //{
-                //    ActiveAdvancedServo.LogPositionChangeEvents = _logPositionChangeEvents;
-                //}
             }
         }
 
@@ -457,22 +449,15 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _logVelocityChangeEvents = value;
                 OnPropertyChanged();
-
-                //if (ActiveAdvancedServo is not null)
-                //{
-                //    ActiveAdvancedServo.LogVelocityChangeEvents = _logVelocityChangeEvents;
-                //}
             }
         }
 
         public List<Int32> RelativeAccelerationAdjustment { get; } = new List<Int32>
         {                
-            -1000
+            -1000,
             -500,
             -100,
             -50,
-            -10,
-            10,
             50,
             100,
             500,
@@ -485,12 +470,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             -100,
             -50,
             -10,
-            -5,
-            5,
             10,
             50,
             100,
-            500,
+            500
         };
 
         #endregion
@@ -1508,6 +1491,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             //advancedServoHost.Open();
 
+            // NOTE(crhodes)
+            // Save this so we can use it in other commands
+
+            ActiveAdvancedServoHost = advancedServoHost;
+
             return advancedServoHost;
         }
 
@@ -1679,14 +1667,32 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Do something amazing.
             Message = $"Cool, you called RelativeAcceleration {relativeAcceleration}";
 
-           //VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence = 
-           //     new PerformanceSequence 
-           //     { 
-           //         Name = $"Acceleraion {relativeAcceleration}", 
-           //         SequenceType = "AS"
-           //     };
+            AdvancedServoSequence advancedServoSequence = new AdvancedServoSequence
+            {
+                Actions = new[]
+                {
+                    new AdvancedServoServoAction { ServoIndex = 0, RelativeAcceleration = relativeAcceleration},
+                    new AdvancedServoServoAction { ServoIndex = 1, RelativeAcceleration = relativeAcceleration},
+                    new AdvancedServoServoAction { ServoIndex = 2, RelativeAcceleration = relativeAcceleration},
+                    new AdvancedServoServoAction { ServoIndex = 3, RelativeAcceleration = relativeAcceleration},
+                    new AdvancedServoServoAction { ServoIndex = 4, RelativeAcceleration = relativeAcceleration},
+                    new AdvancedServoServoAction { ServoIndex = 5, RelativeAcceleration = relativeAcceleration},
+                    new AdvancedServoServoAction { ServoIndex = 6, RelativeAcceleration = relativeAcceleration},
+                    new AdvancedServoServoAction { ServoIndex = 7, RelativeAcceleration = relativeAcceleration}
+                }
 
-           // await ExecutePerformanceSequence(nextPerformanceSequence);
+            };
+
+            ActiveAdvancedServoHost.RunSequenceLoops(advancedServoSequence);
+
+            //VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence = 
+            //     new PerformanceSequence 
+            //     { 
+            //         Name = $"Acceleraion {relativeAcceleration}", 
+            //         SequenceType = "AS"
+            //     };
+
+            // await ExecutePerformanceSequence(nextPerformanceSequence);
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -1722,16 +1728,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 Actions = new[]
                 {
                     new AdvancedServoServoAction { ServoIndex = 0, RelativeVelocityLimit = relativeVelocityLimit},
-                    new AdvancedServoServoAction { ServoIndex = 0, RelativeVelocityLimit = relativeVelocityLimit},
-                    new AdvancedServoServoAction { ServoIndex = 0, RelativeVelocityLimit = relativeVelocityLimit},
-                    new AdvancedServoServoAction { ServoIndex = 0, RelativeVelocityLimit = relativeVelocityLimit},
-                    new AdvancedServoServoAction { ServoIndex = 0, RelativeVelocityLimit = relativeVelocityLimit},
-                    new AdvancedServoServoAction { ServoIndex = 0, RelativeVelocityLimit = relativeVelocityLimit},
-                    new AdvancedServoServoAction { ServoIndex = 0, RelativeVelocityLimit = relativeVelocityLimit},
-                    new AdvancedServoServoAction { ServoIndex = 0, RelativeVelocityLimit = relativeVelocityLimit}
+                    new AdvancedServoServoAction { ServoIndex = 1, RelativeVelocityLimit = relativeVelocityLimit},
+                    new AdvancedServoServoAction { ServoIndex = 2, RelativeVelocityLimit = relativeVelocityLimit},
+                    new AdvancedServoServoAction { ServoIndex = 3, RelativeVelocityLimit = relativeVelocityLimit},
+                    new AdvancedServoServoAction { ServoIndex = 4, RelativeVelocityLimit = relativeVelocityLimit},
+                    new AdvancedServoServoAction { ServoIndex = 5, RelativeVelocityLimit = relativeVelocityLimit},
+                    new AdvancedServoServoAction { ServoIndex = 6, RelativeVelocityLimit = relativeVelocityLimit},
+                    new AdvancedServoServoAction { ServoIndex = 7, RelativeVelocityLimit = relativeVelocityLimit}
                 }
                 
             };
+
+            ActiveAdvancedServoHost.RunSequenceLoops(advancedServoSequence);
+
             //VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence =
             //     new PerformanceSequence
             //     {
