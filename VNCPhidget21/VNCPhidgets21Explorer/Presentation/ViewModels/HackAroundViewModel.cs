@@ -136,9 +136,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Button4Command = new DelegateCommand(Button4Execute);
             Button5Command = new DelegateCommand(Button5Execute);
 
-            SetMotionParametersCommand = new DelegateCommand<string>(SetMotionParameters);
-            RelativeAccelerationCommand = new DelegateCommand<Int32?>(RelativeAcceleration);
-            RelativeVelocityLimitCommand = new DelegateCommand<Int32?>(RelativeVelocityLimit);
 
             ReloadPerformanceConfigFilesCommand = new DelegateCommand(ReloadPerformanceConfigFiles);
             ReloadAdvancedServoSequenceConfigFilesCommand = new DelegateCommand(ReloadAdvancedServoSequenceConfigFiles);
@@ -148,11 +145,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             PlayPerformanceCommand = new DelegateCommand (PlayPerformance, PlayPerformanceCanExecute);
             PlayAdvancedServoSequenceCommand = new DelegateCommand(PlayAdvancedServoSequence, PlayAdvancedServoSequenceCanExecute);
             EngageAndCenterCommand = new DelegateCommand(EngageAndCenter, EngageAndCenterCanExecute);
-            // If using CommandParameter, figure out TYPE here and below
-            // and remove above declaration
-            //EngageAndCenterCommand = new DelegateCommand<TYPE>(EngageAndCenter, EngageAndCenterCanExecute);
+            ResetLimitsCommand = new DelegateCommand(ResetLimits);
+            SetMotionParametersCommand = new DelegateCommand<string>(SetMotionParameters);
+            RelativeAccelerationCommand = new DelegateCommand<Int32?>(RelativeAcceleration);
+            RelativeVelocityLimitCommand = new DelegateCommand<Int32?>(RelativeVelocityLimit);
 
-            // End Cut Two
             PlayInterfaceKitSequenceCommand = new DelegateCommand(PlayInterfaceKitSequence, PlayInterfaceKitSequenceCanExecute);
 
             HostConfigFileName = "hostconfig.json";
@@ -334,30 +331,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public ICommand Button1Command { get; private set; }
-        public ICommand Button2Command { get; private set; }
-        public ICommand Button3Command { get; private set; }
-        public ICommand Button4Command { get; private set; }
-        public ICommand Button5Command { get; private set; }
+        //private string _title = "VNCPhidgets21Explorer - Main";
 
-        public ICommand ReloadPerformanceConfigFilesCommand { get; private set; }
-        public ICommand ReloadAdvancedServoSequenceConfigFilesCommand { get; private set; }
-        public ICommand ReloadInterfaceKitSequenceConfigFilesCommand { get; private set; }
-        public ICommand ReloadStepperSequenceConfigFilesCommand { get; private set; }
-
-        private string _title = "VNCPhidgets21Explorer - Main";
-
-        public string Title
-        {
-            get => _title;
-            set
-            {
-                if (_title == value)
-                    return;
-                _title = value;
-                OnPropertyChanged();
-            }
-        }
+        //public string Title
+        //{
+        //    get => _title;
+        //    set
+        //    {
+        //        if (_title == value)
+        //            return;
+        //        _title = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         private string _message = "Initial Message";
 
@@ -369,6 +355,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_message == value)
                     return;
                 _message = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int _repeats = 1;
+        public int Repeats
+        {
+            get => _repeats;
+            set
+            {
+                if (_repeats == value)
+                    return;
+                _repeats = value;
                 OnPropertyChanged();
             }
         }
@@ -409,131 +408,28 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        #region AdvancedServ0
-
-        AdvancedServoEx ActiveAdvancedServoHost { get; set; }
-
-        private bool _logCurrentChangeEvents = false;
-        public bool LogCurrentChangeEvents
+        private bool _logPerformanceSequence = false;
+        public bool LogPerformanceSequence
         {
-            get => _logCurrentChangeEvents;
+            get => _logPerformanceSequence;
             set
             {
-                if (_logCurrentChangeEvents == value)
+                if (_logPerformanceSequence == value)
                     return;
-                _logCurrentChangeEvents = value;
+                _logPerformanceSequence = value;
                 OnPropertyChanged();
             }
         }
 
-        private bool _logPositionChangeEvents = false;
-        public bool LogPositionChangeEvents
+        private bool _logPerformanceStep = false;
+        public bool LogPerformanceAction
         {
-            get => _logPositionChangeEvents;
+            get => _logPerformanceStep;
             set
             {
-                if (_logPositionChangeEvents == value)
+                if (_logPerformanceStep == value)
                     return;
-                _logPositionChangeEvents = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool _logVelocityChangeEvents = false;
-        public bool LogVelocityChangeEvents
-        {
-            get => _logVelocityChangeEvents;
-            set
-            {
-                if (_logVelocityChangeEvents == value)
-                    return;
-                _logVelocityChangeEvents = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public List<Int32> RelativeAccelerationAdjustment { get; } = new List<Int32>
-        {                
-            -1000,
-            -500,
-            -100,
-            -50,
-            50,
-            100,
-            500,
-            1000
-        };
-
-        public List<Int32> RelativeVelocityLimitAdjustment { get; } = new List<Int32>
-        {
-            -500,
-            -100,
-            -50,
-            -10,
-            10,
-            50,
-            100,
-            500
-        };
-
-        #endregion
-
-        #region InterfaceKit
-
-        private bool _displayInputChangeEvents = false;
-
-        public bool LogInputChangeEvents
-        {
-            get => _displayInputChangeEvents;
-            set
-            {
-                if (_displayInputChangeEvents == value)
-                    return;
-                _displayInputChangeEvents = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool _displayOutputChangeEvents = false;
-
-        public bool LogOutputChangeEvents
-        {
-            get => _displayOutputChangeEvents;
-            set
-            {
-                if (_displayOutputChangeEvents == value)
-                    return;
-                _displayOutputChangeEvents = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool _sensorChangeEvents = false;
-
-        public bool LogSensorChangeEvents
-        {
-            get => _sensorChangeEvents;
-            set
-            {
-                if (_sensorChangeEvents == value)
-                    return;
-                _sensorChangeEvents = value;
-                OnPropertyChanged();
-            }
-        }
-
-        #endregion
-
-
-        private int _repeats = 1;
-        public int Repeats
-        {
-            get => _repeats;
-            set
-            {
-                if (_repeats == value)
-                    return;
-                _repeats = value;
+                _logPerformanceStep = value;
                 OnPropertyChanged();
             }
         }
@@ -647,6 +543,71 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region AdvancedServo
 
+        AdvancedServoEx ActiveAdvancedServoHost { get; set; }
+
+        private bool _logCurrentChangeEvents = false;
+        public bool LogCurrentChangeEvents
+        {
+            get => _logCurrentChangeEvents;
+            set
+            {
+                if (_logCurrentChangeEvents == value)
+                    return;
+                _logCurrentChangeEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _logPositionChangeEvents = false;
+        public bool LogPositionChangeEvents
+        {
+            get => _logPositionChangeEvents;
+            set
+            {
+                if (_logPositionChangeEvents == value)
+                    return;
+                _logPositionChangeEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _logVelocityChangeEvents = false;
+        public bool LogVelocityChangeEvents
+        {
+            get => _logVelocityChangeEvents;
+            set
+            {
+                if (_logVelocityChangeEvents == value)
+                    return;
+                _logVelocityChangeEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public List<Int32> RelativeAccelerationAdjustment { get; } = new List<Int32>
+        {                
+            -1000,
+            -500,
+            -100,
+            -50,
+            50,
+            100,
+            500,
+            1000
+        };
+
+        public List<Int32> RelativeVelocityLimitAdjustment { get; } = new List<Int32>
+        {
+            -500,
+            -100,
+            -50,
+            -10,
+            10,
+            50,
+            100,
+            500
+        };
+
         private IEnumerable<string> _advancedServoSequenceConfigFiles;
         public IEnumerable<string> AdvancedServoSequenceConfigFiles
         {
@@ -732,6 +693,48 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         #endregion
 
         #region InterfaceKit
+
+        private bool _displayInputChangeEvents = false;
+
+        public bool LogInputChangeEvents
+        {
+            get => _displayInputChangeEvents;
+            set
+            {
+                if (_displayInputChangeEvents == value)
+                    return;
+                _displayInputChangeEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _displayOutputChangeEvents = false;
+
+        public bool LogOutputChangeEvents
+        {
+            get => _displayOutputChangeEvents;
+            set
+            {
+                if (_displayOutputChangeEvents == value)
+                    return;
+                _displayOutputChangeEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _sensorChangeEvents = false;
+
+        public bool LogSensorChangeEvents
+        {
+            get => _sensorChangeEvents;
+            set
+            {
+                if (_sensorChangeEvents == value)
+                    return;
+                _sensorChangeEvents = value;
+                OnPropertyChanged();
+            }
+        }
 
         private IEnumerable<string> _interfaceKitSequenceConfigFiles;
         public IEnumerable<string> InterfaceKitSequenceConfigFiles
@@ -899,35 +902,222 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
-        private bool _logPerformanceSequence = false;
-        public bool LogPerformanceSequence
-        {
-            get => _logPerformanceSequence;
-            set
-            {
-                if (_logPerformanceSequence == value)
-                    return;
-                _logPerformanceSequence = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool _logPerformanceStep = false;
-        public bool LogPerformanceAction
-        {
-            get => _logPerformanceStep;
-            set
-            {
-                if (_logPerformanceStep == value)
-                    return;
-                _logPerformanceStep = value;
-                OnPropertyChanged();
-            }
-        }
-
         #endregion
 
         #region Commands
+
+        public ICommand Button1Command { get; private set; }
+        public ICommand Button2Command { get; private set; }
+        public ICommand Button3Command { get; private set; }
+        public ICommand Button4Command { get; private set; }
+        public ICommand Button5Command { get; private set; }
+
+        private void Button1Execute()
+        {
+            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+
+            Message = "Button1 Clicked";
+
+            PlayParty();
+
+            Log.Info("End", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private async void Button2Execute()
+        {
+            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+
+            Message = "Button2 Clicked - Opening PhidgetManager";
+
+            Phidgets.Manager phidgetManager = new Phidgets.Manager();
+
+            phidgetManager.Attach += PhidgetManager_Attach;
+            phidgetManager.Detach += PhidgetManager_Detach;
+            phidgetManager.ServerConnect += PhidgetManager_ServerConnect;
+            phidgetManager.ServerDisconnect += PhidgetManager_ServerDisconnect;
+            phidgetManager.Error += PhidgetManager_Error;
+
+            phidgetManager.open();
+            //phidgetManager.open("192.168.150.21", 5001);
+
+            phidgetManager.Attach -= PhidgetManager_Attach;
+            phidgetManager.Detach -= PhidgetManager_Detach;
+            phidgetManager.ServerConnect -= PhidgetManager_ServerConnect;
+            phidgetManager.ServerDisconnect -= PhidgetManager_ServerDisconnect;
+            phidgetManager.Error -= PhidgetManager_Error;
+
+            phidgetManager.close();
+
+            //InterfaceKitEx ifkEx21 = new InterfaceKitEx("192.168.150.21", 5001, sbc21SerialNumber, embedded: true, EventAggregator);
+
+            //ifkEx21.Open();
+
+            ////ifk.Attach += Ifk_Attach;
+            ////ifk.Detach += Ifk_Detach;
+            ////ifk.Error += Ifk_Error;
+            ////ifk.InputChange += Ifk_InputChange;
+
+            //ifkEx21.InterfaceKit.OutputChange += Ifk_OutputChange;
+            ////ifkEx.OutputChange += Ifk_OutputChange;
+
+            ////ifk.SensorChange += Ifk_SensorChange;
+            ////ifk.ServerConnect += Ifk_ServerConnect;
+            ////ifk.ServerDisconnect += Ifk_ServerDisconnect;
+
+            ////ifk.open(serialNumber, hostName, port);
+            ////ifk.waitForAttachment();
+
+            //InterfaceKitDigitalOutputCollection ifkdoc = ifkEx21.InterfaceKit.outputs;
+            ////InterfaceKitDigitalOutputCollection ifkdoc = ifkEx.outputs;
+
+            //await Task.Run(() =>
+            //{
+            //    Parallel.Invoke(() =>
+            //    {
+            //        for (int i = 0; i < 5; i++)
+            //        {
+            //            ifkdoc[0] = true;
+            //            Thread.Sleep(500);
+            //            ifkdoc[0] = false;
+            //            Thread.Sleep(500);
+            //        }
+            //    });
+            //});
+
+            //ifkEx21.Close();
+
+            Log.Info("End", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void Button3Execute()
+        {
+            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+
+            Message = "Button3 Clicked - Loading PhidgetDevices";
+
+
+            //InterfaceKitEx ifkEx21 = new InterfaceKitEx("192.168.150.21", 5001, sbc21SerialNumber, embedded: true, EventAggregator);
+
+            //ifkEx21.Open();
+
+            ////ifkEx21.InterfaceKit.OutputChange += Ifk_OutputChange;
+
+            ////InterfaceKitDigitalOutputCollection ifkdoc = ifkEx21.InterfaceKit.outputs;
+            ////InterfaceKitDigitalOutputCollection ifkdoc = ifkEx.outputs;
+
+            //Task.Run(() =>
+            //{
+            //    InterfaceKitDigitalOutputCollection ifkdoc = ifkEx21.InterfaceKit.outputs;
+
+            //    for (int i = 0; i < 5; i++)
+            //    {
+            //        ifkdoc[0] = true;
+            //        Thread.Sleep(500);
+            //        ifkdoc[0] = false;
+            //        Thread.Sleep(500);
+            //    }
+            //    //Parallel.Invoke(
+            //    //    () => InterfaceKitParty2(ifkEx21, 500, 5 * Repeats)
+            //    //);
+            //});
+
+            //ifkEx21.Close();
+
+            Log.Info("End", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void Button4Execute()
+        {
+            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+
+            Message = "Button4 Clicked";
+
+            SequenceEventArgs sequenceEventArgs = new SequenceEventArgs();
+
+            sequenceEventArgs.AdvancedServoSequence = new VNCPhidgetConfig.AdvancedServoSequence
+            {
+                Host = new VNCPhidgetConfig.Host
+                {
+                    Name = "psbc21",
+                    IPAddress = "192.168.150.21",
+                    Port = 5001,
+                    AdvancedServos = new[]
+                    {
+                        new VNCPhidgetConfig.AdvancedServo { Name = "AdvancedServo 1", SerialNumber = 99415, Open = true }
+                    }
+                },
+                Name = "psbc21_SequenceServo0",
+
+                Actions = new[]
+                {
+                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, Acceleration = 5000, VelocityLimit = 200, Engaged = true },
+                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 90 },
+                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 100 },
+                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 110 },
+                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 100 },
+                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 90 },
+                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, Engaged = false },
+                }
+            };
+
+            EventAggregator.GetEvent<VNC.Phidget.Events.AdvancedServoSequenceEvent>().Publish(sequenceEventArgs);
+
+            Log.Info("End", Common.LOG_CATEGORY, startTicks);
+        }
+
+
+        #region Reload Config Files
+
+        public ICommand ReloadPerformanceConfigFilesCommand { get; private set; }
+        public ICommand ReloadAdvancedServoSequenceConfigFilesCommand { get; private set; }
+        public ICommand ReloadInterfaceKitSequenceConfigFilesCommand { get; private set; }
+        public ICommand ReloadStepperSequenceConfigFilesCommand { get; private set; }
+
+        private void ReloadPerformanceConfigFiles()
+        {
+            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+
+            Message = "ReloadPerformanceConfigFiles Clicked";
+
+            LoadPerformancesConfig();
+
+            Log.Info("End", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void ReloadAdvancedServoSequenceConfigFiles()
+        {
+            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+
+            Message = "ReloadAdvancedServoSequenceConfigFiles Clicked";
+
+            LoadAdvanceServoConfig();
+
+            Log.Info("End", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void ReloadInterfaceKitSequenceConfigFiles()
+        {
+            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+
+            Message = "ReloadInterfaceKitSequenceConfigFiles Clicked";
+
+            LoadInterfaceKitConfig();
+
+            Log.Info("End", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void ReloadStepperSequenceConfigFiles()
+        {
+            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+
+            Message = "ReloadStepperSequenceConfigFiles Clicked";
+
+            LoadStepperConfig();
+
+            Log.Info("End", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion
 
         #region PerformanceFileName DoubleClick
 
@@ -1517,6 +1707,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
+        #region AdvancedServo Individual Commands
+
         #region EngageAndCenter Command
 
         public DelegateCommand EngageAndCenterCommand { get; set; }
@@ -1544,14 +1736,14 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Do something amazing.
             Message = "Cool, you called EngageAndCenter";
 
-            VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence = 
+            VNCPhidgetConfig.PerformanceSequence? advancedServoSequence = 
                 new VNCPhidgetConfig.PerformanceSequence
                 {
                     Name = "Engage and Center Servos",
                     SequenceType = "AS"
                 };
 
-            await ExecutePerformanceSequence(nextPerformanceSequence);
+            await ExecutePerformanceSequence(advancedServoSequence);
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -1610,13 +1802,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Do something amazing.
             Message = "Cool, you called SetMotionParameters";
 
-            VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence = null;
+            VNCPhidgetConfig.PerformanceSequence? advancedServoSequence = null;
 
             switch (speed)
             {
                 case "Fast":
 
-                    nextPerformanceSequence =
+                    advancedServoSequence =
                         new VNCPhidgetConfig.PerformanceSequence
                         {
                             Name = "Acceleration(5000) VelocityLimit(1000)",
@@ -1626,7 +1818,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 case "Slow":
 
-                    nextPerformanceSequence =
+                    advancedServoSequence =
                         new VNCPhidgetConfig.PerformanceSequence
                         {
                             Name = "Acceleration(500) VelocityLimit(100)",
@@ -1636,7 +1828,44 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
 
 
-            await ExecutePerformanceSequence(nextPerformanceSequence);
+            await ExecutePerformanceSequence(advancedServoSequence);
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<SetMotionParametersEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<SetMotionParametersEvent>().Publish(
+            //      new SetMotionParametersEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            //Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion
+
+        #region ResetLimits Command
+
+        public DelegateCommand ResetLimitsCommand { get; set; }
+
+        public async void ResetLimits()
+        {
+            //Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = $"Cool, you called ResetLimits";
+            VNCPhidgetConfig.PerformanceSequence? advancedServoSequence =
+                new VNCPhidgetConfig.PerformanceSequence
+                {
+                    Name = "Reset Position Limits (RPL)",
+                    SequenceType = "AS"
+                };
+
+            await ExecutePerformanceSequence(advancedServoSequence);
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -1768,7 +1997,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
-
+        #endregion
+        
         #region PlayInterfaceKitSequence Command
 
         public DelegateCommand PlayInterfaceKitSequenceCommand { get; set; }
@@ -1912,7 +2142,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private async Task PlayParty()
         {
-
             InterfaceKitEx ifkEx11 = new InterfaceKitEx("192.168.150.11", 5001, sbc11SerialNumber, embedded: true, EventAggregator);
             InterfaceKitEx ifkEx21 = new InterfaceKitEx("192.168.150.21", 5001, sbc21SerialNumber, embedded: true, EventAggregator);
             InterfaceKitEx ifkEx22 = new InterfaceKitEx("192.168.150.22", 5001, sbc22SerialNumber, embedded: true, EventAggregator);
@@ -1925,10 +2154,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 ifkEx22.Open();
                 ifkEx23.Open();
 
-                ifkEx11.InterfaceKit.OutputChange += Ifk_OutputChange;
-                ifkEx21.InterfaceKit.OutputChange += Ifk_OutputChange;
-                ifkEx22.InterfaceKit.OutputChange += Ifk_OutputChange;
-                ifkEx23.InterfaceKit.OutputChange += Ifk_OutputChange;
+                //ifkEx11.InterfaceKit.OutputChange += Ifk_OutputChange;
+                //ifkEx21.InterfaceKit.OutputChange += Ifk_OutputChange;
+                //ifkEx22.InterfaceKit.OutputChange += Ifk_OutputChange;
+                //ifkEx23.InterfaceKit.OutputChange += Ifk_OutputChange;
 
                 await Task.Run(() =>
                 {
@@ -1945,10 +2174,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                      );
                 });
 
-                ifkEx11.InterfaceKit.OutputChange -= Ifk_OutputChange;
-                ifkEx21.InterfaceKit.OutputChange -= Ifk_OutputChange;
-                ifkEx22.InterfaceKit.OutputChange -= Ifk_OutputChange;
-                ifkEx23.InterfaceKit.OutputChange -= Ifk_OutputChange;
+                //ifkEx11.InterfaceKit.OutputChange -= Ifk_OutputChange;
+                //ifkEx21.InterfaceKit.OutputChange -= Ifk_OutputChange;
+                //ifkEx22.InterfaceKit.OutputChange -= Ifk_OutputChange;
+                //ifkEx23.InterfaceKit.OutputChange -= Ifk_OutputChange;
 
                 ifkEx11.Close();
                 ifkEx21.Close();
@@ -2056,211 +2285,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private void Ifk_ServerDisconnect(object sender, Phidgets.Events.ServerDisconnectEventArgs e)
-        {
-            try
-            {
-                var a = e;
-                var b = e.GetType();
-                Log.Trace("Ifk_ServerDisconnect", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
-
-        private void Ifk_ServerConnect(object sender, Phidgets.Events.ServerConnectEventArgs e)
-        {
-            try
-            {
-                Phidget device = (Phidget)e.Device;
-                //var b = e.GetType();
-                //Log.Trace($"Ifk_ServerConnect {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
-                Log.Trace($"Ifk_ServerConnect {device.Address},{device.Port}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
-
-        private void Ifk_SensorChange(object sender, Phidgets.Events.SensorChangeEventArgs e)
-        {
-            if (LogSensorChangeEvents)
-            {
-                try
-                {
-                    Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
-                    var a = e;
-                    var b = e.GetType();
-                    Log.Trace($"Ifk_SensorChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
-                }
-            }
-        }
-
-        private void Ifk_OutputChange(object sender, Phidgets.Events.OutputChangeEventArgs e)
-        {
-            if (LogOutputChangeEvents)
-            {
-                try
-                {
-                    Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
-                    var a = e;
-                    var b = e.GetType();
-                    Log.Trace($"Ifk_OutputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
-                }
-            }
-        }
-
-        private void Ifk_InputChange(object sender, Phidgets.Events.InputChangeEventArgs e)
-        {
-            if (LogInputChangeEvents)
-            {
-                try
-                {
-                    Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
-                    var a = e;
-                    var b = e.GetType();
-                    Log.Trace($"Ifk_InputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
-                }
-            }
-        }
-
-        private void Ifk_Error(object sender, Phidgets.Events.ErrorEventArgs e)
-        {
-            try
-            {
-                Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
-                var a = e;
-                var b = e.GetType();
-                Log.Trace($"Ifk_Error {ifk.Address},{ifk.Attached} - {e.Type} {e.Code} {e.Description}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
-
-        private void Ifk_Detach(object sender, Phidgets.Events.DetachEventArgs e)
-        {
-            try
-            {
-                Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
-                var a = e;
-                var b = e.GetType();
-                Log.Trace($"Ifk_Detach {ifk.Address},{ifk.SerialNumber}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
-
-        private void Ifk_Attach(object sender, Phidgets.Events.AttachEventArgs e)
-        {
-            try
-            {
-                Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
-                //Phidget device = (Phidget)e.Device;
-                //var b = e.GetType();
-                Log.Trace($"Ifk_Attach {ifk.Address},{ifk.Port} S#:{ifk.SerialNumber}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
-
-        private void Button1Execute()
-        {
-            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
-
-            Message = "Button1 Clicked";
-
-            PlayParty();
-
-            Log.Info("End", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private async void Button2Execute()
-        {
-            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
-
-            Message = "Button2 Clicked - Opening PhidgetManager";
-
-            Phidgets.Manager phidgetManager = new Phidgets.Manager();
-
-            phidgetManager.Attach += PhidgetManager_Attach;
-            phidgetManager.Detach += PhidgetManager_Detach;
-            phidgetManager.ServerConnect += PhidgetManager_ServerConnect;
-            phidgetManager.ServerDisconnect += PhidgetManager_ServerDisconnect;
-            phidgetManager.Error += PhidgetManager_Error;
-
-            phidgetManager.open();
-            //phidgetManager.open("192.168.150.21", 5001);
-
-            phidgetManager.Attach -= PhidgetManager_Attach;
-            phidgetManager.Detach -= PhidgetManager_Detach;
-            phidgetManager.ServerConnect -= PhidgetManager_ServerConnect;
-            phidgetManager.ServerDisconnect -= PhidgetManager_ServerDisconnect;
-            phidgetManager.Error -= PhidgetManager_Error;
-
-            phidgetManager.close();
-
-            //InterfaceKitEx ifkEx21 = new InterfaceKitEx("192.168.150.21", 5001, sbc21SerialNumber, embedded: true, EventAggregator);
-
-            //ifkEx21.Open();
-
-            ////ifk.Attach += Ifk_Attach;
-            ////ifk.Detach += Ifk_Detach;
-            ////ifk.Error += Ifk_Error;
-            ////ifk.InputChange += Ifk_InputChange;
-
-            //ifkEx21.InterfaceKit.OutputChange += Ifk_OutputChange;
-            ////ifkEx.OutputChange += Ifk_OutputChange;
-
-            ////ifk.SensorChange += Ifk_SensorChange;
-            ////ifk.ServerConnect += Ifk_ServerConnect;
-            ////ifk.ServerDisconnect += Ifk_ServerDisconnect;
-
-            ////ifk.open(serialNumber, hostName, port);
-            ////ifk.waitForAttachment();
-
-            //InterfaceKitDigitalOutputCollection ifkdoc = ifkEx21.InterfaceKit.outputs;
-            ////InterfaceKitDigitalOutputCollection ifkdoc = ifkEx.outputs;
-
-            //await Task.Run(() =>
-            //{
-            //    Parallel.Invoke(() =>
-            //    {
-            //        for (int i = 0; i < 5; i++)
-            //        {
-            //            ifkdoc[0] = true;
-            //            Thread.Sleep(500);
-            //            ifkdoc[0] = false;
-            //            Thread.Sleep(500);
-            //        }
-            //    });
-            //});
-
-            //ifkEx21.Close();
-
-            Log.Info("End", Common.LOG_CATEGORY, startTicks);
-        }
-
         private void PhidgetManager_Error(object sender, Phidgets.Events.ErrorEventArgs e)
         {
             Log.Trace($"Error {e.Type} {e.Code}", Common.LOG_CATEGORY);
@@ -2286,125 +2310,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Log.Trace($"Attach {e.Device.Name} {e.Device.Address} {e.Device.ID} {e.Device.SerialNumber}", Common.LOG_CATEGORY);
         }
 
-        private void Button3Execute()
-        {
-            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
-
-            Message = "Button3 Clicked - Loading PhidgetDevices";
-
-
-            //InterfaceKitEx ifkEx21 = new InterfaceKitEx("192.168.150.21", 5001, sbc21SerialNumber, embedded: true, EventAggregator);
-
-            //ifkEx21.Open();
-
-            ////ifkEx21.InterfaceKit.OutputChange += Ifk_OutputChange;
-
-            ////InterfaceKitDigitalOutputCollection ifkdoc = ifkEx21.InterfaceKit.outputs;
-            ////InterfaceKitDigitalOutputCollection ifkdoc = ifkEx.outputs;
-
-            //Task.Run(() =>
-            //{
-            //    InterfaceKitDigitalOutputCollection ifkdoc = ifkEx21.InterfaceKit.outputs;
-
-            //    for (int i = 0; i < 5; i++)
-            //    {
-            //        ifkdoc[0] = true;
-            //        Thread.Sleep(500);
-            //        ifkdoc[0] = false;
-            //        Thread.Sleep(500);
-            //    }
-            //    //Parallel.Invoke(
-            //    //    () => InterfaceKitParty2(ifkEx21, 500, 5 * Repeats)
-            //    //);
-            //});
-
-            //ifkEx21.Close();
-
-            Log.Info("End", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private void ReloadPerformanceConfigFiles()
-        {
-            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
-
-            Message = "ReloadPerformanceConfigFiles Clicked";
-
-            LoadPerformancesConfig();
-
-            Log.Info("End", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private void ReloadAdvancedServoSequenceConfigFiles()
-        {
-            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
-
-            Message = "ReloadAdvancedServoSequenceConfigFiles Clicked";
-
-            LoadAdvanceServoConfig();
-
-            Log.Info("End", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private void ReloadInterfaceKitSequenceConfigFiles()
-        {
-            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
-
-            Message = "ReloadInterfaceKitSequenceConfigFiles Clicked";
-
-            LoadInterfaceKitConfig();
-
-            Log.Info("End", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private void ReloadStepperSequenceConfigFiles()
-        {
-            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
-
-            Message = "ReloadStepperSequenceConfigFiles Clicked";
-
-            LoadStepperConfig();
-
-            Log.Info("End", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private void Button4Execute()
-        {
-            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
-
-            Message = "Button4 Clicked";
-
-            SequenceEventArgs sequenceEventArgs = new SequenceEventArgs();
-
-            sequenceEventArgs.AdvancedServoSequence = new VNCPhidgetConfig.AdvancedServoSequence
-            {
-                Host = new VNCPhidgetConfig.Host
-                {
-                    Name = "psbc21",
-                    IPAddress = "192.168.150.21",
-                    Port = 5001,
-                    AdvancedServos = new[]
-                    {
-                        new VNCPhidgetConfig.AdvancedServo { Name = "AdvancedServo 1", SerialNumber = 99415, Open = true }
-                    }
-                },
-                Name = "psbc21_SequenceServo0",
-
-                Actions = new[]
-                {
-                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, Acceleration = 5000, VelocityLimit = 200, Engaged = true },
-                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 90 },
-                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 100 },
-                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 110 },
-                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 100 },
-                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 90 },
-                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, Engaged = false },
-                }
-            };
-
-            EventAggregator.GetEvent<VNC.Phidget.Events.AdvancedServoSequenceEvent>().Publish(sequenceEventArgs);
-
-            Log.Info("End", Common.LOG_CATEGORY, startTicks);
-        }
 
         private void Button5Execute()
         {

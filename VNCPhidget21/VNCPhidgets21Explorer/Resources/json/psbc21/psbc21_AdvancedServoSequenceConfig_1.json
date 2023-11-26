@@ -1150,6 +1150,33 @@
       ]
     },
     //
+    // Acceleration(5000) VelocityLimit(1000)
+    //
+    {
+      "Name": "Acceleration(5000) VelocityLimit(1000)",
+      "Description": "SEQUENCE DESCRIPTION",
+      "PlayActionsInParallel": true,
+      "NextSequence": null,
+      "Host": {
+        "Name": "psbc21", "IPAddress": "192.168.150.21", "Port": 5001, "Enable": true,
+        "AdvancedServos": [
+          { "Name": "AdvancedServo 1", "SerialNumber": 99415, "Open": true }
+        ],
+        "InterfaceKits": null,
+        "Steppers": null
+      },
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
+        { "ServoIndex": 1, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
+        { "ServoIndex": 2, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
+        { "ServoIndex": 3, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
+        { "ServoIndex": 4, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
+        { "ServoIndex": 5, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
+        { "ServoIndex": 6, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
+        { "ServoIndex": 7, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
+      ]
+    },
+    //
     // Acceleration(1250) VelocityLimit(625)
     //
     {
