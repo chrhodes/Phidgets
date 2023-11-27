@@ -434,6 +434,7 @@ namespace VNC.Phidget
                 // NOTE(crhodes)
                 // These can be performed without the servo being engaged.  This helps address
                 // previous values that get applied when servo engaged.
+                // The servo still snaps to last postion when enabled.  No known way to address that.
 
                 if (action.Acceleration is not null)
                 {
@@ -485,7 +486,7 @@ namespace VNC.Phidget
 
                 if (action.RelativeAcceleration is not null)
                 {
-                    var newAcceleration = servo.Acceleration += (Double)action.RelativeAcceleration;
+                    var newAcceleration = servo.Acceleration + (Double)action.RelativeAcceleration;
                     if (LogPerformanceAction) actionMessage.Append($" relativeAcceleration:>{action.RelativeAcceleration}< ({newAcceleration})");
 
                     SetAcceleration(newAcceleration, servo, index);
@@ -500,7 +501,7 @@ namespace VNC.Phidget
 
                 if (action.RelativeVelocityLimit is not null)
                 {
-                    var newVelocityLimit = servo.VelocityLimit += (Double)action.RelativeVelocityLimit;
+                    var newVelocityLimit = servo.VelocityLimit + (Double)action.RelativeVelocityLimit;
                     if (LogPerformanceAction) actionMessage.Append($" relativeVelocityLimit:>{action.RelativeVelocityLimit}< ({newVelocityLimit})");
 
                     SetVelocityLimit(newVelocityLimit, servo, index);
@@ -544,8 +545,8 @@ namespace VNC.Phidget
             catch (PhidgetException pex)
             {
                 Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"code:{pex.Code} description:{pex.Description} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-
+                Log.Error($"servo:{index} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                Log.Trace($"Exit {actionMessage}", Common.LOG_CATEGORY, startTicks);
             }
             catch (Exception ex)
             {
@@ -598,8 +599,11 @@ namespace VNC.Phidget
             catch (PhidgetException pex)
             {
                 Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"code:{pex.Code} description:{pex.Description} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-
+                Log.Error($"servo:{index} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                Log.Error($"index:{index} acceleration:{acceleration}" +
+                    $" accelerationMin:{servo.AccelerationMin}" +
+                    //$" acceleration:{servo.Acceleration}" + // Can't check this as it may not have been set yet
+                    $" accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
@@ -646,8 +650,12 @@ namespace VNC.Phidget
             catch (PhidgetException pex)
             {
                 Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"code:{pex.Code} description:{pex.Description} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-
+                Log.Error($"servo:{index} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                Log.Error($"index:{index}" +
+                    $" velocity:{velocity}" +
+                    $" velocityMin:{servo.VelocityMin}" +
+                    $" velocityLimit:{servo.VelocityLimit}" +
+                    $" velocityMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
@@ -696,8 +704,12 @@ namespace VNC.Phidget
             catch (PhidgetException pex)
             {
                 Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"code:{pex.Code} description:{pex.Description} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-
+                Log.Error($"servo:{index} {pex.Description} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                Log.Error($"index:{index} position:{position}" +
+                    $" servo.PositionMin:{servo.PositionMin}" +
+                    $" servo.PositionMax:{servo.PositionMax}" +
+                    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
+                    $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
@@ -743,8 +755,13 @@ namespace VNC.Phidget
             }
             catch (PhidgetException pex)
             {
-                //Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"code:{pex.Code} description:{pex.Description} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"servo:{index} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                Log.Error($"servo:{index} position:{position}" +
+                    $" servo.PositionMin:{servo.PositionMin}" +
+                    $" servo.PositionMax:{servo.PositionMax}" +
+                    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
+                    $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
@@ -794,8 +811,8 @@ namespace VNC.Phidget
             }
             catch (PhidgetException pex)
             {
-                //Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"code:{pex.Code} description:{pex.Description} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"servo:{index} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
@@ -828,7 +845,8 @@ namespace VNC.Phidget
             }
             catch (PhidgetException pex)
             {
-                Log.Error($"code:{pex.Code} description:{pex.Description} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"servo:{index} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
@@ -876,7 +894,8 @@ namespace VNC.Phidget
             }
             catch (PhidgetException pex)
             {
-                Log.Error($"code:{pex.Code} description:{pex.Description} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"servo:{index} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
