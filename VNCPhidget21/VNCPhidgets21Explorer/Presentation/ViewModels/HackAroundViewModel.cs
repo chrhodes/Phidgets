@@ -66,7 +66,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             {
                 @"Performances\PerformanceConfig_1.json",  
                 @"Performances\PerformanceConfig_2.json",
-                @"Performances\PerformanceConfig_3.json", 
+                @"Performances\PerformanceConfig_3.json",
+
+                @"Performances\PerformanceConfig_Skulls.json",
             };
 
             return files;
@@ -561,7 +563,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region AdvancedServo
 
-        AdvancedServoEx ActiveAdvancedServoHost { get; set; }
+        public AdvancedServoEx ActiveAdvancedServoHost { get; set; }
 
         private bool _logCurrentChangeEvents = false;
         public bool LogCurrentChangeEvents
@@ -1247,6 +1249,15 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                             await ExecutePerformanceSequence(sequence);
                         }
+
+                        if (sequence.Duration is not null)
+                        {
+                            if (LogPerformanceSequence)
+                            {
+                                Log.Trace($"Sleeping:>{sequence.Duration}<", Common.LOG_CATEGORY);
+                            }
+                            Thread.Sleep((Int32)sequence.Duration);
+                        }
                         //}
                         //catch (Exception ex)
                         //{
@@ -1256,8 +1267,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 }
                 else
                 {
-                    
-
                     //RunPerformanceSequencesInSequence(performance.PerformanceSequences);
                     foreach (VNCPhidgetConfig.PerformanceSequence sequence in performance.PerformanceSequences)
                     {
@@ -1274,12 +1283,21 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                             await ExecutePerformanceSequence(sequence);
                         }
-                    //}
-                    //catch (Exception ex)
-                    //{
-                    //    Log.Error(ex, Common.LOG_CATEGORY);
-                    //}
-                }
+
+                        if (sequence.Duration is not null)
+                        {
+                            if (LogPerformanceSequence)
+                            {
+                                Log.Trace($"Sleeping:>{sequence.Duration}<", Common.LOG_CATEGORY);
+                            }
+                            Thread.Sleep((Int32)sequence.Duration);
+                        }
+                        //}
+                        //catch (Exception ex)
+                        //{
+                        //    Log.Error(ex, Common.LOG_CATEGORY);
+                        //}
+                    }
                 }
             }
 
@@ -1512,6 +1530,15 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                                     //nextPerformanceSequence = await advancedServo.PlayAdvancedServoSequenceLoops(advancedServoSequence);
                                     await advancedServoHost.RunSequenceLoops(advancedServoSequence);
 
+                                    if (advancedServoSequence.Duration is not null)
+                                    {
+                                        if (LogPerformanceSequence)
+                                        {
+                                            Log.Trace($"ZZZZZ Sleeping:>{advancedServoSequence.Duration}<", Common.LOG_CATEGORY);
+                                        }
+                                        Thread.Sleep((Int32)advancedServoSequence.Duration);
+                                    }
+
                                     nextPerformanceSequence = advancedServoSequence.NextSequence;
 
                                     // NOTE(crhodes)
@@ -1533,6 +1560,15 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
    
                                         await advancedServoHost.RunSequenceLoops(advancedServoSequence);
 
+                                        if (advancedServoSequence.Duration is not null )
+                                        {
+                                            if (LogPerformanceSequence)
+                                            {
+                                                Log.Trace($"ZZZZZ Sleeping:>{advancedServoSequence.Duration}<", Common.LOG_CATEGORY);
+                                            }
+                                            Thread.Sleep((Int32)advancedServoSequence.Duration);
+                                        }
+
                                         nextPerformanceSequence = advancedServoSequence.NextSequence;
                                     }
 
@@ -1549,13 +1585,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                                 }
                                 else
                                 {
-                                    Log.Trace($"Host is null", Common.LOG_CATEGORY);
+                                    Log.Error($"Host is null", Common.LOG_CATEGORY);
                                     nextPerformanceSequence = null;
                                 }
                             }
                             else
                             {
-                                Log.Trace($"Cannot find sequence:{nextPerformanceSequence.Name}", Common.LOG_CATEGORY);
+                                Log.Error($"Cannot find sequence:>{nextPerformanceSequence.Name}<", Common.LOG_CATEGORY);
                                 nextPerformanceSequence = null;
                             }
 
@@ -1619,18 +1655,16 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             if (AvailableStepperSequences.ContainsKey(nextPerformanceSequence.Name ?? ""))
                             {
                                 var stepperSequence = AvailableStepperSequences[nextPerformanceSequence.Name];
-
                             }
 
                             break;
 
                         default:
-
+                            Log.Error($"Unsupported SequenceType:>{nextPerformanceSequence.SequenceType}<", Common.LOG_CATEGORY);
+                            nextPerformanceSequence = null;
                             break;
-
                     }
                 }
-
             }
             catch (Exception ex)
             {

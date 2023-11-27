@@ -387,6 +387,15 @@ namespace VNC.Phidget
                     }
                 }
 
+                if (advancedServoSequence.Duration is not null)
+                {
+                    if (LogPerformanceSequence)
+                    {
+                        Log.Trace($"ZZZZZ Sleeping:>{advancedServoSequence.Duration}<", Common.LOG_CATEGORY);
+                    }
+                    Thread.Sleep((Int32)advancedServoSequence.Duration);
+                }
+
                 if (LogPerformanceSequence) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
             }
             catch (Exception ex)

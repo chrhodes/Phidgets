@@ -39,6 +39,11 @@
         public PerformanceSequence[]? CallSequences { get; set; }
 
         /// <summary>
+        /// Duration of Sequence in ms (sleep time after Actions and CallSequences completed)
+        /// </summary>
+        public Int32? Duration { get; set; }
+
+        /// <summary>
         /// Name of PerformanceSequence to invoke at end of sequence loops (optional)
         /// none or null to stop
         /// </summary>

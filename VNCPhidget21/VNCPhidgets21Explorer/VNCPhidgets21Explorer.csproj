@@ -34,6 +34,7 @@
   <ItemGroup>
     <None Remove="Resources\json\localhost\localhost_AdvancedServoSequenceConfig_1.json" />
     <None Remove="Resources\json\localhost\localhost_AdvancedServoSequence_Skulls.json" />
+    <None Remove="Resources\json\Performances\PerformanceConfig_Skulls.json" />
     <None Remove="Resources\json\psbc11\psbc11_AdvancedServoSequenceConfig_1.json" />
     <None Remove="Resources\json\psbc11\psbc11_AdvancedServoSequence_Skulls.json" />
     <None Remove="Resources\json\psbc21\psbc21_AdvancedServoSequence_Skulls.json" />
@@ -60,6 +61,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\json\localhost\localhost_AdvancedServoSequence_Skulls.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\json\Performances\PerformanceConfig_Skulls.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\json\Performances\PerformanceConfig_1.json">
