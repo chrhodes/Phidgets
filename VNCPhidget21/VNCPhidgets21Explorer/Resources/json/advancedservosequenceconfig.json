@@ -4,6 +4,7 @@
       "Actions": [
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": true,
           "Acceleration": 5000,
           "RelativeAcceleration": null,
@@ -17,6 +18,7 @@
         },
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -30,6 +32,7 @@
         },
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -43,6 +46,7 @@
         },
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -56,6 +60,7 @@
         },
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -69,6 +74,7 @@
         },
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -82,6 +88,7 @@
         },
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": false,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -110,10 +117,11 @@
         "Steppers": null
       },
       "Name": "localhost_SequenceServo0",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
+      "CallSequences": null,
       "NextSequence": {
         "Name": "localhost_SequenceServo1",
         "SequenceType": "AS",
@@ -125,6 +133,7 @@
       "Actions": [
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": true,
           "Acceleration": 5000,
           "RelativeAcceleration": null,
@@ -138,6 +147,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -151,6 +161,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -164,6 +175,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -177,6 +189,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -190,6 +203,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -203,6 +217,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": false,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -217,10 +232,11 @@
       ],
       "Host": null,
       "Name": "localhost_SequenceServo1",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
+      "CallSequences": null,
       "NextSequence": {
         "Name": "localhost_SequenceServo2",
         "SequenceType": "AS",
@@ -232,6 +248,7 @@
       "Actions": [
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": true,
           "Acceleration": 5000,
           "RelativeAcceleration": null,
@@ -245,6 +262,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -258,6 +276,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -271,6 +290,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -284,6 +304,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -297,6 +318,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -310,6 +332,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": false,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -324,10 +347,11 @@
       ],
       "Host": null,
       "Name": "localhost_SequenceServo2",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
+      "CallSequences": null,
       "NextSequence": {
         "Name": "localhost_SequenceServoFin",
         "SequenceType": "AS",
@@ -339,6 +363,7 @@
       "Actions": [
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": false,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -352,6 +377,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": false,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -365,6 +391,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": false,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -379,16 +406,18 @@
       ],
       "Host": null,
       "Name": "localhost_SequenceServoFin",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
+      "CallSequences": null,
       "NextSequence": null
     },
     {
       "Actions": [
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": true,
           "Acceleration": 5000,
           "RelativeAcceleration": null,
@@ -402,6 +431,7 @@
         },
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -415,6 +445,7 @@
         },
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -428,6 +459,7 @@
         },
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -441,6 +473,7 @@
         },
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -454,6 +487,7 @@
         },
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -467,6 +501,7 @@
         },
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": false,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -495,10 +530,11 @@
         "Steppers": null
       },
       "Name": "psbc11_SequenceServo0",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
+      "CallSequences": null,
       "NextSequence": {
         "Name": "psbc11_SequenceServo1",
         "SequenceType": "AS",
@@ -510,6 +546,7 @@
       "Actions": [
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": true,
           "Acceleration": 5000,
           "RelativeAcceleration": null,
@@ -523,6 +560,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -536,6 +574,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -549,6 +588,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -562,6 +602,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -575,6 +616,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -588,6 +630,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": false,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -602,10 +645,11 @@
       ],
       "Host": null,
       "Name": "psbc11_SequenceServo1",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
+      "CallSequences": null,
       "NextSequence": {
         "Name": "psbc11_SequenceServo2",
         "SequenceType": "AS",
@@ -617,6 +661,7 @@
       "Actions": [
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": true,
           "Acceleration": 5000,
           "RelativeAcceleration": null,
@@ -630,6 +675,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -643,6 +689,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -656,6 +703,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -669,6 +717,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -682,6 +731,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -695,6 +745,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": false,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -709,10 +760,11 @@
       ],
       "Host": null,
       "Name": "psbc11_SequenceServo2",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
+      "CallSequences": null,
       "NextSequence": {
         "Name": "psbc11_SequenceServoFin",
         "SequenceType": "AS",
@@ -724,6 +776,7 @@
       "Actions": [
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": false,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -737,6 +790,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": false,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -750,6 +804,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": false,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -764,16 +819,18 @@
       ],
       "Host": null,
       "Name": "psbc11_SequenceServoFin",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
+      "CallSequences": null,
       "NextSequence": null
     },
     {
       "Actions": [
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": true,
           "Acceleration": 5000,
           "RelativeAcceleration": null,
@@ -787,6 +844,7 @@
         },
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -800,6 +858,7 @@
         },
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -813,6 +872,7 @@
         },
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -826,6 +886,7 @@
         },
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -839,6 +900,7 @@
         },
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -852,6 +914,7 @@
         },
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": false,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -880,10 +943,11 @@
         "Steppers": null
       },
       "Name": "psbc21_SequenceServo0",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
+      "CallSequences": null,
       "NextSequence": {
         "Name": "psbc21_SequenceServo1",
         "SequenceType": "AS",
@@ -895,6 +959,7 @@
       "Actions": [
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": true,
           "Acceleration": 5000,
           "RelativeAcceleration": null,
@@ -908,6 +973,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -921,6 +987,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -934,6 +1001,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -947,6 +1015,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -960,6 +1029,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -973,6 +1043,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": false,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -987,10 +1058,11 @@
       ],
       "Host": null,
       "Name": "psbc21_SequenceServo1",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
+      "CallSequences": null,
       "NextSequence": {
         "Name": "psbc21_SequenceServo2",
         "SequenceType": "AS",
@@ -1002,6 +1074,7 @@
       "Actions": [
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": true,
           "Acceleration": 5000,
           "RelativeAcceleration": null,
@@ -1015,6 +1088,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1028,6 +1102,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1041,6 +1116,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1054,6 +1130,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1067,6 +1144,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1080,6 +1158,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": false,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1094,10 +1173,11 @@
       ],
       "Host": null,
       "Name": "psbc21_SequenceServo2",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
+      "CallSequences": null,
       "NextSequence": {
         "Name": "psbc21_SequenceServoFin",
         "SequenceType": "AS",
@@ -1109,6 +1189,7 @@
       "Actions": [
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": true,
           "Acceleration": 5000,
           "RelativeAcceleration": null,
@@ -1122,6 +1203,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": true,
           "Acceleration": 5000,
           "RelativeAcceleration": null,
@@ -1135,6 +1217,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": true,
           "Acceleration": 5000,
           "RelativeAcceleration": null,
@@ -1163,10 +1246,11 @@
         "Steppers": null
       },
       "Name": "psbc21_SequenceServo0P Configure and Engage",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 5,
-      "PlayActionsInParallel": true,
+      "ExecuteActionsInParallel": true,
+      "CallSequences": null,
       "NextSequence": {
         "Name": "psbc21_SequenceServo1P",
         "SequenceType": "AS",
@@ -1178,6 +1262,7 @@
       "Actions": [
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1191,6 +1276,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1204,6 +1290,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1218,10 +1305,11 @@
       ],
       "Host": null,
       "Name": "psbc21_SequenceServo1P",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": true,
+      "ExecuteActionsInParallel": true,
+      "CallSequences": null,
       "NextSequence": {
         "Name": "psbc21_SequenceServo2P",
         "SequenceType": "AS",
@@ -1233,6 +1321,7 @@
       "Actions": [
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1246,6 +1335,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1259,6 +1349,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1273,10 +1364,11 @@
       ],
       "Host": null,
       "Name": "psbc21_SequenceServo2P",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": true,
+      "ExecuteActionsInParallel": true,
+      "CallSequences": null,
       "NextSequence": {
         "Name": "psbc21_SequenceServo3P",
         "SequenceType": "AS",
@@ -1288,6 +1380,7 @@
       "Actions": [
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1301,6 +1394,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1314,6 +1408,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1328,10 +1423,11 @@
       ],
       "Host": null,
       "Name": "psbc21_SequenceServo3P",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": true,
+      "ExecuteActionsInParallel": true,
+      "CallSequences": null,
       "NextSequence": {
         "Name": "psbc21_SequenceServo4P",
         "SequenceType": "AS",
@@ -1343,6 +1439,7 @@
       "Actions": [
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1356,6 +1453,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1369,6 +1467,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1383,10 +1482,11 @@
       ],
       "Host": null,
       "Name": "psbc21_SequenceServo4P",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": true,
+      "ExecuteActionsInParallel": true,
+      "CallSequences": null,
       "NextSequence": {
         "Name": "psbc21_SequenceServo5P",
         "SequenceType": "AS",
@@ -1398,6 +1498,7 @@
       "Actions": [
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1411,6 +1512,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1424,6 +1526,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1438,10 +1541,11 @@
       ],
       "Host": null,
       "Name": "psbc21_SequenceServo5P",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": true,
+      "ExecuteActionsInParallel": true,
+      "CallSequences": null,
       "NextSequence": {
         "Name": "psbc21_SequenceServoFin",
         "SequenceType": "AS",
@@ -1453,6 +1557,7 @@
       "Actions": [
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": false,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1466,6 +1571,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": false,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1479,6 +1585,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": false,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1493,16 +1600,18 @@
       ],
       "Host": null,
       "Name": "psbc21_SequenceServoFin",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
+      "CallSequences": null,
       "NextSequence": null
     },
     {
       "Actions": [
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": true,
           "Acceleration": 5000,
           "RelativeAcceleration": null,
@@ -1516,6 +1625,7 @@
         },
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1529,6 +1639,7 @@
         },
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1542,6 +1653,7 @@
         },
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1555,6 +1667,7 @@
         },
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1568,6 +1681,7 @@
         },
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1581,6 +1695,7 @@
         },
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": false,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1609,10 +1724,11 @@
         "Steppers": null
       },
       "Name": "psbc22_SequenceServo0",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
+      "CallSequences": null,
       "NextSequence": {
         "Name": "psbc22_SequenceServo1",
         "SequenceType": "AS",
@@ -1624,6 +1740,7 @@
       "Actions": [
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": true,
           "Acceleration": 5000,
           "RelativeAcceleration": null,
@@ -1637,6 +1754,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1650,6 +1768,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1663,6 +1782,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1676,6 +1796,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1689,6 +1810,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1702,6 +1824,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": false,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1716,10 +1839,11 @@
       ],
       "Host": null,
       "Name": "psbc22_SequenceServo1",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
+      "CallSequences": null,
       "NextSequence": {
         "Name": "psbc22_SequenceServo2",
         "SequenceType": "AS",
@@ -1731,6 +1855,7 @@
       "Actions": [
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": true,
           "Acceleration": 5000,
           "RelativeAcceleration": null,
@@ -1744,6 +1869,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1757,6 +1883,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1770,6 +1897,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1783,6 +1911,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1796,6 +1925,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1809,6 +1939,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": false,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1823,10 +1954,11 @@
       ],
       "Host": null,
       "Name": "psbc22_SequenceServo2",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
+      "CallSequences": null,
       "NextSequence": {
         "Name": "psbc22_SequenceServoFin",
         "SequenceType": "AS",
@@ -1838,6 +1970,7 @@
       "Actions": [
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": false,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1851,6 +1984,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": false,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1864,6 +1998,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": false,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1878,16 +2013,18 @@
       ],
       "Host": null,
       "Name": "psbc22_SequenceServoFin",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
+      "CallSequences": null,
       "NextSequence": null
     },
     {
       "Actions": [
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": true,
           "Acceleration": 5000,
           "RelativeAcceleration": null,
@@ -1901,6 +2038,7 @@
         },
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1914,6 +2052,7 @@
         },
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1927,6 +2066,7 @@
         },
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1940,6 +2080,7 @@
         },
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1953,6 +2094,7 @@
         },
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1966,6 +2108,7 @@
         },
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": false,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -1994,10 +2137,11 @@
         "Steppers": null
       },
       "Name": "psbc23_SequenceServo0",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
+      "CallSequences": null,
       "NextSequence": {
         "Name": "psbc23_SequenceServo1",
         "SequenceType": "AS",
@@ -2009,6 +2153,7 @@
       "Actions": [
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": true,
           "Acceleration": 5000,
           "RelativeAcceleration": null,
@@ -2022,6 +2167,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -2035,6 +2181,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -2048,6 +2195,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -2061,6 +2209,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -2074,6 +2223,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -2087,6 +2237,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": false,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -2101,10 +2252,11 @@
       ],
       "Host": null,
       "Name": "psbc23_SequenceServo1",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
+      "CallSequences": null,
       "NextSequence": {
         "Name": "psbc23_SequenceServo2",
         "SequenceType": "AS",
@@ -2116,6 +2268,7 @@
       "Actions": [
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": true,
           "Acceleration": 5000,
           "RelativeAcceleration": null,
@@ -2129,6 +2282,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -2142,6 +2296,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -2155,6 +2310,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -2168,6 +2324,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -2181,6 +2338,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": null,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -2194,6 +2352,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": false,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -2208,10 +2367,11 @@
       ],
       "Host": null,
       "Name": "psbc23_SequenceServo2",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
+      "CallSequences": null,
       "NextSequence": {
         "Name": "psbc23_SequenceServoFin",
         "SequenceType": "AS",
@@ -2223,6 +2383,7 @@
       "Actions": [
         {
           "ServoIndex": 0,
+          "ServoType": null,
           "Engaged": false,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -2236,6 +2397,7 @@
         },
         {
           "ServoIndex": 1,
+          "ServoType": null,
           "Engaged": false,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -2249,6 +2411,7 @@
         },
         {
           "ServoIndex": 2,
+          "ServoType": null,
           "Engaged": false,
           "Acceleration": null,
           "RelativeAcceleration": null,
@@ -2263,10 +2426,11 @@
       ],
       "Host": null,
       "Name": "psbc23_SequenceServoFin",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
+      "CallSequences": null,
       "NextSequence": null
     }
   ]

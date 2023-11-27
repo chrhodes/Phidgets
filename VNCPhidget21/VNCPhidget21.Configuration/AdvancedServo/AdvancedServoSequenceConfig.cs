@@ -214,7 +214,7 @@
                 },
                 Name="psbc21_SequenceServo0P Configure and Engage",
                 Loops = 5,
-                PlayActionsInParallel = true,
+                ExecuteActionsInParallel = true,
                 NextSequence = new PerformanceSequence { Name = "psbc21_SequenceServo1P", SequenceType = "AS", Loops = 1 },
 
                 Actions = new[]
@@ -227,7 +227,7 @@
             new AdvancedServoSequence
             {
                 Name="psbc21_SequenceServo1P",
-                PlayActionsInParallel = true,
+                ExecuteActionsInParallel = true,
                 NextSequence = new PerformanceSequence { Name = "psbc21_SequenceServo2P", SequenceType = "AS", Loops = 1 },
 
                 Actions = new[]
@@ -241,7 +241,7 @@
             new AdvancedServoSequence
             {
                 Name="psbc21_SequenceServo2P",
-                PlayActionsInParallel = true,
+                ExecuteActionsInParallel = true,
                 NextSequence = new PerformanceSequence { Name = "psbc21_SequenceServo3P", SequenceType = "AS", Loops = 1 },
 
                 Actions = new[]
@@ -255,7 +255,7 @@
             new AdvancedServoSequence
             {
                 Name="psbc21_SequenceServo3P",
-                PlayActionsInParallel = true,
+                ExecuteActionsInParallel = true,
                 NextSequence = new PerformanceSequence { Name = "psbc21_SequenceServo4P", SequenceType = "AS", Loops = 1 },
 
                 Actions = new[]
@@ -269,7 +269,7 @@
             new AdvancedServoSequence
             {
                 Name="psbc21_SequenceServo4P",
-                PlayActionsInParallel = true,
+                ExecuteActionsInParallel = true,
                 NextSequence = new PerformanceSequence { Name = "psbc21_SequenceServo5P", SequenceType = "AS", Loops = 1 },
 
                 Actions = new[]
@@ -282,7 +282,7 @@
             new AdvancedServoSequence
             {
                 Name="psbc21_SequenceServo5P",
-                PlayActionsInParallel = true,
+                ExecuteActionsInParallel = true,
                 NextSequence = new PerformanceSequence { Name = "psbc21_SequenceServoFin", SequenceType = "AS", Loops = 1 },
 
                 Actions = new[]

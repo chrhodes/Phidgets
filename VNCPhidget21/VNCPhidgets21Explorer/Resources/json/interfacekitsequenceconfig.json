@@ -50,10 +50,11 @@
         "Steppers": null
       },
       "Name": "localhost_SequenceIK 1",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
+      "CallSequences": null,
       "NextSequence": null
     },
     {
@@ -106,10 +107,11 @@
         "Steppers": null
       },
       "Name": "psbc11_SequenceIK 1",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
+      "CallSequences": null,
       "NextSequence": null
     },
     {
@@ -162,10 +164,11 @@
         "Steppers": null
       },
       "Name": "psbc21_SequenceIK 1",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
+      "CallSequences": null,
       "NextSequence": {
         "Name": "psbc22_SequenceIK 1",
         "SequenceType": "IK",
@@ -223,10 +226,11 @@
         "Steppers": null
       },
       "Name": "psbc21_SequenceIK 1 Parallel",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": true,
+      "ExecuteActionsInParallel": true,
+      "CallSequences": null,
       "NextSequence": null
     },
     {
@@ -279,10 +283,11 @@
         "Steppers": null
       },
       "Name": "psbc22_SequenceIK 1",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
+      "CallSequences": null,
       "NextSequence": {
         "Name": "psbc23_SequenceIK 1",
         "SequenceType": "IK",
@@ -340,10 +345,11 @@
         "Steppers": null
       },
       "Name": "psbc23_SequenceIK 1",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
+      "CallSequences": null,
       "NextSequence": null
     }
   ]

@@ -79,7 +79,11 @@
             <dxlc:LayoutItem Label="Log Performance Action" >
                 <dxe:CheckEdit IsChecked="{Binding LogPerformanceAction}"/>
             </dxlc:LayoutItem>
-            
+
+            <dxlc:LayoutItem Label="Log Action Verification" >
+                <dxe:CheckEdit IsChecked="{Binding LogActionVerification}"/>
+            </dxlc:LayoutItem>
+
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup Header="Performances" View="GroupBox" Orientation="Vertical" >
@@ -211,7 +215,7 @@
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="PlayActions InParallel" HorizontalAlignment="Left" Background="Wheat" >
-                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.PlayActionsInParallel }" />
+                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.ExecuteActionsInParallel }" />
                         </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>
@@ -452,7 +456,7 @@
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="PlayActions InParallel" HorizontalAlignment="Left" Background="Wheat" >
-                            <dxe:TextEdit Text="{Binding SelectedInterfaceKitSequence.PlayActionsInParallel }" />
+                            <dxe:TextEdit Text="{Binding SelectedInterfaceKitSequence.ExecuteActionsInParallel }" />
                         </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>
@@ -562,7 +566,7 @@
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="PlayActions InParallel" HorizontalAlignment="Left" Background="Wheat" >
-                            <dxe:TextEdit Text="{Binding SelectedStepperSequence.PlayActionsInParallel }" />
+                            <dxe:TextEdit Text="{Binding SelectedStepperSequence.ExecuteActionsInParallel }" />
                         </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>

@@ -2,9 +2,10 @@
   "Actions": null,
   "Host": null,
   "Name": "SEQUENCE NAME",
-  "Description": "SEQUENCE DESCRIPTION",
-  "UsageNotes": "USAGE NOTES",
+  "Description": null,
+  "UsageNotes": null,
   "Loops": 1,
-  "PlayActionsInParallel": false,
+  "ExecuteActionsInParallel": false,
+  "CallSequences": null,
   "NextSequence": null
 }

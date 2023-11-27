@@ -2,7 +2,7 @@
   "InterfaceKitSequences": [
     {
       "Name": "localhost_SequenceIK 1", "Description": "Blink 0,1,2 every 500 ms", "Loops": 1,
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
       "NextSequence": null,
 
       "Host": {

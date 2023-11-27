@@ -248,7 +248,7 @@ namespace VNC.Phidget
                     {
                         Log.Trace($"Loop:{sequenceLoop + 1}", Common.LOG_CATEGORY);
 
-                        if (interfaceKitSequence.PlayActionsInParallel)
+                        if (interfaceKitSequence.ExecuteActionsInParallel)
                         {
                             if (LogPerformanceSequence) Log.Trace($"Parallel Actions Loop:{sequenceLoop + 1}", Common.LOG_CATEGORY);
 

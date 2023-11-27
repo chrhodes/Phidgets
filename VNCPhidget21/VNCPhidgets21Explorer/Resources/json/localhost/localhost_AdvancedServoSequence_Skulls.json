@@ -6,7 +6,7 @@
     { 
       "Name": "Wake up Skull",
       "Description": "Move Skull to initial position",
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
       "Host": {
         "Name": "localhost", "IPAddress": "127.0.0.1", "Port": 5001, "Enable": true,
         "AdvancedServos": [
@@ -25,7 +25,7 @@
     { 
       "Name": "Center Skull",
       "Description": "Center Skull",
-      "PlayActionsInParallel": true,
+      "ExecuteActionsInParallel": true,
       "Host": {
         "Name": "localhost", "IPAddress": "127.0.0.1", "Port": 5001, "Enable": true,
         "AdvancedServos": [
@@ -43,7 +43,7 @@
     //
     { 
       "Name": "Skull Look Up Right", "Description": "Skull Look Up Right",
-      "PlayActionsInParallel": true,
+      "ExecuteActionsInParallel": true,
       "Host": {
         "Name": "localhost", "IPAddress": "127.0.0.1", "Port": 5001, "Enable": true,
         "AdvancedServos": [
@@ -61,7 +61,7 @@
     //
     { 
       "Name": "Skull Look Down Left", "Description": "Skull Look Down Left",
-      "PlayActionsInParallel": true,
+      "ExecuteActionsInParallel": true,
       "Host": {
         "Name": "localhost", "IPAddress": "127.0.0.1", "Port": 5001, "Enable": true,
         "AdvancedServos": [

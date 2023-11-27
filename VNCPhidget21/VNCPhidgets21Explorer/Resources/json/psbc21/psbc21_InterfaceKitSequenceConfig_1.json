@@ -2,7 +2,7 @@
   "InterfaceKitSequences": [
     {
       "Name": "psbc21_SequenceIK 1", "Description": "Blink 0,1,2 every 500 ms", "Loops": 1,
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
       "NextSequence": null,
       "Host": {
         "Name": "psbc21", "IPAddress": "192.168.150.21", "Port": 5001, "Enable": true,
@@ -23,7 +23,7 @@
     },
     {
       "Name": "psbc21_SequenceIK 2", "Description": "Blink 0,1,2 every 500 ms", "Loops": 1,
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
       "NextSequence": null,
       "Host": {
         "Name": "psbc21", "IPAddress": "192.168.150.21", "Port": 5001, "Enable": true,

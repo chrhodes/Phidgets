@@ -13,24 +13,30 @@
         public string Name { get; set; } = "SEQUENCE NAME";
 
         /// <summary>
-        /// Description of sequence
+        /// Description of sequence (optional)
         /// </summary>
-        public string Description { get; set; } = "SEQUENCE DESCRIPTION";
+        public string? Description { get; set; }
 
         /// <summary>
-        /// Description of sequence
+        /// Description of sequence (optional)
         /// </summary>
-        public string UsageNotes { get; set; } = "USAGE NOTES";
+        public string? UsageNotes { get; set; }
 
         /// <summary>
-        /// Number of loops of sequence
+        /// Number of loops of sequence Actions to execute
         /// </summary>
         public Int32 Loops { get; set; } = 1;
 
         /// <summary>
-        /// Play Actions[] in Parallel or Sequential (false)
+        /// Play Actions[] in Parallel or Sequentially (false)
         /// </summary>
-        public Boolean PlayActionsInParallel { get; set; } = false;
+        public Boolean ExecuteActionsInParallel { get; set; } = false;
+
+        /// <summary>
+        /// Name of PerformanceSequence[] to call after executing Actions
+        /// before calling NextSequence
+        /// </summary>
+        public PerformanceSequence[]? CallSequences { get; set; }
 
         /// <summary>
         /// Name of PerformanceSequence to invoke at end of sequence loops (optional)

@@ -90,7 +90,7 @@
                     },
                 },
                 Name="psbc21_SequenceIK 1 Parallel",
-                PlayActionsInParallel = true,
+                ExecuteActionsInParallel = true,
 
                 Actions = new[]
                 {

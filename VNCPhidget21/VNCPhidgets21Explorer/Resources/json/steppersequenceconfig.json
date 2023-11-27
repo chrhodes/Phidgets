@@ -29,10 +29,11 @@
         ]
       },
       "Name": "SequenceStepper 1",
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "USAGE NOTES",
+      "Description": null,
+      "UsageNotes": null,
       "Loops": 1,
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
+      "CallSequences": null,
       "NextSequence": null
     }
   ]

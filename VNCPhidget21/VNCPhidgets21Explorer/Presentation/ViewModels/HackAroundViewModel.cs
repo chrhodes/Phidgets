@@ -427,19 +427,31 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private bool _logPerformanceStep = false;
+        private bool _logPerformanceAction = false;
         public bool LogPerformanceAction
         {
-            get => _logPerformanceStep;
+            get => _logPerformanceAction;
             set
             {
-                if (_logPerformanceStep == value)
+                if (_logPerformanceAction == value)
                     return;
-                _logPerformanceStep = value;
+                _logPerformanceAction = value;
                 OnPropertyChanged();
             }
         }
 
+        private bool _logActionVerification = false;
+        public bool LogActionVerification
+        {
+            get => _logActionVerification;
+            set
+            {
+                if (_logActionVerification == value)
+                    return;
+                _logActionVerification = value;
+                OnPropertyChanged();
+            }
+        }
         #region Performances
 
         private IEnumerable<string> _performanceConfigFiles;
@@ -1646,6 +1658,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 advancedServoHost.LogPerformanceSequence = LogPerformanceSequence;
                 advancedServoHost.LogPerformanceAction = LogPerformanceAction;
+                advancedServoHost.LogActionVerification = LogActionVerification;
             }
             else
             {
@@ -1665,6 +1678,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 advancedServoHost.LogPerformanceSequence = LogPerformanceSequence;
                 advancedServoHost.LogPerformanceAction = LogPerformanceAction;
+                advancedServoHost.LogActionVerification = LogActionVerification;
 
                 advancedServoHost.Open();
             }

@@ -31,7 +31,7 @@
       "Name": "SequenceStepper 1",
       "Description": "SEQUENCE DESCRIPTION",
       "Loops": 1,
-      "PlayActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
       "NextSequence": null
     }
   ]
