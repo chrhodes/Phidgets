@@ -1530,15 +1530,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                                     //nextPerformanceSequence = await advancedServo.PlayAdvancedServoSequenceLoops(advancedServoSequence);
                                     await advancedServoHost.RunSequenceLoops(advancedServoSequence);
 
-                                    if (advancedServoSequence.Duration is not null)
-                                    {
-                                        if (LogPerformanceSequence)
-                                        {
-                                            Log.Trace($"ZZZZZ Sleeping:>{advancedServoSequence.Duration}<", Common.LOG_CATEGORY);
-                                        }
-                                        Thread.Sleep((Int32)advancedServoSequence.Duration);
-                                    }
-
                                     nextPerformanceSequence = advancedServoSequence.NextSequence;
 
                                     // NOTE(crhodes)
@@ -1559,15 +1550,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                                         advancedServoSequence = AvailableAdvancedServoSequences[nextPerformanceSequence.Name];
    
                                         await advancedServoHost.RunSequenceLoops(advancedServoSequence);
-
-                                        if (advancedServoSequence.Duration is not null )
-                                        {
-                                            if (LogPerformanceSequence)
-                                            {
-                                                Log.Trace($"ZZZZZ Sleeping:>{advancedServoSequence.Duration}<", Common.LOG_CATEGORY);
-                                            }
-                                            Thread.Sleep((Int32)advancedServoSequence.Duration);
-                                        }
 
                                         nextPerformanceSequence = advancedServoSequence.NextSequence;
                                     }

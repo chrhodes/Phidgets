@@ -80,9 +80,13 @@
         { "Name": "Skull Maybe 1 (psbc22)", "SequenceType": "AS", "Duration": 1000},
         { "Name": "Skull Maybe 2 (psbc22)", "SequenceType": "AS", "Duration": 1000},
 
-        { "Name": "Center Skull (psbc22)", "SequenceType": "AS"},
+        { "Name": "Center Skull (psbc22)", "SequenceType": "AS", "Duration": 1000},
 
         { "Name": "Skull Laugh (psbc22)", "SequenceType": "AS" },
+        
+        { "Name": "Center Skull (psbc22)", "SequenceType": "AS", "Duration": 1000},
+        
+        { "Name": "Skull Sigh (psbc22)", "SequenceType": "AS" },
       ],
      //"NextPerformance":
      //{ 
