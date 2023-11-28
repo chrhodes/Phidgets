@@ -1,9 +1,0 @@
-{
-  "Name": "HOST NAME",
-  "IPAddress": "127.0.0.1",
-  "Port": 5001,
-  "Enable": true,
-  "AdvancedServos": null,
-  "InterfaceKits": null,
-  "Steppers": null
-}

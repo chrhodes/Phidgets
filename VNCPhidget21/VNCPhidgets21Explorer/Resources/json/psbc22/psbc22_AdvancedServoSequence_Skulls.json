@@ -322,10 +322,10 @@
         //{ "ServoIndex": 0, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
         //{ "ServoIndex": 1, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
         //{ "ServoIndex": 2, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
-        { "ServoIndex": 2, "RelativePosition": -10 },
-        { "ServoIndex": 2, "RelativePosition": 20 },
-        { "ServoIndex": 2, "RelativePosition": -20 },
-        { "ServoIndex": 2, "RelativePosition": 10 },
+        { "ServoIndex": 2, "RelativePosition": -15, "Acceleration": 2000, "VelocityLimit": 150},
+        { "ServoIndex": 2, "RelativePosition": 25 },
+        { "ServoIndex": 2, "RelativePosition": -25 },
+        { "ServoIndex": 2, "RelativePosition": 15 },
       ]
     },
     //

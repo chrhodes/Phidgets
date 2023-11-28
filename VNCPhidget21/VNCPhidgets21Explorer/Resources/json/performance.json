@@ -1,8 +1,0 @@
-{
-  "Name": "PERFORMANCE NAME",
-  "Description": "PERFORMANCE DESCRIPTION",
-  "Loops": 1,
-  "PlayInParallel": false,
-  "PerformanceSequences": null,
-  "NextPerformance": null
-}

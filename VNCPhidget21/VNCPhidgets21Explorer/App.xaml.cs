@@ -53,9 +53,9 @@ namespace VNCPhidgets21Explorer
 
             //Common.AssemblyVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
-            Directory.SetCurrentDirectory("Resources/json");
+            Directory.SetCurrentDirectory("../../../Resources/json");
 
-            Log.APPLICATION_START(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
+            Log.APPLICATION_START(String.Format($"Exit CurrentDirectory:{Directory.GetCurrentDirectory()}"), Common.LOG_CATEGORY, startTicks);
         }
 
         // 01
