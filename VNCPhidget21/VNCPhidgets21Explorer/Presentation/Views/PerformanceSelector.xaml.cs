@@ -51,7 +51,7 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             // NOTE(crhodes)
             // Put things here that initialize the View
 
-            lgAdvancedServoSequences.IsCollapsed = true;
+            //lgAdvancedServoSequences.IsCollapsed = true;
             lgInterfaceKitSequences.IsCollapsed = true;
             lgStepperSequences.IsCollapsed = true;
             

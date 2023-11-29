@@ -803,15 +803,15 @@
                         <!--</dxlc:LayoutItem>-->
 
                         <controls:VelocityControl 
-                            Min="{Binding AdvancedServoProperties[5].VelocityMin, Mode=OneWay}" 
-                            Current="{Binding AdvancedServoProperties[5].Velocity, Mode=TwoWay}" 
-                            Limit="{Binding AdvancedServoProperties[5].VelocityLimit, Mode=TwoWay}" 
-                            Max="{Binding AdvancedServoProperties[5].VelocityMax, Mode=OneWay}"/>
+                            Min="{Binding AdvancedServoProperties[7].VelocityMin, Mode=OneWay}" 
+                            Current="{Binding AdvancedServoProperties[7].Velocity, Mode=TwoWay}" 
+                            Limit="{Binding AdvancedServoProperties[7].VelocityLimit, Mode=TwoWay}" 
+                            Max="{Binding AdvancedServoProperties[7].VelocityMax, Mode=OneWay}"/>
 
                         <controls:AccelerationControl 
-                            Min="{Binding AdvancedServoProperties[5].AccelerationMin, Mode=OneWay}" 
-                            Current="{Binding AdvancedServoProperties[5].Acceleration, Mode=TwoWay}" 
-                            Max="{Binding AdvancedServoProperties[5].AccelerationMax, Mode=OneWay}"/>
+                            Min="{Binding AdvancedServoProperties[7].AccelerationMin, Mode=OneWay}" 
+                            Current="{Binding AdvancedServoProperties[7].Acceleration, Mode=TwoWay}" 
+                            Max="{Binding AdvancedServoProperties[7].AccelerationMax, Mode=OneWay}"/>
 
                     </dxlc:LayoutGroup>
 

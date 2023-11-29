@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
-
-using DevExpress.Office.Utils;
 
 using Phidgets;
 
@@ -16,17 +13,10 @@ using Prism.Commands;
 using Prism.Events;
 using Prism.Services.Dialogs;
 
-using Unity.Interception.Utilities;
-
 using VNC;
 using VNC.Core.Mvvm;
 using VNC.Phidget;
 using VNC.Phidget.Events;
-
-using VNCPhidget21.Configuration;
-
-
-//using VNCPhidget21.Configuration;
 
 using VNCPhidgetConfig = VNCPhidget21.Configuration;
 
@@ -416,6 +406,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        private bool _logPerformance = false;
+        public bool LogPerformance
+        {
+            get => _logPerformance;
+            set
+            {
+                if (_logPerformance == value)
+                    return;
+                _logPerformance = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool _logPerformanceSequence = false;
         public bool LogPerformanceSequence
         {
@@ -563,7 +566,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region AdvancedServo
 
-        public AdvancedServoEx ActiveAdvancedServoHost { get; set; }
+        //public AdvancedServoEx ActiveAdvancedServoHost { get; set; }
 
         private bool _logCurrentChangeEvents = false;
         public bool LogCurrentChangeEvents
@@ -1182,13 +1185,72 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             foreach (VNCPhidgetConfig.Performance performance in SelectedPerformances)
             {
-                if (LogPerformanceSequence) Log.Trace($"Playing performance:{performance.Name} description:{performance.Description}", Common.LOG_CATEGORY);
-
-                RunPerformanceLoops(performance);
-
-                if (performance.NextPerformance is not null)
+                if (LogPerformance)
                 {
-                    RunPerformanceLoops(performance.NextPerformance);
+                    Log.Trace($"Playing performance:{performance.Name} description:{performance.Description}" +
+                        $" loops:{performance.Loops} playSequencesInParallel:{performance.PlaySequencesInParallel}" +
+                        $" performanceSequences:{performance.PerformanceSequences?.Count()}" +
+                        $" callPerformances:{performance.CallPerformances?.Count()}" +
+                        $" nextPerformance:{performance.NextPerformance}", Common.LOG_CATEGORY);
+                }
+
+                VNCPhidgetConfig.Performance? nextPerformance = performance;
+
+                // NOTE(crhodes)
+                // Why would we need to check given UI brought us here.
+                // Might be useful generally
+
+                //if (AvailablePerformances.ContainsKey(nextPerformance.Name ?? ""))
+                //{ 
+
+                //}
+
+                await RunPerformanceLoops(nextPerformance);
+
+                foreach (VNCPhidgetConfig.Performance callPerformance in performance.CallPerformances)
+                {
+                    if (AvailablePerformances.ContainsKey(callPerformance.Name ?? ""))
+                    {
+                        nextPerformance = AvailablePerformances[callPerformance.Name];
+
+                        await RunPerformanceLoops(nextPerformance);
+
+                        // TODO(crhodes)
+                        // Should we process Next Performance if exists.  Recursive implications need to be considered.
+                        // May have to detect loops.
+
+                        nextPerformance = nextPerformance?.NextPerformance;
+                    }
+                    else
+                    {
+                        Log.Error($"Cannot find performance:>{nextPerformance.Name}<", Common.LOG_CATEGORY);
+                        nextPerformance = null;
+                    }
+                }
+
+                nextPerformance = nextPerformance?.NextPerformance;
+
+                while (nextPerformance is not null)
+                {
+                    if (LogPerformance)
+                    {
+                        Log.Trace($"Playing performance:{nextPerformance.Name} description:{nextPerformance.Description}" +
+                                $"nextPerformance:{nextPerformance.NextPerformance}", Common.LOG_CATEGORY);
+                    }
+
+                    if (AvailablePerformances.ContainsKey(nextPerformance.Name ?? ""))
+                    {
+                        nextPerformance = AvailablePerformances[nextPerformance.Name];
+
+                        await RunPerformanceLoops(nextPerformance);
+
+                        nextPerformance = nextPerformance?.NextPerformance;
+                    }
+                    else
+                    {
+                        Log.Error($"Cannot find performance:>{nextPerformance.Name}<", Common.LOG_CATEGORY);
+                        nextPerformance = null;
+                    }
                 }
             }
 
@@ -1220,181 +1282,119 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+
         private async Task RunPerformanceLoops(VNCPhidgetConfig.Performance performance)
         {
             Int64 startTicks = 0;
 
-            if (LogPerformanceSequence) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+            if (LogPerformance) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+            PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
 
             for (int performanceLoop = 0; performanceLoop < performance.Loops; performanceLoop++)
             {
-                //if (LogPerformanceSequence) Log.Trace($"Running Loop:{i + 1}", Common.LOG_CATEGORY);
+                // NOTE(crhodes)
+                // First execute PerformanceSequences if any
 
-                if (performance.PlayInParallel)
+                if (performance.PerformanceSequences is not null)
                 {
-                    //if (LogPerformanceSequence) Log.Trace($"Loop:{loop + 1}", Common.LOG_CATEGORY);
-                    //RunPerformanceSequencesInParallel(performance.PerformanceSequences);
-                    Parallel.ForEach(performance.PerformanceSequences, async sequence =>
+                    if (performance.PlaySequencesInParallel)
                     {
-                        //if (LogPerformanceSequence)
-                        //{
-                        //    Log.Trace($"Running sequence:{sequence.Name} type:{sequence.SequenceType}", Common.LOG_CATEGORY);
-                        //}
-                        if (LogPerformanceSequence) Log.Trace($"Parallel Actions performanceLoop:{performanceLoop + 1}", Common.LOG_CATEGORY);
-                        //try
-                        //{
-                        for (int sequenceLoop = 0; sequenceLoop < sequence.Loops; sequenceLoop++)
+                        if (LogPerformance) Log.Trace($"Parallel Actions performanceLoop:{performanceLoop + 1}", Common.LOG_CATEGORY);
+
+                        Parallel.ForEach(performance.PerformanceSequences, async sequence =>
                         {
-                            if (LogPerformanceSequence) Log.Trace($"Sequential Actions Loop:{performanceLoop + 1}", Common.LOG_CATEGORY);
-
-                            await ExecutePerformanceSequence(sequence);
-                        }
-
-                        if (sequence.Duration is not null)
-                        {
-                            if (LogPerformanceSequence)
-                            {
-                                Log.Trace($"Sleeping:>{sequence.Duration}<", Common.LOG_CATEGORY);
-                            }
-                            Thread.Sleep((Int32)sequence.Duration);
-                        }
-                        //}
-                        //catch (Exception ex)
-                        //{
-                        //    Log.Error(ex, Common.LOG_CATEGORY);
-                        //}
-                    });
-                }
-                else
-                {
-                    //RunPerformanceSequencesInSequence(performance.PerformanceSequences);
-                    foreach (VNCPhidgetConfig.PerformanceSequence sequence in performance.PerformanceSequences)
-                    {
-                        //if (LogPerformanceSequence)
-                        //{
-                        //    Log.Trace($"Running sequence:{sequence.Name} type:{sequence.SequenceType} loops:{sequence.Loops}", Common.LOG_CATEGORY);
-                        //}
-
-                        //try
-                        //{
-                        for (int sequenceLoop = 0; sequenceLoop < sequence.Loops; sequenceLoop++)
-                        {
-                            if (LogPerformanceSequence) Log.Trace($"Sequential Actions Loop:{performanceLoop + 1}", Common.LOG_CATEGORY);
-
-                            await ExecutePerformanceSequence(sequence);
-                        }
-
-                        if (sequence.Duration is not null)
-                        {
-                            if (LogPerformanceSequence)
-                            {
-                                Log.Trace($"Sleeping:>{sequence.Duration}<", Common.LOG_CATEGORY);
-                            }
-                            Thread.Sleep((Int32)sequence.Duration);
-                        }
-                        //}
-                        //catch (Exception ex)
-                        //{
-                        //    Log.Error(ex, Common.LOG_CATEGORY);
-                        //}
+                            await performanceSequencePlayer.ExecutePerformanceSequence(sequence);
+                        });
                     }
+                    else
+                    {
+                        if (LogPerformance) Log.Trace($"Sequential Actions performanceLoop:{performanceLoop + 1}", Common.LOG_CATEGORY);
+
+                        foreach (VNCPhidgetConfig.PerformanceSequence sequence in performance.PerformanceSequences)
+                        {
+                            for (int sequenceLoop = 0; sequenceLoop < sequence.Loops; sequenceLoop++)
+                            {
+                                await performanceSequencePlayer.ExecutePerformanceSequence(sequence);
+                            }
+                        }
+                    }
+                }
+
+                // NOTE(crhodes)
+                // Then execute CallPerformances if any
+
+                if (performance.CallPerformances is not null)
+                {
+                    //foreach (VNCPhidgetConfig.Performance callPerformance in performance.CallPerformances)
+                    //{
+
+                    //    if (AvailablePerformances.ContainsKey(callPerformance.Name ?? ""))
+                    //    {
+                    //        nextPerformance = AvailablePerformances[callPerformance.Name];
+
+                    //        await RunPerformanceLoops(nextPerformance);
+
+                    //        // TODO(crhodes)
+                    //        // Should we process Next Performance if exists.  Recursive implications need to be considered.
+                    //        // May have to detect loops.
+
+                    //        nextPerformance = nextPerformance?.NextPerformance;
+                    //    }
+                    //    else
+                    //    {
+                    //        Log.Error($"Cannot find performance:>{nextPerformance.Name}<", Common.LOG_CATEGORY);
+                    //        nextPerformance = null;
+                    //    }
+                    //}
+                }
+
+                // NOTE(crhodes)
+                // Then sleep if necessary before next loop
+
+                if (performance.Duration is not null)
+                {
+                    if (LogPerformance)
+                    {
+                        Log.Trace($"Zzzzz End of Performance Sleeping:>{performance.Duration}<", Common.LOG_CATEGORY);
+                    }
+                    Thread.Sleep((Int32)performance.Duration);
                 }
             }
 
-            if (LogPerformanceSequence) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+            if (LogPerformance) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
-        //private async void RunPerformanceSequencesInParallel(VNCPhidgetConfig.PerformanceSequence[] performanceSequences)
-        //{
-        //    //Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
 
-        //    Parallel.ForEach(performanceSequences, async sequence =>
-        //    {
-        //        if (LogPerformanceSequence)
-        //        {
-        //            Log.Trace($"Running sequence:{sequence.Name} type:{sequence.SequenceType}", Common.LOG_CATEGORY);
-        //        }
+        private  PerformanceSequencePlayer ActivePerformanceSequencePlayer { get; set; }
+        private PerformanceSequencePlayer GetPerformanceSequencePlayer()
+        {
+            if (ActivePerformanceSequencePlayer == null)
+            {
+                ActivePerformanceSequencePlayer = new PerformanceSequencePlayer(EventAggregator);
+            }
+            //PerformanceSequencePlayer performanceSequencePlayer = new PerformanceSequencePlayer(EventAggregator);
 
-        //        try
-        //        {
-        //            await ExecutePerformanceSequence(sequence);
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Log.Error(ex, Common.LOG_CATEGORY);
-        //        }
-        //    });
+            ActivePerformanceSequencePlayer.AvailablePhidgets = AvailablePhidgets;
 
-        //    //Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
-        //}
+            ActivePerformanceSequencePlayer.AvailablePerformances = AvailablePerformances;
+            ActivePerformanceSequencePlayer.AvailableAdvancedServoSequences = AvailableAdvancedServoSequences;
+            ActivePerformanceSequencePlayer.AvailableInterfaceKitSequences = AvailableInterfaceKitSequences;
+            ActivePerformanceSequencePlayer.AvailableStepperSequences = AvailableStepperSequences;
 
-        //private async void RunPerformanceSequencesInSequence(VNCPhidgetConfig.PerformanceSequence[] performanceSequences)
-        //{
-        //    //Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
+            ActivePerformanceSequencePlayer.LogPerformanceSequence = LogPerformanceSequence;
+            ActivePerformanceSequencePlayer.LogPerformanceAction = LogPerformanceAction;
+            ActivePerformanceSequencePlayer.LogActionVerification = LogActionVerification;
 
-        //    foreach (VNCPhidgetConfig.PerformanceSequence sequence in performanceSequences)
-        //    {
-        //        if (LogPerformanceSequence)
-        //        {
-        //            Log.Trace($"Running sequence:{sequence.Name} type:{sequence.SequenceType} loops:{sequence.Loops}", Common.LOG_CATEGORY);
-        //        }
+            ActivePerformanceSequencePlayer.LogCurrentChangeEvents = LogCurrentChangeEvents;
+            ActivePerformanceSequencePlayer.LogPositionChangeEvents = LogPositionChangeEvents;
+            ActivePerformanceSequencePlayer.LogVelocityChangeEvents = LogVelocityChangeEvents;
 
-        //        try
-        //        {
-        //            for (int i = 0; i < sequence.Loops; i++)
-        //            {
-        //                ExecutePerformanceSequence(sequence);
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Log.Error(ex, Common.LOG_CATEGORY);
-        //        }
-        //    }
+            ActivePerformanceSequencePlayer.LogInputChangeEvents = LogInputChangeEvents;
+            ActivePerformanceSequencePlayer.LogOutputChangeEvents = LogOutputChangeEvents;
+            ActivePerformanceSequencePlayer.LogSensorChangeEvents = LogSensorChangeEvents;
 
-        //    //Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
-        //}
+            return ActivePerformanceSequencePlayer;
+        }
 
-        //private void PerformServoAction(AdvancedServoServo servo, AdvancedServoServoAction action, Int32 index)
-        //{
-        //    Int64 startTicks = Log.Trace($"Enter servo:{index}", Common.LOG_CATEGORY);
-
-        //    try
-        //    {
-        //        if (action.Acceleration is not null) servo.Acceleration = (Double)action.Acceleration;
-        //        if (action.VelocityLimit is not null) servo.VelocityLimit = (Double)action.VelocityLimit;
-        //        if (action.PositionMin is not null) servo.PositionMin = (Double)action.PositionMin;
-        //        if (action.PositionMax is not null) servo.PositionMax = (Double)action.PositionMax;
-        //        if (action.Engaged is not null) servo.Engaged = (Boolean)action.Engaged;
-
-        //        // TODO(crhodes)
-        //        // Maybe wait for servo Engaged to complete if not currently engaged
-        //        // View logs and see how often exceptions thrown.
-
-        //        if (action.TargetPosition is not null)
-        //        {
-        //            servo.Position = (Double)action.TargetPosition;
-        //            Thread.Sleep(1);
-
-        //            VerifyNewPositionAchieved(servo, (Double)action.TargetPosition);
-
-        //            if (action.Duration > 0) Thread.Sleep((Int32)action.Duration);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Log.Error(ex, Common.LOG_CATEGORY);
-        //    }
-
-        //    Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
-        //}
-
-        //private void VerifyNewPositionAchieved(AdvancedServoServo servo, double targetPosition)
-        //{
-        //    while (servo.Position != targetPosition) { Thread.Sleep(1); }
-        //}
-
-        // If using CommandParameter, figure out TYPE and fix above
-        //public bool PlayPerformanceCanExecute(TYPE value)
         public bool PlayPerformanceCanExecute()
         {
             // TODO(crhodes)
@@ -1437,6 +1437,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             Message = "Cool, you called PlayAdvancedServoSequence";
 
+            PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
+
             foreach (VNCPhidgetConfig.AdvancedServoSequence sequence in SelectedAdvancedServoSequences)
             {
                 if (LogPerformanceSequence) Log.Trace($"Playing sequence:{sequence.Name}", Common.LOG_CATEGORY);
@@ -1458,7 +1460,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             await Task.Run(async () =>
                             {
                                 if (LogPerformanceSequence) Log.Trace($"Executing sequence:{nextPerformanceSequence.Name}", Common.LOG_CATEGORY);
-                                nextPerformanceSequence = await ExecutePerformanceSequence(nextPerformanceSequence);
+                                nextPerformanceSequence = await performanceSequencePlayer.ExecutePerformanceSequence(nextPerformanceSequence);
                             });
                         } while (nextPerformanceSequence is not null);
                     }
@@ -1498,232 +1500,240 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private async Task<VNCPhidgetConfig.PerformanceSequence?> ExecutePerformanceSequence(VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence)
-        {
-            try
-            {
-                if (LogPerformanceSequence)
-                {
-                    Log.Trace($"Executing sequence:>{nextPerformanceSequence?.Name}< type:>{nextPerformanceSequence?.SequenceType}<" +
-                        $" loops:>{nextPerformanceSequence?.Loops}< closePhidget:>{nextPerformanceSequence?.ClosePhidget}<", Common.LOG_CATEGORY);
-                }
+        //private async Task<VNCPhidgetConfig.PerformanceSequence?> ExecutePerformanceSequence(VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence)
+        //{
+        //    try
+        //    {
+        //        if (LogPerformanceSequence)
+        //        {
+        //            Log.Trace($"Executing performanceSequence:>{nextPerformanceSequence?.Name}< type:>{nextPerformanceSequence?.SequenceType}<" +
+        //                $" loops:>{nextPerformanceSequence?.Loops}< duration:>{nextPerformanceSequence?.Duration}< closePhidget:>{nextPerformanceSequence?.ClosePhidget}<", Common.LOG_CATEGORY);
+        //        }
 
-                // TODO(crhodes)
-                // Think about Open/Close more.  Maybe config.
-                // What happens if nextSequence.Host is null    
+        //        // TODO(crhodes)
+        //        // Think about Open/Close more.  Maybe config.
+        //        // What happens if nextSequence.Host is null    
 
-                var startingPerormanceSequence = nextPerformanceSequence;
+        //        var startingPerformanceSequence = nextPerformanceSequence;
 
-                if (nextPerformanceSequence is not null)
-                {
-                    switch (nextPerformanceSequence.SequenceType)
-                    {
-                        case "AS":
-                            if (AvailableAdvancedServoSequences.ContainsKey(nextPerformanceSequence.Name ?? ""))
-                            {
-                                var advancedServoSequence = AvailableAdvancedServoSequences[nextPerformanceSequence.Name];
+        //        if (nextPerformanceSequence is not null)
+        //        {
+        //            switch (nextPerformanceSequence.SequenceType)
+        //            {
+        //                case "AS":
+        //                    if (AvailableAdvancedServoSequences.ContainsKey(nextPerformanceSequence.Name ?? ""))
+        //                    {
+        //                        var advancedServoSequence = AvailableAdvancedServoSequences[nextPerformanceSequence.Name];
 
-                                if (advancedServoSequence.Host is not null)
-                                {
-                                    var advancedServoHost = OpenAdvancedServoHost(advancedServoSequence.Host);
+        //                        if (advancedServoSequence.Host is not null)
+        //                        {
+        //                            var advancedServoHost = OpenAdvancedServoHost(advancedServoSequence.Host);
 
-                                    //nextPerformanceSequence = await advancedServo.PlayAdvancedServoSequenceLoops(advancedServoSequence);
-                                    await advancedServoHost.RunSequenceLoops(advancedServoSequence);
+        //                            //nextPerformanceSequence = await advancedServo.PlayAdvancedServoSequenceLoops(advancedServoSequence);
+        //                            await advancedServoHost.RunSequenceLoops(advancedServoSequence);
 
-                                    nextPerformanceSequence = advancedServoSequence.NextSequence;
+        //                            nextPerformanceSequence = advancedServoSequence.NextSequence;
 
-                                    // NOTE(crhodes)
-                                    // This should handle continuations without a Host.  
-                                    // TODO(crhodes)
-                                    // Do we need to handle continuations that have a Host?  I think so.
-                                    // Play AS sequence on one Host and then a different AS sequence on a different host.
-                                    // This would be dialog back and forth across hosts.
+        //                            // NOTE(crhodes)
+        //                            // This should handle continuations without a Host.  
+        //                            // TODO(crhodes)
+        //                            // Do we need to handle continuations that have a Host?  I think so.
+        //                            // Play AS sequence on one Host and then a different AS sequence on a different host.
+        //                            // This would be dialog back and forth across hosts.
 
-                                    while (nextPerformanceSequence is not null && nextPerformanceSequence.SequenceType == "AS")
-                                    {
-                                        if (LogPerformanceSequence)
-                                        {
-                                            Log.Trace($"Executing sequence:>{nextPerformanceSequence?.Name}< type:>{nextPerformanceSequence?.SequenceType}<" +
-                                                $" loops:>{nextPerformanceSequence?.Loops}< closePhidget:>{nextPerformanceSequence?.ClosePhidget}<", Common.LOG_CATEGORY);
-                                        }
+        //                            while (nextPerformanceSequence is not null && nextPerformanceSequence.SequenceType == "AS")
+        //                            {
+        //                                if (LogPerformanceSequence)
+        //                                {
+        //                                    Log.Trace($"Executing sequence:>{nextPerformanceSequence?.Name}< type:>{nextPerformanceSequence?.SequenceType}<" +
+        //                                        $" loops:>{nextPerformanceSequence?.Loops}< closePhidget:>{nextPerformanceSequence?.ClosePhidget}<", Common.LOG_CATEGORY);
+        //                                }
 
-                                        advancedServoSequence = AvailableAdvancedServoSequences[nextPerformanceSequence.Name];
-   
-                                        await advancedServoHost.RunSequenceLoops(advancedServoSequence);
+        //                                if (AvailableAdvancedServoSequences.ContainsKey(nextPerformanceSequence.Name ?? ""))
+        //                                {
+        //                                    advancedServoSequence = AvailableAdvancedServoSequences[nextPerformanceSequence.Name];
 
-                                        nextPerformanceSequence = advancedServoSequence.NextSequence;
-                                    }
+        //                                    await advancedServoHost.RunSequenceLoops(advancedServoSequence);
 
-                                    if (startingPerormanceSequence.ClosePhidget)
-                                    {
-                                        //advancedServoHost.LogCurrentChangeEvents = false;
-                                        //advancedServoHost.LogPositionChangeEvents = false;
-                                        //advancedServoHost.LogVelocityChangeEvents = false;
+        //                                    nextPerformanceSequence = advancedServoSequence.NextSequence;
+        //                                }
+        //                                else
+        //                                {
+        //                                    Log.Error($"Cannot find performanceSequence:>{nextPerformanceSequence.Name}<", Common.LOG_CATEGORY);
+        //                                    nextPerformanceSequence = null;
+        //                                }
+        //                            }
 
-                                        //advancedServoHost.LogPerformanceStep = false;
+        //                            if (startingPerformanceSequence.ClosePhidget)
+        //                            {
+        //                                //advancedServoHost.LogCurrentChangeEvents = false;
+        //                                //advancedServoHost.LogPositionChangeEvents = false;
+        //                                //advancedServoHost.LogVelocityChangeEvents = false;
 
-                                        //advancedServoHost.Close();
-                                    }            
-                                }
-                                else
-                                {
-                                    Log.Error($"Host is null", Common.LOG_CATEGORY);
-                                    nextPerformanceSequence = null;
-                                }
-                            }
-                            else
-                            {
-                                Log.Error($"Cannot find sequence:>{nextPerformanceSequence.Name}<", Common.LOG_CATEGORY);
-                                nextPerformanceSequence = null;
-                            }
+        //                                //advancedServoHost.LogPerformanceStep = false;
 
-                            break;
+        //                                //advancedServoHost.Close();
+        //                            }
+        //                        }
+        //                        else
+        //                        {
+        //                            Log.Error($"Host is null", Common.LOG_CATEGORY);
+        //                            nextPerformanceSequence = null;
+        //                        }
+        //                    }
+        //                    else
+        //                    {
+        //                        Log.Error($"Cannot find performanceSequence:>{nextPerformanceSequence.Name}<", Common.LOG_CATEGORY);
+        //                        nextPerformanceSequence = null;
+        //                    }
 
-                        case "IK":
-                            if (AvailableInterfaceKitSequences.ContainsKey(nextPerformanceSequence.Name ?? ""))
-                            {
-                                var interfaceKitSequence = AvailableInterfaceKitSequences[nextPerformanceSequence.Name];
+        //                    break;
 
-                                if (interfaceKitSequence.Host is not null)
-                                {
-                                    var interfaceKitHost = OpenInterfaceKitHost(interfaceKitSequence.Host);
+        //                case "IK":
+        //                    if (AvailableInterfaceKitSequences.ContainsKey(nextPerformanceSequence.Name ?? ""))
+        //                    {
+        //                        var interfaceKitSequence = AvailableInterfaceKitSequences[nextPerformanceSequence.Name];
 
-                                    await interfaceKitHost.RunSequenceLoops(interfaceKitSequence);
+        //                        if (interfaceKitSequence.Host is not null)
+        //                        {
+        //                            var interfaceKitHost = OpenInterfaceKitHost(interfaceKitSequence.Host);
 
-                                    nextPerformanceSequence = interfaceKitSequence.NextSequence;
+        //                            await interfaceKitHost.RunSequenceLoops(interfaceKitSequence);
 
-                                    // NOTE(crhodes)
-                                    // This should handle continuations without a Host.  
-                                    // TODO(crhodes)
-                                    // Do we need to handle continuations that have a Host?  I think so.
-                                    // Play AS sequence on one Host and then a different AS sequence on a different host.
-                                    // This would be dialog back and forth across hosts.
+        //                            nextPerformanceSequence = interfaceKitSequence.NextSequence;
 
-                                    while (nextPerformanceSequence is not null && nextPerformanceSequence.SequenceType == "AS")
-                                    {
-                                        if (LogPerformanceSequence)
-                                        {
-                                            Log.Trace($"Executing sequence:>{nextPerformanceSequence?.Name}< type:>{nextPerformanceSequence?.SequenceType}<" +
-                                                $" loops:>{nextPerformanceSequence?.Loops}< closePhidget:>{nextPerformanceSequence?.ClosePhidget}<", Common.LOG_CATEGORY);
-                                        }
+        //                            // NOTE(crhodes)
+        //                            // This should handle continuations without a Host.  
+        //                            // TODO(crhodes)
+        //                            // Do we need to handle continuations that have a Host?  I think so.
+        //                            // Play AS sequence on one Host and then a different AS sequence on a different host.
+        //                            // This would be dialog back and forth across hosts.
 
-                                        interfaceKitSequence = AvailableInterfaceKitSequences[nextPerformanceSequence.Name];
+        //                            while (nextPerformanceSequence is not null && nextPerformanceSequence.SequenceType == "AS")
+        //                            {
+        //                                if (LogPerformanceSequence)
+        //                                {
+        //                                    Log.Trace($"Executing sequence:>{nextPerformanceSequence?.Name}< type:>{nextPerformanceSequence?.SequenceType}<" +
+        //                                        $" loops:>{nextPerformanceSequence?.Loops}< closePhidget:>{nextPerformanceSequence?.ClosePhidget}<", Common.LOG_CATEGORY);
+        //                                }
 
-                                        await interfaceKitHost.RunSequenceLoops(interfaceKitSequence);
+        //                                interfaceKitSequence = AvailableInterfaceKitSequences[nextPerformanceSequence.Name];
 
-                                        nextPerformanceSequence = interfaceKitSequence.NextSequence;
-                                    }
+        //                                await interfaceKitHost.RunSequenceLoops(interfaceKitSequence);
 
-                                    if (startingPerormanceSequence.ClosePhidget)
-                                    {
-                                        interfaceKitHost.Close();
-                                    }
-                                }
-                                else
-                                {
-                                    Log.Trace($"Host is null", Common.LOG_CATEGORY);
-                                    nextPerformanceSequence = null;
-                                }
-                            }
-                            else
-                            {
-                                Log.Trace($"Cannot find sequence:{nextPerformanceSequence.Name}", Common.LOG_CATEGORY);
-                                nextPerformanceSequence = null;
-                            }
+        //                                nextPerformanceSequence = interfaceKitSequence.NextSequence;
+        //                            }
 
-                            break;
+        //                            if (startingPerformanceSequence.ClosePhidget)
+        //                            {
+        //                                interfaceKitHost.Close();
+        //                            }
+        //                        }
+        //                        else
+        //                        {
+        //                            Log.Trace($"Host is null", Common.LOG_CATEGORY);
+        //                            nextPerformanceSequence = null;
+        //                        }
+        //                    }
+        //                    else
+        //                    {
+        //                        Log.Trace($"Cannot find sequence:{nextPerformanceSequence.Name}", Common.LOG_CATEGORY);
+        //                        nextPerformanceSequence = null;
+        //                    }
 
-                        case "ST":
-                            if (AvailableStepperSequences.ContainsKey(nextPerformanceSequence.Name ?? ""))
-                            {
-                                var stepperSequence = AvailableStepperSequences[nextPerformanceSequence.Name];
-                            }
+        //                    break;
 
-                            break;
+        //                case "ST":
+        //                    if (AvailableStepperSequences.ContainsKey(nextPerformanceSequence.Name ?? ""))
+        //                    {
+        //                        var stepperSequence = AvailableStepperSequences[nextPerformanceSequence.Name];
+        //                    }
 
-                        default:
-                            Log.Error($"Unsupported SequenceType:>{nextPerformanceSequence.SequenceType}<", Common.LOG_CATEGORY);
-                            nextPerformanceSequence = null;
-                            break;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
+        //                    break;
 
-            return nextPerformanceSequence;
-        }
+        //                default:
+        //                    Log.Error($"Unsupported SequenceType:>{nextPerformanceSequence.SequenceType}<", Common.LOG_CATEGORY);
+        //                    nextPerformanceSequence = null;
+        //                    break;
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.Error(ex, Common.LOG_CATEGORY);
+        //    }
 
-        private AdvancedServoEx OpenAdvancedServoHost(VNCPhidgetConfig.Host host)
-        {
-            SerialHost serialHost = new SerialHost { IPAddress = host.IPAddress, SerialNumber = host.AdvancedServos[0].SerialNumber };
+        //    return nextPerformanceSequence;
+        //}
 
-            PhidgetDevice phidgetDevice = AvailablePhidgets[serialHost];
+        //private AdvancedServoEx OpenAdvancedServoHost(VNCPhidgetConfig.Host host)
+        //{
+        //    SerialHost serialHost = new SerialHost { IPAddress = host.IPAddress, SerialNumber = host.AdvancedServos[0].SerialNumber };
 
-            AdvancedServoEx advancedServoHost;
+        //    PhidgetDevice phidgetDevice = AvailablePhidgets[serialHost];
 
-            if (phidgetDevice?.PhidgetEx is not null)
-            {
-                advancedServoHost = (AdvancedServoEx)phidgetDevice.PhidgetEx;
+        //    AdvancedServoEx advancedServoHost;
 
-                advancedServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
-                advancedServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
-                advancedServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
+        //    if (phidgetDevice?.PhidgetEx is not null)
+        //    {
+        //        advancedServoHost = (AdvancedServoEx)phidgetDevice.PhidgetEx;
 
-                advancedServoHost.LogPerformanceSequence = LogPerformanceSequence;
-                advancedServoHost.LogPerformanceAction = LogPerformanceAction;
-                advancedServoHost.LogActionVerification = LogActionVerification;
-            }
-            else
-            {
-                phidgetDevice.PhidgetEx = new AdvancedServoEx(
-                    host.IPAddress,
-                    host.Port,
-                    host.AdvancedServos[0].SerialNumber,
-                    EventAggregator);
+        //        advancedServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
+        //        advancedServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
+        //        advancedServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
 
-                advancedServoHost = (AdvancedServoEx)phidgetDevice.PhidgetEx;
+        //        advancedServoHost.LogPerformanceSequence = LogPerformanceSequence;
+        //        advancedServoHost.LogPerformanceAction = LogPerformanceAction;
+        //        advancedServoHost.LogActionVerification = LogActionVerification;
+        //    }
+        //    else
+        //    {
+        //        phidgetDevice.PhidgetEx = new AdvancedServoEx(
+        //            host.IPAddress,
+        //            host.Port,
+        //            host.AdvancedServos[0].SerialNumber,
+        //            EventAggregator);
 
-                advancedServoHost = phidgetDevice.PhidgetEx as AdvancedServoEx;
+        //        advancedServoHost = (AdvancedServoEx)phidgetDevice.PhidgetEx;
 
-                advancedServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
-                advancedServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
-                advancedServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
+        //        advancedServoHost = phidgetDevice.PhidgetEx as AdvancedServoEx;
 
-                advancedServoHost.LogPerformanceSequence = LogPerformanceSequence;
-                advancedServoHost.LogPerformanceAction = LogPerformanceAction;
-                advancedServoHost.LogActionVerification = LogActionVerification;
+        //        advancedServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
+        //        advancedServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
+        //        advancedServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
 
-                advancedServoHost.Open();
-            }
+        //        advancedServoHost.LogPerformanceSequence = LogPerformanceSequence;
+        //        advancedServoHost.LogPerformanceAction = LogPerformanceAction;
+        //        advancedServoHost.LogActionVerification = LogActionVerification;
 
-            //advancedServoHost = new AdvancedServoEx(
-            //    host.IPAddress,
-            //    host.Port,
-            //    host.AdvancedServos[0].SerialNumber,
-            //    EventAggregator);
+        //        advancedServoHost.Open();
+        //    }
 
-            //advancedServoHost = (AdvancedServoEx)phidgetDevice.PhidgetEx;
+        //    //advancedServoHost = new AdvancedServoEx(
+        //    //    host.IPAddress,
+        //    //    host.Port,
+        //    //    host.AdvancedServos[0].SerialNumber,
+        //    //    EventAggregator);
 
-            //advancedServoHost = phidgetDevice.PhidgetEx as AdvancedServoEx;
+        //    //advancedServoHost = (AdvancedServoEx)phidgetDevice.PhidgetEx;
 
-            //advancedServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
-            //advancedServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
-            //advancedServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
+        //    //advancedServoHost = phidgetDevice.PhidgetEx as AdvancedServoEx;
 
-            //advancedServoHost.LogPerformanceStep = LogPerformanceStep;
+        //    //advancedServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
+        //    //advancedServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
+        //    //advancedServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
 
-            //advancedServoHost.Open();
+        //    //advancedServoHost.LogPerformanceStep = LogPerformanceStep;
 
-            // NOTE(crhodes)
-            // Save this so we can use it in other commands
+        //    //advancedServoHost.Open();
 
-            ActiveAdvancedServoHost = advancedServoHost;
+        //    // NOTE(crhodes)
+        //    // Save this so we can use it in other commands
 
-            return advancedServoHost;
-        }
+        //    ActiveAdvancedServoHost = advancedServoHost;
+
+        //    return advancedServoHost;
+        //}
 
         // If using CommandParameter, figure out TYPE and fix above
         //public bool PlayPerformanceCanExecute(TYPE value)
@@ -1772,6 +1782,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Do something amazing.
             Message = "Cool, you called EngageAndCenter";
 
+            PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
+
             VNCPhidgetConfig.PerformanceSequence? advancedServoSequence = 
                 new VNCPhidgetConfig.PerformanceSequence
                 {
@@ -1779,7 +1791,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     SequenceType = "AS"
                 };
 
-            await ExecutePerformanceSequence(advancedServoSequence);
+            await performanceSequencePlayer.ExecutePerformanceSequence(advancedServoSequence);
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -1838,6 +1850,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Do something amazing.
             Message = "Cool, you called SetMotionParameters";
 
+            PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
+
             VNCPhidgetConfig.PerformanceSequence? advancedServoSequence = null;
 
             switch (speed)
@@ -1864,7 +1878,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
 
 
-            await ExecutePerformanceSequence(advancedServoSequence);
+            await performanceSequencePlayer.ExecutePerformanceSequence(advancedServoSequence);
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -1894,6 +1908,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Do something amazing.
             Message = $"Cool, you called ResetLimits";
+
+            PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
+
             VNCPhidgetConfig.PerformanceSequence? advancedServoSequence =
                 new VNCPhidgetConfig.PerformanceSequence
                 {
@@ -1901,7 +1918,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     SequenceType = "AS"
                 };
 
-            await ExecutePerformanceSequence(advancedServoSequence);
+            await performanceSequencePlayer.ExecutePerformanceSequence(advancedServoSequence);
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -1932,23 +1949,24 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Do something amazing.
             Message = $"Cool, you called RelativeAcceleration {relativeAcceleration}";
 
-            AdvancedServoSequence advancedServoSequence = new AdvancedServoSequence
+            PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
+
+            VNCPhidgetConfig.AdvancedServoSequence advancedServoSequence = new VNCPhidgetConfig.AdvancedServoSequence
             {
                 Actions = new[]
                 {
-                    new AdvancedServoServoAction { ServoIndex = 0, RelativeAcceleration = relativeAcceleration},
-                    new AdvancedServoServoAction { ServoIndex = 1, RelativeAcceleration = relativeAcceleration},
-                    new AdvancedServoServoAction { ServoIndex = 2, RelativeAcceleration = relativeAcceleration},
-                    new AdvancedServoServoAction { ServoIndex = 3, RelativeAcceleration = relativeAcceleration},
-                    new AdvancedServoServoAction { ServoIndex = 4, RelativeAcceleration = relativeAcceleration},
-                    new AdvancedServoServoAction { ServoIndex = 5, RelativeAcceleration = relativeAcceleration},
-                    new AdvancedServoServoAction { ServoIndex = 6, RelativeAcceleration = relativeAcceleration},
-                    new AdvancedServoServoAction { ServoIndex = 7, RelativeAcceleration = relativeAcceleration}
+                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, RelativeAcceleration = relativeAcceleration},
+                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 1, RelativeAcceleration = relativeAcceleration},
+                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 2, RelativeAcceleration = relativeAcceleration},
+                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 3, RelativeAcceleration = relativeAcceleration},
+                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 4, RelativeAcceleration = relativeAcceleration},
+                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 5, RelativeAcceleration = relativeAcceleration},
+                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 6, RelativeAcceleration = relativeAcceleration},
+                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 7, RelativeAcceleration = relativeAcceleration}
                 }
-
             };
 
-            ActiveAdvancedServoHost.RunSequenceLoops(advancedServoSequence);
+            await performanceSequencePlayer.ActiveAdvancedServoHost.RunSequenceLoops(advancedServoSequence);
 
             //VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence = 
             //     new PerformanceSequence 
@@ -1988,23 +2006,25 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Do something amazing.
             Message = $"Cool, you called RelativeVelocityLimit {relativeVelocityLimit}";
 
-            AdvancedServoSequence advancedServoSequence = new AdvancedServoSequence
+            PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
+
+            VNCPhidgetConfig.AdvancedServoSequence advancedServoSequence = new VNCPhidgetConfig.AdvancedServoSequence
             { 
                 Actions = new[]
                 {
-                    new AdvancedServoServoAction { ServoIndex = 0, RelativeVelocityLimit = relativeVelocityLimit},
-                    new AdvancedServoServoAction { ServoIndex = 1, RelativeVelocityLimit = relativeVelocityLimit},
-                    new AdvancedServoServoAction { ServoIndex = 2, RelativeVelocityLimit = relativeVelocityLimit},
-                    new AdvancedServoServoAction { ServoIndex = 3, RelativeVelocityLimit = relativeVelocityLimit},
-                    new AdvancedServoServoAction { ServoIndex = 4, RelativeVelocityLimit = relativeVelocityLimit},
-                    new AdvancedServoServoAction { ServoIndex = 5, RelativeVelocityLimit = relativeVelocityLimit},
-                    new AdvancedServoServoAction { ServoIndex = 6, RelativeVelocityLimit = relativeVelocityLimit},
-                    new AdvancedServoServoAction { ServoIndex = 7, RelativeVelocityLimit = relativeVelocityLimit}
+                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, RelativeVelocityLimit = relativeVelocityLimit},
+                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 1, RelativeVelocityLimit = relativeVelocityLimit},
+                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 2, RelativeVelocityLimit = relativeVelocityLimit},
+                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 3, RelativeVelocityLimit = relativeVelocityLimit},
+                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 4, RelativeVelocityLimit = relativeVelocityLimit},
+                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 5, RelativeVelocityLimit = relativeVelocityLimit},
+                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 6, RelativeVelocityLimit = relativeVelocityLimit},
+                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 7, RelativeVelocityLimit = relativeVelocityLimit}
                 }
                 
             };
 
-            ActiveAdvancedServoHost.RunSequenceLoops(advancedServoSequence);
+            await performanceSequencePlayer.ActiveAdvancedServoHost.RunSequenceLoops(advancedServoSequence);
 
             //VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence =
             //     new PerformanceSequence
@@ -2061,6 +2081,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             Message = "Cool, you called PlayInterfaceKitSequence";
 
+            PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
+
             //var runAllThese = SelectedInterfaceKitSequences;
             //var allSequences = AvailableInterfaceKitSequences;
 
@@ -2081,7 +2103,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                     do
                     {
-                        nextPerformanceSequence = await ExecutePerformanceSequence(nextPerformanceSequence);
+                        nextPerformanceSequence = await performanceSequencePlayer.ExecutePerformanceSequence(nextPerformanceSequence);
                     } while (nextPerformanceSequence is not null);
                 }
                 catch (Exception ex)
@@ -2118,26 +2140,26 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private InterfaceKitEx OpenInterfaceKitHost(VNCPhidgetConfig.Host host)
-        {
-            InterfaceKitEx interfaceKitHost;
+        //private InterfaceKitEx OpenInterfaceKitHost(VNCPhidgetConfig.Host host)
+        //{
+        //    InterfaceKitEx interfaceKitHost;
 
-            interfaceKitHost = new InterfaceKitEx(
-                host.IPAddress,
-                host.Port,
-                host.InterfaceKits[0].SerialNumber, true,
-                EventAggregator);
+        //    interfaceKitHost = new InterfaceKitEx(
+        //        host.IPAddress,
+        //        host.Port,
+        //        host.InterfaceKits[0].SerialNumber, true,
+        //        EventAggregator);
 
-            interfaceKitHost.LogInputChangeEvents = LogInputChangeEvents;
-            interfaceKitHost.LogOutputChangeEvents = LogOutputChangeEvents;
-            interfaceKitHost.LogSensorChangeEvents = LogSensorChangeEvents;
+        //    interfaceKitHost.LogInputChangeEvents = LogInputChangeEvents;
+        //    interfaceKitHost.LogOutputChangeEvents = LogOutputChangeEvents;
+        //    interfaceKitHost.LogSensorChangeEvents = LogSensorChangeEvents;
 
-            interfaceKitHost.LogPerformanceAction = LogPerformanceAction;
+        //    interfaceKitHost.LogPerformanceAction = LogPerformanceAction;
 
-            interfaceKitHost.Open();
+        //    interfaceKitHost.Open();
 
-            return interfaceKitHost;
-        }
+        //    return interfaceKitHost;
+        //}
 
         // If using CommandParameter, figure out TYPE and fix above
         //public bool PlayPerformanceCanExecute(TYPE value)

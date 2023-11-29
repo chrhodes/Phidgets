@@ -68,20 +68,25 @@
         <!-- <localvm:HostSelectorViewModel /> -->
     <!-- </UserControl.DataContext> -->
     
-    <dxlc:LayoutControl View="Group" Orientation="Vertical" >
+    <dxlc:LayoutControl  View="Group" Orientation="Vertical" >
 
-        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+        <dxlc:LayoutGroup Header="Logging" View="GroupBox" Orientation="Horizontal" 
+                          IsCollapsible="True" IsCollapsed="False" >
+
+            <dxlc:LayoutItem Label="Log Performance" >
+                <dxe:CheckEdit IsChecked="{Binding LogPerformance}" />
+            </dxlc:LayoutItem>
             
             <dxlc:LayoutItem Label="Log Performance Sequence" >
-                <dxe:CheckEdit IsChecked="{Binding LogPerformanceSequence}"/>
+                <dxe:CheckEdit IsChecked="{Binding LogPerformanceSequence}" />
             </dxlc:LayoutItem>
 
             <dxlc:LayoutItem Label="Log Performance Action" >
-                <dxe:CheckEdit IsChecked="{Binding LogPerformanceAction}"/>
+                <dxe:CheckEdit IsChecked="{Binding LogPerformanceAction}" />
             </dxlc:LayoutItem>
 
             <dxlc:LayoutItem Label="Log Action Verification" >
-                <dxe:CheckEdit IsChecked="{Binding LogActionVerification}"/>
+                <dxe:CheckEdit IsChecked="{Binding LogActionVerification}" />
             </dxlc:LayoutItem>
 
         </dxlc:LayoutGroup>
