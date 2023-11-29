@@ -500,7 +500,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 SpeedRamping = servo.SpeedRamping;
                 AccelerationMin = servo.AccelerationMin;
-                Acceleration = Acceleration;
+                Acceleration = servo.Acceleration;
                 AccelerationMax = servo.AccelerationMax;
 
                 VelocityMin = servo.VelocityMin;

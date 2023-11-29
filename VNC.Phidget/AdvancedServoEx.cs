@@ -93,14 +93,14 @@ namespace VNC.Phidget
                     // We do not need to save Accleration and Velocity Min,Max,
                     // they cannot change
 
-                    //InitialServoLimits[i].AccelerationMin = servo.AccelerationMin;
-                    //InitialServoLimits[i].AccelerationMax = servo.AccelerationMax;
+                    InitialServoLimits[i].AccelerationMin = servo.AccelerationMin;
+                    InitialServoLimits[i].AccelerationMax = servo.AccelerationMax;
                     InitialServoLimits[i].DevicePositionMin = servo.PositionMin;
                     //InitialServoLimits[i].PositionMin = servo.PositionMin;
                     //InitialServoLimits[i].PositionMax = servo.PositionMax;
                     InitialServoLimits[i].DevicePositionMax = servo.PositionMax;
-                    //InitialServoLimits[i].VelocityMin = servo.VelocityMin;
-                    //InitialServoLimits[i].VelocityMax = servo.VelocityMax;
+                    InitialServoLimits[i].VelocityMin = servo.VelocityMin + 1; // 0 won't move
+                    InitialServoLimits[i].VelocityMax = servo.VelocityMax;
                 }
 
             }
@@ -118,16 +118,17 @@ namespace VNC.Phidget
             }
             // NOTE(crhodes)
             // We do not need to save Accleration and Velocity Min,Max,
-            // they cannot change
+            // they cannot change, but,
+            // Useful when setting Acceleration/VelocityLimit to Min/Max in PerformAction
 
-            //InitialServoLimits[i].AccelerationMin = servo.AccelerationMin;
-            //InitialServoLimits[i].AccelerationMax = servo.AccelerationMax;
+            InitialServoLimits[index].AccelerationMin = servo.AccelerationMin;
+            InitialServoLimits[index].AccelerationMax = servo.AccelerationMax;
             InitialServoLimits[index].DevicePositionMin = servo.PositionMin;
             //InitialServoLimits[i].PositionMin = servo.PositionMin;
             //InitialServoLimits[i].PositionMax = servo.PositionMax;
             InitialServoLimits[index].DevicePositionMax = servo.PositionMax;
-            //InitialServoLimits[i].VelocityMin = servo.VelocityMin;
-            //InitialServoLimits[i].VelocityMax = servo.VelocityMax;
+            InitialServoLimits[index].VelocityMin = servo.VelocityMin + 1; // 0 won't move
+            InitialServoLimits[index].VelocityMax = servo.VelocityMax;
         }
 
         #endregion
@@ -153,14 +154,14 @@ namespace VNC.Phidget
             //    //VelocityMax,
             //}
 
-            //public Double AccelerationMin;
-            //public Double AccelerationMax;
+            public Double AccelerationMin;
+            public Double AccelerationMax;
             public Double DevicePositionMin;
             //public Double PositionMin;
             //public Double PositionMax;
             public Double DevicePositionMax;
-            //public Double VelocityMin;
-            //public Double VelocityMax;
+            public Double VelocityMin;
+            public Double VelocityMax;
         }
 
         #endregion
@@ -391,7 +392,7 @@ namespace VNC.Phidget
                 {
                     if (LogPerformanceSequence)
                     {
-                        Log.Trace($"ZZZZZ Sleeping:>{advancedServoSequence.Duration}<", Common.LOG_CATEGORY);
+                        Log.Trace($"Zzzzz Sleeping:>{advancedServoSequence.Duration}<", Common.LOG_CATEGORY);
                     }
                     Thread.Sleep((Int32)advancedServoSequence.Duration);
                 }
@@ -448,15 +449,41 @@ namespace VNC.Phidget
                 if (action.Acceleration is not null)
                 {
                     if (LogPerformanceAction) actionMessage.Append($" acceleration:>{action.Acceleration}<");
+                    var acceleration = action.Acceleration;
 
-                    SetAcceleration((Double)action.Acceleration, servo, index);
+                    if (acceleration < 0)
+                    {
+                        if (acceleration == -1)        // -1 is magic number for AccelerationMin :)
+                        {
+                            acceleration = InitialServoLimits[index].AccelerationMin;
+                        }
+                        else if (acceleration == -2)   // -2 is magic number for AccelerationMax :)
+                        {
+                            acceleration = InitialServoLimits[index].AccelerationMax;
+                        }
+                    }
+
+                    SetAcceleration((Double)acceleration, servo, index);
                 }
 
                 if (action.VelocityLimit is not null)
                 {
                     if (LogPerformanceAction) actionMessage.Append($" velocityLimit:>{action.VelocityLimit}<");
+                    var velocityLimit = action.VelocityLimit;
 
-                    SetVelocityLimit((Double)action.VelocityLimit, servo, index);
+                    if (velocityLimit < 0)
+                    {
+                        if (velocityLimit == -1)        // -1 is magic number for VelocityMin :)
+                        {
+                            velocityLimit = InitialServoLimits[index].VelocityMin;
+                        }
+                        else if (velocityLimit == -2)   // -2 is magic number for VelocityMax :)
+                        {
+                            velocityLimit = InitialServoLimits[index].VelocityMax;
+                        }
+                    }
+
+                    SetVelocityLimit((Double)velocityLimit, servo, index);
                 }
 
                 if (action.PositionMin is not null)
@@ -527,7 +554,7 @@ namespace VNC.Phidget
                         { 
                             targetPosition = InitialServoLimits[index].DevicePositionMin; 
                         }
-                        else if (action.TargetPosition == -2)   // -1 is magic number for DevicePostionMax :)
+                        else if (action.TargetPosition == -2)   // -2 is magic number for DevicePostionMax :)
                         { 
                             targetPosition = InitialServoLimits[index].DevicePositionMax;
                         }

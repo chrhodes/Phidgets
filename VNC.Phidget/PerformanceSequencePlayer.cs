@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Prism.Events;
@@ -43,22 +44,24 @@ namespace VNC.Phidget
 
         public AdvancedServoEx ActiveAdvancedServoHost { get; set; }
 
-        public async Task<PerformanceSequence> ExecutePerformanceSequence(PerformanceSequence nextPerformanceSequence)
+        public async Task<PerformanceSequence> ExecutePerformanceSequence(PerformanceSequence performanceSequence)
         {
+            var nextPerformanceSequence = performanceSequence;
+
             try
             {
                 if (LogPerformanceSequence)
                 {
-                    Log.Trace($"Executing performanceSequence:>{nextPerformanceSequence?.Name}< type:>{nextPerformanceSequence?.SequenceType}<" +
-                        $" loops:>{nextPerformanceSequence?.Loops}< duration:>{nextPerformanceSequence?.Duration}<" +
-                        $" closePhidget:>{nextPerformanceSequence?.ClosePhidget}<", Common.LOG_CATEGORY);
+                    Log.Trace($"Executing performanceSequence:>{performanceSequence?.Name}< type:>{performanceSequence?.SequenceType}<" +
+                        $" loops:>{performanceSequence?.Loops}< duration:>{performanceSequence?.Duration}<" +
+                        $" closePhidget:>{performanceSequence?.ClosePhidget}<", Common.LOG_CATEGORY);
                 }
 
                 // TODO(crhodes)
                 // Think about Open/Close more.  Maybe config.
                 // What happens if nextSequence.Host is null    
 
-                var startingPerformanceSequence = nextPerformanceSequence;
+
 
                 if (nextPerformanceSequence is not null)
                 {
@@ -108,7 +111,7 @@ namespace VNC.Phidget
                                         }
                                     }
 
-                                    if (startingPerformanceSequence.ClosePhidget)
+                                    if (performanceSequence.ClosePhidget)
                                     {
                                         //advancedServoHost.LogCurrentChangeEvents = false;
                                         //advancedServoHost.LogPositionChangeEvents = false;
@@ -168,7 +171,7 @@ namespace VNC.Phidget
                                         nextPerformanceSequence = interfaceKitSequence.NextSequence;
                                     }
 
-                                    if (startingPerformanceSequence.ClosePhidget)
+                                    if (performanceSequence.ClosePhidget)
                                     {
                                         interfaceKitHost.Close();
                                     }
@@ -200,6 +203,15 @@ namespace VNC.Phidget
                             nextPerformanceSequence = null;
                             break;
                     }
+                }
+
+                if (performanceSequence.Duration is not null)
+                {
+                    if (LogPerformanceSequence)
+                    {
+                        Log.Trace($"Zzzzz Sleeping:>{performanceSequence.Duration}<", Common.LOG_CATEGORY);
+                    }
+                    Thread.Sleep((Int32)performanceSequence.Duration);
                 }
             }
             catch (Exception ex)

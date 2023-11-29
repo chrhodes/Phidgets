@@ -62,7 +62,7 @@
     {
       "Name": "psbc22_AS DDogs Look Up Right",
       "Description": "",
-      "Loops": 1, "Duration": 2000,
+      "Loops": 1,
       "PlayInParallel": true,
       "PerformanceSequences": [
         //{ "Name": "Initialize Skull (psbc22)", "SequenceType": "AS" },
@@ -77,7 +77,7 @@
     {
       "Name": "psbc22_AS DDogs Look Up Left",
       "Description": "",
-      "Loops": 1, "Duration": 2000,
+      "Loops": 1,
       "PlayInParallel": true,
       "PerformanceSequences": [
         { "Name": "Left Skull Look Up Left (psbc22)", "SequenceType": "AS", "Loops": 2 },
@@ -91,11 +91,11 @@
     {
       "Name": "psbc22_AS DDogs Look Down Right",
       "Description": "",
-      "Loops": 1, "Duration": 1000,
+      "Loops": 2,
       "PlayInParallel": true,
       "PerformanceSequences": [
-        { "Name": "Left Skull Look Down Right (psbc22)", "SequenceType": "AS", "Loops": 2 },
-        { "Name": "Right Skull Look Down Right (psbc22)", "SequenceType": "AS", "Loops": 2 },
+        { "Name": "Left Skull Look Down Right (psbc22)", "SequenceType": "AS" },
+        { "Name": "Right Skull Look Down Right (psbc22)", "SequenceType": "AS" },
       ],
       "NextPerformance":
       {
@@ -105,11 +105,11 @@
     {
       "Name": "psbc22_AS DDogs Look Down Left",
       "Description": "",
-      "Loops": 1, "Duration": 1000,
+      "Loops": 2,
       "PlayInParallel": true,
       "PerformanceSequences": [
-        { "Name": "Left Skull Look Down Left (psbc22)", "SequenceType": "AS", "Loops": 2 },
-        { "Name": "Right Skull Look Down Left (psbc22)", "SequenceType": "AS", "Loops": 2 },
+        { "Name": "Left Skull Look Down Left (psbc22)", "SequenceType": "AS" },
+        { "Name": "Right Skull Look Down Left (psbc22)", "SequenceType": "AS" },
       ],
       "NextPerformance":
       {
@@ -152,5 +152,38 @@
      //   ]
      // }
     },
+    {
+      "Name": "psbc22_AS DDog Dance 2",
+      "Description": "",
+      "Loops": 1,
+      "PlayInParallel": false,
+      "PerformanceSequences": [
+        //{ "Name": "Initialize Skull (psbc22)", "SequenceType": "AS" },
+        { "Name": "Skulls Center (psbc22)", "SequenceType": "AS", "Duration": 500 },
+        
+        { "Name": "Skulls Look Together (psbc22)", "SequenceType": "AS", "Duration": 1000 },
+        
+        { "Name": "Skulls Center (psbc22)", "SequenceType": "AS", "Duration": 500 },
+        { "Name": "Skulls Look Up Left (psbc22)", "SequenceType": "AS", "Duration": 1000 },
+        { "Name": "Skulls Center (psbc22)", "SequenceType": "AS", "Duration": 500 },
+        { "Name": "Skulls Look Up Right (psbc22)", "SequenceType": "AS", "Duration": 1000 },
+        
+        { "Name": "Skulls Center (psbc22)", "SequenceType": "AS", "Duration": 500 },
+        
+        { "Name": "Skulls Look Down Left (psbc22)", "SequenceType": "AS", "Duration": 1000 },
+        { "Name": "Skulls Center (psbc22)", "SequenceType": "AS", "Duration": 500 },
+        { "Name": "Skulls Look Down Right (psbc22)", "SequenceType": "AS", "Duration": 1000 },
+        
+        { "Name": "Skulls Center (psbc22)", "SequenceType": "AS", "Duration": 500 },
+        { "Name": "Skulls Look Apart (psbc22)", "SequenceType": "AS", "Duration": 3000 },
+        
+        { "Name": "Skulls Center (psbc22)", "SequenceType": "AS", "Duration": 500 },
+        { "Name": "Skulls Look Together (psbc22)", "SequenceType": "AS", "Duration": 1000 },
+        { "Name": "Skulls Center (psbc22)", "SequenceType": "AS", "Duration": 500 },
+        { "Name": "Right Skull Laugh (psbc22)", "SequenceType": "AS" },
+        { "Name": "Left Skull Laugh (psbc22)", "SequenceType": "AS" }
+        
+      ],
+    },    
   ]
 }
