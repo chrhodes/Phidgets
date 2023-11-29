@@ -14,12 +14,12 @@
         ]
       },
       "Actions": [
-        { "ServoIndex": 0, "ServoType": 2, "PositionMin": 80, "PositionMax": 100, "Acceleration": 1000, "VelocityLimit": 200 },
-        { "ServoIndex": 1, "ServoType": 2, "PositionMin": 80, "PositionMax": 110, "Acceleration": 1000, "VelocityLimit": 200 },
-        { "ServoIndex": 2, "ServoType": 2, "PositionMin": 80, "PositionMax": 110, "Acceleration": 1000, "VelocityLimit": 200 },
-        { "ServoIndex": 4, "ServoType": 5, "PositionMin": 75, "PositionMax": 105, "Acceleration": 2000, "VelocityLimit": 200 },
-        { "ServoIndex": 5, "ServoType": 5, "PositionMin": 75, "PositionMax": 105, "Acceleration": 2000, "VelocityLimit": 200 },
-        { "ServoIndex": 6, "ServoType": 5, "PositionMin": 65, "PositionMax": 95, "Acceleration": 2000, "VelocityLimit": 200 },
+        { "ServoIndex": 0, "ServoType": 2, "PositionMin": 80, "PositionMax": 100, "Acceleration": 500, "VelocityLimit": 100 },
+        { "ServoIndex": 1, "ServoType": 2, "PositionMin": 80, "PositionMax": 110, "Acceleration": 500, "VelocityLimit": 100 },
+        { "ServoIndex": 2, "ServoType": 2, "PositionMin": 80, "PositionMax": 110, "Acceleration": 500, "VelocityLimit": 100 },
+        { "ServoIndex": 4, "ServoType": 5, "PositionMin": 75, "PositionMax": 105, "Acceleration": 1000, "VelocityLimit": 100 },
+        { "ServoIndex": 5, "ServoType": 5, "PositionMin": 75, "PositionMax": 105, "Acceleration": 1000, "VelocityLimit": 100 },
+        { "ServoIndex": 6, "ServoType": 5, "PositionMin": 65, "PositionMax": 95, "Acceleration": 2000, "VelocityLimit": 100 },
         //{ "ServoIndex": 0,  }, // THis is X Axis near minimum to avoid Head snap when engaged.
         //{ "ServoIndex": 1,  },
         //{ "ServoIndex": 2,  },
@@ -124,7 +124,7 @@
         { "ServoIndex": 1, "RelativePosition": 5 },
         { "ServoIndex": 2, "RelativePosition": 5 },
       ]
-    },      
+    },
     //
     // Right Skull Look Up Right
     //
@@ -160,7 +160,7 @@
         { "ServoIndex": 1, "RelativePosition": 5 },
         { "ServoIndex": 2, "RelativePosition": -5 },
       ]
-    },      
+    },
     //
     // Right Skull Look Up Left
     //
@@ -178,7 +178,7 @@
         { "ServoIndex": 5, "RelativePosition": 5 },
         { "ServoIndex": 6, "RelativePosition": -5},
       ]
-    },    
+    },
     //
     // Left Skull Look Down Right
     //
@@ -194,7 +194,7 @@
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": -5 },
         { "ServoIndex": 1, "RelativePosition": -5 },
-        { "ServoIndex": 2, "RelativePosition": -5 },
+        { "ServoIndex": 2, "RelativePosition": 5 },
       ]
     },
     //
@@ -212,14 +212,14 @@
       "Actions": [
         { "ServoIndex": 4, "RelativePosition": -5 },
         { "ServoIndex": 5, "RelativePosition": -5 },
-        { "ServoIndex": 6, "RelativePosition": -5 },
+        { "ServoIndex": 6, "RelativePosition": 5 },
       ]
-    },    
+    },
     //
-    // Skull Look Down Left
+    // Left Skull Look Down Left
     //
     {
-      "Name": "Skull Look Down Left (psbc22)", "Description": "Skull Look Down Left",
+      "Name": "Left Skull Look Down Left (psbc22)", "Description": "Skull Look Down Left",
       "ExecuteActionsInParallel": true,
       "Host": {
         "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
@@ -232,10 +232,28 @@
         //{ "ServoIndex": 1, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
         //{ "ServoIndex": 2, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
         { "ServoIndex": 0, "RelativePosition": -5 },
-        { "ServoIndex": 1, "RelativePosition": 5 },
+        { "ServoIndex": 1, "RelativePosition": -5 },
         { "ServoIndex": 2, "RelativePosition": -5 },
       ]
     },
+    //
+    // Right Skull Look Down Left
+    //
+    {
+      "Name": "Right Skull Look Down Left (psbc22)", "Description": "Skull Look Down Right",
+      "ExecuteActionsInParallel": true,
+      "Host": {
+        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
+        "AdvancedServos": [
+          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
+        ]
+      },
+      "Actions": [
+        { "ServoIndex": 4, "RelativePosition": -5 },
+        { "ServoIndex": 5, "RelativePosition": -5 },
+        { "ServoIndex": 6, "RelativePosition": -5 },
+      ]
+    },    
     //
     // Skull Yes
     //

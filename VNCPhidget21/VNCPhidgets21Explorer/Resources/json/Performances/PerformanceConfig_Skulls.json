@@ -5,7 +5,7 @@
     //
     // psbc2_AS DDog Skull
     //
-    { 
+    {
         "Name": "Disengage All Servos and Close Phidget",
         "Description": "End the Show2",
         "PerformanceSequences": [
@@ -22,7 +22,7 @@
         { "Name": "Skull Look Up Right", "SequenceType": "AS" },
       ],
      "NextPerformance":
-     { 
+     {
         "Name": "Disengage All Servos and Close Phidget",
         "Description": "Play All the Performances",
         "PerformanceSequences": [
@@ -40,7 +40,7 @@
         { "Name": "Skull Look Down Left", "SequenceType": "AS" },
       ],
      "NextPerformance":
-     { 
+     {
         "Name": "Disengage All Servos and Close Phidget",
         "Description": "Play All the Performances",
         "PerformanceSequences": [
@@ -62,32 +62,58 @@
     {
       "Name": "psbc22_AS DDogs Look Up Right",
       "Description": "",
-      "Loops": 1, "Duration": 5000,
+      "Loops": 1, "Duration": 2000,
       "PlayInParallel": true,
       "PerformanceSequences": [
         //{ "Name": "Initialize Skull (psbc22)", "SequenceType": "AS" },
-        { "Name": "Left Skull Look Up Right (psbc22)", "SequenceType": "AS", "Loops": 2, "Duration": 1000 },
-        { "Name": "Right Skull Look Up Right (psbc22)", "SequenceType": "AS", "Loops": 2, "Duration": 1000 },
+        { "Name": "Left Skull Look Up Right (psbc22)", "SequenceType": "AS", "Loops": 2 },
+        { "Name": "Right Skull Look Up Right (psbc22)", "SequenceType": "AS", "Loops": 2 },
       ],
       "NextPerformance":
-      { 
+      {
         "Name": "psbc22_AS DDogs Center",
-        "Description": "play all the performances",
-      }      
+      }
     },
     {
       "Name": "psbc22_AS DDogs Look Up Left",
       "Description": "",
-      "Loops": 1, "Duration": 3000,
+      "Loops": 1, "Duration": 2000,
       "PlayInParallel": true,
       "PerformanceSequences": [
         { "Name": "Left Skull Look Up Left (psbc22)", "SequenceType": "AS", "Loops": 2 },
         { "Name": "Right Skull Look Up Left (psbc22)", "SequenceType": "AS", "Loops": 2 },
       ],
       "NextPerformance":
-      { 
-        "Name": "psbc22_AS DDogs Center",
-        "Description": "play all the performances",
+      {
+        "Name": "psbc22_AS DDogs Center"
+      }
+    },
+    {
+      "Name": "psbc22_AS DDogs Look Down Right",
+      "Description": "",
+      "Loops": 1, "Duration": 1000,
+      "PlayInParallel": true,
+      "PerformanceSequences": [
+        { "Name": "Left Skull Look Down Right (psbc22)", "SequenceType": "AS", "Loops": 2 },
+        { "Name": "Right Skull Look Down Right (psbc22)", "SequenceType": "AS", "Loops": 2 },
+      ],
+      "NextPerformance":
+      {
+        "Name": "psbc22_AS DDogs Center"
+      }
+    },
+    {
+      "Name": "psbc22_AS DDogs Look Down Left",
+      "Description": "",
+      "Loops": 1, "Duration": 1000,
+      "PlayInParallel": true,
+      "PerformanceSequences": [
+        { "Name": "Left Skull Look Down Left (psbc22)", "SequenceType": "AS", "Loops": 2 },
+        { "Name": "Right Skull Look Down Left (psbc22)", "SequenceType": "AS", "Loops": 2 },
+      ],
+      "NextPerformance":
+      {
+        "Name": "psbc22_AS DDogs Center"
       }
     },
     {
@@ -103,12 +129,12 @@
       ],
       "CallPerformances": [
         { "Name": "psbc22_AS DDogs Look Up Left" },
-        { "Name": "psbc22_AS DDogs Center" },        
         { "Name": "psbc22_AS DDogs Look Up Right" },
-        { "Name": "psbc22_AS DDogs Center" },           
+        { "Name": "psbc22_AS DDogs Look Down Left" },
+        { "Name": "psbc22_AS DDogs Look Down Right" },
       ],
      //"NextPerformance":
-     //{ 
+     //{
      //   "Name": "DDog Dance",
      //   "Description": "Play All the Performances",
      //   "PerformanceSequences": [
