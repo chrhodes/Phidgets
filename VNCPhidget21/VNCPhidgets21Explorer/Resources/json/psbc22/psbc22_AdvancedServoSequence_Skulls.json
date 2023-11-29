@@ -14,12 +14,12 @@
         ]
       },
       "Actions": [
-        { "ServoIndex": 0, "ServoType": 2, "PositionMin": 80, "PositionMax": 110, "Acceleration": 200, "VelocityLimit": 50 },
-        { "ServoIndex": 1, "ServoType": 2, "PositionMin": 80, "PositionMax": 110, "Acceleration": 200, "VelocityLimit": 50 },
-        { "ServoIndex": 2, "ServoType": 2, "PositionMin": 80, "PositionMax": 110, "Acceleration": 200, "VelocityLimit": 50 },
-        { "ServoIndex": 4, "ServoType": 5, "PositionMin": 75, "PositionMax": 105, "Acceleration": 200, "VelocityLimit": 50 },
-        { "ServoIndex": 5, "ServoType": 5, "PositionMin": 75, "PositionMax": 105, "Acceleration": 200, "VelocityLimit": 50 },
-        { "ServoIndex": 6, "ServoType": 5, "PositionMin": 65, "PositionMax": 95,  "Acceleration": 200, "VelocityLimit": 50 },
+        { "ServoIndex": 0, "ServoType": 2, "PositionMin": 80, "PositionMax": 110, "Acceleration": 500, "VelocityLimit": 50 },
+        { "ServoIndex": 1, "ServoType": 2, "PositionMin": 80, "PositionMax": 110, "Acceleration": 500, "VelocityLimit": 50 },
+        { "ServoIndex": 2, "ServoType": 2, "PositionMin": 60, "PositionMax": 130, "Acceleration": 500, "VelocityLimit": 50 },
+        { "ServoIndex": 4, "ServoType": 2, "PositionMin": 80, "PositionMax": 110, "Acceleration": 500, "VelocityLimit": 50 },
+        { "ServoIndex": 5, "ServoType": 5, "PositionMin": 75, "PositionMax": 105, "Acceleration": 500, "VelocityLimit": 50 },
+        { "ServoIndex": 6, "ServoType": 5, "PositionMin": 45, "PositionMax": 115,  "Acceleration": 500, "VelocityLimit": 50 },
         //{ "ServoIndex": 0,  }, // THis is X Axis near minimum to avoid Head snap when engaged.
         //{ "ServoIndex": 1,  },
         //{ "ServoIndex": 2,  },
@@ -43,7 +43,7 @@
         { "ServoIndex": 0, "Engaged": true, "TargetPosition": 95 },
         { "ServoIndex": 1, "Engaged": true, "TargetPosition": 95 },
         { "ServoIndex": 2, "Engaged": true, "TargetPosition": 95 },
-        { "ServoIndex": 4, "Engaged": true, "TargetPosition": 90 },
+        { "ServoIndex": 4, "Engaged": true, "TargetPosition": 95 },
         { "ServoIndex": 5, "Engaged": true, "TargetPosition": 90 },
         { "ServoIndex": 6, "Engaged": true, "TargetPosition": 80 },
       ]
@@ -86,7 +86,7 @@
         { "ServoIndex": 0, "TargetPosition": 95 },
         { "ServoIndex": 1, "TargetPosition": 95 },
         { "ServoIndex": 2, "TargetPosition": 95 },
-        { "ServoIndex": 4, "TargetPosition": 90 },
+        { "ServoIndex": 4, "TargetPosition": 95 },
         { "ServoIndex": 5, "TargetPosition": 90 },
         { "ServoIndex": 6, "TargetPosition": 80 },
       ]
@@ -105,9 +105,9 @@
         ]
       },
       "Actions": [
-        { "ServoIndex": 0, "TargetPosition": 90 },
-        { "ServoIndex": 1, "TargetPosition": 95 },
-        { "ServoIndex": 2, "TargetPosition": 95 },
+        { "ServoIndex": 0, "TargetPosition": 95 },
+        { "ServoIndex": 1, "TargetPosition": 90 },
+        { "ServoIndex": 2, "TargetPosition": 80 },
       ]
     },
     //
@@ -124,9 +124,9 @@
         ]
       },
       "Actions": [
-        { "ServoIndex": 4, "TargetPosition": 90 },
-        { "ServoIndex": 5, "TargetPosition": 90 },
-        { "ServoIndex": 6, "TargetPosition": 80 },
+        { "ServoIndex": 4, "TargetPosition": 95 },
+        { "ServoIndex": 5, "TargetPosition": 95 },
+        { "ServoIndex": 6, "TargetPosition": 95 },
       ]
     },
     //
@@ -150,6 +150,76 @@
         { "ServoIndex": 6, "RelativePosition": 10 },
       ]
     },
+    //
+    // Skulls Look Left
+    //
+    {
+      "Name": "Skulls Look Left (psbc22)", "Description": "Skulls Look Left",
+      "ExecuteActionsInParallel": false, "Duration": 500,
+      "Host": {
+        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
+        "AdvancedServos": [
+          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
+        ]
+      },
+      "Actions": [
+        { "ServoIndex": 6, "RelativePosition": -25, "Duration": 500 },
+        { "ServoIndex": 6, "RelativePosition": 15 },
+      ],
+            "NextSequence": { "Name": "Skulls Look Left2 (psbc22)", "SequenceType":  "AS" }
+    },
+    //
+    // Skulls Look Left2
+    //
+    {
+      "Name": "Skulls Look Left2 (psbc22)", "Description": "Skulls Look Left",
+      "ExecuteActionsInParallel": true,
+      "Host": {
+        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
+        "AdvancedServos": [
+          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
+        ]
+      },
+      "Actions": [
+        { "ServoIndex": 6, "RelativePosition": -15 },
+        { "ServoIndex": 2, "RelativePosition": -25, "RelativeAcceleration": 1000, "RelativeVelocityLimit": 150 },
+      ]
+    },
+    //
+    // Skulls Look Right
+    //
+    {
+      "Name": "Skulls Look Right (psbc22)", "Description": "Skulls Look Right",
+      "ExecuteActionsInParallel": false, "Duration": 500,
+      "Host": {
+        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
+        "AdvancedServos": [
+          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
+        ]
+      },
+      "Actions": [
+        { "ServoIndex": 2, "RelativePosition": 25, "Duration": 500 },
+        { "ServoIndex": 2, "RelativePosition": -15 },
+      ],
+            "NextSequence": { "Name": "Skulls Look Right2 (psbc22)", "SequenceType":  "AS" }
+    },
+    //
+    // Skulls Look Right2
+    //
+    {
+      "Name": "Skulls Look Right2 (psbc22)", "Description": "Skull Look Up Right",
+      "ExecuteActionsInParallel": true,
+      "Host": {
+        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
+        "AdvancedServos": [
+          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
+        ]
+      },
+      "Actions": [
+        { "ServoIndex": 2, "RelativePosition": 15 },
+        { "ServoIndex": 6, "RelativePosition": 25, "RelativeAcceleration": 1000, "RelativeVelocityLimit": 150 },
+      ]
+    },    
     //
     // Skulls Look Apart
     //
