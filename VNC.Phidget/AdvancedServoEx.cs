@@ -87,22 +87,32 @@ namespace VNC.Phidget
                     // Force the initial Servo Type to avoid opening something that has
                     // been set to an unexpected Type, e.g. RAW_us_MODE
 
-                    servo.Type = ServoServo.ServoType.DEFAULT;
+                    //if (servo.Type == ServoServo.ServoType.RAW_us_MODE)
+                    //{
+                        servo.Type = ServoServo.ServoType.DEFAULT;
+                    //}
+
+                    // TODO(crhodes)
+                    // This would be better if handled in HostConfig
+
+                    //servo.Type = ServoServo.ServoType.DEFAULT;
 
                     // NOTE(crhodes)
                     // We do not need to save Accleration and Velocity Min,Max,
-                    // they cannot change
+                    // they cannot change, 
+                    // but, useful when setting Acceleration/VelocityLimit
+                    // to Min/Max in PerformAction
 
-                    InitialServoLimits[i].AccelerationMin = servo.AccelerationMin;
-                    InitialServoLimits[i].AccelerationMax = servo.AccelerationMax;
-                    InitialServoLimits[i].DevicePositionMin = servo.PositionMin;
-                    //InitialServoLimits[i].PositionMin = servo.PositionMin;
-                    //InitialServoLimits[i].PositionMax = servo.PositionMax;
-                    InitialServoLimits[i].DevicePositionMax = servo.PositionMax;
-                    InitialServoLimits[i].VelocityMin = servo.VelocityMin + 1; // 0 won't move
-                    InitialServoLimits[i].VelocityMax = servo.VelocityMax;
+                    SaveServoLimits(servo, i);
+                    //InitialServoLimits[i].AccelerationMin = servo.AccelerationMin;
+                    //InitialServoLimits[i].AccelerationMax = servo.AccelerationMax;
+                    //InitialServoLimits[i].DevicePositionMin = servo.PositionMin;
+                    ////InitialServoLimits[i].PositionMin = servo.PositionMin;
+                    ////InitialServoLimits[i].PositionMax = servo.PositionMax;
+                    //InitialServoLimits[i].DevicePositionMax = servo.PositionMax;
+                    //InitialServoLimits[i].VelocityMin = servo.VelocityMin + 1; // 0 won't move
+                    //InitialServoLimits[i].VelocityMax = servo.VelocityMax;
                 }
-
             }
             catch (Exception ex)
             {
@@ -118,13 +128,14 @@ namespace VNC.Phidget
             }
             // NOTE(crhodes)
             // We do not need to save Accleration and Velocity Min,Max,
-            // they cannot change, but,
-            // Useful when setting Acceleration/VelocityLimit to Min/Max in PerformAction
+            // they cannot change, 
+            // but, useful when setting Acceleration/VelocityLimit
+            // to Min/Max in PerformAction
 
             InitialServoLimits[index].AccelerationMin = servo.AccelerationMin;
             InitialServoLimits[index].AccelerationMax = servo.AccelerationMax;
             InitialServoLimits[index].DevicePositionMin = servo.PositionMin;
-            //InitialServoLimits[i].PositionMin = servo.PositionMin;
+            //InitialServoLimits[i].PositionMin = servo.PositionMin; 
             //InitialServoLimits[i].PositionMax = servo.PositionMax;
             InitialServoLimits[index].DevicePositionMax = servo.PositionMax;
             InitialServoLimits[index].VelocityMin = servo.VelocityMin + 1; // 0 won't move

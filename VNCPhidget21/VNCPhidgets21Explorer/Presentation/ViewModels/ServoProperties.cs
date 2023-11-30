@@ -23,9 +23,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             get => _servoType;
             set
             {
-                // NOTE(crhodes)
-                // We always want to call UpdateProperties
-                //if (_servoType == value) return;
+                if (_servoType == value) return;
                 _servoType = value;
                 OnPropertyChanged();
 
@@ -35,7 +33,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     {
                         AdvancedServoEx.AdvancedServo.servos[ServoIndex].Type = (Phidgets.ServoServo.ServoType)value;
 
-                        // Need to update all the properties since the type changed
+                        // Need to update all the properties since the type changed.
+                        // NB. Even setting to the same Type causes a refresh of the properties
                         GetPropertiesFromServo();
                     }
                 }
@@ -448,11 +447,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 Double? percent = 0.20;
                 Double? midPoint;
 
-                midPoint = (DevicePositionMax - DevicePositionMin) / 2;
-                halfRange = midPoint * percent;
-                PositionMin = midPoint - halfRange;
-                PositionMax = midPoint + halfRange;
-                Position = midPoint;
+                //midPoint = (DevicePositionMax - DevicePositionMin) / 2;
+                //halfRange = midPoint * percent;
+                //PositionMin = midPoint - halfRange;
+                //PositionMax = midPoint + halfRange;
+                //Position = midPoint;
 
                 if (LogPhidgetEvents)
                 {
@@ -493,6 +492,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     Log.Trace($"servo:{ServoIndex} positionMin:{servo.PositionMin} position:{(servo.Engaged ? servo.Position : "??")} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
                     Log.Trace($"servo:{ServoIndex} devicePositionMin:{DevicePositionMin}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
                 }
+
+                ServoType = servo.Type;
 
                 Engaged = servo.Engaged;
                 Stopped = servo.Stopped;

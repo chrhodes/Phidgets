@@ -21,6 +21,8 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
             InitializeComponent();
             
             lgMain.DataContext = this;
+            liPositionRange.DataContext = this;
+
 
 			// Expose ViewModel
 						
@@ -362,6 +364,11 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 
         public static readonly DependencyProperty PositionRangeProperty = DependencyProperty.Register("PositionRange", typeof(Int32), typeof(PositionControl), 
             new FrameworkPropertyMetadata(10, new PropertyChangedCallback(OnPositionRangeChanged), new CoerceValueCallback(OnCoercePositionRange)));
-        
+
+        private void SetPositionRange_Click(object sender, RoutedEventArgs e)
+        {
+            Min = Current - PositionRange;
+            Max = Current + PositionRange;
+        }
     }
 }

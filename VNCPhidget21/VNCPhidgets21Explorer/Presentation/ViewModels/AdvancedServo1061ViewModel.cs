@@ -1298,36 +1298,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     for (int i = 0; i < ServoCount; i++)
                     {
                         AdvancedServoProperties[i].RefreshPropertiesFromServo();
-                        //servo = servos[i];
-
-                        //// NOTE(crhodes)
-                        //// Should be safe to get Acceleration, Velocity, and Position here
-                        //// if Device is Engaged, otherwise set to null
-
-                        //AdvancedServoProperties[0].ServoType = servo.Type;
-
-                        //// DevicePosition{Min,Max} should only be set when ServoType changes
-                        ////DevicePositionMin = servo.PositionMin;
-                        ////DevicePositionMax = servo.PositionMax;
-
-                        //AdvancedServoProperties[i].Stopped = servo.Stopped;
-                        //AdvancedServoProperties[i].Engaged = servo.Engaged;
-                        //AdvancedServoProperties[i].SpeedRamping = servo.SpeedRamping;
-
-                        //AdvancedServoProperties[i].Current = servo.Current;
-
-                        //AdvancedServoProperties[i].AccelerationMin = servo.AccelerationMin;
-                        //AdvancedServoProperties[i].Acceleration = servo.Engaged ? servo.Acceleration : null;
-                        //AdvancedServoProperties[i].AccelerationMax = servo.AccelerationMax;
-
-                        //AdvancedServoProperties[i].VelocityMin = servo.VelocityMin;
-                        //AdvancedServoProperties[i].Velocity = servo.Velocity;
-                        //AdvancedServoProperties[i].VelocityLimit = servo.VelocityLimit;
-                        //AdvancedServoProperties[i].VelocityMax = servo.VelocityMax;
-
-                        //AdvancedServoProperties[i].PositionMin = servo.PositionMin;
-                        //AdvancedServoProperties[i].Position = servo.Engaged ? servo.Position : null;
-                        //AdvancedServoProperties[i].PositionMax = servo.PositionMax;
                     }
                 }
                 catch (Exception ex)
