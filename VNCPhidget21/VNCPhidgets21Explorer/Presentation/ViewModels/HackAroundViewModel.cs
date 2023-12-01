@@ -1437,7 +1437,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             await Task.Run(async () =>
                             {
                                 if (LogPerformanceSequence) Log.Trace($"Executing sequence:{nextPerformanceSequence.Name}", Common.LOG_CATEGORY);
-                                nextPerformanceSequence = await performanceSequencePlayer.ExecutePerformanceSequence(nextPerformanceSequence);
+                                nextPerformanceSequence = await performanceSequencePlayer.ExecutePerformanceSequenceLoops(nextPerformanceSequence);
                             });
                         } while (nextPerformanceSequence is not null);
                     }
@@ -1767,7 +1767,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     SequenceType = "AS"
                 };
 
-            await performanceSequencePlayer.ExecutePerformanceSequence(advancedServoSequence);
+            await performanceSequencePlayer.ExecutePerformanceSequenceLoops(advancedServoSequence);
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -1854,7 +1854,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
 
 
-            await performanceSequencePlayer.ExecutePerformanceSequence(advancedServoSequence);
+            await performanceSequencePlayer.ExecutePerformanceSequenceLoops(advancedServoSequence);
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -1894,7 +1894,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     SequenceType = "AS"
                 };
 
-            await performanceSequencePlayer.ExecutePerformanceSequence(advancedServoSequence);
+            await performanceSequencePlayer.ExecutePerformanceSequenceLoops(advancedServoSequence);
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -2079,7 +2079,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                     do
                     {
-                        nextPerformanceSequence = await performanceSequencePlayer.ExecutePerformanceSequence(nextPerformanceSequence);
+                        nextPerformanceSequence = await performanceSequencePlayer.ExecutePerformanceSequenceLoops(nextPerformanceSequence);
                     } while (nextPerformanceSequence is not null);
                 }
                 catch (Exception ex)

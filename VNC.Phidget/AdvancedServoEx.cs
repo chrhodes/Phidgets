@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -36,110 +37,6 @@ namespace VNC.Phidget
             EventAggregator.GetEvent<AdvancedServoSequenceEvent>().Subscribe(TriggerSequence);
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-        private void TriggerSequence(SequenceEventArgs args)
-        {
-            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-
-            var advancedServoSequence = args.AdvancedServoSequence;
-
-            RunSequenceLoops(advancedServoSequence);
-
-            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private void InitializePhidget()
-        {
-            AdvancedServo = new Phidgets.AdvancedServo();
-
-            AdvancedServo.Attach += Phidget_Attach;
-            AdvancedServo.Detach += Phidget_Detach;
-            AdvancedServo.Error += Phidget_Error;
-            AdvancedServo.ServerConnect += Phidget_ServerConnect;
-            AdvancedServo.ServerDisconnect += Phidget_ServerDisconnect;
-        }
-
-        internal override void Phidget_Attach(object sender, AttachEventArgs e)
-        {
-            SetInitialServoType();
-            base.Phidget_Attach(sender, e);
-        }
-
-        private void SetInitialServoType()
-        {
-            try
-            {
-                AdvancedServoServoCollection servos = AdvancedServo.servos;
-                AdvancedServoServo servo = null;
-
-                // Save the device position min/max before any changes are made
-
-                for (int i = 0; i < servos.Count; i++)
-                {
-                    servo = servos[i];
-
-                    if (LogPerformanceAction)
-                    {
-                        Log.Trace($"servo:{i} type:{servo.Type} positionMin:{servo.PositionMin} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY); 
-                    }
-
-                    // NOTE(crhodes)
-                    // Force the initial Servo Type to avoid opening something that has
-                    // been set to an unexpected Type, e.g. RAW_us_MODE
-
-                    //if (servo.Type == ServoServo.ServoType.RAW_us_MODE)
-                    //{
-                        servo.Type = ServoServo.ServoType.DEFAULT;
-                    //}
-
-                    // TODO(crhodes)
-                    // This would be better if handled in HostConfig
-
-                    //servo.Type = ServoServo.ServoType.DEFAULT;
-
-                    // NOTE(crhodes)
-                    // We do not need to save Accleration and Velocity Min,Max,
-                    // they cannot change, 
-                    // but, useful when setting Acceleration/VelocityLimit
-                    // to Min/Max in PerformAction
-
-                    SaveServoLimits(servo, i);
-                    //InitialServoLimits[i].AccelerationMin = servo.AccelerationMin;
-                    //InitialServoLimits[i].AccelerationMax = servo.AccelerationMax;
-                    //InitialServoLimits[i].DevicePositionMin = servo.PositionMin;
-                    ////InitialServoLimits[i].PositionMin = servo.PositionMin;
-                    ////InitialServoLimits[i].PositionMax = servo.PositionMax;
-                    //InitialServoLimits[i].DevicePositionMax = servo.PositionMax;
-                    //InitialServoLimits[i].VelocityMin = servo.VelocityMin + 1; // 0 won't move
-                    //InitialServoLimits[i].VelocityMax = servo.VelocityMax;
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
-
-        private void SaveServoLimits(AdvancedServoServo servo, Int32 index)
-        {
-            if (LogPerformanceAction)
-            {
-                Log.Trace($"servo:{index} positionMin:{servo.PositionMin} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
-            }
-            // NOTE(crhodes)
-            // We do not need to save Accleration and Velocity Min,Max,
-            // they cannot change, 
-            // but, useful when setting Acceleration/VelocityLimit
-            // to Min/Max in PerformAction
-
-            InitialServoLimits[index].AccelerationMin = servo.AccelerationMin;
-            InitialServoLimits[index].AccelerationMax = servo.AccelerationMax;
-            InitialServoLimits[index].DevicePositionMin = servo.PositionMin;
-            //InitialServoLimits[i].PositionMin = servo.PositionMin; 
-            //InitialServoLimits[i].PositionMax = servo.PositionMax;
-            InitialServoLimits[index].DevicePositionMax = servo.PositionMax;
-            InitialServoLimits[index].VelocityMin = servo.VelocityMin + 1; // 0 won't move
-            InitialServoLimits[index].VelocityMax = servo.VelocityMax;
         }
 
         #endregion
@@ -248,6 +145,12 @@ namespace VNC.Phidget
 
         #region Event Handlers
 
+        internal override void Phidget_Attach(object sender, AttachEventArgs e)
+        {
+            SetInitialServoType();
+            base.Phidget_Attach(sender, e);
+        }
+
         private void AdvancedServo_CurrentChange(object sender, CurrentChangeEventArgs e)
         {
             try
@@ -333,6 +236,11 @@ namespace VNC.Phidget
                 }
 
             }
+            catch (PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+            }
             catch (Exception ex)
             {
                 Log.Error(ex, Common.LOG_CATEGORY);
@@ -356,6 +264,11 @@ namespace VNC.Phidget
 
                 AdvancedServo.close();
             }
+            catch (PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+            }
             catch (Exception ex)
             {
                 Log.Error(ex, Common.LOG_CATEGORY);
@@ -376,8 +289,6 @@ namespace VNC.Phidget
                 {
                     for (int sequenceLoop = 0; sequenceLoop < advancedServoSequence.Loops; sequenceLoop++)
                     {
-                        //if (LogPerformanceSequence) Log.Trace($"Loop:{loop + 1}", Common.LOG_CATEGORY);
-
                         if (advancedServoSequence.ExecuteActionsInParallel)
                         {
                             if (LogPerformanceSequence) Log.Trace($"Parallel Actions Loop:{sequenceLoop + 1}", Common.LOG_CATEGORY);
@@ -416,6 +327,265 @@ namespace VNC.Phidget
             }
         }
 
+        /// <summary>
+        /// Bounds check and set acceleration
+        /// </summary>
+        /// <param name="acceleration"></param>
+        /// <param name="servo"></param>
+        public void SetAcceleration(Double acceleration, AdvancedServoServo servo, Int32 index)
+        {
+            try
+            {
+                if (LogPerformanceAction)
+                {
+                    Log.Trace($"Begin index:{index} acceleration:{acceleration}" +
+                        $" accelerationMin:{servo.AccelerationMin}" +
+                        //$" acceleration:{servo.Acceleration}" + // Can't check this as it may not have been set yet
+                        $" accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
+                }
+
+                if (acceleration < servo.AccelerationMin)
+                {
+                    servo.Acceleration = servo.AccelerationMin;
+                }
+                else if (acceleration > servo.AccelerationMax)
+                {
+                    servo.Acceleration = servo.AccelerationMax;
+                }
+                else
+                {
+                    servo.Acceleration = acceleration;
+                }
+
+                if (LogPerformanceAction)
+                {
+                    Log.Trace($"End index:{index} servoAcceleration:{servo.Acceleration}", Common.LOG_CATEGORY);
+                }
+            }
+            catch (PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"servo:{index} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                Log.Error($"index:{index} acceleration:{acceleration}" +
+                    $" accelerationMin:{servo.AccelerationMin}" +
+                    //$" acceleration:{servo.Acceleration}" + // Can't check this as it may not have been set yet
+                    $" accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
+
+        /// <summary>
+        /// Bounds check and set velocity
+        /// </summary>
+        /// <param name="velocityLimit"></param>
+        /// <param name="servo"></param>
+        public void SetVelocityLimit(Double velocityLimit, AdvancedServoServo servo, Int32 index)
+        {
+            try
+            {
+                if (LogPerformanceAction)
+                {
+                    Log.Trace($"Begin index:{index}" +
+                        $" velocityLimit:{velocityLimit}" +
+                        $" servo.velocityMin:{servo.VelocityMin}" +
+                        $" servo.velocityLimit:{servo.VelocityLimit}" +
+                        $" servo.velocityMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
+                }
+
+                if (velocityLimit < servo.VelocityMin)
+                {
+                    servo.VelocityLimit = servo.VelocityMin;
+                }
+                else if (velocityLimit > servo.VelocityMax)
+                {
+                    servo.VelocityLimit = servo.VelocityMax;
+                }
+                else
+                {
+                    servo.VelocityLimit = velocityLimit;
+                }
+
+                if (LogPerformanceAction)
+                {
+                    Log.Trace($"End index:{index} velocityLimit:{velocityLimit} velocityLimit:{servo.VelocityLimit}", Common.LOG_CATEGORY);
+                }
+            }
+            catch (PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"servo:{index} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                Log.Error($"index:{index}" +
+                    $" velocity:{velocityLimit}" +
+                    $" servo.velocityMin:{servo.VelocityMin}" +
+                    $" servo.velocityLimit:{servo.VelocityLimit}" +
+                    $" servo.velocityMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
+
+        /// <summary>
+        /// Bounds check and set position
+        /// </summary>
+        /// <param name="positionMin"></param>
+        /// <param name="servo"></param>
+        public void SetPositionMin(Double positionMin, AdvancedServoServo servo, Int32 index)
+        {
+            try
+            {
+                if (LogPerformanceAction)
+                {
+                    Log.Trace($"Begin index:{index} positionMin:{positionMin}" +
+                        $" servo.PositionMin:{servo.PositionMin}" +
+                        $" servo.PositionMax:{servo.PositionMax}" +
+                        $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
+                        $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
+                }
+
+                if (positionMin < 0)
+                {
+                    positionMin = InitialServoLimits[index].DevicePositionMin;
+                }
+                else if (positionMin < InitialServoLimits[index].DevicePositionMin)
+                {
+                    positionMin = InitialServoLimits[index].DevicePositionMin;
+                }
+                else if (positionMin > servo.PositionMax)
+                {
+                    positionMin = servo.PositionMax;
+                }
+
+                if (servo.PositionMin != positionMin) servo.PositionMin = positionMin;
+
+                if (LogPerformanceAction)
+                {
+                    Log.Trace($"End index:{index} positionMin:{positionMin} servo.PositionMin:{servo.PositionMin}", Common.LOG_CATEGORY);
+                }
+            }
+            catch (PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"servo:{index} {pex.Description} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                Log.Error($"index:{index} positionMin:{positionMin}" +
+                    $" servo.PositionMin:{servo.PositionMin}" +
+                    $" servo.PositionMax:{servo.PositionMax}" +
+                    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
+                    $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
+
+        /// <summary>
+        /// Bounds check and set position
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="servo"></param>
+        public Double SetPosition(Double position, AdvancedServoServo servo, Int32 index)
+        {
+            try
+            {
+                if (LogPerformanceAction)
+                {
+                    Log.Trace($"Begin servo:{index} position:{position}" +
+                        $" servo.PositionMin:{servo.PositionMin}" +
+                        $" servo.PositionMax:{servo.PositionMax}" +
+                        $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
+                        $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
+                }
+
+                if (position < servo.PositionMin)
+                {
+                    position = servo.PositionMin;
+                }
+                else if (position > servo.PositionMax)
+                {
+                    position = servo.PositionMax;
+                }
+
+                // TODO(crhodes)
+                // Maybe save last postion set and not bother checking servo.Position is same
+                if (servo.Position != position) servo.Position = position;
+
+                if (LogPerformanceAction)
+                {
+                    Log.Trace($"End servo:{index} position:{position} servo.Position:{servo.Position}", Common.LOG_CATEGORY);
+                }
+            }
+            catch (PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"servo:{index} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                Log.Error($"servo:{index} servo.position:{servo.Position}" +
+                    $" servo.PositionMin:{servo.PositionMin}" +
+                    $" servo.PositionMax:{servo.PositionMax}" +
+                    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
+                    $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+
+            return position;
+        }
+
+        /// <summary>
+        /// Bounds check and set position
+        /// </summary>
+        /// <param name="positionMax"></param>
+        /// <param name="servo"></param>
+        public void SetPositionMax(Double positionMax, AdvancedServoServo servo, Int32 index)
+        {
+            try
+            {
+                if (LogPerformanceAction)
+                {
+                    Log.Trace($"Begin servo:{index} positionMax:{positionMax}" +
+                        $" servo.PositionMin:{servo.PositionMin}" +
+                        $" servo.PositionMax:{servo.PositionMax}" +
+                        $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
+                        $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
+                }
+
+                if (positionMax < 0)
+                {
+                    positionMax = InitialServoLimits[index].DevicePositionMax;
+                }
+                else if (positionMax < servo.PositionMin)
+                {
+                    positionMax = servo.PositionMin;
+                }
+                else if (positionMax > InitialServoLimits[index].DevicePositionMax)
+                {
+                    positionMax = InitialServoLimits[index].DevicePositionMax;
+                }
+
+                if (servo.PositionMax != positionMax) servo.PositionMax = positionMax;
+
+                if (LogPerformanceAction)
+                {
+                    Log.Trace($"End servo:{index} positionMax:{positionMax} servo.PositionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
+                }
+            }
+            catch (PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"servo:{index} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
+
         #endregion
 
         #region Protected Methods (None)
@@ -423,9 +593,97 @@ namespace VNC.Phidget
 
         #endregion
 
-        #region Private Methods (None)
+        #region Private Methods
 
-         private async Task PerformAction(AdvancedServoServoAction action)
+        private void InitializePhidget()
+        {
+            AdvancedServo = new Phidgets.AdvancedServo();
+
+            AdvancedServo.Attach += Phidget_Attach;
+            AdvancedServo.Detach += Phidget_Detach;
+            AdvancedServo.Error += Phidget_Error;
+            AdvancedServo.ServerConnect += Phidget_ServerConnect;
+            AdvancedServo.ServerDisconnect += Phidget_ServerDisconnect;
+        }
+
+        private void SetInitialServoType()
+        {
+            try
+            {
+                AdvancedServoServoCollection servos = AdvancedServo.servos;
+                AdvancedServoServo servo = null;
+
+                // Save the device position min/max before any changes are made
+
+                for (int i = 0; i < servos.Count; i++)
+                {
+                    servo = servos[i];
+
+                    if (LogPerformanceAction)
+                    {
+                        Log.Trace($"servo:{i} type:{servo.Type} positionMin:{servo.PositionMin} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
+                    }
+
+                    // NOTE(crhodes)
+                    // Force the initial Servo Type to avoid opening something that has
+                    // been set to an unexpected Type, e.g. RAW_us_MODE
+
+                    //if (servo.Type == ServoServo.ServoType.RAW_us_MODE)
+                    //{
+                    servo.Type = ServoServo.ServoType.DEFAULT;
+                    //}
+
+                    // TODO(crhodes)
+                    // This would be better if handled in HostConfig
+
+                    //servo.Type = ServoServo.ServoType.DEFAULT;
+
+                    // NOTE(crhodes)
+                    // We do not need to save Accleration and Velocity Min,Max,
+                    // they cannot change, 
+                    // but, useful when setting Acceleration/VelocityLimit
+                    // to Min/Max in PerformAction
+
+                    SaveServoLimits(servo, i);
+                    //InitialServoLimits[i].AccelerationMin = servo.AccelerationMin;
+                    //InitialServoLimits[i].AccelerationMax = servo.AccelerationMax;
+                    //InitialServoLimits[i].DevicePositionMin = servo.PositionMin;
+                    ////InitialServoLimits[i].PositionMin = servo.PositionMin;
+                    ////InitialServoLimits[i].PositionMax = servo.PositionMax;
+                    //InitialServoLimits[i].DevicePositionMax = servo.PositionMax;
+                    //InitialServoLimits[i].VelocityMin = servo.VelocityMin + 1; // 0 won't move
+                    //InitialServoLimits[i].VelocityMax = servo.VelocityMax;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
+
+        private void SaveServoLimits(AdvancedServoServo servo, Int32 index)
+        {
+            if (LogPerformanceAction)
+            {
+                Log.Trace($"servo:{index} positionMin:{servo.PositionMin} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
+            }
+            // NOTE(crhodes)
+            // We do not need to save Accleration and Velocity Min,Max,
+            // they cannot change, 
+            // but, useful when setting Acceleration/VelocityLimit
+            // to Min/Max in PerformAction
+
+            InitialServoLimits[index].AccelerationMin = servo.AccelerationMin;
+            InitialServoLimits[index].AccelerationMax = servo.AccelerationMax;
+            InitialServoLimits[index].DevicePositionMin = servo.PositionMin;
+            //InitialServoLimits[i].PositionMin = servo.PositionMin; 
+            //InitialServoLimits[i].PositionMax = servo.PositionMax;
+            InitialServoLimits[index].DevicePositionMax = servo.PositionMax;
+            InitialServoLimits[index].VelocityMin = servo.VelocityMin + 1; // 0 won't move
+            InitialServoLimits[index].VelocityMax = servo.VelocityMax;
+        }
+
+        private async Task PerformAction(AdvancedServoServoAction action)
         {             
             Int64 startTicks = 0;
 
@@ -608,263 +866,15 @@ namespace VNC.Phidget
             }   
         }
 
-        /// <summary>
-        /// Bounds check and set acceleration
-        /// </summary>
-        /// <param name="acceleration"></param>
-        /// <param name="servo"></param>
-        public void SetAcceleration(Double acceleration, AdvancedServoServo servo, Int32 index)
+        private void TriggerSequence(SequenceEventArgs args)
         {
-            try
-            {
-                if (LogPerformanceAction)
-                {
-                    Log.Trace($"Begin index:{index} acceleration:{acceleration}" +
-                        $" accelerationMin:{servo.AccelerationMin}" +
-                        //$" acceleration:{servo.Acceleration}" + // Can't check this as it may not have been set yet
-                        $" accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
-                }
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-                if (acceleration < servo.AccelerationMin) 
-                { 
-                    servo.Acceleration = servo.AccelerationMin; 
-                }
-                else if (acceleration > servo.AccelerationMax) 
-                { 
-                    servo.Acceleration = servo.AccelerationMax; 
-                }
-                else 
-                { 
-                    servo.Acceleration = acceleration; 
-                }
+            var advancedServoSequence = args.AdvancedServoSequence;
 
-                if (LogPerformanceAction)
-                {
-                    Log.Trace($"End index:{index} servoAcceleration:{servo.Acceleration}", Common.LOG_CATEGORY);
-                }
-            }
-            catch (PhidgetException pex)
-            {
-                Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"servo:{index} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-                Log.Error($"index:{index} acceleration:{acceleration}" +
-                    $" accelerationMin:{servo.AccelerationMin}" +
-                    //$" acceleration:{servo.Acceleration}" + // Can't check this as it may not have been set yet
-                    $" accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
+            RunSequenceLoops(advancedServoSequence);
 
-        /// <summary>
-        /// Bounds check and set velocity
-        /// </summary>
-        /// <param name="velocity"></param>
-        /// <param name="servo"></param>
-        public void SetVelocityLimit(Double velocity, AdvancedServoServo servo, Int32 index)
-        {
-            try
-            {
-                if (LogPerformanceAction)
-                {
-                    Log.Trace($"Begin index:{index}" +
-                        $" velocity:{velocity}" +
-                        $" velocityMin:{servo.VelocityMin}" +
-                        $" velocityLimit:{servo.VelocityLimit}" +
-                        $" velocityMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
-                }
-
-                if (velocity < servo.VelocityMin)
-                {
-                    servo.VelocityLimit = servo.VelocityMin; 
-                }
-                else if (velocity > servo.VelocityMax) 
-                { 
-                    servo.VelocityLimit = servo.VelocityMax; 
-                }
-                else 
-                { 
-                    servo.VelocityLimit = velocity;
-                }
-
-                if (LogPerformanceAction)
-                {
-                    Log.Trace($"End index:{index} velocityLimit:{servo.VelocityLimit}", Common.LOG_CATEGORY);
-                }
-            }
-            catch (PhidgetException pex)
-            {
-                Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"servo:{index} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-                Log.Error($"index:{index}" +
-                    $" velocity:{velocity}" +
-                    $" velocityMin:{servo.VelocityMin}" +
-                    $" velocityLimit:{servo.VelocityLimit}" +
-                    $" velocityMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
-
-        /// <summary>
-        /// Bounds check and set position
-        /// </summary>
-        /// <param name="position"></param>
-        /// <param name="servo"></param>
-        public void SetPositionMin(Double position, AdvancedServoServo servo, Int32 index)
-        {
-            try
-            {
-                if (LogPerformanceAction)
-                {
-                    Log.Trace($"Begin index:{index} position:{position}" +
-                        $" servo.PositionMin:{servo.PositionMin}" +
-                        $" servo.PositionMax:{servo.PositionMax}" +
-                        $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
-                        $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
-                }
-
-                if (position < 0)
-                {
-                    position = InitialServoLimits[index].DevicePositionMin;
-                }
-                else if (position < InitialServoLimits[index].DevicePositionMin)
-                {
-                    position = InitialServoLimits[index].DevicePositionMin;
-                }
-                else if (position > servo.PositionMax)
-                {
-                    position = servo.PositionMax;
-                }
-
-                if (servo.PositionMin != position) servo.PositionMin = position;
-
-                if (LogPerformanceAction)
-                {
-                    Log.Trace($"End index:{index} servo.PositionMin:{servo.PositionMin}", Common.LOG_CATEGORY);
-                }
-            }
-            catch (PhidgetException pex)
-            {
-                Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"servo:{index} {pex.Description} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-                Log.Error($"index:{index} position:{position}" +
-                    $" servo.PositionMin:{servo.PositionMin}" +
-                    $" servo.PositionMax:{servo.PositionMax}" +
-                    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
-                    $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
-
-        /// <summary>
-        /// Bounds check and set position
-        /// </summary>
-        /// <param name="position"></param>
-        /// <param name="servo"></param>
-        public Double SetPosition(Double position, AdvancedServoServo servo, Int32 index)
-        {
-            try
-            {
-                if (LogPerformanceAction)
-                {
-                    Log.Trace($"Begin servo:{index} position:{position}" +
-                        $" servo.PositionMin:{servo.PositionMin}" +
-                        $" servo.PositionMax:{servo.PositionMax}" +
-                        $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
-                        $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
-                }
-
-                if (position < servo.PositionMin)
-                {
-                    position = servo.PositionMin;
-                }
-                else if (position > servo.PositionMax)
-                {
-                    position = servo.PositionMax;
-                }
-
-                // TODO(crhodes)
-                // Maybe save last postion set and not bother checking servo.Position is same
-                if (servo.Position != position) servo.Position = position;
-
-                if (LogPerformanceAction)
-                {
-                    Log.Trace($"End servo:{index} servo.Position:{position}", Common.LOG_CATEGORY);
-                }
-            }
-            catch (PhidgetException pex)
-            {
-                Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"servo:{index} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-                Log.Error($"servo:{index} position:{position}" +
-                    $" servo.PositionMin:{servo.PositionMin}" +
-                    $" servo.PositionMax:{servo.PositionMax}" +
-                    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
-                    $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-               Log.Error(ex, Common.LOG_CATEGORY);
-            }
-
-            return position;
-        }
-
-        /// <summary>
-        /// Bounds check and set position
-        /// </summary>
-        /// <param name="position"></param>
-        /// <param name="servo"></param>
-        public void SetPositionMax(Double position, AdvancedServoServo servo, Int32 index)
-        {
-            try
-            {
-                if (LogPerformanceAction)
-                {
-                    Log.Trace($"Begin servo:{index} position:{position}" +
-                        $" servo.PositionMin:{servo.PositionMin}" +
-                        $" servo.PositionMax:{servo.PositionMax}" +
-                        $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
-                        $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
-                }
-
-                if (position < 0)
-                {
-                    position = InitialServoLimits[index].DevicePositionMax;
-                }
-                else if (position < servo.PositionMin)
-                {
-                    position = servo.PositionMin;
-                }
-                else if (position > InitialServoLimits[index].DevicePositionMax)
-                {
-                    position = InitialServoLimits[index].DevicePositionMax;
-                }
-
-                if (servo.PositionMax != position) servo.PositionMax = position;
-
-                if (LogPerformanceAction)
-                {
-                    Log.Trace($"End servo:{index} position:{position} servo.PositionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
-                }
-            }
-            catch (PhidgetException pex)
-            {
-                Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"servo:{index} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void VerifyServoEngaged(AdvancedServoServo servo, Int32 index)

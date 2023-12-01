@@ -518,7 +518,7 @@
     //
     {
       "Name": "Left Skull Laugh (psbc22)", "Description": "Look up and Go nuts",
-      "Loops": 1, "ExecuteActionsInParallel": true, "Duration": 1000,
+      "ExecuteActionsInParallel": true, "Duration": 1000,
       "Host": {
         "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
         "AdvancedServos": [
@@ -536,7 +536,7 @@
     //
     {
       "Name": "Left Skull Laugh2 (psbc22)",
-      "Loops": 1, "ExecuteActionsInParallel": true, "Duration": 500,
+      "ExecuteActionsInParallel": true, "Duration": 500,
       "Host": {
         "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
         "AdvancedServos": [
@@ -555,7 +555,7 @@
     //
     {
       "Name": "Left Skull Laugh3 (psbc22)", "Description": "Move +/- 5 X,Y,Z axis 3 times",
-      "Loops": 1, "ExecuteActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
       "Host": {
         "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
         "AdvancedServos": [
@@ -591,7 +591,7 @@
     //
     {
       "Name": "Right Skull Laugh (psbc22)", "Description": "Look up and Go nuts",
-      "Loops": 1, "ExecuteActionsInParallel": true, "Duration": 1000,
+      "ExecuteActionsInParallel": true, "Duration": 1000,
       "Host": {
         "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
         "AdvancedServos": [
@@ -609,7 +609,7 @@
     //
     {
       "Name": "Right Skull Laugh2 (psbc22)", "Description": "Move up and down X axis 2 times",
-      "Loops": 1, "ExecuteActionsInParallel": true, "Duration": 500,
+      "ExecuteActionsInParallel": true, "Duration": 500,
       "Host": {
         "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
         "AdvancedServos": [
@@ -628,7 +628,7 @@
     //
     {
       "Name": "Right Skull Laugh3 (psbc22)", "Description": "Move up and down X axis 2 times",
-      "Loops": 1, "ExecuteActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
       "Host": {
         "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
         "AdvancedServos": [
@@ -664,7 +664,7 @@
     //
     {
       "Name": "Skull Sigh (psbc22)", "Description": "Move up and down X axis 2 times",
-      "Loops": 1, "ExecuteActionsInParallel": true, "Duration": 500,
+      "ExecuteActionsInParallel": true, "Duration": 500,
       "Host": {
         "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
         "AdvancedServos": [
@@ -682,7 +682,7 @@
     //
     {
       "Name": "Skull Sigh2 (psbc22)", "Description": "Move up and down X axis 2 times",
-      "Loops": 1, "ExecuteActionsInParallel": true, "Duration": 100,
+      "ExecuteActionsInParallel": true, "Duration": 100,
       "Host": {
         "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
         "AdvancedServos": [
@@ -701,7 +701,7 @@
     //
     {
       "Name": "Skull Sigh3 (psbc22)", "Description": "Move up and down X axis 2 times",
-      "Loops": 1, "ExecuteActionsInParallel": false,
+      "ExecuteActionsInParallel": false,
       "Host": {
         "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
         "AdvancedServos": [
@@ -767,7 +767,6 @@
     //
     {
       "Name": "Skull Maybe 2 (psbc22)", "Description": "Move Y axis 2 times",
-      "Loops": 1,
       "ExecuteActionsInParallel": false,
       "Host": {
         "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,

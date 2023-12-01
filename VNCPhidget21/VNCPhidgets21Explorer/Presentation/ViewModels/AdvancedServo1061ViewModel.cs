@@ -60,6 +60,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //PerformanceFileName_DoubleClick_Command = new DelegateCommand(PerformanceFileName_DoubleClick);
 
             OpenAdvancedServoCommand = new DelegateCommand(OpenAdvancedServo, OpenAdvancedServoCanExecute);
+            InitializeSlowAdvancedServoCommand = new DelegateCommand(InitializeSlowAdvancedServo, InitializeSlowAdvancedServoCanExecute);
+            InitializeMediumAdvancedServoCommand = new DelegateCommand(InitializeMediumAdvancedServo, InitializeMediumAdvancedServoCanExecute);
+            InitializeFastAdvancedServoCommand = new DelegateCommand(InitializeFastAdvancedServo, InitializeFastAdvancedServoCanExecute);
             RefreshAdvancedServoCommand = new DelegateCommand(RefreshAdvancedServo, RefreshAdvancedServoCanExecute);
             //SetAdvancedServoDefaultsCommand = new DelegateCommand<string>(SetAdvancedServoDefaults, SetAdvancedServoDefaultsCanExecute);
             CloseAdvancedServoCommand = new DelegateCommand(CloseAdvancedServo, CloseAdvancedServoCanExecute);
@@ -638,6 +641,250 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
+
+
+        #region InitializeSlowAdvancedServo Command
+
+        public DelegateCommand InitializeSlowAdvancedServoCommand { get; set; }
+        public string InitializeSlowAdvancedServoContent { get; set; } = "Slow";
+        public string InitializeSlowAdvancedServoToolTip { get; set; } = "Initialize Slow Speed and Center Position";
+
+        // Can get fancy and use Resources
+        //public string InitializeSlowAdvancedServoContent { get; set; } = "ViewName_InitializeSlowAdvancedServoContent";
+        //public string InitializeSlowAdvancedServoToolTip { get; set; } = "ViewName_InitializeSlowAdvancedServoContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_InitializeSlowAdvancedServoContent">InitializeSlowAdvancedServo</system:String>
+        //    <system:String x:Key="ViewName_InitializeSlowAdvancedServoContentToolTip">InitializeSlowAdvancedServo ToolTip</system:String>  
+
+        public void InitializeSlowAdvancedServo()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = "Cool, you called InitializeSlowAdvancedServo";
+
+            if ((Boolean)DeviceAttached)
+            {
+                AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
+
+                try
+                {
+                    for (int i = 0; i < servos.Count; i++)
+                    {
+                        AdvancedServoProperties[i].CenterAndInitializeMotion(ServoProperties.CenterAndInitialize.Slow);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<InitializeSlowAdvancedServoEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<InitializeSlowAdvancedServoEvent>().Publish(
+            //      new InitializeSlowAdvancedServoEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class InitializeSlowAdvancedServoEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<InitializeSlowAdvancedServoEvent>().Subscribe(InitializeSlowAdvancedServo);
+
+            // End Cut Four
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+
+        public bool InitializeSlowAdvancedServoCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            //return true;
+            if (DeviceAttached is not null)
+                return (Boolean)DeviceAttached;
+            else
+                return false;
+        }
+
+        #endregion
+
+
+        #region InitializeMediumAdvancedServo Command
+
+        public DelegateCommand InitializeMediumAdvancedServoCommand { get; set; }
+        public string InitializeMediumAdvancedServoContent { get; set; } = "Medium";
+        public string InitializeMediumAdvancedServoToolTip { get; set; } = "Initialize Medium Speed and Center Position";
+
+        // Can get fancy and use Resources
+        //public string InitializeMediumAdvancedServoContent { get; set; } = "ViewName_InitializeMediumAdvancedServoContent";
+        //public string InitializeMediumAdvancedServoToolTip { get; set; } = "ViewName_InitializeMediumAdvancedServoContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_InitializeMediumAdvancedServoContent">InitializeMediumAdvancedServo</system:String>
+        //    <system:String x:Key="ViewName_InitializeMediumAdvancedServoContentToolTip">InitializeMediumAdvancedServo ToolTip</system:String>  
+
+        public void InitializeMediumAdvancedServo()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = "Cool, you called InitializeMediumAdvancedServo";
+
+            if ((Boolean)DeviceAttached)
+            {
+                AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
+
+                try
+                {
+                    for (int i = 0; i < servos.Count; i++)
+                    {
+                        AdvancedServoProperties[i].CenterAndInitializeMotion(ServoProperties.CenterAndInitialize.Medium);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<InitializeMediumAdvancedServoEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<InitializeMediumAdvancedServoEvent>().Publish(
+            //      new InitializeMediumAdvancedServoEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class InitializeMediumAdvancedServoEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<InitializeMediumAdvancedServoEvent>().Subscribe(InitializeMediumAdvancedServo);
+
+            // End Cut Four
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+
+        public bool InitializeMediumAdvancedServoCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            //return true;
+            if (DeviceAttached is not null)
+                return (Boolean)DeviceAttached;
+            else
+                return false;
+        }
+
+        #endregion
+
+
+        #region InitializeFastAdvancedServo Command
+
+        public DelegateCommand InitializeFastAdvancedServoCommand { get; set; }
+        public string InitializeFastAdvancedServoContent { get; set; } = "Fast";
+        public string InitializeFastAdvancedServoToolTip { get; set; } = "Initialize Fast Speed and Center Position";
+
+        // Can get fancy and use Resources
+        //public string OpenAdvancedServoContent { get; set; } = "ViewName_OpenAdvancedServoContent";
+        //public string OpenAdvancedServoToolTip { get; set; } = "ViewName_OpenAdvancedServoContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_OpenAdvancedServoContent">OpenAdvancedServo</system:String>
+        //    <system:String x:Key="ViewName_OpenAdvancedServoContentToolTip">OpenAdvancedServo ToolTip</system:String>  
+
+        public void InitializeFastAdvancedServo()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = "Cool, you calledInitializeFastAdvancedServo";
+
+            if ((Boolean)DeviceAttached)
+            {
+                AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
+
+                try
+                {
+                    for (int i = 0; i < servos.Count; i++)
+                    {
+                        AdvancedServoProperties[i].CenterAndInitializeMotion(ServoProperties.CenterAndInitialize.Fast);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<OpenAdvancedServoEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<OpenAdvancedServoEvent>().Publish(
+            //      new OpenAdvancedServoEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class OpenAdvancedServoEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<OpenAdvancedServoEvent>().Subscribe(OpenAdvancedServo);
+
+            // End Cut Four
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool InitializeFastAdvancedServoCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            //return true;
+            if (DeviceAttached is not null)
+                return (Boolean)DeviceAttached;
+            else
+                return false;
+        }
+
+        #endregion
+
+
         #region RefreshAdvancedServo Command
 
         public DelegateCommand RefreshAdvancedServoCommand { get; set; }
@@ -848,7 +1095,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //ClearDigitalInputsAndOutputs();
 
             OpenAdvancedServoCommand.RaiseCanExecuteChanged();
-            RefreshAdvancedServoCommand.RaiseCanExecuteChanged();
+            InitializeSlowAdvancedServoCommand.RaiseCanExecuteChanged();
+            InitializeSlowAdvancedServoCommand.RaiseCanExecuteChanged();
+            InitializeMediumAdvancedServoCommand.RaiseCanExecuteChanged();
+            InitializeFastAdvancedServoCommand.RaiseCanExecuteChanged();
             CloseAdvancedServoCommand.RaiseCanExecuteChanged();
             //SetAdvancedServoDefaultsCommand.RaiseCanExecuteChanged();
             SetPositionRangeCommand.RaiseCanExecuteChanged();
@@ -1240,7 +1490,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
 
             OpenAdvancedServoCommand.RaiseCanExecuteChanged();
-            RefreshAdvancedServoCommand.RaiseCanExecuteChanged();
+            InitializeSlowAdvancedServoCommand.RaiseCanExecuteChanged();
+            InitializeMediumAdvancedServoCommand.RaiseCanExecuteChanged();
+            InitializeFastAdvancedServoCommand.RaiseCanExecuteChanged();
+            InitializeSlowAdvancedServoCommand.RaiseCanExecuteChanged();
             CloseAdvancedServoCommand.RaiseCanExecuteChanged();
 
             //SetAdvancedServoDefaultsCommand.RaiseCanExecuteChanged();

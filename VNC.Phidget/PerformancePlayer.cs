@@ -38,9 +38,6 @@ namespace VNC.Phidget
                     $" loops:{performance.Loops} duration:{performance.Duration}" +
                     $" nextPerformance:{performance.NextPerformance}", Common.LOG_CATEGORY);
             }
-            //PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
-
-
 
             for (int performanceLoop = 0; performanceLoop < performance.Loops; performanceLoop++)
             {
@@ -55,7 +52,7 @@ namespace VNC.Phidget
 
                         Parallel.ForEach(performance.PerformanceSequences, async sequence =>
                         {
-                            await PerformanceSequencePlayer.ExecutePerformanceSequence(sequence);
+                            await PerformanceSequencePlayer.ExecutePerformanceSequenceLoops(sequence);
                         });
                     }
                     else
@@ -66,7 +63,7 @@ namespace VNC.Phidget
                         {
                             for (int sequenceLoop = 0; sequenceLoop < sequence.Loops; sequenceLoop++)
                             {
-                                await PerformanceSequencePlayer.ExecutePerformanceSequence(sequence);
+                                await PerformanceSequencePlayer.ExecutePerformanceSequenceLoops(sequence);
                             }
                         }
                     }

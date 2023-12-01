@@ -13,7 +13,7 @@
       </Struct>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>gCAgSgAAAQIEIAEAAAAACAAAEQAAA0AAAUAQEBGAgIg=</HashCode>
+      <HashCode>gCAgSAAAAQIEIAEAAAAACAAAEQAAA0AAAUgQEBGAgIg=</HashCode>
       <FileName>AdvancedServoEx.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -26,16 +26,8 @@
   </Class>
   <Class Name="VNC.Phidget.InterfaceKitEx">
     <Position X="7.75" Y="1.25" Width="7" />
-    <InheritanceLine Type="VNC.Phidget.PhidgetEx" ManuallyRouted="true">
-      <Path>
-        <Point X="7" Y="11" />
-        <Point X="7" Y="10.613" />
-        <Point X="11.25" Y="10.613" />
-        <Point X="11.25" Y="6.848" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>BAAAgAQgAAIAoAAAAgQAQBAAEAAAAAEACACCEAGAIAA=</HashCode>
+      <HashCode>BCAACAQgAAIAoAEAAgAAQBAAEAAAAAEACACCEAGAIAA=</HashCode>
       <FileName>InterfaceKitEx.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -51,6 +43,20 @@
     <TypeIdentifier>
       <HashCode>AAAAAIAgAAAAIAAAAAAAQAAAEAAAAAEAAAAAAACAAAA=</HashCode>
       <FileName>StepperEx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget.PerformancePlayer">
+    <Position X="0.75" Y="15.25" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAYAAEAAAAAAAA=</HashCode>
+      <FileName>PerformancePlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget.PerformanceSequencePlayer">
+    <Position X="5.75" Y="15.25" Width="6.75" />
+    <TypeIdentifier>
+      <HashCode>ACAgCAIgAEAAAAAAAAAAxAAAAAAAAEEAABEQAAEUAAE=</HashCode>
+      <FileName>PerformanceSequencePlayer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

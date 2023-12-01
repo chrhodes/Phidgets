@@ -8,7 +8,7 @@ using VNC.Phidget;
 
 namespace VNCPhidgets21Explorer.Presentation.ViewModels
 {
-    #region Fields and Properties (None)
+    #region Fields and Properties
 
     public class ServoProperties : INPCBase
     {
@@ -400,12 +400,18 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion Fields and Properties (None)
 
+        public enum CenterAndInitialize
+        {
+            Slow,
+            Medium,
+            Fast
+        }
+
         /// <summary>
-        /// Gets properties from Servo.  Use when ServoType changes
-        /// Sets DevicePosition{Min,Max}, Postion to midpoint, 
-        /// and sets Position{Min,Max} to +/- 20%
+        /// Centers servo based on Device{Min,Max} and Initialize Acceleration and VelocityLimit
         /// </summary>
-        private void GetPropertiesFromServo()
+        /// <param name="centerAndInitialize"></param>
+        public void CenterAndInitializeMotion(CenterAndInitialize centerAndInitialize)
         {
             AdvancedServoServo servo = null;
 
@@ -414,51 +420,42 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 servo = AdvancedServoEx.AdvancedServo.servos[ServoIndex];
 
                 if (LogPhidgetEvents)
-                {                  
-                    Log.Trace($"Begin servo:{ServoIndex} engaged:{servo.Engaged} stopped:{servo.Stopped} current:{servo.Current} speedRamping:{servo.SpeedRamping}" , Common.LOG_CATEGORY);
-                    Log.Trace($"Begin servo:{ServoIndex} accelerationMin:{servo.AccelerationMin} acceleration:{(servo.Engaged ? servo.Acceleration : "??")} accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
-                    Log.Trace($"Begin servo:{ServoIndex} velocityMin:{servo.VelocityMin} velocity:{servo.Velocity} velocityLimit:{servo.VelocityLimit} velocityMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
-                    Log.Trace($"Begin servo:{ServoIndex} positionMin:{servo.PositionMin} position:{(servo.Engaged ? servo.Position : "??")} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
+                {
+                    Log.Trace($"Begin servo:{ServoIndex} speedRamping:{servo.SpeedRamping}", Common.LOG_CATEGORY);
+                    Log.Trace($"Begin servo:{ServoIndex} acceleration:{(servo.Engaged ? servo.Acceleration : "??")}", Common.LOG_CATEGORY);
+                    Log.Trace($"Begin servo:{ServoIndex} velocityLimit:{servo.VelocityLimit}", Common.LOG_CATEGORY);
+                    Log.Trace($"Begin servo:{ServoIndex} position:{(servo.Engaged ? servo.Position : "??")} ", Common.LOG_CATEGORY);
                     Log.Trace($"Begin servo:{ServoIndex} devicePositionMin:{DevicePositionMin}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
                 }
 
-                Engaged = servo.Engaged;
-                Stopped = servo.Stopped;
-                Current = servo.Current;
+                switch (centerAndInitialize)
+                {
+                    case CenterAndInitialize.Slow:
+                        Acceleration = AccelerationMin;
+                        VelocityLimit = VelocityMin == 0 ? 10 : VelocityMin; // Zero will not move
 
-                SpeedRamping = servo.SpeedRamping;
-                AccelerationMin = servo.AccelerationMin;
-                Acceleration = AccelerationMin;
-                AccelerationMax = servo.AccelerationMax;
+                        break;
 
-                VelocityMin = servo.VelocityMin;
-                Velocity = servo.Velocity;
-                // Make it possible to move servo without using UI to set non-zero velocity
-                VelocityLimit = servo.Velocity == 0 ? 10 : servo.Velocity;
-                VelocityMax = servo.VelocityMax;
+                    case CenterAndInitialize.Medium:
+                        Acceleration = AccelerationMin + ((AccelerationMax-AccelerationMin) / 2);
+                        VelocityLimit = VelocityMin + ((VelocityMax - VelocityMin) / 2);
 
-                PositionMin = servo.PositionMin;
-                PositionMax = servo.PositionMax;
-                // DevicePosition{Min,Max} should only be set when ServoType changes
-                DevicePositionMin = servo.PositionMin;
-                DevicePositionMax = servo.PositionMax;
+                        break;
 
-                Double? halfRange;
-                Double? percent = 0.20;
-                Double? midPoint;
+                    case CenterAndInitialize.Fast:
+                        Acceleration = AccelerationMax;
+                        VelocityLimit = VelocityMax;
 
-                //midPoint = (DevicePositionMax - DevicePositionMin) / 2;
-                //halfRange = midPoint * percent;
-                //PositionMin = midPoint - halfRange;
-                //PositionMax = midPoint + halfRange;
-                //Position = midPoint;
+                        break;
+                }
 
+                Position = (DevicePositionMax - DevicePositionMin) / 2;
                 if (LogPhidgetEvents)
                 {
-                    Log.Trace($"End servo:{ServoIndex} engaged:{servo.Engaged} stopped:{servo.Stopped} current:{servo.Current} speedRamping:{servo.SpeedRamping}", Common.LOG_CATEGORY);
-                    Log.Trace($"End servo:{ServoIndex} accelerationMin:{servo.AccelerationMin} acceleration:{(servo.Engaged ? servo.Acceleration : "??")} accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
-                    Log.Trace($"End servo:{ServoIndex} velocityMin:{servo.VelocityMin} velocity:{servo.Velocity} velocityLimit:{servo.VelocityLimit} velocityMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
-                    Log.Trace($"End servo:{ServoIndex} positionMin:{servo.PositionMin} position:{(servo.Engaged ? servo.Position : "??")} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
+                    Log.Trace($"End servo:{ServoIndex} speedRamping:{servo.SpeedRamping}", Common.LOG_CATEGORY);
+                    Log.Trace($"End servo:{ServoIndex} acceleration:{(servo.Engaged ? servo.Acceleration : "??")}", Common.LOG_CATEGORY);
+                    Log.Trace($"End servo:{ServoIndex} velocityLimit:{servo.VelocityLimit}", Common.LOG_CATEGORY);
+                    Log.Trace($"End servo:{ServoIndex} position:{(servo.Engaged ? servo.Position : "??")} ", Common.LOG_CATEGORY);
                     Log.Trace($"End servo:{ServoIndex} devicePositionMin:{DevicePositionMin}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
                 }
 
@@ -577,6 +574,79 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             if (LogPhidgetEvents)
             {
                 Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+            }
+        }
+
+        /// <summary>
+        /// Gets properties from Servo.  Use when ServoType changes
+        /// Sets DevicePosition{Min,Max}, Postion to midpoint, 
+        /// and sets Position{Min,Max} to +/- 20%
+        /// </summary>
+        private void GetPropertiesFromServo()
+        {
+            AdvancedServoServo servo = null;
+
+            try
+            {
+                servo = AdvancedServoEx.AdvancedServo.servos[ServoIndex];
+
+                if (LogPhidgetEvents)
+                {
+                    Log.Trace($"Begin servo:{ServoIndex} engaged:{servo.Engaged} stopped:{servo.Stopped} current:{servo.Current} speedRamping:{servo.SpeedRamping}", Common.LOG_CATEGORY);
+                    Log.Trace($"Begin servo:{ServoIndex} accelerationMin:{servo.AccelerationMin} acceleration:{(servo.Engaged ? servo.Acceleration : "??")} accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
+                    Log.Trace($"Begin servo:{ServoIndex} velocityMin:{servo.VelocityMin} velocity:{servo.Velocity} velocityLimit:{servo.VelocityLimit} velocityMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
+                    Log.Trace($"Begin servo:{ServoIndex} positionMin:{servo.PositionMin} position:{(servo.Engaged ? servo.Position : "??")} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
+                    Log.Trace($"Begin servo:{ServoIndex} devicePositionMin:{DevicePositionMin}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
+                }
+
+                Engaged = servo.Engaged;
+                Stopped = servo.Stopped;
+                Current = servo.Current;
+
+                SpeedRamping = servo.SpeedRamping;
+                AccelerationMin = servo.AccelerationMin;
+                Acceleration = AccelerationMin;
+                AccelerationMax = servo.AccelerationMax;
+
+                VelocityMin = servo.VelocityMin;
+                Velocity = servo.Velocity;
+                // Make it possible to move servo without using UI to set non-zero velocity
+                VelocityLimit = servo.Velocity == 0 ? 10 : servo.Velocity;
+                VelocityMax = servo.VelocityMax;
+
+                PositionMin = servo.PositionMin;
+                PositionMax = servo.PositionMax;
+                // DevicePosition{Min,Max} should only be set when ServoType changes
+                DevicePositionMin = servo.PositionMin;
+                DevicePositionMax = servo.PositionMax;
+
+                Double? halfRange;
+                Double? percent = 0.20;
+                Double? midPoint;
+
+                //midPoint = (DevicePositionMax - DevicePositionMin) / 2;
+                //halfRange = midPoint * percent;
+                //PositionMin = midPoint - halfRange;
+                //PositionMax = midPoint + halfRange;
+                //Position = midPoint;
+
+                if (LogPhidgetEvents)
+                {
+                    Log.Trace($"End servo:{ServoIndex} engaged:{servo.Engaged} stopped:{servo.Stopped} current:{servo.Current} speedRamping:{servo.SpeedRamping}", Common.LOG_CATEGORY);
+                    Log.Trace($"End servo:{ServoIndex} accelerationMin:{servo.AccelerationMin} acceleration:{(servo.Engaged ? servo.Acceleration : "??")} accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
+                    Log.Trace($"End servo:{ServoIndex} velocityMin:{servo.VelocityMin} velocity:{servo.Velocity} velocityLimit:{servo.VelocityLimit} velocityMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
+                    Log.Trace($"End servo:{ServoIndex} positionMin:{servo.PositionMin} position:{(servo.Engaged ? servo.Position : "??")} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
+                    Log.Trace($"End servo:{ServoIndex} devicePositionMin:{DevicePositionMin}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
+                }
+
+            }
+            catch (PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
             }
         }
     }
