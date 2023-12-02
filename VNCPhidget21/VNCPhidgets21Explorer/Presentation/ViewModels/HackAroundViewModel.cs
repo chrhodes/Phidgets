@@ -1430,17 +1430,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             Loops = sequence.Loops
                         };
 
-                    for (int i = 0; i < sequence.Loops; i++)
-                    {
-                        do
-                        {
-                            await Task.Run(async () =>
+                    //for (int i = 0; i < sequence.Loops; i++)
+                    //{
+                    //    do
+                    //    {
+                    // NOTE(crhodes)
+                    // Run on another thread to keep UI active
+                    await Task.Run(async () =>
                             {
                                 if (LogPerformanceSequence) Log.Trace($"Executing sequence:{nextPerformanceSequence.Name}", Common.LOG_CATEGORY);
-                                nextPerformanceSequence = await performanceSequencePlayer.ExecutePerformanceSequenceLoops(nextPerformanceSequence);
+                                //nextPerformanceSequence = await performanceSequencePlayer.ExecutePerformanceSequenceLoops(nextPerformanceSequence);
+                                await performanceSequencePlayer.ExecutePerformanceSequenceLoops(nextPerformanceSequence);
                             });
-                        } while (nextPerformanceSequence is not null);
-                    }
+                        //} while (nextPerformanceSequence is not null);
+                    //}
                 }
                 catch (Exception ex)
                 {

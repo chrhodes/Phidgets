@@ -232,7 +232,7 @@
     //
     {
       "Name": "Servo0", "Description": "SEQUENCE DESCRIPTION", 
-      "Loops": 1, "ExecuteActionsInParallel": false,
+      "Loops": 3, "ExecuteActionsInParallel": false,
       "NextSequence": { "Name": "Servo1", "SequenceType": "AS" },
       "Host": {
         "Name": "psbc21", "IPAddress": "192.168.150.21", "Port": 5001, "Enable": true,
@@ -247,7 +247,7 @@
         { "ServoIndex": 0, "TargetPosition": 110 },
         { "ServoIndex": 0, "TargetPosition": 100  },
         { "ServoIndex": 0, "TargetPosition": 90 },
-        { "ServoIndex": 0, "Engaged": false  }
+       // { "ServoIndex": 0, "Engaged": false  }
       ]
     },
     //
@@ -263,7 +263,7 @@
         { "ServoIndex": 1, "TargetPosition": 110 },
         { "ServoIndex": 1, "TargetPosition": 100  },
         { "ServoIndex": 1, "TargetPosition": 90 },
-        { "ServoIndex": 1, "Engaged": false  }
+       // { "ServoIndex": 1, "Engaged": false  }
       ]
     },
     //
@@ -271,7 +271,7 @@
     //
     {
       "Name": "Servo2",
-      "NextSequence": { "Name": "psbc21_Sequence ServoFin", "SequenceType": "AS" },
+      //"NextSequence": { "Name": "psbc21_Sequence ServoFin", "SequenceType": "AS" },
       "Actions": [
         { "ServoIndex": 2, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 200 },
         { "ServoIndex": 2, "TargetPosition": 90 },
