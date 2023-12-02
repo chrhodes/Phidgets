@@ -2082,7 +2082,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                     do
                     {
-                        nextPerformanceSequence = await performanceSequencePlayer.ExecutePerformanceSequenceLoops(nextPerformanceSequence);
+                        await performanceSequencePlayer.ExecutePerformanceSequenceLoops(nextPerformanceSequence);
                     } while (nextPerformanceSequence is not null);
                 }
                 catch (Exception ex)

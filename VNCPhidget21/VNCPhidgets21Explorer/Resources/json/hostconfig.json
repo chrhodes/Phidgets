@@ -5,6 +5,7 @@
       "AdvancedServos": [
         { "Name": "AdvancedServo 99220", "SerialNumber": 99220, "Open": true },
         { "Name": "AdvancedServo 99415", "SerialNumber": 99415, "Open": true },
+        { "Name": "AdvancedServo 169501", "SerialNumber": 169501, "Open": true },        
         { "Name": "AdvancedServo 593480", "SerialNumber": 593480, "Open": true }
       ],
       "InterfaceKits": [
@@ -16,6 +17,7 @@
       "AdvancedServos": [
         { "Name": "AdvancedServo 99220", "SerialNumber": 99220, "Open": true },
         { "Name": "AdvancedServo 99415", "SerialNumber": 99415, "Open": true },
+        { "Name": "AdvancedServo 169501", "SerialNumber": 169501, "Open": true },
         { "Name": "AdvancedServo 593480", "SerialNumber": 593480, "Open": true }
       ],
       "InterfaceKits": [
@@ -29,6 +31,7 @@
       "AdvancedServos": [
         { "Name": "AdvancedServo 99220", "SerialNumber": 99220, "Open": true }, 
         { "Name": "AdvancedServo 99415", "SerialNumber": 99415, "Open": true },
+        { "Name": "AdvancedServo 169501", "SerialNumber": 169501, "Open": true },
         { "Name": "AdvancedServo 593480", "SerialNumber": 593480, "Open": true }
       ],
       "InterfaceKits": [
@@ -42,6 +45,7 @@
       "AdvancedServos": [
         { "Name": "AdvancedServo 99220", "SerialNumber": 99220, "Open": true },
         { "Name": "AdvancedServo 99415", "SerialNumber": 99415, "Open": true },
+        { "Name": "AdvancedServo 169501", "SerialNumber": 169501, "Open": true },
         { "Name": "AdvancedServo 593480", "SerialNumber": 593480, "Open": true }
       ],
       "InterfaceKits": [
@@ -55,6 +59,7 @@
       "AdvancedServos": [
         { "Name": "AdvancedServo 99220", "SerialNumber": 99220, "Open": true },
         { "Name": "AdvancedServo 99415", "SerialNumber": 99415, "Open": true },
+        { "Name": "AdvancedServo 169501", "SerialNumber": 169501, "Open": true },
         { "Name": "AdvancedServo 593480", "SerialNumber": 593480, "Open": true }
       ],
       "InterfaceKits": [
