@@ -2,10 +2,16 @@
 {
     public class PhidgetSequenceBase
     {
+        ///// <summary>
+        ///// Host on which to run sequence (optional)
+        ///// </summary>
+        //public Host? Host { get; set; }
+
         /// <summary>
-        /// Host on which to run sequence (optional)
+        /// Phidget on which to run sequence (optional)
+        /// Use current Phidget if null
         /// </summary>
-        public Host? Host { get; set; }
+        public Int32? SerialNumber { get; set; }
 
         /// <summary>
         /// Name of sequence

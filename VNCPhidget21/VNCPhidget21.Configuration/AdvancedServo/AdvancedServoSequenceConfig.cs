@@ -6,16 +6,17 @@
         {
             new AdvancedServoSequence
             {
-                Host = new Host
-                {
-                    Name = "localhost",
-                    IPAddress = "127.0.0.1",
-                    Port = 5001,
-                    AdvancedServos = new[]
-                    {
-                        new AdvancedServo { Name = "AdvancedServo 1", SerialNumber = 99415, Open = true }
-                    }
-                },
+                //Host = new Host
+                //{
+                //    Name = "localhost",
+                //    IPAddress = "127.0.0.1",
+                //    Port = 5001,
+                //    AdvancedServos = new[]
+                //    {
+                //        new AdvancedServo { Name = "AdvancedServo 1", SerialNumber = 99415, Open = true }
+                //    }
+                //},
+                SerialNumber = 99415,
                 Name="localhost_SequenceServo0",
                 NextSequence = new PerformanceSequence { Name = "localhost_SequenceServo1", SequenceType = "AS", Loops = 1 },
 
@@ -75,16 +76,17 @@
             },
             new AdvancedServoSequence
             {
-                Host = new Host
-                {
-                    Name = "psbc11",
-                    IPAddress = "192.168.150.11",
-                    Port = 5001,
-                    AdvancedServos = new[]
-                    {
-                        new AdvancedServo { Name = "AdvancedServo 1", SerialNumber = 99415, Open = true }
-                    }
-                },
+                //Host = new Host
+                //{
+                //    Name = "psbc11",
+                //    IPAddress = "192.168.150.11",
+                //    Port = 5001,
+                //    AdvancedServos = new[]
+                //    {
+                //        new AdvancedServo { Name = "AdvancedServo 1", SerialNumber = 99415, Open = true }
+                //    }
+                //},
+                SerialNumber = 99415,
                 Name="psbc11_SequenceServo0",
                 NextSequence = new PerformanceSequence { Name = "psbc11_SequenceServo1", SequenceType = "AS", Loops = 1 },
 
@@ -144,16 +146,17 @@
             },
             new AdvancedServoSequence
             {
-                Host = new Host
-                {
-                    Name = "psbc21",
-                    IPAddress = "192.168.150.21",
-                    Port = 5001, 
-                    AdvancedServos = new[] 
-                    { 
-                        new AdvancedServo { Name = "AdvancedServo 1", SerialNumber = 99415, Open = true }
-                    }
-                },
+                //Host = new Host
+                //{
+                //    Name = "psbc21",
+                //    IPAddress = "192.168.150.21",
+                //    Port = 5001,
+                //    AdvancedServos = new[]
+                //    {
+                //        new AdvancedServo { Name = "AdvancedServo 1", SerialNumber = 99415, Open = true }
+                //    }
+                //},
+                SerialNumber = 99415,
                 Name="psbc21_SequenceServo0",
                 NextSequence = new PerformanceSequence { Name = "psbc21_SequenceServo1", SequenceType = "AS", Loops = 1 },
 
@@ -202,16 +205,17 @@
             },
             new AdvancedServoSequence
             {
-                Host = new Host
-                {
-                    Name = "psbc21",
-                    IPAddress = "192.168.150.21",
-                    Port = 5001,
-                    AdvancedServos = new[]
-                    {
-                        new AdvancedServo { Name = "AdvancedServo 1", SerialNumber = 99415, Open = true }
-                    }
-                },
+                //Host = new Host
+                //{
+                //    Name = "psbc21",
+                //    IPAddress = "192.168.150.21",
+                //    Port = 5001,
+                //    AdvancedServos = new[]
+                //    {
+                //        new AdvancedServo { Name = "AdvancedServo 1", SerialNumber = 99415, Open = true }
+                //    }
+                //},
+                SerialNumber = 99415,
                 Name="psbc21_SequenceServo0P Configure and Engage",
                 Loops = 5,
                 ExecuteActionsInParallel = true,
@@ -305,16 +309,17 @@
             },
             new AdvancedServoSequence
             {
-                Host = new Host
-                {
-                    Name = "psbc22",
-                    IPAddress = "192.168.150.22",
-                    Port = 5001,
-                    AdvancedServos = new[]
-                    {
-                        new AdvancedServo { Name = "AdvancedServo 1", SerialNumber = 99415, Open = true }
-                    }
-                },
+                //Host = new Host
+                //{
+                //    Name = "psbc22",
+                //    IPAddress = "192.168.150.22",
+                //    Port = 5001,
+                //    AdvancedServos = new[]
+                //    {
+                //        new AdvancedServo { Name = "AdvancedServo 1", SerialNumber = 99415, Open = true }
+                //    }
+                //},
+                SerialNumber = 99415,
                 Name="psbc22_SequenceServo0",
                 NextSequence = new PerformanceSequence { Name = "psbc22_SequenceServo1", SequenceType = "AS", Loops = 1 },
 
@@ -374,16 +379,17 @@
             },
             new AdvancedServoSequence
             {
-                Host = new Host
-                {
-                    Name = "psbc23",
-                    IPAddress = "192.168.150.23",
-                    Port = 5001,
-                    AdvancedServos = new[]
-                    {
-                        new AdvancedServo { Name = "AdvancedServo 1", SerialNumber = 99415, Open = true }
-                    }
-                },
+                //Host = new Host
+                //{
+                //    Name = "psbc23",
+                //    IPAddress = "192.168.150.23",
+                //    Port = 5001,
+                //    AdvancedServos = new[]
+                //    {
+                //        new AdvancedServo { Name = "AdvancedServo 1", SerialNumber = 99415, Open = true }
+                //    }
+                //},
+                SerialNumber = 99415,
                 Name="psbc23_SequenceServo0",
                 NextSequence = new PerformanceSequence { Name = "psbc23_SequenceServo1", SequenceType = "AS", Loops = 1 },
 
@@ -444,3 +450,4 @@
         };
     }
 }
+

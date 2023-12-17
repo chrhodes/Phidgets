@@ -147,7 +147,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 if (value is not null)
                 {
-                    if (AdvancedServoEx.AdvancedServo.servos[ServoIndex].Engaged)
+                    if (AdvancedServoEx.AdvancedServo.Attached 
+                        && AdvancedServoEx.AdvancedServo.servos[ServoIndex].Engaged)
                     {
                         // Do not set position until servo is engaged.
                         try

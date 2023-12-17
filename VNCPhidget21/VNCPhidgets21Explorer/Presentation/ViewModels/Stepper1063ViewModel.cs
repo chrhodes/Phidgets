@@ -74,11 +74,25 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             string jsonString = File.ReadAllText(ConfigFileName);
 
-            VNCPhidgetConfig.HostConfig? hostConfig = JsonSerializer.Deserialize<VNCPhidgetConfig.HostConfig>(jsonString);
-            this.Hosts = hostConfig.Hosts.ToList();
+            VNCPhidgetConfig.HostConfig? hostConfig = 
+                JsonSerializer.Deserialize<VNCPhidgetConfig.HostConfig>
+                (jsonString, GetJsonSerializerOptions());
+
+            Hosts = hostConfig.Hosts.ToList();
             //this.Sensors2 = phidgetConfig.Sensors.ToList();
 
             Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        JsonSerializerOptions GetJsonSerializerOptions()
+        {
+            var jsonOptions = new JsonSerializerOptions
+            {
+                ReadCommentHandling = JsonCommentHandling.Skip,
+                AllowTrailingCommas = true
+            };
+
+            return jsonOptions;
         }
 
         #endregion

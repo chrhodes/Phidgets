@@ -2,6 +2,9 @@
 {
     public class HostConfig
     {
+        // NOTE(crhodes)
+        // This class now needs to reflect where Phidgets are actually connected
+
         public Host[] Hosts { get; set; } = new[]
         {
             new Host

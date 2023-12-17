@@ -190,7 +190,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     foreach (VNCPhidgetConfig.AdvancedServo advancedServo in host.AdvancedServos)
                     {
                         AvailablePhidgets.Add(
-                            new SerialHost { IPAddress = host.IPAddress, SerialNumber = advancedServo.SerialNumber},
+                            //new SerialHost { IPAddress = host.IPAddress, SerialNumber = advancedServo.SerialNumber},
+                            advancedServo.SerialNumber,
                             new PhidgetDevice(
                                 host.IPAddress, host.Port,
                                 Phidget.PhidgetClass.ADVANCEDSERVO, advancedServo.SerialNumber));
@@ -202,7 +203,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     foreach (VNCPhidgetConfig.InterfaceKit interfaceKit in host.InterfaceKits)
                     {
                         AvailablePhidgets.Add(
-                            new SerialHost { IPAddress = host.IPAddress, SerialNumber = interfaceKit.SerialNumber },
+                            //new SerialHost { IPAddress = host.IPAddress, SerialNumber = interfaceKit.SerialNumber },
+                            interfaceKit.SerialNumber,
                             new PhidgetDevice(
                                 host.IPAddress, host.Port,
                                 Phidget.PhidgetClass.INTERFACEKIT, interfaceKit.SerialNumber));
@@ -214,7 +216,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     foreach (VNCPhidgetConfig.Stepper stepper in host.Steppers)
                     {
                         AvailablePhidgets.Add(
-                            new SerialHost { IPAddress = host.IPAddress, SerialNumber = stepper.SerialNumber },
+                            //new SerialHost { IPAddress = host.IPAddress, SerialNumber = stepper.SerialNumber },
+                            stepper.SerialNumber,
                             new PhidgetDevice(
                                 host.IPAddress, host.Port,
                                 Phidget.PhidgetClass.STEPPER, stepper.SerialNumber));
@@ -225,18 +228,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        Dictionary<SerialHost, PhidgetDevice> AvailablePhidgets = new Dictionary<SerialHost, PhidgetDevice>();
+        //Dictionary<SerialHost, PhidgetDevice> AvailablePhidgets = new Dictionary<SerialHost, PhidgetDevice>();
+        Dictionary<Int32, PhidgetDevice> AvailablePhidgets = new Dictionary<Int32, PhidgetDevice>();
 
         private void LoadHostConfig()
         {
             Int64 startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
-            var jsonOptions = new JsonSerializerOptions { ReadCommentHandling = JsonCommentHandling.Skip };
+            //var jsonOptions = new JsonSerializerOptions { ReadCommentHandling = JsonCommentHandling.Skip };
 
             string jsonString = File.ReadAllText(HostConfigFileName);
 
             VNCPhidgetConfig.HostConfig? hostConfig
-                = JsonSerializer.Deserialize<VNCPhidgetConfig.HostConfig>(jsonString, jsonOptions);
+                = JsonSerializer.Deserialize<VNCPhidgetConfig.HostConfig>
+                (jsonString, GetJsonSerializerOptions());
 
             Hosts = hostConfig.Hosts.ToList();
 
@@ -266,8 +271,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             string jsonString = File.ReadAllText(AdvancedServoSequenceConfigFileName);
 
-            VNCPhidgetConfig.AdvancedServoSequenceConfig? sequenceConfig
-                = JsonSerializer.Deserialize<VNCPhidgetConfig.AdvancedServoSequenceConfig>
+            VNCPhidgetConfig.AdvancedServoSequenceConfig? sequenceConfig = 
+                JsonSerializer.Deserialize<VNCPhidgetConfig.AdvancedServoSequenceConfig>
                 (jsonString, GetJsonSerializerOptions());
 
             AdvancedServoSequences = sequenceConfig.AdvancedServoSequences.ToList();
@@ -310,7 +315,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         JsonSerializerOptions GetJsonSerializerOptions()
         {
             var jsonOptions = new JsonSerializerOptions
-            { ReadCommentHandling = JsonCommentHandling.Skip, AllowTrailingCommas = true };
+            {
+                ReadCommentHandling = JsonCommentHandling.Skip, 
+                AllowTrailingCommas = true
+            };
 
             return jsonOptions;
         }
@@ -1061,16 +1069,17 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             sequenceEventArgs.AdvancedServoSequence = new VNCPhidgetConfig.AdvancedServoSequence
             {
-                Host = new VNCPhidgetConfig.Host
-                {
-                    Name = "psbc21",
-                    IPAddress = "192.168.150.21",
-                    Port = 5001,
-                    AdvancedServos = new[]
-                    {
-                        new VNCPhidgetConfig.AdvancedServo { Name = "AdvancedServo 1", SerialNumber = 99415, Open = true }
-                    }
-                },
+                //Host = new VNCPhidgetConfig.Host
+                //{
+                //    Name = "psbc21",
+                //    IPAddress = "192.168.150.21",
+                //    Port = 5001,
+                //    AdvancedServos = new[]
+                //    {
+                //        new VNCPhidgetConfig.AdvancedServo { Name = "AdvancedServo 1", SerialNumber = 99415, Open = true }
+                //    }
+                //},
+                SerialNumber = 99415,
                 Name = "psbc21_SequenceServo0",
 
                 Actions = new[]
@@ -2220,17 +2229,17 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private async Task PlayParty()
         {
-            InterfaceKitEx ifkEx11 = new InterfaceKitEx("192.168.150.11", 5001, sbc11SerialNumber, embedded: true, EventAggregator);
+            //InterfaceKitEx ifkEx11 = new InterfaceKitEx("192.168.150.11", 5001, sbc11SerialNumber, embedded: true, EventAggregator);
             InterfaceKitEx ifkEx21 = new InterfaceKitEx("192.168.150.21", 5001, sbc21SerialNumber, embedded: true, EventAggregator);
             InterfaceKitEx ifkEx22 = new InterfaceKitEx("192.168.150.22", 5001, sbc22SerialNumber, embedded: true, EventAggregator);
             InterfaceKitEx ifkEx23 = new InterfaceKitEx("192.168.150.23", 5001, sbc23SerialNumber, embedded: true, EventAggregator);
 
             try
             {
-                ifkEx11.Open();
-                ifkEx21.Open();
-                ifkEx22.Open();
-                ifkEx23.Open();
+                //ifkEx11.Open(Common.PhidgetOpenTimeout);
+                ifkEx21.Open(Common.PhidgetOpenTimeout);
+                ifkEx22.Open(Common.PhidgetOpenTimeout);
+                ifkEx23.Open(Common.PhidgetOpenTimeout);
 
                 //ifkEx11.InterfaceKit.OutputChange += Ifk_OutputChange;
                 //ifkEx21.InterfaceKit.OutputChange += Ifk_OutputChange;
@@ -2239,16 +2248,16 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 await Task.Run(() =>
                 {
-                    //Parallel.Invoke(
-                    //     () => InterfaceKitParty2(ifkEx21, 500, 5 * Repeats),
-                    //     () => InterfaceKitParty2(ifkEx22, 250, 10 * Repeats),
-                    //     () => InterfaceKitParty2(ifkEx23, 125, 20 * Repeats),
-                    //     () => InterfaceKitParty2(ifkEx11, 333, 8 * Repeats)
                     Parallel.Invoke(
-                         () => InterfaceKitParty2(ifkEx21, 10, 5 * Repeats),
-                         () => InterfaceKitParty2(ifkEx22, 10, 10 * Repeats),
-                         () => InterfaceKitParty2(ifkEx23, 10, 20 * Repeats),
-                         () => InterfaceKitParty2(ifkEx11, 10, 8 * Repeats)
+                         () => InterfaceKitParty2(ifkEx21, 500, 5 * Repeats),
+                         () => InterfaceKitParty2(ifkEx22, 250, 10 * Repeats),
+                         () => InterfaceKitParty2(ifkEx23, 125, 20 * Repeats)
+                     //() => InterfaceKitParty2(ifkEx11, 333, 8 * Repeats)
+                     //Parallel.Invoke(
+                     //     () => InterfaceKitParty2(ifkEx21, 10, 5 * Repeats),
+                     //     () => InterfaceKitParty2(ifkEx22, 10, 10 * Repeats),
+                     //     () => InterfaceKitParty2(ifkEx23, 10, 20 * Repeats)
+                     //     () => InterfaceKitParty2(ifkEx11, 10, 8 * Repeats)
                      );
                 });
 
@@ -2257,7 +2266,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 //ifkEx22.InterfaceKit.OutputChange -= Ifk_OutputChange;
                 //ifkEx23.InterfaceKit.OutputChange -= Ifk_OutputChange;
 
-                ifkEx11.Close();
+                //ifkEx11.Close();
                 ifkEx21.Close();
                 ifkEx22.Close();
                 ifkEx23.Close();

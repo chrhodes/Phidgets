@@ -97,12 +97,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
-            var jsonOptions = new JsonSerializerOptions { ReadCommentHandling = JsonCommentHandling.Skip };
-
             string jsonString = File.ReadAllText(HostConfigFileName);
 
-            VNCPhidgetConfig.HostConfig? hostConfig 
-                = JsonSerializer.Deserialize<VNCPhidgetConfig.HostConfig>(jsonString, jsonOptions);
+            VNCPhidgetConfig.HostConfig? hostConfig = 
+                JsonSerializer.Deserialize<VNCPhidgetConfig.HostConfig>
+                (jsonString, GetJsonSerializerOptions());
 
             Hosts = hostConfig.Hosts.ToList();
 
@@ -128,6 +127,17 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         //    Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         //}
+
+        JsonSerializerOptions GetJsonSerializerOptions()
+        {
+            var jsonOptions = new JsonSerializerOptions
+            {
+                ReadCommentHandling = JsonCommentHandling.Skip,
+                AllowTrailingCommas = true
+            };
+
+            return jsonOptions;
+        }
 
         #endregion
 
@@ -551,7 +561,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             ActiveAdvancedServo.LogPhidgetEvents = LogPhidgetEvents;
 
-            ActiveAdvancedServo.Open();
+            ActiveAdvancedServo.Open(Common.PhidgetOpenTimeout);
 
             // Uncomment this if you are telling someone else to handle this
 

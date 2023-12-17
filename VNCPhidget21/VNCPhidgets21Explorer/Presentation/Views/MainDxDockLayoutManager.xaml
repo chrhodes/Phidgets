@@ -66,7 +66,8 @@
         dx:StyleManager.ApplyApplicationTheme="True"
         FontSize="12"
         Name="dlm"       
-        FloatingMode="Desktop">
+        FloatingMode="Desktop"
+        AutoHideExpandMode="MouseDown">
                 
         <dxdo:LayoutGroup Name="dlm_Root" Orientation="Vertical" >
 

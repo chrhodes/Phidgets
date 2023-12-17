@@ -36,7 +36,8 @@ namespace VNC.Phidget
         public bool LogOutputChangeEvents { get; set; }
         public bool LogSensorChangeEvents { get; set; }
 
-        public Dictionary<SerialHost, PhidgetDevice> AvailablePhidgets = new Dictionary<SerialHost, PhidgetDevice>();
+        //public Dictionary<SerialHost, PhidgetDevice> AvailablePhidgets = new Dictionary<SerialHost, PhidgetDevice>();
+        public Dictionary<Int32, PhidgetDevice> AvailablePhidgets = new Dictionary<Int32, PhidgetDevice>();
 
         public Dictionary<string, Performance> AvailablePerformances { get; set; }
         public Dictionary<string, AdvancedServoSequence> AvailableAdvancedServoSequences { get; set; }
@@ -44,6 +45,8 @@ namespace VNC.Phidget
         public Dictionary<string, StepperSequence> AvailableStepperSequences { get; set; }
 
         public AdvancedServoEx ActiveAdvancedServoHost { get; set; }
+        public InterfaceKitEx ActiveInterfaceKitHost { get; set; }
+        public StepperEx ActiveStepperHost { get; set; }
 
         public async Task ExecutePerformanceSequenceLoops(PerformanceSequence performanceSequence)
         {
@@ -69,8 +72,6 @@ namespace VNC.Phidget
                     // Each loop start back at the initial sequence
                     nextPerformanceSequence = performanceSequence;
 
-
-
                     do
                     {
                         
@@ -81,7 +82,6 @@ namespace VNC.Phidget
                         {
                             case "AS":
                                 nextPerformanceSequence = await ExecuteAdvancedServoPerformanceSequence(nextPerformanceSequence);
-
 
                                 break;
 
@@ -138,9 +138,9 @@ namespace VNC.Phidget
                 // advancedServoSequence.Host will be null on chained sequences.
                 // What to do.  Maybe must use ActiveAdvancedServoHost.
 
-                if (advancedServoSequence.Host is not null)
+                if (advancedServoSequence.SerialNumber is not null)
                 {
-                    phidgetHost = GetAdvancedServoHost(advancedServoSequence.Host);
+                    phidgetHost = GetAdvancedServoHost((Int32)advancedServoSequence.SerialNumber);
                 }
                 else if(ActiveAdvancedServoHost is not null)
                 {
@@ -148,7 +148,7 @@ namespace VNC.Phidget
                 }
                 else
                 {
-                    Log.Error($"Host is null", Common.LOG_CATEGORY);
+                    Log.Error($"Cannot locate host to execute SerialNumber:{advancedServoSequence.SerialNumber} is null", Common.LOG_CATEGORY);
                     nextPerformanceSequence = null;
                 }
 
@@ -240,9 +240,9 @@ namespace VNC.Phidget
             {
                 var interfaceKitSequence = AvailableInterfaceKitSequences[performanceSequence.Name];
 
-                if (interfaceKitSequence.Host is not null)
+                if (interfaceKitSequence.SerialNumber is not null)
                 {
-                    var interfaceKitHost = GetInterfaceKitHost(interfaceKitSequence.Host);
+                    var interfaceKitHost = GetInterfaceKitHost((Int32)interfaceKitSequence.SerialNumber);
 
                     await interfaceKitHost.RunSequenceLoops(interfaceKitSequence);
 
@@ -308,13 +308,11 @@ namespace VNC.Phidget
             return nextPerformanceSequence;
         }
 
-        private AdvancedServoEx GetAdvancedServoHost(VNCPhidget21.Configuration.Host host)
+        private AdvancedServoEx GetAdvancedServoHost(Int32 serialNumber)
         {
-            SerialHost serialHost = new SerialHost { IPAddress = host.IPAddress, SerialNumber = host.AdvancedServos[0].SerialNumber };
+            PhidgetDevice phidgetDevice = AvailablePhidgets[serialNumber];
 
-            PhidgetDevice phidgetDevice = AvailablePhidgets[serialHost];
-
-            AdvancedServoEx advancedServoHost;
+            AdvancedServoEx advancedServoHost = null;
 
             if (phidgetDevice?.PhidgetEx is not null)
             {
@@ -331,9 +329,9 @@ namespace VNC.Phidget
             else
             {
                 phidgetDevice.PhidgetEx = new AdvancedServoEx(
-                    host.IPAddress,
-                    host.Port,
-                    host.AdvancedServos[0].SerialNumber,
+                    phidgetDevice.IPAddress,
+                    phidgetDevice.Port,
+                    serialNumber,
                     EventAggregator);
 
                 advancedServoHost = (AdvancedServoEx)phidgetDevice.PhidgetEx;
@@ -348,7 +346,7 @@ namespace VNC.Phidget
                 advancedServoHost.LogPerformanceAction = LogPerformanceAction;
                 advancedServoHost.LogActionVerification = LogActionVerification;
 
-                advancedServoHost.Open();
+                advancedServoHost.Open(Common.PhidgetOpenTimeout);
             }
 
             // NOTE(crhodes)
@@ -359,26 +357,46 @@ namespace VNC.Phidget
             return advancedServoHost;
         }
 
-        private InterfaceKitEx GetInterfaceKitHost(VNCPhidget21.Configuration.Host host)
+        private InterfaceKitEx GetInterfaceKitHost(Int32 serialNumber)
         {
-            InterfaceKitEx interfaceKitHost;
+            PhidgetDevice phidgetDevice = AvailablePhidgets[serialNumber];
 
-            interfaceKitHost = new InterfaceKitEx(
-                host.IPAddress,
-                host.Port,
-                host.InterfaceKits[0].SerialNumber, true,
-                EventAggregator);
+            InterfaceKitEx interfaceKitHost = null;
 
-            interfaceKitHost.LogInputChangeEvents = LogInputChangeEvents;
-            interfaceKitHost.LogOutputChangeEvents = LogOutputChangeEvents;
-            interfaceKitHost.LogSensorChangeEvents = LogSensorChangeEvents;
+            if (phidgetDevice?.PhidgetEx is not null)
+            {
+                interfaceKitHost = (InterfaceKitEx)phidgetDevice.PhidgetEx;
 
-            interfaceKitHost.LogPerformanceAction = LogPerformanceAction;
+                interfaceKitHost.LogInputChangeEvents = LogInputChangeEvents;
+                interfaceKitHost.LogOutputChangeEvents = LogOutputChangeEvents;
+                interfaceKitHost.LogSensorChangeEvents = LogSensorChangeEvents;
 
-            interfaceKitHost.Open();
+                interfaceKitHost.LogPerformanceAction = LogPerformanceAction;
+
+            }
+            else
+            {
+                phidgetDevice.PhidgetEx = new InterfaceKitEx(
+                    phidgetDevice.IPAddress,
+                    phidgetDevice.Port,
+                    serialNumber, true,
+                    EventAggregator);
+
+                interfaceKitHost.LogInputChangeEvents = LogInputChangeEvents;
+                interfaceKitHost.LogOutputChangeEvents = LogOutputChangeEvents;
+                interfaceKitHost.LogSensorChangeEvents = LogSensorChangeEvents;
+
+                interfaceKitHost.LogPerformanceAction = LogPerformanceAction;
+
+                // TODO(crhodes)
+                // Should we do open somewhere else?
+
+                interfaceKitHost.Open(Common.PhidgetOpenTimeout);
+            }
+
+            ActiveInterfaceKitHost = interfaceKitHost;
 
             return interfaceKitHost;
         }
-
     }
 }
