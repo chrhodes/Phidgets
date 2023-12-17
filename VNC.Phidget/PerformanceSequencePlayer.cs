@@ -74,10 +74,6 @@ namespace VNC.Phidget
 
                     do
                     {
-                        
-
-                    //if (performanceSequence is not null)
-                    //{
                         switch (nextPerformanceSequence.SequenceType)
                         {
                             case "AS":
@@ -100,8 +96,6 @@ namespace VNC.Phidget
                                 nextPerformanceSequence = null;
                                 break;
                         }
-                    //}
-
                     } while (nextPerformanceSequence is not null);
                 }
 
@@ -134,10 +128,6 @@ namespace VNC.Phidget
             {
                 var advancedServoSequence = AvailableAdvancedServoSequences[performanceSequence.Name];
 
-                // NOTE(crhodes)
-                // advancedServoSequence.Host will be null on chained sequences.
-                // What to do.  Maybe must use ActiveAdvancedServoHost.
-
                 if (advancedServoSequence.SerialNumber is not null)
                 {
                     phidgetHost = GetAdvancedServoHost((Int32)advancedServoSequence.SerialNumber);
@@ -156,72 +146,16 @@ namespace VNC.Phidget
                 {
                     await phidgetHost.RunSequenceLoops(advancedServoSequence);
 
+                    if (advancedServoSequence.CallSequences is not null)
+                    {
+                        foreach (PerformanceSequence sequence in advancedServoSequence.CallSequences)
+                        {
+                            ExecutePerformanceSequenceLoops(sequence);
+                        }
+                    }
+
                     nextPerformanceSequence = advancedServoSequence.NextSequence;
                 }
-
-
-                    // NOTE(crhodes)
-                    // This should handle continuations without a Host.  
-                    // TODO(crhodes)
-                    // Do we need to handle continuations that have a Host?  I think so.
-                    // Play AS sequence on one Host and then a different AS sequence on a different host.
-                    // This would be dialog back and forth across hosts.
-
-                    //while (nextPerformanceSequence is not null)
-                    //{
-                    //    if (LogPerformanceSequence)
-                    //    {
-                    //        Log.Trace($"Executing sequence:>{nextPerformanceSequence?.Name}< type:>{nextPerformanceSequence?.SequenceType}<" +
-                    //            $" loops:>{nextPerformanceSequence?.Loops}< closePhidget:>{nextPerformanceSequence?.ClosePhidget}<", Common.LOG_CATEGORY);
-                    //    }
-
-                    //    if (nextPerformanceSequence.SequenceType == "AS")
-                    //    {
-                    //        if (AvailableAdvancedServoSequences.ContainsKey(nextPerformanceSequence.Name ?? ""))
-                    //        {
-                    //            advancedServoSequence = AvailableAdvancedServoSequences[nextPerformanceSequence.Name];
-
-                    //            // NOTE(crhodes)
-                    //            // This will return the same host but will Open another if necesary.
-
-                    //            phidgetHost = GetAdvancedServoHost(advancedServoSequence.Host);
-
-                    //            await phidgetHost.RunSequenceLoops(advancedServoSequence);
-
-                    //            nextPerformanceSequence = advancedServoSequence.NextSequence;
-                    //        }
-                    //        else
-                    //        {
-                    //            Log.Error($"Cannot find performanceSequence:>{nextPerformanceSequence.Name}<", Common.LOG_CATEGORY);
-                    //            nextPerformanceSequence = null;
-                    //        }
-                    //    }
-                    //    else
-                    //    {
-                    //        // TODO(crhodes)
-                    //        // 
-                    //        // Seems like this can just recursively call
-                    //        //ExecutePerformanceSequenceLoops(nextPerformanceSequence);
-                    //    }
-
-                    //}
-
-                    //if (performanceSequence.ClosePhidget)
-                    //{
-                    //    //advancedServoHost.LogCurrentChangeEvents = false;
-                    //    //advancedServoHost.LogPositionChangeEvents = false;
-                    //    //advancedServoHost.LogVelocityChangeEvents = false;
-
-                    //    //advancedServoHost.LogPerformanceStep = false;
-
-                    //    //advancedServoHost.Close();
-                    //}
-                //}
-                //else
-                //{
-                //    Log.Error($"Host is null", Common.LOG_CATEGORY);
-                //    nextPerformanceSequence = null;
-                //}
             }
             else
             {
@@ -234,7 +168,8 @@ namespace VNC.Phidget
 
         private async Task<PerformanceSequence> ExecuteInterfaceKitPerformanceSequence(PerformanceSequence performanceSequence)
         {
-            PerformanceSequence? nextPerformanceSequence;
+            PerformanceSequence nextPerformanceSequence = null;
+            InterfaceKitEx phidgetHost = null;
 
             if (AvailableInterfaceKitSequences.ContainsKey(performanceSequence.Name ?? ""))
             {
@@ -242,53 +177,38 @@ namespace VNC.Phidget
 
                 if (interfaceKitSequence.SerialNumber is not null)
                 {
-                    var interfaceKitHost = GetInterfaceKitHost((Int32)interfaceKitSequence.SerialNumber);
-
-                    await interfaceKitHost.RunSequenceLoops(interfaceKitSequence);
-
-                    nextPerformanceSequence = interfaceKitSequence.NextSequence;
-
-                    // NOTE(crhodes)
-                    // This should handle continuations without a Host.  
-                    // TODO(crhodes)
-                    // Do we need to handle continuations that have a Host?  I think so.
-                    // Play AS sequence on one Host and then a different AS sequence on a different host.
-                    // This would be dialog back and forth across hosts.
-
-                    while (nextPerformanceSequence is not null && nextPerformanceSequence.SequenceType == "AS")
-                    {
-                        if (LogPerformanceSequence)
-                        {
-                            Log.Trace($"Executing sequence:>{nextPerformanceSequence?.Name}< type:>{nextPerformanceSequence?.SequenceType}<" +
-                                $" loops:>{nextPerformanceSequence?.Loops}< closePhidget:>{nextPerformanceSequence?.ClosePhidget}<", Common.LOG_CATEGORY);
-                        }
-
-                        interfaceKitSequence = AvailableInterfaceKitSequences[nextPerformanceSequence.Name];
-
-                        await interfaceKitHost.RunSequenceLoops(interfaceKitSequence);
-
-                        nextPerformanceSequence = interfaceKitSequence.NextSequence;
-                    }
-
-                    if (performanceSequence.ClosePhidget)
-                    {
-                        interfaceKitHost.Close();
-                    }
+                    phidgetHost = GetInterfaceKitHost((Int32)interfaceKitSequence.SerialNumber);
+                }
+                else if (ActiveInterfaceKitHost is not null)
+                {
+                    phidgetHost = ActiveInterfaceKitHost;
                 }
                 else
                 {
-                    Log.Trace($"Host is null", Common.LOG_CATEGORY);
+                    Log.Error($"Cannot locate host to execute SerialNumber:{interfaceKitSequence.SerialNumber} is null", Common.LOG_CATEGORY);
                     nextPerformanceSequence = null;
+                }
+
+                if (phidgetHost is not null)
+                {
+                    await phidgetHost.RunSequenceLoops(interfaceKitSequence);
+
+                    if (interfaceKitSequence.CallSequences is not null)
+                    {
+                        foreach (PerformanceSequence sequence in interfaceKitSequence.CallSequences)
+                        {
+                            ExecutePerformanceSequenceLoops(sequence);
+                        }
+                    }
+
+                    nextPerformanceSequence = interfaceKitSequence.NextSequence;
                 }
             }
             else
             {
-                Log.Trace($"Cannot find sequence:{performanceSequence.Name}", Common.LOG_CATEGORY);
+                Log.Trace($"Cannot find performanceSequence:{performanceSequence.Name}", Common.LOG_CATEGORY);
                 nextPerformanceSequence = null;
             }
-
-            // TODO(crhodes)
-            // Why do we need to return this.  It will be null
 
             return nextPerformanceSequence;
         }
@@ -296,14 +216,46 @@ namespace VNC.Phidget
         private async Task<PerformanceSequence> ExecuteStepperPerformanceSequence(PerformanceSequence performanceSequence)
         {
             PerformanceSequence nextPerformanceSequence = null;
+            StepperEx phidgetHost = null;
 
             if (AvailableStepperSequences.ContainsKey(performanceSequence.Name ?? ""))
             {
                 var stepperSequence = AvailableStepperSequences[performanceSequence.Name];
-            }
 
-            // TODO(crhodes)
-            // Why do we need to return this.  It will be null
+                if (stepperSequence.SerialNumber is not null)
+                {
+                    phidgetHost = GetStepperHost((Int32)stepperSequence.SerialNumber);
+                }
+                else if (ActiveInterfaceKitHost is not null)
+                {
+                    phidgetHost = ActiveStepperHost;
+                }
+                else
+                {
+                    Log.Error($"Cannot locate host to execute SerialNumber:{stepperSequence.SerialNumber} is null", Common.LOG_CATEGORY);
+                    nextPerformanceSequence = null;
+                }
+
+                if (phidgetHost is not null)
+                {
+                    await phidgetHost.RunSequenceLoops(stepperSequence);
+
+                    if (stepperSequence.CallSequences is not null)
+                    {
+                        foreach (PerformanceSequence sequence in stepperSequence.CallSequences)
+                        {
+                            ExecutePerformanceSequenceLoops(sequence);
+                        }
+                    }
+
+                    nextPerformanceSequence = stepperSequence.NextSequence;
+                }
+            }
+            else
+            {
+                Log.Trace($"Cannot find performanceSequence:{performanceSequence.Name}", Common.LOG_CATEGORY);
+                nextPerformanceSequence = null;
+            }
 
             return nextPerformanceSequence;
         }
@@ -379,8 +331,11 @@ namespace VNC.Phidget
                 phidgetDevice.PhidgetEx = new InterfaceKitEx(
                     phidgetDevice.IPAddress,
                     phidgetDevice.Port,
-                    serialNumber, true,
+                    serialNumber, 
+                    true,
                     EventAggregator);
+
+                interfaceKitHost = (InterfaceKitEx)phidgetDevice.PhidgetEx;
 
                 interfaceKitHost.LogInputChangeEvents = LogInputChangeEvents;
                 interfaceKitHost.LogOutputChangeEvents = LogOutputChangeEvents;
@@ -398,5 +353,49 @@ namespace VNC.Phidget
 
             return interfaceKitHost;
         }
+        private StepperEx GetStepperHost(Int32 serialNumber)
+        {
+            PhidgetDevice phidgetDevice = AvailablePhidgets[serialNumber];
+
+            StepperEx stepperHost = null;
+
+            if (phidgetDevice?.PhidgetEx is not null)
+            {
+                stepperHost = (StepperEx)phidgetDevice.PhidgetEx;
+
+                //stepperHost.LogInputChangeEvents = LogInputChangeEvents;
+                //stepperHost.LogOutputChangeEvents = LogOutputChangeEvents;
+                //stepperHost.LogSensorChangeEvents = LogSensorChangeEvents;
+
+                //stepperHost.LogPerformanceAction = LogPerformanceAction;
+
+            }
+            else
+            {
+                phidgetDevice.PhidgetEx = new StepperEx(
+                    phidgetDevice.IPAddress,
+                    phidgetDevice.Port,
+                    serialNumber,
+                    EventAggregator);
+
+                stepperHost = (StepperEx)phidgetDevice.PhidgetEx;
+
+                //stepperHost.LogInputChangeEvents = LogInputChangeEvents;
+                //stepperHost.LogOutputChangeEvents = LogOutputChangeEvents;
+                //stepperHost.LogSensorChangeEvents = LogSensorChangeEvents;
+
+                //stepperHost.LogPerformanceAction = LogPerformanceAction;
+
+                // TODO(crhodes)
+                // Should we do open somewhere else?
+
+                stepperHost.Open(Common.PhidgetOpenTimeout);
+            }
+
+            ActiveStepperHost = stepperHost;
+
+            return stepperHost;
+        }
+
     }
 }

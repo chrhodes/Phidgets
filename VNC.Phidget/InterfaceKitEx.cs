@@ -278,7 +278,7 @@ namespace VNC.Phidget
 
         #endregion
 
-        #region Private Methods (None)
+        #region Private Methods
 
         // TODO(crhodes)
         // Create Array of DigitalInputs, DigitalOutputs, SensorInputs

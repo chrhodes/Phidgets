@@ -1,0 +1,73 @@
+{
+  "AdvancedServoSequences": [
+    //
+    // Test Engage and Center Servos and CallSequences
+    //
+    { 
+      "SerialNumber": 99415,
+      "Name": "Engage and Center Servos and CallSequences", 
+      "Description": "Engage and Center Servos 0,1,2 4,5,6", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 115 },
+        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 113 },
+        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 123 },
+        { "ServoIndex": 4, "Engaged": true, "TargetPosition": 115 },
+        { "ServoIndex": 5, "Engaged": true, "TargetPosition": 114 },
+        { "ServoIndex": 6, "Engaged": true, "TargetPosition": 119 }
+      ],
+      "CallSequences" : [
+          { "Name": "SequenceIK 1", "SequenceType": "IK" },
+          { "Name": "SequenceIK 2", "SequenceType": "IK" }
+      ],
+      "NextSequence": { "Name": "All Servos to PositionMin", "SequenceType": "AS" }
+    },
+    //
+    // All Servos to PositionMin
+    //
+    { 
+      "SerialNumber": 99415,
+      "Name": "All Servos to PositionMin",
+      "Description": "Parallel Set all servos to PostionMin (-1) (based on TYPE) in Parallel VelocityLimit: 500",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 500 },
+        { "ServoIndex": 1, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 500 },
+        { "ServoIndex": 2, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 500 },
+        { "ServoIndex": 3, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 500 },
+        { "ServoIndex": 4, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 500 },
+        { "ServoIndex": 5, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 500 },
+        { "ServoIndex": 6, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 500 },
+        { "ServoIndex": 7, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 500 }
+      ],
+      "CallSequences" : [
+          { "Name": "SequenceIK 1", "SequenceType": "IK" },
+          { "Name": "SequenceIK 2", "SequenceType": "IK" }
+      ],
+      "NextSequence": { "Name": "All Servos to PositionMax", "SequenceType": "AS" }
+    },
+    //
+    // All Servos to PositionMax
+    //
+    { 
+      "SerialNumber": 99415,
+      "Name": "All Servos to PositionMax",
+      "Description": "Set all servos to PostionMax (-2) (based on TYPE) Sequentially VelocityLimit: 1000",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 1000 },
+        { "ServoIndex": 1, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 1000 },
+        { "ServoIndex": 2, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 1000 },
+        { "ServoIndex": 3, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 1000 },
+        { "ServoIndex": 4, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 1000 },
+        { "ServoIndex": 5, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 1000 },
+        { "ServoIndex": 6, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 1000 },
+        { "ServoIndex": 7, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 1000 }
+      ],
+      "CallSequences" : [
+          { "Name": "SequenceIK 1", "SequenceType": "IK" },
+          { "Name": "SequenceIK 2", "SequenceType": "IK" }
+      ],
+    },
+  ]
+}

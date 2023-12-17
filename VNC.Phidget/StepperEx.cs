@@ -1,4 +1,9 @@
 ﻿using System;
+using System.Threading.Tasks;
+
+using Prism.Events;
+
+using VNCPhidget21.Configuration;
 
 namespace VNC.Phidget
 {
@@ -6,16 +11,19 @@ namespace VNC.Phidget
     {
         #region Constructors, Initialization, and Load
 
+        public readonly IEventAggregator EventAggregator;
+
         /// <summary>
         /// Initializes a new instance of the InterfaceKit class.
         /// </summary>
         /// <param name="embedded"></param>
         /// <param name="enabled"></param>
-        public StepperEx(string ipAddress, int port, int serialNumber)
+        public StepperEx(string ipAddress, int port, int serialNumber, IEventAggregator eventAggregator)
             : base(ipAddress, port, serialNumber)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
+            EventAggregator = eventAggregator;
             InitializePhidget();
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
@@ -55,6 +63,9 @@ namespace VNC.Phidget
         public bool LogInputChangeEvents { get; set; }
         public bool LogOutputChangeEvents { get; set; }
         public bool LogSensorChangeEvents { get; set; }
+
+        public bool LogPerformanceSequence { get; set; }
+        public bool LogPerformanceAction { get; set; }
 
         #endregion
 
@@ -161,6 +172,45 @@ namespace VNC.Phidget
             Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        public async Task RunSequenceLoops(StepperSequence stepperSequence)
+        {
+            try
+            {
+                Int64 startTicks = 0;
+
+                if (LogPerformanceSequence) Log.Trace("Enter", Common.LOG_CATEGORY);
+
+
+                if (stepperSequence.Actions is not null)
+                {
+                    for (int sequenceLoop = 0; sequenceLoop < stepperSequence.Loops; sequenceLoop++)
+                    {
+                        Log.Trace($"Loop:{sequenceLoop + 1}", Common.LOG_CATEGORY);
+
+                        if (stepperSequence.ExecuteActionsInParallel)
+                        {
+                            if (LogPerformanceSequence) Log.Trace($"Parallel Actions Loop:{sequenceLoop + 1}", Common.LOG_CATEGORY);
+
+                            await PlaySequenceActionsInParallel(stepperSequence);
+                        }
+                        else
+                        {
+                            if (LogPerformanceSequence) Log.Trace($"Sequential Actions Loop:{sequenceLoop + 1}", Common.LOG_CATEGORY);
+
+                            await PlaySequenceActionsInSequence(stepperSequence);
+                        }
+                    }
+                }
+
+                if (LogPerformanceSequence) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
+
+
         #endregion
 
         #region Protected Methods (None)
@@ -168,8 +218,17 @@ namespace VNC.Phidget
 
         #endregion
 
-        #region Private Methods (None)
+        #region Private Methods
 
+        private Task PlaySequenceActionsInParallel(StepperSequence stepperSequence)
+        {
+            throw new NotImplementedException();
+        }
+
+        private Task PlaySequenceActionsInSequence(StepperSequence stepperSequence)
+        {
+            throw new NotImplementedException();
+        }
 
         #endregion
     }

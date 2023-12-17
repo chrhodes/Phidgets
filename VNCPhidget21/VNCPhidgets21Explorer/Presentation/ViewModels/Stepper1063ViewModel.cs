@@ -636,7 +636,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             ActiveStepper = new StepperEx(
                 SelectedHost.IPAddress,
                 SelectedHost.Port,
-                SelectedStepper.SerialNumber);
+                SelectedStepper.SerialNumber, 
+                EventAggregator);
 
             ActiveStepper.Stepper.Attach += ActiveStepper_Attach;
             ActiveStepper.Stepper.Detach += ActiveStepper_Detach;

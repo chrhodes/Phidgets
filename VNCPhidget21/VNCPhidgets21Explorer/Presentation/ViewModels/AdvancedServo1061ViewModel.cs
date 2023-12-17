@@ -5,8 +5,6 @@ using System.Linq;
 using System.Text.Json;
 using System.Windows.Input;
 
-using Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Fluent;
-
 using Phidgets;
 using Phidgets.Events;
 

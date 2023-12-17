@@ -81,7 +81,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 @"psbc11\psbc11_AdvancedServoSequence_Skulls.json",
                 @"psbc21\psbc21_AdvancedServoSequence_Skulls.json",
                 @"psbc22\psbc22_AdvancedServoSequence_Skulls.json",
-                @"psbc23\psbc23_AdvancedServoSequence_Skulls.json"
+                @"psbc23\psbc23_AdvancedServoSequence_Skulls.json",
+
+                @"AdvancedServoSequences\AdvancedServoSequenceConfig_99415.json",
+                @"AdvancedServoSequences\AdvancedServoSequenceConfig_Test.json"
             };
 
             return files;
@@ -98,7 +101,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 @"psbc11\psbc11_InterfaceKitSequenceConfig_1.json",
                 @"psbc21\psbc21_InterfaceKitSequenceConfig_1.json",
                 @"psbc22\psbc22_InterfaceKitSequenceConfig_1.json",
-                @"psbc23\psbc23_InterfaceKitSequenceConfig_1.json"
+                @"psbc23\psbc23_InterfaceKitSequenceConfig_1.json",
+
+                @"InterfaceKitSequences\InterfaceKitSequenceConfig_48301.json"
             };
 
             return files;
@@ -1027,7 +1032,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
 
             Message = "Button3 Clicked - Loading PhidgetDevices";
-
 
             //InterfaceKitEx ifkEx21 = new InterfaceKitEx("192.168.150.21", 5001, sbc21SerialNumber, embedded: true, EventAggregator);
 
@@ -2076,23 +2080,33 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             foreach (VNCPhidgetConfig.InterfaceKitSequence sequence in SelectedInterfaceKitSequences)
             {
-                Log.Trace($"Running sequence:{sequence.Name}", Common.LOG_CATEGORY);
+                if (LogPerformanceSequence) Log.Trace($"Playing sequence:{sequence.Name}", Common.LOG_CATEGORY);
 
                 try
                 {
-                    var nextSequence = sequence;
+                    //var nextSequence = sequence;
 
-                    VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence = new VNCPhidgetConfig.PerformanceSequence
-                    {
-                        Name = sequence.Name,
-                        SequenceType = "IK",
-                        Loops = sequence.Loops
-                    };
+                    VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence = 
+                        new VNCPhidgetConfig.PerformanceSequence
+                        {
+                            Name = sequence.Name,
+                            SequenceType = "IK",
+                            Loops = sequence.Loops
+                        };
 
-                    do
+                    // NOTE(crhodes)
+                    // Run on another thread to keep UI active
+                    await Task.Run(async () =>
                     {
+                        if (LogPerformanceSequence) Log.Trace($"Executing sequence:{nextPerformanceSequence.Name}", Common.LOG_CATEGORY);
+                        //nextPerformanceSequence = await performanceSequencePlayer.ExecutePerformanceSequenceLoops(nextPerformanceSequence);
                         await performanceSequencePlayer.ExecutePerformanceSequenceLoops(nextPerformanceSequence);
-                    } while (nextPerformanceSequence is not null);
+                    });
+
+                    //do
+                    //{
+                    //    await performanceSequencePlayer.ExecutePerformanceSequenceLoops(nextPerformanceSequence);
+                    //} while (nextPerformanceSequence is not null);
                 }
                 catch (Exception ex)
                 {

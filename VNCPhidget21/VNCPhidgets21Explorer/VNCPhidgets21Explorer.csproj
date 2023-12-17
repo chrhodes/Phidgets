@@ -121,13 +121,13 @@
       <None Update="Resources\json\psbc11\psbc11_StepperSequenceConfig_1.json">
         <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       </None>
-      <None Update="Resources\json\psbc21\psbc21_AdvancedServoSequenceConfig_1.json">
+      <None Update="Resources\json\AdvancedServoSequences\AdvancedServoSequenceConfig_99415.json">
         <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       </None>
       <None Update="Resources\json\psbc21\psbc21_AdvancedServoSequence_Skulls.json">
         <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       </None>
-      <None Update="Resources\json\psbc21\psbc21_InterfaceKitSequenceConfig_1.json">
+      <None Update="Resources\json\InterfaceKitSequences\InterfaceKitSequenceConfig_48301.json">
         <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       </None>
       <None Update="Resources\json\psbc21\psbc21_StepperSequenceConfig_1.json">
