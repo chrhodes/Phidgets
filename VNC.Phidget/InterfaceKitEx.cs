@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -240,7 +241,20 @@ namespace VNC.Phidget
             {
                 Int64 startTicks = 0;
 
-                if (LogPerformanceSequence) startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
+                if (LogPerformanceSequence)
+                {
+                    startTicks = Log.Trace(
+                        $"Running Action Loops interfaceKitSequence:{interfaceKitSequence.Name}" +
+                        $" description:{interfaceKitSequence.Description}" +
+                        $" sequenceLoops:{interfaceKitSequence.SequenceLoops}" +
+                        $" beforeActionLoopSequences:{interfaceKitSequence.BeforeActionLoopSequences.Count()}" +
+                        $" startActionLoopSequences:{interfaceKitSequence.StartActionLoopSequences.Count()}" +
+                        $" actionLoops:{interfaceKitSequence.ActionLoops}" +
+                        $" actions:{interfaceKitSequence.Actions.Count()}" +
+                        $" endActionLoopSequences:{interfaceKitSequence.EndActionLoopSequences.Count()}" +
+                        $" afterActionLoopSequences:{interfaceKitSequence.AfterActionLoopSequences.Count()}" +
+                        $" nextPerformance:{interfaceKitSequence.NextSequence}", Common.LOG_CATEGORY);
+                }
 
                 if (interfaceKitSequence.Actions is not null)
                 {
@@ -248,7 +262,12 @@ namespace VNC.Phidget
                     {
                         if (interfaceKitSequence.StartActionLoopSequences is not null)
                         {
+                            // TODO(crhodes)
+                            // May want to create a new player instead of reaching for the property.
+
                             PerformanceSequencePlayer player = PerformanceSequencePlayer.ActivePerformanceSequencePlayer;
+                            player.LogPerformanceSequence = LogPerformanceSequence;
+                            player.LogPerformanceAction = LogPerformanceAction;
 
                             foreach (PerformanceSequence sequence in interfaceKitSequence.StartActionLoopSequences)
                             {
@@ -288,6 +307,8 @@ namespace VNC.Phidget
                         if (interfaceKitSequence.EndActionLoopSequences is not null)
                         {
                             PerformanceSequencePlayer player = new PerformanceSequencePlayer(EventAggregator);
+                            player.LogPerformanceSequence = LogPerformanceSequence;
+                            player.LogPerformanceAction = LogPerformanceAction;
 
                             foreach (PerformanceSequence sequence in interfaceKitSequence.EndActionLoopSequences)
                             {

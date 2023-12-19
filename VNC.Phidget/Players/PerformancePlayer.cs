@@ -18,8 +18,6 @@ namespace VNC.Phidget.Players
         {
             Int64 startTicks = Log.CONSTRUCTOR($"Enter", Common.LOG_CATEGORY);
 
-            LoadPerformances();
-
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
@@ -41,8 +39,8 @@ namespace VNC.Phidget.Players
 
         public PerformanceSequencePlayer PerformanceSequencePlayer { get; set; }
 
-        public static Dictionary<string, Performance> AvailablePerformances { get; set; } = 
-            new Dictionary<string, Performance>();
+        //public static Dictionary<string, Performance> AvailablePerformances { get; set; } = 
+        //    new Dictionary<string, Performance>();
 
         //public IEnumerable<Performance> Performances { get; set; }
 
@@ -58,29 +56,6 @@ namespace VNC.Phidget.Players
         #endregion
 
         #region Public Methods
-
-        public void LoadPerformances()
-        {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
-
-            AvailablePerformances.Clear();
-
-            foreach (string configFile in GetListOfPerformanceConfigFiles())
-            {
-                string jsonString = File.ReadAllText(configFile);
-
-                PerformanceConfig? performanceConfig
-                    = JsonSerializer.Deserialize<PerformanceConfig>
-                    (jsonString, GetJsonSerializerOptions());
-
-                foreach (var performance in performanceConfig.Performances.ToDictionary(k => k.Name, v => v))
-                {
-                    AvailablePerformances.Add(performance.Key, performance.Value);
-                }
-            }
-
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
-        }
 
         public async Task RunPerformanceLoops(Performance performance)
         {
@@ -105,6 +80,10 @@ namespace VNC.Phidget.Players
 
                 if (performance.PerformanceSequences is not null)
                 {
+                    // TODO(crhodes)
+                    // Mabye create a new PerformanceSequencePlayer
+                    // instead of reaching for the Property.
+
                     if (performance.PlaySequencesInParallel)
                     {
                         if (LogPerformance) Log.Trace($"Parallel Actions performanceLoop:{performanceLoop + 1}", Common.LOG_CATEGORY);
@@ -137,9 +116,9 @@ namespace VNC.Phidget.Players
                     {
                         Performance nextPerformance = null;
 
-                        if (AvailablePerformances.ContainsKey(callPerformance.Name ?? ""))
+                        if (PerformanceLibrary.AvailablePerformances.ContainsKey(callPerformance.Name ?? ""))
                         {
-                            nextPerformance = AvailablePerformances[callPerformance.Name];
+                            nextPerformance = PerformanceLibrary.AvailablePerformances[callPerformance.Name];
 
                             await RunPerformanceLoops(nextPerformance);
 
@@ -181,35 +160,35 @@ namespace VNC.Phidget.Players
 
         #endregion
 
-        #region Private Methods
+        #region Private Methods (None)
 
-        private IEnumerable<string> GetListOfPerformanceConfigFiles()
-        {
-            // TODO(crhodes)
-            // Read a directory and return files, perhaps with RegEx name match
+        //private IEnumerable<string> GetListOfPerformanceConfigFiles()
+        //{
+        //    // TODO(crhodes)
+        //    // Read a directory and return files, perhaps with RegEx name match
 
-            List<string> files = new List<string>
-            {
-                @"Performances\PerformanceConfig_1.json",
-                @"Performances\PerformanceConfig_2.json",
-                @"Performances\PerformanceConfig_3.json",
+        //    List<string> files = new List<string>
+        //    {
+        //        @"Performances\PerformanceConfig_1.json",
+        //        @"Performances\PerformanceConfig_2.json",
+        //        @"Performances\PerformanceConfig_3.json",
 
-                @"Performances\PerformanceConfig_Skulls.json",
-            };
+        //        @"Performances\PerformanceConfig_Skulls.json",
+        //    };
 
-            return files;
-        }
+        //    return files;
+        //}
 
-        private JsonSerializerOptions GetJsonSerializerOptions()
-        {
-            var jsonOptions = new JsonSerializerOptions
-            {
-                ReadCommentHandling = JsonCommentHandling.Skip,
-                AllowTrailingCommas = true
-            };
+        //private JsonSerializerOptions GetJsonSerializerOptions()
+        //{
+        //    var jsonOptions = new JsonSerializerOptions
+        //    {
+        //        ReadCommentHandling = JsonCommentHandling.Skip,
+        //        AllowTrailingCommas = true
+        //    };
 
-            return jsonOptions;
-        }
+        //    return jsonOptions;
+        //}
 
         #endregion
     }

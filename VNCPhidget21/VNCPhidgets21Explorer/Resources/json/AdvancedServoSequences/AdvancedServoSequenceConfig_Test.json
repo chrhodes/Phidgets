@@ -45,16 +45,16 @@
       ],
       "ExecuteActionsInParallel": true,
       "Actions": [
-        { "ServoIndex": 0, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 500 },
-        { "ServoIndex": 1, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 500 },
-        { "ServoIndex": 2, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 500 },
-        { "ServoIndex": 3, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 500 },
-        { "ServoIndex": 4, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 500 },
-        { "ServoIndex": 5, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 500 },
-        { "ServoIndex": 6, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 500 },
-        { "ServoIndex": 7, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 500 }
+        { "ServoIndex": 0, "Engaged": true, "TargetPosition": -1, "Acceleration": 1000, "VelocityLimit": 500 },
+        { "ServoIndex": 1, "Engaged": true, "TargetPosition": -1, "Acceleration": 1000, "VelocityLimit": 500 },
+        { "ServoIndex": 2, "Engaged": true, "TargetPosition": -1, "Acceleration": 1000, "VelocityLimit": 500 },
+        { "ServoIndex": 3, "Engaged": true, "TargetPosition": -1, "Acceleration": 1000, "VelocityLimit": 500 },
+        { "ServoIndex": 4, "Engaged": true, "TargetPosition": -1, "Acceleration": 1000, "VelocityLimit": 500 },
+        { "ServoIndex": 5, "Engaged": true, "TargetPosition": -1, "Acceleration": 1000, "VelocityLimit": 500 },
+        { "ServoIndex": 6, "Engaged": true, "TargetPosition": -1, "Acceleration": 1000, "VelocityLimit": 500 },
+        { "ServoIndex": 7, "Engaged": true, "TargetPosition": -1, "Acceleration": 1000, "VelocityLimit": 500 }
       ],
-       "EndActionLoopSequences" : [
+      "EndActionLoopSequences" : [
           { "Name": "IK DO2-48301", "SequenceType": "IK" }
       ],
       "AfterActionLoopSequences" : [

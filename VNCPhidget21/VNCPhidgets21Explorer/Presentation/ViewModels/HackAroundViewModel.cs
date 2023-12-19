@@ -18,6 +18,9 @@ using VNC.Core.Mvvm;
 using VNC.Phidget;
 using VNC.Phidget.Events;
 using VNC.Phidget.Players;
+
+using VNCPhidget21.Configuration;
+
 using VNCPhidgetConfig = VNCPhidget21.Configuration;
 
 namespace VNCPhidgets21Explorer.Presentation.ViewModels
@@ -71,17 +74,16 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             ActivePerformancePlayer = GetPerformancePlayer();
 
-            Performances = PerformancePlayer.AvailablePerformances.Values.ToList();
+            Hosts = PerformanceLibrary.Hosts.ToList();
+
+            Performances = PerformanceLibrary.AvailablePerformances.Values.ToList();
 
             ActivePerformanceSequencePlayer = GetPerformanceSequencePlayer();
             ActivePerformancePlayer.PerformanceSequencePlayer = ActivePerformanceSequencePlayer;
 
-            AdvancedServoSequences = ActivePerformanceSequencePlayer.AvailableAdvancedServoSequences.Values.ToList();
-            InterfaceKitSequences = ActivePerformanceSequencePlayer.AvailableInterfaceKitSequences.Values.ToList();
-            StepperSequences = ActivePerformanceSequencePlayer.AvailableStepperSequences.Values.ToList();
-
-            LoadHostConfig();
-            BuildPhidgetDeviceDictionary();
+            AdvancedServoSequences = PerformanceLibrary.AvailableAdvancedServoSequences.Values.ToList();
+            InterfaceKitSequences = PerformanceLibrary.AvailableInterfaceKitSequences.Values.ToList();
+            StepperSequences = PerformanceLibrary.AvailableStepperSequences.Values.ToList();
 
             // Turn on logging of PropertyChanged from VNC.Core
             LogOnPropertyChanged = false;
@@ -89,81 +91,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Message = "HackAroundViewModel says hello";
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-
-        private void BuildPhidgetDeviceDictionary()
-        {
-            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
-
-            foreach (VNCPhidgetConfig.Host host in Hosts)
-            {
-                if (host.AdvancedServos is not null)
-                {
-                    foreach (VNCPhidgetConfig.AdvancedServo advancedServo in host.AdvancedServos)
-                    {
-                        AvailablePhidgets.Add(
-                            advancedServo.SerialNumber,
-                            new PhidgetDevice(
-                                host.IPAddress, host.Port,
-                                Phidget.PhidgetClass.ADVANCEDSERVO, advancedServo.SerialNumber));
-                    }
-                }
-
-                if (host.InterfaceKits is not null)
-                {
-                    foreach (VNCPhidgetConfig.InterfaceKit interfaceKit in host.InterfaceKits)
-                    {
-                        AvailablePhidgets.Add(
-                            interfaceKit.SerialNumber,
-                            new PhidgetDevice(
-                                host.IPAddress, host.Port,
-                                Phidget.PhidgetClass.INTERFACEKIT, interfaceKit.SerialNumber));
-                    }
-                }
-
-                if (host.Steppers is not null)
-                {
-                    foreach (VNCPhidgetConfig.Stepper stepper in host.Steppers)
-                    {
-                        AvailablePhidgets.Add(
-                            stepper.SerialNumber,
-                            new PhidgetDevice(
-                                host.IPAddress, host.Port,
-                                Phidget.PhidgetClass.STEPPER, stepper.SerialNumber));
-                    }
-                }
-            }
-
-            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        Dictionary<Int32, PhidgetDevice> AvailablePhidgets = new Dictionary<Int32, PhidgetDevice>();
-
-        private void LoadHostConfig()
-        {
-            Int64 startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
-
-            string jsonString = File.ReadAllText(HostConfigFileName);
-
-            VNCPhidgetConfig.HostConfig? hostConfig
-                = JsonSerializer.Deserialize<VNCPhidgetConfig.HostConfig>
-                (jsonString, GetJsonSerializerOptions());
-
-            Hosts = hostConfig.Hosts.ToList();
-
-            Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        JsonSerializerOptions GetJsonSerializerOptions()
-        {
-            var jsonOptions = new JsonSerializerOptions
-            {
-                ReadCommentHandling = JsonCommentHandling.Skip, 
-                AllowTrailingCommas = true
-            };
-
-            return jsonOptions;
         }
 
         #endregion
@@ -308,32 +235,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
         #region Performances
-
-        //private IEnumerable<string> _performanceConfigFiles;
-        //public IEnumerable<string> PerformanceConfigFiles
-        //{
-        //    get => _performanceConfigFiles;
-        //    set
-        //    {
-        //        _performanceConfigFiles = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private string _performanceConfigFileName;
-        //public string PerformanceConfigFileName
-        //{
-        //    get => _performanceConfigFileName;
-        //    set
-        //    {
-        //        if (_performanceConfigFileName == value) return;
-        //        _performanceConfigFileName = value;
-        //        OnPropertyChanged();
-
-        //        LoadPerformancesConfig();
-        //    }
-        //}
 
         public string PerformanceFileNameToolTip { get; set; } = "DoubleClick to select new file";
 
@@ -351,6 +254,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         //}
 
         private PerformancePlayer ActivePerformancePlayer { get; set; }
+        private PerformanceLibrary PerformanceLibrary { get; set; } = new PerformanceLibrary();
 
         private PerformanceSequencePlayer ActivePerformanceSequencePlayer { get; set; }
 
@@ -411,8 +315,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         #endregion
 
         #region AdvancedServo
-
-        //public AdvancedServoEx ActiveAdvancedServoHost { get; set; }
 
         private bool _logCurrentChangeEvents = false;
         public bool LogCurrentChangeEvents
@@ -477,33 +379,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             500
         };
 
-        //private IEnumerable<string> _advancedServoSequenceConfigFiles;
-        //public IEnumerable<string> AdvancedServoSequenceConfigFiles
-        //{
-        //    get => _advancedServoSequenceConfigFiles;
-        //    set
-        //    {
-        //        _advancedServoSequenceConfigFiles = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private string _advancedServoSequenceConfigFileName;
-        //public string AdvancedServoSequenceConfigFileName
-        //{
-        //    get => _advancedServoSequenceConfigFileName;
-        //    set
-        //    {
-        //        if (_advancedServoSequenceConfigFileName == value) return;
-        //        _advancedServoSequenceConfigFileName = value;
-        //        OnPropertyChanged();
-
-        //        LoadAdvanceServoConfig();
-
-        //        EngageAndCenterCommand.RaiseCanExecuteChanged();
-        //    }
-        //}
-
         private IEnumerable<VNCPhidgetConfig.AdvancedServoSequence> _advancedServoSequences;
         public IEnumerable<VNCPhidgetConfig.AdvancedServoSequence> AdvancedServoSequences
         {
@@ -529,17 +404,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 PlayAdvancedServoSequenceCommand.RaiseCanExecuteChanged();
             }
         }
-
-        //private Dictionary<string, VNCPhidgetConfig.AdvancedServoSequence> _availableAdvancedServoSequences;
-        //public Dictionary<string, VNCPhidgetConfig.AdvancedServoSequence> AvailableAdvancedServoSequences
-        //{
-        //    get => _availableAdvancedServoSequences;
-        //    set
-        //    {
-        //        _availableAdvancedServoSequences = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
 
         private List<VNCPhidgetConfig.AdvancedServoSequence> _selectedAdvancedServoSequences;
         public List<VNCPhidgetConfig.AdvancedServoSequence> SelectedAdvancedServoSequences
@@ -1087,9 +951,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             $" nextPerformance:{performance.NextPerformance}", Common.LOG_CATEGORY);
                     }
 
-                    if (PerformancePlayer.AvailablePerformances.ContainsKey(nextPerformance.Name ?? ""))
+                    if (PerformanceLibrary.AvailablePerformances.ContainsKey(nextPerformance.Name ?? ""))
                     {
-                        nextPerformance = PerformancePlayer.AvailablePerformances[nextPerformance.Name];
+                        nextPerformance = PerformanceLibrary.AvailablePerformances[nextPerformance.Name];
 
                         await ActivePerformancePlayer.RunPerformanceLoops(nextPerformance);
 
@@ -1729,7 +1593,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 ActivePerformanceSequencePlayer = new PerformanceSequencePlayer(EventAggregator);
             }
 
-            ActivePerformanceSequencePlayer.AvailablePhidgets = AvailablePhidgets;
+            //ActivePerformanceSequencePlayer.AvailablePhidgets = PhidgetLibrary.AvailablePhidgets;
 
             //ActivePerformanceSequencePlayer.AvailablePerformances = AvailablePerformances;
             //ActivePerformanceSequencePlayer.AvailableAdvancedServoSequences = AvailableAdvancedServoSequences;

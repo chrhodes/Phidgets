@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading;
@@ -284,7 +285,20 @@ namespace VNC.Phidget
             {
                 Int64 startTicks = 0;
 
-                if (LogPerformanceSequence) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+                if (LogPerformanceSequence)
+                {
+                    startTicks = Log.Trace(
+                        $"Running Action Loops advancedServoSequence:{advancedServoSequence.Name}" +
+                        $" description:{advancedServoSequence.Description}" +
+                        $" sequenceLoops:{advancedServoSequence.SequenceLoops}" +
+                        $" beforeActionLoopSequences:{advancedServoSequence.BeforeActionLoopSequences.Count()}" +
+                        $" startActionLoopSequences:{advancedServoSequence.StartActionLoopSequences.Count()}" +
+                        $" actionLoops:{advancedServoSequence.ActionLoops}" +
+                        $" actions:{advancedServoSequence.Actions.Count()}" +
+                        $" endActionLoopSequences:{advancedServoSequence.EndActionLoopSequences.Count()}" +
+                        $" afterActionLoopSequences:{advancedServoSequence.AfterActionLoopSequences.Count()}" +
+                        $" nextPerformance:{advancedServoSequence.NextSequence}", Common.LOG_CATEGORY);
+                }
 
                 if (advancedServoSequence.Actions is not null)
                 {
@@ -292,7 +306,12 @@ namespace VNC.Phidget
                     {
                         if (advancedServoSequence.StartActionLoopSequences is not null)
                         {
+                            // TODO(crhodes)
+                            // May want to create a new player instead of reaching for the property.
+
                             PerformanceSequencePlayer player = PerformanceSequencePlayer.ActivePerformanceSequencePlayer;
+                            player.LogPerformanceSequence = LogPerformanceSequence;
+                            player.LogPerformanceAction = LogPerformanceAction;
 
                             foreach (PerformanceSequence sequence in advancedServoSequence.StartActionLoopSequences)
                             {
@@ -331,6 +350,8 @@ namespace VNC.Phidget
                         if (advancedServoSequence.EndActionLoopSequences is not null)
                         {
                             PerformanceSequencePlayer player = new PerformanceSequencePlayer(EventAggregator);
+                            player.LogPerformanceSequence = LogPerformanceSequence;
+                            player.LogPerformanceAction = LogPerformanceAction;
 
                             foreach (PerformanceSequence sequence in advancedServoSequence.EndActionLoopSequences)
                             {
