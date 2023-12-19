@@ -4,41 +4,31 @@
     // Initialize Skull
     //
     {
-      "Name": "Initialize Skulls (psbc22)", "Description": "Set Skull Movement and Position constraints",
+      "SerialNumber": 99220,
+      "Name": "Initialize Skulls", "Description": "Set Skull Movement and Position constraints",
       "UsageNotes": "Does not Engage SKull",
       "ExecuteActionsInParallel": true,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 0, "ServoType": 2, "PositionMin": 82, "PositionMax": 118, "Acceleration": 500, "VelocityLimit": 50 },
         { "ServoIndex": 1, "ServoType": 2, "PositionMin": 70, "PositionMax": 110, "Acceleration": 500, "VelocityLimit": 50 },
         { "ServoIndex": 2, "ServoType": 2, "PositionMin": 40, "PositionMax": 140, "Acceleration": 500, "VelocityLimit": 50 },
         { "ServoIndex": 4, "ServoType": 2, "PositionMin": 80, "PositionMax": 116, "Acceleration": 500, "VelocityLimit": 50 },
         { "ServoIndex": 5, "ServoType": 5, "PositionMin": 66, "PositionMax": 106, "Acceleration": 500, "VelocityLimit": 50 },
-        { "ServoIndex": 6, "ServoType": 5, "PositionMin": 40, "PositionMax": 140,  "Acceleration": 500, "VelocityLimit": 50 },
+        { "ServoIndex": 6, "ServoType": 5, "PositionMin": 40, "PositionMax": 140, "Acceleration": 500, "VelocityLimit": 50 },
         //{ "ServoIndex": 0,  }, // THis is X Axis near minimum to avoid Head snap when engaged.
         //{ "ServoIndex": 1,  },
         //{ "ServoIndex": 2,  },
 
       ],
-      "NextSequence": { "Name": "Wake up Skulls (psbc22)", "SequenceType":  "AS" }
+      "NextSequence": { "Name": "Wake up Skulls", "SequenceType":  "AS" }
     },
     //
     // Wake up Skull
     //
     {
-      "Name": "Wake up Skulls (psbc22)", "Description": "Engages Skull, Snaps to attention",
+      "SerialNumber": 99220,
+      "Name": "Wake up Skulls", "Description": "Engages Skull, Snaps to attention",
       "ExecuteActionsInParallel": true,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 0, "Engaged": true, "TargetPosition": 100 },
         { "ServoIndex": 1, "Engaged": true, "TargetPosition": 90 },
@@ -49,17 +39,12 @@
       ]
     },
     //
-    // Sleep Skulls (psbc22)
+    // Sleep Skulls
     //
     {
-      "Name": "Sleep Skulls (psbc22)", "Description": "Put Skulls to sleep",
+      "SerialNumber": 99220,
+      "Name": "Sleep Skulls", "Description": "Put Skulls to sleep",
       "ExecuteActionsInParallel": false,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 0, "Engaged": false },
         { "ServoIndex": 1, "Engaged": false },
@@ -73,15 +58,10 @@
     // Skulls Center
     //
     {
-      "Name": "Skulls Center (psbc22)",
+      "SerialNumber": 99220,
+      "Name": "Skulls Center",
       "Description": "Center Right Skull",
       "ExecuteActionsInParallel": true,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 0, "TargetPosition": 100 },
         { "ServoIndex": 1, "TargetPosition": 90 },
@@ -95,15 +75,10 @@
     // Right Skull Center
     //
     {
-      "Name": "Right Skull Center (psbc22)",
+      "SerialNumber": 99220,
+      "Name": "Right Skull Center",
       "Description": "Center Right Skull",
       "ExecuteActionsInParallel": true,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 0, "TargetPosition": 100 },
         { "ServoIndex": 1, "TargetPosition": 90 },
@@ -114,15 +89,10 @@
     // Left Skull Center
     //
     {
-      "Name": "Left Skull Center (psbc22)",
+      "SerialNumber": 99220,
+      "Name": "Left Skull Center",
       "Description": "Center Left Skull",
       "ExecuteActionsInParallel": true,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 4, "TargetPosition": 98 },
         { "ServoIndex": 5, "TargetPosition": 86 },
@@ -133,14 +103,9 @@
     // Skulls Look Together
     //
     {
-      "Name": "Skulls Look Together (psbc22)", "Description": "Skull Look Up Right",
+      "SerialNumber": 99220,
+      "Name": "Skulls Look Together", "Description": "Skull Look Up Right",
       "ExecuteActionsInParallel": true,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": 10 },
         //{ "ServoIndex": 1, "RelativePosition": 5 },
@@ -154,32 +119,22 @@
     // Skulls Look Left
     //
     {
-      "Name": "Skulls Look Left (psbc22)", "Description": "Skulls Look Left",
+      "SerialNumber": 99220,
+      "Name": "Skulls Look Left", "Description": "Skulls Look Left",
       "ExecuteActionsInParallel": false, "Duration": 500,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 6, "RelativePosition": -50, "Duration": 500 },
         { "ServoIndex": 6, "RelativePosition": 25 },
       ],
-            "NextSequence": { "Name": "Skulls Look Left2 (psbc22)", "SequenceType":  "AS" }
+      "NextSequence": { "Name": "Skulls Look Left2", "SequenceType":  "AS" }
     },
     //
     // Skulls Look Left2
     //
     {
-      "Name": "Skulls Look Left2 (psbc22)", "Description": "Skulls Look Left",
+      "SerialNumber": 99220,
+      "Name": "Skulls Look Left2", "Description": "Skulls Look Left",
       "ExecuteActionsInParallel": true,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 6, "RelativePosition": -25 },
         { "ServoIndex": 2, "RelativePosition": -50, "RelativeAcceleration": 1000, "RelativeVelocityLimit": 50 },
@@ -189,32 +144,22 @@
     // Skulls Look Right
     //
     {
-      "Name": "Skulls Look Right (psbc22)", "Description": "Skulls Look Right",
+      "SerialNumber": 99220,
+      "Name": "Skulls Look Right", "Description": "Skulls Look Right",
       "ExecuteActionsInParallel": false, "Duration": 500,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 2, "RelativePosition": 50, "Duration": 500 },
         { "ServoIndex": 2, "RelativePosition": -25 },
       ],
-            "NextSequence": { "Name": "Skulls Look Right2 (psbc22)", "SequenceType":  "AS" }
+      "NextSequence": { "Name": "Skulls Look Right2", "SequenceType":  "AS" }
     },
     //
     // Skulls Look Right2
     //
     {
-      "Name": "Skulls Look Right2 (psbc22)", "Description": "Skull Look Up Right",
+      "SerialNumber": 99220,
+      "Name": "Skulls Look Right2", "Description": "Skull Look Up Right",
       "ExecuteActionsInParallel": true,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 2, "RelativePosition": 25 },
         { "ServoIndex": 6, "RelativePosition": 50, "RelativeAcceleration": 1000, "RelativeVelocityLimit": 50 },
@@ -224,14 +169,9 @@
     // Skulls Look Apart
     //
     {
-      "Name": "Skulls Look Apart (psbc22)", "Description": "Skull Look Up Right",
+      "SerialNumber": 99220,
+      "Name": "Skulls Look Apart", "Description": "Skull Look Up Right",
       "ExecuteActionsInParallel": true,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": -10 },
         //{ "ServoIndex": 1, "RelativePosition": 5 },
@@ -245,14 +185,9 @@
     // Skulls Look Up Right
     //
     {
-      "Name": "Skulls Look Up Right (psbc22)", "Description": "Skull Look Up Right",
+      "SerialNumber": 99220,
+      "Name": "Skulls Look Up Right", "Description": "Skull Look Up Right",
       "ExecuteActionsInParallel": true,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": 5 },
         { "ServoIndex": 1, "RelativePosition": 5 },
@@ -266,14 +201,9 @@
     // Left Skull Look Up Right
     //
     {
-      "Name": "Left Skull Look Up Right (psbc22)", "Description": "Skull Look Up Right",
+      "SerialNumber": 99220,
+      "Name": "Left Skull Look Up Right", "Description": "Skull Look Up Right",
       "ExecuteActionsInParallel": true,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": 5 },
         { "ServoIndex": 1, "RelativePosition": 5 },
@@ -284,14 +214,9 @@
     // Right Skull Look Up Right
     //
     {
-      "Name": "Right Skull Look Up Right (psbc22)", "Description": "Skull Look Up Right",
+      "SerialNumber": 99220,
+      "Name": "Right Skull Look Up Right", "Description": "Skull Look Up Right",
       "ExecuteActionsInParallel": true,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 4, "RelativePosition": 5 },
         { "ServoIndex": 5, "RelativePosition": 5 },
@@ -302,14 +227,9 @@
     // Skulls Look Up Left
     //
     {
-      "Name": "Skulls Look Up Left (psbc22)", "Description": "Skull Look Up Right",
+      "SerialNumber": 99220,
+      "Name": "Skulls Look Up Left", "Description": "Skull Look Up Right",
       "ExecuteActionsInParallel": true,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": 5 },
         { "ServoIndex": 1, "RelativePosition": 5 },
@@ -323,14 +243,9 @@
     // Left Skull Look Up Left
     //
     {
-      "Name": "Left Skull Look Up Left (psbc22)", "Description": "Skull Look Up Right",
+      "SerialNumber": 99220,
+      "Name": "Left Skull Look Up Left", "Description": "Skull Look Up Left",
       "ExecuteActionsInParallel": true,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": 5 },
         { "ServoIndex": 1, "RelativePosition": 5 },
@@ -341,14 +256,9 @@
     // Right Skull Look Up Left
     //
     {
-      "Name": "Right Skull Look Up Left (psbc22)", "Description": "Skull Look Up Right",
+      "SerialNumber": 99220,
+      "Name": "Right Skull Look Up Left", "Description": "Right Skull Look Up Left",
       "ExecuteActionsInParallel": true,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 4, "RelativePosition": 5 },
         { "ServoIndex": 5, "RelativePosition": 5 },
@@ -359,14 +269,9 @@
     // Skulls Look Down Right
     //
     {
-      "Name": "Skulls Look Down Right (psbc22)", "Description": "Skull Look Down Right",
+      "SerialNumber": 99220,
+      "Name": "Skulls Look Down Right", "Description": "Skulls Look Down Right",
       "ExecuteActionsInParallel": true,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": -5 },
         { "ServoIndex": 1, "RelativePosition": -5 },
@@ -380,14 +285,9 @@
     // Left Skull Look Down Right
     //
     {
-      "Name": "Left Skull Look Down Right (psbc22)", "Description": "Skull Look Down Right",
+      "SerialNumber": 99220,
+      "Name": "Left Skull Look Down Right", "Description": "Skull Look Down Right",
       "ExecuteActionsInParallel": true,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": -5 },
         { "ServoIndex": 1, "RelativePosition": -5 },
@@ -398,14 +298,9 @@
     // Right Skull Look Down Right
     //
     {
-      "Name": "Right Skull Look Down Right (psbc22)", "Description": "Skull Look Down Right",
+      "SerialNumber": 99220,
+      "Name": "Right Skull Look Down Right", "Description": "Skull Look Down Right",
       "ExecuteActionsInParallel": true,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 4, "RelativePosition": -5 },
         { "ServoIndex": 5, "RelativePosition": -5 },
@@ -416,14 +311,9 @@
     // Skulls Look Down Left
     //
     {
-      "Name": "Skulls Look Down Left (psbc22)", "Description": "Skull Look Down Left",
+      "SerialNumber": 99220,
+      "Name": "Skulls Look Down Left", "Description": "Skull Look Down Left",
       "ExecuteActionsInParallel": true,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": -5 },
         { "ServoIndex": 1, "RelativePosition": -5 },
@@ -437,14 +327,9 @@
     // Left Skull Look Down Left
     //
     {
-      "Name": "Left Skull Look Down Left (psbc22)", "Description": "Skull Look Down Left",
+      "SerialNumber": 99220,
+      "Name": "Left Skull Look Down Left", "Description": "Skull Look Down Left",
       "ExecuteActionsInParallel": true,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": -5 },
         { "ServoIndex": 1, "RelativePosition": -5 },
@@ -455,14 +340,9 @@
     // Right Skull Look Down Left
     //
     {
-      "Name": "Right Skull Look Down Left (psbc22)", "Description": "Skull Look Down Right",
+      "SerialNumber": 99220,
+      "Name": "Right Skull Look Down Left", "Description": "Skull Look Down Right",
       "ExecuteActionsInParallel": true,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 4, "RelativePosition": -5 },
         { "ServoIndex": 5, "RelativePosition": -5 },
@@ -473,14 +353,9 @@
     // Left Skull Yes
     //
     {
-      "Name": "Left Skull Yes (psbc22)", "Description": "Move up and down X axis 2 times",
+      "SerialNumber": 99220,
+      "Name": "Left Skull Yes", "Description": "Move up and down X axis 2 times",
       "ExecuteActionsInParallel": false,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         //{ "ServoIndex": 0, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
         //{ "ServoIndex": 1, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
@@ -495,14 +370,9 @@
     // Right Skull Yes
     //
     {
-      "Name": "Right Skull Yes (psbc22)", "Description": "Move up and down X axis 2 times",
+      "SerialNumber": 99220,
+      "Name": "Right Skull Yes", "Description": "Move up and down X axis 2 times",
       "ExecuteActionsInParallel": false,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         //{ "ServoIndex": 0, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
         //{ "ServoIndex": 1, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
@@ -517,51 +387,36 @@
     // Left Skull Laugh
     //
     {
-      "Name": "Left Skull Laugh (psbc22)", "Description": "Look up and Go nuts",
+      "SerialNumber": 99220,
+      "Name": "Left Skull Laugh", "Description": "Look up and Go nuts",
       "ExecuteActionsInParallel": true, "Duration": 1000,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 5, "RelativePosition": -5, "Acceleration": 1000, "VelocityLimit":  200 },
         { "ServoIndex": 4, "RelativePosition": 15 },
       ],
-      "NextSequence": { "Name": "Left Skull Laugh2 (psbc22)", "SequenceType":  "AS" }
+      "NextSequence": { "Name": "Left Skull Laugh2", "SequenceType":  "AS" }
     },
     //
     // Left Skull Laugh2
     //
     {
-      "Name": "Left Skull Laugh2 (psbc22)",
+      "SerialNumber": 99220,
+      "Name": "Left Skull Laugh2",
       "ExecuteActionsInParallel": true, "Duration": 500,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 5, "RelativePosition": 5},
         { "ServoIndex": 4, "RelativePosition": -15, "RelativeAcceleration": -600 },
 
       ],
-      "NextSequence": { "Name": "Left Skull Laugh3 (psbc22)", "SequenceType":  "AS" }
+      "NextSequence": { "Name": "Left Skull Laugh3", "SequenceType":  "AS" }
     },
     //
     // Left Skull Laugh3
     //
     {
-      "Name": "Left Skull Laugh3 (psbc22)", "Description": "Move +/- 5 X,Y,Z axis 3 times",
+      "SerialNumber": 99220,
+      "Name": "Left Skull Laugh3", "Description": "Move +/- 5 X,Y,Z axis 3 times",
       "ExecuteActionsInParallel": false,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 6, "RelativePosition": 5, "Acceleration": 5000, "VelocityLimit": -2 },
         { "ServoIndex": 6, "RelativePosition": -5 },
@@ -584,57 +439,42 @@
         { "ServoIndex": 4, "RelativePosition": 5 },
         { "ServoIndex": 4, "RelativePosition": -5 },
       ],
-      //"NextSequence": { "Name": "Laugh3 (psbc22)", "SequenceType":  "AS" }
+      //"NextSequence": { "Name": "Laugh3", "SequenceType":  "AS" }
     },    
     //
     // Right Skull Laugh
     //
     {
-      "Name": "Right Skull Laugh (psbc22)", "Description": "Look up and Go nuts",
+      "SerialNumber": 99220,
+      "Name": "Right Skull Laugh", "Description": "Look up and Go nuts",
       "ExecuteActionsInParallel": true, "Duration": 1000,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 1, "RelativePosition": 4, "Acceleration": 1000, "VelocityLimit": 200 },
         { "ServoIndex": 0, "RelativePosition": 15 },
       ],
-      "NextSequence": { "Name": "Right Skull Laugh2 (psbc22)", "SequenceType":  "AS" }
+      "NextSequence": { "Name": "Right Skull Laugh2", "SequenceType":  "AS" }
     },
     //
     // Right Skull Laugh2
     //
     {
-      "Name": "Right Skull Laugh2 (psbc22)", "Description": "Move up and down X axis 2 times",
+      "SerialNumber": 99220,
+      "Name": "Right Skull Laugh2", "Description": "Move up and down X axis 2 times",
       "ExecuteActionsInParallel": true, "Duration": 500,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 1, "RelativePosition": -4 },
         { "ServoIndex": 0, "RelativePosition": -15, "RelativeAcceleration": -600 },
 
       ],
-      "NextSequence": { "Name": "Right Skull Laugh3 (psbc22)", "SequenceType":  "AS" }
+      "NextSequence": { "Name": "Right Skull Laugh3", "SequenceType":  "AS" }
     },
     //
     // Right Skull Laugh3
     //
     {
-      "Name": "Right Skull Laugh3 (psbc22)", "Description": "Move up and down X axis 2 times",
+      "SerialNumber": 99220,
+      "Name": "Right Skull Laugh3", "Description": "Move up and down X axis 2 times",
       "ExecuteActionsInParallel": false,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 2, "RelativePosition": 5, "Acceleration": 5000, "VelocityLimit": -2 },
         { "ServoIndex": 2, "RelativePosition": -5 },
@@ -657,57 +497,42 @@
         { "ServoIndex": 0, "RelativePosition": 5 },
         { "ServoIndex": 0, "RelativePosition": -5 },
       ],
-      //"NextSequence": { "Name": "Laugh3 (psbc22)", "SequenceType":  "AS" }
+      //"NextSequence": { "Name": "Laugh3", "SequenceType":  "AS" }
     },
     //
     // Skull Sigh
     //
     {
-      "Name": "Skull Sigh (psbc22)", "Description": "Move up and down X axis 2 times",
+      "SerialNumber": 99220,
+      "Name": "Skull Sigh", "Description": "Move up and down X axis 2 times",
       "ExecuteActionsInParallel": true, "Duration": 500,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         //{ "ServoIndex": 1, "RelativePosition": -5, "Acceleration": 500, "VelocityLimit": 100 },
         { "ServoIndex": 0, "RelativePosition": -15,"Acceleration": 150, "VelocityLimit": 50 },
       ],
-      "NextSequence": { "Name": "Skull Sigh2 (psbc22)", "SequenceType":  "AS" }
+      "NextSequence": { "Name": "Skull Sigh2", "SequenceType":  "AS" }
     },
     //
     // Skull Sigh2
     //
     {
-      "Name": "Skull Sigh2 (psbc22)", "Description": "Move up and down X axis 2 times",
+      "SerialNumber": 99220,
+      "Name": "Skull Sigh2", "Description": "Move up and down X axis 2 times",
       "ExecuteActionsInParallel": true, "Duration": 100,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
        // { "ServoIndex": 1, "RelativePosition": 5, "RelativeAcceleration": -250, "RelativeVelocityLimit": -25 },
         { "ServoIndex": 0, "RelativePosition": 15, "RelativeAcceleration": -100, "RelativeVelocityLimit": -25 },
 
       ],
-      "NextSequence": { "Name": "Skull Sigh3 (psbc22)", "SequenceType": "AS" }
+      "NextSequence": { "Name": "Skull Sigh3", "SequenceType": "AS" }
     },
     //
     // Skull Sigh3
     //
     {
-      "Name": "Skull Sigh3 (psbc22)", "Description": "Move up and down X axis 2 times",
+      "SerialNumber": 99220,
+      "Name": "Skull Sigh3", "Description": "Move up and down X axis 2 times",
       "ExecuteActionsInParallel": false,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         { "ServoIndex": 2, "RelativePosition": 7, "Acceleration": 150, "VelocityLimit": 70},
         { "ServoIndex": 2, "RelativePosition": -7 },
@@ -716,20 +541,15 @@
         //{ "ServoIndex": 2, "RelativePosition": 7 },
         //{ "ServoIndex": 2, "RelativePosition": -7 },
       ],
-      //"NextSequence": { "Name": "Laugh3 (psbc22)", "SequenceType":  "AS" }
+      //"NextSequence": { "Name": "Laugh3", "SequenceType":  "AS" }
     },
     //
     // Skull No
     //
     {
-      "Name": "Skull No (psbc22)", "Description": "Move left and right Z axis 2 times",
+      "SerialNumber": 99220,
+      "Name": "Skull No", "Description": "Move left and right Z axis 2 times",
       "ExecuteActionsInParallel": false,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         //{ "ServoIndex": 0, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
         //{ "ServoIndex": 1, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
@@ -744,14 +564,9 @@
     // Skull Maybe 1
     //
     {
-      "Name": "Skull Maybe 1 (psbc22)", "Description": "Move Y axis 2 times",
+      "SerialNumber": 99220,
+      "Name": "Skull Maybe 1", "Description": "Move Y axis 2 times",
       "ExecuteActionsInParallel": false,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         //{ "ServoIndex": 0, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
         //{ "ServoIndex": 1, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
@@ -766,14 +581,9 @@
     // Skull Maybe 2
     //
     {
-      "Name": "Skull Maybe 2 (psbc22)", "Description": "Move Y axis 2 times",
+      "SerialNumber": 99220,
+      "Name": "Skull Maybe 2", "Description": "Move Y axis 2 times",
       "ExecuteActionsInParallel": false,
-      "Host": {
-        "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
-        "AdvancedServos": [
-          { "Name": "AdvancedServo 1", "SerialNumber": 99220, "Open": true }
-        ]
-      },
       "Actions": [
         //{ "ServoIndex": 0, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
         //{ "ServoIndex": 1, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },

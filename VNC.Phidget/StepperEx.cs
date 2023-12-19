@@ -172,7 +172,7 @@ namespace VNC.Phidget
             Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public async Task RunSequenceLoops(StepperSequence stepperSequence)
+        public async Task RunActionLoops(StepperSequence stepperSequence)
         {
             try
             {
@@ -180,22 +180,21 @@ namespace VNC.Phidget
 
                 if (LogPerformanceSequence) Log.Trace("Enter", Common.LOG_CATEGORY);
 
-
                 if (stepperSequence.Actions is not null)
                 {
-                    for (int sequenceLoop = 0; sequenceLoop < stepperSequence.Loops; sequenceLoop++)
+                    for (int actionLoop = 0; actionLoop < stepperSequence.ActionLoops; actionLoop++)
                     {
-                        Log.Trace($"Loop:{sequenceLoop + 1}", Common.LOG_CATEGORY);
+                        Log.Trace($"Loop:{actionLoop + 1}", Common.LOG_CATEGORY);
 
                         if (stepperSequence.ExecuteActionsInParallel)
                         {
-                            if (LogPerformanceSequence) Log.Trace($"Parallel Actions Loop:{sequenceLoop + 1}", Common.LOG_CATEGORY);
+                            if (LogPerformanceSequence) Log.Trace($"Parallel Actions Loop:{actionLoop + 1}", Common.LOG_CATEGORY);
 
                             await PlaySequenceActionsInParallel(stepperSequence);
                         }
                         else
                         {
-                            if (LogPerformanceSequence) Log.Trace($"Sequential Actions Loop:{sequenceLoop + 1}", Common.LOG_CATEGORY);
+                            if (LogPerformanceSequence) Log.Trace($"Sequential Actions Loop:{actionLoop + 1}", Common.LOG_CATEGORY);
 
                             await PlaySequenceActionsInSequence(stepperSequence);
                         }

@@ -9,6 +9,7 @@ using Phidgets.Events;
 using Prism.Events;
 
 using VNC.Phidget.Events;
+using VNC.Phidget.Players;
 
 using VNCPhidget21.Configuration;
 
@@ -233,33 +234,75 @@ namespace VNC.Phidget
             Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public async Task RunSequenceLoops(InterfaceKitSequence interfaceKitSequence)
+        public async Task RunActionLoops(InterfaceKitSequence interfaceKitSequence)
         {
             try
             {
                 Int64 startTicks = 0;
 
-                if (LogPerformanceSequence) Log.Trace("Enter", Common.LOG_CATEGORY);
-
+                if (LogPerformanceSequence) startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
 
                 if (interfaceKitSequence.Actions is not null)
                 {
-                    for (int sequenceLoop = 0; sequenceLoop < interfaceKitSequence.Loops; sequenceLoop++)
+                    for (int actionLoop = 0; actionLoop < interfaceKitSequence.ActionLoops; actionLoop++)
                     {
-                        Log.Trace($"Loop:{sequenceLoop + 1}", Common.LOG_CATEGORY);
+                        if (interfaceKitSequence.StartActionLoopSequences is not null)
+                        {
+                            PerformanceSequencePlayer player = PerformanceSequencePlayer.ActivePerformanceSequencePlayer;
+
+                            foreach (PerformanceSequence sequence in interfaceKitSequence.StartActionLoopSequences)
+                            {
+                                await player.ExecutePerformanceSequence(sequence);
+                            }
+                        }
 
                         if (interfaceKitSequence.ExecuteActionsInParallel)
                         {
-                            if (LogPerformanceSequence) Log.Trace($"Parallel Actions Loop:{sequenceLoop + 1}", Common.LOG_CATEGORY);
+                            if (LogPerformanceSequence) Log.Trace($"Parallel Actions Loop:{actionLoop + 1}", Common.LOG_CATEGORY);
 
-                            await PlaySequenceActionsInParallel(interfaceKitSequence);
+                            Parallel.ForEach(interfaceKitSequence.Actions, async action =>
+                            {
+                                await PerformAction(InterfaceKit.outputs, action, action.DigitalOutIndex);
+                            });
                         }
                         else
                         {
-                            if (LogPerformanceSequence) Log.Trace($"Sequential Actions Loop:{sequenceLoop + 1}", Common.LOG_CATEGORY);
+                            if (LogPerformanceSequence) Log.Trace($"Sequential Actions Loop:{actionLoop + 1}", Common.LOG_CATEGORY);
 
-                            await PlaySequenceActionsInSequence(interfaceKitSequence);
+                            foreach (InterfaceKitAction action in interfaceKitSequence.Actions)
+                            {
+                                await PerformAction(InterfaceKit.outputs, action, action.DigitalOutIndex);
+                            }
+
                         }
+
+                        if (interfaceKitSequence.ActionDuration is not null)
+                        {
+                            if (LogPerformanceSequence)
+                            {
+                                Log.Trace($"Zzzzz Action:>{interfaceKitSequence.ActionDuration}<", Common.LOG_CATEGORY);
+                            }
+                            Thread.Sleep((Int32)interfaceKitSequence.ActionDuration);
+                        }
+
+                        if (interfaceKitSequence.EndActionLoopSequences is not null)
+                        {
+                            PerformanceSequencePlayer player = new PerformanceSequencePlayer(EventAggregator);
+
+                            foreach (PerformanceSequence sequence in interfaceKitSequence.EndActionLoopSequences)
+                            {
+                                await player.ExecutePerformanceSequence(sequence);
+                            }
+                        }
+                    }
+
+                    if (interfaceKitSequence.SequenceDuration is not null)
+                    {
+                        if (LogPerformanceSequence)
+                        {
+                            Log.Trace($"Zzzzz Sequence:>{interfaceKitSequence.SequenceDuration}<", Common.LOG_CATEGORY);
+                        }
+                        Thread.Sleep((Int32)interfaceKitSequence.SequenceDuration);
                     }
                 }
 
@@ -293,7 +336,7 @@ namespace VNC.Phidget
 
             InterfaceKitDigitalOutputCollection ifkDigitalOutputs = InterfaceKit.outputs;
 
-            Parallel.ForEach(interfaceKitSequence.Actions, action =>
+            Parallel.ForEach(interfaceKitSequence.Actions, async action =>
             {
                 if (LogPerformanceSequence)
                 {
@@ -302,38 +345,40 @@ namespace VNC.Phidget
 
                 try
                 {
+                    // HACK(crhodes)
+                    // Can't this just be  await PerformAction(ifkDigitalOutputs, action, action.DigitalOutIndex);
                     switch (action.DigitalOutIndex)
                     {
                         case 0:
-                            PerformAction(ifkDigitalOutputs, action, 0);
+                            await PerformAction(ifkDigitalOutputs, action, 0);
                             break;
 
                         case 1:
-                            PerformAction(ifkDigitalOutputs, action, 1);
+                            await PerformAction(ifkDigitalOutputs, action, 1);
                             break;
 
                         case 2:
-                            PerformAction(ifkDigitalOutputs, action, 2);
+                            await PerformAction(ifkDigitalOutputs, action, 2);
                             break;
 
                         case 3:
-                            PerformAction(ifkDigitalOutputs, action, 30);
+                            await PerformAction(ifkDigitalOutputs, action, 3);
                             break;
 
                         case 4:
-                            PerformAction(ifkDigitalOutputs, action, 4);
+                            await PerformAction(ifkDigitalOutputs, action, 4);
                             break;
 
                         case 5:
-                            PerformAction(ifkDigitalOutputs, action, 50);
+                            await PerformAction(ifkDigitalOutputs, action, 5);
                             break;
 
                         case 6:
-                            PerformAction(ifkDigitalOutputs, action, 60);
+                            await PerformAction(ifkDigitalOutputs, action, 6);
                             break;
 
                         case 7:
-                            PerformAction(ifkDigitalOutputs, action, 7);
+                            await PerformAction(ifkDigitalOutputs, action, 7);
                             break;
                     }
                 }
@@ -365,38 +410,40 @@ namespace VNC.Phidget
 
                 try
                 {
+                    // HACK(crhodes)
+                    // Can't this just be  await PerformAction(ifkDigitalOutputs, action, action.DigitalOutIndex);
                     switch (action.DigitalOutIndex)
                     {
                         case 0:
-                            PerformAction(ifkDigitalOutputs, action, 0);
+                            await PerformAction(ifkDigitalOutputs, action, 0);
                             break;
 
                         case 1:
-                            PerformAction(ifkDigitalOutputs, action, 1);
+                            await PerformAction(ifkDigitalOutputs, action, 1);
                             break;
 
                         case 2:
-                            PerformAction(ifkDigitalOutputs, action, 2);
+                            await PerformAction(ifkDigitalOutputs, action, 2);
                             break;
 
                         case 3:
-                            PerformAction(ifkDigitalOutputs, action, 30);
+                            await PerformAction(ifkDigitalOutputs, action, 3);
                             break;
 
                         case 4:
-                            PerformAction(ifkDigitalOutputs, action, 4);
+                            await PerformAction(ifkDigitalOutputs, action, 4);
                             break;
 
                         case 5:
-                            PerformAction(ifkDigitalOutputs, action, 50);
+                            await PerformAction(ifkDigitalOutputs, action, 5);
                             break;
 
                         case 6:
-                            PerformAction(ifkDigitalOutputs, action, 60);
+                            await PerformAction(ifkDigitalOutputs, action, 6);
                             break;
 
                         case 7:
-                            PerformAction(ifkDigitalOutputs, action, 7);
+                            await PerformAction(ifkDigitalOutputs, action, 7);
                             break;
                     }
                 }
@@ -409,7 +456,7 @@ namespace VNC.Phidget
             if (LogPerformanceSequence) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void PerformAction(InterfaceKitDigitalOutputCollection ifkDigitalOutputs, InterfaceKitAction action, Int32 index)
+        private async Task PerformAction(InterfaceKitDigitalOutputCollection ifkDigitalOutputs, InterfaceKitAction action, Int32 index)
         {
             Int64 startTicks = 0;
 

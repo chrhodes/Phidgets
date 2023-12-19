@@ -1,8 +1,8 @@
 {
   "InterfaceKitSequences": [
     {
-      "SerialNumber": 48301,
-      "Name": "IK 001122-48301", 
+      "SerialNumber": 46049,
+      "Name": "IK 001122-46049", 
       "Description": "Blink 0,1,2 every 500 ms", 
       "Actions": [
         { "DigitalOutIndex": 0, "DigitalOut": true, "Duration": 500 },
@@ -14,8 +14,8 @@
       ]
     },
     {
-      "SerialNumber": 48301,
-      "Name": "IK 012-48301", 
+      "SerialNumber": 46049,
+      "Name": "IK 012-46049", 
       "Description": "Turn 0,1,2 on then off every 500 ms", 
       "Actions": [
         { "DigitalOutIndex": 0, "DigitalOut": true, "Duration": 500 },
@@ -27,8 +27,8 @@
       ]
     },
     {
-      "SerialNumber": 48301,
-      "Name": "IK DO0-48301", 
+      "SerialNumber": 46049,
+      "Name": "IK DO0-46049", 
       "Description": "Turn 0 on then off every 250 ms",
       "ActionLoops": 3,
       "Actions": [
@@ -37,8 +37,8 @@
       ]
     },
     {
-      "SerialNumber": 48301,
-      "Name": "IK DO1-48301", 
+      "SerialNumber": 46049,
+      "Name": "IK DO1-46049", 
       "Description": "Turn 1 on then off every 250 ms",
       "ActionLoops": 3,
       "Actions": [
@@ -47,8 +47,8 @@
       ]
     },
     {
-      "SerialNumber": 48301,
-      "Name": "IK DO2-48301", 
+      "SerialNumber": 46049,
+      "Name": "IK DO2-46049", 
       "Description": "Turn 2 on then off every 250 ms",
       "ActionLoops": 3,
       "Actions": [
@@ -57,8 +57,8 @@
       ]
     },
     {
-      "SerialNumber": 48301,
-      "Name": "IK DO3-48301", 
+      "SerialNumber": 46049,
+      "Name": "IK DO3-46049", 
       "Description": "Turn 3 on then off every 250 ms",
       "ActionLoops": 3,
       "Actions": [
@@ -67,8 +67,8 @@
       ]
     },
     {
-      "SerialNumber": 48301,
-      "Name": "IK DO4-48301", 
+      "SerialNumber": 46049,
+      "Name": "IK DO4-46049", 
       "Description": "Turn 4 on then off every 250 ms",
       "ActionLoops": 3,
       "Actions": [
@@ -77,8 +77,8 @@
       ]
     },
     {
-      "SerialNumber": 48301,
-      "Name": "IK DO5-48301", 
+      "SerialNumber": 46049,
+      "Name": "IK DO5-46049", 
       "Description": "Turn 5 on then off every 250 ms",
       "ActionLoops": 3,
       "Actions": [
@@ -87,8 +87,8 @@
       ]
     },
     {
-      "SerialNumber": 48301,
-      "Name": "IK DO6-48301", 
+      "SerialNumber": 46049,
+      "Name": "IK DO6-46049", 
       "Description": "Turn 6 on then off every 250 ms",
       "ActionLoops": 3,
       "Actions": [
@@ -97,8 +97,8 @@
       ]
     },
     {
-      "SerialNumber": 48301,
-      "Name": "IK DO7-48301", 
+      "SerialNumber": 46049,
+      "Name": "IK DO7-46049", 
       "Description": "Turn 7 on then off every 250 ms",
       "ActionLoops": 3,
       "Actions": [

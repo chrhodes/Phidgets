@@ -1,7 +1,8 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -9,16 +10,115 @@ using Prism.Events;
 
 using VNCPhidget21.Configuration;
 
-namespace VNC.Phidget
+namespace VNC.Phidget.Players
 {
+    // TODO(crhodes)
+    // Figure out how to make this singleton
+
     public class PerformanceSequencePlayer
     {
+        #region Constructors, Initialization, and Load
+
         public IEventAggregator EventAggregator { get; set; }
 
         public PerformanceSequencePlayer(IEventAggregator eventAggregator)
         {
+            Int64 startTicks = Log.CONSTRUCTOR($"Enter", Common.LOG_CATEGORY);
+
             EventAggregator = eventAggregator;
+
+            LoadAdvancedServoSequences();
+            LoadInterfaceKitSequences();
+            LoadStepperSequences();
+
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
+
+        public void LoadAdvancedServoSequences()
+        {
+            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+
+            AvailableAdvancedServoSequences.Clear();
+
+            foreach (string configFile in GetListOfAdvancedServoConfigFiles())
+            {
+                string jsonString = File.ReadAllText(configFile);
+
+                AdvancedServoSequenceConfig? sequenceConfig
+                    = JsonSerializer.Deserialize<AdvancedServoSequenceConfig>
+                    (jsonString, GetJsonSerializerOptions());
+
+                foreach (var sequence in sequenceConfig.AdvancedServoSequences.ToDictionary(k => k.Name, v => v))
+                {
+                    AvailableAdvancedServoSequences.Add(sequence.Key, sequence.Value);
+                }
+            }
+
+            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+        public void LoadInterfaceKitSequences()
+        {
+            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+
+            AvailableInterfaceKitSequences.Clear();
+
+            foreach (string configFile in GetListOfInterfaceKitConfigFiles())
+            {
+                string jsonString = File.ReadAllText(configFile);
+
+                InterfaceKitSequenceConfig? sequenceConfig
+                    = JsonSerializer.Deserialize<InterfaceKitSequenceConfig>
+                    (jsonString, GetJsonSerializerOptions());
+
+                foreach (var sequence in sequenceConfig.InterfaceKitSequences.ToDictionary(k => k.Name, v => v))
+                {
+                    AvailableInterfaceKitSequences.Add(sequence.Key, sequence.Value);
+                }
+            }
+
+            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public void LoadStepperSequences()
+        {
+            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+
+            AvailableStepperSequences.Clear();
+
+            foreach (string configFile in GetListOfStepperConfigFiles())
+            {
+                string jsonString = File.ReadAllText(configFile);
+
+                StepperSequenceConfig? sequenceConfig
+                    = JsonSerializer.Deserialize<StepperSequenceConfig>
+                    (jsonString, GetJsonSerializerOptions());
+
+                foreach (var sequence in sequenceConfig.StepperSequences.ToDictionary(k => k.Name, v => v))
+                {
+                    AvailableStepperSequences.Add(sequence.Key, sequence.Value);
+                }
+            }
+
+            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+
+
+        #endregion
+
+        #region Enums (None)
+
+
+        #endregion
+
+        #region Structures (None)
+
+
+        #endregion
+
+        #region Fields and Properties (None)
+
+        public static PerformanceSequencePlayer ActivePerformanceSequencePlayer { get; set; }
 
         public bool LogPerformanceSequence { get; set; }
         public bool LogPerformanceAction { get; set; }
@@ -36,19 +136,40 @@ namespace VNC.Phidget
         public bool LogOutputChangeEvents { get; set; }
         public bool LogSensorChangeEvents { get; set; }
 
-        //public Dictionary<SerialHost, PhidgetDevice> AvailablePhidgets = new Dictionary<SerialHost, PhidgetDevice>();
-        public Dictionary<Int32, PhidgetDevice> AvailablePhidgets = new Dictionary<Int32, PhidgetDevice>();
+        public Dictionary<int, PhidgetDevice> AvailablePhidgets = 
+            new Dictionary<int, PhidgetDevice>();
 
-        public Dictionary<string, Performance> AvailablePerformances { get; set; }
-        public Dictionary<string, AdvancedServoSequence> AvailableAdvancedServoSequences { get; set; }
-        public Dictionary<string, InterfaceKitSequence> AvailableInterfaceKitSequences { get; set; }
-        public Dictionary<string, StepperSequence> AvailableStepperSequences { get; set; }
+        public Dictionary<string, AdvancedServoSequence> AvailableAdvancedServoSequences { get; set; } =
+            new Dictionary<string, AdvancedServoSequence>();
+
+        public Dictionary<string, InterfaceKitSequence> AvailableInterfaceKitSequences { get; set; } = 
+            new Dictionary<string, InterfaceKitSequence>();
+
+        public Dictionary<string, StepperSequence> AvailableStepperSequences { get; set; } = 
+            new Dictionary<string, StepperSequence>();
 
         public AdvancedServoEx ActiveAdvancedServoHost { get; set; }
         public InterfaceKitEx ActiveInterfaceKitHost { get; set; }
         public StepperEx ActiveStepperHost { get; set; }
 
-        public async Task ExecutePerformanceSequenceLoops(PerformanceSequence performanceSequence)
+        #endregion
+
+        #region Event Handlers (None)
+
+
+        #endregion
+
+        #region Commands (None)
+
+        #endregion
+
+        #region Public Methods (None)
+
+
+
+
+
+        public async Task ExecutePerformanceSequence(PerformanceSequence performanceSequence)
         {
             PerformanceSequence nextPerformanceSequence = null;
 
@@ -57,11 +178,11 @@ namespace VNC.Phidget
                 if (LogPerformanceSequence)
                 {
                     Log.Trace($"Executing performanceSequence:>{performanceSequence?.Name}< type:>{performanceSequence?.SequenceType}<" +
-                        $" loops:>{performanceSequence?.Loops}< duration:>{performanceSequence?.Duration}<" +
+                        $" loops:>{performanceSequence?.SequenceLoops}< duration:>{performanceSequence?.Duration}<" +
                         $" closePhidget:>{performanceSequence?.ClosePhidget}<", Common.LOG_CATEGORY);
                 }
 
-                for (int sequenceLoop = 0; sequenceLoop < performanceSequence.Loops; sequenceLoop++)
+                for (int sequenceLoop = 0; sequenceLoop < performanceSequence.SequenceLoops; sequenceLoop++)
                 {
                     if (LogPerformanceSequence) Log.Trace($"Running PerformanceSequence Loop:{sequenceLoop + 1}", Common.LOG_CATEGORY);
                     // TODO(crhodes)
@@ -105,7 +226,7 @@ namespace VNC.Phidget
                     {
                         Log.Trace($"Zzzzz Sleeping:>{performanceSequence.Duration}<", Common.LOG_CATEGORY);
                     }
-                    Thread.Sleep((Int32)performanceSequence.Duration);
+                    Thread.Sleep((int)performanceSequence.Duration);
                 }
             }
             catch (Exception ex)
@@ -130,9 +251,9 @@ namespace VNC.Phidget
 
                 if (advancedServoSequence.SerialNumber is not null)
                 {
-                    phidgetHost = GetAdvancedServoHost((Int32)advancedServoSequence.SerialNumber);
+                    phidgetHost = GetAdvancedServoHost((int)advancedServoSequence.SerialNumber);
                 }
-                else if(ActiveAdvancedServoHost is not null)
+                else if (ActiveAdvancedServoHost is not null)
                 {
                     phidgetHost = ActiveAdvancedServoHost;
                 }
@@ -144,13 +265,21 @@ namespace VNC.Phidget
 
                 if (phidgetHost is not null)
                 {
-                    await phidgetHost.RunSequenceLoops(advancedServoSequence);
-
-                    if (advancedServoSequence.CallSequences is not null)
+                    if (advancedServoSequence.BeforeActionLoopSequences is not null)
                     {
-                        foreach (PerformanceSequence sequence in advancedServoSequence.CallSequences)
+                        foreach (PerformanceSequence sequence in advancedServoSequence.BeforeActionLoopSequences)
                         {
-                            ExecutePerformanceSequenceLoops(sequence);
+                            ExecutePerformanceSequence(sequence);
+                        }
+                    }
+
+                    await phidgetHost.RunActionLoops(advancedServoSequence);
+
+                    if (advancedServoSequence.AfterActionLoopSequences is not null)
+                    {
+                        foreach (PerformanceSequence sequence in advancedServoSequence.AfterActionLoopSequences)
+                        {
+                            ExecutePerformanceSequence(sequence);
                         }
                     }
 
@@ -177,7 +306,7 @@ namespace VNC.Phidget
 
                 if (interfaceKitSequence.SerialNumber is not null)
                 {
-                    phidgetHost = GetInterfaceKitHost((Int32)interfaceKitSequence.SerialNumber);
+                    phidgetHost = GetInterfaceKitHost((int)interfaceKitSequence.SerialNumber);
                 }
                 else if (ActiveInterfaceKitHost is not null)
                 {
@@ -191,13 +320,21 @@ namespace VNC.Phidget
 
                 if (phidgetHost is not null)
                 {
-                    await phidgetHost.RunSequenceLoops(interfaceKitSequence);
-
-                    if (interfaceKitSequence.CallSequences is not null)
+                    if (interfaceKitSequence.BeforeActionLoopSequences is not null)
                     {
-                        foreach (PerformanceSequence sequence in interfaceKitSequence.CallSequences)
+                        foreach (PerformanceSequence sequence in interfaceKitSequence.BeforeActionLoopSequences)
                         {
-                            ExecutePerformanceSequenceLoops(sequence);
+                            ExecutePerformanceSequence(sequence);
+                        }
+                    }
+
+                    await phidgetHost.RunActionLoops(interfaceKitSequence);
+
+                    if (interfaceKitSequence.AfterActionLoopSequences is not null)
+                    {
+                        foreach (PerformanceSequence sequence in interfaceKitSequence.AfterActionLoopSequences)
+                        {
+                            ExecutePerformanceSequence(sequence);
                         }
                     }
 
@@ -224,7 +361,7 @@ namespace VNC.Phidget
 
                 if (stepperSequence.SerialNumber is not null)
                 {
-                    phidgetHost = GetStepperHost((Int32)stepperSequence.SerialNumber);
+                    phidgetHost = GetStepperHost((int)stepperSequence.SerialNumber);
                 }
                 else if (ActiveInterfaceKitHost is not null)
                 {
@@ -238,13 +375,21 @@ namespace VNC.Phidget
 
                 if (phidgetHost is not null)
                 {
-                    await phidgetHost.RunSequenceLoops(stepperSequence);
-
-                    if (stepperSequence.CallSequences is not null)
+                    if (stepperSequence.BeforeActionLoopSequences is not null)
                     {
-                        foreach (PerformanceSequence sequence in stepperSequence.CallSequences)
+                        foreach (PerformanceSequence sequence in stepperSequence.BeforeActionLoopSequences)
                         {
-                            ExecutePerformanceSequenceLoops(sequence);
+                            ExecutePerformanceSequence(sequence);
+                        }
+                    }
+
+                    await phidgetHost.RunActionLoops(stepperSequence);
+
+                    if (stepperSequence.AfterActionLoopSequences is not null)
+                    {
+                        foreach (PerformanceSequence sequence in stepperSequence.AfterActionLoopSequences)
+                        {
+                            ExecutePerformanceSequence(sequence);
                         }
                     }
 
@@ -260,7 +405,7 @@ namespace VNC.Phidget
             return nextPerformanceSequence;
         }
 
-        private AdvancedServoEx GetAdvancedServoHost(Int32 serialNumber)
+        private AdvancedServoEx GetAdvancedServoHost(int serialNumber)
         {
             PhidgetDevice phidgetDevice = AvailablePhidgets[serialNumber];
 
@@ -309,7 +454,7 @@ namespace VNC.Phidget
             return advancedServoHost;
         }
 
-        private InterfaceKitEx GetInterfaceKitHost(Int32 serialNumber)
+        private InterfaceKitEx GetInterfaceKitHost(int serialNumber)
         {
             PhidgetDevice phidgetDevice = AvailablePhidgets[serialNumber];
 
@@ -331,7 +476,7 @@ namespace VNC.Phidget
                 phidgetDevice.PhidgetEx = new InterfaceKitEx(
                     phidgetDevice.IPAddress,
                     phidgetDevice.Port,
-                    serialNumber, 
+                    serialNumber,
                     true,
                     EventAggregator);
 
@@ -353,7 +498,7 @@ namespace VNC.Phidget
 
             return interfaceKitHost;
         }
-        private StepperEx GetStepperHost(Int32 serialNumber)
+        private StepperEx GetStepperHost(int serialNumber)
         {
             PhidgetDevice phidgetDevice = AvailablePhidgets[serialNumber];
 
@@ -396,6 +541,72 @@ namespace VNC.Phidget
 
             return stepperHost;
         }
+
+        #endregion
+
+        #region Protected Methods (None)
+
+
+        #endregion
+
+        #region Private Methods (None)
+        private JsonSerializerOptions GetJsonSerializerOptions()
+        {
+            var jsonOptions = new JsonSerializerOptions
+            {
+                ReadCommentHandling = JsonCommentHandling.Skip,
+                AllowTrailingCommas = true
+            };
+
+            return jsonOptions;
+        }
+
+        private IEnumerable<string> GetListOfAdvancedServoConfigFiles()
+        {
+            // TODO(crhodes)
+            // Read a directory and return files, perhaps with RegEx name match
+
+            List<string> files = new List<string>
+            {
+                @"AdvancedServoSequences\AdvancedServoSequenceConfig_99415.json",
+                @"AdvancedServoSequences\AdvancedServoSequenceConfig_Test.json",
+                @"AdvancedServoSequences\AdvancedServoSequenceConfig_99220_Skulls.json",
+            };
+
+            return files;
+        }
+
+        private IEnumerable<string> GetListOfInterfaceKitConfigFiles()
+        {
+            // TODO(crhodes)
+            // Read a directory and return files, perhaps with RegEx name match
+
+            List<string> files = new List<string>
+            {
+                @"InterfaceKitSequences\InterfaceKitSequenceConfig_46049.json",
+                @"InterfaceKitSequences\InterfaceKitSequenceConfig_48284.json",
+                @"InterfaceKitSequences\InterfaceKitSequenceConfig_48301.json",
+                @"InterfaceKitSequences\InterfaceKitSequenceConfig_124744.json",
+                @"InterfaceKitSequences\InterfaceKitSequenceConfig_251831.json"
+            };
+
+            return files;
+        }
+
+        private IEnumerable<string> GetListOfStepperConfigFiles()
+        {
+            // TODO(crhodes)
+            // Read a directory and return files, perhaps with RegEx name match
+
+            List<string> files = new List<string>
+            {
+                @"localhost\localhost_StepperSequenceConfig_1.json",
+            };
+
+            return files;
+        }
+
+        #endregion
 
     }
 }

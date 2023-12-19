@@ -29,9 +29,24 @@
         public string? UsageNotes { get; set; }
 
         /// <summary>
-        /// Number of loops of sequence Actions to execute
+        /// Number of loops of sequence to execute
         /// </summary>
-        public Int32 Loops { get; set; } = 1;
+        public Int32 SequenceLoops { get; set; } = 1;
+
+        /// <summary>
+        /// PerformanceSequence[] to call before executing Actions
+        /// </summary>
+        public PerformanceSequence[]? BeforeActionLoopSequences { get; set; }
+
+        /// <summary>
+        /// PerformanceSequence[] to call at start of each SequenceLoop
+        /// </summary>
+        public PerformanceSequence[]? StartActionLoopSequences { get; set; }
+
+        /// <summary>
+        /// Number of loops of sequence Actions[] to execute
+        /// </summary>
+        public Int32 ActionLoops { get; set; } = 1;
 
         /// <summary>
         /// Play Actions[] in Parallel or Sequentially (false)
@@ -39,18 +54,28 @@
         public Boolean ExecuteActionsInParallel { get; set; } = false;
 
         /// <summary>
-        /// Name of PerformanceSequence[] to call after executing Actions
+        /// Duration of Action[] in ms (sleep time after Actions completed)
+        /// </summary>
+        public Int32? ActionDuration { get; set; }
+
+        /// <summary>
+        /// PerformanceSequence[] to call at start of each SequenceLoop
+        /// </summary>
+        public PerformanceSequence[]? EndActionLoopSequences { get; set; }
+
+        /// <summary>
+        /// PerformanceSequence[] to call after executing Actions
         /// before calling NextSequence
         /// </summary>
-        public PerformanceSequence[]? CallSequences { get; set; }
+        public PerformanceSequence[]? AfterActionLoopSequences { get; set; }
 
         /// <summary>
-        /// Duration of Sequence in ms (sleep time after Actions and CallSequences completed)
+        /// Duration of Action[] in ms (sleep time after Actions completed)
         /// </summary>
-        public Int32? Duration { get; set; }
+        public Int32? SequenceDuration { get; set; }
 
         /// <summary>
-        /// Name of PerformanceSequence to invoke at end of sequence loops (optional)
+        /// PerformanceSequence to invoke at end of sequence loops (optional)
         /// none or null to stop
         /// </summary>
         public PerformanceSequence? NextSequence { get; set; }

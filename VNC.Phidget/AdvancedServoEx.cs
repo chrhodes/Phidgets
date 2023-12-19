@@ -10,6 +10,7 @@ using Phidgets.Events;
 using Prism.Events;
 
 using VNC.Phidget.Events;
+using VNC.Phidget.Players;
 
 using VNCPhidget21.Configuration;
 
@@ -277,7 +278,7 @@ namespace VNC.Phidget
             Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public async Task RunSequenceLoops(AdvancedServoSequence advancedServoSequence)
+        public async Task RunActionLoops(AdvancedServoSequence advancedServoSequence)
         {
             try
             {
@@ -287,11 +288,21 @@ namespace VNC.Phidget
 
                 if (advancedServoSequence.Actions is not null)
                 {
-                    for (int sequenceLoop = 0; sequenceLoop < advancedServoSequence.Loops; sequenceLoop++)
+                    for (int actionLoop = 0; actionLoop < advancedServoSequence.ActionLoops; actionLoop++)
                     {
+                        if (advancedServoSequence.StartActionLoopSequences is not null)
+                        {
+                            PerformanceSequencePlayer player = PerformanceSequencePlayer.ActivePerformanceSequencePlayer;
+
+                            foreach (PerformanceSequence sequence in advancedServoSequence.StartActionLoopSequences)
+                            {
+                                await player.ExecutePerformanceSequence(sequence);
+                            }
+                        }
+
                         if (advancedServoSequence.ExecuteActionsInParallel)
                         {
-                            if (LogPerformanceSequence) Log.Trace($"Parallel Actions Loop:{sequenceLoop + 1}", Common.LOG_CATEGORY);
+                            if (LogPerformanceSequence) Log.Trace($"Parallel Actions Loop:{actionLoop + 1}", Common.LOG_CATEGORY);
 
                             Parallel.ForEach(advancedServoSequence.Actions, async action =>
                             {
@@ -300,23 +311,42 @@ namespace VNC.Phidget
                         }
                         else
                         {
-                            if (LogPerformanceSequence) Log.Trace($"Sequential Actions Loop:{sequenceLoop + 1}", Common.LOG_CATEGORY);
+                            if (LogPerformanceSequence) Log.Trace($"Sequential Actions Loop:{actionLoop + 1}", Common.LOG_CATEGORY);
 
                             foreach (AdvancedServoServoAction action in advancedServoSequence.Actions)
                             {
                                 await PerformAction(action);
                             }
                         }
-                    }
-                }
 
-                if (advancedServoSequence.Duration is not null)
-                {
-                    if (LogPerformanceSequence)
-                    {
-                        Log.Trace($"Zzzzz Sleeping:>{advancedServoSequence.Duration}<", Common.LOG_CATEGORY);
+                        if (advancedServoSequence.ActionDuration is not null)
+                        {
+                            if (LogPerformanceSequence)
+                            {
+                                Log.Trace($"Zzzzz Action:>{advancedServoSequence.ActionDuration}<", Common.LOG_CATEGORY);
+                            }
+                            Thread.Sleep((Int32)advancedServoSequence.ActionDuration);
+                        }
+
+                        if (advancedServoSequence.EndActionLoopSequences is not null)
+                        {
+                            PerformanceSequencePlayer player = new PerformanceSequencePlayer(EventAggregator);
+
+                            foreach (PerformanceSequence sequence in advancedServoSequence.EndActionLoopSequences)
+                            {
+                                await player.ExecutePerformanceSequence(sequence);
+                            }
+                        }
                     }
-                    Thread.Sleep((Int32)advancedServoSequence.Duration);
+
+                    if (advancedServoSequence.SequenceDuration is not null)
+                    {
+                        if (LogPerformanceSequence)
+                        {
+                            Log.Trace($"Zzzzz Sequence:>{advancedServoSequence.SequenceDuration}<", Common.LOG_CATEGORY);
+                        }
+                        Thread.Sleep((Int32)advancedServoSequence.SequenceDuration);
+                    }
                 }
 
                 if (LogPerformanceSequence) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
@@ -866,13 +896,13 @@ namespace VNC.Phidget
             }   
         }
 
-        private void TriggerSequence(SequenceEventArgs args)
+        private async void TriggerSequence(SequenceEventArgs args)
         {
             Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
             var advancedServoSequence = args.AdvancedServoSequence;
 
-            RunSequenceLoops(advancedServoSequence);
+            await RunActionLoops(advancedServoSequence);
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }

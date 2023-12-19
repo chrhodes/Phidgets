@@ -10,7 +10,18 @@
         /// <summary>
         /// Description of Sequence
         /// </summary>
-        public string? Description { get; set; } = "PERFORMANCE DESCRIPTION";
+        public string? Description { get; set; }
+
+        /// <summary>
+        /// Name of Performance[] to call before executing PerformanceSequences
+        /// before calling NextSequence
+        /// </summary>
+        public Performance[]? BeforePerformanceLoopPerformances { get; set; }
+
+        /// <summary>
+        /// Number of loops of PerformanceSequences[]
+        /// </summary>
+        public Int32 PerformanceLoops { get; set; } = 1;
 
         /// <summary>
         /// Play PerformanceSequences in Parallel or Sequential (false)
@@ -20,20 +31,15 @@
         public PerformanceSequence[]? PerformanceSequences { get; set; }
 
         /// <summary>
-        /// Name of Performance[] to call after executing PerformanceSequences
-        /// before calling NextSequence
-        /// </summary>
-        public Performance[]? CallPerformances { get; set; }
-
-        /// <summary>
         /// Duration in ms of sleep time after PerformanceSequences[] completed)
         /// </summary>
         public Int32? Duration { get; set; }
 
         /// <summary>
-        /// Number of loops of Performance
+        /// Name of Performance[] to call after executing PerformanceSequences
+        /// before calling NextSequence
         /// </summary>
-        public Int32 Loops { get; set; } = 1;
+        public Performance[]? AfterPerformanceLoopPerformances { get; set; }
 
         /// <summary>
         /// Performance to invoke at end of Loops of PerformanceSequences (optional)

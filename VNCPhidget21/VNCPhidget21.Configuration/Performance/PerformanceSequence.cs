@@ -18,7 +18,7 @@ namespace VNCPhidget21.Configuration
         /// <summary>
         /// Number of loops of Sequence
         /// </summary>
-        public Int32 Loops { get; set; } = 1;
+        public Int32 SequenceLoops { get; set; } = 1;
 
         /// <summary>
         /// Duration of Sequence in ms (sleep time after Loops completed)

@@ -85,15 +85,6 @@
       <None Update="Resources\json\hostconfig.json">
         <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       </None>
-      <None Update="Resources\json\localhost\localhost_AdvancedServoSequenceConfig_1.json">
-        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      </None>
-      <None Update="Resources\json\localhost\localhost_AdvancedServoSequence_Skulls.json">
-        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      </None>
-      <None Update="Resources\json\localhost\localhost_InterfaceKitSequenceConfig_1.json">
-        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      </None>
       <None Update="Resources\json\localhost\localhost_StepperSequenceConfig_1.json">
         <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       </None>
@@ -109,54 +100,22 @@
       <None Update="Resources\json\Performances\PerformanceConfig_Skulls.json">
         <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       </None>
-      <None Update="Resources\json\psbc11\psbc11_AdvancedServoSequenceConfig_1.json">
-        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      </None>
-      <None Update="Resources\json\psbc11\psbc11_AdvancedServoSequence_Skulls.json">
-        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      </None>
-      <None Update="Resources\json\psbc11\psbc11_InterfaceKitSequenceConfig_1.json">
-        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      </None>
-      <None Update="Resources\json\psbc11\psbc11_StepperSequenceConfig_1.json">
-        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      </None>
       <None Update="Resources\json\AdvancedServoSequences\AdvancedServoSequenceConfig_99415.json">
-        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      </None>
-      <None Update="Resources\json\psbc21\psbc21_AdvancedServoSequence_Skulls.json">
         <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       </None>
       <None Update="Resources\json\InterfaceKitSequences\InterfaceKitSequenceConfig_48301.json">
         <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       </None>
-      <None Update="Resources\json\psbc21\psbc21_StepperSequenceConfig_1.json">
+      <None Update="Resources\json\AdvancedServoSequences\AdvancedServoSequenceConfig_99220_Skulls.json">
         <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       </None>
-      <None Update="Resources\json\psbc22\psbc22_AdvancedServoSequenceConfig_1.json">
-        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      </None>
-      <None Update="Resources\json\psbc22\psbc22_AdvancedServoSequence_Skulls.json">
-        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      </None>
-      <None Update="Resources\json\psbc22\psbc22_InterfaceKitSequenceConfig_1.json">
-        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      </None>
-      <None Update="Resources\json\psbc22\psbc22_StepperSequenceConfig_1.json">
-        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      </None>
-      <None Update="Resources\json\psbc23\psbc23_AdvancedServoSequenceConfig_1.json">
-        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      </None>
-      <None Update="Resources\json\psbc23\psbc23_AdvancedServoSequence_Skulls.json">
-        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      </None>
-      <None Update="Resources\json\psbc23\psbc23_InterfaceKitSequenceConfig_1.json">
-        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      </None>
-      <None Update="Resources\json\psbc23\psbc23_StepperSequenceConfig_1.json">
-        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Resources\json\psbc11\" />
+      <Folder Include="Resources\json\psbc21\" />
+      <Folder Include="Resources\json\psbc22\" />
+      <Folder Include="Resources\json\psbc23\" />
     </ItemGroup>
 
 </Project>

@@ -1,19 +1,12 @@
 {
-  "Name": "PerformanceConfig NAME",
-  "Description": "PerformanceConfig DESCRIPTION",
+  "Name": "PerformanceConfig_3",
+  "Description": "Explore Pairs in Sequence and in Parallel",
   "Performances": [
     //
-    // psbc21_AS Play All Performances
+    // AS Play All Performances
     //
-    { 
-        "Name": "Disengage All Servos and Close Phidget",
-        "Description": "End the Show2",
-        "PerformanceSequences": [
-            { "Name": "DisEngage All Servos", "SequenceType": "AS" }
-        ]
-    },
     {
-      "Name": "psbc21_AS Play All Performances A",
+      "Name": "AS Play All Performances A",
       "Description": "Play All the Performances Acceleration(6000) VelocityLimit(3125)",
       "Loops": 1,
       "PlayInParallel": false,
@@ -40,7 +33,7 @@
       }
     },
     {
-      "Name": "psbc21_AS Play All Performances B",
+      "Name": "AS Play All Performances B",
       "Description": "Play All the Performances Acceleration(250) VelocityLimit(125)",
       "Loops": 1,
       "PlayInParallel": false,
@@ -67,7 +60,7 @@
       }
     },
     {
-      "Name": "psbc21_AS Play All Performances C",
+      "Name": "AS Play All Performances C",
       "Description": "Play All the Performances Acceleration(50) VelocityLimit(25)",
       "Loops": 1,
       "PlayInParallel": false,
@@ -94,10 +87,10 @@
       }
     },
     //
-    // psbc21_AS Parallel All
+    // AS Parallel All
     //
     {
-      "Name": "psbc21_AS Parallel All",
+      "Name": "AS Parallel All",
       "Description": "",
       "Loops": 1,
       "PlayInParallel": false,
@@ -118,10 +111,10 @@
       }
     },
     //
-    // psbc21_AS Parallel Pairs 1
+    // AS Parallel Pairs 1
     //
     {
-      "Name": "psbc21_AS Parallel Pairs 1",
+      "Name": "AS Parallel Pairs 1",
       "Description": "",
       "Loops": 1,
       "PlayInParallel": false,
@@ -142,10 +135,10 @@
       }
     },
     //
-    // psbc21_AS Parallel Pairs 2
+    // AS Parallel Pairs 2
     //
     {
-      "Name": "psbc21_AS Parallel Pairs 2",
+      "Name": "AS Parallel Pairs 2",
       "Description": "",
       "Loops": 1,
       "PlayInParallel": false,
@@ -166,10 +159,10 @@
       }
     },
     //
-    // psbc21_AS Parallel Pairs 3
+    // AS Parallel Pairs 3
     //
     {
-      "Name": "psbc21_AS Parallel Pairs 3",
+      "Name": "AS Parallel Pairs 3",
       "Description": "",
       "Loops": 1,
       "PlayInParallel": false,
