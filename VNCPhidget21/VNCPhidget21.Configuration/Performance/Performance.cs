@@ -1,4 +1,6 @@
-﻿namespace VNCPhidget21.Configuration
+﻿using System;
+
+namespace VNCPhidget21.Configuration
 {
     public class Performance
     {
