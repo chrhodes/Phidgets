@@ -3,9 +3,9 @@
 
     public class PhidgetDevice
     {
-        public PhidgetDevice()
-        {
-        }
+        //public PhidgetDevice()
+        //{
+        //}
 
         public PhidgetDevice(string ipAddress, int port, Phidgets.Phidget.PhidgetClass phidgetClass, int serialNumber)
         {
@@ -27,6 +27,5 @@
 
         public PhidgetEx PhidgetEx {  get; set; }
     }
-
 }
 

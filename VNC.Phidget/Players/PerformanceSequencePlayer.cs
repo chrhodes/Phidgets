@@ -51,7 +51,7 @@ namespace VNC.Phidget.Players
         public static PerformanceSequencePlayer ActivePerformanceSequencePlayer { get; set; }
 
         public bool LogPerformanceSequence { get; set; }
-        public bool LogPerformanceAction { get; set; }
+        public bool LogSequenceAction { get; set; }
         public bool LogActionVerification { get; set; }
 
         // AdvancedServo events
@@ -357,7 +357,7 @@ namespace VNC.Phidget.Players
                 advancedServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
 
                 advancedServoHost.LogPerformanceSequence = LogPerformanceSequence;
-                advancedServoHost.LogPerformanceAction = LogPerformanceAction;
+                advancedServoHost.LogSequenceAction = LogSequenceAction;
                 advancedServoHost.LogActionVerification = LogActionVerification;
             }
             else
@@ -377,7 +377,7 @@ namespace VNC.Phidget.Players
                 advancedServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
 
                 advancedServoHost.LogPerformanceSequence = LogPerformanceSequence;
-                advancedServoHost.LogPerformanceAction = LogPerformanceAction;
+                advancedServoHost.LogSequenceAction = LogSequenceAction;
                 advancedServoHost.LogActionVerification = LogActionVerification;
 
                 advancedServoHost.Open(Common.PhidgetOpenTimeout);
@@ -406,7 +406,7 @@ namespace VNC.Phidget.Players
                 interfaceKitHost.LogSensorChangeEvents = LogSensorChangeEvents;
 
                 interfaceKitHost.LogPerformanceSequence = LogPerformanceSequence;
-                interfaceKitHost.LogPerformanceAction = LogPerformanceAction;
+                interfaceKitHost.LogSequenceAction = LogSequenceAction;
             }
             else
             {
@@ -424,7 +424,7 @@ namespace VNC.Phidget.Players
                 interfaceKitHost.LogSensorChangeEvents = LogSensorChangeEvents;
 
                 interfaceKitHost.LogPerformanceSequence = LogPerformanceSequence;
-                interfaceKitHost.LogPerformanceAction = LogPerformanceAction;
+                interfaceKitHost.LogSequenceAction = LogSequenceAction;
 
                 // TODO(crhodes)
                 // Should we do open somewhere else?
@@ -450,7 +450,7 @@ namespace VNC.Phidget.Players
                 //stepperHost.LogOutputChangeEvents = LogOutputChangeEvents;
                 //stepperHost.LogSensorChangeEvents = LogSensorChangeEvents;
 
-                //stepperHost.LogPerformanceAction = LogPerformanceAction;
+                //stepperHost.LogSequenceAction = LogSequenceAction;
 
             }
             else
@@ -467,7 +467,7 @@ namespace VNC.Phidget.Players
                 //stepperHost.LogOutputChangeEvents = LogOutputChangeEvents;
                 //stepperHost.LogSensorChangeEvents = LogSensorChangeEvents;
 
-                //stepperHost.LogPerformanceAction = LogPerformanceAction;
+                //stepperHost.LogSequenceAction = LogSequenceAction;
 
                 // TODO(crhodes)
                 // Should we do open somewhere else?

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -41,8 +39,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-
-
         private void InitializeViewModel()
         {
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
@@ -70,16 +66,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             PlayInterfaceKitSequenceCommand = new DelegateCommand(PlayInterfaceKitSequence, PlayInterfaceKitSequenceCanExecute);
 
-            HostConfigFileName = "hostconfig.json";
-
             ActivePerformancePlayer = GetPerformancePlayer();
 
             Hosts = PerformanceLibrary.Hosts.ToList();
 
             Performances = PerformanceLibrary.AvailablePerformances.Values.ToList();
-
-            ActivePerformanceSequencePlayer = GetPerformanceSequencePlayer();
-            ActivePerformancePlayer.PerformanceSequencePlayer = ActivePerformanceSequencePlayer;
 
             AdvancedServoSequences = PerformanceLibrary.AvailableAdvancedServoSequences.Values.ToList();
             InterfaceKitSequences = PerformanceLibrary.AvailableInterfaceKitSequences.Values.ToList();
@@ -107,20 +98,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        //private string _title = "VNCPhidgets21Explorer - Main";
-
-        //public string Title
-        //{
-        //    get => _title;
-        //    set
-        //    {
-        //        if (_title == value)
-        //            return;
-        //        _title = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
         private string _message = "Initial Message";
 
         public string Message
@@ -144,18 +121,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_repeats == value)
                     return;
                 _repeats = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _hostConfigFileName;
-        public string HostConfigFileName
-        {
-            get => _hostConfigFileName;
-            set
-            {
-                if (_hostConfigFileName == value) return;
-                _hostConfigFileName = value;
                 OnPropertyChanged();
             }
         }
@@ -211,7 +176,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
         private bool _logPerformanceAction = false;
-        public bool LogPerformanceAction
+        public bool LogSequenceAction
         {
             get => _logPerformanceAction;
             set
@@ -239,19 +204,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         #region Performances
 
         public string PerformanceFileNameToolTip { get; set; } = "DoubleClick to select new file";
-
-        //private VNCPhidgetConfig.PerformanceConfig _performanceConfig;
-        //public VNCPhidgetConfig.PerformanceConfig PerformanceConfig
-        //{
-        //    get => _performanceConfig;
-        //    set
-        //    {
-        //        if (_performanceConfig == value)
-        //            return;
-        //        _performanceConfig = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
 
         private PerformancePlayer ActivePerformancePlayer { get; set; }
         private PerformanceLibrary PerformanceLibrary { get; set; } = new PerformanceLibrary();
@@ -469,31 +421,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        //private IEnumerable<string> _interfaceKitSequenceConfigFiles;
-        //public IEnumerable<string> InterfaceKitSequenceConfigFiles
-        //{
-        //    get => _interfaceKitSequenceConfigFiles;
-        //    set
-        //    {
-        //        _interfaceKitSequenceConfigFiles = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private string _interfaceKitSequenceConfigFileName;
-        //public string InterfaceKitSequenceConfigFileName
-        //{
-        //    get => _interfaceKitSequenceConfigFileName;
-        //    set
-        //    {
-        //        if (_interfaceKitSequenceConfigFileName == value) return;
-        //        _interfaceKitSequenceConfigFileName = value;
-        //        OnPropertyChanged();
-
-        //        LoadInterfaceKitConfig();
-        //    }
-        //}
-
         private IEnumerable<VNCPhidgetConfig.InterfaceKitSequence> _interfaceKitSequences;
         public IEnumerable<VNCPhidgetConfig.InterfaceKitSequence> InterfaceKitSequences
         {
@@ -520,17 +447,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        //private Dictionary<string, VNCPhidgetConfig.InterfaceKitSequence> _availableInterfaceKitSequences;
-        //public Dictionary<string, VNCPhidgetConfig.InterfaceKitSequence> AvailableInterfaceKitSequences
-        //{
-        //    get => _availableInterfaceKitSequences;
-        //    set
-        //    {
-        //        _availableInterfaceKitSequences = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
         private List<VNCPhidgetConfig.InterfaceKitSequence> _selectedInterfaceKitSequences;
         public List<VNCPhidgetConfig.InterfaceKitSequence> SelectedInterfaceKitSequences
         {
@@ -553,30 +469,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Stepper
 
-        //private IEnumerable<string> _stepperSequenceConfigFiles;
-        //public IEnumerable<string> StepperSequenceConfigFiles
-        //{
-        //    get => _stepperSequenceConfigFiles;
-        //    set
-        //    {
-        //        _stepperSequenceConfigFiles = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private string _stepperSequenceConfigFileName;
-        //public string StepperSequenceConfigFileName
-        //{
-        //    get => _stepperSequenceConfigFileName;
-        //    set
-        //    {
-        //        if (_stepperSequenceConfigFileName == value) return;
-        //        _stepperSequenceConfigFileName = value;
-        //        OnPropertyChanged();
-
-        //        LoadStepperConfig();
-        //    }
-        //}
 
         private IEnumerable<VNCPhidgetConfig.StepperSequence> _stepperSequences;
         public IEnumerable<VNCPhidgetConfig.StepperSequence> StepperSequences
@@ -681,44 +573,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             phidgetManager.close();
 
-            //InterfaceKitEx ifkEx21 = new InterfaceKitEx("192.168.150.21", 5001, sbc21SerialNumber, embedded: true, EventAggregator);
-
-            //ifkEx21.Open();
-
-            ////ifk.Attach += Ifk_Attach;
-            ////ifk.Detach += Ifk_Detach;
-            ////ifk.Error += Ifk_Error;
-            ////ifk.InputChange += Ifk_InputChange;
-
-            //ifkEx21.InterfaceKit.OutputChange += Ifk_OutputChange;
-            ////ifkEx.OutputChange += Ifk_OutputChange;
-
-            ////ifk.SensorChange += Ifk_SensorChange;
-            ////ifk.ServerConnect += Ifk_ServerConnect;
-            ////ifk.ServerDisconnect += Ifk_ServerDisconnect;
-
-            ////ifk.open(serialNumber, hostName, port);
-            ////ifk.waitForAttachment();
-
-            //InterfaceKitDigitalOutputCollection ifkdoc = ifkEx21.InterfaceKit.outputs;
-            ////InterfaceKitDigitalOutputCollection ifkdoc = ifkEx.outputs;
-
-            //await Task.Run(() =>
-            //{
-            //    Parallel.Invoke(() =>
-            //    {
-            //        for (int i = 0; i < 5; i++)
-            //        {
-            //            ifkdoc[0] = true;
-            //            Thread.Sleep(500);
-            //            ifkdoc[0] = false;
-            //            Thread.Sleep(500);
-            //        }
-            //    });
-            //});
-
-            //ifkEx21.Close();
-
             Log.Info("End", Common.LOG_CATEGORY, startTicks);
         }
 
@@ -786,7 +640,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             Log.Info("End", Common.LOG_CATEGORY, startTicks);
         }
-
 
         #region Reload Config Files
 
@@ -891,6 +744,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Do something amazing.
             Message = "Cool, you called PlayPerformance";
 
+            // TODO(crhodes)
+            // This has sideaffect of setting ActivePerformancePlayer.
+            // Think through whether this make sense.
+
+            PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
+
             foreach (VNCPhidgetConfig.Performance performance in SelectedPerformances)
             {
                 if (LogPerformance)
@@ -915,27 +774,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 //}
 
                 await ActivePerformancePlayer.RunPerformanceLoops(nextPerformance);
-
-                //foreach (VNCPhidgetConfig.Performance callPerformance in performance.CallPerformances)
-                //{
-                //    if (AvailablePerformances.ContainsKey(callPerformance.Name ?? ""))
-                //    {
-                //        nextPerformance = AvailablePerformances[callPerformance.Name];
-
-                //        await performancePlayer.RunPerformanceLoops(nextPerformance);
-
-                //        // TODO(crhodes)
-                //        // Should we process Next Performance if exists.  Recursive implications need to be considered.
-                //        // May have to detect loops.
-
-                //        nextPerformance = nextPerformance?.NextPerformance;
-                //    }
-                //    else
-                //    {
-                //        Log.Error($"Cannot find performance:>{nextPerformance.Name}<", Common.LOG_CATEGORY);
-                //        nextPerformance = null;
-                //    }
-                //}
 
                 nextPerformance = nextPerformance?.NextPerformance;
 
@@ -1037,7 +875,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             Message = "Cool, you called PlayAdvancedServoSequence";
 
-            //PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
+            // TODO(crhodes)
+            // This has sideaffect of setting ActivePerformancePlayer.
+            // Think through whether this make sense.
+
+            PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
 
             foreach (VNCPhidgetConfig.AdvancedServoSequence sequence in SelectedAdvancedServoSequences)
             {
@@ -1149,7 +991,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Do something amazing.
             Message = "Cool, you called EngageAndCenter";
 
-            //PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
+            // TODO(crhodes)
+            // This has sideaffect of setting ActivePerformancePlayer.
+            // Think through whether this make sense.
+
+            PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
 
             VNCPhidgetConfig.PerformanceSequence? advancedServoSequence = 
                 new VNCPhidgetConfig.PerformanceSequence
@@ -1219,7 +1065,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Do something amazing.
             Message = "Cool, you called SetMotionParameters";
 
-            //PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
+            // TODO(crhodes)
+            // This has sideaffect of setting ActivePerformancePlayer.
+            // Think through whether this make sense.
+
+            PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
 
             VNCPhidgetConfig.PerformanceSequence? advancedServoSequence = null;
 
@@ -1245,7 +1095,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         };
                     break;
             }
-
 
             await ActivePerformanceSequencePlayer.ExecutePerformanceSequence(advancedServoSequence);
 
@@ -1278,7 +1127,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Do something amazing.
             Message = $"Cool, you called ResetLimits";
 
-            //PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
+            // TODO(crhodes)
+            // This has sideaffect of setting ActivePerformancePlayer.
+            // Think through whether this make sense.
+
+            PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
 
             VNCPhidgetConfig.PerformanceSequence? advancedServoSequence =
                 new VNCPhidgetConfig.PerformanceSequence
@@ -1318,7 +1171,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Do something amazing.
             Message = $"Cool, you called RelativeAcceleration {relativeAcceleration}";
 
-            //PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
+            // TODO(crhodes)
+            // This has sideaffect of setting ActivePerformancePlayer.
+            // Think through whether this make sense.
+
+            PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
 
             VNCPhidgetConfig.AdvancedServoSequence advancedServoSequence = new VNCPhidgetConfig.AdvancedServoSequence
             {
@@ -1375,7 +1232,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Do something amazing.
             Message = $"Cool, you called RelativeVelocityLimit {relativeVelocityLimit}";
 
-            //PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
+            // TODO(crhodes)
+            // This has sideaffect of setting ActivePerformancePlayer.
+            // Think through whether this make sense.
+
+            PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
 
             VNCPhidgetConfig.AdvancedServoSequence advancedServoSequence = new VNCPhidgetConfig.AdvancedServoSequence
             { 
@@ -1395,29 +1256,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             await ActivePerformanceSequencePlayer.ActiveAdvancedServoHost.RunActionLoops(advancedServoSequence);
 
-            //VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence =
-            //     new PerformanceSequence
-            //     {
-            //         Name = $"VelocityLimit {relativeVelocityLimit}",
-            //         SequenceType = "AS"
-            //     };
-
-            //await ExecutePerformanceSequence(nextPerformanceSequence);
-
-            // Uncomment this if you are telling someone else to handle this
-
-            // Common.EventAggregator.GetEvent<SetMotionParametersEvent>().Publish();
-
-            // May want EventArgs
-
-            //  EventAggregator.GetEvent<SetMotionParametersEvent>().Publish(
-            //      new SetMotionParametersEventArgs()
-            //      {
-            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-            //            Process = _contextMainViewModel.Context.SelectedProcess
-            //      });
-
-            //Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -1450,12 +1288,16 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             Message = "Cool, you called PlayInterfaceKitSequence";
 
-            //PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
+            // TODO(crhodes)
+            // This has sideaffect of setting ActivePerformancePlayer.
+            // Think through whether this make sense.
+
+            PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
 
             //var runAllThese = SelectedInterfaceKitSequences;
             //var allSequences = AvailableInterfaceKitSequences;
 
-            foreach (VNCPhidgetConfig.InterfaceKitSequence sequence in SelectedInterfaceKitSequences)
+            foreach (InterfaceKitSequence sequence in SelectedInterfaceKitSequences)
             {
                 if (LogPerformanceSequence) Log.Trace($"Playing sequence:{sequence.Name}", Common.LOG_CATEGORY);
 
@@ -1463,8 +1305,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     //var nextSequence = sequence;
 
-                    VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence = 
-                        new VNCPhidgetConfig.PerformanceSequence
+                    PerformanceSequence? nextPerformanceSequence = 
+                        new PerformanceSequence
                         {
                             Name = sequence.Name,
                             SequenceType = "IK",
@@ -1519,27 +1361,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        //private InterfaceKitEx OpenInterfaceKitHost(VNCPhidgetConfig.Host host)
-        //{
-        //    InterfaceKitEx interfaceKitHost;
-
-        //    interfaceKitHost = new InterfaceKitEx(
-        //        host.IPAddress,
-        //        host.Port,
-        //        host.InterfaceKits[0].SerialNumber, true,
-        //        EventAggregator);
-
-        //    interfaceKitHost.LogInputChangeEvents = LogInputChangeEvents;
-        //    interfaceKitHost.LogOutputChangeEvents = LogOutputChangeEvents;
-        //    interfaceKitHost.LogSensorChangeEvents = LogSensorChangeEvents;
-
-        //    interfaceKitHost.LogPerformanceAction = LogPerformanceAction;
-
-        //    interfaceKitHost.Open();
-
-        //    return interfaceKitHost;
-        //}
-
         // If using CommandParameter, figure out TYPE and fix above
         //public bool PlayPerformanceCanExecute(TYPE value)
         public bool PlayInterfaceKitSequenceCanExecute()
@@ -1593,15 +1414,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 ActivePerformanceSequencePlayer = new PerformanceSequencePlayer(EventAggregator);
             }
 
-            //ActivePerformanceSequencePlayer.AvailablePhidgets = PhidgetLibrary.AvailablePhidgets;
-
-            //ActivePerformanceSequencePlayer.AvailablePerformances = AvailablePerformances;
-            //ActivePerformanceSequencePlayer.AvailableAdvancedServoSequences = AvailableAdvancedServoSequences;
-            //ActivePerformanceSequencePlayer.AvailableInterfaceKitSequences = AvailableInterfaceKitSequences;
-            //ActivePerformanceSequencePlayer.AvailableStepperSequences = AvailableStepperSequences;
-
             ActivePerformanceSequencePlayer.LogPerformanceSequence = LogPerformanceSequence;
-            ActivePerformanceSequencePlayer.LogPerformanceAction = LogPerformanceAction;
+            ActivePerformanceSequencePlayer.LogSequenceAction = LogSequenceAction;
             ActivePerformanceSequencePlayer.LogActionVerification = LogActionVerification;
 
             ActivePerformanceSequencePlayer.LogCurrentChangeEvents = LogCurrentChangeEvents;
@@ -1680,50 +1494,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        //private void InterfaceKitParty(Int32 serialNumber, string hostName, Int32 port, Int32 sleep, Int32 loops)
-        //{
-        //    try
-        //    {
-        //        Log.Debug($"InterfaceKitParty {hostName},{port} {serialNumber} sleep:{sleep} loops:{loops}", Common.LOG_CATEGORY);
-
-        //        VNC.Phidget.InterfaceKitEx ifkEx = new VNC.Phidget.InterfaceKitEx(hostName, port, serialNumber, embedded: true, EventAggregator);
-
-        //        ifkEx.Open();
-
-        //        //ifk.Attach += Ifk_Attach;
-        //        //ifk.Detach += Ifk_Detach;
-        //        //ifk.Error += Ifk_Error;
-        //        //ifk.InputChange += Ifk_InputChange;
-
-        //        ifkEx.InterfaceKit.OutputChange += Ifk_OutputChange;
-        //        //ifkEx.OutputChange += Ifk_OutputChange;
-
-        //        //ifk.SensorChange += Ifk_SensorChange;
-        //        //ifk.ServerConnect += Ifk_ServerConnect;
-        //        //ifk.ServerDisconnect += Ifk_ServerDisconnect;
-
-        //        //ifk.open(serialNumber, hostName, port);
-        //        //ifk.waitForAttachment();
-
-        //        InterfaceKitDigitalOutputCollection ifkdoc = ifkEx.InterfaceKit.outputs;
-        //        //InterfaceKitDigitalOutputCollection ifkdoc = ifkEx.outputs;
-
-        //        for (int i = 0; i < loops; i++)
-        //        {
-        //            ifkdoc[0] = true;
-        //            Thread.Sleep(sleep);
-        //            ifkdoc[0] = false;
-        //            Thread.Sleep(sleep);
-        //        }
-
-        //        ifkEx.Close();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Log.Error(ex, Common.LOG_CATEGORY);
-        //    }
-        //}
-
         private void InterfaceKitParty2(VNC.Phidget.InterfaceKitEx ifkEx, Int32 sleep, Int32 loops)
         {
             try
@@ -1781,7 +1551,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Log.Trace($"Attach {e.Device.Name} {e.Device.Address} {e.Device.ID} {e.Device.SerialNumber}", Common.LOG_CATEGORY);
         }
 
-
         private void Button5Execute()
         {
             Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
@@ -1791,38 +1560,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             EventAggregator.GetEvent<VNC.Phidget.Events.InterfaceKitSequenceEvent>().Publish(new VNC.Phidget.Events.SequenceEventArgs());
 
             Log.Info("End", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private void LightAction1()
-        {
-            //for (int i = 0; i < 10; i++)
-            //{
-                Parallel.Invoke(() => LightAction1A(), () => LightAction1B());
-                //await LightAction1A();
-                //await LightAction1B();
-            //}
-        }
-
-        private void LightAction1A()
-        {
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    digitalOutput0.DutyCycle = 1;
-            //    Thread.Sleep(500);
-            //    digitalOutput0.DutyCycle = 0;
-            //    Thread.Sleep(500);
-            //}
-        }
-
-        private void LightAction1B()
-        {
-            //for (int i = 0; i < 50; i++)
-            //{
-            //    digitalOutput2.DutyCycle = 1;
-            //    Thread.Sleep(100);
-            //    digitalOutput2.DutyCycle = 0;
-            //    Thread.Sleep(100);
-            //}
         }
 
         #endregion

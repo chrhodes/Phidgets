@@ -110,6 +110,8 @@ namespace VNC.Phidget.Players
                 // NOTE(crhodes)
                 // Then execute CallPerformances if any
 
+
+
                 if (performance.AfterPerformanceLoopPerformances is not null)
                 {
                     foreach (Performance callPerformance in performance.AfterPerformanceLoopPerformances)

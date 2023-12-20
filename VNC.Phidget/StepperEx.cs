@@ -65,7 +65,7 @@ namespace VNC.Phidget
         public bool LogSensorChangeEvents { get; set; }
 
         public bool LogPerformanceSequence { get; set; }
-        public bool LogPerformanceAction { get; set; }
+        public bool LogSequenceAction { get; set; }
 
         #endregion
 

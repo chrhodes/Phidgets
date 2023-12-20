@@ -130,7 +130,7 @@ namespace VNC.Phidget
         }
 
         public bool LogPerformanceSequence { get; set; }
-        public bool LogPerformanceAction { get; set; }
+        public bool LogSequenceAction { get; set; }
 
         #endregion
 
@@ -267,7 +267,7 @@ namespace VNC.Phidget
 
                             PerformanceSequencePlayer player = PerformanceSequencePlayer.ActivePerformanceSequencePlayer;
                             player.LogPerformanceSequence = LogPerformanceSequence;
-                            player.LogPerformanceAction = LogPerformanceAction;
+                            player.LogSequenceAction = LogSequenceAction;
 
                             foreach (PerformanceSequence sequence in interfaceKitSequence.StartActionLoopSequences)
                             {
@@ -308,7 +308,7 @@ namespace VNC.Phidget
                         {
                             PerformanceSequencePlayer player = new PerformanceSequencePlayer(EventAggregator);
                             player.LogPerformanceSequence = LogPerformanceSequence;
-                            player.LogPerformanceAction = LogPerformanceAction;
+                            player.LogSequenceAction = LogSequenceAction;
 
                             foreach (PerformanceSequence sequence in interfaceKitSequence.EndActionLoopSequences)
                             {
@@ -483,7 +483,7 @@ namespace VNC.Phidget
 
             StringBuilder actionMessage = new StringBuilder();
 
-            if (LogPerformanceAction)
+            if (LogSequenceAction)
             {
                 startTicks = Log.Trace($"Enter index:{index}", Common.LOG_CATEGORY);
                 actionMessage.Append($"index:{index}");
@@ -493,14 +493,14 @@ namespace VNC.Phidget
             {
                 if (action.DigitalOut is not null)
                 { 
-                    if (LogPerformanceAction) actionMessage.Append($" digitalOut:{action.DigitalOut}");
+                    if (LogSequenceAction) actionMessage.Append($" digitalOut:{action.DigitalOut}");
 
                     ifkDigitalOutputs[index] = (Boolean)action.DigitalOut; 
                 }
 
                 if (action.Duration > 0)
                 {
-                    if (LogPerformanceAction) actionMessage.Append($" duration:>{action.Duration}<");
+                    if (LogSequenceAction) actionMessage.Append($" duration:>{action.Duration}<");
 
                     Thread.Sleep((Int32)action.Duration);
                 }
@@ -511,7 +511,7 @@ namespace VNC.Phidget
             }
             finally
             {
-                if (LogPerformanceAction)
+                if (LogSequenceAction)
                 {
                     Log.Trace($"Exit {actionMessage}", Common.LOG_CATEGORY, startTicks);
                 }

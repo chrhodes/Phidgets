@@ -138,7 +138,7 @@ namespace VNC.Phidget
         }
 
         public bool LogPerformanceSequence { get; set; }
-        public bool LogPerformanceAction { get; set; }
+        public bool LogSequenceAction { get; set; }
         public bool LogActionVerification { get; set; }
 
         public ServoMinMax[] InitialServoLimits { get; set; } = new ServoMinMax[8];
@@ -311,7 +311,7 @@ namespace VNC.Phidget
 
                             PerformanceSequencePlayer player = PerformanceSequencePlayer.ActivePerformanceSequencePlayer;
                             player.LogPerformanceSequence = LogPerformanceSequence;
-                            player.LogPerformanceAction = LogPerformanceAction;
+                            player.LogSequenceAction = LogSequenceAction;
 
                             foreach (PerformanceSequence sequence in advancedServoSequence.StartActionLoopSequences)
                             {
@@ -351,7 +351,7 @@ namespace VNC.Phidget
                         {
                             PerformanceSequencePlayer player = new PerformanceSequencePlayer(EventAggregator);
                             player.LogPerformanceSequence = LogPerformanceSequence;
-                            player.LogPerformanceAction = LogPerformanceAction;
+                            player.LogSequenceAction = LogSequenceAction;
 
                             foreach (PerformanceSequence sequence in advancedServoSequence.EndActionLoopSequences)
                             {
@@ -387,7 +387,7 @@ namespace VNC.Phidget
         {
             try
             {
-                if (LogPerformanceAction)
+                if (LogSequenceAction)
                 {
                     Log.Trace($"Begin index:{index} acceleration:{acceleration}" +
                         $" accelerationMin:{servo.AccelerationMin}" +
@@ -408,7 +408,7 @@ namespace VNC.Phidget
                     servo.Acceleration = acceleration;
                 }
 
-                if (LogPerformanceAction)
+                if (LogSequenceAction)
                 {
                     Log.Trace($"End index:{index} servoAcceleration:{servo.Acceleration}", Common.LOG_CATEGORY);
                 }
@@ -437,7 +437,7 @@ namespace VNC.Phidget
         {
             try
             {
-                if (LogPerformanceAction)
+                if (LogSequenceAction)
                 {
                     Log.Trace($"Begin index:{index}" +
                         $" velocityLimit:{velocityLimit}" +
@@ -459,7 +459,7 @@ namespace VNC.Phidget
                     servo.VelocityLimit = velocityLimit;
                 }
 
-                if (LogPerformanceAction)
+                if (LogSequenceAction)
                 {
                     Log.Trace($"End index:{index} velocityLimit:{velocityLimit} velocityLimit:{servo.VelocityLimit}", Common.LOG_CATEGORY);
                 }
@@ -489,7 +489,7 @@ namespace VNC.Phidget
         {
             try
             {
-                if (LogPerformanceAction)
+                if (LogSequenceAction)
                 {
                     Log.Trace($"Begin index:{index} positionMin:{positionMin}" +
                         $" servo.PositionMin:{servo.PositionMin}" +
@@ -513,7 +513,7 @@ namespace VNC.Phidget
 
                 if (servo.PositionMin != positionMin) servo.PositionMin = positionMin;
 
-                if (LogPerformanceAction)
+                if (LogSequenceAction)
                 {
                     Log.Trace($"End index:{index} positionMin:{positionMin} servo.PositionMin:{servo.PositionMin}", Common.LOG_CATEGORY);
                 }
@@ -543,7 +543,7 @@ namespace VNC.Phidget
         {
             try
             {
-                if (LogPerformanceAction)
+                if (LogSequenceAction)
                 {
                     Log.Trace($"Begin servo:{index} position:{position}" +
                         $" servo.PositionMin:{servo.PositionMin}" +
@@ -565,7 +565,7 @@ namespace VNC.Phidget
                 // Maybe save last postion set and not bother checking servo.Position is same
                 if (servo.Position != position) servo.Position = position;
 
-                if (LogPerformanceAction)
+                if (LogSequenceAction)
                 {
                     Log.Trace($"End servo:{index} position:{position} servo.Position:{servo.Position}", Common.LOG_CATEGORY);
                 }
@@ -597,7 +597,7 @@ namespace VNC.Phidget
         {
             try
             {
-                if (LogPerformanceAction)
+                if (LogSequenceAction)
                 {
                     Log.Trace($"Begin servo:{index} positionMax:{positionMax}" +
                         $" servo.PositionMin:{servo.PositionMin}" +
@@ -621,7 +621,7 @@ namespace VNC.Phidget
 
                 if (servo.PositionMax != positionMax) servo.PositionMax = positionMax;
 
-                if (LogPerformanceAction)
+                if (LogSequenceAction)
                 {
                     Log.Trace($"End servo:{index} positionMax:{positionMax} servo.PositionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
                 }
@@ -670,7 +670,7 @@ namespace VNC.Phidget
                 {
                     servo = servos[i];
 
-                    if (LogPerformanceAction)
+                    if (LogSequenceAction)
                     {
                         Log.Trace($"servo:{i} type:{servo.Type} positionMin:{servo.PositionMin} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
                     }
@@ -714,7 +714,7 @@ namespace VNC.Phidget
 
         private void SaveServoLimits(AdvancedServoServo servo, Int32 index)
         {
-            if (LogPerformanceAction)
+            if (LogSequenceAction)
             {
                 Log.Trace($"servo:{index} positionMin:{servo.PositionMin} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
             }
@@ -743,7 +743,7 @@ namespace VNC.Phidget
 
             StringBuilder actionMessage = new StringBuilder();
 
-            if (LogPerformanceAction)
+            if (LogSequenceAction)
             {
                 startTicks = Log.Trace($"Enter servo:{index}", Common.LOG_CATEGORY);
                 actionMessage.Append($"servo:{index}");
@@ -753,7 +753,7 @@ namespace VNC.Phidget
             {
                 if (action.ServoType is not null)
                 {
-                    if (LogPerformanceAction) actionMessage.Append($" servoType:>{action.ServoType}<");
+                    if (LogSequenceAction) actionMessage.Append($" servoType:>{action.ServoType}<");
 
                     servo.Type = (Phidgets.ServoServo.ServoType)action.ServoType;
 
@@ -768,7 +768,7 @@ namespace VNC.Phidget
 
                 if (action.Acceleration is not null)
                 {
-                    if (LogPerformanceAction) actionMessage.Append($" acceleration:>{action.Acceleration}<");
+                    if (LogSequenceAction) actionMessage.Append($" acceleration:>{action.Acceleration}<");
                     var acceleration = action.Acceleration;
 
                     if (acceleration < 0)
@@ -788,7 +788,7 @@ namespace VNC.Phidget
 
                 if (action.VelocityLimit is not null)
                 {
-                    if (LogPerformanceAction) actionMessage.Append($" velocityLimit:>{action.VelocityLimit}<");
+                    if (LogSequenceAction) actionMessage.Append($" velocityLimit:>{action.VelocityLimit}<");
                     var velocityLimit = action.VelocityLimit;
 
                     if (velocityLimit < 0)
@@ -808,14 +808,14 @@ namespace VNC.Phidget
 
                 if (action.PositionMin is not null)
                 {
-                    if (LogPerformanceAction) actionMessage.Append($" positionMin:>{action.PositionMin}<");
+                    if (LogSequenceAction) actionMessage.Append($" positionMin:>{action.PositionMin}<");
 
                     SetPositionMin((Double)action.PositionMin, servo, index);
                 }
 
                 if (action.PositionMax is not null)
                 {
-                    if (LogPerformanceAction) actionMessage.Append($" positionMax:>{action.PositionMax}<");
+                    if (LogSequenceAction) actionMessage.Append($" positionMax:>{action.PositionMax}<");
 
                     SetPositionMax((Double)action.PositionMax, servo, index);
                 }
@@ -826,7 +826,7 @@ namespace VNC.Phidget
 
                 if (action.Engaged is not null)
                 {
-                    if (LogPerformanceAction) actionMessage.Append($" engaged:>{action.Engaged}<");
+                    if (LogSequenceAction) actionMessage.Append($" engaged:>{action.Engaged}<");
 
                     servo.Engaged = (Boolean)action.Engaged;
 
@@ -835,7 +835,7 @@ namespace VNC.Phidget
 
                 //if (action.Acceleration is not null)
                 //{
-                //    if (LogPerformanceAction) actionMessage.Append($" acceleration:>{action.Acceleration}<");
+                //    if (LogSequenceAction) actionMessage.Append($" acceleration:>{action.Acceleration}<");
 
                 //    SetAcceleration((Double)action.Acceleration, servo, index);
                 //}
@@ -843,14 +843,14 @@ namespace VNC.Phidget
                 if (action.RelativeAcceleration is not null)
                 {
                     var newAcceleration = servo.Acceleration + (Double)action.RelativeAcceleration;
-                    if (LogPerformanceAction) actionMessage.Append($" relativeAcceleration:>{action.RelativeAcceleration}< ({newAcceleration})");
+                    if (LogSequenceAction) actionMessage.Append($" relativeAcceleration:>{action.RelativeAcceleration}< ({newAcceleration})");
 
                     SetAcceleration(newAcceleration, servo, index);
                 }
 
                 //if (action.VelocityLimit is not null)
                 //{
-                //    if (LogPerformanceAction) actionMessage.Append($" velocityLimit:>{action.VelocityLimit}<");
+                //    if (LogSequenceAction) actionMessage.Append($" velocityLimit:>{action.VelocityLimit}<");
 
                 //    SetVelocityLimit((Double)action.VelocityLimit, servo, index);
                 //}
@@ -858,14 +858,14 @@ namespace VNC.Phidget
                 if (action.RelativeVelocityLimit is not null)
                 {
                     var newVelocityLimit = servo.VelocityLimit + (Double)action.RelativeVelocityLimit;
-                    if (LogPerformanceAction) actionMessage.Append($" relativeVelocityLimit:>{action.RelativeVelocityLimit}< ({newVelocityLimit})");
+                    if (LogSequenceAction) actionMessage.Append($" relativeVelocityLimit:>{action.RelativeVelocityLimit}< ({newVelocityLimit})");
 
                     SetVelocityLimit(newVelocityLimit, servo, index);
                 }
 
                 if (action.TargetPosition is not null)
                 {
-                    if (LogPerformanceAction) actionMessage.Append($" targetPosition:>{action.TargetPosition}<");
+                    if (LogSequenceAction) actionMessage.Append($" targetPosition:>{action.TargetPosition}<");
                     Double targetPosition = (Double)action.TargetPosition;
 
                     if (targetPosition < 0)
@@ -886,14 +886,14 @@ namespace VNC.Phidget
                 if (action.RelativePosition is not null)
                 {
                     var newPosition = servo.Position + (Double)action.RelativePosition;
-                    if (LogPerformanceAction) actionMessage.Append($" relativePosition:>{action.RelativePosition}< ({newPosition})");
+                    if (LogSequenceAction) actionMessage.Append($" relativePosition:>{action.RelativePosition}< ({newPosition})");
 
                     VerifyNewPositionAchieved(servo, index, SetPosition(newPosition, servo, index));                
                 }
 
                 if (action.Duration > 0)
                 {
-                    if (LogPerformanceAction) actionMessage.Append($" duration:>{action.Duration}<");
+                    if (LogSequenceAction) actionMessage.Append($" duration:>{action.Duration}<");
 
                     Thread.Sleep((Int32)action.Duration);
                 }
@@ -910,7 +910,7 @@ namespace VNC.Phidget
             }
             finally
             {
-                if (LogPerformanceAction)
+                if (LogSequenceAction)
                 {
                     Log.Trace($"Exit {actionMessage}", Common.LOG_CATEGORY, startTicks);
                 }
@@ -969,7 +969,7 @@ namespace VNC.Phidget
 
             try
             {
-                if (LogPerformanceAction)
+                if (LogSequenceAction)
                 {
                     startTicks = Log.Trace($"Enter servo:{index} targetPosition:{targetPosition}", Common.LOG_CATEGORY);
                 }
