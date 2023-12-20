@@ -47,7 +47,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
             <RowDefinition Height="75" />
-            <RowDefinition Height="240" />
+            <RowDefinition Height="300" />
             <!--<RowDefinition Height="100" />
             <RowDefinition Height="100" />-->
             <RowDefinition Height="*" />
@@ -84,29 +84,42 @@
                 </dxlc:LayoutItem>
                 
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
-                    
-                    <dxlc:LayoutGroup Header="AdvancedServo Events" View="GroupBox" Orientation="Horizontal" >
-                        <dxe:CheckEdit x:Name="ceCurrentChangedEvents"
-                            Content="Log CurrentChange Events"
-                            IsChecked="{Binding LogCurrentChangeEvents, Mode=TwoWay}" />
-                        <dxe:CheckEdit x:Name="cePositionChangedEvents"
-                            Content="Log PositionChange Events"
-                            IsChecked="{Binding LogPositionChangeEvents, Mode=TwoWay}" />
-                        <dxe:CheckEdit x:Name="ceVelocityChangedEvents"
-                            Content="Log VelocityChange Events"
-                            IsChecked="{Binding LogVelocityChangeEvents, Mode=TwoWay}" />
+
+                    <dxlc:LayoutGroup Header="Logging" View="GroupBox" Orientation="Horizontal" 
+                          IsCollapsible="True" IsCollapsed="False" Height="60" Padding="-5">
+
+                        <dxe:CheckEdit Content="Log Performance" 
+                                       IsChecked="{Binding LogPerformance}" />
+
+                        <dxe:CheckEdit Content="Log Performance Sequence" 
+                                       IsChecked="{Binding LogPerformanceSequence}" />
+  
+                        <dxe:CheckEdit Content="Log Sequence Action" 
+                                       IsChecked="{Binding LogSequenceAction}" />
+
+                        <dxe:CheckEdit Content="Log Action Verification" 
+                                       IsChecked="{Binding LogActionVerification}" />
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="AdvancedServo Events" View="GroupBox" Orientation="Horizontal"
+                                      IsCollapsible="True" IsCollapsed="False" Height="60" Padding="-5">
+                        <dxe:CheckEdit Content="Log CurrentChange Events"
+                                       IsChecked="{Binding LogCurrentChangeEvents, Mode=TwoWay}" />
+                        <dxe:CheckEdit Content="Log PositionChange Events"
+                                       IsChecked="{Binding LogPositionChangeEvents, Mode=TwoWay}" />
+                        <dxe:CheckEdit Content="Log VelocityChange Events"
+                                       IsChecked="{Binding LogVelocityChangeEvents, Mode=TwoWay}" />
                     </dxlc:LayoutGroup>
                     
-                    <dxlc:LayoutGroup Header="InterfaceKit Events" View="GroupBox" Orientation="Horizontal" >
-                        <dxe:CheckEdit x:Name="ceInputChangedEvents"
-                                Content="Log InputChange Events"
-                                IsChecked="{Binding LogInputChangeEvents, Mode=TwoWay}" />
-                        <dxe:CheckEdit x:Name="ceOutputChangedEvents"
-                                Content="Log OutputChange Events"
-                                IsChecked="{Binding LogOutputChangeEvents, Mode=TwoWay}" />
-                        <dxe:CheckEdit x:Name="ceSensorChangedEvents"
-                                Content="Log SensorChange Events"
-                                IsChecked="{Binding LogSensorChangeEvents, Mode=TwoWay}" />
+                    <dxlc:LayoutGroup Header="InterfaceKit Events" View="GroupBox" Orientation="Horizontal"
+                                      IsCollapsible="True" IsCollapsed="False" Height="60" Padding="-5">
+                        <dxe:CheckEdit Content="Log InputChange Events"
+                                       IsChecked="{Binding LogInputChangeEvents, Mode=TwoWay}" />
+                        <dxe:CheckEdit Content="Log OutputChange Events"
+                                       IsChecked="{Binding LogOutputChangeEvents, Mode=TwoWay}" />
+                        <dxe:CheckEdit Content="Log SensorChange Events"
+                                       IsChecked="{Binding LogSensorChangeEvents, Mode=TwoWay}" />
                     </dxlc:LayoutGroup>
                     
                 </dxlc:LayoutGroup>

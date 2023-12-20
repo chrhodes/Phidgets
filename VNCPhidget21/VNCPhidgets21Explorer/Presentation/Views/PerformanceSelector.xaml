@@ -70,27 +70,6 @@
     
     <dxlc:LayoutControl  View="Group" Orientation="Vertical" >
 
-        <dxlc:LayoutGroup Header="Logging" View="GroupBox" Orientation="Horizontal" 
-                          IsCollapsible="True" IsCollapsed="False" >
-
-            <!--<dxlc:LayoutItem Label="Log Performance" >-->
-                <dxe:CheckEdit Content="Log Performance" IsChecked="{Binding LogPerformance}" />
-            <!--</dxlc:LayoutItem>-->
-            
-            <!--<dxlc:LayoutItem Label="Log Performance Sequence" >-->
-                <dxe:CheckEdit Content="Log Performance Sequence" IsChecked="{Binding LogPerformanceSequence}" />
-            <!--</dxlc:LayoutItem>-->
-
-            <!--<dxlc:LayoutItem Label="Log Performance Action" >-->
-                <dxe:CheckEdit Content="Log Sequence Action" IsChecked="{Binding LogSequenceAction}" />
-            <!--</dxlc:LayoutItem>-->
-
-            <!--<dxlc:LayoutItem Label="Log Action Verification" >-->
-                <dxe:CheckEdit Content="Log Action Verification" IsChecked="{Binding LogActionVerification}" />
-            <!--</dxlc:LayoutItem>-->
-
-        </dxlc:LayoutGroup>
-
         <dxlc:LayoutGroup Header="Performances" View="GroupBox" Orientation="Vertical" >
 
             <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top">
@@ -213,6 +192,10 @@
                         <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.Description }" Width="300" TextWrapping="Wrap" />
                     </dxlc:LayoutItem>
 
+                    <dxlc:LayoutItem Label="UsageNotes" HorizontalAlignment="Left" Background="Wheat" >
+                        <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.UsageNotes }" Width="300" TextWrapping="Wrap" />
+                    </dxlc:LayoutItem>
+
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
                         <dxlc:LayoutItem Label="Loops" HorizontalAlignment="Left" Background="Wheat" >
@@ -326,15 +309,7 @@
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
-
-                        <!--<dxlc:LayoutItem>
-                            <Button 
-                        	    Command="{Binding RelativeAccelerationCommand }"
-                                CommandParameter="-500"
-                        	    Content="A -500"
-                        	    ToolTip="Decrease Acceleration (-500)" />
-                        </dxlc:LayoutItem>-->
-                        
+                       
                         <dxlc:LayoutItem>
                             <Button 
                         	    Command="{Binding RelativeAccelerationCommand }"
@@ -363,43 +338,6 @@
                             ItemsSource="{Binding RelativeVelocityLimitAdjustment}">
                         </dxe:ComboBoxEdit>
                         
-                        <!--<dxe:SpinEdit x:Name="seRelativeVelocityLimit" 
-                                      Value="{Binding RelativeVelocityLimitAdjustment.Value>, Mode=OneWay}"
-                            Mask="d"  MaskType="Numeric" MaskUseAsDisplayFormat="True"
-                            IsFloatValue="False"/>-->
-                            
-                        <!--<dxlc:LayoutItem>
-                            <Button 
-                        	    Command="{Binding RelativeVelocityCommand }"
-                                CommandParameter="-100"
-                        	    Content="V -100"
-                        	    ToolTip="Decrease VelocityLimit (-100)" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem>
-                            <Button 
-                        	    Command="{Binding RelativeVelocityCommand }"
-                                CommandParameter="-10"
-                        	    Content="V -10"
-                        	    ToolTip="Decrease VelocityLimit (-10)" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem>
-                            <Button 
-                        	    Command="{Binding RelativeVelocityCommand }"
-                                CommandParameter="10"
-                        	    Content="V +10"
-                        	    ToolTip="Increase VelocityLimit (+10)" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem>
-                            <Button 
-                        	    Command="{Binding RelativeVelocityCommand }"
-                                CommandParameter="100"
-                        	    Content="V +100"
-                        	    ToolTip="Increase VelocityLimit (+100)" />
-                        </dxlc:LayoutItem>-->
-
                     </dxlc:LayoutGroup>
 
                     <dxlc:LayoutItem  VerticalAlignment="Stretch" >
@@ -451,7 +389,11 @@
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="Description" HorizontalAlignment="Left" Background="Wheat" >
-                        <dxe:TextEdit Text="{Binding SelectedInterfaceKitSequence.Description }" />
+                        <dxe:TextEdit Text="{Binding SelectedInterfaceKitSequence.Description }" Width="300" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="UsageNotes" HorizontalAlignment="Left" Background="Wheat" >
+                        <dxe:TextEdit Text="{Binding SelectedInterfaceKitequence.UsageNotes }" Width="300" TextWrapping="Wrap" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
@@ -561,7 +503,11 @@
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="Description" HorizontalAlignment="Left" Background="Wheat" >
-                        <dxe:TextEdit Text="{Binding SelectedStepperSequence.Description }" />
+                        <dxe:TextEdit Text="{Binding SelectedStepperSequence.Description }" Width="300"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="UsageNotes" HorizontalAlignment="Left" Background="Wheat" >
+                        <dxe:TextEdit Text="{Binding SelectedStepperSequence.UsageNotes }" Width="300" TextWrapping="Wrap" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >

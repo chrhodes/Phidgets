@@ -1400,7 +1400,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private PerformancePlayer GetPerformancePlayer()
         {
-            PerformancePlayer performancePlayer = new PerformancePlayer();
+            PerformancePlayer performancePlayer = new PerformancePlayer(EventAggregator);
  
             performancePlayer.LogPerformance = LogPerformance;          
 

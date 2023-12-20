@@ -1,6 +1,11 @@
 ﻿using System;
-
+using System.Threading.Tasks;
+using System.Threading;
 using Phidgets.Events;
+
+using Prism.Events;
+
+using VNC.Phidget.Players;
 
 namespace VNC.Phidget
 {
@@ -185,6 +190,7 @@ namespace VNC.Phidget
         #endregion
 
         #region Private Methods (None)
+
 
 
         #endregion

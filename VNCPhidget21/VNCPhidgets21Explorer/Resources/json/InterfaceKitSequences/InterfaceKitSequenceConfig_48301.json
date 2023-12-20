@@ -15,7 +15,7 @@
     },
     {
       "SerialNumber": 48301,
-      "Name": "IK 012-48301", 
+      "Name": "IK 012012-48301", 
       "Description": "Turn 0,1,2 on then off every 500 ms", 
       "Actions": [
         { "DigitalOutIndex": 0, "DigitalOut": true, "Duration": 500 },
@@ -24,6 +24,19 @@
         { "DigitalOutIndex": 0, "DigitalOut": false, "Duration": 500 },
         { "DigitalOutIndex": 1, "DigitalOut": false, "Duration": 500 },
         { "DigitalOutIndex": 2, "DigitalOut": false, "Duration": 500 }
+      ]
+    },
+    {
+      "SerialNumber": 48301,
+      "Name": "IK 012210-48301", 
+      "Description": "Turn 0,1,2 on then off every 500 ms", 
+      "Actions": [
+        { "DigitalOutIndex": 0, "DigitalOut": true, "Duration": 500 },
+        { "DigitalOutIndex": 1, "DigitalOut": true, "Duration": 500 },
+        { "DigitalOutIndex": 2, "DigitalOut": true, "Duration": 500 },
+        { "DigitalOutIndex": 2, "DigitalOut": false, "Duration": 500 },
+        { "DigitalOutIndex": 1, "DigitalOut": false, "Duration": 500 },
+        { "DigitalOutIndex": 0, "DigitalOut": false, "Duration": 500 }
       ]
     },
     {

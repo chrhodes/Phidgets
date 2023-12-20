@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -170,7 +169,6 @@ namespace VNC.Phidget
 
         private void AdvancedServo_PositionChange(object sender, PositionChangeEventArgs e)
         {
-
             try
             {
                 Phidgets.AdvancedServo advancedServo = sender as Phidgets.AdvancedServo;
@@ -288,16 +286,13 @@ namespace VNC.Phidget
                 if (LogPerformanceSequence)
                 {
                     startTicks = Log.Trace(
-                        $"Running Action Loops advancedServoSequence:{advancedServoSequence.Name}" +
-                        $" description:{advancedServoSequence.Description}" +
-                        $" sequenceLoops:{advancedServoSequence.SequenceLoops}" +
-                        $" beforeActionLoopSequences:{advancedServoSequence.BeforeActionLoopSequences.Count()}" +
-                        $" startActionLoopSequences:{advancedServoSequence.StartActionLoopSequences.Count()}" +
-                        $" actionLoops:{advancedServoSequence.ActionLoops}" +
-                        $" actions:{advancedServoSequence.Actions.Count()}" +
-                        $" endActionLoopSequences:{advancedServoSequence.EndActionLoopSequences.Count()}" +
-                        $" afterActionLoopSequences:{advancedServoSequence.AfterActionLoopSequences.Count()}" +
-                        $" nextPerformance:{advancedServoSequence.NextSequence}", Common.LOG_CATEGORY);
+                        $"Running Action Loops" +
+                        $" advancedServoSequence:>{advancedServoSequence.Name}<" +
+                        $" startActionLoopSequences:>{advancedServoSequence.StartActionLoopSequences?.Count()}<" +
+                        $" actionLoops:>{advancedServoSequence.ActionLoops}<" +
+                        $" actions:>{advancedServoSequence.Actions?.Count()}<" +
+                        $" actionsDuration:>{advancedServoSequence.ActionsDuration}<" +
+                        $" endActionLoopSequences:>{advancedServoSequence.EndActionLoopSequences?.Count()}<", Common.LOG_CATEGORY);
                 }
 
                 if (advancedServoSequence.Actions is not null)
@@ -321,7 +316,7 @@ namespace VNC.Phidget
 
                         if (advancedServoSequence.ExecuteActionsInParallel)
                         {
-                            if (LogPerformanceSequence) Log.Trace($"Parallel Actions Loop:{actionLoop + 1}", Common.LOG_CATEGORY);
+                            if (LogSequenceAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
 
                             Parallel.ForEach(advancedServoSequence.Actions, async action =>
                             {
@@ -330,7 +325,7 @@ namespace VNC.Phidget
                         }
                         else
                         {
-                            if (LogPerformanceSequence) Log.Trace($"Sequential Actions Loop:{actionLoop + 1}", Common.LOG_CATEGORY);
+                            if (LogSequenceAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
 
                             foreach (AdvancedServoServoAction action in advancedServoSequence.Actions)
                             {
@@ -338,13 +333,13 @@ namespace VNC.Phidget
                             }
                         }
 
-                        if (advancedServoSequence.ActionDuration is not null)
+                        if (advancedServoSequence.ActionsDuration is not null)
                         {
-                            if (LogPerformanceSequence)
+                            if (LogSequenceAction)
                             {
-                                Log.Trace($"Zzzzz Action:>{advancedServoSequence.ActionDuration}<", Common.LOG_CATEGORY);
+                                Log.Trace($"Zzzzz Action:>{advancedServoSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
-                            Thread.Sleep((Int32)advancedServoSequence.ActionDuration);
+                            Thread.Sleep((Int32)advancedServoSequence.ActionsDuration);
                         }
 
                         if (advancedServoSequence.EndActionLoopSequences is not null)
@@ -359,18 +354,9 @@ namespace VNC.Phidget
                             }
                         }
                     }
-
-                    if (advancedServoSequence.SequenceDuration is not null)
-                    {
-                        if (LogPerformanceSequence)
-                        {
-                            Log.Trace($"Zzzzz Sequence:>{advancedServoSequence.SequenceDuration}<", Common.LOG_CATEGORY);
-                        }
-                        Thread.Sleep((Int32)advancedServoSequence.SequenceDuration);
-                    }
                 }
 
-                if (LogPerformanceSequence) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+                if (LogSequenceAction) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
             }
             catch (Exception ex)
             {

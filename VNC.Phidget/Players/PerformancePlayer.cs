@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+
+using Prism.Events;
 
 using VNCPhidget21.Configuration;
 
@@ -13,10 +12,13 @@ namespace VNC.Phidget.Players
     public class PerformancePlayer
     {
         #region Constructors, Initialization, and Load
+        public IEventAggregator EventAggregator { get; set; }
 
-        public PerformancePlayer()
+        public PerformancePlayer(IEventAggregator eventAggregator)
         {
             Int64 startTicks = Log.CONSTRUCTOR($"Enter", Common.LOG_CATEGORY);
+
+            EventAggregator = eventAggregator;
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -38,11 +40,6 @@ namespace VNC.Phidget.Players
         public bool LogPerformance { get; set; }
 
         public PerformanceSequencePlayer PerformanceSequencePlayer { get; set; }
-
-        //public static Dictionary<string, Performance> AvailablePerformances { get; set; } = 
-        //    new Dictionary<string, Performance>();
-
-        //public IEnumerable<Performance> Performances { get; set; }
 
         #endregion
 
@@ -73,17 +70,29 @@ namespace VNC.Phidget.Players
                     $" nextPerformance:{performance.NextPerformance}", Common.LOG_CATEGORY);
             }
 
-            for (int performanceLoop = 0; performanceLoop < performance.PerformanceLoops; performanceLoop++)
+            // NOTE(crhodes)
+            // Execute BeforePerformanceLoopPerformances if any
+
+            if (performance.BeforePerformanceLoopPerformances is not null)
             {
-                // NOTE(crhodes)
-                // First execute PerformanceSequences if any
+                await ExecutePerformanceSequences(performance.BeforePerformanceLoopPerformances);
+            }
 
-                if (performance.PerformanceSequences is not null)
+            // NOTE(crhodes)
+            // Then Execute PerformanceSequences loops
+            //
+            // Not sure there would ever be no PerformanceSequences
+
+            if (performance.PerformanceSequences is not null)
+            {
+                // TODO(crhodes)
+                // Mabye create a new PerformanceSequencePlayer
+                // instead of reaching for the Property.
+
+                PerformanceSequencePlayer performanceSequence = new PerformanceSequencePlayer(EventAggregator);
+
+                for (int performanceLoop = 0; performanceLoop < performance.PerformanceLoops; performanceLoop++)
                 {
-                    // TODO(crhodes)
-                    // Mabye create a new PerformanceSequencePlayer
-                    // instead of reaching for the Property.
-
                     if (performance.PlaySequencesInParallel)
                     {
                         if (LogPerformance) Log.Trace($"Parallel Actions performanceLoop:{performanceLoop + 1}", Common.LOG_CATEGORY);
@@ -108,38 +117,7 @@ namespace VNC.Phidget.Players
                 }
 
                 // NOTE(crhodes)
-                // Then execute CallPerformances if any
-
-
-
-                if (performance.AfterPerformanceLoopPerformances is not null)
-                {
-                    foreach (Performance callPerformance in performance.AfterPerformanceLoopPerformances)
-                    {
-                        Performance nextPerformance = null;
-
-                        if (PerformanceLibrary.AvailablePerformances.ContainsKey(callPerformance.Name ?? ""))
-                        {
-                            nextPerformance = PerformanceLibrary.AvailablePerformances[callPerformance.Name];
-
-                            await RunPerformanceLoops(nextPerformance);
-
-                            // TODO(crhodes)
-                            // Should we process Next Performance if exists.  Recursive implications need to be considered.
-                            // May have to detect loops.
-
-                            nextPerformance = nextPerformance?.NextPerformance;
-                        }
-                        else
-                        {
-                            Log.Error($"Cannot find performance:>{nextPerformance?.Name}<", Common.LOG_CATEGORY);
-                            nextPerformance = null;
-                        }
-                    }
-                }
-
-                // NOTE(crhodes)
-                // Then sleep if necessary before next loop
+                // Then Sleep if necessary before next loop
 
                 if (performance.Duration is not null)
                 {
@@ -151,46 +129,54 @@ namespace VNC.Phidget.Players
                 }
             }
 
+            // NOTE(crhodes)
+            // Then Execute AfterPerformanceLoopPerformances if any
+
+            if (performance.AfterPerformanceLoopPerformances is not null)
+            {
+                await ExecutePerformanceSequences(performance.AfterPerformanceLoopPerformances);
+            }
+
             if (LogPerformance) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        private async Task ExecutePerformanceSequences(Performance[] performanceSequences)
+        {
+            foreach (Performance callPerformance in performanceSequences)
+            {
+                Performance nextPerformance = null;
+
+                if (PerformanceLibrary.AvailablePerformances.ContainsKey(callPerformance.Name ?? ""))
+                {
+                    nextPerformance = PerformanceLibrary.AvailablePerformances[callPerformance.Name];
+
+                    await RunPerformanceLoops(nextPerformance);
+
+                    // TODO(crhodes)
+                    // Should we process Next Performance if exists.  Recursive implications need to be considered.
+                    // May have to detect loops.
+
+                    nextPerformance = nextPerformance?.NextPerformance;
+                }
+                else
+                {
+                    Log.Error($"Cannot find performance:>{nextPerformance?.Name}<", Common.LOG_CATEGORY);
+                    nextPerformance = null;
+                }
+            }
+        }
 
         #endregion
 
         #region Protected Methods (None)
 
 
+
         #endregion
 
         #region Private Methods (None)
 
-        //private IEnumerable<string> GetListOfPerformanceConfigFiles()
-        //{
-        //    // TODO(crhodes)
-        //    // Read a directory and return files, perhaps with RegEx name match
 
-        //    List<string> files = new List<string>
-        //    {
-        //        @"Performances\PerformanceConfig_1.json",
-        //        @"Performances\PerformanceConfig_2.json",
-        //        @"Performances\PerformanceConfig_3.json",
-
-        //        @"Performances\PerformanceConfig_Skulls.json",
-        //    };
-
-        //    return files;
-        //}
-
-        //private JsonSerializerOptions GetJsonSerializerOptions()
-        //{
-        //    var jsonOptions = new JsonSerializerOptions
-        //    {
-        //        ReadCommentHandling = JsonCommentHandling.Skip,
-        //        AllowTrailingCommas = true
-        //    };
-
-        //    return jsonOptions;
-        //}
 
         #endregion
     }
