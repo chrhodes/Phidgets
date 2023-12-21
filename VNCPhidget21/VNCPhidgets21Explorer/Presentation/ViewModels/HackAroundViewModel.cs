@@ -527,6 +527,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
+        private bool _logPhidgetEvents = false;
+
+        public bool LogPhidgetEvents
+        {
+            get => _logPhidgetEvents;
+            set
+            {
+                if (_logPhidgetEvents == value)
+                    return;
+                _logPhidgetEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region Commands
@@ -895,10 +909,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             SequenceLoops = sequence.SequenceLoops
                         };
 
-                    //for (int i = 0; i < sequence.Loops; i++)
-                    //{
-                    //    do
-                    //    {
                     // NOTE(crhodes)
                     // Run on another thread to keep UI active
                     await Task.Run(async () =>
@@ -907,8 +917,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                                 //nextPerformanceSequence = await performanceSequencePlayer.ExecutePerformanceSequenceLoops(nextPerformanceSequence);
                                 await ActivePerformanceSequencePlayer.ExecutePerformanceSequence(nextPerformanceSequence);
                             });
-                        //} while (nextPerformanceSequence is not null);
-                    //}
                 }
                 catch (Exception ex)
                 {
@@ -1255,7 +1263,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             };
 
             await ActivePerformanceSequencePlayer.ActiveAdvancedServoHost.RunActionLoops(advancedServoSequence);
-
         }
 
         #endregion
@@ -1294,17 +1301,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
 
-            //var runAllThese = SelectedInterfaceKitSequences;
-            //var allSequences = AvailableInterfaceKitSequences;
-
             foreach (InterfaceKitSequence sequence in SelectedInterfaceKitSequences)
             {
                 if (LogPerformanceSequence) Log.Trace($"Playing sequence:{sequence.Name}", Common.LOG_CATEGORY);
 
                 try
                 {
-                    //var nextSequence = sequence;
-
                     PerformanceSequence? nextPerformanceSequence = 
                         new PerformanceSequence
                         {
@@ -1318,14 +1320,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     await Task.Run(async () =>
                     {
                         if (LogPerformanceSequence) Log.Trace($"Executing sequence:{nextPerformanceSequence.Name}", Common.LOG_CATEGORY);
-                        //nextPerformanceSequence = await performanceSequencePlayer.ExecutePerformanceSequenceLoops(nextPerformanceSequence);
+
                         await ActivePerformanceSequencePlayer.ExecutePerformanceSequence(nextPerformanceSequence);
                     });
-
-                    //do
-                    //{
-                    //    await performanceSequencePlayer.ExecutePerformanceSequenceLoops(nextPerformanceSequence);
-                    //} while (nextPerformanceSequence is not null);
                 }
                 catch (Exception ex)
                 {
@@ -1425,6 +1422,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             ActivePerformanceSequencePlayer.LogInputChangeEvents = LogInputChangeEvents;
             ActivePerformanceSequencePlayer.LogOutputChangeEvents = LogOutputChangeEvents;
             ActivePerformanceSequencePlayer.LogSensorChangeEvents = LogSensorChangeEvents;
+
+            ActivePerformanceSequencePlayer.LogPhidgetEvents = LogPhidgetEvents;
 
             return ActivePerformanceSequencePlayer;
         }

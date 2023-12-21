@@ -67,6 +67,10 @@ namespace VNC.Phidget.Players
         public bool LogOutputChangeEvents { get; set; }
         public bool LogSensorChangeEvents { get; set; }
 
+        // Phidget Events
+
+        public bool LogPhidgetEvents { get; set; }
+
         #endregion
 
         #region Event Handlers (None)
@@ -449,7 +453,7 @@ namespace VNC.Phidget.Players
 
                 advancedServoHost = (AdvancedServoEx)phidgetDevice.PhidgetEx;
 
-                //advancedServoHost = phidgetDevice.PhidgetEx as AdvancedServoEx;
+                advancedServoHost.LogPhidgetEvents = LogPhidgetEvents;
 
                 advancedServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
                 advancedServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
@@ -503,6 +507,8 @@ namespace VNC.Phidget.Players
 
                 interfaceKitHost = (InterfaceKitEx)phidgetDevice.PhidgetEx;
 
+                interfaceKitHost.LogPhidgetEvents = LogPhidgetEvents;
+
                 interfaceKitHost.LogInputChangeEvents = LogInputChangeEvents;
                 interfaceKitHost.LogOutputChangeEvents = LogOutputChangeEvents;
                 interfaceKitHost.LogSensorChangeEvents = LogSensorChangeEvents;
@@ -535,6 +541,8 @@ namespace VNC.Phidget.Players
             {
                 stepperHost = (StepperEx)phidgetDevice.PhidgetEx;
 
+                stepperHost.LogPhidgetEvents = LogPhidgetEvents;
+
                 //stepperHost.LogInputChangeEvents = LogInputChangeEvents;
                 //stepperHost.LogOutputChangeEvents = LogOutputChangeEvents;
                 //stepperHost.LogSensorChangeEvents = LogSensorChangeEvents;
@@ -551,6 +559,8 @@ namespace VNC.Phidget.Players
                     EventAggregator);
 
                 stepperHost = (StepperEx)phidgetDevice.PhidgetEx;
+
+                stepperHost.LogPhidgetEvents = LogPhidgetEvents;
 
                 //stepperHost.LogInputChangeEvents = LogInputChangeEvents;
                 //stepperHost.LogOutputChangeEvents = LogOutputChangeEvents;

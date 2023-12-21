@@ -31,7 +31,7 @@ namespace VNC.Phidget
         public InterfaceKitEx(string ipAddress, int port, int serialNumber, bool embedded, IEventAggregator eventAggregator) 
             : base(ipAddress, port, serialNumber)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = Log.CONSTRUCTOR($"Enter ipAdress:{ipAddress} port:{port} serialNumber:{serialNumber}", Common.LOG_CATEGORY);
 
             EventAggregator = eventAggregator;
             InitializePhidget();

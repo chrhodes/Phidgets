@@ -30,7 +30,7 @@ namespace VNC.Phidget
         public AdvancedServoEx(string ipAddress, int port, int serialNumber, IEventAggregator eventAggregator)
             : base(ipAddress, port, serialNumber)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = Log.CONSTRUCTOR($"Enter ipAdress:{ipAddress} port:{port} serialNumber:{serialNumber}", Common.LOG_CATEGORY);
 
             EventAggregator = eventAggregator;
             InitializePhidget();
@@ -38,6 +38,16 @@ namespace VNC.Phidget
             EventAggregator.GetEvent<AdvancedServoSequenceEvent>().Subscribe(TriggerSequence);
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+        private void InitializePhidget()
+        {
+            AdvancedServo = new Phidgets.AdvancedServo();
+
+            AdvancedServo.Attach += Phidget_Attach;
+            AdvancedServo.Detach += Phidget_Detach;
+            AdvancedServo.Error += Phidget_Error;
+            AdvancedServo.ServerConnect += Phidget_ServerConnect;
+            AdvancedServo.ServerDisconnect += Phidget_ServerDisconnect;
         }
 
         #endregion
@@ -631,17 +641,6 @@ namespace VNC.Phidget
         #endregion
 
         #region Private Methods
-
-        private void InitializePhidget()
-        {
-            AdvancedServo = new Phidgets.AdvancedServo();
-
-            AdvancedServo.Attach += Phidget_Attach;
-            AdvancedServo.Detach += Phidget_Detach;
-            AdvancedServo.Error += Phidget_Error;
-            AdvancedServo.ServerConnect += Phidget_ServerConnect;
-            AdvancedServo.ServerDisconnect += Phidget_ServerDisconnect;
-        }
 
         private void SetInitialServoType()
         {

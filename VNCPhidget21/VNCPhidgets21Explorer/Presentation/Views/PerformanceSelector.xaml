@@ -196,10 +196,25 @@
                         <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.UsageNotes }" Width="300" TextWrapping="Wrap" />
                     </dxlc:LayoutItem>
 
-                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+                    <dxlc:LayoutItem Label="BeforeActionLoopSequences" HorizontalAlignment="Left" Background="Wheat" >
+                        <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.BeforeActionLoopSequences.Count, Mode=OneWay}" />
+                    </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Loops" HorizontalAlignment="Left" Background="Wheat" >
-                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.Loops }" />
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" Background="LawnGreen" Padding="5">
+                    
+
+                    <dxlc:LayoutItem Label="StartActionLoopSequences" HorizontalAlignment="Left" Background="Wheat" >
+                        <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.StartActionLoopSequences.Count, Mode=OneWay}" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+                      
+                        <dxlc:LayoutItem Label="ActionLoops" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.ActionLoops.Count, Mode=OneWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Actions" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.Actions.Count, Mode=OneWay}" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="PlayActions InParallel" HorizontalAlignment="Left" Background="Wheat" >
@@ -207,6 +222,20 @@
                         </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutItem Label="ActionDuration" HorizontalAlignment="Left" Background="Wheat" >
+                        <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.ActionDuration }" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="EndActionLoopSequences" HorizontalAlignment="Left" Background="Wheat" >
+                        <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.EndActionLoopSequences.Count, Mode=OneWay}" />
+                    </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutItem Label="AfterActionLoopSequences" HorizontalAlignment="Left" Background="Wheat" >
+                        <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.AfterActionLoopSequences.Count, Mode=OneWay}" />
+                    </dxlc:LayoutItem>
 
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
@@ -249,7 +278,7 @@
                     </dxlc:LayoutGroup>
 
                     <dxlc:LayoutGroup Header="Active Host" View="GroupBox" Orientation="Horizontal"
-                                      HorizontalAlignment="Right">
+                                      HorizontalAlignment="Center">
 
                         <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" Background="Wheat" >
                             <dxe:TextEdit Text="{Binding ActiveAdvancedServoHost.Name }" />

@@ -219,8 +219,10 @@ namespace VNCPhidget21.Configuration
             List<string> files = new List<string>
             {
                 @"AdvancedServoSequences\AdvancedServoSequenceConfig_99415.json",
-                @"AdvancedServoSequences\AdvancedServoSequenceConfig_Test.json",
                 @"AdvancedServoSequences\AdvancedServoSequenceConfig_99220_Skulls.json",
+                @"AdvancedServoSequences\AdvancedServoSequenceConfig_Test A.json",
+                @"AdvancedServoSequences\AdvancedServoSequenceConfig_Test B.json",
+                @"AdvancedServoSequences\AdvancedServoSequenceConfig_Test A+B.json",
             };
 
             return files;

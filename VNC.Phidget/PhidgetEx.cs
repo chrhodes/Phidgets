@@ -93,7 +93,7 @@ namespace VNC.Phidget
                 {
                     Phidgets.Phidget device = (Phidgets.Phidget)e.Device;
 
-                    Log.EVENT_HANDLER($"Phidget_Attach {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"Phidget_Attach {device.Address},{device.Port} S#:{device.SerialNumber} ID:{device.ID}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
