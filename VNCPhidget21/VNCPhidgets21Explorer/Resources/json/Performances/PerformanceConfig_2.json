@@ -12,7 +12,7 @@
       "PlayInParallel": false,
       "PerformanceSequences": [
         { "Name": "Reset Position Limits (RPL)", "SequenceType": "AS" },
-        { "Name": "Engage and Center Servos", "SequenceType": "AS" },
+        { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" },
 
         { "Name": "Acceleration(500) VelocityLimit(1000)", "SequenceType": "AS" },
         { "Name": "Parallel All (PA)", "SequenceType": "AS" },
@@ -47,7 +47,7 @@
         { "Name": "VelocityLimit -10", "SequenceType": "AS" },
         { "Name": "Parallel All (PA)", "SequenceType": "AS" },
 
-        { "Name": "DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
+        { "Name": "99415-DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
       ],
       "NextPerformance": null
     },
@@ -61,7 +61,7 @@
       "PlayInParallel": false,
       "PerformanceSequences": [
         { "Name": "Reset Position Limits (RPL)", "SequenceType": "AS" },
-        { "Name": "Engage and Center Servos", "SequenceType": "AS" },
+        { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" },
 
         { "Name": "Acceleration(500) VelocityLimit(100)", "SequenceType": "AS" },
         { "Name": "Parallel All (PA)", "SequenceType": "AS" },
@@ -93,7 +93,7 @@
         { "Name": "Acceleration -10", "SequenceType": "AS" },
         { "Name": "Parallel All (PA)", "SequenceType": "AS" },
 
-        { "Name": "DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
+        { "Name": "99415-DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
       ],
       "NextPerformance": null
     },

@@ -19,7 +19,7 @@
         "Name": "Disengage All Servos and Close Phidget",
         "Description": "Play All the Performances",
         "PerformanceSequences": [
-            { "Name": "DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
+            { "Name": "99415-DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
         ]
       }
     },
@@ -37,7 +37,7 @@
         "Name": "Disengage All Servos and Close Phidget",
         "Description": "Play All the Performances",
         "PerformanceSequences": [
-            { "Name": "DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
+            { "Name": "99415-DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
         ]
       }
     },
@@ -59,7 +59,7 @@
         "Name": "Disengage All Servos and Close Phidget",
         "Description": "Play All the Performances",
         "PerformanceSequences": [
-            { "Name": "DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
+            { "Name": "99415-DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
         ]
       }
     },

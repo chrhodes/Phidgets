@@ -120,20 +120,28 @@
                                 <dxe:TextEdit Text="{Binding SelectedPerformance.Description }" />
                             </dxlc:LayoutItem>
 
+                            <dxlc:LayoutItem Label="BeforePerformanceLoopPerformances" HorizontalAlignment="Left" Background="Wheat" >
+                                <dxe:TextEdit Text="{Binding SelectedPerformance.BeforePerformanceLoopPerformances.Count, Mode=OneWay}" />
+                            </dxlc:LayoutItem>
+                            
                             <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
-                                <dxlc:LayoutItem Label="Loops" HorizontalAlignment="Left" Background="Wheat" >
-                                    <dxe:TextEdit Text="{Binding SelectedPerformance.Loops }" />
+                                <dxlc:LayoutItem Label="PerformanceLoops" HorizontalAlignment="Left" Background="Wheat" >
+                                    <dxe:TextEdit Text="{Binding SelectedPerformance.PerformanceLoops }" />
                                 </dxlc:LayoutItem>
 
-                                <dxlc:LayoutItem Label="PlayPerformances InParallel" HorizontalAlignment="Left" Background="Wheat" >
-                                    <dxe:TextEdit Text="{Binding SelectedPerformance.PlayInParallel }" />
+                                <dxlc:LayoutItem Label="PlaySequences InParallel" HorizontalAlignment="Left" Background="Wheat" >
+                                    <dxe:TextEdit Text="{Binding SelectedPerformance.PlaySequencesInParallel }" />
                                 </dxlc:LayoutItem>
 
                             </dxlc:LayoutGroup>
 
+                            <dxlc:LayoutItem Label="AfterPerformanceLoopPerformances" HorizontalAlignment="Left" Background="Wheat" >
+                                <dxe:TextEdit Text="{Binding SelectedPerformance.AfterPerformanceLoopPerformances.Count, Mode=OneWay}" />
+                            </dxlc:LayoutItem>
+
                             <dxlc:LayoutItem Label="NextPerformance" HorizontalAlignment="Left" Background="Wheat" >
-                                <dxe:TextEdit Text="{Binding SelectedPerformance.NextPerformance }" />
+                                <dxe:TextEdit Text="{Binding SelectedPerformance.NextPerformance.Name }" />
                             </dxlc:LayoutItem>
 
                         </dxlc:LayoutGroup>
@@ -202,7 +210,6 @@
 
                     <dxlc:LayoutGroup View="Group" Orientation="Vertical" Background="LawnGreen" Padding="5">
                     
-
                     <dxlc:LayoutItem Label="StartActionLoopSequences" HorizontalAlignment="Left" Background="Wheat" >
                         <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.StartActionLoopSequences.Count, Mode=OneWay}" />
                     </dxlc:LayoutItem>

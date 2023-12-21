@@ -265,7 +265,7 @@
 
                         <!--<dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Left">-->
                         <dxe:CheckEdit IsChecked="{Binding AdvancedServoProperties[0].SpeedRamping}" Content="Speed Ramping"
-                            Background="{Binding SpeedRamping, Mode=OneWay, 
+                            Background="{Binding AdvancedServoProperties[0].SpeedRamping, Mode=OneWay, 
                                 Converter={StaticResource RedGreenConverter}}"/>
                         <!--</dxlc:LayoutItem>-->
 
@@ -345,7 +345,7 @@
 
                         <!--<dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Left">-->
                         <dxe:CheckEdit IsChecked="{Binding AdvancedServoProperties[1].SpeedRamping}" Content="Speed Ramping"
-                            Background="{Binding SpeedRamping, Mode=OneWay, 
+                            Background="{Binding AdvancedServoProperties[1].SpeedRamping, Mode=OneWay, 
                                 Converter={StaticResource RedGreenConverter}}"/>
                         <!--</dxlc:LayoutItem>-->
 
@@ -425,7 +425,7 @@
 
                         <!--<dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Left">-->
                         <dxe:CheckEdit IsChecked="{Binding AdvancedServoProperties[2].SpeedRamping}" Content="Speed Ramping"
-                            Background="{Binding SpeedRamping, Mode=OneWay, 
+                            Background="{Binding AdvancedServoProperties[2].SpeedRamping, Mode=OneWay, 
                                 Converter={StaticResource RedGreenConverter}}"/>
                         <!--</dxlc:LayoutItem>-->
 
@@ -505,7 +505,7 @@
 
                         <!--<dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Left">-->
                         <dxe:CheckEdit IsChecked="{Binding AdvancedServoProperties[3].SpeedRamping}" Content="Speed Ramping"
-                            Background="{Binding SpeedRamping, Mode=OneWay, 
+                            Background="{Binding AdvancedServoProperties[3].SpeedRamping, Mode=OneWay, 
                                 Converter={StaticResource RedGreenConverter}}"/>
                         <!--</dxlc:LayoutItem>-->
 
@@ -585,7 +585,7 @@
 
                         <!--<dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Left">-->
                         <dxe:CheckEdit IsChecked="{Binding AdvancedServoProperties[4].SpeedRamping}" Content="Speed Ramping"
-                            Background="{Binding SpeedRamping, Mode=OneWay, 
+                            Background="{Binding AdvancedServoProperties[4].SpeedRamping, Mode=OneWay, 
                                 Converter={StaticResource RedGreenConverter}}"/>
                         <!--</dxlc:LayoutItem>-->
 
@@ -665,7 +665,7 @@
 
                         <!--<dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Left">-->
                             <dxe:CheckEdit IsChecked="{Binding AdvancedServoProperties[5].SpeedRamping}" Content="Speed Ramping"
-                            Background="{Binding SpeedRamping, Mode=OneWay, 
+                            Background="{Binding AdvancedServoProperties[5].SpeedRamping, Mode=OneWay, 
                                 Converter={StaticResource RedGreenConverter}}"/>
                         <!--</dxlc:LayoutItem>-->
                         
@@ -745,7 +745,7 @@
 
                         <!--<dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Left">-->
                         <dxe:CheckEdit IsChecked="{Binding AdvancedServoProperties[6].SpeedRamping}" Content="Speed Ramping"
-                            Background="{Binding SpeedRamping, Mode=OneWay, 
+                            Background="{Binding AdvancedServoProperties[6].SpeedRamping, Mode=OneWay, 
                                 Converter={StaticResource RedGreenConverter}}"/>
                         <!--</dxlc:LayoutItem>-->
 
@@ -825,7 +825,7 @@
 
                         <!--<dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Left">-->
                         <dxe:CheckEdit IsChecked="{Binding AdvancedServoProperties[7].SpeedRamping}" Content="Speed Ramping"
-                            Background="{Binding SpeedRamping, Mode=OneWay, 
+                            Background="{Binding AdvancedServoProperties[7].SpeedRamping, Mode=OneWay, 
                                 Converter={StaticResource RedGreenConverter}}"/>
                         <!--</dxlc:LayoutItem>-->
 

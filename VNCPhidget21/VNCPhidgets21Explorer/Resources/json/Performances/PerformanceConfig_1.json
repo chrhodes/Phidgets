@@ -6,7 +6,7 @@
         "Name": "Disengage All Servos and Close Phidget",
         "Description": "End the Show2",
         "PerformanceSequences": [
-            { "Name": "DisEngage All Servos", "SequenceType": "AS" }
+            { "Name": "99415-DisEngage All Servos", "SequenceType": "AS" }
         ]
     },
   ]

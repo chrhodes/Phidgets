@@ -222,7 +222,8 @@ namespace VNCPhidget21.Configuration
                 @"AdvancedServoSequences\AdvancedServoSequenceConfig_99220_Skulls.json",
                 @"AdvancedServoSequences\AdvancedServoSequenceConfig_Test A.json",
                 @"AdvancedServoSequences\AdvancedServoSequenceConfig_Test B.json",
-                @"AdvancedServoSequences\AdvancedServoSequenceConfig_Test A+B.json",
+                @"AdvancedServoSequences\AdvancedServoSequenceConfig_Test C.json",
+                @"AdvancedServoSequences\AdvancedServoSequenceConfig_Test A+B+C.json",
             };
 
             return files;

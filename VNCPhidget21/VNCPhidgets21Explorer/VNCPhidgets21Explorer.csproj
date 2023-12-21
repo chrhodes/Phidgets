@@ -9,7 +9,7 @@
     <!--<Nullable>enable</Nullable>-->
 	  <VersionPrefix>1.0.0</VersionPrefix>
 	  <VersionSuffix>indevelopment-v11</VersionSuffix>
-      <FileVersion>2023.12.20A</FileVersion>
+      <FileVersion>2023.12.21A</FileVersion>
       <Company>VNC</Company>
 	  <Description>Phidget21 Explorer</Description>
   </PropertyGroup>

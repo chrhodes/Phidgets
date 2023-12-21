@@ -759,7 +759,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Message = "Cool, you called PlayPerformance";
 
             // TODO(crhodes)
-            // This has sideaffect of setting ActivePerformancePlayer.
+            // This has sideaffect of setting ActivePerformanceSequencePlayer.
             // Think through whether this make sense.
 
             PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
@@ -1008,7 +1008,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             VNCPhidgetConfig.PerformanceSequence? advancedServoSequence = 
                 new VNCPhidgetConfig.PerformanceSequence
                 {
-                    Name = "Engage and Center Servos",
+                    Name = "99415-Engage and Center Servos",
                     SequenceType = "AS"
                 };
 

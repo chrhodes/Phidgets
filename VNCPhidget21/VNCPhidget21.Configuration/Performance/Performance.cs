@@ -15,7 +15,7 @@ namespace VNCPhidget21.Configuration
         public string? Description { get; set; }
 
         /// <summary>
-        /// Name of Performance[] to call before executing PerformanceSequences
+        /// Name of Performance[] to call before executing PerformanceSequences[]
         /// before calling NextSequence
         /// </summary>
         public Performance[]? BeforePerformanceLoopPerformances { get; set; }
@@ -38,7 +38,7 @@ namespace VNCPhidget21.Configuration
         public Int32? Duration { get; set; }
 
         /// <summary>
-        /// Name of Performance[] to call after executing PerformanceSequences
+        /// Name of Performance[] to call after executing PerformanceSequences[]
         /// before calling NextSequence
         /// </summary>
         public Performance[]? AfterPerformanceLoopPerformances { get; set; }

@@ -20,6 +20,8 @@ namespace VNC.Phidget.Players
 
             EventAggregator = eventAggregator;
 
+            PerformanceSequencePlayer = new PerformanceSequencePlayer(EventAggregator);
+
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
