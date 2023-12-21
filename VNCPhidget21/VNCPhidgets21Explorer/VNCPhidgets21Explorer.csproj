@@ -44,7 +44,7 @@
         <PackageReference Include="DevExpress.Wpf.Navigation" Version="21.2.7" />-->
         <PackageReference Include="DevExpress.Wpf.NavBar" Version="23.1.5" />
         <PackageReference Include="DevExpress.Wpf.Ribbon" Version="23.1.5" />
-        <PackageReference Include="EntityFramework" Version="6.4.4" />
+        <!--<PackageReference Include="EntityFramework" Version="6.4.4" />-->
         <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
         <PackageReference Include="Prism.Unity" Version="8.1.97" />
     </ItemGroup>
