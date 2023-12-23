@@ -51,10 +51,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Button4Command = new DelegateCommand(Button4Execute);
             Button5Command = new DelegateCommand(Button5Execute);
 
-            ReloadPerformanceConfigFilesCommand = new DelegateCommand(ReloadPerformanceConfigFiles);
-            ReloadAdvancedServoSequenceConfigFilesCommand = new DelegateCommand(ReloadAdvancedServoSequenceConfigFiles);
-            ReloadInterfaceKitSequenceConfigFilesCommand = new DelegateCommand(ReloadInterfaceKitSequenceConfigFiles);
-            ReloadStepperSequenceConfigFilesCommand = new DelegateCommand(ReloadStepperSequenceConfigFiles);
+            ConfigFileName_DoubleClick_Command = new DelegateCommand(ConfigFileName_DoubleClick);
+
+            //ReloadPerformanceConfigFilesCommand = new DelegateCommand(ReloadPerformanceConfigFiles);
+            //ReloadAdvancedServoSequenceConfigFilesCommand = new DelegateCommand(ReloadAdvancedServoSequenceConfigFiles);
+            //ReloadInterfaceKitSequenceConfigFilesCommand = new DelegateCommand(ReloadInterfaceKitSequenceConfigFiles);
+            //ReloadStepperSequenceConfigFilesCommand = new DelegateCommand(ReloadStepperSequenceConfigFiles);
 
             PlayPerformanceCommand = new DelegateCommand (PlayPerformance, PlayPerformanceCanExecute);
             PlayAdvancedServoSequenceCommand = new DelegateCommand(PlayAdvancedServoSequence, PlayAdvancedServoSequenceCanExecute);
@@ -124,6 +126,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private string _hostConfigFileName;
+        public string HostConfigFileName
+        {
+            get => _hostConfigFileName;
+            set
+            {
+                if (_hostConfigFileName == value) return;
+                _hostConfigFileName = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string HostConfigFileNameToolTip { get; set; } = "DoubleClick to select new file";
 
         private IEnumerable<VNCPhidgetConfig.Host> _Hosts;
         public IEnumerable<VNCPhidgetConfig.Host> Hosts
@@ -261,8 +277,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 //PlayInterfaceKitSequenceCommand.RaiseCanExecuteChanged();
             }
         }
-
-
 
         #endregion
 
@@ -469,7 +483,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Stepper
 
-
         private IEnumerable<VNCPhidgetConfig.StepperSequence> _stepperSequences;
         public IEnumerable<VNCPhidgetConfig.StepperSequence> StepperSequences
         {
@@ -544,6 +557,17 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         #endregion
 
         #region Commands
+
+        #region Command ConfigFileName DoubleClick
+
+        public DelegateCommand ConfigFileName_DoubleClick_Command { get; set; }
+
+        public void ConfigFileName_DoubleClick()
+        {
+            Message = "ConfigFileName_DoubleClick";
+        }
+
+        #endregion
 
         public ICommand Button1Command { get; private set; }
         public ICommand Button2Command { get; private set; }
@@ -655,67 +679,67 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Log.Info("End", Common.LOG_CATEGORY, startTicks);
         }
 
-        #region Reload Config Files
+        //#region Reload Config Files
 
-        public ICommand ReloadPerformanceConfigFilesCommand { get; private set; }
-        public ICommand ReloadAdvancedServoSequenceConfigFilesCommand { get; private set; }
-        public ICommand ReloadInterfaceKitSequenceConfigFilesCommand { get; private set; }
-        public ICommand ReloadStepperSequenceConfigFilesCommand { get; private set; }
+        //public ICommand ReloadPerformanceConfigFilesCommand { get; private set; }
+        //public ICommand ReloadAdvancedServoSequenceConfigFilesCommand { get; private set; }
+        //public ICommand ReloadInterfaceKitSequenceConfigFilesCommand { get; private set; }
+        //public ICommand ReloadStepperSequenceConfigFilesCommand { get; private set; }
 
-        private void ReloadPerformanceConfigFiles()
-        {
-            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+        //private void ReloadPerformanceConfigFiles()
+        //{
+        //    Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
 
-            Message = "ReloadPerformanceConfigFiles Clicked";
+        //    Message = "ReloadPerformanceConfigFiles Clicked";
 
-            //LoadPerformancesConfig();
+        //    //LoadPerformancesConfig();
 
-            Log.Info("End", Common.LOG_CATEGORY, startTicks);
-        }
+        //    Log.Info("End", Common.LOG_CATEGORY, startTicks);
+        //}
 
-        private void ReloadAdvancedServoSequenceConfigFiles()
-        {
-            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+        //private void ReloadAdvancedServoSequenceConfigFiles()
+        //{
+        //    Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
 
-            Message = "ReloadAdvancedServoSequenceConfigFiles Clicked";
+        //    Message = "ReloadAdvancedServoSequenceConfigFiles Clicked";
 
-            // TODO(crhodes)
-            // Call something in PerformanceSequencePlayer
+        //    // TODO(crhodes)
+        //    // Call something in PerformanceSequencePlayer
 
-            //LoadAdvanceServoConfig();
+        //    //LoadAdvanceServoConfig();
 
-            Log.Info("End", Common.LOG_CATEGORY, startTicks);
-        }
+        //    Log.Info("End", Common.LOG_CATEGORY, startTicks);
+        //}
 
-        private void ReloadInterfaceKitSequenceConfigFiles()
-        {
-            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+        //private void ReloadInterfaceKitSequenceConfigFiles()
+        //{
+        //    Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
 
-            Message = "ReloadInterfaceKitSequenceConfigFiles Clicked";
+        //    Message = "ReloadInterfaceKitSequenceConfigFiles Clicked";
 
-            // TODO(crhodes)
-            // Call something in PerformanceSequencePlayer
+        //    // TODO(crhodes)
+        //    // Call something in PerformanceSequencePlayer
 
-            //LoadInterfaceKitConfig();
+        //    //LoadInterfaceKitConfig();
 
-            Log.Info("End", Common.LOG_CATEGORY, startTicks);
-        }
+        //    Log.Info("End", Common.LOG_CATEGORY, startTicks);
+        //}
 
-        private void ReloadStepperSequenceConfigFiles()
-        {
-            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+        //private void ReloadStepperSequenceConfigFiles()
+        //{
+        //    Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
 
-            Message = "ReloadStepperSequenceConfigFiles Clicked";
+        //    Message = "ReloadStepperSequenceConfigFiles Clicked";
 
-            // TODO(crhodes)
-            // Call something in PerformanceSequencePlayer
+        //    // TODO(crhodes)
+        //    // Call something in PerformanceSequencePlayer
 
-            //LoadStepperConfig();
+        //    //LoadStepperConfig();
 
-            Log.Info("End", Common.LOG_CATEGORY, startTicks);
-        }
+        //    Log.Info("End", Common.LOG_CATEGORY, startTicks);
+        //}
 
-        #endregion
+        //#endregion
 
         #region PerformanceFileName DoubleClick
 

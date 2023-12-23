@@ -119,7 +119,9 @@
 
             </dxlc:LayoutGroup>
 
-            <dxe:TrackBarEdit Value="{Binding Current, Mode=TwoWay}" Minimum="{Binding Min}" Maximum="{Binding Max}"
+            <dxe:TrackBarEdit Value="{Binding Current, Mode=TwoWay, TargetNullValue=0}" 
+                              Minimum="{Binding Min, Mode=OneWay, TargetNullValue=0}" 
+                              Maximum="{Binding Max, Mode=OneWay, TargetNullValue=0}"
                               MouseDoubleClick="TrackBarEdit_MouseDoubleClick" EditValueType="{x:Type sys:Decimal}"
                               ToolTip="Double Click to Center" />
 

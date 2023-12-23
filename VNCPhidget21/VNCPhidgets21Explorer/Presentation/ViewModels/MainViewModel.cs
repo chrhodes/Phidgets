@@ -26,12 +26,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        //DigitalOutput digitalOutput0;
-        //ph22.DigitalOutput digitalOutput2;
-
-
-
-
         const Int32 sbc11SerialNumber = 46049;
 
         const Int32 sbc21SerialNumber = 48301;
@@ -47,23 +41,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Button1Command = new DelegateCommand(Button1Execute);
             Button2Command = new DelegateCommand(Button2Execute);
             Button3Command = new DelegateCommand(Button3Execute);
-
-            //try
-            //{
-            //    digitalOutput0 = new ph22.DigitalOutput();
-            //    digitalOutput0.Channel = 0;
-            //    digitalOutput0.DeviceSerialNumber = sbc22SerialNumber;
-            //    digitalOutput0.Open(5000);
-
-            //    digitalOutput2 = new ph22.DigitalOutput();
-            //    digitalOutput2.Channel = 2;
-            //    digitalOutput0.DeviceSerialNumber = sbc22SerialNumber;
-            //    digitalOutput2.Open(5000);
-            //}
-            //catch (Exception ex)
-            //{
-
-            //}
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -81,7 +58,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         #endregion
 
         #region Fields and Properties
-
 
         public ICommand Button1Command { get; private set; }
         public ICommand Button2Command { get; private set; }
@@ -230,91 +206,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         #endregion
 
         #region Private Methods
-
-        private void OpenPhidget()
-        {
-            //Net.ServerAdded += Net_ServerAdded;
-            //ph22.Net.ServerRemoved += Net_ServerRemoved;
-
-            ////ph22.Net.EnableServerDiscovery(ph22.ServerType.SBC);
-            //ph22.Net.AddServer("phsbc11", "192.168.150.11", 5001, "", 0);
-            //ph22.Net.AddServer("phsbc21", "192.168.150.21", 5001, "", 0);
-            //ph22.Net.AddServer("phsbc22", "192.168.150.22", 5001, "", 0);
-            //ph22.Net.AddServer("phsbc23", "192.168.150.23", 5001, "", 0);
-
-            //// NOTE(crhodes)
-            //// Passing null throws exception
-
-            ////ph22.Net.AddServer("phsbc11", "192.168.150.11", 5001, null, 0);
-            ////ph22.Net.AddServer("phsbc21", "192.168.150.21", 5001, null, 0);
-            ////ph22.Net.AddServer("phsbc22", "192.168.150.22", 5001, null, 0);
-            ////ph22.Net.AddServer("phsbc23", "192.168.150.23", 5001, null, 0);
-
-            //ph22.Phidget phidget = new ph22.Phidget();
-
-            //phidget.Attach += Phidget_Attach;
-            //phidget.Detach += Phidget_Detach;
-
-            //ph22.DigitalOutput digitalOutput;
-
-            //digitalOutput = new ph22.DigitalOutput();
-
-            //digitalOutput.Attach += DigitalOutput_Attach;
-            //digitalOutput.Detach += DigitalOutput_Detach;
-
-            //digitalOutput.Channel = 0;
-            //digitalOutput.IsRemote = true;
-            //digitalOutput.DeviceSerialNumber = sbc22SerialNumber;
-            //digitalOutput.Open(5000);
-
-            //digitalOutput.DutyCycle = 1;
-            //digitalOutput.DutyCycle = 0;
-
-            //phidget.IsHubPortDevice = true;
-
-            //phidget.Channel = 0;
-            //phidget.DeviceSerialNumber = sbc21SerialNumber;
-
-            //phidget.Open();
-        }
-
-        //private void DigitalOutput_Detach(object sender, ph22E.DetachEventArgs e)
-        //{
-        //    var a = e;
-        //    var b = e.GetType();
-
-        //}
-
-        //private void DigitalOutput_Attach(object sender, ph22E.AttachEventArgs e)
-        //{
-        //    var a = e;
-        //    var b = e.GetType();
-        //}
-
-        //private void Net_ServerRemoved(ph22E.NetServerRemovedEventArgs e)
-        //{
-        //    var a = e;
-        //    var b = e.GetType();
-        //}
-
-        //private void Net_ServerAdded(ph22E.NetServerAddedEventArgs e)
-        //{
-        //    var a = e;
-        //    var server = e.Server;
-        //    var b = e.GetType();
-        //}
-
-        //private void Phidget_Detach(object sender, ph22E.DetachEventArgs e)
-        //{
-        //    var a = e;
-        //    var b = e.GetType();
-        //}
-
-        //private void Phidget_Attach(object sender, ph22E.AttachEventArgs e)
-        //{
-        //    var a = e;
-        //    var b = e.GetType();
-        //}
 
         private void OpenPhidgetManager()
         {
@@ -703,7 +594,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             Log.Trace5("End", Common.LOG_CATEGORY, startTicks);
         }
-
 
         #endregion
 

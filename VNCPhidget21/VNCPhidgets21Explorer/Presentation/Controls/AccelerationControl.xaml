@@ -68,8 +68,8 @@
         <!-- <localvm:AccelerationControlViewModel /> -->
     <!-- </UserControl.DataContext> -->
 
-    <dxlc:LayoutGroup x:Name="lgMain"  View="GroupBox" Orientation="Horizontal" Header="Acceleration" Padding="-10">
-        <!--<dxlc:LayoutGroup View="Group" Orientation="Horizontal" >-->
+    <dxlc:LayoutGroup x:Name="lgMain" Header="Acceleration" View="GroupBox" 
+                      Orientation="Horizontal"  Padding="-10">
 
         <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Left">
             <dxe:TextEdit Text="{Binding Min, Mode=TwoWay}" IsReadOnly="True" HorizontalContentAlignment="Left"
@@ -77,7 +77,7 @@
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem Label="Current" LabelPosition="Top" LabelHorizontalAlignment="Center" Width="65" >
-            <!--<dxe:TextEdit Text="{Binding Current, Mode=TwoWay}" HorizontalAlignment="Center" />-->
+
             <dxe:SpinEdit EditValue="{Binding Current, Mode=TwoWay, TargetNullValue=0}" Increment="500"
                             MinValue="{Binding Min, Mode=OneWay, TargetNullValue=0}"
                             MaxValue="{Binding Max, Mode=OneWay, TargetNullValue=0}" 
@@ -91,8 +91,6 @@
                           Mask="d"  MaskType="Numeric" MaskUseAsDisplayFormat="True"/>
         </dxlc:LayoutItem>
 
-    <!--</dxlc:LayoutGroup>
-        <dxe:TrackBarEdit Value="{Binding Current, Mode=TwoWay}" Minimum="{Binding Min}" Maximum="{Binding Max}" />-->
     </dxlc:LayoutGroup>
 
 </vncmvvm:ViewBase>

@@ -1,46 +1,56 @@
 ﻿using System;
+using System.Windows;
+
+using VNCPhidgets21Explorer.Presentation.ViewModels;
 
 using VNC;
 using VNC.Core.Mvvm;
 
 namespace VNCPhidgets21Explorer.Presentation.Views
 {
-    public partial class PerformanceSelector : ViewBase, IInstanceCountV
+    public partial class ManagePerformanceLibrary : ViewBase, IManagePerformanceLibrary, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
         
-        public PerformanceSelector()
+        public ManagePerformanceLibrary()
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             InstanceCountV++;
             InitializeComponent();
-
-            // Expose ViewModel
-
+            
+			// Expose ViewModel
+						
             // If View First with ViewModel in Xaml
 
-            // ViewModel = (IHostSelectorViewModel)DataContext;
+            // ViewModel = (IManagePerformanceLibraryViewModel)DataContext;
 
             // Can create directly
-            // ViewModel = HostSelectorViewModel();
+            // ViewModel = ManagePerformanceLibraryViewModel();
 
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+        
+        public ManagePerformanceLibrary(IManagePerformanceLibraryViewModel viewModel)
+        {
+            Int64 startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
+
+            InstanceCountV++;
+            InitializeComponent();
+
+            ViewModel = viewModel;
+            
             InitializeView();
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
         
-        
         private void InitializeView()
         {
             Int64 startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
-
+            
             // NOTE(crhodes)
             // Put things here that initialize the View
-
-            lgAdvancedServoSequences.IsCollapsed = true;
-            lgInterfaceKitSequences.IsCollapsed = true;
-            lgStepperSequences.IsCollapsed = true;
             
             Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -97,5 +107,6 @@ namespace VNCPhidgets21Explorer.Presentation.Views
         }
 
         #endregion
+
     }
 }

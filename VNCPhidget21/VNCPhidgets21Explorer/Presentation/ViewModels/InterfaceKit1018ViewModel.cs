@@ -56,7 +56,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // For now just hard code this.  Can have UI let us choose later.
 
-            ConfigFileName = "hostconfig.json";
+            HostConfigFileName = "hostconfig.json";
             LoadUIConfig();
 
             //SayHelloCommand = new DelegateCommand(
@@ -71,7 +71,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             Int64 startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
-            string jsonString = File.ReadAllText(ConfigFileName);
+            string jsonString = File.ReadAllText(HostConfigFileName);
 
             VNCPhidgetConfig.HostConfig ? hostConfig = 
                 JsonSerializer.Deserialize< VNCPhidgetConfig.HostConfig >
@@ -107,33 +107,33 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        private string _ConfigFileName;
+        private string _hostConfigFileName;
 
-        public string ConfigFileName
+        public string HostConfigFileName
         {
-            get => _ConfigFileName;
+            get => _hostConfigFileName;
             set
             {
-                if (_ConfigFileName == value) return;
-                _ConfigFileName = value;
+                if (_hostConfigFileName == value) return;
+                _hostConfigFileName = value;
                 OnPropertyChanged();
             }
         }
 
-        public string ConfigFileNameToolTip { get; set; } = "DoubleClick to select new file";
+        public string HostConfigFileNameToolTip { get; set; } = "DoubleClick to select new file";
 
-        private VNCPhidgetConfig.HostConfig _hostConfig;
-        public VNCPhidgetConfig.HostConfig HostConfig
-        {
-            get => _hostConfig;
-            set
-            {
-                if (_hostConfig == value)
-                    return;
-                _hostConfig = value;
-                OnPropertyChanged();
-            }
-        }
+        //private VNCPhidgetConfig.HostConfig _hostConfig;
+        //public VNCPhidgetConfig.HostConfig HostConfig
+        //{
+        //    get => _hostConfig;
+        //    set
+        //    {
+        //        if (_hostConfig == value)
+        //            return;
+        //        _hostConfig = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         private IEnumerable<VNCPhidgetConfig.Host> _Hosts;
         public IEnumerable<VNCPhidgetConfig.Host> Hosts

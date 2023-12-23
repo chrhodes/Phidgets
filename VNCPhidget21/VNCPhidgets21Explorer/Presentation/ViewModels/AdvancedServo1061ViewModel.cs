@@ -106,26 +106,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        //private void LoadPerformancesConfig()
-        //{
-        //    Int64 startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
-
-        //    var jsonOptions = new JsonSerializerOptions { ReadCommentHandling = JsonCommentHandling.Skip };
-
-        //    string jsonString = File.ReadAllText(PerformanceConfigFileName);
-
-        //    Resources.AdvancedServoPerformanceConfig? performancesConfig
-        //        = JsonSerializer.Deserialize<Resources.AdvancedServoPerformanceConfig>(jsonString, jsonOptions);
-
-        //    this.AdvancedServoPerformances = performancesConfig.AdvancedServoPerformances.ToList();
-
-        //    AvailableAdvancedServoPerformances =
-        //        performancesConfig.AdvancedServoPerformances
-        //        .ToDictionary(k => k.Name, v => v);
-
-        //    Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
-        //}
-
         JsonSerializerOptions GetJsonSerializerOptions()
         {
             var jsonOptions = new JsonSerializerOptions
@@ -163,7 +143,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        public string ConfigFileNameToolTip { get; set; } = "DoubleClick to select new file";
+        public string HostConfigFileNameToolTip { get; set; } = "DoubleClick to select new file";
 
         private string _performanceConfigFileName;
         public string PerformanceConfigFileName
@@ -179,18 +159,18 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public string PerformanceFileNameToolTip { get; set; } = "DoubleClick to select new file";
 
-        private VNCPhidgetConfig.HostConfig _hostConfig;
-        public VNCPhidgetConfig.HostConfig HostConfig
-        {
-            get => _hostConfig;
-            set
-            {
-                if (_hostConfig == value)
-                    return;
-                _hostConfig = value;
-                OnPropertyChanged();
-            }
-        }
+        //private VNCPhidgetConfig.HostConfig _hostConfig;
+        //public VNCPhidgetConfig.HostConfig HostConfig
+        //{
+        //    get => _hostConfig;
+        //    set
+        //    {
+        //        if (_hostConfig == value)
+        //            return;
+        //        _hostConfig = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         private IEnumerable<VNCPhidgetConfig.Host> _Hosts;
         public IEnumerable<VNCPhidgetConfig.Host> Hosts

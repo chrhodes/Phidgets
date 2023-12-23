@@ -78,7 +78,7 @@
 
                     <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top" >
                     
-                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+                        <!--<dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
                             <dxlc:LayoutItem Label="Performance Config Files" HorizontalAlignment="Left" >
                                 <dxe:ComboBoxEdit 
@@ -91,7 +91,7 @@
                                 Command="{Binding ReloadPerformanceConfigFilesCommand}"
                                 ToolTip="Reload Config File" Width="20"/>
 
-                        </dxlc:LayoutGroup>
+                        </dxlc:LayoutGroup>-->
 
                         <dxlc:LayoutItem Label="Name" Background="Wheat" HorizontalAlignment="Left" >
                             <dxe:TextEdit Width="300" HorizontalAlignment="Left"
@@ -157,7 +157,6 @@
 
                 </dxlc:LayoutGroup>
 
-
             </dxlc:LayoutGroup>
 
             <dxlc:LayoutGroup x:Name="lgAdvancedServoSequences" Header="AdvancedServo Sequences" View="GroupBox" 
@@ -166,7 +165,7 @@
                 
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     
-                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+                    <!--<dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
                         
                         <dxlc:LayoutItem Label="Sequence Config Files" HorizontalAlignment="Left" >
                             <dxe:ComboBoxEdit Width="300"
@@ -179,7 +178,7 @@
                                 Command="{Binding ReloadAdvancedServoSequenceConfigFilesCommand}"
                                 ToolTip="Reload Config File" Width="20"/>
 
-                    </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>-->
 
                     <dxlc:LayoutItem Label="Selected Sequence(s)" HorizontalAlignment="Left" >
                         <dxe:ComboBoxEdit Width="300" TextWrapping="Wrap" 
@@ -394,7 +393,7 @@
 
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch" >
 
-                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+                    <!--<dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
                         <dxlc:LayoutItem Label="Sequence Config File" HorizontalAlignment="Left" >
                             <dxe:ComboBoxEdit Width="300"
@@ -407,7 +406,7 @@
                                 Command="{Binding ReloadInterfaceKitSequenceConfigFilesCommand}"
                                 ToolTip="Reload Config File" Width="20"/>
 
-                    </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>-->
 
                     <dxlc:LayoutItem Label="Selected Sequence(s)" HorizontalAlignment="Left" >
                         <dxe:ComboBoxEdit Width="300" TextWrapping="Wrap" 
@@ -508,7 +507,7 @@
 
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch">
 
-                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+                    <!--<dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
                         <dxlc:LayoutItem Label="Sequence Config File" HorizontalAlignment="Left" >
                             <dxe:ComboBoxEdit Width="300"
@@ -521,7 +520,7 @@
                                 Command="{Binding ReloadStepperSequenceConfigFilesCommand}"
                                 ToolTip="Reload Config File" Width="20"/>
 
-                    </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>-->
 
                     <dxlc:LayoutItem Label="Selected Sequence(s)" HorizontalAlignment="Left" >
                         <dxe:ComboBoxEdit Width="300" TextWrapping="Wrap" 
